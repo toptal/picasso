@@ -27,12 +27,12 @@
     "typescript": "^5.5.0"
   },
   "devDependencies": {
-    "@toptal/picasso": "54.1.5",
+    "@toptal/picasso": "workspace:*",
     "@babel/types": "^7.26.8"
   },
   "sideEffects": false,
   "dependencies": {
-    "@toptal/picasso-utils": "4.0.0"
+    "@toptal/picasso-utils": "workspace:*"
   },
   "exports": {
     ".": "./dist-package/src/index.js",

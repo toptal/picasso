@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-container": "3.1.4",
-    "@toptal/picasso-form-label": "1.0.4",
-    "@toptal/picasso-grid": "5.0.19",
-    "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-utils": "4.0.0",
+    "@toptal/picasso-container": "workspace:*",
+    "@toptal/picasso-form-label": "workspace:*",
+    "@toptal/picasso-grid": "workspace:*",
+    "@toptal/picasso-shared": "workspace:*",
+    "@toptal/picasso-utils": "workspace:*",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
   },
@@ -42,9 +42,9 @@
     "@toptal/picasso-tailwind": ">=2.7"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.2",
-    "@toptal/picasso-tailwind-merge": "2.0.4",
-    "@toptal/picasso-test-utils": "2.0.0",
+    "@toptal/picasso-provider": "workspace:*",
+    "@toptal/picasso-tailwind-merge": "workspace:*",
+    "@toptal/picasso-test-utils": "workspace:*",
     "styled-components": "^6.1.1"
   },
   "exports": {

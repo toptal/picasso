@@ -112,10 +112,10 @@ importers:
         specifier: ^6.2.0
         version: 6.8.0
       '@topkit/analytics-charts':
-        specifier: 56.0.10
+        specifier: workspace:*
         version: link:packages/topkit-analytics-charts
       '@toptal/base-tailwind':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:packages/base-tailwind
       '@toptal/browserslist-config':
         specifier: ^1.2.0
@@ -136,268 +136,268 @@ importers:
         specifier: ^25.0.0
         version: 25.0.0(encoding@0.1.13)(eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.59.2(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1))(eslint-plugin-n@16.6.2(eslint@8.57.1))(eslint-plugin-promise@6.1.1(eslint@8.57.1))(eslint@8.57.1))(jest@29.7.0(@types/node@24.5.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@5.5.4)))(postcss@8.4.32)(typescript@5.5.4)
       '@toptal/picasso':
-        specifier: 54.1.5
+        specifier: workspace:*
         version: link:packages/picasso
       '@toptal/picasso-accordion':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Accordion
       '@toptal/picasso-account-select':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/AccountSelect
       '@toptal/picasso-alert':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Alert
       '@toptal/picasso-amount':
-        specifier: 1.0.12
+        specifier: workspace:*
         version: link:packages/base/Amount
       '@toptal/picasso-application-update-notification':
-        specifier: 2.0.44
+        specifier: workspace:*
         version: link:packages/base/ApplicationUpdateNotification
       '@toptal/picasso-autocomplete':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:packages/base/Autocomplete
       '@toptal/picasso-avatar':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:packages/base/Avatar
       '@toptal/picasso-avatar-upload':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/AvatarUpload
       '@toptal/picasso-backdrop':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:packages/base/Backdrop
       '@toptal/picasso-badge':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Badge
       '@toptal/picasso-breadcrumbs':
-        specifier: 3.0.20
+        specifier: workspace:*
         version: link:packages/base/Breadcrumbs
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Button
       '@toptal/picasso-calendar':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Calendar
       '@toptal/picasso-carousel':
-        specifier: 4.0.33
+        specifier: workspace:*
         version: link:packages/base/Carousel
       '@toptal/picasso-charts':
-        specifier: 59.0.6
+        specifier: workspace:*
         version: link:packages/picasso-charts
       '@toptal/picasso-checkbox':
-        specifier: 5.0.23
+        specifier: workspace:*
         version: link:packages/base/Checkbox
       '@toptal/picasso-codemod':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:packages/picasso-codemod
       '@toptal/picasso-collapse':
-        specifier: 3.0.4
+        specifier: workspace:*
         version: link:packages/base/Collapse
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:packages/base/Container
       '@toptal/picasso-date-picker':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/DatePicker
       '@toptal/picasso-date-select':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:packages/base/DateSelect
       '@toptal/picasso-drawer':
-        specifier: 3.0.45
+        specifier: workspace:*
         version: link:packages/base/Drawer
       '@toptal/picasso-dropdown':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Dropdown
       '@toptal/picasso-dropzone':
-        specifier: 5.0.34
+        specifier: workspace:*
         version: link:packages/base/Dropzone
       '@toptal/picasso-empty-state':
-        specifier: 2.0.23
+        specifier: workspace:*
         version: link:packages/base/EmptyState
       '@toptal/picasso-environment-banner':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:packages/base/EnvironmentBanner
       '@toptal/picasso-fade':
-        specifier: 1.0.9
+        specifier: workspace:*
         version: link:packages/base/Fade
       '@toptal/picasso-file-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/FileInput
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:packages/base/Form
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:packages/base/FormLabel
       '@toptal/picasso-form-layout':
-        specifier: 1.0.3
+        specifier: workspace:*
         version: link:packages/base/FormLayout
       '@toptal/picasso-forms':
-        specifier: 74.0.0
+        specifier: workspace:*
         version: link:packages/picasso-forms
       '@toptal/picasso-grid':
-        specifier: 5.0.19
+        specifier: workspace:*
         version: link:packages/base/Grid
       '@toptal/picasso-helpbox':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:packages/base/Helpbox
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:packages/base/Icons
       '@toptal/picasso-image':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:packages/base/Image
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Input
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/InputAdornment
       '@toptal/picasso-link':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Link
       '@toptal/picasso-list':
-        specifier: 5.0.21
+        specifier: workspace:*
         version: link:packages/base/List
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:packages/base/Loader
       '@toptal/picasso-logo':
-        specifier: 2.0.18
+        specifier: workspace:*
         version: link:packages/base/Logo
       '@toptal/picasso-menu':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Menu
       '@toptal/picasso-modal':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Modal
       '@toptal/picasso-modal-context':
-        specifier: 1.0.1
+        specifier: workspace:*
         version: link:packages/base/ModalContext
       '@toptal/picasso-note':
-        specifier: 4.0.7
+        specifier: workspace:*
         version: link:packages/base/Note
       '@toptal/picasso-notification':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Notification
       '@toptal/picasso-number-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/NumberInput
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/OutlinedInput
       '@toptal/picasso-overview-block':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/OverviewBlock
       '@toptal/picasso-page':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:packages/base/Page
       '@toptal/picasso-pagination':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Pagination
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:packages/base/Paper
       '@toptal/picasso-password-input':
-        specifier: 5.1.13
+        specifier: workspace:*
         version: link:packages/base/PasswordInput
       '@toptal/picasso-pictograms':
-        specifier: 5.5.1
+        specifier: workspace:*
         version: link:packages/picasso-pictograms
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:packages/base/Popper
       '@toptal/picasso-prompt-modal':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:packages/base/PromptModal
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:packages/picasso-provider
       '@toptal/picasso-query-builder':
-        specifier: 8.0.35
+        specifier: workspace:*
         version: link:packages/picasso-query-builder
       '@toptal/picasso-quote':
-        specifier: 2.0.9
+        specifier: workspace:*
         version: link:packages/base/Quote
       '@toptal/picasso-radio':
-        specifier: 5.0.22
+        specifier: workspace:*
         version: link:packages/base/Radio
       '@toptal/picasso-rating':
-        specifier: 3.0.20
+        specifier: workspace:*
         version: link:packages/base/Rating
       '@toptal/picasso-rich-text-editor':
-        specifier: 18.0.0
+        specifier: workspace:*
         version: link:packages/picasso-rich-text-editor
       '@toptal/picasso-section':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:packages/base/Section
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Select
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:packages/shared
       '@toptal/picasso-show-more':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:packages/base/ShowMore
       '@toptal/picasso-skeleton-loader':
-        specifier: 1.0.69
+        specifier: workspace:*
         version: link:packages/base/SkeletonLoader
       '@toptal/picasso-slide':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:packages/base/Slide
       '@toptal/picasso-slider':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Slider
       '@toptal/picasso-step':
-        specifier: 4.0.19
+        specifier: workspace:*
         version: link:packages/base/Step
       '@toptal/picasso-switch':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Switch
       '@toptal/picasso-table':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Table
       '@toptal/picasso-tabs':
-        specifier: 7.0.1
+        specifier: workspace:*
         version: link:packages/base/Tabs
       '@toptal/picasso-tag':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Tag
       '@toptal/picasso-tagselector':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Tagselector
       '@toptal/picasso-tailwind':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:packages/picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:packages/base/Test-Utils
       '@toptal/picasso-timeline':
-        specifier: 5.0.8
+        specifier: workspace:*
         version: link:packages/base/Timeline
       '@toptal/picasso-timepicker':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Timepicker
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:packages/base/Tooltip
       '@toptal/picasso-tree-view':
-        specifier: 3.0.45
+        specifier: workspace:*
         version: link:packages/base/TreeView
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:packages/base/Typography
       '@toptal/picasso-typography-overflow':
-        specifier: 4.0.6
+        specifier: workspace:*
         version: link:packages/base/TypographyOverflow
       '@toptal/picasso-user-badge':
-        specifier: 5.1.22
+        specifier: workspace:*
         version: link:packages/base/UserBadge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:packages/base/Utils
       '@types/debounce':
         specifier: ^3.0.0
@@ -598,16 +598,16 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.6.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -617,115 +617,115 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/AccountSelect:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-link':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Link
       '@toptal/picasso-menu':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Menu
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-user-badge':
-        specifier: 5.1.22
+        specifier: workspace:*
         version: link:../UserBadge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Alert:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Amount:
     dependencies:
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/ApplicationUpdateNotification:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -735,40 +735,40 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Autocomplete:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Input
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../Loader
       '@toptal/picasso-menu':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Menu
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Select
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
@@ -777,10 +777,10 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -793,10 +793,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       popper.js:
         specifier: ^1.16.1
@@ -805,62 +805,62 @@ importers:
   packages/base/Avatar:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-image':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../Image
       '@toptal/picasso-logo':
-        specifier: 2.0.18
+        specifier: workspace:*
         version: link:../Logo
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/AvatarUpload:
     dependencies:
       '@toptal/picasso-avatar':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Avatar
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../Loader
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
@@ -870,10 +870,10 @@ importers:
         version: 14.2.3(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Backdrop:
@@ -882,13 +882,13 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-fade':
-        specifier: 1.0.9
+        specifier: workspace:*
         version: link:../Fade
       '@toptal/picasso-tailwind':
         specifier: '>2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -898,7 +898,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Badge:
@@ -907,29 +907,29 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Breadcrumbs:
     dependencies:
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.6.0'
@@ -938,10 +938,10 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -951,10 +951,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Button:
@@ -963,34 +963,34 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-checkbox':
-        specifier: 5.0.23
+        specifier: workspace:*
         version: link:../Checkbox
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-dropdown':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Dropdown
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-link':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Link
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../Loader
       '@toptal/picasso-radio':
-        specifier: 5.0.22
+        specifier: workspace:*
         version: link:../Radio
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -1003,28 +1003,28 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Calendar:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
@@ -1033,10 +1033,10 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       date-fns:
         specifier: ^2.30.0
@@ -1049,31 +1049,31 @@ importers:
         version: 8.10.0(date-fns@2.30.0)(react@18.2.0)
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Carousel:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       glider-js:
         specifier: ^1.7.8
@@ -1083,7 +1083,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
 
   packages/base/Checkbox:
@@ -1092,22 +1092,22 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../FormLabel
       '@toptal/picasso-grid':
-        specifier: 5.0.19
+        specifier: workspace:*
         version: link:../Grid
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -1120,13 +1120,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       styled-components:
         specifier: ^6.1.1
@@ -1138,7 +1138,7 @@ importers:
         specifier: '>=2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
@@ -1148,10 +1148,10 @@ importers:
         version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Container:
@@ -1163,47 +1163,47 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/DatePicker:
     dependencies:
       '@toptal/picasso-calendar':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Calendar
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Input
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       date-fns:
         specifier: ^2.30.0
@@ -1222,17 +1222,17 @@ importers:
   packages/base/DateSelect:
     dependencies:
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Select
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Drawer:
@@ -1244,41 +1244,41 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-backdrop':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Backdrop
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:../Paper
       '@toptal/picasso-slide':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../Slide
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
 
   packages/base/Dropdown:
@@ -1290,13 +1290,13 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:../Paper
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -1306,13 +1306,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       popper.js:
         specifier: ^1.16.1
@@ -1321,16 +1321,16 @@ importers:
   packages/base/Dropzone:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-file-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../FileInput
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
@@ -1339,10 +1339,10 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -1355,22 +1355,22 @@ importers:
         version: 14.2.3(react@18.2.0)
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/EmptyState:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       react:
         specifier: ^18.2.0
@@ -1379,7 +1379,7 @@ importers:
   packages/base/EnvironmentBanner:
     dependencies:
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.8.0'
@@ -1395,7 +1395,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
 
   packages/base/Fade:
@@ -1404,7 +1404,7 @@ importers:
         specifier: '>=2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
@@ -1414,7 +1414,7 @@ importers:
         version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/FileInput:
@@ -1423,37 +1423,37 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../Loader
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:../Tooltip
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-typography-overflow':
-        specifier: 4.0.6
+        specifier: workspace:*
         version: link:../TypographyOverflow
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -1463,7 +1463,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Form:
@@ -1472,37 +1472,37 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-alert':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Alert
       '@toptal/picasso-collapse':
-        specifier: 3.0.4
+        specifier: workspace:*
         version: link:../Collapse
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../FormLabel
       '@toptal/picasso-form-layout':
-        specifier: 1.0.3
+        specifier: workspace:*
         version: link:../FormLayout
       '@toptal/picasso-grid':
-        specifier: 5.0.19
+        specifier: workspace:*
         version: link:../Grid
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -1518,13 +1518,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/FormLabel:
@@ -1533,16 +1533,16 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-layout':
-        specifier: 1.0.3
+        specifier: workspace:*
         version: link:../FormLayout
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -1552,10 +1552,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/FormLayout:
@@ -1564,13 +1564,13 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -1580,10 +1580,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Grid:
@@ -1592,7 +1592,7 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
         specifier: 15.0.0
@@ -1601,54 +1601,54 @@ importers:
         specifier: '>=2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Helpbox:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Icons:
@@ -1660,7 +1660,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -1673,7 +1673,7 @@ importers:
         specifier: ^7.26.8
         version: 7.28.4
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
 
   packages/base/Image:
@@ -1685,7 +1685,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -1701,63 +1701,63 @@ importers:
   packages/base/Input:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/InputAdornment:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Link:
@@ -1766,44 +1766,44 @@ importers:
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/List:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -1813,13 +1813,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Loader:
@@ -1828,29 +1828,29 @@ importers:
         specifier: '>2.5.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
 
   packages/base/Logo:
     dependencies:
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind-merge':
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
@@ -1862,47 +1862,47 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-avatar':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Avatar
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-link':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Link
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:../Paper
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Modal:
@@ -1911,34 +1911,34 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-backdrop':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Backdrop
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-fade':
-        specifier: 1.0.9
+        specifier: workspace:*
         version: link:../Fade
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-modal-context':
-        specifier: 1.0.1
+        specifier: workspace:*
         version: link:../ModalContext
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:../Paper
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       debounce:
         specifier: ^1.2.1
@@ -1948,13 +1948,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/ModalContext:
@@ -1970,7 +1970,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Note:
@@ -1979,16 +1979,16 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       classnames:
         specifier: ^2.5.1
@@ -1998,31 +1998,31 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Notification:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -2035,50 +2035,50 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/NumberInput:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/OutlinedInput:
@@ -2087,25 +2087,25 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -2115,22 +2115,22 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
 
   packages/base/OverviewBlock:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2140,13 +2140,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Page:
@@ -2155,61 +2155,61 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-accordion':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Accordion
       '@toptal/picasso-autocomplete':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../Autocomplete
       '@toptal/picasso-avatar':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Avatar
       '@toptal/picasso-badge':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Badge
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-dropdown':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Dropdown
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-logo':
-        specifier: 2.0.18
+        specifier: workspace:*
         version: link:../Logo
       '@toptal/picasso-menu':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Menu
       '@toptal/picasso-notification':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Notification
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-skeleton-loader':
         specifier: ^1.0.37
         version: link:../SkeletonLoader
       '@toptal/picasso-tag':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Tag
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:../Tooltip
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-user-badge':
-        specifier: 5.1.22
+        specifier: workspace:*
         version: link:../UserBadge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -2219,13 +2219,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       react-dom:
         specifier: ^18.2.0
@@ -2237,29 +2237,29 @@ importers:
   packages/base/Pagination:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Paper:
@@ -2268,51 +2268,51 @@ importers:
         specifier: '>=2.0.1'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/PasswordInput:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Popper:
@@ -2321,10 +2321,10 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-modal-context':
-        specifier: 1.0.1
+        specifier: workspace:*
         version: link:../ModalContext
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
@@ -2333,14 +2333,14 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       popper.js:
         specifier: ^1.16.1
@@ -2349,48 +2349,48 @@ importers:
   packages/base/PromptModal:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-modal':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Modal
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Quote:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Radio:
@@ -2399,19 +2399,19 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../FormLabel
       '@toptal/picasso-grid':
-        specifier: 5.0.19
+        specifier: workspace:*
         version: link:../Grid
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.4.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2424,13 +2424,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       styled-components:
         specifier: ^6.1.1
@@ -2439,99 +2439,99 @@ importers:
   packages/base/Rating:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Section:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-collapse':
-        specifier: 3.0.4
+        specifier: workspace:*
         version: link:../Collapse
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Select:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Input
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../InputAdornment
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../Loader
       '@toptal/picasso-menu':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Menu
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2541,13 +2541,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       popper.js:
         specifier: ^1.16.1
@@ -2556,16 +2556,16 @@ importers:
   packages/base/ShowMore:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       react:
         specifier: ^18.2.0
@@ -2575,22 +2575,22 @@ importers:
         version: 2.4.0(prop-types@15.8.1)(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/SkeletonLoader:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
@@ -2600,7 +2600,7 @@ importers:
         version: 6.2.1(react@18.2.0)
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Slide:
@@ -2609,7 +2609,7 @@ importers:
         specifier: '>2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
@@ -2619,7 +2619,7 @@ importers:
         version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Slider:
@@ -2628,44 +2628,44 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:../Tooltip
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
 
   packages/base/Step:
     dependencies:
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-typography-overflow':
-        specifier: 4.0.6
+        specifier: workspace:*
         version: link:../TypographyOverflow
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2678,13 +2678,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       styled-components:
         specifier: ^6.1.1
@@ -2696,10 +2696,10 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../FormLabel
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: ^4.0.0
@@ -2712,34 +2712,34 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Table:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-collapse':
-        specifier: 3.0.4
+        specifier: workspace:*
         version: link:../Collapse
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2749,13 +2749,13 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       styled-components:
         specifier: ^6.1.1
@@ -2767,28 +2767,28 @@ importers:
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-typography-overflow':
-        specifier: 4.0.6
+        specifier: workspace:*
         version: link:../TypographyOverflow
       '@toptal/picasso-user-badge':
-        specifier: 5.1.22
+        specifier: workspace:*
         version: link:../UserBadge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2798,31 +2798,31 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Tag:
     dependencies:
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>2.1.0'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -2832,34 +2832,34 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Tagselector:
     dependencies:
       '@toptal/picasso-autocomplete':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../Autocomplete
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Form
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tag':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Tag
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -2869,10 +2869,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../../picasso-tailwind
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       popper.js:
         specifier: ^1.16.1
@@ -2884,7 +2884,7 @@ importers:
         specifier: '*'
         version: link:../../picasso-provider
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       react:
         specifier: ^18.2.0
@@ -2897,41 +2897,41 @@ importers:
   packages/base/Timeline:
     dependencies:
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Timepicker:
     dependencies:
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Input
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
@@ -2940,7 +2940,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       detect-browser:
         specifier: ^5.3.0
@@ -2953,7 +2953,7 @@ importers:
         version: 3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Tooltip:
@@ -2962,13 +2962,13 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -2981,10 +2981,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       popper.js:
         specifier: ^1.16.1
@@ -2993,16 +2993,16 @@ importers:
   packages/base/TreeView:
     dependencies:
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       d3:
         specifier: ^7.8.2
@@ -3024,7 +3024,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -3034,10 +3034,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/TypographyOverflow:
@@ -3046,23 +3046,23 @@ importers:
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:../Tooltip
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       styled-components:
         specifier: ^6.1.1
@@ -3071,10 +3071,10 @@ importers:
   packages/base/UserBadge:
     dependencies:
       '@toptal/picasso-avatar':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../Avatar
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
@@ -3083,10 +3083,10 @@ importers:
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../Utils
       classnames:
         specifier: ^2.5.1
@@ -3096,7 +3096,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
 
   packages/base/Utils:
@@ -3105,7 +3105,7 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       ap-style-title-case:
         specifier: ^1.1.2
@@ -3121,10 +3121,10 @@ importers:
         version: 18.2.0
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../Test-Utils
       styled-components:
         specifier: ^6.1.1
@@ -3136,226 +3136,226 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-accordion':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Accordion
       '@toptal/picasso-account-select':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/AccountSelect
       '@toptal/picasso-alert':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Alert
       '@toptal/picasso-amount':
-        specifier: 1.0.12
+        specifier: workspace:*
         version: link:../base/Amount
       '@toptal/picasso-application-update-notification':
-        specifier: 2.0.44
+        specifier: workspace:*
         version: link:../base/ApplicationUpdateNotification
       '@toptal/picasso-autocomplete':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../base/Autocomplete
       '@toptal/picasso-avatar':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../base/Avatar
       '@toptal/picasso-avatar-upload':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/AvatarUpload
       '@toptal/picasso-badge':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Badge
       '@toptal/picasso-breadcrumbs':
-        specifier: 3.0.20
+        specifier: workspace:*
         version: link:../base/Breadcrumbs
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Button
       '@toptal/picasso-calendar':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Calendar
       '@toptal/picasso-carousel':
-        specifier: 4.0.33
+        specifier: workspace:*
         version: link:../base/Carousel
       '@toptal/picasso-checkbox':
-        specifier: 5.0.23
+        specifier: workspace:*
         version: link:../base/Checkbox
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../base/Container
       '@toptal/picasso-date-picker':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/DatePicker
       '@toptal/picasso-date-select':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/DateSelect
       '@toptal/picasso-drawer':
-        specifier: 3.0.45
+        specifier: workspace:*
         version: link:../base/Drawer
       '@toptal/picasso-dropdown':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Dropdown
       '@toptal/picasso-dropzone':
-        specifier: 5.0.34
+        specifier: workspace:*
         version: link:../base/Dropzone
       '@toptal/picasso-empty-state':
-        specifier: 2.0.23
+        specifier: workspace:*
         version: link:../base/EmptyState
       '@toptal/picasso-environment-banner':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../base/EnvironmentBanner
       '@toptal/picasso-file-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/FileInput
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../base/Form
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../base/FormLabel
       '@toptal/picasso-grid':
-        specifier: 5.0.19
+        specifier: workspace:*
         version: link:../base/Grid
       '@toptal/picasso-helpbox':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../base/Helpbox
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../base/Icons
       '@toptal/picasso-image':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../base/Image
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Input
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/InputAdornment
       '@toptal/picasso-link':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Link
       '@toptal/picasso-list':
-        specifier: 5.0.21
+        specifier: workspace:*
         version: link:../base/List
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../base/Loader
       '@toptal/picasso-logo':
-        specifier: 2.0.18
+        specifier: workspace:*
         version: link:../base/Logo
       '@toptal/picasso-menu':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Menu
       '@toptal/picasso-modal':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Modal
       '@toptal/picasso-note':
-        specifier: 4.0.7
+        specifier: workspace:*
         version: link:../base/Note
       '@toptal/picasso-notification':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Notification
       '@toptal/picasso-number-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/NumberInput
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/OutlinedInput
       '@toptal/picasso-overview-block':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/OverviewBlock
       '@toptal/picasso-page':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../base/Page
       '@toptal/picasso-pagination':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Pagination
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:../base/Paper
       '@toptal/picasso-password-input':
-        specifier: 5.1.13
+        specifier: workspace:*
         version: link:../base/PasswordInput
       '@toptal/picasso-popper':
-        specifier: 2.0.2
+        specifier: workspace:*
         version: link:../base/Popper
       '@toptal/picasso-prompt-modal':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../base/PromptModal
       '@toptal/picasso-provider':
         specifier: '*'
         version: link:../picasso-provider
       '@toptal/picasso-quote':
-        specifier: 2.0.9
+        specifier: workspace:*
         version: link:../base/Quote
       '@toptal/picasso-radio':
-        specifier: 5.0.22
+        specifier: workspace:*
         version: link:../base/Radio
       '@toptal/picasso-rating':
-        specifier: 3.0.20
+        specifier: workspace:*
         version: link:../base/Rating
       '@toptal/picasso-section':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../base/Section
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../shared
       '@toptal/picasso-show-more':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../base/ShowMore
       '@toptal/picasso-skeleton-loader':
-        specifier: 1.0.69
+        specifier: workspace:*
         version: link:../base/SkeletonLoader
       '@toptal/picasso-slider':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Slider
       '@toptal/picasso-step':
-        specifier: 4.0.19
+        specifier: workspace:*
         version: link:../base/Step
       '@toptal/picasso-switch':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Switch
       '@toptal/picasso-table':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Table
       '@toptal/picasso-tabs':
-        specifier: 7.0.1
+        specifier: workspace:*
         version: link:../base/Tabs
       '@toptal/picasso-tag':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Tag
       '@toptal/picasso-tagselector':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Tagselector
       '@toptal/picasso-tailwind':
         specifier: '>=3'
         version: link:../picasso-tailwind
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/Test-Utils
       '@toptal/picasso-timeline':
-        specifier: 5.0.8
+        specifier: workspace:*
         version: link:../base/Timeline
       '@toptal/picasso-timepicker':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Timepicker
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:../base/Tooltip
       '@toptal/picasso-tree-view':
-        specifier: 3.0.45
+        specifier: workspace:*
         version: link:../base/TreeView
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Typography
       '@toptal/picasso-typography-overflow':
-        specifier: 4.0.6
+        specifier: workspace:*
         version: link:../base/TypographyOverflow
       '@toptal/picasso-user-badge':
-        specifier: 5.1.22
+        specifier: workspace:*
         version: link:../base/UserBadge
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       ap-style-title-case:
         specifier: ^1.1.2
@@ -3461,7 +3461,7 @@ importers:
         specifier: ^15.0.0
         version: link:../shared
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       classnames:
         specifier: ^2.5.1
@@ -3517,82 +3517,82 @@ importers:
   packages/picasso-forms:
     dependencies:
       '@toptal/picasso-autocomplete':
-        specifier: 6.0.0
+        specifier: workspace:*
         version: link:../base/Autocomplete
       '@toptal/picasso-avatar-upload':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/AvatarUpload
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Button
       '@toptal/picasso-checkbox':
-        specifier: 5.0.23
+        specifier: workspace:*
         version: link:../base/Checkbox
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../base/Container
       '@toptal/picasso-date-picker':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/DatePicker
       '@toptal/picasso-dropzone':
-        specifier: 5.0.34
+        specifier: workspace:*
         version: link:../base/Dropzone
       '@toptal/picasso-file-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/FileInput
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../base/Form
       '@toptal/picasso-form-label':
-        specifier: 1.0.4
+        specifier: workspace:*
         version: link:../base/FormLabel
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../base/Icons
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Input
       '@toptal/picasso-notification':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Notification
       '@toptal/picasso-number-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/NumberInput
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/OutlinedInput
       '@toptal/picasso-password-input':
-        specifier: 5.1.13
+        specifier: workspace:*
         version: link:../base/PasswordInput
       '@toptal/picasso-radio':
-        specifier: 5.0.22
+        specifier: workspace:*
         version: link:../base/Radio
       '@toptal/picasso-rating':
-        specifier: 3.0.20
+        specifier: workspace:*
         version: link:../base/Rating
       '@toptal/picasso-rich-text-editor':
-        specifier: 18.0.0
+        specifier: workspace:*
         version: link:../picasso-rich-text-editor
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
         specifier: ^15.0.0
         version: link:../shared
       '@toptal/picasso-switch':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Switch
       '@toptal/picasso-tagselector':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Tagselector
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../picasso-tailwind
       '@toptal/picasso-timepicker':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Timepicker
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       classnames:
         specifier: ^2.5.1
@@ -3632,7 +3632,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react-test-renderer@19.2.3(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/Test-Utils
       '@types/classnames':
         specifier: ^2.3.1
@@ -3650,7 +3650,7 @@ importers:
         specifier: ^15.0.0
         version: link:../shared
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       react:
         specifier: ^18.2.0
@@ -3663,7 +3663,7 @@ importers:
         specifier: ^7.26.8
         version: 7.28.4
       '@toptal/picasso':
-        specifier: 54.1.5
+        specifier: workspace:*
         version: link:../picasso
 
   packages/picasso-provider:
@@ -3712,55 +3712,55 @@ importers:
         specifier: 6.5.4
         version: 6.5.4(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@24.5.2)(@types/react@17.0.39)(react@18.2.0))(react-querybuilder@6.5.4(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../base/Container
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../base/Icons
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Input
       '@toptal/picasso-list':
-        specifier: 5.0.21
+        specifier: workspace:*
         version: link:../base/List
       '@toptal/picasso-loader':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../base/Loader
       '@toptal/picasso-notification':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Notification
       '@toptal/picasso-number-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/NumberInput
       '@toptal/picasso-prompt-modal':
-        specifier: 3.0.0
+        specifier: workspace:*
         version: link:../base/PromptModal
       '@toptal/picasso-provider':
         specifier: '*'
         version: link:../picasso-provider
       '@toptal/picasso-radio':
-        specifier: 5.0.22
+        specifier: workspace:*
         version: link:../base/Radio
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-tagselector':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Tagselector
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../picasso-tailwind
       '@toptal/picasso-tooltip':
-        specifier: 2.0.5
+        specifier: workspace:*
         version: link:../base/Tooltip
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       classnames:
         specifier: ^2.5.1
@@ -3791,7 +3791,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react-test-renderer@19.2.3(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/Test-Utils
       '@types/classnames':
         specifier: ^2.3.1
@@ -3830,43 +3830,43 @@ importers:
         specifier: 0.11.3
         version: 0.11.3(lexical@0.11.3)
       '@toptal/picasso-button':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Button
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../base/Container
       '@toptal/picasso-file-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/FileInput
       '@toptal/picasso-form':
-        specifier: 7.0.0
+        specifier: workspace:*
         version: link:../base/Form
       '@toptal/picasso-icons':
-        specifier: 1.15.2
+        specifier: workspace:*
         version: link:../base/Icons
       '@toptal/picasso-image':
-        specifier: 3.0.5
+        specifier: workspace:*
         version: link:../base/Image
       '@toptal/picasso-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Input
       '@toptal/picasso-input-adornment':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/InputAdornment
       '@toptal/picasso-link':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Link
       '@toptal/picasso-list':
-        specifier: 5.0.21
+        specifier: workspace:*
         version: link:../base/List
       '@toptal/picasso-modal':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Modal
       '@toptal/picasso-outlined-input':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/OutlinedInput
       '@toptal/picasso-select':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
         specifier: ^15.0.0
@@ -3875,10 +3875,10 @@ importers:
         specifier: '>=2.7'
         version: link:../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       classnames:
         specifier: ^2.5.1
@@ -3921,10 +3921,10 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react-test-renderer@19.2.3(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/Test-Utils
       '@types/classnames':
         specifier: ^2.3.1
@@ -3945,7 +3945,7 @@ importers:
   packages/picasso-tailwind-merge:
     dependencies:
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       react:
         specifier: ^18.2.0
@@ -3958,10 +3958,10 @@ importers:
         version: 2.3.0
     devDependencies:
       '@toptal/picasso-tailwind':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../picasso-tailwind
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/Test-Utils
 
   packages/shared:
@@ -3986,7 +3986,7 @@ importers:
         version: 5.5.4
     devDependencies:
       '@toptal/picasso-provider':
-        specifier: 5.0.2
+        specifier: workspace:*
         version: link:../picasso-provider
       '@types/classnames':
         specifier: ^2.3.1
@@ -3998,22 +3998,22 @@ importers:
   packages/topkit-analytics-charts:
     dependencies:
       '@toptal/picasso-charts':
-        specifier: 59.0.6
+        specifier: workspace:*
         version: link:../picasso-charts
       '@toptal/picasso-container':
-        specifier: 3.1.4
+        specifier: workspace:*
         version: link:../base/Container
       '@toptal/picasso-paper':
-        specifier: 4.0.5
+        specifier: workspace:*
         version: link:../base/Paper
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../picasso-tailwind
       '@toptal/picasso-typography':
-        specifier: 5.0.0
+        specifier: workspace:*
         version: link:../base/Typography
       '@toptal/picasso-utils':
-        specifier: 4.0.0
+        specifier: workspace:*
         version: link:../base/Utils
       d3:
         specifier: ^7.8.2
@@ -4029,7 +4029,7 @@ importers:
         version: 5.5.4
     devDependencies:
       '@toptal/picasso-test-utils':
-        specifier: 2.0.0
+        specifier: workspace:*
         version: link:../base/Test-Utils
       '@types/d3':
         specifier: ^7.4.0
