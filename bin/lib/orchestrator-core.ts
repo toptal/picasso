@@ -6994,17 +6994,44 @@ export async function run(
       }
 
       if (workflow.successCriteria(gateReport)) {
-        log('loop', `gates pass on iteration ${state.iterations}`)
+        // Loop exit also requires NO critic hard failures.
+        //
+        // Layer A (mandatory process steps — Playwright runtime check,
+        // build:package precondition, changeset present, PR description
+        // written) AND audit HIGH (cited rule/practice violations per
+        // sharpened critic) BOTH live in `pendingChecklistFeedback`.
+        // They're "hard" per the operator's design intent ("Layer B is
+        // advisory; Layer A + audit HIGH are blockers").
+        //
+        // Bug surfaced 2026-05-22 (Slider v2 resume): gate composite=PASS
+        // because all outcome stages went green, BUT the critic correctly
+        // flagged the imperative-`.style` anti-pattern in resetInputRef
+        // (audit HIGH). The original code broke the loop on gate=PASS
+        // and dropped pendingChecklistFeedback, shipping documented
+        // rule violations. Now: keep iterating until critic also clears.
+        if (pendingChecklistFeedback === null) {
+          log('loop', `gates pass on iteration ${state.iterations}`)
+          lastFeedback = null
+          break
+        }
+        log(
+          'loop',
+          `iter ${state.iterations}: gate=PASS but critic flagged hard failures — continuing iter loop until Layer A + audit HIGH clear`
+        )
+        // Fall through to the feedback-build below so next iter gets the
+        // critic's MUST-FIX feedback as its primary input. lastFeedback
+        // will be set from pendingChecklistFeedback (no gate report
+        // content needed — gate passed, so the only feedback is critic
+        // violations).
         lastFeedback = null
-        break
-      }
-
-      log(
-        'loop',
-        `gate composite=${gateReport.composite}; preparing next iteration`
-      )
-      if (existsSync(gateReport.reportPath)) {
-        lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
+      } else {
+        log(
+          'loop',
+          `gate composite=${gateReport.composite}; preparing next iteration`
+        )
+        if (existsSync(gateReport.reportPath)) {
+          lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
+        }
       }
 
       // 2026-05-20: prepend any pending process-checklist failures to the
@@ -7148,7 +7175,14 @@ export async function run(
     // should be true — if it isn't, the agent produced zero source
     // changes across all iters, which is a degenerate state (gate passed
     // without any migration work happening) → escalate.
-    if (!migrationHasCommit) {
+    //
+    // Resume exception (2026-05-22): if `resumeExistingBranch` is true,
+    // the branch already carries the migration commit from a prior
+    // orchestrator run (escalation-then-resume workflow). The current
+    // run's agent may legitimately have nothing more to do if the
+    // pre-existing commit + a green gate is the desired terminal state.
+    // The pre-existing commit IS the migration; we proceed to PR-open.
+    if (!migrationHasCommit && !resumeExistingBranch) {
       return escalate(
         workflow,
         item,
@@ -7161,6 +7195,12 @@ export async function run(
         manifestAbs,
         rootDir,
         opts.variant
+      )
+    }
+    if (!migrationHasCommit && resumeExistingBranch) {
+      log(
+        'loop',
+        `resume mode: no new commits this run, shipping pre-existing branch HEAD (gate green)`
       )
     }
 
