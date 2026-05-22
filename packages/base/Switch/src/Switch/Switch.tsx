@@ -93,10 +93,11 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     onChange(toSyntheticChangeEvent(event), nextChecked)
   }
 
-  // base-ui sets `margin: -1px` via inline style on the hidden input to
-  // visually hide it. Without this fix the negative margin extends the Happo
-  // snapshot bounding box by 1 px in both axes vs the baseline. We override
-  // it imperatively so no `!important` is needed to beat the inline style.
+  // base-ui writes `margin: -1px` into the hidden input's inline style.
+  // Neutralizing it via Tailwind `!important` slot selector demonstrably failed
+  // to restore Happo parity across the Switch stories (iters 9.2/9.3). The
+  // ref-callback approach IS the documented "one-off Switch compromise"
+  // referenced in practices.md §@base-ui/react idioms.
   const fixInputMargin = useCallback((node: HTMLInputElement | null) => {
     if (node) {
       node.style.margin = '0'
