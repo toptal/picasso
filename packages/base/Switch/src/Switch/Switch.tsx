@@ -1,7 +1,7 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import React, { forwardRef, useCallback } from 'react'
+import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import cx from 'classnames'
 
@@ -93,17 +93,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     onChange(toSyntheticChangeEvent(event), nextChecked)
   }
 
-  // base-ui writes `margin: -1px` into the hidden input's inline style.
-  // Neutralizing it via Tailwind `!important` slot selector demonstrably failed
-  // to restore Happo parity across the Switch stories (iters 9.2/9.3). The
-  // ref-callback approach IS the documented "one-off Switch compromise"
-  // referenced in practices.md §@base-ui/react idioms.
-  const fixInputMargin = useCallback((node: HTMLInputElement | null) => {
-    if (node) {
-      node.style.margin = '0'
-    }
-  }, [])
-
   const switchElement = (
     <BaseUISwitch.Root
       {...rootForwarded}
@@ -112,6 +101,10 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       className={cx(
         'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
         'cursor-pointer outline-none data-[disabled]:cursor-default',
+        // base-ui's hidden <input> renders as a sibling with inline `margin: -1px`
+        // which perturbs the flex container's static-position layout. Override at
+        // rung 3 of code-standards.md §CSS specificity ladder.
+        '[&~input]:m-0!',
         className
       )}
       style={style}
@@ -119,7 +112,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       id={id}
       value={value === undefined ? undefined : String(value)}
       onCheckedChange={handleCheckedChange}
-      inputRef={fixInputMargin}
       data-testid={label ? undefined : dataTestId}
     >
       <span
