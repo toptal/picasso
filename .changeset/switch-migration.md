@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-switch': major
+'@toptal/picasso-switch': patch
 ---
 
 ### Switch
