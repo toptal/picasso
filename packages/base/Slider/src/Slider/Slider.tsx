@@ -111,32 +111,6 @@ const resolveThumbValues = (
   return [typeof defaultValue === 'number' ? defaultValue : min]
 }
 
-// base-ui's Slider.Thumb renders a hidden <input type="range"> with
-// position:fixed; height/width:100% for VoiceOver focus-indicator sizing.
-// Happo's DOM-snapshot renderer treats position:fixed as in-flow, making the
-// body as tall as the viewport (543px vs the expected ~60px). Restore the
-// compact absolute positioning that @mui/base used.
-const resetInputRef = (node: HTMLInputElement | null) => {
-  if (node) {
-    node.style.position = 'absolute'
-    node.style.width = '1px'
-    node.style.height = '1px'
-    node.style.top = 'auto'
-    node.style.left = 'auto'
-  }
-}
-
-// base-ui applies `translate: -50% -50%` inline on the thumb to centre it on
-// the track. That CSS transform creates a GPU compositing layer absent in the
-// old @mui/base implementation (which used negative margins instead), causing
-// subtle antialiasing differences that Happo detects. Override with no
-// transform and replicate @mui/base's manual top offset (-7px = half of the
-// 15px thumb minus the 0.5px track centre).
-const thumbPositionStyle: React.CSSProperties = {
-  translate: 'none',
-  top: '-7px',
-}
-
 export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
   { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
   ref
@@ -199,6 +173,15 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
     'outline-0 absolute transition-shadow cursor-pointer ml-[-6px]',
+    // base-ui sets `top: 50%; translate: -50% -50%` inline on the thumb to
+    // centre it; restore @mui/base's negative-margin centring (no GPU
+    // compositing layer, matches the baseline snapshot).
+    '![translate:none] !top-[-7px]',
+    // base-ui spreads `visuallyHidden` (position:fixed; width/height:100%) onto
+    // the inner <input type="range">; that inflates Happo's DOM snapshot height
+    // to the viewport. Constrain back to a 1×1 absolute box like @mui/base did.
+    '[&_input]:!absolute [&_input]:!w-px [&_input]:!h-px',
+    '[&_input]:!top-auto [&_input]:!left-auto',
     isThumbHidden && 'hidden'
   )
 
@@ -265,11 +248,9 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
                   onFocus={onFocus}
                   onBlur={onBlur}
                   className={thumbClassName}
-                  style={thumbPositionStyle}
                   aria-valuemin={min}
                   aria-valuemax={max}
                   aria-valuenow={thumbValue}
-                  inputRef={resetInputRef}
                 >
                   <SliderValueLabel
                     index={index}

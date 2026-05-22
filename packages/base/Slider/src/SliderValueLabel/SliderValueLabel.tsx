@@ -62,9 +62,19 @@ const SliderValueLabel = ({
       return
     }
 
+    const rect = ref.current.getBoundingClientRect()
+
+    // Skip when label is not yet laid out (tooltip='off' applies display:none on
+    // first render). A 0×0 rect would otherwise return leftBoundary < gap and
+    // stick the label at xPlacement='right' before the tooltip becomes visible,
+    // racing the parent's overlap detection on `tooltip='on'`.
+    if (rect.width === 0 && rect.height === 0) {
+      return
+    }
+
     setXPlacement(
       getXPlacement({
-        rect: ref.current.getBoundingClientRect(),
+        rect,
         isOverlaped: isOverlaped,
         isFirstLabel: index === 0,
         currentPlacement: xPlacement,

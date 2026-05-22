@@ -48,9 +48,15 @@ export const useLabelOverlap = ({
   const handleValueLabelOnRender = useCallback(
     (index: number, labelRef: RefObject<HTMLSpanElement>) => {
       setValueLabels(valLabels => {
-        valLabels[index] = labelRef
+        if (valLabels[index] === labelRef) {
+          return valLabels
+        }
 
-        return valLabels
+        const next = valLabels.slice()
+
+        next[index] = labelRef
+
+        return next
       })
     },
     [setValueLabels]
