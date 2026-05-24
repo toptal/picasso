@@ -172,6 +172,13 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     // with -7px / -6px margin compensation). `!` is required to beat the
     // inline `translate:` property set by SliderThumb (CSS specificity rung 4).
     '![translate:none] -mt-[7px] -ml-[6px]',
+    // `transform-gpu` (`transform: translate3d(0,0,0)`) creates a transform
+    // containing block on the thumb so @base-ui/react's hidden range <input>
+    // (rendered with `position: fixed; width: 100%; height: 100%`) sizes
+    // relative to the 15x15 thumb instead of the viewport. Without this the
+    // input grows to viewport size in Cypress component tests, blowing up the
+    // body's bounding rect (1280x60 → 1280x1023 Happo regression).
+    'transform-gpu',
     'outline-0 absolute transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
