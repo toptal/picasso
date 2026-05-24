@@ -36,7 +36,7 @@
  */
 
 import { spawn, spawnSync, type SpawnOptions } from 'node:child_process'
-import { randomUUID } from 'node:crypto'
+import { createHash, randomUUID } from 'node:crypto'
 import {
   promises as fs,
   existsSync,
@@ -58,6 +58,7 @@ import type {
   GateReport,
   Manifest,
   ManifestItem,
+  ModelConfig,
   OrchestratorOptions,
   RunState,
   VariantState,
@@ -470,6 +471,83 @@ async function prefetchHappoPostGate({
 
     return null
   }
+}
+
+/**
+ * Stuck-recovery prompt for Happo-only stuck cases (the most common —
+ * Slider, Drawer, Tooltip historically). Injected when iter N and iter
+ * N-1 produce identical Happo failure fingerprints. Forces the documented
+ * computed-style diff workflow and explicit ladder-walk justification.
+ */
+function buildStuckRecoveryHappoPrompt(
+  failureKey: string,
+  componentId: string
+): string {
+  return (
+    `# 🚨 STUCK-RECOVERY GUIDANCE — read this BEFORE editing any source\n\n` +
+    `You have produced **identical Happo failure fingerprints across two consecutive iters**: ${failureKey}\n\n` +
+    `Your code has been CHANGING, but the rendered pixel output is NOT changing. That means your edits are aesthetic equivalents (e.g. swapping inline \`style={{}}\` for \`!important\` Tailwind) — they don't move the rendered DOM.\n\n` +
+    `**You have ONE MORE iter** before the orchestrator escalates. Use it to do the documented diagnostic workflow you've been skipping:\n\n` +
+    `## Mandatory next steps (in this order)\n\n` +
+    `### 1. Capture computed-style diffs — DO THIS FIRST\n\n` +
+    `Per \`references/practices.md §"Pixel-perfect visual parity"\` and \`references/happo-iteration.md §"Computed-style diff is the authoritative diagnostic"\`:\n\n` +
+    `> "Stalemate is forbidden until ≥ 2 fix attempts have targeted properties from the computed-style diff. Screenshots tell you WHERE; computed styles tell you WHAT."\n\n` +
+    `Pick ONE failing story (e.g. \`${componentId}/Default\`). For the element where the diff appears (probably thumb / track / slot):\n\n` +
+    `\`\`\`js\n` +
+    `// Run in Playwright browser_evaluate against baseline (picasso.toptal.net):\n` +
+    `const el = document.querySelector('[data-testid="..."]') // or similar\n` +
+    `const styles = getComputedStyle(el)\n` +
+    `return Object.fromEntries(\n` +
+    `  Array.from(styles).map(k => [k, styles.getPropertyValue(k)])\n` +
+    `)\n` +
+    `\`\`\`\n\n` +
+    `Save the result. Repeat against localhost:9001. **Diff the two JSON objects.** The answer is in the property-by-property delta. Common deltas: \`translate\`, \`margin-*\`, \`transform\`, \`position\`, \`top\`/\`left\`, \`inset-*\`, \`width\`/\`height\`.\n\n` +
+    `### 2. Read the @base-ui/react source for the failing slot\n\n` +
+    `Per \`references/visual-verification.md §"Read the @base-ui/react source BEFORE adding CSS compensation"\`:\n\n` +
+    `\`\`\`bash\n` +
+    `cat node_modules/@base-ui/react/slider/thumb/SliderThumb.js | grep -E 'style|translate|transform|inset|top|left'\n` +
+    `cat node_modules/@base-ui/react/slider/track/SliderTrack.js | grep -E 'style|translate|transform|inset|top|left'\n` +
+    `\`\`\`\n\n` +
+    `The library injects inline styles (e.g. \`translate: -50% -50%\` on the thumb). Find them. THESE are what the computed-style diff will show.\n\n` +
+    `### 3. Apply the CSS specificity ladder — bottom rung first\n\n` +
+    `Per \`references/code-standards.md §"CSS specificity ladder for @base-ui/react overrides"\`. Walk rungs IN ORDER, document WHY each lower rung doesn't work:\n\n` +
+    `- **Rung 1**: Slot \`className\` prop on the affected part. Does \`<Slider.Thumb className="...">\` work? If not, write a comment: \`// rung-1 insufficient: <reason>\`.\n` +
+    `- **Rung 2**: Tailwind selectors matching emitted \`data-*\` attributes. Does \`data-[orientation=horizontal]:...\` work? If not: \`// rung-2 insufficient: <reason>\`.\n` +
+    `- **Rung 3**: Compound selectors like \`[&_input]:!top-auto\`. Does this win specificity? If not: \`// rung-3 insufficient: <reason>\`.\n` +
+    `- **Rung 4**: \`!important\` Tailwind — ONLY if 1-3 all fail. Comment WHY each failed.\n\n` +
+    `**FORBIDDEN**:\n` +
+    `- Inline \`style={{}}\` — that's rung 0 (off-ladder). styling.md forbids it for static values.\n` +
+    `- \`any\` to silence types — \`code-standards.md §"Type-narrowing & casting"\`.\n` +
+    `- Skipping rungs without documented justification — reviewers block.\n\n` +
+    `### 4. Verify the fix moves the pixels\n\n` +
+    `Re-run Playwright on the same failing story AFTER your edits. Take screenshot. Compare with baseline.toptal.net. If pixels still differ → your fix didn't move the DOM. Try a different rung. Don't commit unless screenshots match.\n\n` +
+    `### 5. Run \`pnpm -F @toptal/picasso-${componentId.toLowerCase()} build:package\` BEFORE exit\n\n` +
+    `Layer A mandatory. Don't skip — same reason it's been flagged.\n\n` +
+    `## What NOT to do this iter\n\n` +
+    `- Don't make more code edits without first capturing the computed-style diff.\n` +
+    `- Don't shuffle between inline \`style\`, \`!important\`, and \`any\` hoping one sticks.\n` +
+    `- Don't claim "Happo is wrong" — Happo is the source of truth per \`PROMPT-light.md §STOP rule 3\`.\n\n` +
+    `If after this iter the same Happo stories still fail with the same fingerprint, the orchestrator will escalate to the operator with the full context.\n\n`
+  )
+}
+
+/**
+ * Generic stuck-recovery prompt for non-Happo stuck cases (e.g. tsc, lint,
+ * jest fixated on the same failure). Asks the agent to diagnose root cause
+ * before continuing to attempt fixes.
+ */
+function buildStuckRecoveryGenericPrompt(failureKey: string): string {
+  return (
+    `# 🚨 STUCK-RECOVERY GUIDANCE — read this BEFORE editing any source\n\n` +
+    `You have produced **identical gate failure fingerprints across two consecutive iters**: ${failureKey}\n\n` +
+    `Your edits aren't resolving the failing stage(s). Either you're attempting the same fix twice, or your fix isn't reaching the failing code path.\n\n` +
+    `**You have ONE MORE iter** before the orchestrator escalates. Use it to:\n\n` +
+    `1. **Read the failing stage's log carefully**. Don't just look at the last line — scroll back to the first error.\n` +
+    `2. **Identify the SPECIFIC file:line where the failure occurs** — not the package, the line. If you can't pinpoint it, you don't understand the failure yet.\n` +
+    `3. **Verify your edit actually applies**. After Edit, run \`git diff <file>\` to confirm. If the diff shows no change to the failing line, your selector was wrong.\n` +
+    `4. **If the failure is opaque** (e.g. terse "build failed" with no specifics), run the failing command yourself in Bash to capture FULL output, not just the gate's truncated tail.\n\n` +
+    `If after this iter the same gate stages fail with the same fingerprint, the orchestrator will escalate.\n\n`
+  )
 }
 
 function buildHappoFailureSection(
@@ -2896,6 +2974,50 @@ const gh = {
 // agent
 // ---------------------------------------------------------------------------
 
+/**
+ * Default config for all three orchestrator flows (migration, review-sweep,
+ * graduation). Opus 4.7 + effort=max + 64k thinking budget. CLI flags
+ * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) shallow-merge
+ * over this. Rationale lives in the PI-4318 plan
+ * `~/.claude/plans/question-what-model-and-reflective-pie.md`.
+ *
+ * Historically the orchestrator passed no `--model` flag, so the child
+ * inherited whatever the `claude` CLI happened to default to that week
+ * (drifted from Opus 4.7 to Sonnet 4.5 between 2026-05-11 and 2026-05-21,
+ * unnoticed — see migration-runs/2026-05-21/*\/agent.1.log).
+ */
+export const DEFAULT_MODEL_CONFIG: ModelConfig = {
+  // `[1m]` suffix unlocks the 1M-context tier. Migration iter 3 on Tier 3
+  // components routinely accumulates >150k tokens (prior session history +
+  // Happo HTML + contextPack), which silently truncated under the default
+  // 200k cap. The 1M tier costs more per output token but stops the
+  // forget-context-then-rebuild-cache cycle that drove most iter-loop
+  // blowups.
+  model: 'claude-opus-4-7[1m]',
+  effort: 'max',
+  thinkingTokens: 64000,
+}
+
+/**
+ * Subagent definitions for the spawned `claude -p` (2026-05-23). Passed via
+ * `--agents <json>`; the spawned claude can call `Agent(subagent_type=...)`
+ * with these keys. Subagents inherit the parent's model+effort but operate
+ * in their own context window — useful for offloading research that would
+ * otherwise pollute the main session's context.
+ *
+ * Why minimal: every entry costs system-prompt tokens. Start with Explore
+ * (the workhorse — codebase search) and add more (code-reviewer, etc.) only
+ * when there's evidence the main agent would call them.
+ */
+const AGENT_SUBAGENTS_JSON = JSON.stringify({
+  Explore: {
+    description:
+      'Fast read-only search agent for locating code. Use it to find files by pattern, grep for symbols or keywords, or answer "where is X defined / which files reference Y." Returns file:line citations without dumping full file contents into your main context.',
+    prompt:
+      'You are a read-only Picasso codebase search agent. Use Grep, Glob, and Read to locate code. Report findings as a concise list of `path:line` citations with one-line context per hit. Never edit, never run commands beyond `rg` / `grep` / `find`. Stop when the requested search is answered — do not expand scope.',
+  },
+})
+
 interface AgentInvocation {
   /** Concatenated prompt + context to feed the agent. */
   prompt: string
@@ -2903,6 +3025,8 @@ interface AgentInvocation {
   cwd: string
   /** Agent vendor. */
   agent: OrchestratorOptions['agent']
+  /** Model + reasoning config; passed via `--model` flag and spawn env. */
+  modelConfig: ModelConfig
   /**
    * If true, pass `--mcp-config bin/lib/agent-mcp-config.json` to claude and
    * grant `mcp__playwright__*` tools. Caller is responsible for ensuring
@@ -3167,6 +3291,20 @@ const agent = {
     inv: AgentInvocation,
     logPath: string
   ): Promise<{ exitCode: number }> {
+    // System prompt (2026-05-23): stable Picasso conventions cached
+    // separately from the user prompt. Cache hits across every iter +
+    // session resume + sweep tick because the file content rarely changes.
+    // Best-effort read — falls back to no system prompt if the file is
+    // missing (e.g. a worktree branched from a commit before this file
+    // landed).
+    const systemPromptPath = path.join(
+      inv.cwd,
+      'bin/lib/agent-system-prompt.md'
+    )
+    const systemPrompt = existsSync(systemPromptPath)
+      ? await fs.readFile(systemPromptPath, 'utf8')
+      : ''
+
     const cmd = ((): { bin: string; args: string[] } => {
       switch (inv.agent) {
         case 'claude': {
@@ -3314,16 +3452,64 @@ const agent = {
             // only — which is why Slider PR #4955 ignored its rejected Happo
             // diffs in the 2026-05-14 sweep.
             'WebFetch',
+            // WebSearch (2026-05-23): URL discovery for cases where the
+            // agent needs to find a primary source it doesn't have a known
+            // URL for. Examples: a base-ui/react release notes page for a
+            // deprecation the reviewer cites, an MDN reference for an ARIA
+            // pattern, a recent Picasso PR not yet linked in lessons-
+            // learned.md. Read-only; orchestrator gates still verify any
+            // code changes informed by the search.
+            'WebSearch',
+            // Agent subagent (2026-05-23): lets the migration / sweep
+            // agent offload codebase research to an Explore subagent
+            // instead of polluting its own context with grep noise. The
+            // subagent definitions travel via `--agents` JSON below;
+            // without that, this allowlist entry has no callable agents.
+            'Agent',
           ]
           const mcpTools = inv.withMcp
             ? [
                 'mcp__playwright__browser_navigate',
-                'mcp__playwright__browser_screenshot',
-                'mcp__playwright__browser_console_logs',
+                // FIXED (2026-05-23): tool name is `browser_take_screenshot`
+                // not `browser_screenshot`. Stale name silently rejected
+                // every screenshot call across every sweep with --with-mcp —
+                // see Switch sweep on 2026-05-22 (agent.review-7.iter2.log)
+                // where take_screenshot was called with the correct filename
+                // (`local--forms-switch--uncontrolled.png`) but got
+                // "haven't granted it yet" rejection. Agent fell back to
+                // browser_evaluate DOM inspection — slow + expensive.
+                'mcp__playwright__browser_take_screenshot',
+                // FIXED (2026-05-23): tool name is `browser_console_messages`
+                // not `browser_console_logs`. Same rejection mode as
+                // take_screenshot above.
+                'mcp__playwright__browser_console_messages',
                 'mcp__playwright__browser_click',
                 'mcp__playwright__browser_hover',
                 'mcp__playwright__browser_evaluate',
                 'mcp__playwright__browser_snapshot',
+                // Added 2026-05-23: tools the agent reaches for in
+                // visual-verification flows. Each was empirically observed
+                // being called by sweep-mode agents and then ignored
+                // because not allowlisted.
+                //   - browser_resize: responsive breakpoint checks
+                //     (Happo screenshots at multiple widths)
+                //   - browser_wait_for: wait for an element/text before
+                //     screenshot — avoids flaky "still loading" diffs
+                //   - browser_press_key: keyboard interaction tests
+                //     (e.g. Switch space-toggle behavior)
+                //   - browser_network_requests: diagnose XHR/fetch
+                //     failures behind a broken story
+                'mcp__playwright__browser_resize',
+                'mcp__playwright__browser_wait_for',
+                'mcp__playwright__browser_press_key',
+                'mcp__playwright__browser_network_requests',
+                // Context7 (2026-05-23): live @base-ui/react + MUI docs.
+                // `resolve-library-id` maps a package name to a Context7 ID;
+                // `get-library-docs` fetches the docs. The agent calls these
+                // when a reviewer cites a deprecation or new API surface that
+                // isn't in docs/migration/references/.
+                'mcp__context7__resolve-library-id',
+                'mcp__context7__get-library-docs',
               ]
             : []
           // Streaming flags (added 2026-05-07 — see hung-agent post-mortem):
@@ -3343,6 +3529,23 @@ const agent = {
             'stream-json',
             '--verbose',
             '--include-partial-messages',
+            // Pin the model explicitly. Without this the child claude
+            // silently uses whatever the CLI's default is — which has
+            // drifted across versions (Opus 4.7 → Sonnet 4.5 between
+            // 2026-05-11 and 2026-05-21, observed via migration-runs
+            // assistant message payloads). Effort + thinking budget
+            // travel via env below.
+            '--model',
+            inv.modelConfig.model,
+            // `--fallback-model` lets the CLI silently degrade to Sonnet
+            // when Opus is 529-overloaded, instead of escalating the whole
+            // sweep tick to `needs_human`. Only fires on overload — happy
+            // path stays on the primary model. Trade-off: a transient
+            // overload window can land Sonnet output on a HIGH-confidence
+            // edit, but Sonnet >> failure, and the gate still gates
+            // (typecheck/lint/Happo will catch regressions).
+            '--fallback-model',
+            'claude-sonnet-4-5',
             '--allowedTools',
             [...baseTools, ...mcpTools].join(' '),
             // B4a (2026-05-18): `AskUserQuestion` is a built-in Claude
@@ -3356,7 +3559,21 @@ const agent = {
             // definition; not even `--with-mcp` makes them interactive.
             '--disallowedTools',
             'AskUserQuestion',
+            // Subagent definitions for the `Agent` tool (allowlisted above).
+            // Without `--agents`, the Agent tool would have no callable
+            // subagent_type values and every call would fail. See
+            // `AGENT_SUBAGENTS_JSON` constant.
+            '--agents',
+            AGENT_SUBAGENTS_JSON,
           ]
+
+          // Stable Picasso-convention system prompt. Cached at a separate
+          // breakpoint from the user prompt so it survives iter 2+ session
+          // resume and sweep ticks. Skip the flag entirely when the file
+          // is missing — better than passing an empty string.
+          if (systemPrompt) {
+            args.push('--append-system-prompt', systemPrompt)
+          }
 
           if (inv.withMcp) {
             args.push('--mcp-config', 'bin/lib/agent-mcp-config.json')
@@ -3386,11 +3603,59 @@ const agent = {
 
     await fs.writeFile(logPath, `# prompt\n${inv.prompt}\n\n# stdout\n`, 'utf8')
 
+    // Reasoning config travels via env so the child claude inherits effort
+    // + thinking budget regardless of what the operator's shell happens to
+    // export. Without this, `process.env` passthrough leaks the parent's
+    // CLAUDE_EFFORT / MAX_THINKING_TOKENS (often unset when run from a
+    // plain terminal, so the child silently runs at default effort with no
+    // extended thinking). See plan
+    // `~/.claude/plans/question-what-model-and-reflective-pie.md`.
+    const childEnv: NodeJS.ProcessEnv = {
+      ...process.env,
+      CLAUDE_EFFORT: inv.modelConfig.effort,
+      MAX_THINKING_TOKENS: String(inv.modelConfig.thinkingTokens),
+    }
+
+    // Surface the resolved reasoning config so operators can tell at a
+    // glance what the child is running under (and so it lands in the agent
+    // log header for post-hoc analysis). Also persist alongside cost.json
+    // as run-meta.json — idempotent overwrite, captures the LAST invocation
+    // (consistent for a single run since modelConfig is run-scoped).
+    log(
+      'agent',
+      `model=${inv.modelConfig.model} effort=${inv.modelConfig.effort} thinkingTokens=${inv.modelConfig.thinkingTokens}`
+    )
+    try {
+      const runDir = path.dirname(logPath)
+      const metaPath = path.join(runDir, 'run-meta.json')
+
+      await fs.writeFile(
+        metaPath,
+        `${JSON.stringify(
+          {
+            model: inv.modelConfig.model,
+            effort: inv.modelConfig.effort,
+            thinkingTokens: inv.modelConfig.thinkingTokens,
+            withMcp: inv.withMcp ?? false,
+            recordedAt: ISO(),
+          },
+          null,
+          2
+        )}\n`,
+        'utf8'
+      )
+    } catch (err) {
+      log(
+        'agent',
+        `run-meta.json write failed (non-fatal): ${(err as Error).message}`
+      )
+    }
+
     return new Promise(resolve => {
       const child = spawn(cmd.bin, cmd.args, {
         cwd: inv.cwd,
         stdio: ['pipe', 'pipe', 'pipe'],
-        env: process.env,
+        env: childEnv,
       })
 
       child.stdin?.write(inv.prompt)
@@ -3808,6 +4073,60 @@ async function countAgentToolUses(
 }
 
 /**
+ * Count agent `browser_navigate` calls whose URL targets the deployed
+ * PR preview at `toptal.github.io/picasso/prs/...`. Used by the
+ * checklist verifier to gate "agent navigated to the wrong server"
+ * (TODO #16, 2026-05-22). The deployed preview serves a stale bundle
+ * unrelated to the in-progress worktree, so any verification against
+ * it is meaningless.
+ *
+ * Heuristic: scan the agent log for the substring
+ * `toptal.github.io/picasso/prs/` — it appears inside the URL field
+ * of any browser_navigate input that targets the preview. False
+ * positives are unlikely (the substring is specific) but tolerable —
+ * the failure message points the agent at the right hostname rather
+ * than blocking the run hard.
+ */
+async function countNavigationsToDeployedPreview(
+  logPath: string
+): Promise<number> {
+  if (!existsSync(logPath)) {
+    return 0
+  }
+  const body = await fs.readFile(logPath, 'utf8')
+  const matches = body.match(/toptal\.github\.io\/picasso\/prs\//g)
+
+  return matches ? matches.length : 0
+}
+
+/**
+ * Count `.png` files in `<runDir>/playwright/`. Used by the checklist
+ * verifier to gate "Playwright was used → at least one screenshot must
+ * have been persisted to disk" (TODO #15, 2026-05-22).
+ *
+ * Returns 0 if the dir doesn't exist (defensive — the orchestrator
+ * pre-creates it, but a partial run might race). Counts PNGs only;
+ * the MCP also writes console-*.log files to <worktree>/.playwright-mcp/
+ * which is a different concern.
+ */
+async function countScreenshotsInPlaywrightDir(
+  runDir: string
+): Promise<number> {
+  const dir = path.join(runDir, 'playwright')
+
+  if (!existsSync(dir)) {
+    return 0
+  }
+  try {
+    const entries = await fs.readdir(dir)
+
+    return entries.filter(e => e.toLowerCase().endsWith('.png')).length
+  } catch {
+    return 0
+  }
+}
+
+/**
  * Look for a successful `pnpm --filter <pkgName> build:package` invocation
  * in the agent's Bash tool inputs. Returns true iff the most recent matching
  * invocation appeared in the log AND no error marker followed it.
@@ -3968,6 +4287,70 @@ const checklist = {
         )
       } else {
         passed.push(`Playwright runtime check (${pwCount} calls)`)
+
+        // TODO #15 (2026-05-22): screenshot-persistence gate. When the agent
+        // DID use Playwright but no PNGs landed in `<runDir>/playwright/`,
+        // the screenshots existed only in-message and are now lost. The
+        // operator's audit trail is blank and the agent's "visual verified"
+        // claim is unbacked. Observed on Switch review-iter 7, 2026-05-22:
+        // 16 Playwright calls (incl. browser_take_screenshot), zero PNGs
+        // on disk because the agent never passed `filename`.
+        //
+        // Count PNGs created during this iter — anchor on iter-start mtime
+        // would be ideal but is fiddly; instead just count total PNGs in
+        // the playwright dir and require ≥1 when Playwright was used. The
+        // dir is pre-created empty per sweep tick (mkdir recursive is a
+        // no-op if it exists), so any PNG present here was written by
+        // this run.
+        const screenshotCount = await countScreenshotsInPlaywrightDir(
+          args.runDir
+        )
+
+        if (screenshotCount === 0) {
+          failures.push(
+            `Playwright used (${pwCount} calls) but no screenshots persisted to disk. ` +
+              `Every \`browser_take_screenshot\` call MUST pass \`filename: 'local--<story-id>--<state>.png'\` ` +
+              `(see \`references/visual-verification.md\` §"Screenshot persistence"). ` +
+              `Without \`filename\`, the MCP returns the image in-message and discards it — ` +
+              `the operator's audit trail is blank and your visual-verification claim is unbacked. ` +
+              `Re-take screenshots with explicit \`filename\` arguments before exiting.`
+          )
+        } else {
+          passed.push(
+            `Playwright screenshots persisted (${screenshotCount} PNG(s) in playwright/)`
+          )
+        }
+
+        // TODO #16 (2026-05-22): deployed-preview navigation gate. The
+        // Playwright MCP has no built-in domain allowlist, so the agent
+        // can navigate anywhere — including `toptal.github.io/picasso/prs/<n>/`,
+        // which is the deployed PR-preview Storybook bundle, NOT the
+        // in-progress worktree. Observed on Switch sweep 2026-05-22:
+        // agent navigated to the preview URL, hit a 404 on the wrong
+        // story ID, and proceeded as if verification had happened.
+        // Evidence: <worktree>/.playwright-mcp/console-*.log entries.
+        //
+        // Gate: scan the agent log for browser_navigate calls whose URL
+        // contains `toptal.github.io/picasso/prs/` and fail the check
+        // with explicit re-targeting instructions. Two and only two
+        // hostnames are allowed: localhost (for local Storybook) and
+        // picasso.toptal.net (for the master baseline).
+        const previewNavCount = await countNavigationsToDeployedPreview(
+          args.agentLogPath
+        )
+
+        if (previewNavCount > 0) {
+          failures.push(
+            `Playwright navigated to the deployed PR preview ` +
+              `(\`toptal.github.io/picasso/prs/...\`) ${previewNavCount} time(s). ` +
+              `That serves the bundle Webpack built for an earlier commit, NOT your ` +
+              `in-progress worktree edits — visual verification against it is meaningless. ` +
+              `Allowed hostnames are ONLY: \`http://localhost:9001\` (local Storybook with ` +
+              `your edits, may use a different port — read \`storybook-url.txt\`) and ` +
+              `\`https://picasso.toptal.net\` (master baseline). ` +
+              `Re-run verification against localhost:9001 before exiting.`
+          )
+        }
       }
     }
 
@@ -4281,7 +4664,8 @@ const checklist = {
       `**Standards compliance checklist — walk this in order on every audit.** Cite the matching §section for each violation. Skip items that don't apply to this diff:\n\n` +
       `### A. Hard rules (severity=high if violated)\n` +
       `1. **\`classes\` prop decision** (decisions/classes-audit.md + design-patterns-addendum.md §2): is the component Dropdown or OutlinedInput? If yes, the narrowed \`classes?: { ... }\` MUST be retained. For other Tier-0 components, audit-aligned drop via \`extends Omit<StandardProps, 'classes'>\` + runtime backstop. Flag any deviation.\n` +
-      `2. **Casts** (code-standards.md §"Type-narrowing & casting"): any \`any\` / \`as unknown as T\` / bare \`// @ts-ignore\` in component source files (NOT in *.test.tsx)?\n` +
+      `2. **Casts** (code-standards.md §"Type-narrowing & casting"): any \`any\` / \`as unknown as T\` / bare \`// @ts-ignore\` in component source files (NOT in *.test.tsx)? When you flag a cast, the CANONICAL alternative to recommend is the "prop-by-prop boundary" pattern documented in \`code-standards.md §"The 'prop-by-prop boundary' — canonical resolution for root-element-type mismatches"\` and \`practices.md §"API preservation"\` — destructure SPECIFIC incompatible props out of \`...rest\`, spread the rest unchanged. Do NOT recommend an exhaustive allowlist (\`{ name, form, tabIndex, ...one_by_one }\`) — that's a SEPARATE anti-pattern ("typed but no-op" per item 2b below) that drops every public-API prop the allowlist doesn't enumerate. If the agent has already tried the allowlist path in a prior iter and you flagged it, do NOT flip your recommendation back to "keep the allowlist" — that produces the oscillation observed on Switch review-iter 7 (allowlist → cast → allowlist). Both are wrong; the third option is destructure-incompatibles-then-spread-rest.\n` +
+      `2b. **"Typed but no-op" passthrough allowlist** (practices.md §"API preservation"): does the diff replace \`{...rest}\` with an exhaustive enumeration like \`<BaseUISwitch.Root name={name} form={form} tabIndex={tabIndex} ... />\` while the public \`Props\` interface still extends \`ButtonHTMLAttributes<HTMLButtonElement>\` (or similar)? That's a regression — all the unenumerated props (\`onClick\`/\`onFocus\`/\`onBlur\`/arbitrary \`data-*\`/\`aria-*\`) are claimed in types but silently dropped at runtime. Recommend the prop-by-prop boundary pattern (destructure ONLY incompatible props, spread rest unchanged). If the agent is oscillating between this and a blanket cast, name both as anti-patterns AND cite the canonical pattern explicitly.\n` +
       `3. **\`useLayoutEffect\` from React** (code-standards.md §"SSR safety"): forbidden — must be \`useIsomorphicLayoutEffect\` from \`@toptal/picasso-shared\` (ESLint error in source).\n` +
       `4. **Aggregate self-imports** (code-standards.md §"ESLint custom rules"): any sub-package importing from aggregate \`@toptal/picasso\`? ESLint error.\n` +
       `5. **Build-before-snapshot precondition** (practices.md §"Build & snapshot precondition"): if diff regenerates snapshots, was \`pnpm -F @toptal/picasso-<NAME> build:package\` verified clean first? Look for 1-line empty-\`<div>\` snapshots — those are the precondition-failed signature.\n` +
@@ -4761,6 +5145,9 @@ async function sweepOne(
       }
     }
 
+    // Part 4 (2026-05-14): Confluence status sync — non-fatal.
+    await syncConfluence(manifestAbs)
+
     return
   }
 
@@ -5094,7 +5481,8 @@ async function sweepOne(
   if (
     newReviews.length === 0 &&
     pendingProposals.length === 0 &&
-    ciFailureContext === null
+    ciFailureContext === null &&
+    !opts.withStandards
   ) {
     log(
       'sweep',
@@ -5104,6 +5492,22 @@ async function sweepOne(
     )
 
     return
+  }
+
+  // --with-standards bypass: even on a quiet tick (no new comments,
+  // no pending proposals, no CI failures) the agent still needs to
+  // run the standards-audit pass on the PR diff. Log so the operator
+  // sees why we're invoking the agent on an otherwise idle target.
+  if (
+    newReviews.length === 0 &&
+    pendingProposals.length === 0 &&
+    ciFailureContext === null &&
+    opts.withStandards
+  ) {
+    log(
+      'sweep',
+      `${item.id}: quiet tick, but --with-standards set — agent will run standards-audit on PR diff`
+    )
   }
 
   if (newReviews.length === 0 && pendingProposals.length > 0) {
@@ -5164,7 +5568,14 @@ async function sweepOne(
   // agent invocation instead of advancing status. Fixed 2026-05-11.
   const onlyApprovals = classifications.every(c => c.class === 'approval')
 
-  if (onlyApprovals && classifications.length > 0) {
+  // --with-standards bypass: even if every new review is an approval,
+  // we still want the standards-audit pass to run before auto-advancing
+  // to ready_to_merge. A freshly graduated rule may flag a violation
+  // on a PR that already has human LGTM; without this bypass the
+  // operator would merge before the audit ever ran. The audit's
+  // findings (if any) post inline; if it finds nothing, the next
+  // sweep tick (without --with-standards) advances the status.
+  if (onlyApprovals && classifications.length > 0 && !opts.withStandards) {
     // Gate the transition on the head commit's CI rollup (`checks` above).
     // An approval alone is not enough to call the PR mergeable; the
     // operator (rightly) wants visibility that CI is green too.
@@ -5253,6 +5664,21 @@ async function sweepOne(
   // Hoisted from below — needed by the Happo pre-fetch so diff PNGs land
   // under <runDir>/happo-diffs/ where the agent's Read tool can see them.
   const runDir = path.dirname(wtPath)
+
+  // Pre-create the Playwright screenshot dir (TODO #15, 2026-05-22).
+  // The Playwright MCP is configured with `--output-dir ../playwright` in
+  // agent-mcp-config.json — that resolves to `<runDir>/playwright/` because
+  // the agent's cwd is `<runDir>/worktree/`. The MCP errors out if the
+  // resolved output-dir doesn't exist, and the agent has no way to mkdir
+  // through MCP tools, so the orchestrator creates it here before agent
+  // spawn. When the agent passes `filename: 'local--<id>.png'` on a
+  // `browser_take_screenshot` call, the PNG lands at
+  // `<runDir>/playwright/local--<id>.png`, persisting beyond worktree
+  // cleanup. Without this directory existing, the screenshot call fails
+  // silently and the agent's visual-verification claim is unbacked.
+  const playwrightDir = path.join(runDir, 'playwright')
+
+  await fs.mkdir(playwrightDir, { recursive: true })
 
   // Pre-fetch Happo diff PNGs for failed Happo checks (if any) so the
   // agent can Read the actual pixels instead of guessing from surrounding
@@ -5370,6 +5796,57 @@ async function sweepOne(
 
           return happoSection + otherSection
         })()
+      : '') +
+    (opts.withStandards
+      ? '\n## Standards-audit pass (--with-standards)\n\n' +
+        'In addition to the reviewer-driven flow above, audit the ENTIRE PR diff against the canonical standards docs already loaded in your contextPack:\n\n' +
+        '- `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root) — 16 component-level + 3 form-component rules. CI-validated source of truth.\n' +
+        '- `docs/migration/references/design-patterns-addendum.md` — migration-only carve-outs (existing-violations preservation, Dropdown/OutlinedInput Tier 3.b narrowed `classes`, StandardProps preservation).\n' +
+        '- `docs/migration/references/code-standards.md` — file structure, naming, JSDoc, ESLint custom rules, test conventions, Tailwind composition. Rule strength = frequency (≥70% RULE / 30-70% preferred).\n' +
+        '- `docs/migration/references/practices.md` — graduated migration patterns (build precondition, visual classification, @base-ui/react idioms, changeset format, tsconfig hygiene).\n\n' +
+        'Goal: catch violations that were merged into this PR before a rule existed, OR that pre-date this PR but were touched by it. Newly graduated practices (added to `practices.md` since this PR opened) are the primary motivator — back-port them now rather than waiting for a reviewer to spot the gap.\n\n' +
+        'How to scope the audit:\n\n' +
+        '1. `gh pr diff <pr-url>` — read the full diff for this PR (added + modified lines only; do NOT chase unrelated files).\n' +
+        '2. For each changed file, cross-reference against the four docs above. Cite the rule by section heading when you find a candidate violation.\n' +
+        '3. Skip silently anything covered by `design-patterns-addendum.md §1 Existing-violations carve-out` — preserving a pre-existing violation during a library swap is intentional, not a defect.\n' +
+        '4. Skip silently anything the reviewer has already commented on in this tick — your reviewer-driven reply (above) will handle it.\n\n' +
+        'Per-finding action — apply the SAME confidence matrix as the conversational protocol, with calibration sharpened for this audit:\n\n' +
+        '- **HIGH confidence — ACT NOW** when ALL THREE hold:\n' +
+        '    1. The cited rule uses RULE-strength wording (`NEVER`, `MUST NOT`, `Do NOT`, `forbidden`, `explicitly forbidden`, `not allowed`, `is wrong`) — NOT preferred-strength wording (`prefer`, `should`, `typically`, `usually`, `consider`).\n' +
+        '    2. No carve-out applies (existing-violations carve-out, Tier 3.b `classes` exception, etc.).\n' +
+        '    3. A direct, unambiguous fix exists — e.g. replace `as unknown as T` with a typed adapter; replace `inputRef={n => n.style.x = y}` with a Tailwind class or `data-*` selector; correct a wrong changeset bump per the documented taxonomy.\n' +
+        '  Action: make the code edit (Edit/Write) and post an IN-THREAD reply on the offending file:line citing the rule. One sentence body. Use `gh api .../pulls/<n>/comments` with `path` + `line` + `side` (no `in_reply_to`, since this is a new thread you are opening).\n' +
+        '  **Common patterns that ARE HIGH (do not downgrade these to MEDIUM):**\n' +
+        '    - `as unknown as T` / `as any` blanket casts on `...rest`, event handlers, or component props (`code-standards.md §Type-narrowing` is RULE-strength).\n' +
+        '    - Imperative `ref` callbacks that mutate `.style` for theme/visual purposes (`practices.md §@base-ui/react idioms` calls this an explicit one-off compromise, not the pattern).\n' +
+        '    - Changeset bump that contradicts the documented taxonomy (pure behavioral-parity swap labeled `major`, internal-only change labeled `minor`).\n' +
+        '    - Forbidden imports (`@material-ui/*` in a Tier-0-completed component, `withClasses` from picasso-utils which is deprecated).\n' +
+        '    - Pre-existing `classes` prop API on a Tier 0/1/2/3.a component (audit-locked; only Tier 3.b Dropdown/OutlinedInput keep narrowed `classes`).\n' +
+        '- **MEDIUM confidence — propose, do NOT edit** ONLY when one of these applies:\n' +
+        '    - The cited rule uses preferred-strength wording (`prefer`, `should`, `typically`, `consider`).\n' +
+        '    - Multiple plausible fixes exist and choosing one touches design/architecture (e.g. "extract to helper" vs "inline" vs "useMemo").\n' +
+        '    - The finding sits at a carve-out boundary and you genuinely cannot tell whether it applies.\n' +
+        '  Action: post an inline proposal on the offending file:line with the same `path` + `line` + `side` recipe, cap ~40 words, end with "👍 to confirm, or share thoughts." Subsequent sweep ticks act on confirmation per the existing pending-proposal flow.\n' +
+        '- **LOW confidence / ambiguous** → skip. False positives in standards audits erode operator trust; better to miss one than to spam a PR with debatable nits.\n\n' +
+        '**Calibration anti-pattern to avoid:** if you find yourself thinking "this is forbidden by RULE-strength wording but I posted a MEDIUM proposal in a prior tick that has no reaction" — that prior classification was wrong. RULE-strength + no carve-out + obvious fix = HIGH, regardless of whether you previously asked for 👍 on it. Treat the prior MEDIUM proposal as superseded; act now, then reply on the original proposal thread with "Acting on this — re-classified as HIGH per RULE-strength wording in <citation>." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
+        'Reply formatting: every standards-audit comment uses the same orchestrator header as conversational replies:\n\n' +
+        '```\n> 🤖 _Orchestrator agent (autonomous standards-audit)_\n```\n\n' +
+        'The `(autonomous standards-audit)` suffix distinguishes audit comments from review-response comments in the thread — reviewers can tell at a glance which path produced the message.\n\n' +
+        'Recipe for opening a NEW inline thread on a file:line (this is different from `in_reply_to` — you are creating, not replying):\n\n' +
+        '```bash\n' +
+        'gh api "repos/<owner>/<repo>/pulls/<n>/comments" \\\n' +
+        '  -F commit_id=<head-sha> \\\n' +
+        '  -F path=<file-path> \\\n' +
+        '  -F line=<line-number> \\\n' +
+        '  -F side=RIGHT \\\n' +
+        '  -f body="> 🤖 _Orchestrator agent (autonomous standards-audit)_\n\n' +
+        '<body — HIGH: \\"Fixed — <rule cite>.\\" / MEDIUM: \\"Proposal: <change>, per <rule cite>. 👍 to confirm.\\">"\n' +
+        '```\n\n' +
+        '`<head-sha>` is the PR head commit: `gh pr view <url> --json headRefOid --jq .headRefOid`.\n\n' +
+        'Budget guardrails:\n\n' +
+        "- Cap audit comments at ~5 per tick. If you find more, post the top 5 by severity (HIGH first) and leave the rest for next tick — flooding the PR with 20 inline comments wears out the reviewer's attention.\n" +
+        '- If the same finding has already been posted in a prior tick (your past audit comment is visible in the thread with the `autonomous standards-audit` header), do NOT re-post. Idempotency is on you — re-read the thread before posting anything.\n' +
+        '- If the PR diff is large (> 50 changed files), prioritize files in `packages/picasso/src/` and skip docs/test-only changes unless they touch test conventions.\n'
       : '')
   // B17 (2026-05-18, simplifies prior B15): always start sweep-tick
   // agents with a fresh session_id. What `--resume` preserves between
@@ -5483,6 +5960,48 @@ async function sweepOne(
   // around line 5860 for the design rationale).
   let pendingChecklistFeedback: string | null = null
   let lastAuditKey: string | null = null
+  // Fix B (2026-05-22, revised same day): tracks consecutive sweep-loop
+  // iters where opts.withStandards detected unresolved Layer B HIGH-rule
+  // audit findings. Used to escalate as `stuck` if the same findings
+  // persist across 2 consecutive iters (agent isn't shifting them),
+  // instead of looping forever up to MAX_SWEEP_ITERS.
+  //
+  // First-cut bypass logic (initial Fix B) also required `!hasStagedChanges`
+  // — assuming any agent edit meant the audit was addressed. Switch review-
+  // iter 7 (2026-05-22) disproved that: agent made 1 Edit (fixed the
+  // changeset bump finding) but left the 2 `as unknown as` casts + 1
+  // imperative `.style` mutation untouched. Bypass didn't fire because
+  // hasStagedChanges=true; loop converged green; HIGH-rule violations
+  // shipped. Dropped that condition; the bypass now fires whenever the
+  // audit STILL reports HIGH-rule findings after the iter, regardless of
+  // whether the agent made any edits.
+  //
+  // `lastBypassAuditKey` separates from the existing `lastAuditKey` so
+  // we can compare "findings at last bypass" vs "findings at this bypass"
+  // independently of the per-iter `lastAuditKey` update that runs inside
+  // the try block. When the keys match → agent didn't shift findings →
+  // increment count. When they diverge → some progress → reset to 0.
+  let auditDisagreementCount = 0
+  let lastBypassAuditKey: string | null = null
+  // TODO #18 (2026-05-22): oscillation detection. Tracks the hash of the
+  // cumulative PR diff (`git diff <base>...HEAD`) at end-of-iter. If
+  // iter N's hash matches an earlier iter's hash, the agent has reverted
+  // its state to a prior point — that's oscillation (A → B → A pattern),
+  // distinct from "ignored audit findings" (which Fix B's
+  // `auditDisagreementCount` handles via auditKey comparison).
+  //
+  // Empirical case (Switch review-iter 7, 2026-05-22): agent flipped
+  // {rootForwarded allowlist → blanket cast → allowlist} across 3 iters.
+  // Fix B's auditKey-based stuck-detection missed it because each iter's
+  // audit cited slightly different complaint text → different auditKey
+  // → counter never incremented. Hash-based detection catches it because
+  // iter 3's cumulative diff is byte-identical to iter 1's.
+  //
+  // Ring buffer kept small (last MAX_SWEEP_ITERS entries) — at iter > 2
+  // we check if the current hash matches any prior entry. First match
+  // → escalate as `stuck`. Empty diffs skipped (no-op iters can't
+  // oscillate; they're just idle).
+  const iterDiffHashes: { iter: number; hash: string }[] = []
   let convergence:
     | 'green'
     | 'env-only-fail'
@@ -5539,6 +6058,7 @@ async function sweepOne(
           prompt: iterPrompt,
           cwd: wtPath,
           agent: opts.agent,
+          modelConfig: opts.modelConfig,
           withMcp: opts.withMcp,
           sessionId,
           isFirstIteration: isFirstIteration && iter === 1,
@@ -5779,6 +6299,45 @@ async function sweepOne(
         )
       }
 
+      // TODO #18 (2026-05-22): oscillation detection via cumulative PR
+      // diff hash. Compute `git diff <base>...HEAD` at end-of-iter,
+      // SHA-256 it, compare to the ring buffer of prior iters. If a
+      // match exists with iter >= 3, the agent has reverted its state
+      // to a prior point — that's oscillation (A → B → A), distinct
+      // from "ignored audit findings" (which Fix B's auditKey path
+      // handles). Escalate as `stuck`.
+      //
+      // Skip when the diff is empty — no-op iters don't oscillate.
+      // Skip on git error (treat as missing data; let the regular
+      // stuck-detection path handle it).
+      // eslint-disable-next-line no-await-in-loop
+      const oscBaseRef = workflow.baseBranch
+        ? `origin/${workflow.baseBranch}`
+        : 'origin/master'
+      // eslint-disable-next-line no-await-in-loop
+      const oscDiff = await shell('git', ['diff', `${oscBaseRef}...HEAD`], {
+        cwd: wtPath,
+      })
+
+      if (oscDiff.exitCode === 0 && oscDiff.stdout.trim().length > 0) {
+        const oscHash = createHash('sha256')
+          .update(oscDiff.stdout)
+          .digest('hex')
+          .slice(0, 16)
+        const oscPriorMatch = iterDiffHashes.find(h => h.hash === oscHash)
+
+        if (oscPriorMatch && iter >= 3) {
+          log(
+            'sweep',
+            `${item.id}: review-iter loop iter ${iter}: cumulative PR diff hash matches iter ${oscPriorMatch.iter} — agent oscillated back to a prior state (A → … → A pattern); escalating as stuck instead of continuing the loop`
+          )
+          iterDiffHashes.push({ iter, hash: oscHash })
+          convergence = 'stuck'
+          break
+        }
+        iterDiffHashes.push({ iter, hash: oscHash })
+      }
+
       // Gate run.
       // eslint-disable-next-line no-await-in-loop
       const gateReport = await gate.run(
@@ -5792,6 +6351,97 @@ async function sweepOne(
       lastGateReport = gateReport
 
       if (workflow.successCriteria(gateReport)) {
+        // Fix B (2026-05-22, revised same day): --with-standards
+        // audit-disagreement bypass.
+        //
+        // The gate is green BUT the Layer B post-iter audit may STILL
+        // report HIGH-severity, category=rule violations after this
+        // iter's edits (or lack thereof). Without this bypass the loop
+        // converges here and the audit findings never reach the agent's
+        // next iter, leaving documented-rule violations in the PR
+        // despite --with-standards specifically opting in to catch them.
+        //
+        // Empirical cases (Switch PR #4965, 2026-05-22):
+        //   - review-iter 6: agent posted MEDIUM proposals only (no
+        //     edits at all) on `as unknown as` cast + imperative .style
+        //     mutation + wrong changeset bump. 3 HIGH-rule findings.
+        //   - review-iter 7: agent made 1 Edit (fixed the changeset
+        //     bump) but left the 2 `as unknown as` casts + 1 imperative
+        //     .style mutation. 3 HIGH-rule findings — DIFFERENT set
+        //     than iter 6 (changeset finding gone, one more cast
+        //     enumerated separately) but still unresolved.
+        //
+        // Conditions for the bypass:
+        //   1. opts.withStandards is set (operator opted in).
+        //   2. pendingChecklistFeedback contains `Audit (HIGH, rule)`
+        //      findings from the Layer B audit (string-match on the
+        //      audit-emitter's prefix in checklist.verify output).
+        //   3. We have at least one more iter available.
+        //
+        // Note: NO `!hasStagedChanges` condition. The first-cut Fix B
+        // required reply-only path, but Switch iter 7 disproved that —
+        // partial edits that skip HIGH-rule findings need the bypass
+        // just as much as zero-edit ticks.
+        //
+        // Stuck-detection (via `lastBypassAuditKey` comparison):
+        //   - Same auditKey as last bypass → findings unchanged → agent
+        //     not making progress on cited findings → increment count.
+        //   - Different auditKey → some findings shifted = progress →
+        //     reset count to 0.
+        //   - Count >= 1 after increment (i.e. 2 consecutive bypasses
+        //     with identical findings) → escalate as `stuck`. This
+        //     gives the agent 2 attempts before bailing.
+        const hasAuditHighRule =
+          pendingChecklistFeedback !== null &&
+          /Audit \(HIGH, rule\)/.test(pendingChecklistFeedback)
+        const canBypass =
+          opts.withStandards && hasAuditHighRule && iter < MAX_SWEEP_ITERS
+
+        if (canBypass) {
+          const findingsUnchanged =
+            lastBypassAuditKey !== null && lastBypassAuditKey === lastAuditKey
+
+          if (findingsUnchanged) {
+            auditDisagreementCount += 1
+          } else {
+            auditDisagreementCount = 0
+          }
+          lastBypassAuditKey = lastAuditKey
+
+          if (auditDisagreementCount >= 1) {
+            log(
+              'sweep',
+              `${item.id}: review-iter loop iter ${iter}: same Layer B HIGH-rule audit findings as last iter (auditKey=${lastAuditKey}) — agent isn't shifting them, escalating as stuck`
+            )
+            convergence = 'stuck'
+            break
+          }
+          log(
+            'sweep',
+            `${
+              item.id
+            }: review-iter loop iter ${iter}: gate green BUT Layer B audit flagged HIGH rule violations still present (${
+              findingsUnchanged
+                ? 'unchanged from last iter'
+                : 'findings shifted — partial progress'
+            }) — forcing iter ${
+              iter + 1
+            } with audit findings as primary feedback`
+          )
+          iterFeedback =
+            '# Layer B audit disagreement — re-evaluate your calibration\n\n' +
+            `Iter ${iter} converged the gate green BUT the post-iter audit STILL flags HIGH-severity rule violations against the post-iter worktree. Some violations may be from before this iter (unaddressed) and some may have been introduced by this iter's edits. Either way, the audit's RULE-strength reading is authoritative — if a rule says NEVER / MUST NOT / forbidden / explicitly forbidden / not allowed AND a direct fix exists AND no carve-out applies, that is HIGH-confidence by definition, not MEDIUM. This holds regardless of any prior MEDIUM proposal you posted asking for 👍, and regardless of whether you made other edits this iter.\n\n` +
+            'Action this iter: re-read the audit findings below, RE-CLASSIFY each as HIGH unless a carve-out clearly applies, and ACT — edit the code + reply IN-THREAD on the offending file:line citing the rule. If you previously posted a MEDIUM proposal on the same finding, ALSO post a follow-up reply on that prior thread: "Re-classified as HIGH per RULE-strength wording in <citation>. Acting on this now." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
+            'Common patterns the audit consistently flags as HIGH (do NOT downgrade these to MEDIUM in your re-evaluation):\n' +
+            '- `as unknown as T` blanket casts on `...rest`, event handlers, or props — replace with a typed adapter (drop/transform incompatible keys before spread, or construct a synthetic event with the correct shape).\n' +
+            '- Imperative `ref` callbacks that mutate `.style` for theme/visual purposes — replace with a Tailwind slot selector (e.g. `[&_input]:!m-0`) or a `data-*` attribute selector. Cite practices.md §"@base-ui/react idioms" which explicitly calls the ref-style pattern a "one-off Switch compromise, not the pattern."\n' +
+            '- Wrong changeset bump per the documented taxonomy.\n\n' +
+            'If after re-reading you still believe a finding is genuinely MEDIUM (a real carve-out applies), reply IN-THREAD on the audit-finding line with your justification citing the specific carve-out section — but the default posture is to ACT.\n\n' +
+            '---\n\n' +
+            pendingChecklistFeedback
+          pendingChecklistFeedback = null
+          continue
+        }
         log(
           'sweep',
           `${item.id}: review-iter loop converged GREEN on iter ${iter}/${MAX_SWEEP_ITERS}`
@@ -5799,6 +6449,15 @@ async function sweepOne(
         convergence = 'green'
         break
       }
+
+      // Reset audit-disagreement counter when convergence wasn't green —
+      // the agent IS shifting code via the failure path, so we're not in
+      // the "ignored audit" stuck pattern. Also reset lastBypassAuditKey
+      // so a subsequent successful iter starts the comparison fresh.
+      // Stuck-detection on the gate-failure path is the existing
+      // compositeFailureKey mechanism below.
+      auditDisagreementCount = 0
+      lastBypassAuditKey = null
 
       const failedDeterministic = gateReport.stages.filter(
         s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name)
@@ -6465,6 +7124,13 @@ export async function run(
 
   await fs.mkdir(runDir, { recursive: true })
 
+  // TODO #15 (2026-05-22): pre-create the Playwright screenshot dir so the
+  // MCP's `--output-dir ../playwright` arg (set in agent-mcp-config.json)
+  // resolves to a real directory when the agent calls
+  // `browser_take_screenshot { filename: '...' }`. Same rationale as the
+  // sweepOne equivalent — agent has no way to mkdir through MCP tools.
+  await fs.mkdir(path.join(runDir, 'playwright'), { recursive: true })
+
   // Step 4: worktree.
   //
   // Resume detection (2026-05-22): if the manifest's variant slot already
@@ -6658,6 +7324,16 @@ export async function run(
     // diff count + components (via `readHappoFailureKey`), so "8→7 diffs"
     // counts as progress (different key) and the loop continues.
     let lastMigrateFailureKey: string | null = null
+    // 2026-05-22: stuck-recovery state. When two consecutive iters produce
+    // identical failure keys, the first collision injects strong recovery
+    // guidance into the next iter's prompt INSTEAD of escalating; only the
+    // second collision (3 total identical iters) escalates. Rationale:
+    // Slider v2 2026-05-22 showed the agent giving up after 2 iters of
+    // same-Happo-diffs without running the prescribed computed-style diff
+    // workflow. One more iter with explicit recovery prompting unlocks the
+    // documented procedure (practices.md §"Computed-style diff is
+    // authoritative" + §"@base-ui/react idioms" specificity ladder).
+    let lastMigrateStuckKey: string | null = null
     // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
     // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
     // keeps the full canonical-prompt + rules + per-item-plan context from
@@ -6708,6 +7384,7 @@ export async function run(
           prompt,
           cwd: wtPath,
           agent: opts.agent,
+          modelConfig: opts.modelConfig,
           withMcp: opts.withMcp,
           sessionId,
           isFirstIteration: state.iterations === 1,
@@ -7119,29 +7796,68 @@ export async function run(
         lastMigrateFailureKey !== null &&
         currentFailureKey === lastMigrateFailureKey
       ) {
+        // Two-strike stuck detection (2026-05-22). First identical-key
+        // collision: give the agent ONE more iter with strong recovery
+        // guidance (computed-style diff workflow, ladder walk, etc.).
+        // Many "stuck" cases — especially Happo visual-parity — are agent
+        // giving up too early without running the prescribed procedure.
+        // Only if the third iter ALSO produces the same key do we escalate.
+        if (lastMigrateStuckKey === currentFailureKey) {
+          // Second collision in a row → really stuck. Escalate.
+          log(
+            'loop',
+            `iter ${
+              state.iterations
+            }: stuck-recovery iter ALSO failed with identical key (${currentFailureKey}) — escalating instead of burning ${
+              opts.maxIterations - state.iterations
+            } more iters`
+          )
+
+          return escalate(
+            workflow,
+            item,
+            state,
+            {
+              shouldEscalate: true,
+              reason: `migrate-loop stuck on deterministic gate stages: ${currentFailureKey} (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.`,
+            },
+            manifestAbs,
+            rootDir,
+            opts.variant
+          )
+        }
+        // First identical collision — inject recovery guidance, continue.
         log(
           'loop',
-          `iter ${
-            state.iterations
-          }: stuck on identical failure content across 2 iters (${currentFailureKey}) — escalating instead of burning ${
-            opts.maxIterations - state.iterations
-          } more iters`
+          `iter ${state.iterations}: identical failure key as last iter (${currentFailureKey}) — injecting stuck-recovery guidance and giving ONE more iter before escalating`
         )
+        lastMigrateStuckKey = currentFailureKey
 
-        return escalate(
-          workflow,
-          item,
-          state,
-          {
-            shouldEscalate: true,
-            reason: `migrate-loop stuck on deterministic gate stages: ${currentFailureKey} (identical content across 2 consecutive iters). Worktree left dirty for operator inspection.`,
-          },
-          manifestAbs,
-          rootDir,
-          opts.variant
-        )
+        // Tailor the recovery prompt to the failure type. Happo-only is
+        // the most common Slider/Drawer stuck pattern; the prescribed
+        // workflow (computed-style diff + ladder walk) needs explicit
+        // surfacing because the agent has been ignoring it.
+        const isHappoOnly =
+          failedDeterministicStages.length === 1 &&
+          failedDeterministicStages[0].name === 'happo'
+
+        const recoveryPrompt = isHappoOnly
+          ? buildStuckRecoveryHappoPrompt(currentFailureKey, item.id)
+          : buildStuckRecoveryGenericPrompt(currentFailureKey)
+
+        // Prepend recovery to next-iter feedback (lastFeedback set below
+        // from gate report; we add the recovery section on top).
+        pendingChecklistFeedback =
+          recoveryPrompt +
+          (pendingChecklistFeedback
+            ? '\n\n---\n\n' + pendingChecklistFeedback
+            : '')
       } else {
         lastMigrateFailureKey = currentFailureKey
+        // New failure key → reset stuck-recovery tracking (agent made
+        // visible progress; if it gets stuck again later, the two-strike
+        // counter starts fresh).
+        lastMigrateStuckKey = null
       }
 
       // Per-iter Happo PNG re-fetch — when happo failed, re-fetch the
@@ -7783,6 +8499,7 @@ export async function run(
             prompt: ciPrompt,
             cwd: wtPath,
             agent: opts.agent,
+            modelConfig: opts.modelConfig,
             withMcp: opts.withMcp,
             sessionId,
             isFirstIteration: false,
@@ -8106,9 +8823,39 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const maxItemsStr = get('--max-items')
   const maxCIIterStr = get('--max-ci-iterations')
   const variantRaw = get('--variant')
+  const modelRaw = get('--model')
+  const effortRaw = get('--effort')
+  const thinkingTokensStr = get('--thinking-tokens')
 
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
+
+  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Opus 4.7 + max + 64k)
+  // overlaid with any CLI flags. `--no-thinking` forces budget=0 regardless
+  // of `--thinking-tokens` (so a stray `--no-thinking --thinking-tokens=N`
+  // still disables thinking — least-surprise behavior).
+  const effort: ModelConfig['effort'] = ((): ModelConfig['effort'] => {
+    if (
+      effortRaw === 'low' ||
+      effortRaw === 'medium' ||
+      effortRaw === 'high' ||
+      effortRaw === 'max'
+    ) {
+      return effortRaw
+    }
+
+    return DEFAULT_MODEL_CONFIG.effort
+  })()
+  const thinkingTokens = has('--no-thinking')
+    ? 0
+    : thinkingTokensStr
+    ? Number(thinkingTokensStr)
+    : DEFAULT_MODEL_CONFIG.thinkingTokens
+  const modelConfig: ModelConfig = {
+    model: modelRaw ?? DEFAULT_MODEL_CONFIG.model,
+    effort,
+    thinkingTokens,
+  }
 
   return {
     dryRun: has('--dry-run'),
@@ -8131,6 +8878,13 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     reviewTimeoutMinutes: reviewTimeoutStr ? Number(reviewTimeoutStr) : null,
     batch: has('--batch'),
     reviewSweep: has('--review-sweep'),
+    // --with-standards (2026-05-22): only meaningful alongside
+    // --review-sweep. Engages a standards-audit pass on the full PR
+    // diff in addition to the conversational review-response protocol.
+    // See workflow.ts `OrchestratorOptions.withStandards` docstring and
+    // the standards-audit injection in sweepOne for the full contract.
+    withStandards: has('--with-standards'),
+    graduate: has('--graduate'),
     maxItems: maxItemsStr ? Number(maxItemsStr) : null,
     variant: variantRaw ?? 'v1',
     // `variantRaw` is `string | undefined` from `get()`; previously this
@@ -8143,5 +8897,6 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     // 2026-05-18. `!= null` (loose equality) catches both null and
     // undefined — correct for this check.
     variantExplicit: variantRaw != null,
+    modelConfig,
   }
 }

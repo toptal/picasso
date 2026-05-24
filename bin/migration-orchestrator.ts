@@ -42,6 +42,7 @@ import {
   runReviewSweep,
   parseOptions,
 } from './lib/orchestrator-core'
+import { runGraduate } from './lib/graduate'
 import type {
   GateReport,
   ManifestItem,
@@ -345,14 +346,15 @@ async function main(): Promise<void> {
         opts.tier ?? '(any)'
       } variant=${opts.variant}\n` +
       `  maxIterations=${opts.maxIterations} maxCIIterations=${opts.maxCIIterations} ciTimeoutMinutes=${opts.ciTimeoutMinutes}\n` +
-      `  batch=${opts.batch} reviewSweep=${opts.reviewSweep} dryRun=${
-        opts.dryRun ?? false
-      }\n` +
+      `  batch=${opts.batch} reviewSweep=${opts.reviewSweep} withStandards=${
+        opts.withStandards
+      } dryRun=${opts.dryRun ?? false}\n` +
       `  withMcp=${opts.withMcp} noMerge=${opts.noMerge ?? false}\n` +
       `  baseBranch=${opts.baseBranch ?? '(workflow default)'} branch=${
         opts.branch ?? '(workflow default)'
       }\n` +
-      `  agent=${opts.agent}\n`
+      `  agent=${opts.agent}\n` +
+      `  model=${opts.modelConfig.model} effort=${opts.modelConfig.effort} thinkingTokens=${opts.modelConfig.thinkingTokens}\n`
   )
 
   // `--base-branch=<ref>` lets the operator route this run's PR to a
@@ -362,11 +364,39 @@ async function main(): Promise<void> {
   const workflow: Workflow = opts.baseBranch
     ? { ...migrationWorkflow, baseBranch: opts.baseBranch }
     : migrationWorkflow
-  // Phase 3.5 redesign — three modes, mutually exclusive in priority order:
+  // Phase 3.5 redesign — modes are mutually exclusive in priority order:
+  //   --graduate      → run lessons-learned → practices.md graduation pass,
+  //                     no worktree/agent loop. Doc-curation only.
   //   --review-sweep  → walk all awaiting_review items, process new
   //                     review activity, persist state, exit
   //   --batch         → loop run() over every queued item in tier
   //   default         → single-component / single-next-queued migration
+  //
+  // `--graduate` is handled FIRST because it touches no worktree state
+  // and ignores all migration-mode options (component, variant, batch, etc.).
+
+  if (opts.graduate) {
+    const rootDir = path.resolve(__dirname, '..')
+    const gradResult = await runGraduate(rootDir, opts.modelConfig)
+
+    // eslint-disable-next-line no-console
+    console.log(
+      `\nGraduation result: ${JSON.stringify(
+        {
+          status: gradResult.status,
+          exitCode: gradResult.exitCode,
+          practicesPath: path.relative(rootDir, gradResult.practicesPath),
+        },
+        null,
+        2
+      )}`
+    )
+    if (gradResult.exitCode !== 0) {
+      process.exit(gradResult.exitCode)
+    }
+
+    return
+  }
   const result = opts.reviewSweep
     ? await runReviewSweep(workflow, opts)
     : opts.batch

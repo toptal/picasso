@@ -131,6 +131,38 @@ This pattern is preferred over commenting "// internal use only" — the type sy
 - **NEVER** `as unknown as T` blanket casts in component source. Tests may cast mock objects.
 - **NEVER** bare `// @ts-ignore` — count in 28-scope components: 0 (Dropdown's two are wrapped in TODO comment blocks with explicit explanation, acceptable per `practices.md §"Type-narrowing & casting"`). If you absolutely need to suppress a type, use `@ts-expect-error <reason>`.
 
+### The "prop-by-prop boundary" — canonical resolution for root-element-type mismatches
+
+When `@base-ui/react`'s root part has a type that doesn't fully line up with your public `Props` (e.g. `Props extends ButtonHTMLAttributes<HTMLButtonElement>` but `BaseUISwitch.Root.Props` doesn't extend `ButtonHTMLAttributes`), the canonical fix is **NOT**:
+
+- **Anti-pattern A — blanket cast** (`const rootProps = rest as unknown as BaseUISwitch.Root.Props`). Silences the type checker without addressing the mismatch. Listed in §"Type-narrowing & casting" as forbidden.
+- **Anti-pattern B — exhaustive allowlist** (manually picking 4–6 props and forwarding only those). Drops all other props at runtime — `onClick`/`onFocus`/`onBlur`/`data-*`/`aria-*` claimed by the public type silently disappear. Reviewers call this the "typed but no-op" anti-pattern.
+
+The canonical fix is to **destructure SPECIFIC incompatible props** (or transform them via an adapter), **then spread `...rest` unchanged**:
+
+```tsx
+const Switch = (props: Props) => {
+  const {
+    onChange, // signature mismatch — adapt below
+    checked,  // type narrowing (number? → boolean clamp)
+    ...rest   // ← everything else flows through, fully typed
+  } = props
+  return (
+    <BaseUISwitch.Root
+      {...rest}
+      checked={checked ?? false}
+      onCheckedChange={c => onChange?.(syntheticEvent(c), c)}
+    />
+  )
+}
+```
+
+To find the props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and compare its `*.Props` interface against your public `Props`. The set of names that appear in BOTH with DIFFERENT types is your destructure list. Everything else is type-compatible and spreads safely.
+
+**Empirical sanity check.** For Tier 0 components the destructure list is typically 1–3 props (onChange signature, occasional value/checked clamp, sometimes a removed prop). If you find yourself destructuring 6+ props, re-read the library's `.d.ts` — you're sliding into Anti-pattern B. The library's type is probably more permissive than you think.
+
+The migration-period oscillation observed on Switch review-iter 7 (2026-05-22) — allowlist → cast → allowlist across three consecutive iters — was the agent flipping between the two anti-patterns above because neither it nor the audit-agent named the canonical third option. Cite this section (and the worked example in `practices.md §"API preservation"`) directly in PR replies when reviewers raise the question.
+
 ## CSS specificity ladder for `@base-ui/react` overrides (reviewer-enforced, NOT lint-enforced)
 
 Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. Pick the **lowest rung that solves the problem** — escalate only if the lower rung doesn't work. Reviewers will block PRs that jump straight to a higher rung when a lower one was viable.
@@ -143,7 +175,14 @@ Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*
 3. **Higher CSS specificity via selector compounds.** When step 2 isn't enough, layer selectors (`[&_input]:`, `[&[data-state=open]]:`, `[&:hover:not([data-disabled])]:`) before reaching for the next rung.
 4. **`!important` — LAST RESORT.** Acceptable ONLY after rungs 1–3 are exhausted. Reviewers will ask you to prove they don't work. When you use it, comment WHY the lower rungs failed (e.g., `[&_input]:!top-auto /* @base-ui/react/slider/thumb hard-codes top:0 via inline style — selector-level override doesn't win */`). The legacy occurrences in `Radio/styles.ts` and `RichTextEditorToolbar/styles.ts` predate `@base-ui/react`; don't model new code on them.
 
-**Do NOT use imperative `ref` callbacks to mutate `.style` for theme/visual purposes.** That pattern (`node.style.margin = '0'`) was a one-off compromise on Switch (iter 2) but is NOT the canonical answer — it bypasses CSS, breaks responsive style changes, and isn't tree-shaken. Use rung 1–4 instead. Imperative `ref` callbacks remain valid for non-style concerns (focus management, measurement, third-party library handles).
+**ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for theme/visual purposes are FORBIDDEN, no exceptions.** Examples: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, `useCallback` wrapping any `.style.X = …` assignment passed as a slot ref. It bypasses CSS, breaks responsive style changes, isn't tree-shaken, and creates a runtime side-channel that fights the design system. Use rung 1–4 instead.
+
+Earlier Switch migration code (iter 2) used this pattern; treat any such occurrence as a defect to remove during cleanup, NOT a precedent to extend. This rule has no "one-off compromise" carve-out. Explicitly rejected justifications (do not cite these to defend the pattern):
+- "Tailwind `!important` slot selector failed Happo parity" → fix the selector / baseline; do not fall back to `.style` mutation.
+- "base-ui inline `style=""` can't be overridden by CSS" → it can: `!important` at rung 4 beats inline-style specificity. If your selector isn't winning, the selector chain is wrong.
+- "Cited as a precedent in practices.md / lessons-learned" → no, it's an anti-pattern. Older wording that framed it as a "compromise" was contamination superseded by this rule.
+
+Imperative `ref` callbacks remain valid for non-style concerns (focus management, measurement, third-party library handles, port resize observers).
 
 ## Other forbidden CSS patterns
 

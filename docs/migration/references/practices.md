@@ -35,13 +35,61 @@ Categorized by problem domain. The agent applies the relevant category as each m
   disablePortal?: boolean
   ```
 - **No `as unknown as T` blanket casts on `...rest` spread.** If `@base-ui/react`'s root element type mismatches the public Props, address it at the prop-by-prop boundary, not a blanket bridge cast (Switch iter 3 precedent).
+- **The "prop-by-prop boundary" means: destructure SPECIFIC incompatible props, then spread `...rest` unchanged.** Two binary anti-patterns regularly get reached for instead — neither is the right answer:
+
+  **Anti-pattern A (blanket cast)** — silences the type checker without addressing the actual mismatch:
+  ```tsx
+  // WRONG: papers over the boundary mismatch with a cast.
+  const Switch = (props: Props) => {
+    const rootProps = props as unknown as BaseUISwitch.Root.Props // ❌
+    return <BaseUISwitch.Root {...rootProps} />
+  }
+  ```
+
+  **Anti-pattern B (exhaustive allowlist)** — narrows the runtime surface, silently drops every other prop the public type claims to accept:
+  ```tsx
+  // WRONG: Props extends ButtonHTMLAttributes<HTMLButtonElement>, but
+  // onClick / onFocus / onBlur / data-* / aria-* are now dropped at runtime.
+  // Reviewers call this the "typed but no-op" anti-pattern.
+  const Switch = ({ name, form, tabIndex, ['aria-label']: ariaLabel }: Props) => {
+    return <BaseUISwitch.Root name={name} form={form} tabIndex={tabIndex} aria-label={ariaLabel} /> // ❌
+  }
+  ```
+
+  **CANONICAL — drop the specific mismatching props, spread the rest:**
+  ```tsx
+  // RIGHT: the only props that genuinely conflict with BaseUISwitch.Root's
+  // shape are destructured out (or transformed); everything else spreads
+  // through unchanged. Public API parity preserved, no cast, no allowlist.
+  const Switch = (props: Props) => {
+    const {
+      onChange,     // signature differs — adapt to onCheckedChange below
+      checked,      // base-ui uses checked: boolean directly, but we want to clamp
+      ...rest       // ← all other ButtonHTMLAttributes flow through
+    } = props
+    return (
+      <BaseUISwitch.Root
+        {...rest}
+        checked={checked ?? false}
+        onCheckedChange={c => onChange?.(syntheticEvent(c), c)}
+      />
+    )
+  }
+  ```
+
+  How to find which props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` interface against your public `Props`. The intersection's NAME-OVERLAPS-WITH-DIFFERENT-TYPES set is what you destructure. Everything else is type-compatible and spreads. Typically this is 1–3 props for a Tier 0 component (onChange signature mismatch, sometimes `value`/`checked` clamp, sometimes a removed prop). If you find yourself destructuring 6+ props, you're sliding into Anti-pattern B — re-read the library's `.d.ts` and confirm those props ARE actually incompatible.
 - **No `any`** in component source (ESLint `@typescript-eslint/no-explicit-any` is **error** in source, off in tests).
 - **CSS override specificity ladder for `@base-ui/react`** — pick the lowest rung that works; reviewers block PRs that skip rungs. See `code-standards.md §CSS specificity ladder` for the full version. Short form:
   1. Exhaust `@base-ui/react`'s customization API (slot `className`, render prop, documented slot props).
   2. Tailwind selectors matching emitted `data-*` attributes (`data-[focused]:`, `data-[expanded]:`).
   3. Higher specificity via selector compounds (`[&_input]:`, `[&[data-state=open]]:`).
   4. `!important` — **LAST RESORT**, acceptable only when rungs 1–3 demonstrably can't override. Comment WHY the lower rungs failed.
-- **Do NOT use imperative `ref` callbacks (`node.style.margin = '0'`) for visual overrides.** That was a one-off Switch compromise, not the pattern. Use the ladder above.
+- **ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for visual overrides are FORBIDDEN, no exceptions.** Examples that violate this: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, any `useCallback` wrapping a `.style.X = …` assignment passed to a slot ref. This is NOT a "one-off compromise" — earlier Switch migration code that used the pattern was a migration defect to be removed during cleanup, not a sanctioned precedent. Reviewers WILL block PRs that introduce or retain it. Use the CSS specificity ladder (rungs 1–4 above).
+- **Explicitly rejected justifications for the ref-callback anti-pattern** (do not cite these to defend the pattern):
+  - "Tailwind `!important` slot selector failed to restore Happo parity" — that's a baseline / specificity-ladder problem (check whether the `[&_input]:` selector compounds correctly with the data-state attribute, whether the baseline is stale, whether the input is actually inside the matched parent). Fix the ladder rung; do not fall back to imperative refs.
+  - "It's documented as a one-off compromise in practices.md" — no, it's documented as an ANTI-PATTERN. Earlier wording that framed it as a "compromise" was contamination; this rule is the authoritative version.
+  - "base-ui writes `margin: -1px` into the hidden input inline style and we can't override inline style with CSS" — you can: rung 3 (`[&_input]:!m-0` or `[&_input]:![margin:0]`) wins over inline style because `!important` beats inline-style specificity in the cascade. If your selector isn't winning, the selector chain is wrong, not the rung.
+  - Reviewers consistently rejected this pattern across Switch iters 2/3/9. Treat any new instance as a defect, not a precedent.
 
 ## Changesets
 
@@ -60,7 +108,7 @@ Categorized by problem domain. The agent applies the relevant category as each m
 ## @base-ui/react idioms
 
 - **Polymorphic components**: use `nativeButton + render={React.createElement(as)}` (Button precedent). Do NOT add runtime `typeof`/`isValidAs` guards for the `as` prop — TypeScript constrains it; reviewers ask for removal.
-- **Inline-style overrides on `@base-ui/react` parts**: apply the CSS specificity ladder above (rungs 1–4). Imperative `ref` callbacks for visual changes are not the canonical answer despite the Switch iter 2 precedent.
+- **Inline-style overrides on `@base-ui/react` parts**: apply the CSS specificity ladder (rungs 1–4 in the API-preservation section above). Imperative `ref` callbacks that mutate `.style` for visual purposes are a forbidden anti-pattern — see the explicit anti-pattern rule + rejected justifications above. There is no "Switch iter 2 precedent" that sanctions the pattern; earlier Switch code that used it was a migration defect.
 - **Input-bearing slots** (`Slider.Thumb`, `Switch.Input`): hide visible native `<input>` via:
   ```
   [&_input]:!top-auto [&_input]:!left-auto

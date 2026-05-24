@@ -2,6 +2,8 @@
 
 > **Role change as of 2026-05-21.** This file is now an **audit-only log**, no longer loaded into the migration agent's contextPack. The agent reads `references/practices.md` instead — a curated, deduplicated, categorized set of graduated patterns. This log remains for human review, audit trail, and pattern-graduation passes.
 
+> **SUPERSEDED ENTRIES (2026-05-22).** Several entries on this log (notably lines 236, 285, 310, 318) recommend using imperative `inputRef={node => { node.style.X = ... }}` callbacks to override `@base-ui/react`'s inline styles on hidden inputs. These are **superseded and must NOT be graduated into practices.md** — the canonical rule (see `practices.md §API preservation` and `code-standards.md §CSS specificity ladder`) defines that pattern as a forbidden anti-pattern with no exceptions. Earlier Switch migration code (iter 2) that used it was a migration defect, not a sanctioned compromise. Future graduation passes must skip or invert these entries; do not let the precedent language leak back into prescriptive docs.
+
 Auto-accumulated by the orchestrator after each successful component migration. Each entry captures the 2–3 patterns that the agent applied. Use this log to:
 - **Audit**: review what patterns actually emerged from past migrations.
 - **Graduate**: periodically (every 5–10 successful migrations, or when this log crosses ~50 new entries past the last graduation marker), promote recurring patterns into `references/practices.md`. Graduation criteria: a pattern appears in ≥ 3 entries OR is cited explicitly by ≥ 1 reviewer as a load-bearing rule.
@@ -292,4 +294,44 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - When base-ui moves `role`/`aria-*` from the hidden `<input>` to the root span, treat it as a behavior change that needs explicit a11y verification in the iter-1 PR description (snapshot reviewers consistently flag silent role relocation) — extends `rules/base-ui-react-api-crib` parity-check guidance.
 - Don't paper over base-ui inline-style quirks (e.g. negative-margin on the hidden input) with imperative `node.style.x = ...` refs OR `!important` — both were rejected; investigate the root cause and resolve via the component's documented styling hooks/Tailwind classes, per `rules/styling`.
 - Preserve consumer-facing safety defaults from master (e.g. `onChange = () => {}`) and avoid `as unknown as` casts at handler boundaries — either keep the no-op default or guard before invoking, and bridge type mismatches at the prop-typing layer rather than at the call site (`rules/api-preservation`).
+- Reference: https://github.com/toptal/picasso/pull/4965
+
+## Backdrop — 2026-05-22 (review iter 11)
+
+- Tier 0 · target_path: `none` · iterations: 11
+- When swapping out a vendor type that leaked props (e.g. `ModalBackdropSlotProps`), preserve the exact public Props surface by manually re-declaring every leaked field (`ownerState`, `open`, `className`) on the local interface rather than silently shedding them — see rules/api-preservation.
+- Changeset bump must reflect actual consumer-visible API delta: a pure internal dependency swap with unchanged Props stays `patch`, not `minor` — reviewers reject inflated bumps on no-op API changes.
+- Forward `className` into the composed `cx(...)` call when reconstructing a host element previously rendered by a vendor slot, so consumer-passed classes still reach the DOM as before.
+- Reference: https://github.com/toptal/picasso/pull/4954
+
+## Switch — 2026-05-22 (review iter 7)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 7
+- Adapt base-ui's `onCheckedChange(nextChecked, { event })` back into Picasso's public `onChange(event, checked)` signature at the boundary — consumer callback shape is non-negotiable (see rules/api-preservation §callback signatures).
+- Translate @mui/base's `.base--checked` / `.base--disabled` / `.base--focusVisible` modifier-class selectors to base-ui's `data-[checked]` / `data-[disabled]` / `focus-visible` attribute selectors when porting Tailwind `group-[…]` rules (see rules/base-ui-react-api-crib §state attributes).
+- For base-ui Switch specifically, attach an `inputRef` callback that resets the hidden input's inline `margin: -1px` to `0` so Happo bounding boxes stay pixel-identical to baseline without resorting to `!important`.
+- Reference: https://github.com/toptal/picasso/pull/4965
+
+## Switch — 2026-05-22 (review iter 8)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 8
+- When adapting base-ui's `on<State>Change(value, { event })` callbacks to a `(event, value)` public signature, build the synthetic ChangeEvent adapter in iter 1 — reviewers consistently flag missing event-object fidelity (target/currentTarget/preventDefault). Codify in `rules/api-preservation`.
+- Do NOT `{...rest}` onto base-ui `<Root>`: explicitly forward only consumer-defined props (name/form/tabIndex/aria-*) using conditional spread, otherwise `undefined` values clobber base-ui's hook-derived defaults (tabIndex from useButton, aria-labelledby from useAriaLabelledBy). Add to `rules/base-ui-react-api-crib`.
+- base-ui ships inline styles on its visually-hidden `<input>` (e.g. `margin: -1px`) that shift Happo bounding boxes by 1px; neutralize via an `inputRef` callback that sets `node.style.margin = '0'` rather than fighting with `!important`. Note in `rules/styling` under visual-parity gotchas.
+- Reference: https://github.com/toptal/picasso/pull/4965
+
+## Switch — 2026-05-22 (review iter 9)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 9
+- Preserve the consumer-facing `onChange(event, checked)` signature when migrating off `@mui/base` by adapting base-ui's `onCheckedChange(nextChecked, { event })` through a synthetic-event shim from iter 1 — see `rules/api-preservation`.
+- Forward only consumer-provided root props via conditional spread (`...(x !== undefined && { x })`) so base-ui's internal defaults (`tabIndex`, `aria-labelledby` from `useButton`/`useAriaLabelledBy`) aren't clobbered with `undefined` — see `rules/base-ui-react-api-crib`.
+- Replace MUI's `.base--checked` / `.base--disabled` / `.base--focusVisible` group modifiers wholesale with base-ui's data-attribute equivalents (`group-data-[checked]`, `group-data-[disabled]`, `group-focus-visible`) when porting Tailwind class composition — see `rules/styling` (base-ui state selectors).
+- Reference: https://github.com/toptal/picasso/pull/4965
+
+## Switch — 2026-05-22 (review iter 7)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 7
+- Preserve the legacy `onChange(event, checked)` signature by synthesizing a `ChangeEvent<HTMLInputElement>` from base-ui's `onCheckedChange(checked, { event })` — never let the @base-ui/react callback shape leak through (see `rules/api-preservation` + `rules/base-ui-react-api-crib`).
+- Don't spread `...rest` into a `BaseUISwitch.Root` (or any base-ui Root): pick consumer-provided props (`name`, `form`, `tabIndex`, `aria-*`) and forward only the keys that are actually defined, so base-ui's internal defaults (tabIndex from useButton, aria-labelledby from the label) aren't clobbered with `undefined`.
+- base-ui's hidden native `<input>` renders as a sibling of `Root` with inline `margin: -1px` that perturbs flex layout — neutralize it from the Root with a sibling-combinator override (`[&~input]:m-0!`) and migrate state selectors to data-attributes (`group-data-[checked]`, `group-data-[disabled]`, `group-focus-visible`) rather than `.base--*` classes (see `rules/styling`).
 - Reference: https://github.com/toptal/picasso/pull/4965
