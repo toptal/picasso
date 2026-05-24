@@ -1,6 +1,5 @@
-// import type { ComponentProps } from 'react'
-import React, { forwardRef, useRef } from 'react'
-import { Slider as MUIBaseSlider } from '@mui/base/Slider'
+import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
+import { Slider as BaseUISlider } from '@base-ui/react/slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -56,15 +55,37 @@ export interface Props extends BaseProps {
   id?: string
 }
 
+const formatTooltipValue = (
+  value: number,
+  index: number,
+  tooltipFormat?: Props['tooltipFormat']
+): React.ReactNode => {
+  if (typeof tooltipFormat === 'function') {
+    return tooltipFormat(value, index)
+  }
+
+  if (typeof tooltipFormat === 'string') {
+    return tooltipFormat
+  }
+
+  return value
+}
+
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
-  { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
+  {
+    defaultValue = 0,
+    min = 0,
+    max = 100,
+    step = 1,
+    tooltip = 'off',
+    ...props
+  },
   ref
 ) {
   const {
     marks,
     value,
     tooltipFormat,
-    step,
     disabled,
     onChange,
     onBlur,
@@ -79,7 +100,12 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-testid': dataTestid,
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  // Public ref is typed `HTMLElement` for back-compat; @base-ui/react's
+  // SliderRoot narrows to `HTMLDivElement` (the rendered element is a div).
+  const sliderRef = useCombinedRefs<HTMLDivElement>(
+    ref as React.Ref<HTMLDivElement>,
+    useRef<HTMLDivElement>(null)
+  )
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
@@ -98,69 +124,152 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
+  const handleValueChange = useCallback(
+    (
+      newValue: number | number[],
+      eventDetails: { event: Event; activeThumbIndex: number }
+    ) => {
+      onChange?.(eventDetails.event, newValue, eventDetails.activeThumbIndex)
+    },
+    [onChange]
+  )
+
+  const resolvedValue = value ?? defaultValue
+  const valuesArr = Array.isArray(resolvedValue)
+    ? resolvedValue
+    : [resolvedValue]
+  const isRange = Array.isArray(resolvedValue)
+
+  const marksList = useMemo(() => {
+    if (!marks) {
+      return []
+    }
+
+    const list: number[] = []
+
+    for (let markValue = min; markValue <= max; markValue += step) {
+      list.push(markValue)
+    }
+
+    return list
+  }, [marks, min, max, step])
+
+  const isMarkActive = (markValue: number): boolean => {
+    if (isRange) {
+      const [start, end] = valuesArr as number[]
+
+      return markValue >= Math.min(start, end) && markValue <= Math.max(start, end)
+    }
+
+    return markValue <= (valuesArr[0] ?? min)
+  }
+
+  const thumbClassName = twJoin(
+    'group/thumb flex justify-center items-center w-[15px] h-[15px]',
+    'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
+    // Override @base-ui/react's `translate: -50% -50%` thumb centering so we
+    // can preserve baseline @mui/base positioning (top:50% + insetInlineStart:X%
+    // with -7px / -6px margin compensation). `!` is required to beat the
+    // inline `translate:` property set by SliderThumb (CSS specificity rung 4).
+    '![translate:none] -mt-[7px] -ml-[6px]',
+    'outline-0 absolute transition-shadow cursor-pointer',
+    isThumbHidden && 'hidden'
+  )
+
+  // Type alignment at the boundary — see code-standards §"Type alignment at the boundary".
+  // Public Props.onFocus/onBlur are typed for HTMLElement; @base-ui/react SliderThumb's
+  // onFocus/onBlur are forwarded to the nested <input>, so the handler signature narrows
+  // to HTMLInputElement. Cast at the helper boundary, not at the JSX call site.
+  const handleThumbFocus: React.FocusEventHandler<HTMLInputElement> | undefined =
+    onFocus as React.FocusEventHandler<HTMLInputElement> | undefined
+  const handleThumbBlur: React.FocusEventHandler<HTMLInputElement> | undefined =
+    onBlur as React.FocusEventHandler<HTMLInputElement> | undefined
+
+  const renderThumb = (index: number) => (
+    <BaseUISlider.Thumb
+      key={index}
+      index={index}
+      className={thumbClassName}
+      onFocus={handleThumbFocus}
+      onBlur={handleThumbBlur}
+      role='slider'
+    >
+      <SliderValueLabel
+        index={index}
+        tooltip={isObserved ? tooltip : 'off'}
+        onRender={handleValueLabelOnRender}
+        yPlacement={isOnScreen ? 'top' : 'bottom'}
+        isOverlaped={isPartiallyOverlapped}
+        ownerState={{ value: valuesArr[index] ?? 0 }}
+      >
+        {formatTooltipValue(valuesArr[index] ?? 0, index, tooltipFormat)}
+      </SliderValueLabel>
+    </BaseUISlider.Thumb>
+  )
+
   return (
     <div
       ref={containerRef}
       className={twMerge('my-[6px] mx-0', className)}
       style={style}
     >
-      <MUIBaseSlider
+      <BaseUISlider.Root
         ref={sliderRef}
         defaultValue={defaultValue}
         value={value}
         min={min}
         max={max}
         step={step}
-        marks={marks}
         disabled={disabled}
         data-testid={dataTestid}
         data-private={dataPrivate}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        onValueChange={handleValueChange}
         name={name}
         id={id}
-        slots={{
-          mark: SliderMark,
-          valueLabel: SliderValueLabel,
-        }}
-        slotProps={{
-          mark: {
-            // @ts-expect-error we have custom Mark component, where we extend props and MUI does not understand it
-            forceInactive: disableTrackHighlight,
-          },
-          root: {
-            className:
-              'block cursor-pointer width-full relative py-[6px] -my-[6px]',
-          },
-          rail: {
-            className:
-              'block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
-          },
-          thumb: {
-            className: twJoin(
-              'group/thumb flex justify-center items-center w-[15px] h-[15px]',
-              'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-              '-mt-[7px] -ml-[6px] outline-0 absolute  transition-shadow cursor-pointer',
-              isThumbHidden && 'hidden'
-            ),
-            role: 'slider',
-          },
-          track: {
-            className: twJoin(
-              'block absolute h-[1px]',
-              disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
-            ),
-          },
-          valueLabel: {
-            tooltip: isObserved ? tooltip : 'off',
-            onRender: handleValueLabelOnRender,
-            yPlacement: isOnScreen ? 'top' : 'bottom',
-            isOverlaped: isPartiallyOverlapped,
-          },
-        }}
-        valueLabelFormat={tooltipFormat}
-        onChange={onChange}
-      />
+      >
+        <BaseUISlider.Control className='block cursor-pointer w-full relative py-[6px] -my-[6px]'>
+          {/* Custom rail rendered as a SIBLING of Slider.Track — mirrors the
+              @mui/base slot structure (rail + track were peer absolute spans)
+              and prevents CSS `opacity` from cascading into Slider.Indicator,
+              which is nested inside Slider.Track per @base-ui/react's API. */}
+          <span className='block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500' />
+          {/* `!absolute` overrides @base-ui/react's inline `position: relative`
+              on Track so it stays at the same y as the rail (top:auto = top:0).
+              `bg-transparent` keeps Track invisible — Indicator paints the blue. */}
+          <BaseUISlider.Track className='block !absolute w-full h-[1px] bg-transparent'>
+            <BaseUISlider.Indicator
+              className={twJoin(
+                'block h-[1px]',
+                disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
+              )}
+            />
+          </BaseUISlider.Track>
+
+          {marksList.map((markValue, idx) => {
+            const percent = ((markValue - min) / (max - min)) * 100
+
+            // Pass the controlled `value` prop unchanged so SliderMark's
+            // getBgColor can detect the undefined case (matches @mui/base's
+            // baseline behavior: an unset value renders all marks gray).
+            const ownerStateValue = (
+              Array.isArray(value) ? value[0] : value
+            ) as number
+
+            return (
+              <SliderMark
+                key={markValue}
+                markActive={isMarkActive(markValue)}
+                ownerState={{ value: ownerStateValue }}
+                style={{ left: `${percent}%` }}
+                forceInactive={Boolean(disableTrackHighlight)}
+                data-index={idx}
+              />
+            )
+          })}
+
+          {isRange ? [0, 1].map(renderThumb) : renderThumb(0)}
+        </BaseUISlider.Control>
+      </BaseUISlider.Root>
     </div>
   )
 })
