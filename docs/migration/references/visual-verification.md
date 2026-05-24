@@ -16,16 +16,60 @@ Playwright is the **fast iteration tool** during your loop. Happo is the **autho
 - **Baseline** — `https://picasso.toptal.net/` — Picasso's deployed Storybook from master. Always-on, represents the pre-migration look. Use this as your reference image.
 - **Local** — `http://localhost:9001/` — Storybook running inside your worktree, auto-started by the orchestrator after `pnpm install` and BEFORE your session began. Reflects your edits in real-time as you save files. If port 9001 was taken, fallback port is in `migration-runs/<run-date>/<Component>/storybook-url.txt` — read it first.
 
-## Story URLs follow `components-<name>--<name>-<story>`
+## DO NOT use the deployed PR preview for verification
 
-The component name is **repeated** after `--`. Examples:
+`https://toptal.github.io/picasso/prs/<pr-number>/` is the GitHub Pages deployment of the PR's Storybook bundle — useful for human reviewers to click around, but **wrong for your visual verification**:
 
-- Slider, "Range" story → `components-slider--slider-range`
-- Slider, "Tooltip" story → `components-slider--slider-tooltip`
-- Backdrop, "Invisible" story → `components-backdrop--backdrop-invisible`
-- Button, "Default" story → `components-button--button-default`
+- It lags behind your in-progress edits by however long the last CI Pages job took (often minutes, sometimes never if Pages deploy didn't run for this commit).
+- It serves the bundle Webpack built for that commit, not the live worktree.
+- It does NOT serve Storybook's `/index.json` / `/stories.json` endpoints (404), breaking the enumeration approach below.
 
-Story-name suffixes come from the `addExample` titles in `packages/base/<Component>/src/<Component>/story/index.jsx` (kebab-cased). Do NOT use `components-slider--range` — the repeated name segment is mandatory. To list a component's stories without trial-and-error, read its `story/index.jsx`.
+Observed agent failure (Switch sweep, 2026-05-22): the agent navigated to `https://toptal.github.io/picasso/prs/4965/iframe.html?id=components-switch--switch-controlled`, hit a 404, and proceeded as if visual verification had happened. It hadn't. Evidence is the console log at `<worktree>/.playwright-mcp/console-2026-05-22T16-01-59-729Z.log`.
+
+**Hard rule.** Your two and only two allowed hostnames for `browser_navigate` are:
+
+1. `http://localhost:9001` (or the port in `storybook-url.txt`) — for `local--*` screenshots.
+2. `https://picasso.toptal.net` — for `baseline--*` screenshots.
+
+If you find yourself about to navigate to `toptal.github.io/picasso/prs/...`, STOP. That's the deployed preview, not the in-progress code. Re-target to `localhost:9001`.
+
+## Story URLs — ENUMERATE, do not guess
+
+Story IDs are NOT always `components-<name>--<name>-<story>`. The section prefix depends on which PicassoBook section the page belongs to:
+
+- Button uses `PicassoBook.section('Components')` → IDs start with `components-`
+- Switch uses `PicassoBook.section('Forms')` → IDs start with `forms-`
+- Other sections (`Layout`, `Typography`, `Pickers`, etc.) follow the same rule with their own prefix
+
+Guessing the prefix fails — observed agent failure (Switch sweep, 2026-05-22): constructed `components-switch--switch-controlled` and hit a 404 "Couldn't find story matching". Actual ID was `forms-switch--controlled`.
+
+**Bulletproof approach — fetch the live story index from Storybook itself.** When `--with-mcp` is active, Storybook is running on `localhost:9001` (or the port in `migration-runs/<run-date>/<Component>/storybook-url.txt`). Hit its index endpoint via Bash, then filter:
+
+```bash
+# Modern Storybook (7+) — preferred
+curl -s http://localhost:9001/index.json | jq -r '.entries | to_entries[] | select(.value.title | test("Switch"; "i")) | "\(.key)\t\(.value.title)\t\(.value.name)"'
+
+# Legacy Storybook (older 6.x) — fallback if /index.json 404s
+curl -s http://localhost:9001/stories.json | jq -r '.stories | to_entries[] | select(.value.kind | test("Switch"; "i")) | "\(.key)\t\(.value.kind)\t\(.value.name)"'
+```
+
+The first column is the exact story ID — copy-paste it into `?id=<id>` on `iframe.html`. No guessing, no trial-and-error.
+
+**Fallback if the index endpoint is unreachable**: read `packages/base/<Component>/src/<Component>/story/index.jsx` to find both:
+- The `.section('<Section>')` value — kebab-cased, this is the URL prefix (`Forms` → `forms-`).
+- The `.createPage('<Page>', ...)` value — kebab-cased, this is the kind suffix.
+- The `addExample(<file>, '<title>', ...)` or `addExample(<file>, { title: '<title>' }, ...)` calls — each title (kebab-cased) is one story name.
+
+Picasso's slug convention: `<section>-<page>--<page>-<story>` — the page name IS repeated after `--` in most stories, but not always (Switch's example titles do not include the page name in the title field, so the story ID is `forms-switch--controlled`, NOT `forms-switch--switch-controlled`). When in doubt, fall back to the index endpoint above.
+
+Worked examples (verified via /index.json):
+
+- Button, "Default" story (kind: `Components/Button`) → `components-button--button-default`
+- Slider, "Range" story (kind: `Components/Slider`) → `components-slider--slider-range`
+- Backdrop, "Invisible" story (kind: `Components/Backdrop`) → `components-backdrop--backdrop-invisible`
+- Switch, "Controlled" story (kind: `Forms/Switch`) → `forms-switch--controlled`
+- Switch, "Uncontrolled" story → `forms-switch--uncontrolled`
+- Switch, "Disabled" story → `forms-switch--disabled`
 
 ## Playwright MCP tools
 
@@ -36,7 +80,7 @@ Story-name suffixes come from the `addExample` titles in `packages/base/<Compone
 
 ## Mandatory runtime check (required when `--with-mcp` is active)
 
-1. **Navigate to the story.** Use the correct repeated-name URL form.
+1. **Navigate to the story.** Use the correct repeated-name URL form (see §"Story URLs — ENUMERATE, do not guess" above).
 2. **Render the actual component, not just the trigger.** Many stories show only a trigger button (e.g. Backdrop's default story shows an "Open Backdrop" button — the backdrop itself is hidden until clicked). After `browser_navigate`, look at the snapshot: if you only see a placeholder button or instruction text, you have NOT verified the migrated component. `browser_click` the trigger, then re-screenshot. The thing you're migrating must be on screen before you call the check done.
 3. **`browser_console_messages` and confirm zero `[error]` entries.** React 18's `ReactDOM.render` deprecation warning is acceptable for now (Picasso-wide); any other error is a fail — investigate and fix before exiting. Capture console BOTH on initial render AND after every interaction — many errors only fire on user-triggered mount.
 4. **Use judgment on which interactions to exercise.** Don't run a script — think about what would prove the migration works:
@@ -46,18 +90,41 @@ Story-name suffixes come from the `addExample` titles in `packages/base/<Compone
    - **Switch**: default + hover + focused + checked.
    - **Tooltip**: default trigger + opened tooltip + arrow position.
    The bar is "would a reasonable reviewer think I actually verified this works", not "I clicked one button".
-5. **`browser_take_screenshot` per meaningful state.**
+5. **`browser_take_screenshot` per meaningful state — ALWAYS pass `filename`.** See §"Screenshot persistence" below.
+
+## Screenshot persistence — pass `filename` on every call
+
+The Playwright MCP is configured (`bin/lib/agent-mcp-config.json`) with `--output-dir ../playwright`. Since your cwd is the worktree, the MCP resolves that to `<runDir>/playwright/` (sibling of the worktree, which the orchestrator pre-creates). Screenshots saved there persist beyond worktree cleanup and are visible to the operator + the next sweep tick.
+
+**You MUST pass a `filename` parameter on every `browser_take_screenshot` call.** Without it, the MCP returns the image in-message and never writes to disk — the screenshot is lost the moment your turn ends, and the operator has no record of what you actually saw. (Observed on Switch review-iter 7, 2026-05-22: 16 Playwright calls, zero PNGs persisted, so any "I verified visually" claim was unverifiable.)
+
+Naming convention (kebab-case, no spaces, no leading slash):
+
+- `local--<story-id>.png` — screenshot of `http://localhost:9001` for that story, default state.
+- `baseline--<story-id>.png` — screenshot of `https://picasso.toptal.net` for the same story.
+- `local--<story-id>--<state>.png` / `baseline--<story-id>--<state>.png` — for interaction states (hover, focused, checked, opened, etc.).
+- `iter<N>-local--<story-id>.png` if you want to keep iter-by-iter history within one sweep tick (useful when iterating on a single Happo diff). Not required, just allowed.
+
+The filename is RELATIVE to the MCP's output-dir — pass just `local--components-button--button-default.png`, NOT `migration-runs/.../playwright/local--...png`. The MCP resolves the relative path internally.
+
+Example call:
+
+```
+mcp__playwright__browser_take_screenshot { filename: "local--forms-switch--controlled--hover.png" }
+```
+
+If you omit `filename`, the MCP saves to `page-{timestamp}.{png}` as a fallback — usable but harder to correlate with stories. Always pass an explicit filename.
 
 ## Baseline-vs-local comparison workflow
 
 For each story:
 
-1. `browser_navigate` to the baseline URL on `picasso.toptal.net` → `browser_take_screenshot` → save to `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`.
-2. `browser_navigate` to the same story on `http://localhost:9001` → `browser_take_screenshot` → save to `migration-runs/<run-date>/<Component>/playwright/local--<story-id>.png`.
-3. Use vision to compare the two images side-by-side. Look for layout shifts, color differences, missing/extra elements, font/spacing changes.
-4. Repeat for each meaningful interaction state. Save as `local--<story-id>--<state>.png` and `baseline--<story-id>--<state>.png`.
+1. `browser_navigate` to the baseline URL on `picasso.toptal.net` → `browser_take_screenshot { filename: "baseline--<story-id>.png" }`.
+2. `browser_navigate` to the same story on `http://localhost:9001` → `browser_take_screenshot { filename: "local--<story-id>.png" }`.
+3. Use vision (the MCP returns the image alongside saving) to compare the two side-by-side. Look for layout shifts, color differences, missing/extra elements, font/spacing changes.
+4. Repeat for each meaningful interaction state with the `--<state>` suffix in the filename.
 
-Storage: all screenshots under `migration-runs/<run-date>/<Component>/playwright/`. The `migration-runs/` directory is gitignored — never committed.
+Storage: all screenshots end up under `migration-runs/<run-date>/<Component>/playwright/` via the MCP's `--output-dir` config. The `migration-runs/` directory is gitignored — never committed.
 
 ## Pixel-perfect is the only acceptable outcome
 

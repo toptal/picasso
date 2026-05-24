@@ -1,9 +1,20 @@
 {
   "_comment": "Claude MCP config loaded by `bin/lib/orchestrator-core.ts` agent.invoke when the orchestrator is run with --with-mcp. The agent gets Playwright MCP tools (browser_navigate, browser_screenshot, browser_console_logs, etc.) for visual verification against a locally-running Storybook (the orchestrator starts Storybook on :9001 before invoking the agent and tears it down on exit). Out-of-the-box Storybook URL pattern: http://localhost:9001/?path=/story/<group>--<story>. See bin/lib/orchestrator-core.ts run() and ORCHESTRATOR.md §Visual feedback for usage.",
   "_pinned": "Was `npx -y @playwright/mcp@latest` which forced a 14s network re-resolution on every agent spawn — left the agent's MCP server in `pending` state past the handshake window and the agent ran without playwright tools. Now points at the local devDep binary (0.17s spawn). Bump the version in package.json + here together. The agent-mcp-config.json is read verbatim by claude --mcp-config, so the `cwd` arg here is the absolute repo path resolved from $HOME — works for any worktree because the worktree's `node_modules/.bin/playwright-mcp` is the same package.",
+  "_output_dir": "Screenshots: `--output-dir ../playwright` makes `mcp__playwright__browser_take_screenshot { filename: 'local--<id>.png' }` resolve to `<runDir>/playwright/local--<id>.png` (sibling of the worktree, persists beyond worktree cleanup). `--allow-unrestricted-file-access` is required because `../playwright` is outside the worktree (the MCP's default workspace-root sandbox would block it). The orchestrator creates `<runDir>/playwright/` before agent spawn. The MCP still saves console-*.log files to `<worktree>/.playwright-mcp/` for runtime-error inspection — those are separate from screenshots.",
   "mcpServers": {
     "playwright": {
-      "command": "node_modules/.bin/playwright-mcp"
+      "command": "node_modules/.bin/playwright-mcp",
+      "args": [
+        "--output-dir",
+        "../playwright",
+        "--allow-unrestricted-file-access"
+      ]
+    },
+    "context7": {
+      "_comment": "Context7 (2026-05-23): live library docs lookup. Resolves package names to library IDs (resolve-library-id) and fetches current docs (get-library-docs). Use case: agent needs the current @base-ui/react Switch API or MUI v6 migration notes without trusting potentially-stale cribsheets in docs/migration/references/. No network sandbox required; the MCP fetches over HTTPS. Free public Context7 endpoint — no auth needed.",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
     }
   }
 }

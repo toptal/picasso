@@ -342,6 +342,29 @@ export interface Workflow {
 }
 
 /**
+ * Reasoning-effort level for the spawned agent. Maps directly to Claude
+ * Code's `CLAUDE_EFFORT` env var. Higher = more compute spent per turn.
+ */
+export type Effort = 'low' | 'medium' | 'high' | 'max'
+
+/**
+ * Model + reasoning configuration for a spawned `claude -p` subagent.
+ * Applied by `agent.invoke` (orchestrator-core) to `--model` + spawn env
+ * (`CLAUDE_EFFORT`, `MAX_THINKING_TOKENS`). Default value lives in
+ * `orchestrator-core.ts` as `DEFAULT_MODEL_CONFIG`; CLI flags
+ * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) merge over
+ * the default in `parseOptions`.
+ */
+export interface ModelConfig {
+  /** Full model ID or CLI alias (e.g. `claude-opus-4-7`, `opus`, `sonnet`). */
+  model: string
+  /** Sets `CLAUDE_EFFORT` env. */
+  effort: Effort
+  /** Sets `MAX_THINKING_TOKENS` env. 0 disables extended thinking entirely. */
+  thinkingTokens: number
+}
+
+/**
  * Subset of the orchestrator's configuration that's surfaced to workflow hooks
  * for advanced uses (rare in PF-1992; reserved for later workflows that need
  * to read CLI flags).
@@ -465,6 +488,57 @@ export interface OrchestratorOptions {
   readonly reviewSweep: boolean
 
   /**
+   * Sweep-mode extension (2026-05-22) — only meaningful alongside
+   * `--review-sweep`. When set, the agent ALSO audits the entire PR
+   * diff against the loaded canonical standards docs
+   * (`PICASSO_COMPONENT_DESIGN_PATTERNS.md`,
+   * `docs/migration/references/design-patterns-addendum.md`,
+   * `docs/migration/references/code-standards.md`,
+   * `docs/migration/references/practices.md`) regardless of whether
+   * new reviewer activity landed.
+   *
+   * Findings flow through the same HIGH/MEDIUM confidence matrix as
+   * the conversational review-response protocol:
+   *   - HIGH (clear documented-rule violation, no carve-out applies)
+   *       → fix in code + reply IN-THREAD on the offending line
+   *   - MEDIUM (preferred / lint-style, multiple plausible fixes)
+   *       → post inline comment on the offending line with proposal
+   *         + 👍 ask; do NOT edit
+   *   - existing-violations carve-out (design-patterns-addendum.md §1)
+   *       → skip silently
+   *
+   * Use case: after a graduation pass updates `practices.md`, run
+   * `pnpm orchestrate --review-sweep --with-standards` to back-port
+   * the newly graduated patterns to every in-flight PR.
+   *
+   * Bypasses the quiet-tick early-exit and the LGTM-only short-circuit
+   * so the agent runs the audit even on otherwise idle PRs (an
+   * approved-but-stale PR with a fresh rule violation must surface
+   * the finding before it auto-advances to `ready_to_merge`).
+   *
+   * CLI: `--with-standards`.
+   */
+  readonly withStandards: boolean
+
+  /**
+   * Graduate patterns from the lessons-learned audit log into the curated
+   * practices.md. Mutually exclusive with all other modes. Reads
+   * `docs/migration/references/lessons-learned.md` (append-only log of
+   * post-success extractions) and `docs/migration/references/practices.md`
+   * (canonical doc loaded into every migration prompt). Identifies new
+   * lessons entries since `practices.md`'s "Last graduation" date, clusters
+   * them by theme, and updates `practices.md` with patterns that meet the
+   * graduation criteria (≥ 3 occurrences OR cited by reviewer).
+   *
+   * Process is implemented as a single focused `claude -p` invocation
+   * with Read/Edit/Write/Bash/Grep tools allowed. No worktree or
+   * agent-loop machinery — graduation is a doc-curation task.
+   *
+   * CLI: `--graduate`.
+   */
+  readonly graduate: boolean
+
+  /**
    * Override the branch name that the orchestrator creates for this run.
    *
    * Default: `null` (use `workflow.branchName(item.id)`). CLI: `--branch=<name>`.
@@ -523,4 +597,12 @@ export interface OrchestratorOptions {
    * default `v1` → respect the filter (treat as normal first run).
    */
   readonly variantExplicit: boolean
+
+  /**
+   * Model + reasoning config for the spawned `claude -p` subagent.
+   * Defaults to `DEFAULT_MODEL_CONFIG` (Opus 4.7 + effort=max + 64k thinking).
+   * CLI overrides: `--model`, `--effort`, `--no-thinking`, `--thinking-tokens`.
+   * See plan `~/.claude/plans/question-what-model-and-reflective-pie.md`.
+   */
+  readonly modelConfig: ModelConfig
 }
