@@ -1,11 +1,16 @@
-import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
-import type { RefObject } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { getXPlacement } from '../utils'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
+
+interface SliderValueLabelSlotProps {
+  children?: ReactNode
+  index?: number
+  ownerState: { value: number }
+}
 
 const classesByTooltip: Record<ValueLabelDisplay, string> = {
   off: 'hidden',
