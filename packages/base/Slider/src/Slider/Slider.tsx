@@ -100,12 +100,16 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-testid': dataTestid,
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  // Public ref is typed `HTMLElement` for back-compat; @base-ui/react's
-  // SliderRoot narrows to `HTMLDivElement` (the rendered element is a div).
-  const sliderRef = useCombinedRefs<HTMLDivElement>(
-    ref as React.Ref<HTMLDivElement>,
-    useRef<HTMLDivElement>(null)
+  const sliderRef = useCombinedRefs<HTMLElement>(
+    ref,
+    useRef<HTMLElement>(null)
   )
+  // Local typed binding at the @base-ui/react boundary. SliderRoot renders
+  // <div> and types its ref as RefObject<HTMLDivElement>; sliderRef is widened
+  // to HTMLElement for public back-compat. HTMLDivElement IS HTMLElement at
+  // runtime, so the narrow is sound at this kit boundary (not consumer-facing).
+  const baseUiSliderRef: React.RefObject<HTMLDivElement> =
+    sliderRef as React.RefObject<HTMLDivElement>
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
@@ -167,11 +171,13 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    // Override @base-ui/react's `translate: -50% -50%` thumb centering so we
-    // can preserve baseline @mui/base positioning (top:50% + insetInlineStart:X%
-    // with -7px / -6px margin compensation). `!` is required to beat the
-    // inline `translate:` property set by SliderThumb (CSS specificity rung 4).
-    '![translate:none] -mt-[7px] -ml-[6px]',
+    // Margin compensation preserves @mui/base baseline positioning
+    // (top:50% + insetInlineStart:X% with -7px / -6px offset). The kit's
+    // `translate: -50% -50%` centering is defeated via rung-0 `style` prop
+    // on <BaseUISlider.Thumb> below — see code-standards.md §"CSS specificity
+    // ladder" rung 0 (mergeProps shallow-merges consumer style with rightmost
+    // wins, so style={{ translate: 'none' }} beats the kit's inline style).
+    '-mt-[7px] -ml-[6px]',
     // `transform-gpu` (`transform: translate3d(0,0,0)`) creates a transform
     // containing block on the thumb so @base-ui/react's hidden range <input>
     // (rendered with `position: fixed; width: 100%; height: 100%`) sizes
@@ -197,6 +203,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       key={index}
       index={index}
       className={thumbClassName}
+      // eslint-disable-next-line no-inline-styles/no-inline-styles -- rung-0 override of @base-ui/react's internal `translate: -50% -50%`; see thumbClassName comment
+      style={{ translate: 'none' }}
       onFocus={handleThumbFocus}
       onBlur={handleThumbBlur}
       role='slider'
@@ -221,7 +229,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       style={style}
     >
       <BaseUISlider.Root
-        ref={sliderRef}
+        ref={baseUiSliderRef}
         defaultValue={defaultValue}
         value={value}
         min={min}
@@ -240,10 +248,16 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
               and prevents CSS `opacity` from cascading into Slider.Indicator,
               which is nested inside Slider.Track per @base-ui/react's API. */}
           <span className='block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500' />
-          {/* `!absolute` overrides @base-ui/react's inline `position: relative`
-              on Track so it stays at the same y as the rail (top:auto = top:0).
-              `bg-transparent` keeps Track invisible — Indicator paints the blue. */}
-          <BaseUISlider.Track className='block !absolute w-full h-[1px] bg-transparent'>
+          {/* Override @base-ui/react's inline `position: relative` on Track via
+              rung-0 `style` prop so it stays at the same y as the rail
+              (top:auto = top:0). `bg-transparent` keeps Track invisible —
+              Indicator paints the blue. See code-standards.md §"CSS specificity
+              ladder" rung 0 (mergeProps shallow-merges consumer style last). */}
+          <BaseUISlider.Track
+            className='block w-full h-[1px] bg-transparent'
+            // eslint-disable-next-line no-inline-styles/no-inline-styles -- rung-0 override of @base-ui/react's internal `position: relative`
+            style={{ position: 'absolute' }}
+          >
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',
