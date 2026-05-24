@@ -18,9 +18,9 @@ exports[`Slider renders 1`] = `
           class="block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
         />
         <div
-          class="block !absolute w-full h-[1px] bg-transparent"
+          class="block w-full h-[1px] bg-transparent"
           data-orientation="horizontal"
-          style="position: relative;"
+          style="position: absolute;"
         >
           <div
             class="block h-[1px] bg-blue"
@@ -29,7 +29,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white ![translate:none] -mt -ml transform-gpu outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml transform-gpu outline-0 absolute transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -81,9 +81,9 @@ exports[`Slider with initial value 1`] = `
           class="block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
         />
         <div
-          class="block !absolute w-full h-[1px] bg-transparent"
+          class="block w-full h-[1px] bg-transparent"
           data-orientation="horizontal"
-          style="position: relative;"
+          style="position: absolute;"
         >
           <div
             class="block h-[1px] bg-blue"
@@ -92,7 +92,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white ![translate:none] -mt -ml transform-gpu outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml transform-gpu outline-0 absolute transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
