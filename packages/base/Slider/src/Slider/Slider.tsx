@@ -163,21 +163,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    // Margin compensation preserves @mui/base baseline positioning
-    // (top:50% + insetInlineStart:X% with -7px / -6px offset). The kit's
-    // `translate: -50% -50%` centering is defeated via rung-0 `style` prop
-    // on <BaseUISlider.Thumb> below — see code-standards.md §"CSS specificity
-    // ladder" rung 0 (mergeProps shallow-merges consumer style with rightmost
-    // wins, so style={{ translate: 'none' }} beats the kit's inline style).
-    //'-mt-[7px] -ml-[6px]',
-    // `transform-gpu` (`transform: translate3d(0,0,0)`) creates a transform
-    // containing block on the thumb so @base-ui/react's hidden range <input>
-    // (rendered with `position: fixed; width: 100%; height: 100%`) sizes
-    // relative to the 15x15 thumb instead of the viewport. Without this the
-    // input grows to viewport size in Cypress component tests, blowing up the
-    // body's bounding rect (1280x60 → 1280x1023 Happo regression).
     'contain-layout',
-    'outline-0 absolute transition-shadow cursor-pointer',
+    'outline-0 transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
 
@@ -198,8 +185,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       key={index}
       index={index}
       className={thumbClassName}
-      // eslint-disable-next-line no-inline-styles/no-inline-styles -- rung-0 override of @base-ui/react's internal `translate: -50% -50%`; see thumbClassName comment
-      //style={{ translate: 'none' }}
       onFocus={handleThumbFocus}
       onBlur={handleThumbBlur}
       role='slider'
@@ -238,8 +223,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         id={id}
         className='block cursor-pointer width-full relative py-[6px] -my-[6px]'
       >
-        <BaseUISlider.Control className='block absolute inset-0'>
-          <BaseUISlider.Track className='block absolute w-full h-[1px] top-1/2 rounded-none bg-gray-500/24'>
+        <BaseUISlider.Control className='block'>
+          <BaseUISlider.Track className='block w-full h-[1px] top-1/2 rounded-none bg-gray-500/24'>
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',

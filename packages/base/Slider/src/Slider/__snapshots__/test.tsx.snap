@@ -12,11 +12,11 @@ exports[`Slider renders 1`] = `
       role="group"
     >
       <div
-        class="block absolute inset-0"
+        class="block"
         data-orientation="horizontal"
       >
         <div
-          class="block absolute w-full h-[1px] top-1/2 rounded-none bg-gray"
+          class="block w-full h-[1px] top-1/2 rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -27,7 +27,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -73,11 +73,11 @@ exports[`Slider with initial value 1`] = `
       role="group"
     >
       <div
-        class="block absolute inset-0"
+        class="block"
         data-orientation="horizontal"
       >
         <div
-          class="block absolute w-full h-[1px] top-1/2 rounded-none bg-gray"
+          class="block w-full h-[1px] top-1/2 rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -88,7 +88,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
