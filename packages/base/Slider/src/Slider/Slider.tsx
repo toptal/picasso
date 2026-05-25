@@ -176,7 +176,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     // relative to the 15x15 thumb instead of the viewport. Without this the
     // input grows to viewport size in Cypress component tests, blowing up the
     // body's bounding rect (1280x60 → 1280x1023 Happo regression).
-    'transform-gpu',
+    'contain-layout',
     'outline-0 absolute transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
@@ -236,23 +236,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         onValueChange={handleValueChange}
         name={name}
         id={id}
+        className='block cursor-pointer width-full relative py-[6px] -my-[6px]'
       >
-        <BaseUISlider.Control className='block cursor-pointer w-full relative py-[6px] -my-[6px]'>
-          {/* Custom rail rendered as a SIBLING of Slider.Track — mirrors the
-              @mui/base slot structure (rail + track were peer absolute spans)
-              and prevents CSS `opacity` from cascading into Slider.Indicator,
-              which is nested inside Slider.Track per @base-ui/react's API. */}
-          <span className='block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500' />
-          {/* Override @base-ui/react's inline `position: relative` on Track via
-              rung-0 `style` prop so it stays at the same y as the rail
-              (top:auto = top:0). `bg-transparent` keeps Track invisible —
-              Indicator paints the blue. See code-standards.md §"CSS specificity
-              ladder" rung 0 (mergeProps shallow-merges consumer style last). */}
-          <BaseUISlider.Track
-            className='block w-full h-[1px] bg-transparent'
-            // eslint-disable-next-line no-inline-styles/no-inline-styles -- rung-0 override of @base-ui/react's internal `position: relative`
-            //style={{ position: 'absolute' }}
-          >
+        <BaseUISlider.Control className='block absolute inset-0'>
+          <BaseUISlider.Track className='block absolute w-full h-[1px] top-1/2 rounded-none bg-gray-500/24'>
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',
