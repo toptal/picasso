@@ -167,6 +167,18 @@ The migration-period oscillation observed on Switch review-iter 7 (2026-05-22) �
 
 Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. Pick the **lowest rung that solves the problem** — escalate only if the lower rung doesn't work. Reviewers will block PRs that jump straight to a higher rung when a lower one was viable.
 
+0. **Pass `style` prop directly to the `@base-ui/react` component.** `@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. For any per-component override of styles the kit sets internally (`translate`, `position`, `transform`, sizing, etc.), the IDIOMATIC path is the `style` prop — not Tailwind classes (which lose to inline styles by CSS spec), not `!important` (which indicates the wrong escape hatch was chosen).
+
+   Example — override `<Slider.Thumb>`'s internal `translate: -50% -50%`:
+   ```tsx
+   <Slider.Thumb style={{ translate: 'none' }} ... />  // YES — rung 0, idiomatic
+   <Slider.Thumb className='![translate:none]' ... />   // NO — wrong tool, reach for `style` prop first
+   ```
+
+   Why this exists: when @base-ui/react's component renders, the props your component passed are merged into the final element via `useRenderElement`. The style prop is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — so rightmost (yours) wins on each individual style property. This is the headless-kit's contract; it's designed for you to override its defaults. Tailwind `!important` against headless-kit internals is a code smell that the lower rung was skipped.
+
+   Limits: rung 0 covers per-property overrides (e.g. `translate`, `position`). It does NOT cover style based on internal state (`data-focused`, `data-orientation`) — those still need rungs 1-2 below.
+
 1. **Exhaust `@base-ui/react`'s official customization API.** Most slots accept `className`, and many composite components accept slot-targeted overrides:
    - Pass `className` directly on the part that owns the style you want to change.
    - Use the component's render prop if it exposes one (e.g., `<Slider.Thumb render={(props, state) => <Thumb {...props} className="..." />}>`).
@@ -179,7 +191,7 @@ Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*
 
 Earlier Switch migration code (iter 2) used this pattern; treat any such occurrence as a defect to remove during cleanup, NOT a precedent to extend. This rule has no "one-off compromise" carve-out. Explicitly rejected justifications (do not cite these to defend the pattern):
 - "Tailwind `!important` slot selector failed Happo parity" → fix the selector / baseline; do not fall back to `.style` mutation.
-- "base-ui inline `style=""` can't be overridden by CSS" → it can: `!important` at rung 4 beats inline-style specificity. If your selector isn't winning, the selector chain is wrong.
+- "base-ui inline `style=""` can't be overridden by CSS" → false framing. The idiomatic fix is rung 0 (pass `style={{ ... }}` to the @base-ui/react component — its `mergeProps` shallow-merges with rightmost-wins semantics, so your `style` wins). If you genuinely need a CSS-class-based override (e.g. for responsive variants), `!important` at rung 4 does beat inline-style specificity — but try rung 0 FIRST.
 - "Cited as a precedent in practices.md / lessons-learned" → no, it's an anti-pattern. Older wording that framed it as a "compromise" was contamination superseded by this rule.
 
 Imperative `ref` callbacks remain valid for non-style concerns (focus management, measurement, third-party library handles, port resize observers).
@@ -252,6 +264,8 @@ When editing **orchestrator code** (`bin/lib/*.ts`), additional ESLint rules tri
 - **Mocks**: `jest.spyOn()` / `jest.fn()` for callbacks. NO DOM-API mocks.
 
 ## Tailwind class composition (RULE — established by Button canonical)
+
+> For the underlying Base UI styling model (mechanisms, `render` / `data-*` / CSS vars, anti-patterns, override escalation ladder), see `references/base-ui-styling.md`. The composition rules below are the Picasso operational form of that doctrine.
 
 - Class-building logic lives in `styles.ts` as **pure functions returning `string[]`** (Button pattern, 14/28 conform; 8/28 use `cx` inline).
 - Merge in `Component.tsx` via `twMerge(coreClassNames, variantClassNames, ..., className)` — **user-supplied `className` LAST** so consumer overrides win (Drawer iter 3 lesson).

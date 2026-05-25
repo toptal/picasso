@@ -2,6 +2,16 @@
 
 These rules are **non-negotiable** for migrated components. The agent must follow every one.
 
+> For the underlying Base UI styling doctrine these rules implement (mechanisms, `render`/`useRender`, `data-[…]:` variants, anti-patterns, escalation ladder), see `references/base-ui-styling.md`.
+
+## @base-ui/react v1 prescriptions (RULE)
+
+These three apply specifically to `@base-ui/react` v1 migrations (Tier 0). Background: `references/base-ui-styling.md` §3.5, §4.1, §7.
+
+- **State-driven styling uses `data-[…]:` Tailwind variants** (e.g., `data-[checked]:`, `data-[highlighted]:`, `data-[disabled]:`, `data-[popup-open]:`). The legacy `group-[.base--checked]:` / `group-[.base--disabled]:` form belongs to `@mui/base` v0 — do NOT introduce in v1 code. Pre-v1 components retain `base--*` selectors until their own migration.
+- **`nativeButton={false}` is mandatory** whenever you use `render` to swap a button-default Base UI part to a non-button element (anchor, custom wrapper, Next.js `<Link>`, etc.). Affected parts include Button, Menu.Trigger, Tabs.Tab, NumberField.Increment/Decrement, Toolbar.Button. Omitting it silently breaks keyboard accessibility.
+- **No `!important`.** If a Tailwind utility isn't winning, walk the override ladder instead: `className` → `data-[…]:` variant → inline `style` rung-0 (transforms / positions / CSS vars) → `render` wrapper. See `references/base-ui-styling.md` §3.5 and `code-standards.md` §"CSS specificity ladder for @base-ui/react overrides".
+
 ## Composition
 
 - Always compose `className` via `cx(...)` (from `classnames`).

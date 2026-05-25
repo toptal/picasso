@@ -12,6 +12,8 @@
 
 You are migrating a Picasso component from `@mui/base` to `@base-ui/react`. Tailwind is already in place; the component already uses `cx`/`twMerge` for class composition. Your task is the package swap + API alignment, not a full rewrite.
 
+**Base UI styling doctrine** (`render`, `useRender`, `data-[…]:` variants, `nativeButton={false}`, anti-patterns, escalation ladder, `as`/`render` translation) lives in `references/base-ui-styling.md`. Read it before applying styling changes — it is the canonical source for v1 styling decisions; `rules/styling.md` codifies its three non-negotiable v1 prescriptions.
+
 ## STOP rules (hard vetos — internalize before editing)
 
 1. Do not commit if `pnpm -F @toptal/picasso-<NAME> build:package` fails — stale build poisons snapshots (see `references/practices.md` §"Build & snapshot precondition").
@@ -28,6 +30,7 @@ You are migrating a Picasso component from `@mui/base` to `@base-ui/react`. Tail
 - `references/design-patterns-addendum.md` — migration-only delta: existing-violations carve-out + rule 5 / rule 10 architectural exceptions.
 - `references/code-standards.md` — Picasso file structure, naming, JSDoc, ESLint custom rules, test conventions, Tailwind composition.
 - `references/practices.md` — graduated migration patterns (build precondition, classification, API preservation, changeset format, idioms).
+- `references/base-ui-styling.md` — Base UI v1 styling doctrine: mechanisms (`className`/`render`/`data-*`/CSS vars/`style`), `useRender`/`mergeProps`, anti-patterns, override escalation ladder, `as`/`render` translation.
 - `rules/api-preservation.md` — prop surface rules.
 - `rules/base-ui-react-api-crib.md` — `@base-ui/react` component patterns + polymorphic + type-narrowing.
 - `rules/package-and-build.md` — pnpm/lockfile policy + build-before-snapshot precondition.
