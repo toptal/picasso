@@ -54,5 +54,7 @@ migration-runs
 /after-fix-*.json
 /baseline-*.json
 /local-*.json
+/local--*.png
+/baseline--*.png
 /scripts/diff-happo.js
 **/__tests__/pixel-diff*.test.ts
