@@ -206,15 +206,15 @@
           "review_iter_failures": 0
         },
         "v2": {
-          "status": "awaiting_review",
+          "status": "needs_human",
           "pr": "https://github.com/toptal/picasso/pull/4975",
           "branch": "migrate-Slider-v2",
           "worktree": "migration-runs/2026-05-24/Slider-v2/worktree",
           "iterations": 8,
           "merged_at": null,
-          "escalation_reason": null,
+          "escalation_reason": "review-iter loop stuck on deterministic gate stages: happo. Latest agent attempt has been pushed to the PR for visibility. Worktree left dirty for operator inspection.",
           "last_ci_green_at": null,
-          "last_review_seen_at": null,
+          "last_review_seen_at": "2026-05-24T21:37:55.303Z",
           "review_iterations": 0,
           "session_id": null,
           "awaiting_ci_since": null
