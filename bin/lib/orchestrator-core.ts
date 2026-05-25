@@ -511,12 +511,13 @@ function buildStuckRecoveryHappoPrompt(
     `The library injects inline styles (e.g. \`translate: -50% -50%\` on the thumb). Find them. THESE are what the computed-style diff will show.\n\n` +
     `### 3. Apply the CSS specificity ladder — bottom rung first\n\n` +
     `Per \`references/code-standards.md §"CSS specificity ladder for @base-ui/react overrides"\`. Walk rungs IN ORDER, document WHY each lower rung doesn't work:\n\n` +
+    `- **Rung 0**: Pass \`style={{ ... }}\` directly to the @base-ui/react component. @base-ui/react's \`mergeProps\` shallow-merges your \`style\` AFTER its internal inline style with rightmost-wins semantics — your \`style\` overrides the kit's internal style WITHOUT specificity hacks. Example: \`<Slider.Thumb style={{ translate: 'none' }} ...>\` cleanly defeats the kit's internal \`translate: -50% -50%\`. **Try this FIRST for any @base-ui/react inline-style conflict** — it's the headless-kit's design contract.\n` +
     `- **Rung 1**: Slot \`className\` prop on the affected part. Does \`<Slider.Thumb className="...">\` work? If not, write a comment: \`// rung-1 insufficient: <reason>\`.\n` +
     `- **Rung 2**: Tailwind selectors matching emitted \`data-*\` attributes. Does \`data-[orientation=horizontal]:...\` work? If not: \`// rung-2 insufficient: <reason>\`.\n` +
     `- **Rung 3**: Compound selectors like \`[&_input]:!top-auto\`. Does this win specificity? If not: \`// rung-3 insufficient: <reason>\`.\n` +
-    `- **Rung 4**: \`!important\` Tailwind — ONLY if 1-3 all fail. Comment WHY each failed.\n\n` +
+    `- **Rung 4**: \`!important\` Tailwind — ONLY if 0-3 all fail. \`!important\` against a @base-ui/react inline style is a code smell that rung 0 was skipped — verify you tried \`style={{ ... }}\` on the component first. Comment WHY each lower rung failed.\n\n` +
     `**FORBIDDEN**:\n` +
-    `- Inline \`style={{}}\` — that's rung 0 (off-ladder). styling.md forbids it for static values.\n` +
+    `- Inline \`style={{ color: 'red' }}\` for STATIC theme values — use Tailwind classes with Picasso tokens (\`bg-blue-500\`). Rung 0 is for OVERRIDING @base-ui/react internals, not for hard-coding palette values.\n` +
     `- \`any\` to silence types — \`code-standards.md §"Type-narrowing & casting"\`.\n` +
     `- Skipping rungs without documented justification — reviewers block.\n\n` +
     `### 4. Verify the fix moves the pixels\n\n` +
@@ -621,7 +622,7 @@ function buildHappoFailureSection(
     '     ```\n' +
     "   - Save each browser's output to `migration-runs/<date>/<Component>/computed-styles-{baseline,local}.json`.\n" +
     '   - Diff the two JSON files property-by-property. The 5-10 properties that differ ARE your fix list. Common offenders during @mui/base → @base-ui/react migrations: `margin-left`, `margin-top` (master used negative margins for centering; @base-ui uses `translate:` property instead — these compose differently in some cases), `box-sizing`, `padding-{x,y}`, `width` (when `box-content` vs `border-box` differs), `transform-origin`, `inset-inline-start` rounding.\n' +
-    '   - For each differing property, write a targeted Tailwind class or inline style override that makes the local computed value match baseline. Apply it to the most-specific element identified by the diff (thumb, track, root, etc.).\n' +
+    "   - For each differing property, write a targeted Tailwind class OR (preferred for @base-ui/react internal-style overrides) a `style={{ ... }}` prop on the @base-ui/react component itself. **Rung 0 first**: @base-ui/react's `mergeProps` shallow-merges your `style` AFTER its internal inline style — `<Slider.Thumb style={{ translate: 'none' }}>` cleanly defeats the kit's `translate: -50% -50%` without Tailwind `!important`. See `code-standards.md §\"CSS specificity ladder\"` rung 0. If `style` prop is insufficient for the case (e.g. responsive breakpoint variants), escalate to Tailwind selectors.\n" +
     "   - Re-screenshot local. Re-run gate. If the diff count drops → progress, continue. If unchanged → the property you targeted wasn't the actual cause; pick the next differing property from the JSON diff.\n" +
     '6. **Stalemate (give-up) is FORBIDDEN until you have**:\n' +
     '   - Captured `computed-styles-baseline.json` AND `computed-styles-local.json` for the failing component (kept locally — these are diagnostic artifacts, not PR-comment material).\n' +
@@ -765,6 +766,18 @@ function shell(
  * the escalation reason. Empty string means "no known fast-fail pattern".
  */
 const NO_PROGRESS_PATTERNS: readonly (readonly [RegExp, string])[] = [
+  // Spawn-level failure: the `claude`/`cursor`/`codex` binary couldn't be
+  // executed at all (ENOENT = not on PATH or cwd missing; EACCES/EPERM =
+  // not executable; ENOMEM = host OOM). `[spawn-error]` is written by the
+  // agent.invoke `child.on('error', ...)` handler (~line 3829), so this
+  // tag uniquely identifies pre-execution failure — retrying within the
+  // same orchestrator process can't fix any of these. Observed Slider v2
+  // 2026-05-24 burning all 10 iterations in 3 seconds on missing `claude`
+  // (PATH didn't include the nvm dir where claude was installed).
+  [
+    /\[spawn-error\] Error: spawn (\S+) (?:ENOENT|EACCES|EPERM|ENOMEM)/,
+    'Agent binary spawn failed — check `which <bin>` from the same shell + cwd exists',
+  ],
   [/Spending cap reached[^\n]{0,100}/i, 'Anthropic spending cap reached'],
   [/quota (?:exceeded|exhausted)[^\n]{0,100}/i, 'API quota exhausted'],
   [/rate limit (?:exceeded|reached)[^\n]{0,100}/i, 'API rate limit exceeded'],
@@ -1669,6 +1682,77 @@ interface StorybookHandle {
   readonly url: string
   readonly port: number
   readonly kill: () => Promise<void>
+}
+
+/**
+ * Fetch the worktree's Storybook `/index.json` and build a "Story manifest"
+ * prompt section listing every story for the migrating component as a
+ * canonical iframe URL (2026-05-23).
+ *
+ * Why this exists: agents previously had to enumerate story IDs themselves
+ * (`curl /index.json | jq` or guess from `story/index.jsx`). Switch sweep
+ * 2026-05-22 burned an iter on a 404 because the agent guessed
+ * `components-switch--switch-controlled` when the real ID was
+ * `forms-switch--controlled`. Pre-computing removes the guesswork.
+ *
+ * Match strategy: case-insensitive substring on `title`. The title format is
+ * `<Section>/<Page>` (e.g. `Forms/Switch`); we want any story whose page
+ * matches the component id. False positives are tolerable (extra URLs the
+ * agent can ignore) but false negatives are not (agent falls back to
+ * guessing).
+ *
+ * Returns `null` on any failure — Storybook 404, network blip, malformed
+ * JSON, zero matches. Caller appends only when non-null.
+ */
+async function fetchStoryManifestSection(
+  componentId: string,
+  port: number
+): Promise<string | null> {
+  try {
+    const response = await fetch(`http://localhost:${port}/index.json`)
+
+    if (!response.ok) {
+      return null
+    }
+    const data = (await response.json()) as {
+      entries?: Record<string, { title: string; name: string; type?: string }>
+    }
+
+    if (!data.entries) {
+      return null
+    }
+    // Drop the last path segment of nested ids like `query-builder/AutoComplete`
+    // → `AutoComplete` so Storybook's `Components/AutoComplete` title matches.
+    const shortName = componentId.split('/').pop() ?? componentId
+    const needle = shortName.toLowerCase()
+    const matches = Object.entries(data.entries).filter(([, entry]) => {
+      if (entry.type && entry.type !== 'story') {
+        return false
+      }
+
+      return entry.title.toLowerCase().includes(needle)
+    })
+
+    if (matches.length === 0) {
+      return null
+    }
+    const lines = matches.map(
+      ([id, entry]) =>
+        `- \`http://localhost:${port}/iframe.html?id=${id}&viewMode=story\` — ${entry.title} / ${entry.name}`
+    )
+
+    return (
+      `# Story manifest for ${componentId} ` +
+      `(auto-fetched from Storybook /index.json at startup)\n\n` +
+      `Use these URLs verbatim for \`mcp__playwright__browser_navigate\`. ` +
+      `No need to guess story IDs, run \`curl /index.json | jq\`, or read \`story/index.jsx\` ` +
+      `— the orchestrator pre-resolved them. Pass each URL to \`browser_navigate\`, then ` +
+      `\`browser_wait_for { text: ... }\` for a known story-body string before screenshotting.\n\n` +
+      lines.join('\n')
+    )
+  } catch {
+    return null
+  }
 }
 
 const STORYBOOK_PORT_RANGE_START = 9001
@@ -3248,6 +3332,30 @@ const agent = {
       }
     }
 
+    // Per-iter visual-verification reminder (2026-05-24, post-Slider-v2).
+    // The agent has the story manifest with localhost URLs in its iter-1
+    // context, but across resumed iters it drifts toward staging-only
+    // verification (observed Slider v2 iters 3-5: 6 staging navigations
+    // vs 1 localhost). Re-anchoring every iter keeps the worktree URL
+    // top-of-mind without re-injecting the full manifest.
+    const runDir = path.dirname(worktreePath)
+    const storybookUrlPath = path.join(runDir, 'storybook-url.txt')
+    const storybookUrl = existsSync(storybookUrlPath)
+      ? (await fs.readFile(storybookUrlPath, 'utf8')).trim()
+      : 'http://localhost:9001'
+
+    sections.push(
+      `# Visual verification source for this iter\n\n` +
+        `The Storybook the orchestrator started for THIS worktree is at ${storybookUrl}. ` +
+        `It serves YOUR in-progress edits. For every story you claim visual parity on, you MUST:\n\n` +
+        `1. Navigate Playwright to \`${storybookUrl}/iframe.html?id=<story-id>&viewMode=story\`.\n` +
+        `2. Persist the screenshot as \`local--<story-id>--<state>.png\` (note the \`local--\` prefix — not \`baseline--\`).\n\n` +
+        `Staging (\`https://picasso.toptal.net\`) is allowed ONLY for fetching the pre-migration baseline ` +
+        `for computed-style diff. It serves a DIFFERENT commit than your worktree — never use it to verify ` +
+        `your edits. A run that persists only \`baseline--*.png\` (staging) and zero \`local--*.png\` ` +
+        `(worktree) has visual proof for the WRONG code; the gate will fail this iter.`
+    )
+
     sections.push(
       `# Iteration ${iteration + 1} feedback\n\n` +
         `The orchestrator ran the gate on your previous iteration. Failures:\n\n` +
@@ -4127,6 +4235,51 @@ async function countScreenshotsInPlaywrightDir(
 }
 
 /**
+ * Split the PNG count by prefix: `local--*` (worktree edits from
+ * localhost:9001) vs `baseline--*` (master reference from
+ * picasso.toptal.net) vs other. Used by the checklist to catch agents
+ * who persist ONLY baseline screenshots without verifying their own
+ * edits — the Slider v2 failure mode (2026-05-24).
+ *
+ * The prompt design at line ~601-604 uses staging for baselines and
+ * localhost for worktree verification. A migration iter that produces
+ * 3 `baseline--*.png` and 0 `local--*.png` has only half the visual
+ * proof — the worktree's actual edits were never visually verified.
+ */
+async function countScreenshotsByKind(
+  runDir: string
+): Promise<{ local: number; baseline: number; other: number }> {
+  const dir = path.join(runDir, 'playwright')
+  const out = { local: 0, baseline: 0, other: 0 }
+
+  if (!existsSync(dir)) {
+    return out
+  }
+  try {
+    const entries = await fs.readdir(dir)
+
+    for (const e of entries) {
+      const lower = e.toLowerCase()
+
+      if (!lower.endsWith('.png')) {
+        continue
+      }
+      if (lower.startsWith('local--')) {
+        out.local += 1
+      } else if (lower.startsWith('baseline--')) {
+        out.baseline += 1
+      } else {
+        out.other += 1
+      }
+    }
+
+    return out
+  } catch {
+    return out
+  }
+}
+
+/**
  * Look for a successful `pnpm --filter <pkgName> build:package` invocation
  * in the agent's Bash tool inputs. Returns true iff the most recent matching
  * invocation appeared in the log AND no error marker followed it.
@@ -4316,9 +4469,37 @@ const checklist = {
               `Re-take screenshots with explicit \`filename\` arguments before exiting.`
           )
         } else {
-          passed.push(
-            `Playwright screenshots persisted (${screenshotCount} PNG(s) in playwright/)`
-          )
+          // Slider v2 (2026-05-24) failure mode: agent persisted 3 PNGs but
+          // ALL were `baseline--*.png` from picasso.toptal.net (staging),
+          // ZERO `local--*.png` from the worktree's Storybook on localhost.
+          // Local gate passed the file-count check, but the agent never
+          // visually verified its OWN edits — only the staging baseline.
+          // Strengthen by requiring at least one `local--*.png` if Playwright
+          // was used at all. Baselines alone are not visual proof.
+          const byKind = await countScreenshotsByKind(args.runDir)
+          const storybookUrlPath = path.join(args.runDir, 'storybook-url.txt')
+          const storybookUrl = existsSync(storybookUrlPath)
+            ? (await fs.readFile(storybookUrlPath, 'utf8')).trim()
+            : 'http://localhost:9001'
+
+          if (byKind.local === 0) {
+            failures.push(
+              `Playwright persisted ${screenshotCount} PNG(s) but ZERO follow the ` +
+                `\`local--<story-id>--<state>.png\` naming convention. Counted: ` +
+                `${byKind.baseline} \`baseline--*\` (staging — reference only), ` +
+                `${byKind.other} other. You verified the master baseline but NOT your ` +
+                `in-progress worktree edits. For every story you claim visual parity on, ` +
+                `you MUST navigate to \`${storybookUrl}/iframe.html?id=<id>\` (worktree ` +
+                `Storybook serving YOUR edits) and persist \`local--<id>--<state>.png\` ` +
+                `before exiting. Staging baselines (\`baseline--*\`) are reference, not ` +
+                `proof — they show what's deployed, not what your edits do.`
+            )
+          } else {
+            passed.push(
+              `Playwright screenshots persisted (${screenshotCount} PNG(s): ` +
+                `${byKind.local} local, ${byKind.baseline} baseline, ${byKind.other} other)`
+            )
+          }
         }
 
         // TODO #16 (2026-05-22): deployed-preview navigation gate. The
@@ -5904,6 +6085,25 @@ async function sweepOne(
     ? await storybook.start(wtPath, runDir)
     : null
 
+  // Pre-compute story manifest (2026-05-23) so the agent doesn't have to
+  // guess story IDs. Only when Storybook is running — appended to the
+  // iter-1 prompt below. Null on any failure (Storybook 404, no matches,
+  // etc.); agent falls back to the §"Story URLs — ENUMERATE" guidance.
+  const storyManifestSection = sweepStorybookHandle
+    ? await fetchStoryManifestSection(item.id, sweepStorybookHandle.port)
+    : null
+
+  if (storyManifestSection) {
+    log(
+      'sweep',
+      `${item.id}: pre-fetched story manifest from :${
+        sweepStorybookHandle?.port
+      }/index.json (${
+        (storyManifestSection.match(/\n- /g) || []).length
+      } stories)`
+    )
+  }
+
   // Local iteration loop — mirrors `runOne`'s migrate loop. Sweep is the
   // continuation of migration with new inputs (CI failures, reviewer
   // comments, Happo diffs); the agent should likewise get multiple
@@ -6028,7 +6228,9 @@ async function sweepOne(
       // claude --resume keeps the iter-1 context.
       const iterPrompt =
         iter === 1
-          ? reviewPrompt
+          ? storyManifestSection
+            ? `${reviewPrompt}\n\n---\n\n${storyManifestSection}`
+            : reviewPrompt
           : await agent.assembleDeltaPrompt(
               reviewIters * 100 + iter - 1,
               iterFeedback ?? '(no prior gate report)',
@@ -6394,10 +6596,53 @@ async function sweepOne(
         const hasAuditHighRule =
           pendingChecklistFeedback !== null &&
           /Audit \(HIGH, rule\)/.test(pendingChecklistFeedback)
+        // Fix C (2026-05-23): visual-verification hard-fail bypass.
+        // When --with-mcp was used and the checklist reported "Playwright
+        // used (N calls) but no screenshots persisted to disk", the agent
+        // ran Playwright but every screenshot was either rejected (allowlist
+        // mismatch — fixed 2026-05-23) or saved without `filename:`. Either
+        // way the operator's audit trail is blank. Gate may pass on Happo
+        // anyway (the agent compensates with DOM inspection), but the
+        // visual-verification claim is unbacked. Force another iter so the
+        // agent re-takes screenshots with the (now-correct) tool name +
+        // explicit filename. MAX_SWEEP_ITERS cap is the safety net against
+        // infinite loops.
+        const hasUnpersistedScreenshots =
+          pendingChecklistFeedback !== null &&
+          /Playwright used \(\d+ calls\) but no screenshots persisted/.test(
+            pendingChecklistFeedback
+          )
         const canBypass =
-          opts.withStandards && hasAuditHighRule && iter < MAX_SWEEP_ITERS
+          (opts.withStandards && hasAuditHighRule && iter < MAX_SWEEP_ITERS) ||
+          (opts.withMcp && hasUnpersistedScreenshots && iter < MAX_SWEEP_ITERS)
 
         if (canBypass) {
+          // Screenshot-only bypass (Fix C): visual verification missing,
+          // but no audit findings. Use targeted message + skip the audit
+          // stuck-detection (MAX_SWEEP_ITERS cap is sufficient — binary
+          // 0-PNGs vs ≥1-PNG doesn't need key-shifting analysis).
+          if (hasUnpersistedScreenshots && !hasAuditHighRule) {
+            log(
+              'sweep',
+              `${
+                item.id
+              }: review-iter loop iter ${iter}: gate green BUT 0 PNGs persisted to playwright/ (visual-verification claim unbacked) — forcing iter ${
+                iter + 1
+              } to re-screenshot with explicit filename`
+            )
+            iterFeedback =
+              '# Visual verification incomplete — re-take screenshots\n\n' +
+              `Iter ${iter}'s gate is green, but the orchestrator detected ZERO PNGs in \`<runDir>/playwright/\` despite Playwright being invoked. Your visual-verification claim is unbacked — the operator can't audit what you actually saw, and any "I verified visually" statement in your reply will be flagged as unfalsifiable.\n\n` +
+              'Two common causes (both must be ruled out before this iter is allowed to converge):\n\n' +
+              '1. **You called `browser_take_screenshot` without a `filename:` argument.** Without it, the MCP returns the image in-message and DISCARDS it on turn end — no disk persistence. Every call MUST pass `filename: "local--<story-id>--<state>.png"` per `references/visual-verification.md` §"Screenshot persistence".\n' +
+              '2. **You used `browser_evaluate` to inspect DOM state instead of taking screenshots.** That gives text signal (classNames, aria-*, etc.) but NOT pixel signal — you cannot catch hover/focus-ring/animation regressions that way. Take real screenshots.\n\n' +
+              'Action this iter: navigate to the relevant story URLs (see the Story manifest section if present, otherwise `iframe.html?id=<story-id>&viewMode=story` on `localhost:9001`), call `browser_take_screenshot` with explicit `filename:` for each meaningful state (default / hover / focus / disabled / etc.), then confirm at the end that ≥1 PNG exists in `<runDir>/playwright/`.\n\n' +
+              '---\n\n' +
+              pendingChecklistFeedback
+            pendingChecklistFeedback = null
+            continue
+          }
+
           const findingsUnchanged =
             lastBypassAuditKey !== null && lastBypassAuditKey === lastAuditKey
 
@@ -7171,6 +7416,21 @@ export async function run(
   // Observed on Switch migration 2026-05-18).
   const storybookHandle = await storybook.start(wtPath, runDir)
 
+  // Pre-compute story manifest (2026-05-23) — same rationale as the sweep
+  // path. Appended to iter-1 prompt below.
+  const runStoryManifestSection = storybookHandle
+    ? await fetchStoryManifestSection(item.id, storybookHandle.port)
+    : null
+
+  if (runStoryManifestSection) {
+    log(
+      'loop',
+      `pre-fetched story manifest from :${storybookHandle?.port}/index.json (${
+        (runStoryManifestSection.match(/\n- /g) || []).length
+      } stories)`
+    )
+  }
+
   if (storybookHandle) {
     const handleForSignals = storybookHandle
     const killOnExit = (): void => {
@@ -7357,7 +7617,23 @@ export async function run(
       //         the iter-1 context via --resume.
       const prompt =
         state.iterations === 1
-          ? await agent.assemblePrompt(workflow, item, 0, null, rootDir, wtPath)
+          ? runStoryManifestSection
+            ? `${await agent.assemblePrompt(
+                workflow,
+                item,
+                0,
+                null,
+                rootDir,
+                wtPath
+              )}\n\n---\n\n${runStoryManifestSection}`
+            : await agent.assemblePrompt(
+                workflow,
+                item,
+                0,
+                null,
+                rootDir,
+                wtPath
+              )
           : await agent.assembleDeltaPrompt(
               state.iterations - 1,
               lastFeedback,
@@ -8214,7 +8490,18 @@ export async function run(
       )
       const failureSet = failureKeyParts.sort().join('|')
 
-      if (ciIteration >= 2 && failureSet === lastFailureSet) {
+      // Stuck threshold respects the operator's --max-ci-iterations budget:
+      // reserve the last 2 iters for designer-escalation, give the agent
+      // the rest. Default maxCIIterations=5 → threshold=3 (one extra iter
+      // over the historical hard-2 floor, low risk). User-passed
+      // --max-ci-iterations=10 → threshold=8 (6 more agent rounds before
+      // designer-escalation). The Math.max(2, ...) guarantees stuck-
+      // detection always has at least one comparison iter to work with.
+      // Pre-Slider v2 2026-05-24: the threshold was a hardcoded 2,
+      // which fired regardless of how high the operator set the budget.
+      const stuckThreshold = Math.max(2, opts.maxCIIterations - 2)
+
+      if (ciIteration >= stuckThreshold && failureSet === lastFailureSet) {
         const stuckOn = classifications.map(c => c.check.name).join(', ')
 
         // Part 4 (2026-05-14): when stuck-detection fires on Happo-ONLY

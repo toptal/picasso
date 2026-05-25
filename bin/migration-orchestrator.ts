@@ -108,6 +108,11 @@ const migrationWorkflow: Workflow = {
       'PICASSO_COMPONENT_DESIGN_PATTERNS.md',
       'docs/migration/references/design-patterns-addendum.md',
       'docs/migration/references/code-standards.md',
+      // Base UI v1 styling doctrine — added 2026-05-24. Loaded for every
+      // tier: Tier 0 needs it most (render, useRender, nativeButton,
+      // data-[…]: variants), Tier 1+ JSS→Tailwind rewrites benefit from
+      // the anti-patterns, escalation ladder, and token strategy sections.
+      'docs/migration/references/base-ui-styling.md',
       // NOTE: lessons-learned.md is REMOVED from contextPack as of
       // 2026-05-21. The file remains in the repo as an audit-only log.
       // Graduated patterns flow into practices.md via manual graduation.
@@ -251,36 +256,18 @@ const migrationWorkflow: Workflow = {
       }
     }
 
-    // Tier 2.2 — diff-aware (stuck) escalation. If the last 2 inner-loop
-    // gate reports failed on the IDENTICAL set of stages, the agent is
-    // not making progress on the remaining failures even though it had
-    // a feedback round between iters. Cut losses early instead of
-    // burning the whole `--max-iterations` budget.
-    //
-    // Counter-rule: if the failure-set SHRANK between iters (agent
-    // resolved at least one stage), we keep iterating — that's making
-    // progress. The 2-iter window is the sweet spot empirically: 1 is
-    // too aggressive (agent legitimately needs feedback rounds), 3+
-    // wastes too much time on stuck loops.
-    const recent = state.gateHistory.slice(-2)
-
-    if (recent.length === 2) {
-      const failedStages = (report: GateReport): string =>
-        report.stages
-          .filter(stage => stage.status === 'FAIL')
-          .map(stage => stage.name)
-          .sort()
-          .join(',')
-      const prev = failedStages(recent[0])
-      const curr = failedStages(recent[1])
-
-      if (prev !== '' && prev === curr) {
-        return {
-          shouldEscalate: true,
-          reason: `2 consecutive iterations failed on the same gate stages (${prev}); agent is stuck`,
-        }
-      }
-    }
+    // Stuck-detection on identical gate failure stages is OWNED by the inner
+    // migrate-loop in `orchestrator-core.ts` (~line 7795). That logic uses a
+    // 3-strike rule with a stuck-recovery prompt injected between strikes 2
+    // and 3: first identical key records, second injects recovery guidance +
+    // gives ONE more iter, third escalates. The old 2-strike-and-out rule
+    // that used to live here was pre-empting the recovery iter (escalating
+    // at strike 2 before the recovery prompt could run) — observed Slider v2
+    // 2026-05-24 escalating at iter 2 even though the agent had made real
+    // progress (checklist failures 5 → 1). Keeping the architectural-review
+    // and CI-failure-count checks above; deferring stuck-stage detection to
+    // the inner loop where it's content-aware (includes happo verify key +
+    // critic audit key, not just stage names).
 
     return { shouldEscalate: false }
   },

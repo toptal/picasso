@@ -80,7 +80,41 @@ Worked examples (verified via /index.json):
 
 ## Mandatory runtime check (required when `--with-mcp` is active)
 
-1. **Navigate to the story.** Use the correct repeated-name URL form (see §"Story URLs — ENUMERATE, do not guess" above).
+1. **Navigate to the story using the canonical URL pattern.** Exactly one URL shape is canonical:
+
+   ```
+   http://localhost:9001/iframe.html?id=<story-id>&viewMode=story
+   ```
+
+   - `iframe.html` (NOT `/?path=/story/...`) renders ONLY the story canvas — no Storybook chrome, no sidebar, no addons panel. That's what Happo screenshots; it's what you should screenshot too.
+   - `&viewMode=story` suppresses the docs tab when a story has both. Without it, some stories load the MDX docs page by default and `browser_take_screenshot` captures prose instead of the component.
+   - Use the port from `storybook-url.txt` if `:9001` is taken — `cat <runDir>/storybook-url.txt` to confirm.
+   - For the baseline comparison, the same shape works on `https://picasso.toptal.net/iframe.html?id=<story-id>&viewMode=story`.
+
+   See §"Story URLs — ENUMERATE, do not guess" above for getting `<story-id>` from Storybook's index endpoint. If a Story manifest section is present in your iteration prompt, use those URLs verbatim — they're already constructed correctly.
+
+1a. **Wait for the story to actually render before screenshotting.** `browser_navigate` returns when the document loads, but Storybook needs additional time to mount the story component. Do NOT use blind `setTimeout` — it wastes wall clock and is flaky on slow stories. Two reliable approaches:
+
+   ```
+   # Preferred — wait for a known element/text in the story body
+   mcp__playwright__browser_wait_for { text: "Switch label", time: 10 }
+   ```
+
+   ```
+   # Fallback — programmatically poll for Storybook's render-complete state
+   mcp__playwright__browser_evaluate { function: "async () => {
+     for (let i = 0; i < 50; i++) {
+       const sel = window.__STORYBOOK_PREVIEW__?.urlStore?.selection
+       const root = document.getElementById('storybook-root')
+       if (sel && root && root.children.length > 0) return true
+       await new Promise(r => setTimeout(r, 100))
+     }
+     return false
+   }" }
+   ```
+
+   Both have a 5–10s implicit cap, beat blind sleeps, and produce a deterministic signal you can branch on. Observed on Switch sweep 2026-05-22: agent escalated through `setTimeout(r, 2000)` → `5000` → `15000` blind sleeps while the iframe was already ready — that's wasted iters + tokens. Use the explicit checks instead.
+
 2. **Render the actual component, not just the trigger.** Many stories show only a trigger button (e.g. Backdrop's default story shows an "Open Backdrop" button — the backdrop itself is hidden until clicked). After `browser_navigate`, look at the snapshot: if you only see a placeholder button or instruction text, you have NOT verified the migrated component. `browser_click` the trigger, then re-screenshot. The thing you're migrating must be on screen before you call the check done.
 3. **`browser_console_messages` and confirm zero `[error]` entries.** React 18's `ReactDOM.render` deprecation warning is acceptable for now (Picasso-wide); any other error is a fail — investigate and fix before exiting. Capture console BOTH on initial render AND after every interaction — many errors only fire on user-triggered mount.
 4. **Use judgment on which interactions to exercise.** Don't run a script — think about what would prove the migration works:

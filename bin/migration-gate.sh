@@ -497,12 +497,22 @@ else
   HEAD_SHA="$(git rev-parse HEAD 2>/dev/null || echo)"
   EXPECTED_ACCOUNT_ID="${HAPPO_ACCOUNT_ID:-}"
 
-  echo "→ [happo] pnpm exec happo run --only ${COMPONENT##*/} (head=$HEAD_SHA)" \
+  echo "→ [happo] pnpm exec happo run (full Storybook upload, head=$HEAD_SHA)" \
     | tee -a "$RUN_DIR/console.log"
   # Build packages first (Storybook plugin needs them), then `happo run`
   # with explicit subcommand (Picasso's `pnpm happo` script uses bare
   # `happo` which shows help — a long-standing latent bug). Same env
   # vars Picasso's CI happo script uses.
+  #
+  # 2026-05-24 (post-Slider v2): dropped `--only ${COMPONENT##*/}` filter
+  # from the upload. CI uploads the FULL Storybook (no --only); a Slider-
+  # filtered baseline vs Slider-filtered head can pass with 0 diffs while
+  # CI's full-baseline-vs-full-head sees 7 diffs because the baseline
+  # reference frame differs. The filter belongs on the diff verification
+  # step (bin/lib/happo-verify.ts:348 already filters the COMPARISON
+  # result to the migrating component), NOT on the upload. Cost: ~3-5 min
+  # slower per iter (full upload vs filtered). Worth it — without this,
+  # local PASS is a false-positive against what CI will see.
   #
   # HAPPO_STORYBOOK_BUILD_COMMAND (2026-05-22): bypass happo-plugin-storybook's
   # default `npx build-storybook` spawn. Default is broken in pnpm workspaces
@@ -517,7 +527,7 @@ else
   if pnpm build:package >"$HAPPO_LOG" 2>&1 && \
      SCREENSHOT_BREAKPOINTS=true TEST_ENV=visual HAPPO_PROJECT=Picasso/Storybook \
      HAPPO_STORYBOOK_BUILD_COMMAND="./node_modules/.bin/build-storybook" \
-     pnpm exec happo run "$HEAD_SHA" --only "${COMPONENT##*/}" >>"$HAPPO_LOG" 2>&1; then
+     pnpm exec happo run "$HEAD_SHA" >>"$HAPPO_LOG" 2>&1; then
     HAPPO_CLI_OK=1
   else
     HAPPO_CLI_OK=0
@@ -538,23 +548,35 @@ else
       | tee -a "$RUN_DIR/console.log"
 
     if [ -z "$EXPECTED_ACCOUNT_ID" ] || [ -z "$UPLOAD_ACCOUNT_ID" ] || [ "$UPLOAD_ACCOUNT_ID" != "$EXPECTED_ACCOUNT_ID" ]; then
-      # Account mismatch (or expected not set) → skip verification with
-      # a clear hint to swap creds.
-      echo "  [happo] local upload went to account $UPLOAD_ACCOUNT_ID, expected $EXPECTED_ACCOUNT_ID (CI/org account)." \
-        | tee -a "$RUN_DIR/console.log"
-      echo "  [happo] To enable local Happo verification (per-iter diff feedback):" \
-        | tee -a "$RUN_DIR/console.log"
-      echo "    1. Get the CI Happo creds from GitHub: toptal/picasso → Settings → Secrets → HAPPO_API_KEY + HAPPO_API_SECRET" \
-        | tee -a "$RUN_DIR/console.log"
-      echo "    2. Replace .envrc's HAPPO_API_KEY / HAPPO_API_SECRET with those values" \
-        | tee -a "$RUN_DIR/console.log"
-      echo "    3. Run direnv allow + re-run orchestrate" \
-        | tee -a "$RUN_DIR/console.log"
-      echo "  [happo] Deferring diff verification to CI (post-push). Gate stage = PASS." \
-        | tee -a "$RUN_DIR/console.log"
+      # 2026-05-24 (post-Slider v2): account mismatch is now a HARD FAIL,
+      # not a silent PASS. The previous "deferring to CI" path produced
+      # false-positive local PASSes — the gate passed without actually
+      # comparing diffs, the agent assumed visuals were clean, and CI
+      # caught real regressions hours later. The orchestrator's whole
+      # value prop is honest local feedback per iter; soft-skipping on
+      # account mismatch breaks that contract.
+      HAPPO_STATUS="FAIL"
+      HAPPO_REASON="Happo account mismatch — local upload went to account $UPLOAD_ACCOUNT_ID, gate expects account $EXPECTED_ACCOUNT_ID (CI org). Cross-account compare is impossible; gate can't verify diffs."
+      {
+        echo "❌ [happo] Account mismatch: upload account=$UPLOAD_ACCOUNT_ID, expected=$EXPECTED_ACCOUNT_ID (CI/org account)."
+        echo "   Local Happo verification REQUIRES org creds — compare-results needs base + head on the SAME account."
+        echo "   To fix:"
+        echo "     1. Get CI Happo creds: toptal/picasso → Settings → Secrets → HAPPO_API_KEY + HAPPO_API_SECRET"
+        echo "     2. Replace .envrc's HAPPO_API_KEY / HAPPO_API_SECRET with those values"
+        echo "     3. direnv allow && re-run orchestrate"
+        echo "   Explicit opt-out (skip Happo entirely for non-visual changes):"
+        echo "     MIGRATION_GATE_HAPPO=skip pnpm orchestrate --component=<Name> ..."
+      } | tee -a "$RUN_DIR/console.log"
     elif [ -z "${HAPPO_BASE_BRANCH:-}" ] || [ -z "${HAPPO_STORYBOOK_PROJECT_ID:-}" ]; then
-      echo "  [happo] HAPPO_BASE_BRANCH/HAPPO_STORYBOOK_PROJECT_ID not set; cannot run verifier — treating as PASS" \
-        | tee -a "$RUN_DIR/console.log"
+      HAPPO_STATUS="FAIL"
+      HAPPO_REASON="HAPPO_BASE_BRANCH/HAPPO_STORYBOOK_PROJECT_ID not set; cannot run verifier."
+      {
+        echo "❌ [happo] HAPPO_BASE_BRANCH or HAPPO_STORYBOOK_PROJECT_ID not set."
+        echo "   Both are required for the verifier to construct the compare URL."
+        echo "   Setup: docs/migration/ORCHESTRATOR.md §Happo setup. Quick fix in .envrc:"
+        echo "     export HAPPO_BASE_BRANCH=feature/picasso-modernization-temp  # or your --base-branch"
+        echo "     export HAPPO_STORYBOOK_PROJECT_ID=1189"
+      } | tee -a "$RUN_DIR/console.log"
     else
       # Account match: run the full verifier. This deterministically
       # queries Happo's compare-results API for the diff count between

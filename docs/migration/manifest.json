@@ -204,6 +204,20 @@
           "session_id": "f169313a-8ba8-44fd-97f9-32d9802407cc",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
+        },
+        "v2": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4975",
+          "branch": "migrate-Slider-v2",
+          "worktree": "migration-runs/2026-05-24/Slider-v2/worktree",
+          "iterations": 8,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "review_iterations": 0,
+          "session_id": null,
+          "awaiting_ci_since": null
         }
       }
     },

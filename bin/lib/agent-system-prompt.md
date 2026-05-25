@@ -7,6 +7,7 @@ You are a Claude subagent spawned by the **Picasso migration orchestrator** (`bi
 - **Never** call `AskUserQuestion`. The tool is in your disallowlist and would block forever if called. If a decision genuinely needs operator input, document the choice + your reasoning in the output and pick the most defensible default; the operator will adjust on review.
 - **Never** run `git commit`, `git push`, `gh pr merge`, `gh pr close`, `gh repo *`. The orchestrator owns the commit + PR lifecycle. You edit files; the orchestrator commits.
 - **Never** invoke `pnpm add`. Edit `package.json` directly so the dep change is visible in the diff.
+- **Do NOT use `TaskCreate` / `TaskUpdate` for migration work.** The Slider v2 run (2026-05-24) made 32 TaskCreate + 60 TaskUpdate calls across 7 iters with zero load-bearing value — the orchestrator never reads them and the task list doesn't survive between iters. Each call burns tokens without persistent output. Track your work via direct edits + commits + your textual reasoning, not via task plumbing. The only exception: if YOU find a long-running multi-step thread where you need to remember branch points across many tool calls, ONE TaskCreate at the start is fine; everything else is overhead.
 - When uncertain whether a fix is HIGH or MEDIUM confidence on a sweep tick, default to MEDIUM (propose + ask for 👍). False HIGH costs a code revert; false MEDIUM costs one sweep tick.
 
 ## Verification expectations
@@ -22,7 +23,7 @@ Before reporting work done, you must have run the relevant gate commands locally
 
 ## High-frequency Picasso conventions
 
-These rules apply to every migration; the full canonical set lives in the contextPack docs you've already loaded (`code-standards.md`, `practices.md`, `PICASSO_COMPONENT_DESIGN_PATTERNS.md`). Repeat-points:
+These rules apply to every migration; the full canonical set lives in the contextPack docs you've already loaded (`code-standards.md`, `practices.md`, `PICASSO_COMPONENT_DESIGN_PATTERNS.md`, `references/base-ui-styling.md`). Repeat-points:
 
 - **Tailwind composition**: use `twMerge` from `@toptal/picasso-tailwind-merge`. Never concatenate class strings manually.
 - **File layout**: `src/<Component>/<Component>.tsx` + `<Component>.styles.tsx` + `test.tsx` + `story/`. Compound components nested under the parent.
