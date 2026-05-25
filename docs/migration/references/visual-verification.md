@@ -22,9 +22,8 @@ Playwright is the **fast iteration tool** during your loop. Happo is the **autho
 
 - It lags behind your in-progress edits by however long the last CI Pages job took (often minutes, sometimes never if Pages deploy didn't run for this commit).
 - It serves the bundle Webpack built for that commit, not the live worktree.
-- It does NOT serve Storybook's `/index.json` / `/stories.json` endpoints (404), breaking the enumeration approach below.
 
-Observed agent failure (Switch sweep, 2026-05-22): the agent navigated to `https://toptal.github.io/picasso/prs/4965/iframe.html?id=components-switch--switch-controlled`, hit a 404, and proceeded as if visual verification had happened. It hadn't. Evidence is the console log at `<worktree>/.playwright-mcp/console-2026-05-22T16-01-59-729Z.log`.
+Observed agent failure (Switch sweep, 2026-05-22): the agent navigated to `https://toptal.github.io/picasso/prs/4965/iframe.html?id=components-switch--switch-controlled` (a story id that doesn't exist on any Picasso Storybook), hit Storybook's error overlay, and proceeded as if visual verification had happened. It hadn't. Evidence is the console log at `<worktree>/.playwright-mcp/console-2026-05-22T16-01-59-729Z.log`. See §"Story URLs" for the real id format.
 
 **Hard rule.** Your two and only two allowed hostnames for `browser_navigate` are:
 
@@ -33,43 +32,69 @@ Observed agent failure (Switch sweep, 2026-05-22): the agent navigated to `https
 
 If you find yourself about to navigate to `toptal.github.io/picasso/prs/...`, STOP. That's the deployed preview, not the in-progress code. Re-target to `localhost:9001`.
 
-## Story URLs — ENUMERATE, do not guess
+## Story URLs — ONE story per component page
 
-Story IDs are NOT always `components-<name>--<name>-<story>`. The section prefix depends on which PicassoBook section the page belongs to:
+Picasso's HUMAN-mode Storybook (which both `picasso.toptal.net` and `pnpm start:storybook` serve) registers exactly **one story per component page**. Every example you see on the page (Default, Range, Hover, Disabled, etc.) is rendered as an in-page chapter within that single story — they are NOT separate Storybook stories with their own ids.
 
-- Button uses `PicassoBook.section('Components')` → IDs start with `components-`
-- Switch uses `PicassoBook.section('Forms')` → IDs start with `forms-`
-- Other sections (`Layout`, `Typography`, `Pickers`, etc.) follow the same rule with their own prefix
+The id format is **`<section>-<name>--<name>`** — section prefix and component name, separated by `--`, with the name repeated. The section prefix comes from the `PicassoBook.section('X')` call in `packages/.../<Component>/story/index.jsx`:
 
-Guessing the prefix fails — observed agent failure (Switch sweep, 2026-05-22): constructed `components-switch--switch-controlled` and hit a 404 "Couldn't find story matching". Actual ID was `forms-switch--controlled`.
+- `Components/` → `components-`
+- `Forms/` → `forms-`
+- `Layout/` → `layout-`
+- `Overlays/` → `overlays-`
+- `Picasso Forms/` → `picasso-forms-`
+- `Picasso Charts/` → `picasso-charts-`
 
-**Bulletproof approach — fetch the live story index from Storybook itself.** When `--with-mcp` is active, Storybook is running on `localhost:9001` (or the port in `migration-runs/<run-date>/<Component>/storybook-url.txt`). Hit its index endpoint via Bash, then filter:
+Worked examples (verified against picasso.toptal.net 2026-05-25):
 
-```bash
-# Modern Storybook (7+) — preferred
-curl -s http://localhost:9001/index.json | jq -r '.entries | to_entries[] | select(.value.title | test("Switch"; "i")) | "\(.key)\t\(.value.title)\t\(.value.name)"'
+| Component | `section('X')` | createPage | Story ID |
+|---|---|---|---|
+| Slider | `Components` | `Slider` | `components-slider--slider` |
+| Switch | `Forms` | `Switch` | `forms-switch--switch` |
+| Backdrop | `Components` | `Backdrop` | `components-backdrop--backdrop` |
+| Button | `Components` | `Button` | `components-button--button` |
+| Tabs | `Layout` | `Tabs` | `layout-tabs--tabs` |
+| Tooltip | `Overlays` | `Tooltip` | `overlays-tooltip--tooltip` |
+| PageTopBar | `Components` | `PageTopBar` | `components-pagetopbar--pagetopbar` |
+| AvatarUpload | `Forms` | `AvatarUpload` | `forms-avatarupload--avatarupload` |
 
-# Legacy Storybook (older 6.x) — fallback if /index.json 404s
-curl -s http://localhost:9001/stories.json | jq -r '.stories | to_entries[] | select(.value.kind | test("Switch"; "i")) | "\(.key)\t\(.value.kind)\t\(.value.name)"'
+Slug rule: lowercase the kind segment and replace any non-`[a-z0-9-]` with `-` (Storybook's `@storybook/csf` sanitizer). Multi-word CamelCase names (`PageTopBar`, `AvatarUpload`) become one lowercase word with no internal hyphens — `pagetopbar`, not `page-top-bar`.
+
+### Wrong patterns to avoid
+
+These all produce `.sb-show-errordisplay` overlays — they don't exist:
+
+- ❌ `components-slider--slider-range` (no per-example ids on staging)
+- ❌ `components-slider--slider-default`, `components-slider--slider-tooltip`, etc.
+- ❌ `forms-switch--controlled`, `forms-switch--switch-controlled`
+- ❌ `components-backdrop--backdrop-default`, `components-backdrop--backdrop-invisible`
+
+The two prior observed agent failures (Switch sweep 2026-05-22; Slider-v2 review-iter 1, 2026-05-24) both came from agents constructing per-example ids that don't exist on staging.
+
+### Pre-resolved URLs in the iter prompt
+
+When `--with-mcp` is active, the orchestrator runs a one-shot Playwright probe at startup against BOTH `localhost:<port>` and `picasso.toptal.net`, enumerating `__STORYBOOK_CLIENT_API__.raw()` and pinning the canonical URL for the migrating component. The result is injected into your iter-1 prompt as a `# Story manifest for <Component>` section near the top — use those URLs verbatim. No need to enumerate yourself.
+
+### Live enumeration fallback
+
+If the manifest section is absent (Storybook didn't boot in time, probe timed out), enumerate via `browser_evaluate` on a known-good URL:
+
+```js
+// browser_navigate first to ANY existing iframe URL, e.g.:
+//   http://localhost:9001/iframe.html?id=components-button--button
+// (Button exists on every Picasso build, so this never 404s).
+// Then browser_evaluate this:
+const stories = window.__STORYBOOK_CLIENT_API__?.raw?.() ?? [];
+JSON.stringify(
+  stories
+    .filter(s => /\b<componentNameLower>\b/i.test(s.kind || ''))
+    .map(s => ({ id: s.id, kind: s.kind, name: s.name })),
+  null, 0)
 ```
 
-The first column is the exact story ID — copy-paste it into `?id=<id>` on `iframe.html`. No guessing, no trial-and-error.
+Replace `<componentNameLower>` with the migration target (e.g. `slider`). The returned `id` is the exact string to pass as `?id=<id>` on `iframe.html`.
 
-**Fallback if the index endpoint is unreachable**: read `packages/base/<Component>/src/<Component>/story/index.jsx` to find both:
-- The `.section('<Section>')` value — kebab-cased, this is the URL prefix (`Forms` → `forms-`).
-- The `.createPage('<Page>', ...)` value — kebab-cased, this is the kind suffix.
-- The `addExample(<file>, '<title>', ...)` or `addExample(<file>, { title: '<title>' }, ...)` calls — each title (kebab-cased) is one story name.
-
-Picasso's slug convention: `<section>-<page>--<page>-<story>` — the page name IS repeated after `--` in most stories, but not always (Switch's example titles do not include the page name in the title field, so the story ID is `forms-switch--controlled`, NOT `forms-switch--switch-controlled`). When in doubt, fall back to the index endpoint above.
-
-Worked examples (verified via /index.json):
-
-- Button, "Default" story (kind: `Components/Button`) → `components-button--button-default`
-- Slider, "Range" story (kind: `Components/Slider`) → `components-slider--slider-range`
-- Backdrop, "Invisible" story (kind: `Components/Backdrop`) → `components-backdrop--backdrop-invisible`
-- Switch, "Controlled" story (kind: `Forms/Switch`) → `forms-switch--controlled`
-- Switch, "Uncontrolled" story → `forms-switch--uncontrolled`
-- Switch, "Disabled" story → `forms-switch--disabled`
+> **Note**: Picasso ships Storybook **6.5**, not 7+. `__STORYBOOK_CLIENT_API__.raw()` is the correct surface. `__STORYBOOK_PREVIEW__.storyStoreValue` and `/index.json` are Storybook 7+ — they return `undefined` / 404 here. The two older patterns documented in earlier versions of this file are obsolete.
 
 ## Playwright MCP tools
 
@@ -91,9 +116,23 @@ Worked examples (verified via /index.json):
    - Use the port from `storybook-url.txt` if `:9001` is taken — `cat <runDir>/storybook-url.txt` to confirm.
    - For the baseline comparison, the same shape works on `https://picasso.toptal.net/iframe.html?id=<story-id>&viewMode=story`.
 
-   See §"Story URLs — ENUMERATE, do not guess" above for getting `<story-id>` from Storybook's index endpoint. If a Story manifest section is present in your iteration prompt, use those URLs verbatim — they're already constructed correctly.
+   See §"Story URLs — ONE story per component page" above. If a `# Story manifest for <Component>` section is present in your iteration prompt (orchestrator auto-resolves it for `--with-mcp` runs), use those URLs verbatim — they're already verified against both staging and localhost.
 
-1a. **Wait for the story to actually render before screenshotting.** `browser_navigate` returns when the document loads, but Storybook needs additional time to mount the story component. Do NOT use blind `setTimeout` — it wastes wall clock and is flaky on slow stories. Two reliable approaches:
+1a. **Confirm the navigation actually landed on a real story** (NOT a 404 overlay). Storybook 6 returns HTTP 200 with an `.sb-show-errordisplay` overlay when the id is invalid — there is no network-level signal. Run this check AFTER every `browser_navigate` and BEFORE `browser_take_screenshot`:
+
+   ```
+   mcp__playwright__browser_evaluate { function: "() => ({
+     errorOverlay: document.body.classList.contains('sb-show-errordisplay'),
+     title: document.title,
+     rootChildren: (document.getElementById('storybook-root') || document.getElementById('root'))?.children?.length ?? 0
+   })" }
+   ```
+
+   A real story render gives `errorOverlay: false`, `title: '<section>-<name>--<name>'`, `rootChildren: 1` or more. A 404 gives `errorOverlay: true`, `title: 'Webpack App'`, `rootChildren: 0`.
+
+   If you got the overlay, STOP. The url is wrong — re-read the Story manifest section or re-enumerate via `__STORYBOOK_CLIENT_API__.raw()`. Do NOT proceed to `browser_take_screenshot`. PR #4946 review-iter 1 (Slider-v2, 2026-05-24) committed three `baseline--components-slider--slider-*.png` files into the worktree root that were all overlay screenshots, because the agent skipped this check — reviewer caught them and the fix was a forced `git rm`.
+
+1b. **Wait for the story to actually render before screenshotting.** `browser_navigate` returns when the document loads, but Storybook needs additional time to mount the story component. Do NOT use blind `setTimeout` — it wastes wall clock and is flaky on slow stories. Two reliable approaches:
 
    ```
    # Preferred — wait for a known element/text in the story body
@@ -101,12 +140,12 @@ Worked examples (verified via /index.json):
    ```
 
    ```
-   # Fallback — programmatically poll for Storybook's render-complete state
+   # Fallback — programmatically poll for Storybook 6's render-complete state
    mcp__playwright__browser_evaluate { function: "async () => {
      for (let i = 0; i < 50; i++) {
-       const sel = window.__STORYBOOK_PREVIEW__?.urlStore?.selection
-       const root = document.getElementById('storybook-root')
-       if (sel && root && root.children.length > 0) return true
+       const api = window.__STORYBOOK_CLIENT_API__
+       const root = document.getElementById('storybook-root') || document.getElementById('root')
+       if (api?.raw && root && root.children.length > 0) return true
        await new Promise(r => setTimeout(r, 100))
      }
      return false
@@ -139,7 +178,7 @@ Naming convention (kebab-case, no spaces, no leading slash):
 - `local--<story-id>--<state>.png` / `baseline--<story-id>--<state>.png` — for interaction states (hover, focused, checked, opened, etc.).
 - `iter<N>-local--<story-id>.png` if you want to keep iter-by-iter history within one sweep tick (useful when iterating on a single Happo diff). Not required, just allowed.
 
-The filename is RELATIVE to the MCP's output-dir — pass just `local--components-button--button-default.png`, NOT `migration-runs/.../playwright/local--...png`. The MCP resolves the relative path internally.
+The filename is RELATIVE to the MCP's output-dir — pass just `local--components-button--button.png`, NOT `migration-runs/.../playwright/local--...png`. The MCP resolves the relative path internally.
 
 Example call:
 

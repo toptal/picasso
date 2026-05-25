@@ -1,8 +1,8 @@
 #!/usr/bin/env tsx
 /**
  * Happo gate verifier — runs as a CLI from migration-gate.sh's strict-Happo
- * block, after `pnpm happo --only <Component>` has uploaded a report for the
- * worktree's HEAD.
+ * block, after `pnpm exec happo run <sha>` has uploaded a full-Storybook
+ * report for the worktree's HEAD.
  *
  * The previous gate path relied on extracting the report URL from the Happo
  * CLI's stdout with a regex. The CLI's actual output (mostly `pnpm
@@ -179,20 +179,78 @@ const main = async (): Promise<void> => {
   // `pnpm happo` just uploaded for (Happo CLI uses `git rev-parse HEAD`).
   const headSha = git(['rev-parse', 'HEAD'], args.worktree)
 
-  // Resolve BASE SHA from the merge-base with the integration branch.
-  // `git merge-base HEAD origin/<baseBranch>` returns the commit where
-  // the migration branch diverged — Happo's base SHA for the comparison
-  // is whichever commit on the base branch has the most recent uploaded
-  // report. Empirically (Picasso): every commit on
-  // feature/picasso-modernization-temp has a Storybook report, so the
-  // merge-base works. `git fetch origin <baseBranch>` ensures the ref
-  // exists locally even if the worktree is fresh.
-  spawnSync('git', ['fetch', 'origin', args.baseBranch, '--quiet'], {
+  // Cascade BASE SHA selection. Picasso has two CI paths that upload
+  // Happo reports:
+  //   - .github/workflows/visual-testing.yml (push to master) → every
+  //     master commit has a report.
+  //   - .github/workflows/ci.yaml (pull_request) →
+  //     happo-ci-github-actions uploads PR-HEAD and (if missing) the
+  //     PR's base SHA.
+  // Consequence: master always has reports. The integration branch's
+  // HEAD has a report iff some PR has ever opened against it. Other
+  // commits on the integration branch — including ones merged in from
+  // sibling branches without going through a PR — may not have any
+  // report at all.
+  //
+  // Probe candidates in semantic-correctness order; pick the first SHA
+  // with an actual Happo upload. Note migration 2026-05-25 wedged on
+  // this: its merge-base was an orchestrator-branch commit reachable
+  // from the integration branch but never the HEAD of any PR → no
+  // report → compare 404'd forever. Cascading to base-branch HEAD (or
+  // master HEAD) produces a usable, if older, baseline instead of a
+  // hard ERROR.
+  const projectQuery = `?project=${encodeURIComponent(args.projectLabel)}`
+  const probeReport = async (sha: string): Promise<boolean> => {
+    const resp = await fetch(
+      `${HAPPO_HOST}/api/reports/${sha}${projectQuery}`,
+      { headers: { Authorization: basicAuthHeader(apiKey, apiSecret) } }
+    )
+
+    return resp.ok
+  }
+
+  spawnSync('git', ['fetch', 'origin', args.baseBranch, 'master', '--quiet'], {
     cwd: args.worktree,
   })
-  const baseSha = git(
-    ['merge-base', 'HEAD', `origin/${args.baseBranch}`],
-    args.worktree
+  const baseCandidates: readonly [string, string][] = [
+    [
+      'merge-base',
+      git(['merge-base', 'HEAD', `origin/${args.baseBranch}`], args.worktree),
+    ],
+    [
+      `${args.baseBranch}-HEAD`,
+      git(['rev-parse', `origin/${args.baseBranch}`], args.worktree),
+    ],
+    ['master-HEAD', git(['rev-parse', 'origin/master'], args.worktree)],
+  ]
+
+  let baseSha: string | undefined
+  let baseSource: string | undefined
+
+  for (const [source, candidate] of baseCandidates) {
+    // eslint-disable-next-line no-await-in-loop
+    if (await probeReport(candidate)) {
+      baseSha = candidate
+      baseSource = source
+      break
+    }
+  }
+
+  if (!baseSha) {
+    const summary = baseCandidates
+      .map(([source, sha]) => `${source}=${sha}`)
+      .join(', ')
+
+    emit({
+      status: 'NO_BASELINE',
+      reason: `No Happo baseline found on any candidate (${summary}). Open a PR against ${args.baseBranch} to trigger happo-ci-github-actions, or verify visual-testing.yml ran on master. Best-effort PASS — gate defers to CI.`,
+      headSha,
+    })
+    process.exit(0)
+  }
+
+  process.stderr.write(
+    `[happo-verify] base SHA: ${baseSha} (source: ${baseSource})\n`
   )
 
   // Query Happo's compare-results endpoint with retry-on-404. Happo
@@ -213,23 +271,20 @@ const main = async (): Promise<void> => {
   // Non-404 errors don't retry (auth, server errors, etc.).
   const RETRY_DELAYS_MS = [15_000, 30_000, 45_000, 60_000, 60_000]
 
-  // 2026-05-19 (Modal v3 investigation): `pnpm happo run <sha> --only X`
-  // uploads the report with the identifier `<sha>-X` (the Happo CLI
-  // appends `-${only}` to the SHA — see
-  // node_modules/happo.io/build/executeCli.js line 34-36). The compare
-  // endpoint MUST be queried with the same identifier Happo stored the
-  // report under, otherwise the lookup misses and 404s indefinitely.
-  // Empirical: Modal compare with `<base-bare>/<head-bare>` 404s; same
-  // base × `<head>-Modal` returns 200 with the actual diff data. Drawer
-  // previously appeared to work with bare SHAs only because Happo's
-  // compare endpoint lazily creates `<bare>/<bare>` records on first
-  // GET — non-deterministic, fails for the asset-reuse path Modal hit.
-  // Base SHA stays bare because the integration branch's CI uploads
-  // WITHOUT --only (full Storybook → bare-SHA report).
-  const headIdentifier = args.migratedComponent
-    ? `${headSha}-${args.migratedComponent}`
-    : headSha
-  const compareUrl = `${HAPPO_HOST}/a/${args.accountId}/p/${args.projectId}/compare/${baseSha}/${headIdentifier}`
+  // Both base and head reports are full-Storybook uploads under the
+  // bare SHA (no `--only <component>` filter). The 2026-05-24 gate
+  // change (migration-gate.sh:507-515) switched from filtered uploads
+  // to full uploads after Slider v2 found that filtered-baseline-vs-
+  // filtered-head can pass with 0 diffs while CI's full-vs-full sees
+  // real regressions. Component-level filtering of diffs happens below
+  // on the comparison RESULTS (see `componentDiffs` filter), NOT on the
+  // report identifier. Pre-2026-05-24 (Modal/Drawer), uploads used
+  // `--only` and Happo's CLI appended `-<component>` to the report
+  // identifier (node_modules/happo.io/build/executeCli.js:34-36); the
+  // verifier mirrored that suffix. That code path is dead — the gate
+  // never invokes `--only`, so the suffix always 404s (Note migration
+  // 2026-05-25 wedged ~30min on this before being caught).
+  const compareUrl = `${HAPPO_HOST}/a/${args.accountId}/p/${args.projectId}/compare/${baseSha}/${headSha}`
 
   let results: Awaited<ReturnType<typeof fetchCompareResults>> | null = null
 
@@ -238,7 +293,7 @@ const main = async (): Promise<void> => {
       args.accountId,
       args.projectId,
       baseSha,
-      headIdentifier,
+      headSha,
       apiKey,
       apiSecret
     )
@@ -271,57 +326,37 @@ const main = async (): Promise<void> => {
   }
 
   if ('__status' in results) {
-    // 404 typically means one of the two SHAs has no report. If HEAD's
-    // report isn't uploaded yet, that's an ERROR (we just ran `pnpm
-    // happo`; report should exist). If BASE's report doesn't exist,
-    // that's NO_BASELINE — can't compare, treat as best-effort PASS so
-    // we don't block the gate on infra issues.
     if (results.__status === 404) {
-      // 2026-05-19 fix: probe URLs MUST match Happo CLI's
-      // node_modules/happo.io/build/fetchReport.js shape — that is
-      // `/api/reports/<id>?project=<projectLabel>`. The bare-URL form
-      // without the `?project=` query param was wrong: it returned 404
-      // even for reports that existed, leading the verifier to
-      // misclassify successful uploads as "missing HEAD" → ERROR. The
-      // HEAD identifier carries the `-<component>` suffix when
-      // `--only <component>` was used at upload time (see CLI logic).
-      const projectQuery = `?project=${encodeURIComponent(args.projectLabel)}`
+      // BASE was pre-verified by the cascade above, so a compare-
+      // results 404 narrows to two cases:
+      //   (a) HEAD's report isn't indexed yet (transient — `pnpm exec
+      //       happo run <sha>` just completed but Happo's API hasn't
+      //       caught up). The retry budget above usually absorbs this;
+      //       if we're here, the budget was exhausted.
+      //   (b) Both reports exist but Happo hasn't generated the
+      //       comparison row yet (rare).
+      // Probe HEAD to disambiguate. Probe URL format matches Happo
+      // CLI's node_modules/happo.io/build/fetchReport.js (fix
+      // 2026-05-19): must include `?project=<label>` query param,
+      // otherwise the API 404s even for reports that exist.
       const probeHead = await fetch(
-        `${HAPPO_HOST}/api/reports/${headIdentifier}${projectQuery}`,
-        { headers: { Authorization: basicAuthHeader(apiKey, apiSecret) } }
-      )
-      const probeBase = await fetch(
-        `${HAPPO_HOST}/api/reports/${baseSha}${projectQuery}`,
+        `${HAPPO_HOST}/api/reports/${headSha}${projectQuery}`,
         { headers: { Authorization: basicAuthHeader(apiKey, apiSecret) } }
       )
 
       if (!probeHead.ok) {
         emit({
           status: 'ERROR',
-          reason: `Happo has no report for HEAD ${headIdentifier} (project=${args.projectLabel}). Did 'pnpm happo --only ...' complete uploads? probe=${probeHead.status}`,
+          reason: `Happo has no report for HEAD ${headSha} (project=${args.projectLabel}). Did 'pnpm exec happo run <sha>' complete? probe=${probeHead.status}`,
           headSha,
           baseSha,
         })
         process.exit(2)
       }
 
-      if (!probeBase.ok) {
-        emit({
-          status: 'NO_BASELINE',
-          reason: `Happo has no report for BASE ${baseSha} (project=${args.projectLabel}); cannot compare. Best-effort PASS — gate will rely on CI's Happo to verify against the canonical baseline.`,
-          headSha,
-          baseSha,
-          reportUrl: compareUrl,
-        })
-        process.exit(0)
-      }
-
-      // Both reports exist but the comparison endpoint 404'd — Happo
-      // hasn't generated the comparison yet. This is rare; treat as
-      // ERROR so the operator sees it.
       emit({
         status: 'ERROR',
-        reason: `Both base + head reports exist but compare-results returned 404; report generation may be delayed`,
+        reason: `Both base + head reports exist but compare-results returned 404; comparison generation may be delayed`,
         headSha,
         baseSha,
         reportUrl: compareUrl,

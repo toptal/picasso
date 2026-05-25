@@ -445,6 +445,9 @@ fi
 #
 #    Skip conditions:
 #      - MIGRATION_GATE_HAPPO=skip (operator-driven; used by sandbox runs).
+#      - Auto-skip: diff against base branch is config-only (no source
+#        files that can affect rendered pixels). Disable with
+#        MIGRATION_GATE_HAPPO_AUTOSKIP=0.
 #      - HAPPO_API_KEY / HAPPO_API_SECRET unset (creds required by happo CLI).
 #    See docs/migration/ORCHESTRATOR.md §Happo setup for env wiring.
 #
@@ -454,8 +457,52 @@ fi
 #    and treats happo as PASS (best-effort — better to defer to designer
 #    manual review than to hard-fail when our parser is stale). The
 #    canonical schema lives at https://docs.happo.io/.
+#
+# Auto-skip detection: if the migration commit changes only config/docs
+# (changesets, package.json, lockfile, tsconfig, *.md), Happo cannot
+# produce meaningful diffs. Common cases: peer-dep drops (Note PF-1994
+# was package.json + changeset + lockfile only), changeset-only PRs,
+# docs updates. Without this, Note migration 2026-05-25 burned ~30 min
+# on Happo for a change that physically cannot change pixels.
+#
+# Scope = HEAD~1..HEAD, not origin/<base>...HEAD. The orchestrator
+# commits each iter as a single commit (fresh on iter 1, amended on
+# iter 2+ — see orchestrator-core.ts "committed agent edits (fresh)" /
+# "amended commit — fresh SHA for Happo"). So HEAD~1 is reliably the
+# pre-migration tip and HEAD..HEAD~1 shows exactly the agent's work.
+# The PR-level diff (origin/<base>...HEAD) would also include
+# orchestrator-branch tooling commits (.gitignore, manifest.json) that
+# precede the migration commit; those are operationally irrelevant but
+# would suppress the auto-skip if we scoped to them.
+#
+# Opt-out: MIGRATION_GATE_HAPPO_AUTOSKIP=0 forces Happo to run.
+HAPPO_AUTOSKIP_REASON=""
+if [ "${MIGRATION_GATE_HAPPO_AUTOSKIP:-1}" = "1" ]; then
+  HAPPO_DIFF_FILES="$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo)"
+
+  if [ -n "$HAPPO_DIFF_FILES" ]; then
+    # Files that physically cannot affect rendered Storybook pixels.
+    # Anchored alternation:
+    #   .changeset/*.md   — changeset notes
+    #   package.json       — at any depth
+    #   pnpm-lock.yaml     — repo-root lockfile
+    #   tsconfig*.json     — TS config at any depth
+    #   *.md               — any markdown (READMEs, docs, ADRs)
+    HAPPO_NONCONFIG_FILES="$(echo "$HAPPO_DIFF_FILES" \
+      | grep -vE '^(\.changeset/[^/]+\.md|([^[:space:]]+/)?package\.json|pnpm-lock\.yaml|([^[:space:]]+/)?tsconfig[^/]*\.json|([^[:space:]]+/)?[^/]+\.md)$' \
+      || true)"
+
+    if [ -z "$HAPPO_NONCONFIG_FILES" ]; then
+      HAPPO_DIFF_COUNT="$(echo "$HAPPO_DIFF_FILES" | grep -c . || echo 0)"
+      HAPPO_AUTOSKIP_REASON="HEAD commit is config-only (${HAPPO_DIFF_COUNT} file(s): changesets/package.json/lockfile/tsconfig/docs) — cannot affect rendered pixels. Override with MIGRATION_GATE_HAPPO_AUTOSKIP=0."
+    fi
+  fi
+fi
+
 if [ "${MIGRATION_GATE_HAPPO:-run}" = "skip" ]; then
   run_stage_skip "happo" "MIGRATION_GATE_HAPPO=skip"
+elif [ -n "$HAPPO_AUTOSKIP_REASON" ]; then
+  run_stage_skip "happo" "$HAPPO_AUTOSKIP_REASON"
 elif [ -z "${HAPPO_API_KEY:-}" ] || [ -z "${HAPPO_API_SECRET:-}" ]; then
   # Part 4 (2026-05-13): Happo is now MANDATORY for migrations. Previously
   # this path skipped silently — that meant Happo failures first surfaced
