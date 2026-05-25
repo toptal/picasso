@@ -337,16 +337,37 @@
     "Note": {
       "tier": 1,
       "package": "packages/base/Note",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
       "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "branch": "migrate-Note-v1",
+      "worktree": "migration-runs/2026-05-25/Note-v1/worktree",
+      "iterations": 3,
       "merged_at": null,
-      "notes": "PF-1992 orchestrator sandbox. Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap."
+      "notes": "PF-1992 orchestrator sandbox. Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
+      "variants": {
+        "v1": {
+          "status": "in_progress",
+          "pr": null,
+          "branch": "migrate-Note-v1",
+          "worktree": "migration-runs/2026-05-25/Note-v1/worktree",
+          "iterations": 3,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null,
+      "interrupted_at": "2026-05-25T09:06:04.582Z"
     },
     "Typography": {
       "tier": 1,

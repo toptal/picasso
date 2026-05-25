@@ -578,30 +578,34 @@ function buildHappoFailureSection(
     "   - **UNRELATED FLAKE** (the diff's `component` is something OTHER than the migration target — e.g. `PageTopBarMenu` diff during a Slider migration) → no source change. Post ONE concise PR comment listing the unrelated snapshots as a short bulleted list (one line per snapshot: `Component/Variant — <≤8-word description of what shifted>`). NO per-diff prose, NO speculation about root cause, NO recommendations to designers. Cap the whole comment at ~80 words. The designer will inspect in the Happo UI and ask for detail if they need it. Per-snapshot inspection IS required (don't bulk-dismiss without looking), but the inspection notes stay LOCAL — only the short list goes into the PR comment.\n" +
     "   - **INTENTIONAL** (only if approved in the plan file) → annotate the changeset's `## Intentional visual changes` section + post a SHORT PR comment (one sentence) citing the plan-file authorization line. If unsure: it's NOT intentional — treat as regression and fix.\n" +
     "4. **Playwright comparison is part of the loop, not optional.** When the orchestrator detects Happo failures during sweep AND `--with-mcp` was passed, it starts the worktree's Storybook before invoking you. For each Happo diff on a migrated-component story:\n" +
-    '   - **Picasso Storybook story IDs follow the pattern `components-<name>--<name>-<story>`** — the component name is REPEATED after `--`, then the story name is appended in kebab-case. Examples:\n' +
-    '     - Slider, "Range" story → `components-slider--slider-range`\n' +
-    '     - Slider, "Tooltip" story → `components-slider--slider-tooltip`\n' +
-    '     - Slider, "Initial value" story → `components-slider--slider-initial-value`\n' +
-    '     - Backdrop, "Default" story → `components-backdrop--backdrop-default`\n' +
-    '     **Do NOT navigate to `components-slider--range` or `components-slider--default`** — those produce "Couldn\'t find story matching" errors. The repeated component-name segment is mandatory.\n' +
-    '     Manager URL: `https://picasso.toptal.net/?path=/story/components-slider--slider-range`\n' +
-    '     Iframe URL:  `https://picasso.toptal.net/iframe.html?id=components-slider--slider-range`\n' +
-    '     Story names come from the `addExample` title in `packages/base/<Component>/src/<Component>/story/index.jsx` (the title string, kebab-cased). If you still need to enumerate, use `storyStoreV7`:\n' +
+    '   - **Picasso Storybook story IDs follow the pattern `<section>-<name>--<name>`** — exactly ONE story per component page. Examples (all verified against picasso.toptal.net 2026-05-25):\n' +
+    '     - Slider → `components-slider--slider`\n' +
+    '     - Switch → `forms-switch--switch`\n' +
+    '     - Backdrop → `components-backdrop--backdrop`\n' +
+    '     - Tabs → `layout-tabs--tabs`\n' +
+    '     - Tooltip → `overlays-tooltip--tooltip`\n' +
+    "     All examples (Default, Range, Hover, Initial value, etc.) render as in-page chapters within that single story — they are NOT separate stories. URLs like `components-slider--slider-range` or `components-slider--slider-default` produce \"Couldn't find story matching\" 404 overlays because they don't exist. Section prefix comes from `PicassoBook.section('X')` in the component's `story/index.jsx` (Forms / Layout / Overlays / Picasso Forms / etc.).\n" +
+    '     Iframe URL:  `https://picasso.toptal.net/iframe.html?id=<section>-<name>--<name>&viewMode=story`\n' +
+    "     **If the Story manifest section (further up in this prompt) is present, use the URLs there verbatim — the orchestrator already resolved them via the Storybook client API. Do NOT re-derive.** If absent (storybook didn't boot in time), enumerate live:\n" +
     '     ```js\n' +
-    '     // browser_evaluate AFTER browser_navigate to ANY iframe.html?id=...\n' +
-    '     // (the storyStore initializes once the iframe boots; the passed id need not exist):\n' +
-    '     await window.__STORYBOOK_PREVIEW__?.storyStoreValue?.cacheAllCSFFiles?.();\n' +
-    '     const entries = window.__STORYBOOK_PREVIEW__?.storyStoreValue?.storyIndex?.entries ?? {};\n' +
+    '     // browser_evaluate AFTER browser_navigate to ANY known-good iframe.html?id=...\n' +
+    '     // (e.g. iframe.html?id=components-button--button — Button exists on every Picasso build):\n' +
+    '     const stories = window.__STORYBOOK_CLIENT_API__?.raw?.() ?? [];\n' +
     '     JSON.stringify(\n' +
-    '       Object.values(entries)\n' +
-    "         .filter(e => e.type === 'story' && /\\b<componentNameLower>\\b/i.test(e.title))\n" +
-    '         .map(e => ({ id: e.id, title: e.title, name: e.name })),\n' +
+    '       stories\n' +
+    "         .filter(s => /\\b<componentNameLower>\\b/i.test(s.kind || ''))\n" +
+    '         .map(s => ({ id: s.id, kind: s.kind, name: s.name })),\n' +
     '       null, 0)\n' +
     '     ```\n' +
-    '     Replace `<componentNameLower>` with the migration target (e.g. "slider"). The returned `id` values are the exact strings to use in `iframe.html?id=<id>` URLs. Story IDs may differ between baseline and local during migrations — discover BOTH.\n' +
-    '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/iframe.html?id=<resolved-baseline-id>` (pre-migration deployed baseline).\n' +
+    '     Replace `<componentNameLower>` with the migration target (e.g. "slider"). Picasso ships Storybook 6.5 — `__STORYBOOK_CLIENT_API__.raw()` is the correct surface; `__STORYBOOK_PREVIEW__.storyStoreValue` is Storybook 7+ and returns `undefined` here.\n' +
+    "   - **MANDATORY 404 check after every `browser_navigate`** — Storybook 6 returns 200 OK with an error overlay (`.sb-show-errordisplay`) when the id doesn't resolve. There is no HTTP-level 404 to catch. Run this `browser_evaluate` BEFORE `browser_take_screenshot`:\n" +
+    '     ```js\n' +
+    "     document.body.classList.contains('sb-show-errordisplay')\n" +
+    '     ```\n' +
+    '     If `true`, the URL is wrong — STOP, re-enumerate via the snippet above, do not save the screenshot. PR #4946 review-iter 1 (2026-05-24) committed three `baseline--components-slider--slider-*.png` files into the worktree root that were all error-overlay screenshots, because the agent skipped this check. Reviewer caught it; the fix was a forced `git rm`.\n' +
+    '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/iframe.html?id=<resolved-baseline-id>&viewMode=story` (pre-migration deployed baseline). Run the `.sb-show-errordisplay` check.\n' +
     '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`.\n' +
-    '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/iframe.html?id=<resolved-local-id>` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken).\n' +
+    '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/iframe.html?id=<resolved-local-id>&viewMode=story` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken). Run the `.sb-show-errordisplay` check.\n' +
     '   - `mcp__playwright__browser_take_screenshot` → save under `local--<story-id>.png`.\n' +
     '   - For interactive components (Slider/Switch/Tabs/etc.) repeat for `hover`/`focus`/`pressed`/`disabled` states. Use `browser_hover`/`browser_click`/`browser_press_key` between captures.\n' +
     '   - Read both baseline and local PNGs; the visual delta tells you what direction the shift is. But screenshots alone are NOT enough to identify the exact CSS property — go to step 5.\n' +
@@ -1685,74 +1689,188 @@ interface StorybookHandle {
 }
 
 /**
- * Fetch the worktree's Storybook `/index.json` and build a "Story manifest"
- * prompt section listing every story for the migrating component as a
- * canonical iframe URL (2026-05-23).
+ * Resolve the canonical Storybook iframe URL for the migrating component on
+ * both the worktree's local Storybook AND the deployed baseline at
+ * `picasso.toptal.net`, then build a "Story manifest" prompt section that
+ * pins those exact URLs (2026-05-25 rewrite).
  *
- * Why this exists: agents previously had to enumerate story IDs themselves
- * (`curl /index.json | jq` or guess from `story/index.jsx`). Switch sweep
- * 2026-05-22 burned an iter on a 404 because the agent guessed
- * `components-switch--switch-controlled` when the real ID was
- * `forms-switch--controlled`. Pre-computing removes the guesswork.
+ * Why we don't use `/index.json` anymore: Picasso ships Storybook 6.5 which
+ * does NOT serve `/index.json` — that endpoint is Storybook 7+. The previous
+ * implementation curl'd `/index.json` and ALWAYS returned `null` (404), which
+ * silently dropped the manifest section from the prompt. The agent then fell
+ * back to the hardcoded `<section>-<name>--<name>-<story>` pattern in the
+ * iter prompt — a pattern that doesn't match ANY real story id on staging.
+ * Result (Slider-v2, 2026-05-24): every `baseline--*.png` was the Storybook
+ * "Couldn't find story matching" error overlay (`.sb-show-errordisplay`),
+ * captured and committed as a "verified baseline". See PR #4946 review-iter 1
+ * and `docs/migration/decisions/staging-story-id-format.md`.
  *
- * Match strategy: case-insensitive substring on `title`. The title format is
- * `<Section>/<Page>` (e.g. `Forms/Switch`); we want any story whose page
- * matches the component id. False positives are tolerable (extra URLs the
- * agent can ignore) but false negatives are not (agent falls back to
- * guessing).
+ * The real id format on Picasso's HUMAN-mode Storybook (both staging and
+ * `pnpm start:storybook`) is `<section>-<name>--<name>` — exactly ONE story
+ * per component page, with all examples rendered as in-page chapters. To get
+ * the actual id we boot a headless chromium against a known-stable seed URL
+ * (`components-button--button` — Button exists on every Picasso build),
+ * wait for Storybook 6's `__STORYBOOK_CLIENT_API__.raw()` to populate, then
+ * filter by `kind` matching the migration component.
  *
- * Returns `null` on any failure — Storybook 404, network blip, malformed
- * JSON, zero matches. Caller appends only when non-null.
+ * Returns `null` on any failure — chromium launch error, Storybook not yet
+ * booted on the local port, story not found. Caller appends only when
+ * non-null; null falls back to the visual-verification.md general guidance.
  */
+interface ResolvedStoryUrl {
+  readonly id: string
+  readonly kind: string
+  readonly localUrl: string
+  readonly baselineUrl: string
+}
+
+const STAGING_BASELINE_ORIGIN = 'https://picasso.toptal.net'
+const STORYBOOK_PROBE_SEED_ID = 'components-button--button'
+const STORYBOOK_PROBE_NAV_TIMEOUT_MS = 30_000
+const STORYBOOK_PROBE_API_TIMEOUT_MS = 20_000
+
+async function probeStorybookForComponent(
+  origin: string,
+  componentName: string
+): Promise<{ id: string; kind: string } | null> {
+  // Lazy import — chromium loads a 100MB+ browser binary; only pay that cost
+  // when the probe actually runs (i.e. `--with-mcp` migrations that need
+  // visual verification). Other code paths shouldn't take the hit.
+  //
+  // `playwright` is transitive via `@playwright/mcp` in the root
+  // package.json. If that goes away, this import will throw a clear
+  // ModuleNotFoundError — the caller catches and returns null, so the
+  // orchestrator degrades gracefully (no manifest section, agent uses
+  // general guidance).
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  const { chromium } = await import('playwright')
+
+  let browser = null as Awaited<ReturnType<typeof chromium.launch>> | null
+
+  try {
+    browser = await chromium.launch({ headless: true })
+    const ctx = await browser.newContext()
+    const page = await ctx.newPage()
+    const seedUrl = `${origin}/iframe.html?id=${STORYBOOK_PROBE_SEED_ID}&viewMode=story`
+
+    await page.goto(seedUrl, {
+      timeout: STORYBOOK_PROBE_NAV_TIMEOUT_MS,
+      waitUntil: 'domcontentloaded',
+    })
+
+    // Storybook 6's CLIENT_API is exposed almost immediately, but raw() only
+    // returns once the story-loader has run. Poll until populated or
+    // STORYBOOK_PROBE_API_TIMEOUT_MS elapses.
+    await page.waitForFunction(
+      () => {
+        const w = window as unknown as {
+          __STORYBOOK_CLIENT_API__?: { raw?: () => unknown[] }
+        }
+        const stories = w.__STORYBOOK_CLIENT_API__?.raw?.()
+
+        return Array.isArray(stories) && stories.length > 0
+      },
+      null,
+      { timeout: STORYBOOK_PROBE_API_TIMEOUT_MS }
+    )
+
+    return await page.evaluate(name => {
+      const w = window as unknown as {
+        __STORYBOOK_CLIENT_API__?: {
+          raw?: () => { id: string; kind: string; name: string }[]
+        }
+      }
+      const stories = w.__STORYBOOK_CLIENT_API__?.raw?.() ?? []
+      // `\b<name>\b` — match `Components/Slider` for `Slider` but not
+      // `Components/SliderValueLabel` for `Slider`. Word boundary handles
+      // both `/` and end-of-string.
+      const re = new RegExp(`\\b${name}\\b`, 'i')
+      const found = stories.find(s => re.test(s.kind || ''))
+
+      return found ? { id: found.id, kind: found.kind } : null
+    }, componentName)
+  } catch {
+    return null
+  } finally {
+    await browser?.close().catch(() => {
+      /* ignore */
+    })
+  }
+}
+
 async function fetchStoryManifestSection(
   componentId: string,
   port: number
 ): Promise<string | null> {
-  try {
-    const response = await fetch(`http://localhost:${port}/index.json`)
+  // Drop nested-id segments like `query-builder/AutoComplete` → `AutoComplete`
+  // so the regex matches the storybook `kind` (e.g. `Components/AutoComplete`).
+  const shortName = componentId.split('/').pop() ?? componentId
+  const localOrigin = `http://localhost:${port}`
 
-    if (!response.ok) {
-      return null
-    }
-    const data = (await response.json()) as {
-      entries?: Record<string, { title: string; name: string; type?: string }>
-    }
+  // Probe both in parallel — local is the source of truth (it reflects the
+  // worktree's edits) but staging gives us the verified pre-migration
+  // baseline URL. The id MUST be identical on both since Picasso's
+  // PicassoBook generates the same `<section>-<name>--<name>` shape in
+  // HUMAN mode regardless of which build serves it.
+  const [local, baseline] = await Promise.all([
+    probeStorybookForComponent(localOrigin, shortName),
+    probeStorybookForComponent(STAGING_BASELINE_ORIGIN, shortName),
+  ])
 
-    if (!data.entries) {
-      return null
-    }
-    // Drop the last path segment of nested ids like `query-builder/AutoComplete`
-    // → `AutoComplete` so Storybook's `Components/AutoComplete` title matches.
-    const shortName = componentId.split('/').pop() ?? componentId
-    const needle = shortName.toLowerCase()
-    const matches = Object.entries(data.entries).filter(([, entry]) => {
-      if (entry.type && entry.type !== 'story') {
-        return false
-      }
-
-      return entry.title.toLowerCase().includes(needle)
-    })
-
-    if (matches.length === 0) {
-      return null
-    }
-    const lines = matches.map(
-      ([id, entry]) =>
-        `- \`http://localhost:${port}/iframe.html?id=${id}&viewMode=story\` — ${entry.title} / ${entry.name}`
-    )
-
-    return (
-      `# Story manifest for ${componentId} ` +
-      `(auto-fetched from Storybook /index.json at startup)\n\n` +
-      `Use these URLs verbatim for \`mcp__playwright__browser_navigate\`. ` +
-      `No need to guess story IDs, run \`curl /index.json | jq\`, or read \`story/index.jsx\` ` +
-      `— the orchestrator pre-resolved them. Pass each URL to \`browser_navigate\`, then ` +
-      `\`browser_wait_for { text: ... }\` for a known story-body string before screenshotting.\n\n` +
-      lines.join('\n')
-    )
-  } catch {
+  if (!local && !baseline) {
     return null
   }
+  // Prefer local-resolved id; fall back to baseline (rare: local hasn't
+  // booted but staging worked). They should match — if they don't, surface
+  // both to the agent so the operator can spot the divergence.
+  const resolved: ResolvedStoryUrl = {
+    id: (local ?? baseline)!.id,
+    kind: (local ?? baseline)!.kind,
+    localUrl: local
+      ? `${localOrigin}/iframe.html?id=${local.id}&viewMode=story`
+      : `${localOrigin}/iframe.html?id=${
+          baseline!.id
+        }&viewMode=story (id from staging — local probe failed)`,
+    baselineUrl: baseline
+      ? `${STAGING_BASELINE_ORIGIN}/iframe.html?id=${baseline.id}&viewMode=story`
+      : `${STAGING_BASELINE_ORIGIN}/iframe.html?id=${
+          local!.id
+        }&viewMode=story (id from local — staging probe failed)`,
+  }
+
+  const divergence =
+    local && baseline && local.id !== baseline.id
+      ? `\n\n**WARNING — staging and local resolved DIFFERENT ids:**\n` +
+        `- Local: \`${local.id}\` (${local.kind})\n` +
+        `- Staging: \`${baseline.id}\` (${baseline.kind})\n` +
+        `This usually means the component was renamed or moved between sections in master. ` +
+        `The local id reflects YOUR edits; use it for screenshots but verify both before claiming parity.`
+      : ''
+
+  return (
+    `# Story manifest for ${componentId} ` +
+    `(auto-resolved from Storybook \`__STORYBOOK_CLIENT_API__.raw()\` at startup, 2026-05-25)\n\n` +
+    `Picasso's HUMAN-mode Storybook serves exactly ONE story per component page — ` +
+    `\`${resolved.id}\` for this component, kind \`${resolved.kind}\`. All examples ` +
+    `(Default, Range, Hover, etc.) render as in-page chapters within that single story, ` +
+    `NOT as separate stories. Do not append example names to the id (\`${resolved.id}-default\`, ` +
+    `\`${resolved.id}-range\` etc. all produce "Couldn't find story matching" 404 overlays).\n\n` +
+    `## Canonical URLs — use these verbatim\n\n` +
+    `- **Baseline (master)**: \`${resolved.baselineUrl}\`\n` +
+    `- **Local (worktree)**:  \`${resolved.localUrl}\`\n\n` +
+    `## Mandatory 404 check after every \`browser_navigate\`\n\n` +
+    `Storybook 6.5 returns 200 OK with an error overlay when the id doesn't ` +
+    `resolve — there is no HTTP-level signal. Detect via:\n\n` +
+    '```js\n' +
+    '// browser_evaluate AFTER browser_navigate, BEFORE browser_take_screenshot:\n' +
+    "document.body.classList.contains('sb-show-errordisplay')\n" +
+    '```\n\n' +
+    `If \`true\`, you navigated to a wrong id — re-read this manifest section and ` +
+    `use the canonical URL above. Do NOT screenshot the overlay and claim it as ` +
+    `a baseline (PR #4946 review-iter 1 committed three such bogus baselines into ` +
+    `the worktree root; reviewer caught them).` +
+    divergence
+  )
 }
 
 const STORYBOOK_PORT_RANGE_START = 9001
@@ -6085,22 +6203,23 @@ async function sweepOne(
     ? await storybook.start(wtPath, runDir)
     : null
 
-  // Pre-compute story manifest (2026-05-23) so the agent doesn't have to
-  // guess story IDs. Only when Storybook is running — appended to the
-  // iter-1 prompt below. Null on any failure (Storybook 404, no matches,
-  // etc.); agent falls back to the §"Story URLs — ENUMERATE" guidance.
+  // Pre-resolve canonical story URLs (2026-05-23 → rewrite 2026-05-25) so
+  // the agent doesn't have to guess story IDs. Only when Storybook is
+  // running — appended to the iter-1 prompt below. Null on any failure
+  // (chromium launch fail, storybook not booted, story not found); agent
+  // falls back to the §"Story URLs — ENUMERATE" guidance.
   const storyManifestSection = sweepStorybookHandle
     ? await fetchStoryManifestSection(item.id, sweepStorybookHandle.port)
     : null
 
   if (storyManifestSection) {
+    const idMatch = storyManifestSection.match(/`([^`]+--[^`]+)`/)
+
     log(
       'sweep',
-      `${item.id}: pre-fetched story manifest from :${
+      `${item.id}: resolved canonical story URL via Storybook client API on :${
         sweepStorybookHandle?.port
-      }/index.json (${
-        (storyManifestSection.match(/\n- /g) || []).length
-      } stories)`
+      } and picasso.toptal.net (id ${idMatch?.[1] ?? '?'})`
     )
   }
 
@@ -7416,18 +7535,20 @@ export async function run(
   // Observed on Switch migration 2026-05-18).
   const storybookHandle = await storybook.start(wtPath, runDir)
 
-  // Pre-compute story manifest (2026-05-23) — same rationale as the sweep
-  // path. Appended to iter-1 prompt below.
+  // Pre-resolve canonical story URLs (2026-05-23 → rewrite 2026-05-25) —
+  // same rationale as the sweep path. Appended to iter-1 prompt below.
   const runStoryManifestSection = storybookHandle
     ? await fetchStoryManifestSection(item.id, storybookHandle.port)
     : null
 
   if (runStoryManifestSection) {
+    const idMatch = runStoryManifestSection.match(/`([^`]+--[^`]+)`/)
+
     log(
       'loop',
-      `pre-fetched story manifest from :${storybookHandle?.port}/index.json (${
-        (runStoryManifestSection.match(/\n- /g) || []).length
-      } stories)`
+      `resolved canonical story URL via Storybook client API on :${
+        storybookHandle?.port
+      } and picasso.toptal.net (id ${idMatch?.[1] ?? '?'})`
     )
   }
 
