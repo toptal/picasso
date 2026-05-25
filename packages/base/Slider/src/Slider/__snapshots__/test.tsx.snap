@@ -6,21 +6,19 @@ exports[`Slider renders 1`] = `
     class="my-[6px] mx-0"
   >
     <div
+      class="block cursor-pointer width-full relative py-[6px] -my"
       data-orientation="horizontal"
       id="base-ui-:r0:"
       role="group"
     >
       <div
-        class="block cursor-pointer w-full relative py-[6px] -my"
+        class="block absolute inset-0"
         data-orientation="horizontal"
       >
-        <span
-          class="block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
-        />
         <div
-          class="block w-full h-[1px] bg-transparent"
+          class="block absolute w-full h-[1px] top-1/2 rounded-none bg-gray"
           data-orientation="horizontal"
-          style="position: absolute;"
+          style="position: relative;"
         >
           <div
             class="block h-[1px] bg-blue"
@@ -29,7 +27,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml transform-gpu outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 absolute transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -69,21 +67,19 @@ exports[`Slider with initial value 1`] = `
     class="my-[6px] mx-0"
   >
     <div
+      class="block cursor-pointer width-full relative py-[6px] -my"
       data-orientation="horizontal"
       id="base-ui-:r8:"
       role="group"
     >
       <div
-        class="block cursor-pointer w-full relative py-[6px] -my"
+        class="block absolute inset-0"
         data-orientation="horizontal"
       >
-        <span
-          class="block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
-        />
         <div
-          class="block w-full h-[1px] bg-transparent"
+          class="block absolute w-full h-[1px] top-1/2 rounded-none bg-gray"
           data-orientation="horizontal"
-          style="position: absolute;"
+          style="position: relative;"
         >
           <div
             class="block h-[1px] bg-blue"
@@ -92,7 +88,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml transform-gpu outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 absolute transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
