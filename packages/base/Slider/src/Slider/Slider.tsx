@@ -161,7 +161,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   }
 
   const thumbClassName = twJoin(
-    'group/thumb flex justify-center items-center w-[15px] h-[15px]',
+    'group/thumb flex justify-center items-center w-[19px] h-[19px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
     'contain-layout',
     'outline-0 transition-shadow cursor-pointer',
@@ -205,7 +205,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   return (
     <div
       ref={containerRef}
-      className={twMerge('my-[6px] mx-0', className)}
+      className={twMerge('my-[4px] mx-0', className)}
       style={style}
     >
       <BaseUISlider.Root
@@ -221,14 +221,14 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         onValueChange={handleValueChange}
         name={name}
         id={id}
-        className='block cursor-pointer width-full relative py-[6px] -my-[6px]'
+        className='block cursor-pointer width-full relative py-[8px] -my-[8px]'
       >
-        <BaseUISlider.Control className='block'>
-          <BaseUISlider.Track className='block w-full h-[1px] top-1/2 rounded-none bg-gray-500/24'>
+        <BaseUISlider.Control className='block absolute inset-0'>
+          <BaseUISlider.Track className='block w-full h-[1px] top-1/2 rounded-none bg-gray-500'>
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',
-                disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
+                disableTrackHighlight ? 'bg-gray-500' : 'bg-blue-500'
               )}
             />
           </BaseUISlider.Track>

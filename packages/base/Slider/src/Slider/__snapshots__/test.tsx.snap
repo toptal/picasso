@@ -3,16 +3,16 @@
 exports[`Slider renders 1`] = `
 <div>
   <div
-    class="my-[6px] mx-0"
+    class="my-[4px] mx-0"
   >
     <div
-      class="block cursor-pointer width-full relative py-[6px] -my"
+      class="block cursor-pointer width-full relative py-[8px] -my"
       data-orientation="horizontal"
       id="base-ui-:r0:"
       role="group"
     >
       <div
-        class="block"
+        class="block absolute inset-0"
         data-orientation="horizontal"
       >
         <div
@@ -27,7 +27,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -64,16 +64,16 @@ exports[`Slider renders 1`] = `
 exports[`Slider with initial value 1`] = `
 <div>
   <div
-    class="my-[6px] mx-0"
+    class="my-[4px] mx-0"
   >
     <div
-      class="block cursor-pointer width-full relative py-[6px] -my"
+      class="block cursor-pointer width-full relative py-[8px] -my"
       data-orientation="horizontal"
       id="base-ui-:r8:"
       role="group"
     >
       <div
-        class="block"
+        class="block absolute inset-0"
         data-orientation="horizontal"
       >
         <div
@@ -88,7 +88,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
