@@ -113,7 +113,13 @@ const formatValue = (
   return raw
 }
 
-export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
+// Overrides Base UI's inline `translate: -50% -50%` on the thumb without
+// !important. Base UI's mergeProps puts user style after internal style, so
+// this wins. With `contain-layout` the thumb is still a containing block for
+// the nested fixed-positioned <input>.
+const thumbResetTranslateStyle: React.CSSProperties = { translate: 'none' }
+
+export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
   ref
 ) {
@@ -136,10 +142,7 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
     'data-testid': dataTestid,
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  const sliderRef = useCombinedRefs<HTMLDivElement>(
-    ref,
-    useRef<HTMLDivElement>(null)
-  )
+  const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
@@ -181,18 +184,14 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
       ? ([...newValue] as number[])
       : (newValue as number)
 
-    onChange(
-      eventDetails.event as unknown as Event,
-      mapped,
-      eventDetails.activeThumbIndex
-    )
+    onChange(eventDetails.event, mapped, eventDetails.activeThumbIndex)
   }
 
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
     '-mt-[7px] -ml-[6px] outline-0 [&_input]:outline-none absolute transition-shadow cursor-pointer',
-    '!translate-none contain-layout',
+    'contain-layout',
     isThumbHidden && 'hidden'
   )
 
@@ -203,7 +202,7 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
       style={style}
     >
       <BaseUISlider.Root
-        ref={sliderRef}
+        ref={sliderRef as React.Ref<HTMLDivElement>}
         defaultValue={defaultValue}
         value={value}
         min={min}
@@ -253,6 +252,7 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
                   key={thumbKey}
                   index={index}
                   className={thumbClassName}
+                  style={thumbResetTranslateStyle}
                   role='slider'
                 >
                   <SliderValueLabel
