@@ -72,14 +72,7 @@ const formatTooltipValue = (
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
-  {
-    defaultValue = 0,
-    min = 0,
-    max = 100,
-    step = 1,
-    tooltip = 'off',
-    ...props
-  },
+  { defaultValue = 0, min = 0, max = 100, step = 1, tooltip = 'off', ...props },
   ref
 ) {
   const {
@@ -100,10 +93,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-testid': dataTestid,
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  const sliderRef = useCombinedRefs<HTMLElement>(
-    ref,
-    useRef<HTMLElement>(null)
-  )
+  const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   // Local typed binding at the @base-ui/react boundary. SliderRoot renders
   // <div> and types its ref as RefObject<HTMLDivElement>; sliderRef is widened
   // to HTMLElement for public back-compat. HTMLDivElement IS HTMLElement at
@@ -162,7 +152,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     if (isRange) {
       const [start, end] = valuesArr as number[]
 
-      return markValue >= Math.min(start, end) && markValue <= Math.max(start, end)
+      return (
+        markValue >= Math.min(start, end) && markValue <= Math.max(start, end)
+      )
     }
 
     return markValue <= (valuesArr[0] ?? min)
@@ -177,7 +169,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     // on <BaseUISlider.Thumb> below — see code-standards.md §"CSS specificity
     // ladder" rung 0 (mergeProps shallow-merges consumer style with rightmost
     // wins, so style={{ translate: 'none' }} beats the kit's inline style).
-    '-mt-[7px] -ml-[6px]',
+    //'-mt-[7px] -ml-[6px]',
     // `transform-gpu` (`transform: translate3d(0,0,0)`) creates a transform
     // containing block on the thumb so @base-ui/react's hidden range <input>
     // (rendered with `position: fixed; width: 100%; height: 100%`) sizes
@@ -193,8 +185,11 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   // Public Props.onFocus/onBlur are typed for HTMLElement; @base-ui/react SliderThumb's
   // onFocus/onBlur are forwarded to the nested <input>, so the handler signature narrows
   // to HTMLInputElement. Cast at the helper boundary, not at the JSX call site.
-  const handleThumbFocus: React.FocusEventHandler<HTMLInputElement> | undefined =
-    onFocus as React.FocusEventHandler<HTMLInputElement> | undefined
+  const handleThumbFocus:
+    | React.FocusEventHandler<HTMLInputElement>
+    | undefined = onFocus as
+    | React.FocusEventHandler<HTMLInputElement>
+    | undefined
   const handleThumbBlur: React.FocusEventHandler<HTMLInputElement> | undefined =
     onBlur as React.FocusEventHandler<HTMLInputElement> | undefined
 
@@ -204,7 +199,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       index={index}
       className={thumbClassName}
       // eslint-disable-next-line no-inline-styles/no-inline-styles -- rung-0 override of @base-ui/react's internal `translate: -50% -50%`; see thumbClassName comment
-      style={{ translate: 'none' }}
+      //style={{ translate: 'none' }}
       onFocus={handleThumbFocus}
       onBlur={handleThumbBlur}
       role='slider'
@@ -256,7 +251,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           <BaseUISlider.Track
             className='block w-full h-[1px] bg-transparent'
             // eslint-disable-next-line no-inline-styles/no-inline-styles -- rung-0 override of @base-ui/react's internal `position: relative`
-            style={{ position: 'absolute' }}
+            //style={{ position: 'absolute' }}
           >
             <BaseUISlider.Indicator
               className={twJoin(
