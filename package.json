@@ -28,7 +28,7 @@
     "clean": "pnpm store prune && nx reset && find . -type d -name \"node_modules\" -exec rm -rf '{}' +",
     "generate:component": "davinci-code new component",
     "generate:example": "davinci-code new example",
-    "generaate:icons": "./bin/generate-components-from-svg icon",
+    "generate:icons": "./bin/generate-components-from-svg icon",
     "generate:pictograms": "./bin/generate-components-from-svg pictogram",
     "generate:svg-components": "pnpm generate:icons && pnpm generate:pictograms",
     "happo": "pnpm build:package && cross-env SCREENSHOT_BREAKPOINTS=true TEST_ENV=visual HAPPO_PROJECT=Picasso/Storybook happo",
