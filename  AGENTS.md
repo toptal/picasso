@@ -76,7 +76,7 @@ Two tiers of packages, both inside `pnpm-workspace.yaml`:
   - `picasso-forms` — `react-final-form`-based form solution. Provides form components.
   - `picasso-charts` — `recharts`-based charts.
   - `picasso-rich-text-editor` - rich text editor component.
-  - `picasso-query-builder` - query builder component for to build complex filters.
+  - `picasso-query-builder` - query builder component to build complex filters.
   - `picasso-pictograms` - library of pictograms.
   - `picasso-provider` — runtime context/provider; must be a **peer dependency** of consumers.
   - `picasso-tailwind`, `picasso-tailwind-merge`, `base-tailwind` — Tailwind v4 token/theme layer.
