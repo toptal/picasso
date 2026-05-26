@@ -36,7 +36,8 @@ pnpm test                          # unit + integration (CI parity, slow)
 pnpm changeset                     # REQUIRED on PRs that change package code
 pnpm generate:component            # scaffold a new component (davinci-code)
 pnpm generate:example              # scaffold a story example
-pnpm generate:icons       # regenerate icon/pictogram React components from SVG
+pnpm generate:icons       # regenerate icon React components from SVG
+pnpm generate:pictograms       # regenerate pictogram React components from SVG
 pnpm refresh:tsconfig-references   # resync project references after pkg deps change
 pnpm circularity                   # madge --circular packages/*/src
 ```
