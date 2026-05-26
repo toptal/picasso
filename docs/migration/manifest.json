@@ -337,11 +337,11 @@
     "Note": {
       "tier": 1,
       "package": "packages/base/Note",
-      "status": "in_progress",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
-      "pr": null,
+      "pr": "https://github.com/toptal/picasso/pull/4977",
       "branch": "migrate-Note-v1",
       "worktree": "migration-runs/2026-05-25/Note-v1/worktree",
       "iterations": 3,
@@ -349,23 +349,23 @@
       "notes": "PF-1992 orchestrator sandbox. Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
       "variants": {
         "v1": {
-          "status": "in_progress",
-          "pr": null,
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4977",
           "branch": "migrate-Note-v1",
           "worktree": "migration-runs/2026-05-25/Note-v1/worktree",
           "iterations": 3,
           "merged_at": null,
           "escalation_reason": null,
-          "last_ci_green_at": null,
+          "last_ci_green_at": "2026-05-25T21:34:24.592Z",
           "last_review_seen_at": null,
-          "session_id": null,
+          "session_id": "89ee40e5-e546-4424-aab9-c67ad30485fb",
           "awaiting_ci_since": null
         }
       },
       "escalation_reason": null,
-      "last_ci_green_at": null,
+      "last_ci_green_at": "2026-05-25T21:34:24.592Z",
       "last_review_seen_at": null,
-      "session_id": null,
+      "session_id": "89ee40e5-e546-4424-aab9-c67ad30485fb",
       "awaiting_ci_since": null,
       "interrupted_at": "2026-05-25T09:06:04.582Z"
     },

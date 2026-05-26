@@ -335,3 +335,11 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Don't spread `...rest` into a `BaseUISwitch.Root` (or any base-ui Root): pick consumer-provided props (`name`, `form`, `tabIndex`, `aria-*`) and forward only the keys that are actually defined, so base-ui's internal defaults (tabIndex from useButton, aria-labelledby from the label) aren't clobbered with `undefined`.
 - base-ui's hidden native `<input>` renders as a sibling of `Root` with inline `margin: -1px` that perturbs flex layout — neutralize it from the Root with a sibling-combinator override (`[&~input]:m-0!`) and migrate state selectors to data-attributes (`group-data-[checked]`, `group-data-[disabled]`, `group-focus-visible`) rather than `.base--*` classes (see `rules/styling`).
 - Reference: https://github.com/toptal/picasso/pull/4965
+
+## Note — 2026-05-25
+
+- Tier 1 · target_path: `none` · iterations: 3
+- When source is already MUI-clean, the migration is purely a `package.json` patch: drop `@material-ui/core` from `peerDependencies`, drop the `<19.0.0` React upper bound (widen to `>=16.12.0`), and changeset as `patch` with "public API unchanged" framing — no source edits needed.
+- Sweep sibling-package `tsconfig.json` files for stale `references` entries pointing at packages whose dependency was just removed (Note's PR cleaned an orphaned `../base/Utils` reference in `picasso-tailwind-merge/tsconfig.json`) — these break the project-references build graph on CI even when the migrated package itself compiles.
+- Local happo diff artifacts (`/local--*.png`, `/baseline--*.png`) leak into the worktree during review-iter gates; add them to `.gitignore` once at the repo root rather than per-migration.
+- Reference: https://github.com/toptal/picasso/pull/4977
