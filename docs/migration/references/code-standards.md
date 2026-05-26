@@ -163,29 +163,33 @@ To find the props to destructure: open `node_modules/@base-ui/react/<group>/<par
 
 The migration-period oscillation observed on Switch review-iter 7 (2026-05-22) — allowlist → cast → allowlist across three consecutive iters — was the agent flipping between the two anti-patterns above because neither it nor the audit-agent named the canonical third option. Cite this section (and the worked example in `practices.md §"API preservation"`) directly in PR replies when reviewers raise the question.
 
-## CSS specificity ladder for `@base-ui/react` overrides (reviewer-enforced, NOT lint-enforced)
+## CSS specificity hierarchy for overriding `@base-ui/react` internal inline styles (reviewer-enforced, NOT lint-enforced)
 
-Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. Pick the **lowest rung that solves the problem** — escalate only if the lower rung doesn't work. Reviewers will block PRs that jump straight to a higher rung when a lower one was viable.
+> **Scope**: this section addresses the narrow case of overriding Base UI's **internal inline styles** (e.g., `translate: -50% -50%` on `Slider.Thumb`, `position: relative` on `Slider.Track`). For the general **override-preference ladder** — when to reach for `className` vs `data-[…]:` vs `render` vs inline `style` vs `useRender` vs not-overriding-at-all — see `references/base-ui-styling.md §7.1`. This section describes what wins via the CSS cascade in the specific inline-vs-inline case; that section describes the broader preference order. They are different ladders measuring different things; do not conflate.
 
-0. **Pass `style` prop directly to the `@base-ui/react` component.** `@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. For any per-component override of styles the kit sets internally (`translate`, `position`, `transform`, sizing, etc.), the IDIOMATIC path is the `style` prop — not Tailwind classes (which lose to inline styles by CSS spec), not `!important` (which indicates the wrong escape hatch was chosen).
+Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. Pick the **lowest-specificity tool that solves the problem** — escalate only if the lower one doesn't work. Reviewers will block PRs that jump straight to a higher-specificity tool when a lower one was viable.
+
+- **Pass `style` prop directly to the `@base-ui/react` component.** `@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. For any per-component override of styles the kit sets internally (`translate`, `position`, `transform`, sizing, etc.), inline `style` is the only thing that beats inline `style` without `!important`. This is doctrine §7.1's **rung 5** for the broader ladder, but in the narrow inline-vs-inline case it's the natural — and often only — answer.
 
    Example — override `<Slider.Thumb>`'s internal `translate: -50% -50%`:
    ```tsx
-   <Slider.Thumb style={{ translate: 'none' }} ... />  // YES — rung 0, idiomatic
-   <Slider.Thumb className='![translate:none]' ... />   // NO — wrong tool, reach for `style` prop first
+   <Slider.Thumb style={{ translate: 'none' }} ... />  // YES — wins via mergeProps right-wins
+   <Slider.Thumb className='![translate:none]' ... />   // NO — !important is forbidden; this is the wrong tool
    ```
 
-   Why this exists: when @base-ui/react's component renders, the props your component passed are merged into the final element via `useRenderElement`. The style prop is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — so rightmost (yours) wins on each individual style property. This is the headless-kit's contract; it's designed for you to override its defaults. Tailwind `!important` against headless-kit internals is a code smell that the lower rung was skipped.
+   But first, ask whether rung -1 applies (doctrine §7.1): can DOM restructure remove the need? Can you accept Base UI's geometry and remove the legacy approximation you're defending? In the Slider Thumb case, removing legacy `-mt -ml` margins is rung -1 and beats this rung 5 path. Rung 3 (`render` prop with `mergeProps` filtering) also beats rung 5 when it's practical.
 
-   Limits: rung 0 covers per-property overrides (e.g. `translate`, `position`). It does NOT cover style based on internal state (`data-focused`, `data-orientation`) — those still need rungs 1-2 below.
+   Why inline `style` exists at all: when @base-ui/react's component renders, the props your component passed are merged into the final element via `useRenderElement`. The style prop is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — so rightmost (yours) wins on each individual style property. This is the headless-kit's contract; it's designed for you to override its defaults *when you need to*. Tailwind `!important` against headless-kit internals is a code smell that doctrine §7.1's higher-preference rungs were skipped.
 
-1. **Exhaust `@base-ui/react`'s official customization API.** Most slots accept `className`, and many composite components accept slot-targeted overrides:
+   Limits: inline `style` covers per-property overrides (e.g. `translate`, `position`). It does NOT cover style based on internal state (`data-focused`, `data-orientation`) — for state-driven styling use `data-[…]:` per doctrine rung 1.
+
+- **Exhaust `@base-ui/react`'s official customization API.** Most slots accept `className`, and many composite components accept slot-targeted overrides:
    - Pass `className` directly on the part that owns the style you want to change.
-   - Use the component's render prop if it exposes one (e.g., `<Slider.Thumb render={(props, state) => <Thumb {...props} className="..." />}>`).
+   - Use the component's render prop if it exposes one (e.g., `<Slider.Thumb render={(props, state) => <Thumb {...props} className="..." />}>`). This is doctrine §7.1's rung 3 and is OFTEN the right answer.
    - Check the `@base-ui/react` source under `node_modules/@base-ui/react/<group>/<part>/` for documented props that customize the slot.
-2. **Tailwind selectors matching emitted attributes.** `@base-ui/react` emits `data-*` attributes for state (`data-focused`, `data-expanded`, `data-orientation`, etc.). Target them with Tailwind: `data-[focused]:outline-2`, `data-[expanded]:bg-blue-100`, etc.
-3. **Higher CSS specificity via selector compounds.** When step 2 isn't enough, layer selectors (`[&_input]:`, `[&[data-state=open]]:`, `[&:hover:not([data-disabled])]:`) before reaching for the next rung.
-4. **`!important` — LAST RESORT.** Acceptable ONLY after rungs 1–3 are exhausted. Reviewers will ask you to prove they don't work. When you use it, comment WHY the lower rungs failed (e.g., `[&_input]:!top-auto /* @base-ui/react/slider/thumb hard-codes top:0 via inline style — selector-level override doesn't win */`). The legacy occurrences in `Radio/styles.ts` and `RichTextEditorToolbar/styles.ts` predate `@base-ui/react`; don't model new code on them.
+- **Tailwind selectors matching emitted attributes.** `@base-ui/react` emits `data-*` attributes for state (`data-focused`, `data-expanded`, `data-orientation`, etc.). Target them with Tailwind: `data-[focused]:outline-2`, `data-[expanded]:bg-blue-100`, etc. This is doctrine §7.1's rung 1.
+- **Higher CSS specificity via selector compounds.** When data-attribute selectors aren't enough, layer selectors (`[&_input]:`, `[&[data-state=open]]:`, `[&:hover:not([data-disabled])]:`) before reaching for `!important`.
+- **`!important` — FORBIDDEN.** Per `rules/styling.md` §"@base-ui/react v1 prescriptions" and doctrine §7.1, `!important` is never the right answer. If a Tailwind utility isn't winning, the doctrine §7.1 ladder has a rung you haven't tried. The legacy occurrences in `Radio/styles.ts` and `RichTextEditorToolbar/styles.ts` predate `@base-ui/react`; don't model new code on them.
 
 **ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for theme/visual purposes are FORBIDDEN, no exceptions.** Examples: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, `useCallback` wrapping any `.style.X = …` assignment passed as a slot ref. It bypasses CSS, breaks responsive style changes, isn't tree-shaken, and creates a runtime side-channel that fights the design system. Use rung 1–4 instead.
 

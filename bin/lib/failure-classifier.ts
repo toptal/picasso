@@ -430,3 +430,119 @@ export function classifyCIFailure(
     paths: [],
   }
 }
+
+// ----- Legacy-defense pattern detection (§F of Phase 2 doctrine plan) -----
+//
+// When the agent ships rung-5 inline `style` overrides on Base UI parts
+// (`style={{ translate / position / transform / left / top: … }}`) AND retains
+// legacy margin/offset literals nearby (`-mt-[Npx]` / `-ml-[Npx]`), it's
+// usually defending a legacy approximation of what Base UI now does
+// geometrically exactly. The doctrine-clean answer is rung -1: remove the
+// legacy literals AND the override together, accept Base UI's geometry, propose
+// the sub-pixel diff as "intentional improvement" per
+// references/practices.md §"Visual parity by default …".
+//
+// Slider v2 PR #4975 shipped both `style={{ translate: 'none' }}` AND
+// `-mt-[7px] -ml-[6px]` together. PR #4976 (vedrani fork) eliminated BOTH
+// in commit 4f5951f and accepted a sub-pixel Happo delta classified as
+// touch-target accessibility improvement.
+//
+// This detector is meant to be called by orchestrator-core AFTER the agent
+// commits an iter (N ≥ 2 with prior structural Happo diffs) and BEFORE the
+// next iter is dispatched. If it returns non-null, the orchestrator prepends
+// the hint to the next agent prompt so the agent reconsiders rung -1.
+
+export interface LegacyDefenseHint {
+  /** Doctrine reference for the corrective guidance. */
+  doctrineRef: string
+  /** Human-readable corrective hint, ready to embed in an agent prompt. */
+  hint: string
+  /** Files in which the pattern was detected (deduplicated). */
+  files: readonly string[]
+}
+
+const RUNG_5_OVERRIDE_RE =
+  /style=\{\{\s*(?:translate|position|transform|top|left|right|bottom)\s*:/
+const LEGACY_MARGIN_RE = /-m[tlrb]-\[\d+px\]/
+
+/**
+ * Detect the legacy-defense pattern in a unified git diff.
+ *
+ * Heuristic: within any single `+++ b/<file>` hunk, the diff added (a) at
+ * least one rung-5 `style={{ translate|position|transform|top|left|right|
+ * bottom: … }}` override AND (b) at least one `-mt-[Npx]` / `-ml-[Npx]` /
+ * `-mr-[Npx]` / `-mb-[Npx]` legacy margin literal. The two together signal
+ * "agent is using rung 5 to defend a legacy approximation" — the doctrine-
+ * clean answer is rung -1 (remove both).
+ *
+ * Returns null when the pattern is not detected. False positives are
+ * possible (e.g., the legacy margin is genuinely needed for an unrelated
+ * visual concern) — the hint is advisory, not blocking. The agent should
+ * use its `style`-vs-`-mt`-relationship judgment per the PROMPT-light
+ * §"Reasoning checklist" question 2 ("validate geometrically").
+ *
+ * @param diff Unified `git diff` output (e.g., from `git diff HEAD~1 HEAD`)
+ *             for the migrating package.
+ */
+export function detectLegacyDefensePattern(
+  diff: string
+): LegacyDefenseHint | null {
+  // Split diff into per-file hunks. Header form: `diff --git a/X b/Y`.
+  // We only care about added lines (`+ …`) within each file's hunk.
+  const fileMatches = new Map<string, string[]>()
+  let currentFile: string | null = null
+  let currentLines: string[] = []
+
+  for (const line of diff.split('\n')) {
+    const fileHeader = line.match(/^\+\+\+ b\/(.+)$/)
+
+    if (fileHeader) {
+      if (currentFile !== null) {
+        fileMatches.set(currentFile, currentLines)
+      }
+      currentFile = fileHeader[1]
+      currentLines = []
+      continue
+    }
+
+    // Skip diff metadata; only collect added (`+ …`) content lines.
+    if (line.startsWith('+') && !line.startsWith('+++')) {
+      currentLines.push(line.slice(1))
+    }
+  }
+  if (currentFile !== null) {
+    fileMatches.set(currentFile, currentLines)
+  }
+
+  const flaggedFiles: string[] = []
+
+  for (const [file, addedLines] of fileMatches.entries()) {
+    const hasRung5Override = addedLines.some(l => RUNG_5_OVERRIDE_RE.test(l))
+    const hasLegacyMargin = addedLines.some(l => LEGACY_MARGIN_RE.test(l))
+
+    if (hasRung5Override && hasLegacyMargin) {
+      flaggedFiles.push(file)
+    }
+  }
+
+  if (flaggedFiles.length === 0) {
+    return null
+  }
+
+  const filesList = flaggedFiles.map(f => `  - ${f}`).join('\n')
+  const hint =
+    `Detected rung-5 inline \`style\` override + adjacent legacy margin literals in:\n` +
+    `${filesList}\n\n` +
+    `This pattern usually means you're defending a legacy approximation of what Base UI now does geometrically exactly (e.g., \`-mt-[7px] -ml-[6px]\` was approximating half-of-15px-thumb; Base UI's \`translate: -50% -50%\` does this exactly). The doctrine-clean answer is rung -1:\n\n` +
+    `  1. Remove BOTH the legacy margins AND the inline \`style\` override.\n` +
+    `  2. Accept Base UI's geometry as-is.\n` +
+    `  3. Post a MEDIUM PR comment naming the sub-pixel Happo diff as "intentional improvement" with the geometric reasoning.\n\n` +
+    `Slider PR #4976 (vedrani) commit 4f5951f demonstrated this — both \`style={{ translate: 'none' }}\` and \`-mt-[7px] -ml-[6px]\` removed together; Happo classified the resulting sub-pixel diff as approved-delta (touch-target accessibility).\n\n` +
+    `See references/base-ui-styling.md §7.1 rung -1 and references/practices.md §"Visual parity by default; geometric improvements via approved-delta channel".`
+
+  return {
+    doctrineRef: 'references/base-ui-styling.md §7.1 rung -1',
+    hint,
+    files: flaggedFiles,
+  }
+}

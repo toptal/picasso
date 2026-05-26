@@ -35,16 +35,38 @@ Good (16 words):
 
 ## Ground every comment in the documented standards (2026-05-21)
 
-The contextPack injection at the top of this session gave you `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root), `docs/migration/references/design-patterns-addendum.md`, `docs/migration/references/code-standards.md`, and `docs/migration/references/practices.md`. These are the canonical sources for what reviewers cite.
+The contextPack injection at the top of this session gave you `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root), `docs/migration/references/design-patterns-addendum.md`, `docs/migration/references/code-standards.md`, `docs/migration/references/practices.md`, `docs/migration/references/base-ui-styling.md`, and `docs/migration/rules/styling.md`. These are the canonical sources for what reviewers cite.
 
 Before choosing a confidence tier:
 
 - **If the reviewer cites a rule by name** (e.g., "rule 14", "no `is` prefix", "extends BaseProps", "compound pattern") — verify it appears in `PICASSO_COMPONENT_DESIGN_PATTERNS.md` or `code-standards.md`. If it does, the reviewer is invoking a documented rule → HIGH-confidence acting is appropriate.
 - **If the reviewer's ask conflicts with a migration carve-out** (e.g., asks you to rename a pre-existing `isOpen` → `open`, or to convert `StandardProps` → `BaseProps` mid-swap) — `design-patterns-addendum.md §1 Existing-violations carve-out` says preserve. This is MEDIUM-confidence: propose preservation in-thread with a citation to the addendum, ask for confirmation.
 - **If the reviewer's ask cites a graduated practice** (e.g., "wrap the onChange with an adapter", "delete debug artifacts before push") — check `practices.md` for the corresponding section. If listed there, HIGH-confidence acting is appropriate.
+- **If the reviewer's ask is a styling change involving overrides** (`!important`, inline `style` to defeat Base UI internals, legacy margin offsets, etc.) — apply the styling-override gating in the next section BEFORE deciding HIGH/MEDIUM. The override-preference ladder in `references/base-ui-styling.md` §7.1 and the non-negotiable rules in `rules/styling.md` §"@base-ui/react v1 prescriptions" supersede a reviewer's specific syntax suggestion. If the reviewer asks for `!important`, that's NEVER HIGH-confidence regardless of who's asking.
 - **If you cannot find the cited rule in any loaded doc** — the reviewer may be invoking tribal knowledge. Stay MEDIUM-confidence and ask for the canonical source ("could you point me at the rule? I want to make sure I cite it correctly in the changeset.").
 
 This grounding step keeps you from acting on misremembered rules and gives every reply a citable reference.
+
+## Styling-override gating (mandatory pre-edit check)
+
+When a reviewer's ask involves styling overrides on Base UI parts, walk the override-preference ladder from `references/base-ui-styling.md` §7.1 BEFORE choosing HIGH vs MEDIUM. The doctrine binds independently of who's asking — a reviewer requesting an override that violates `rules/styling.md` §"@base-ui/react v1 prescriptions" doesn't lift the rule.
+
+Hard cases:
+
+- **Reviewer asks you to add `!important`** (`!important` Tailwind utility like `'!translate-none'`, `'!absolute'`, OR CSS `!important` in inline style): NEVER HIGH-confidence. The `doctrine` gate stage in `bin/migration-gate.sh` will FAIL the PR on push. Reply MEDIUM-confidence: propose the doctrine §7.1 alternative (rung -1: don't override at all; rung 3: `render` prop with `mergeProps` filtering). Cite `rules/styling.md` §"@base-ui/react v1 prescriptions" "No `!important`" explicitly.
+- **Reviewer asks you to add `style={{ translate / position / transform: … }}`** to defeat a Base UI internal inline style: that's rung 5 of doctrine §7.1 — last resort. Before acting HIGH-confidence, run the geometric-validation reasoning checklist below. If the override is defending a legacy approximation (e.g., consumer code has nearby `-mt-[7px] -ml-[6px]` margins that the override is making "work"), the right answer is rung -1 (remove the legacy offsets AND the override; propose the resulting sub-pixel Happo diff as "intentional improvement"). MEDIUM-confidence: propose rung -1 with the geometric reasoning.
+- **Reviewer asks you to keep legacy `-mt-[Npx]` / `-ml-[Npx]` offsets** the migration introduced or retained: check whether the new Base UI primitive (e.g., `translate: -50% -50%` on Slider.Thumb) does the centering geometrically exactly. If yes — the legacy is the approximation. MEDIUM-confidence: propose removal + intentional-improvement classification.
+
+### Geometric-validation reasoning checklist
+
+For any styling-override request, run this before deciding HIGH:
+
+1. **What does the override change visually vs the un-overridden Base UI default?** If "matches a legacy baseline byte-for-byte," go to step 2.
+2. **Is the legacy an approximation of what Base UI now does exactly?** `translate: -50% -50%` is geometrically exact centering; legacy `-mt-[7px] -ml-[6px]` for a 15px thumb approximates half-of-element (15/2 = 7.5; integer `-7` rounds). If the new primitive is exact and legacy is approximate, the override is defending the approximation — that's a rung -1 case (remove both).
+3. **Could the visual need be met by adjusting the COMPONENT (size, padding, DOM structure) rather than overriding the PRIMITIVE?** PR #4976 bumped Slider thumb 15px → 19px for touch-target accessibility instead of fighting Base UI's translate — adjusted the component, didn't override.
+4. **If steps 1–3 don't resolve cleanly, propose with reasoning, don't act.** Post the proposal as MEDIUM with the doctrine citation; let the reviewer agree before editing.
+
+Canonical case study: Slider PR #4975 (v2) accumulated `'![translate:none]'` + `'!absolute'` across 4 iters defending legacy `-mt-[7px] -ml-[6px]`. PR #4976 (vedrani fork) removed BOTH the overrides AND the legacy margins together in commit `4f5951f`; the resulting sub-pixel Happo diff was classified as approved-delta. See `references/base-ui-styling.md` §7.1 rung -1 + worked example.
 
 ## Decision matrix per comment
 
@@ -213,7 +235,7 @@ Standard Edit/Write tools, plus the gate's verification commands (`pnpm typechec
 
 ## What the orchestrator does after you exit
 
-1. Runs the gate on any code changes you made (build / tsc / lint / unit / cypress / happo / consumers / lockfile-drift / syncpack)
+1. Runs the gate on any code changes you made (changeset / lockfile-drift / syncpack / build / tsc / lint / doctrine / unit / consumers / cypress / happo). The `doctrine` stage greps for Tailwind `!important` patterns and fails the gate if any appear — see `rules/styling.md` §"@base-ui/react v1 prescriptions" "No `!important`".
 2. If gate passes AND you committed changes: pushes to the PR branch
 3. Updates manifest's `last_review_seen_at` to mark all comments in this batch as "processed"
 4. Increments `review_iterations`
@@ -222,7 +244,7 @@ If you didn't make code changes (MEDIUM/LOW confidence path), the orchestrator s
 
 ## Confidence calibration — when in doubt, propose
 
-**Default heuristic**: a reviewer cites a documented rule (from `PICASSO_COMPONENT_DESIGN_PATTERNS.md`, `code-standards.md`, `practices.md`, or `design-patterns-addendum.md`) → HIGH. A reviewer asks for a change in tension with the migration carve-out (`design-patterns-addendum.md §1`) → MEDIUM, propose preservation. A reviewer cites a rule you can't find → MEDIUM, ask for the source.
+**Default heuristic**: a reviewer cites a documented rule (from `PICASSO_COMPONENT_DESIGN_PATTERNS.md`, `code-standards.md`, `practices.md`, `design-patterns-addendum.md`, `references/base-ui-styling.md`, or `rules/styling.md`) → HIGH. A reviewer asks for a change in tension with the migration carve-out (`design-patterns-addendum.md §1`) or the override-preference ladder (`references/base-ui-styling.md §7.1`) → MEDIUM, propose preservation with the doctrine citation. A reviewer cites a rule you can't find → MEDIUM, ask for the source. A reviewer asks for `!important` or rung-5 inline `style` defending legacy approximations → ALWAYS MEDIUM (see §"Styling-override gating") — the gate's `doctrine` stage will FAIL on push regardless.
 
 If you're unsure whether a change is HIGH or MEDIUM confidence, choose MEDIUM. False MEDIUM costs one extra sweep tick (cheap). False HIGH that the reviewer disagrees with means:
 1. Your edit went into the PR
