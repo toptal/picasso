@@ -22,15 +22,17 @@ Every primitive is split into named **parts** (`Menu.Root`, `Menu.Trigger`, `Men
 
 ## 2. The five mechanisms
 
-Every styling and override decision reduces to combinations of these five. Internalize them once.
+Every styling and override decision reduces to combinations of these five. Internalize them once. The order below also reflects the override-preference ladder (§7.1): `style` is explicitly last.
 
 | Mechanism | What it controls | Reach for it when |
 | --- | --- | --- |
 | **1. `className` prop** | Classes on the DOM node | Always — every styling decision starts here |
-| **2. `render` prop** | DOM tag and wrapper component | Replacing the element, integrating with `<Link>`, framer-motion, custom kit components |
+| **2. `render` prop** | DOM tag and wrapper component | Replacing the element, integrating with `<Link>`, framer-motion, custom kit components, OR stripping/filtering Base UI's injected `style` |
 | **3. `data-*` state attributes** | State-driven styling without React subscriptions | Hover, open, checked, disabled, side-positioning, animation phases |
 | **4. CSS variables (`--var`)** | Values Base UI computes (positions, sizes, transform origins) | Position-anchored animation, popup sizing, geometry-driven layout |
 | **5. `style` prop (static or function-of-state)** | Inline styles | Last resort — computed values that cannot be expressed as classes |
+
+For when to reach for which in practice, see §7.1 "Override preference ladder" — there's also a rung -1 ("don't override at all") that sits *before* mechanism 1 and is usually the right answer.
 
 Every part exposes the consistent signature:
 
@@ -157,7 +159,7 @@ className={twMerge(cx(
 
 ### 3.5 What NOT to do
 
-- **Inline `style` is for properties unreachable via `className` / `data-[…]:` variant / CSS variable** — typically transforms, computed positions, dimensions read from a ref, or assigning CSS variables (`style={{ '--x': dynamic }}`). It is **the legitimate Base UI escape hatch** when the alternative would be `!important` or a wrapper-element hack — Base UI's `mergeProps` even places inline `style` at the top of the override cascade by design. **The anti-pattern is inline `style` for colors / spacing / typography that DO have class equivalents** — those belong in `className`. See `code-standards.md` §"CSS specificity ladder for @base-ui/react overrides" and `practices.md` §"Inline-style overrides on @base-ui/react parts" for the full escalation.
+- **Inline `style` is for properties unreachable via `className` / `data-[…]:` variant / CSS variable** — typically transforms, computed positions, dimensions read from a ref, or assigning CSS variables (`style={{ '--x': dynamic }}`). It is the **last resort** in the override-preference ladder (§7.1 rung 5) — usable when rung -1 (don't override) doesn't apply AND rung 3 (`render` prop with `mergeProps` filtering) is impractical. Base UI's `mergeProps` makes consumer `style` win the cascade against the kit's internal inline `style` (rightmost-wins) — see `code-standards.md` §"CSS specificity hierarchy for overriding @base-ui/react internal inline styles" for the cascade mechanics, and `practices.md` §"@base-ui/react idioms" → "Overriding @base-ui/react's internal inline styles" for the rung-by-rung path. **The anti-pattern is inline `style` for colors / spacing / typography that DO have class equivalents** — those belong in `className`.
 - **Never reach for `!important`.** If a Tailwind utility isn't winning, you've skipped a rung on the override ladder (`className` → `data-[…]:` → inline `style` rung-0 → `render` wrapper). Find the right rung instead.
 - **Don't string-concat classes without `twMerge`.** `` `px-4 ${className}` `` produces silent override failures the moment a consumer passes `px-2`. Always pipe through `twMerge(cx(...))`.
 - **Don't introduce new `classes` props.** Existing narrowed `classes?: { … }` on Tier 3.b components (Dropdown, OutlinedInput) and Modal are documented migration-period exceptions — see `design-patterns-addendum.md` and `decisions/classes-audit.md`. End-state is full rule-5 compliance once consumers migrate off the narrowed shape.
@@ -261,6 +263,8 @@ Multiple Base UI components can compose into a single trigger element by chainin
 Each layer injects its event handlers and `aria-*`; `mergeProps` runs at every level. One DOM node participates correctly in three independent accessibility trees.
 
 ### 4.5 `useRender` — when you build the wrapper
+
+> For Picasso-specific operational guidance on `useRender` ergonomics and the `as`/`render` translation pattern for backward-compatibility, see `practices.md` §"@base-ui/react idioms" → "Custom polymorphic primitives" and the appendix below on `as` translation.
 
 When your kit component itself wants to expose a `render` prop (so its consumers get the same composition power), use [`useRender`](https://base-ui.com/react/utils/use-render):
 
@@ -542,22 +546,75 @@ Co-locates the math with the consumer; avoids polluting `:root` with component i
 
 Most "overriding Base UI" is overriding **styles** with §3–§6. Occasionally you need to change **behavior** — and there is a clear escalation ladder.
 
-### 7.1 Escalation ladder
+> **Rules vs doctrine relationship**: the rules in `rules/styling.md` §"@base-ui/react v1 prescriptions" are the mandatory operational form of this doctrine; doctrine sections are cited inline. If a rule and doctrine drift, the rule is canonical at migration time; the doctrine documents the *why*.
 
-| Need | Mechanism |
-| --- | --- |
-| Different colors / spacing / typography / size | `className` (§3) |
-| Style based on state (open, checked, side) | `data-*` attributes (§5) |
-| Different DOM tag (anchor instead of button, custom wrapper) | `render` prop (§4) |
-| Computed positions / dimensions from Base UI | CSS variables (§6.1) |
-| Theme-level changes (color, radius, spacing scale) | Design tokens (§6.2) |
-| Additional DOM inside a slot | Compose extra children **inside** the part |
-| Different default state / controlled-state behavior | Wrap the Root in your own component |
-| Different DOM structure than Base UI ships | Wrap with your own component **above** Base UI |
-| A sibling part Base UI doesn't ship | Build with `useRender` (§4.5) |
-| Fundamentally different behavior | Don't override — fork (almost never the answer) |
+### 7.1 Override preference ladder
+
+This is the override **preference** ladder — which mechanism to reach for first when you need to override Base UI defaults. It is NOT the CSS **specificity** hierarchy (see `code-standards.md` §"CSS specificity hierarchy for overriding @base-ui/react internal inline styles" for that — a narrow case about what wins via cascade). They are different ladders measuring different things; do not conflate.
+
+Order is consistent with §2's enumeration of the five mechanisms: inline `style` is explicitly LAST.
+
+| Rung | Mechanism | When to use |
+| --- | --- | --- |
+| **-1** | **Don't override** | Check this FIRST. Restructure DOM to use Base UI's native part hierarchy, OR embrace Base UI's geometry and accept any sub-pixel diff as approved improvement. The override that doesn't exist is the cheapest one to maintain. |
+| 1 | `className` + `data-[…]:` variants (§3, §5) | State-driven styling that has a documented data attribute (e.g., `data-[checked]:bg-blue-500`). |
+| 2 | `className` function-of-state form (§3.3) | State-driven styling where the value depends on multiple state combinations (rare; data-attributes usually suffice). |
+| 3 | `render` prop (§4) | Change the rendered element type (`<a>` instead of `<button>`), compose with custom kit components, OR strip/filter Base UI's injected `style` via `mergeProps` (e.g., remove `translate` while keeping `left: X%`). |
+| 4 | `useRender` + `mergeProps` (§4.5) | Build your own primitive that exposes its own `render` prop. |
+| 5 | inline `style` | Genuine last resort: when render-prop filtering is impractical, AND the value can't be expressed as a class, AND rung -1 doesn't apply. Typically: assigning CSS variables for downstream consumption, or computed transforms that don't fit any class. |
+| ⊘ | `!important` | NEVER. If you're here, you skipped a rung. See `rules/styling.md` §"@base-ui/react v1 prescriptions" "No `!important`". |
 
 **Never reach for a stronger mechanism than the problem requires.** Each step up costs ergonomics, accessibility risk, or maintenance burden.
+
+**Why rung 3 beats rung 5** (render-prop filtering beats consumer inline `style`):
+
+- The element ends up with only Base UI's inline `style` (for positioning), not consumer-added `style` on top.
+- The override is local to the wrapper element — easier to remove later than a `style={{...}}` scattered across JSX.
+- The pattern composes with other `render`-using wrappers (Tooltip → Dialog → Menu nesting).
+
+#### Rung -1 specifics (the doctrine headline)
+
+1. **Can DOM restructure remove the need?** Example: PR #4959 used `Slider.Track` with `bg-color/alpha` + nested `Indicator` per Base UI's native structure — eliminated the `!absolute` override v2's sibling-rail DOM required.
+2. **Can you embrace Base UI's geometry?** When the override defends a *legacy approximation* of what the new primitive does *exactly*, prefer the new geometry and propose the sub-pixel diff as "intentional improvement" via the approved-delta channel. Slider commit `4f5951f` removed `-mt-[7px] -ml-[6px]` + `style={{ translate: 'none' }}` together — geometric correctness over legacy defense. The new `translate: -50% -50%` centers exactly; the legacy `-mt -ml` for a 15px thumb was approximating half-of-15 with integer literals.
+3. **Trigger**: if you're adding inline `style` or `!important` to match a legacy baseline byte-for-byte, you're at rung 5 or worse — step back to rung -1.
+
+#### Slider Thumb worked example: rungs 3, 5, and -1
+
+```tsx
+// Rung 3 — render-prop filtering (preferred over rung 5)
+<BaseUISlider.Thumb
+  render={(props) => {
+    // Verify property list per-part by inspecting node_modules/@base-ui/react/.../mergeProps.js.
+    // For Slider.Thumb v1.x: `translate` (centering) + `left` (value position).
+    // Strip translate; keep left.
+    const { translate, ...keepStyle } = props.style || {}
+    return <span {...props} style={keepStyle} className={thumbClassName} />
+  }}
+/>
+
+// Rung 5 — consumer-added inline style (only if rung 3 is impractical)
+<BaseUISlider.Thumb className={thumbClassName} style={{ translate: 'none' }} />
+
+// Rung -1 — best: remove the legacy `-mt -ml` margins entirely (which the override was defending);
+// accept Base UI's `translate: -50% -50%` centering; classify ~1.5px Happo diff as "intentional improvement"
+<BaseUISlider.Thumb className={thumbClassName} />   // -mt/-ml removed from thumbClassName
+```
+
+**Per-part filtering caveat**: the list of style properties to strip is per-part. `Slider.Thumb` emits `translate` + `left`. `Popover.Popup` emits `top` / `left` / `transform-origin`. `Toast` emits computed `transform` math. Before applying rung 3, inspect `node_modules/@base-ui-react/dist/` for the part you're overriding to confirm what inline style it sets — don't assume the Slider example transfers.
+
+#### Decision flow for any override
+
+```
+Need to override Base UI default? →
+  Can you restructure DOM or accept geometry? → STOP at rung -1
+  Is the override state-driven? → rung 1 (data-[…]:) or rung 2 (className fn)
+  Is the override about element type or DOM structure? → rung 3 (render prop, optionally filtering style)
+  Building a primitive that needs its own render prop? → rung 4 (useRender)
+  Property can't be a class AND rung 3 filtering is impractical? → rung 5 (inline style)
+  Tempted by !important? → go back to rung -1; you skipped a step
+```
+
+For the non-negotiable migration-time form of these rules, see `rules/styling.md` §"@base-ui/react v1 prescriptions".
 
 ### 7.2 Adding DOM inside a slot
 

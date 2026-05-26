@@ -253,6 +253,66 @@ pnpm davinci-syntax lint code "$PKG_PATH/src" >/dev/null 2>&1 || true
 run_stage "lint" \
   pnpm davinci-syntax lint code --check "$PKG_PATH/src"
 
+# 3.5. Doctrine check — `!important` Tailwind utility patterns are forbidden in
+#      v1 migration code per `rules/styling.md` §"@base-ui/react v1 prescriptions".
+#      Per `references/base-ui-styling.md` §7.1 rung -1: walk the override-
+#      preference ladder before reaching for !important; if a Tailwind utility
+#      isn't winning, there's a rung you haven't tried (usually rung -1 = don't
+#      override, OR rung 3 = `render` prop with `mergeProps` filtering).
+#
+#      Scope: only the migrating package's src/. Legacy occurrences in
+#      Radio/styles.ts and RichTextEditorToolbar/styles.ts predate `@base-ui/react`
+#      and are NOT in scope for this gate (per `code-standards.md` legacy note).
+#
+#      Pattern: a quote character (', ", `) immediately followed by `!` and an
+#      optional `[`, then a word character. Catches:
+#        '!flex', "!absolute"           — utility variant
+#        '![translate:none]'            — arbitrary-value variant
+#        '!hidden', '!translate-none'    — single utilities
+#      Does NOT match JS expressions like `!isLoading` (no leading quote) or
+#      TypeScript non-null assertions like `foo!.bar` (no leading quote).
+#
+#      Why this exists: Slider v2 PR #4975 shipped `'![translate:none]'` and
+#      `'!absolute'` across 4 iters. PR #4976 (vedrani fork) replicated with
+#      `'!translate-none'`. PR #4959 (manual) used `'!translate-none'` too.
+#      Documentation alone (practices.md, doctrine, rules) hasn't been enough
+#      to prevent these regressions — a mechanical gate is needed.
+#
+#      Opt-out: MIGRATION_GATE_DOCTRINE=skip (sandbox / smoke runs).
+check_doctrine_no_important() {
+  local hits
+  hits=$(git grep -nE "['\"\`]!\[?\w" -- "$PKG_PATH/src" 2>/dev/null || true)
+  if [ -n "$hits" ]; then
+    echo "FAIL: !important Tailwind utility patterns detected in migration scope."
+    echo ""
+    echo "$hits"
+    echo ""
+    echo "  Per rules/styling.md §\"@base-ui/react v1 prescriptions\":"
+    echo "    No !important. Walk the override-preference ladder in"
+    echo "    references/base-ui-styling.md §7.1 — if a Tailwind utility isn't"
+    echo "    winning, there's a rung you haven't tried."
+    echo ""
+    echo "  Usually the right answer is:"
+    echo "    - rung -1: don't override (restructure DOM or accept Base UI's geometry"
+    echo "      and classify the sub-pixel diff as 'intentional improvement')"
+    echo "    - rung 3: <BaseUI.Part render={(props) => {"
+    echo "                const { offendingProp, ...keepStyle } = props.style || {}"
+    echo "                return <span {...props} style={keepStyle} className={...} />"
+    echo "              }} />"
+    echo ""
+    echo "  Canonical case study: Slider PR #4976 (vedrani) eliminated both"
+    echo "  '![translate:none]' (v2 PR #4975) and the legacy -mt-[7px] -ml-[6px]"
+    echo "  margins it was defending — geometric correctness, no override."
+    return 1
+  fi
+  return 0
+}
+if [ "${MIGRATION_GATE_DOCTRINE:-run}" = "skip" ]; then
+  run_stage_skip "doctrine" "MIGRATION_GATE_DOCTRINE=skip"
+else
+  run_stage "doctrine" check_doctrine_no_important
+fi
+
 # 4. Jest, scoped to the package directory.
 #    Skip the test:unit prelude (build) since stage 1 already covers it.
 run_stage "jest" \
@@ -778,6 +838,9 @@ done
             ;;
           changeset)
             echo "  *Likely doc:* \`docs/migration/PROMPT-light.md\` / \`PROMPT-heavy.md\` §7 (Changeset) + \`docs/migration/references/practices.md\` §\"Changesets\"."
+            ;;
+          doctrine)
+            echo "  *Likely doc:* \`docs/migration/rules/styling.md\` §\"@base-ui/react v1 prescriptions\" + \`docs/migration/references/base-ui-styling.md\` §7.1 (override-preference ladder, especially rung -1)."
             ;;
         esac
         echo

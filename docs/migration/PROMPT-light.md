@@ -12,7 +12,26 @@
 
 You are migrating a Picasso component from `@mui/base` to `@base-ui/react`. Tailwind is already in place; the component already uses `cx`/`twMerge` for class composition. Your task is the package swap + API alignment, not a full rewrite.
 
-**Base UI styling doctrine** (`render`, `useRender`, `data-[…]:` variants, `nativeButton={false}`, anti-patterns, escalation ladder, `as`/`render` translation) lives in `references/base-ui-styling.md`. Read it before applying styling changes — it is the canonical source for v1 styling decisions; `rules/styling.md` codifies its three non-negotiable v1 prescriptions.
+**Base UI styling doctrine** (`render`, `useRender`, `data-[…]:` variants, `nativeButton={false}`, anti-patterns, escalation ladder, `as`/`render` translation) lives in `references/base-ui-styling.md`. Read it before applying styling changes — it is the canonical source for v1 styling decisions; `rules/styling.md` codifies its non-negotiable v1 prescriptions.
+
+## Reasoning checklist — apply before ANY override on a Base UI part
+
+Before applying any override (rungs 1–5 of doctrine §7.1), run this four-question checklist. The goal is to surface the underlying reason for the override and check whether a cheaper rung — including rung -1 ("don't override") — is the right answer.
+
+1. **Question necessity.** Is this override truly needed, or am I defending something else? What does the override change visually vs the un-overridden Base UI default? If the answer is "matching a legacy baseline byte-for-byte," go to question 2.
+
+2. **Validate geometrically.** Does the new primitive produce a CORRECT geometry, and does the legacy do an APPROXIMATION of the same thing?
+   - `translate: -50% -50%` for centering is geometrically exact (centers element on the value point).
+   - Legacy margin offsets like `-mt-[7px] -ml-[6px]` for a 15px thumb are an approximation of half-element (15/2 = 7.5; the integer literal `-7` rounds the half-pixel).
+   - If the new primitive is geometrically exact and the legacy is approximate, **the override is defending the approximation** — that's a rung -1 case. Remove the legacy and propose the sub-pixel diff as MEDIUM "intentional improvement" per `references/practices.md` §"Visual parity by default; geometric improvements via approved-delta channel".
+
+3. **Consider restructure.** Could the visual need be met by adjusting the component's size, padding, or DOM structure instead of overriding the primitive?
+   - Example: bumping thumb size from 15px → 19px toward WCAG 2.5.8 touch-target accessibility (AA = 24×24 CSS px; 19px moves closer though doesn't reach it) per PR #4976 — adjusts the COMPONENT, doesn't fight the primitive. Propose this as MEDIUM PR comment; the operator approves the delta, the agent doesn't unilaterally bump.
+   - Example: using `bg-color/alpha` instead of `opacity:` to break a cascade (PR #4959) — restructures the styling layer, doesn't fight nested-part inheritance.
+
+4. **If unsure, propose, don't override.** When the geometric/restructure paths aren't clear, post a MEDIUM PR comment naming the diff, citing `references/base-ui-styling.md` §7.1 rung -1, and asking for operator decision. Do NOT push override-laden code as a way of "moving forward" — that's how `!important` regressions ship (Slider v2 #4975 is the canonical case study).
+
+Only after answering 1–3 in good faith AND the answer leaves no rung -1 path open, walk the doctrine §7.1 ladder (rungs 1–5).
 
 ## STOP rules (hard vetos — internalize before editing)
 
@@ -23,6 +42,7 @@ You are migrating a Picasso component from `@mui/base` to `@base-ui/react`. Tail
 5. Do not fall back to `any` or `as unknown as T` blanket casts to silence types — violates `references/code-standards.md` and `rules/api-preservation.md`.
 6. Do not preemptively rebuild prop interfaces around `BaseProps` (rule 10 of `PICASSO_COMPONENT_DESIGN_PATTERNS.md`) — that's a separate refactor track. Migration PRs preserve `extends StandardProps` (with `Omit<StandardProps, 'classes'>` per the classes decision matrix).
 7. Do not introduce sweeping prop renames; library-swap stays scoped. Document any deliberate rename in the changeset with a deprecation alias.
+8. Do not add `!important` or rung-5 inline `style` (`style={{ translate / position / transform: … }}` on a Base UI part) to make legacy positioning match byte-for-byte. STOP and run the Reasoning checklist above. If the legacy was an approximation: remove the legacy offsets, accept the new geometry, post a MEDIUM comment naming the diff as "intentional improvement" with the geometric reasoning. Do NOT push override-laden code to fight an approximation. See `references/base-ui-styling.md` §7.1 rung -1.
 
 ## Inputs you have read access to
 

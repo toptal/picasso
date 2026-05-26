@@ -143,6 +143,17 @@ Why per-PR: `.changeset/*.md` files accumulate on `feature/picasso-modernization
 
 Designed for the PF-1992 Note canary. Stops after `gh pr create`. No CI polling, no merge. Use to validate orchestrator wiring without auto-merging anything.
 
+## Iter convergence — restructure, don't patch
+
+If iter N (N ≥ 2) still shows *structural_difference* Happo classifications (not just pixel-level), prefer **restructuring the DOM** over patching the previous iter's CSS. Iterative CSS patching of a structurally-wrong DOM produces `!important`-laden code that defends the wrong structure — it may pass the gate but violates `rules/styling.md` §"@base-ui/react v1 prescriptions" and `references/base-ui-styling.md` §7.1 rung -1.
+
+Canonical case study — Slider:
+- **PR #4975 (v2, auto)**: iter 1 had structural Happo diff (Track in normal flow). Agent patched with `'!absolute'`. Iter 2 had opacity-cascade diff. Agent patched with class change. Iter 3 had sub-pixel positioning diff. Agent patched further. Iter 4 finally restructured to a sibling rail span — but kept the `!important` overrides from earlier iters. 4 iterations of accumulated patches; doctrine-dirty result.
+- **PR #4959 (manual, human)**: structured DOM correctly on iter 1 (Track natively with `bg-color/alpha` so opacity doesn't cascade into Indicator). Zero `!important` from the start. Single iter to Happo green.
+- **PR #4976 (manual fork)**: went one step further — removed the legacy `-mt -ml` margins that the rung-5 inline `style` overrides were defending. Happo had 7 sub-pixel diffs, classified as approved-delta (touch-target accessibility bump 15px → 19px). Doctrine-clean.
+
+Operational habit: when reviewing iter N (N ≥ 2) gate output, if Happo shows *structural_difference* (not just pixel-level), STOP iter N+1 from patching the iter N CSS. Instead invoke the agent with explicit guidance to RESTRUCTURE the DOM per `references/base-ui-styling.md` §7.1 rung -1 + §7.2. Reviewer-led restart is cheaper than 3 more iters of accumulated patches.
+
 ## Trust boundaries
 
 The orchestrator NEVER:
