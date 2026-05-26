@@ -1,5 +1,4 @@
 /* eslint-disable complexity */
-import type { PropTypes } from '@material-ui/core'
 import type { SpacingType } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
@@ -20,7 +19,7 @@ type WrapType = 'wrap' | 'nowrap' | 'wrap-reverse'
 type BorderableType = 'transparent' | 'white'
 
 export interface Props<V extends VariantType = VariantType>
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
@@ -46,7 +45,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
-  align?: PropTypes.Alignment
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify'
   /** margin-top for the container transformed to `rem` */
   top?: SpacingType
   /** margin-bottom for the container transformed to `rem` */
@@ -98,11 +97,11 @@ export const Container: ContainerProps = documentable(
         right,
         padded,
         gap,
-        // Avoid passing external classes inside the rest props
+        // Backstop against legacy `classes` reaching {...rest} → DOM warning
         /* eslint-disable @typescript-eslint/no-unused-vars */
-        classes: externalClasses,
+        classes: _classes,
         ...rest
-      } = props
+      } = props as Props<V> & { classes?: unknown }
 
       const spacingProps = { gap, padded, top, bottom, right, left }
       const isBorderedVariant =
