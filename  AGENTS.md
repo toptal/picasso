@@ -36,7 +36,7 @@ pnpm test                          # unit + integration (CI parity, slow)
 pnpm changeset                     # REQUIRED on PRs that change package code
 pnpm generate:component            # scaffold a new component (davinci-code)
 pnpm generate:example              # scaffold a story example
-pnpm generate:svg-components       # regenerate icon/pictogram React components from SVG
+pnpm generate:icons       # regenerate icon/pictogram React components from SVG
 pnpm refresh:tsconfig-references   # resync project references after pkg deps change
 pnpm circularity                   # madge --circular packages/*/src
 ```
@@ -101,7 +101,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **`TODO` / `FIXME` / `@deprecated`** comments must include a Jira ref — either `[ABC-1234]` or the full `https://toptal-core.atlassian.net/browse/...` URL. The `todo-plz/ticket-ref` ESLint rule will warn otherwise.
 - **Changesets** are required for any PR that changes behavior for consumers. Run `pnpm changeset` and commit the generated file alongside the change. The release PR ("Version Packages") is opened automatically after merge. Check docs/contribution/changeset-guidelines.md for best practices.
 - **CSS naming**: See `docs/contribution/css-naming.md`.
-- **Icons/pictograms**: drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants for icons) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generaate:icons`.
+- **Icons/pictograms**: drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants for icons) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` or `pnpm generate:pictograms`.
 - **Design tokens** must match the BASE design system. Don't invent local synonyms.
 
 ## Reference docs in this repo
