@@ -46,20 +46,30 @@ render?:    ReactElement | ((props: HTMLProps, state: State) => ReactElement);
 
 ## 3. Mechanism 1 — `className` strategies
 
-### 3.1 Class composition — `twMerge(cx(...))`
+### 3.1 Class composition — `twMerge(...)` (with optional `cx`)
 
-Every Tailwind-on-headless codebase needs a class-merging pipeline that resolves conflicts. Picasso uses [`classnames`](https://github.com/JedWatson/classnames)' `cx` (conditional joining) with `twMerge` from [`@toptal/picasso-tailwind-merge`](../../../packages/picasso-tailwind-merge) (Tailwind-aware deduplication, extended with Picasso-specific font sizes):
+Every Tailwind-on-headless codebase needs a class-merging pipeline that resolves conflicts. Picasso uses `twMerge` from [`@toptal/picasso-tailwind-merge`](../../../packages/picasso-tailwind-merge) (Tailwind-aware deduplication, extended with Picasso-specific font sizes). `cx` from [`classnames`](https://github.com/JedWatson/classnames) is **optional** — only needed for clsx-object-syntax.
+
+**Default form — `twMerge(...)` alone**:
 
 ```ts
-import cx from 'classnames';
 import { twMerge } from '@toptal/picasso-tailwind-merge';
 
-twMerge(cx('px-4 text-sm', isLarge && 'px-6 text-base'), className)
+twMerge(
+  'px-4 text-sm',
+  isLarge && 'px-6 text-base',         // conditional via && — works directly
+  variant === 'primary' ? 'bg-blue-500' : 'bg-transparent', // ternary works
+  className                            // consumer override LAST
+)
 ```
 
-**Why both?** `cx` only joins strings conditionally. If a wrapper applies `px-4` and the consumer passes `px-2`, `cx` alone produces `"px-4 px-2"` — both classes ship to the DOM and Tailwind's last-wins rule becomes order-of-CSS-rules dependent and brittle. `twMerge` deduplicates Tailwind-conflicting classes deterministically: **rightmost class wins regardless of source order**. This is the single most important guarantee for override ergonomics.
+Picasso's `twMerge` (via `extendTailwindMerge` per `packages/picasso-tailwind-merge/src/twMerge.ts:35`) accepts the same input types as `twJoin`: strings, arrays, and falsy values (`false`, `null`, `undefined`, `''`) are filtered out. Adopter examples: `Tabs.tsx:98-103` (raw `twMerge`), `Drawer.tsx:112` (conditional `&&`), `Dropdown.tsx:271` (ternary), `PageHeadBase.tsx:74` (nested array).
 
-> External Base UI tutorials commonly show a `cn = clsx + tailwind-merge` helper. In this repo, `twMerge(cx(...))` from `@toptal/picasso-tailwind-merge` + `classnames` is the equivalent. Don't introduce `clsx` — Picasso already ships `classnames`. See `rules/styling.md` §"Twmerge boundary".
+**`twMerge(cx(...))` is also valid** — reach for `cx` only when you need the clsx-object-syntax form (`cx({ active: isActive, disabled })`). The Picasso codebase uses `&&` / ternary forms above, so `cx` rarely earns its keep. Adopter example: Button (`twMerge(cx(...))`).
+
+**Why `twMerge`?** If a wrapper applies `px-4` and the consumer passes `px-2`, plain string concat produces `"px-4 px-2"` — both classes ship to the DOM and Tailwind's last-wins rule becomes order-of-CSS-rules dependent and brittle. `twMerge` deduplicates Tailwind-conflicting classes deterministically: **rightmost class wins regardless of source order**. This is the single most important guarantee for override ergonomics.
+
+> External Base UI tutorials commonly show a `cn = clsx + tailwind-merge` helper. Don't introduce `clsx` — Picasso ships `classnames` already; `cx` is the equivalent if you actually need it. See `rules/styling.md §"Composition"`.
 
 ### 3.2 Default classes + consumer override
 
@@ -819,8 +829,15 @@ When adding a Base-UI-backed component, verify:
 
 Informational only. Does not prescribe migration tactics; flags the gap so the doctrine above isn't read through Picasso muscle memory.
 
-1. **`slotProps={{ root: { className } }}` is `@mui/base` (v0), not `@base-ui/react` (v1).** v1 has no `slotProps`. Each part is a separate component you style directly. Anything that survives a migration with `slotProps` is unmigrated.
-2. **`classes` prop is also v0-era.** Base UI v1 emits no `classes`; styling goes through `className`/`style`/`render` on each part. The Picasso carve-outs (Tier 3.b Dropdown/OutlinedInput keeping narrowed `classes`) are consumer-compat shims, not Base UI patterns.
+1. **`slotProps={{ root: { className } }}` is `@mui/base` (v0), NOT `@base-ui/react` (v1).** v1 has no `slotProps`. Each part is a separate component you style directly.
+
+   **This appendix is the canonical home for the Tier 3.b legacy `slotProps` carve-out.** `practices.md §"@base-ui/react idioms" → "Slot-based styling — LEGACY Tier 3.b ONLY"` cites this section. Concretely:
+
+   - **`slotProps`/`slots`/`components`/`componentsProps`/`classes` props are forbidden in NEW v1 component code.** Each `@base-ui/react` part is its own component — style it directly with `className` / `data-[…]:` / `style` per §3-§6.
+   - **Tier 3.b carve-outs** (Dropdown, OutlinedInput, Modal) retain narrowed `classes?: { ... }` / `slotProps` shapes ONLY for consumer-compat. External callsites depend on them (Dropdown 2, OutlinedInput 4 per `decisions/classes-audit.md §Tier 3.b`).
+   - **End-state**: Tier 3.b components consolidate to v1 per-part styling once consumers migrate. Tracked in `design-patterns-addendum.md §2`. Removal lands as a future major bump.
+   - Anything else that survives a migration with `slotProps` is unmigrated — flag for the next iter.
+2. **`classes` prop is also v0-era.** Base UI v1 emits no `classes`; styling goes through `className`/`style`/`render` on each part. The Picasso carve-outs (Tier 3.b Dropdown/OutlinedInput/Modal keeping narrowed `classes`) are the same consumer-compat shim documented in (1) above.
 3. **JS-computed class arrays vs CSS `data-*` variants.** Patterns like `getInputClassName({ size, disabled })` compute classes from JS state. Base UI's recommended pattern is CSS-driven via `data-[disabled]:`, `data-[invalid]:`, etc. — the component already emits the attribute, so JS branching is redundant and harder to override. JS-computed forms remain valid where the value isn't expressible as a CSS variant (sizes/spacing from a typed enum); state-flags should prefer data-attribute variants.
 4. **`render` is the Base UI mechanism; `as` is the Picasso consumer API.** Picasso's external polymorphic prop is `as` (per `PICASSO_COMPONENT_DESIGN_PATTERNS.md` rule 11). Internally, wrappers translate `as` into Base UI's `render`:
 

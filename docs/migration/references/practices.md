@@ -39,33 +39,13 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   /** @deprecated [PF-1234] no equivalent in @base-ui/react; will be removed in next major */
   disablePortal?: boolean
   ```
-- **No `as unknown as T` blanket casts on `...rest` spread.** If `@base-ui/react`'s root element type mismatches the public Props, address it at the prop-by-prop boundary, not a blanket bridge cast (Switch iter 3 precedent).
-- **The "prop-by-prop boundary" means: destructure SPECIFIC incompatible props, then spread `...rest` unchanged.** Two binary anti-patterns regularly get reached for instead — neither is the right answer:
+- **At the type boundary, drop Picasso-only props from `rest` before spreading to a `@base-ui/react` part.** Address shape mismatches at the prop-by-prop boundary (`code-standards.md §"prop-by-prop boundary"`), not with a blanket bridge cast (Switch iter 3 precedent).
+- **Canonical pattern — destructure SPECIFIC mismatching props, spread `...rest` unchanged:**
 
-  **Anti-pattern A (blanket cast)** — silences the type checker without addressing the actual mismatch:
   ```tsx
-  // WRONG: papers over the boundary mismatch with a cast.
-  const Switch = (props: Props) => {
-    const rootProps = props as unknown as BaseUISwitch.Root.Props // ❌
-    return <BaseUISwitch.Root {...rootProps} />
-  }
-  ```
-
-  **Anti-pattern B (exhaustive allowlist)** — narrows the runtime surface, silently drops every other prop the public type claims to accept:
-  ```tsx
-  // WRONG: Props extends ButtonHTMLAttributes<HTMLButtonElement>, but
-  // onClick / onFocus / onBlur / data-* / aria-* are now dropped at runtime.
-  // Reviewers call this the "typed but no-op" anti-pattern.
-  const Switch = ({ name, form, tabIndex, ['aria-label']: ariaLabel }: Props) => {
-    return <BaseUISwitch.Root name={name} form={form} tabIndex={tabIndex} aria-label={ariaLabel} /> // ❌
-  }
-  ```
-
-  **CANONICAL — drop the specific mismatching props, spread the rest:**
-  ```tsx
-  // RIGHT: the only props that genuinely conflict with BaseUISwitch.Root's
-  // shape are destructured out (or transformed); everything else spreads
-  // through unchanged. Public API parity preserved, no cast, no allowlist.
+  // RIGHT: only props that genuinely conflict with BaseUISwitch.Root's shape
+  // are destructured out (or transformed); everything else spreads through
+  // unchanged. Public API parity preserved, no cast, no allowlist.
   const Switch = (props: Props) => {
     const {
       onChange,     // signature differs — adapt to onCheckedChange below
@@ -82,7 +62,13 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   }
   ```
 
-  How to find which props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` interface against your public `Props`. The intersection's NAME-OVERLAPS-WITH-DIFFERENT-TYPES set is what you destructure. Everything else is type-compatible and spreads. Typically this is 1–3 props for a Tier 0 component (onChange signature mismatch, sometimes `value`/`checked` clamp, sometimes a removed prop). If you find yourself destructuring 6+ props, you're sliding into Anti-pattern B — re-read the library's `.d.ts` and confirm those props ARE actually incompatible.
+  More worked examples (Switch, Drawer, Slider) in `code-standards.md §"prop-by-prop boundary"`. How to find which props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props` — the NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. Typically 1–3 props for Tier 0 components.
+
+- **Anti-patterns to avoid** (both forbidden):
+  - **Blanket cast** `as unknown as BaseUISwitch.Root.Props` — silences the type checker without addressing the mismatch.
+  - **Exhaustive allowlist** (manually picking 4–6 props to forward) — drops every other prop at runtime; reviewers call this the "typed but no-op" anti-pattern.
+
+  If you find yourself destructuring 6+ props, you're sliding into the exhaustive-allowlist anti-pattern — re-read the library's `.d.ts` and confirm those props are actually incompatible.
 - **No `any`** in component source (ESLint `@typescript-eslint/no-explicit-any` is **error** in source, off in tests).
 - **Override pathways for `@base-ui/react`** — pick the lowest-cost mechanism that solves the problem; reviewers block PRs that reach for higher-cost ones prematurely. Two related but separate ladders:
   - **Override-preference ladder** (when to reach for which mechanism in general): `references/base-ui-styling.md §7.1`. Rungs: -1 (don't override) → 1 (`data-[…]:`) → 2 (`className` fn) → 3 (`render` prop, optionally filtering style) → 4 (`useRender`) → 5 (inline `style`). `!important` is forbidden.
@@ -130,9 +116,10 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 - **`disablePortal` emulation**: conditionally omit `<Drawer.Portal>` wrapper rather than searching for a non-existent prop.
 - **Transition/animation parity**: when swapping the primitive, port the prior open/close motion (`data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full` on `Drawer.Popup`) before opening review. Missing animations are a guaranteed regression flag.
 - **For typecheck-noise from upstream type drift**, prefer inline `@ts-expect-error` over a `patches/*.patch` entry. Patches add repo-wide maintenance overhead; reviewers push back unless suppression would spread across many call sites (Drawer iter 2 precedent).
-- **The `@base-ui/utils@0.2.8` patch** (strips `const` from generic params) IS required for Tier 0 components — apply via `pnpm.patchedDependencies` + lockfile `patch_hash`. Do NOT re-derive (Drawer + Modal precedent).
-- **Slot-based styling (MUI-Base + `@base-ui/react` idiom)**: when wrapping a primitive that accepts `slots` + `slotProps`, use them instead of pumping CSS through `classes`. Example from `OutlinedInput.tsx:174-202`:
+- **The `@base-ui/utils@0.2.8` patch** (strips `const` from generic params) IS required for Tier 0 components — apply via `pnpm.patchedDependencies` + lockfile `patch_hash`. Do NOT re-derive (Drawer + Modal precedent). _TODO: remove after master rebase confirms the patch is obsolete (TC-4)._
+- **Slot-based styling — LEGACY Tier 3.b ONLY (NOT a `@base-ui/react` v1 pattern)**: `slots` + `slotProps` is the **`@mui/base` v0** API. It is preserved ONLY for Tier 3.b legacy components (Dropdown, OutlinedInput, Modal) where external consumers still depend on the v0 shape. `@base-ui/react` v1 has no `slotProps` — each part is a separate component you style directly (see `references/base-ui-styling.md §Appendix·1` + `design-patterns-addendum.md §2`). Do NOT introduce `slots`/`slotProps` in new code. Example of the legacy shape (only valid for Tier 3.b's continued v0-API surface):
   ```tsx
+  // LEGACY — Tier 3.b only (OutlinedInput.tsx:174-202)
   <Input
     slots={{ input: CustomInput }}
     slotProps={{
@@ -141,7 +128,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
     }}
   />
   ```
-  This is the canonical Picasso pattern for multi-part `@base-ui/react` consumers — preferred over a `classes` prop (which is rule 5 forbidden) and over class dictionaries.
+  End-state: Tier 3.b consolidates onto v1 per-part styling once consumers migrate.
 - **Responsive spacing utilities**: components accepting breakpoint-aware spacing (e.g., Dropdown's `offset?.top` / `offset?.bottom`) should use `makeResponsiveSpacingProps()` from `@toptal/picasso-provider` to generate responsive Tailwind classes dynamically. See `Dropdown.tsx:106-109,236-242` for the canonical usage. Do NOT hand-roll responsive class strings for spacing values that should match the breakpoint API.
 
 ## Tailwind & class composition
@@ -173,7 +160,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 ## Polymorphic + ref forwarding
 
 - `forwardRef<HTMLButtonElement, Props>(...)` already types `ref` correctly. Don't cast `ref` at the JSX site.
-- Spreading `{...rest}` with a cast (`{...(rest as BaseUIButton.Props)}`) is `// @ts-ignore` in disguise. If `rest` doesn't conform, drop the offending Picasso-only prop BEFORE spreading. NEVER fall back to `any`.
+- **Drop Picasso-only props from `rest` before spreading to a `@base-ui/react` part.** When `rest` includes Picasso-specific props the underlying part doesn't accept, destructure them out before the spread — don't paper over the mismatch with `as BaseUIButton.Props`. NEVER fall back to `any`.
 - See `rules/base-ui-react-api-crib.md` §"Polymorphic Button" for the `nativeButton + render` pattern.
 
 ## Responsive component visual testing (MANDATORY)

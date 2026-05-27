@@ -295,16 +295,36 @@
     "Form": {
       "tier": 1,
       "package": "packages/base/Form",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4981",
+      "branch": "migrate-Form-v1",
+      "worktree": "migration-runs/2026-05-26/Form-v1/worktree",
+      "iterations": 2,
       "merged_at": null,
-      "notes": "Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap."
+      "notes": "Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4981",
+          "branch": "migrate-Form-v1",
+          "worktree": "migration-runs/2026-05-26/Form-v1/worktree",
+          "iterations": 2,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": "2026-05-26T22:27:53.701Z",
+          "last_review_seen_at": null,
+          "session_id": "5187e2b3-2307-4ed9-8932-28d5f8aa5a03",
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": "2026-05-26T22:27:53.701Z",
+      "last_review_seen_at": null,
+      "session_id": "5187e2b3-2307-4ed9-8932-28d5f8aa5a03",
+      "awaiting_ci_since": null
     },
     "FormLayout": {
       "tier": 1,
@@ -386,30 +406,70 @@
     "Container": {
       "tier": 1,
       "package": "packages/base/Container",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4980",
+      "branch": "migrate-Container-v1",
+      "worktree": "migration-runs/2026-05-26/Container-v1/worktree",
+      "iterations": 2,
       "merged_at": null,
-      "notes": "Type-only fix: replace `import type { PropTypes } from '@material-ui/core'` with own type or React.HTMLAttributes. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>)."
+      "notes": "Type-only fix: replace `import type { PropTypes } from '@material-ui/core'` with own type or React.HTMLAttributes. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>).",
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4980",
+          "branch": "migrate-Container-v1",
+          "worktree": "migration-runs/2026-05-26/Container-v1/worktree",
+          "iterations": 2,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": "2026-05-26T16:21:14.640Z",
+          "last_review_seen_at": null,
+          "session_id": "fb524a89-4f0e-43f4-abf1-98c04f9a27f1",
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": "2026-05-26T16:21:14.640Z",
+      "last_review_seen_at": null,
+      "session_id": "fb524a89-4f0e-43f4-abf1-98c04f9a27f1",
+      "awaiting_ci_since": null
     },
     "FormLabel": {
       "tier": 1,
       "package": "packages/base/FormLabel",
-      "status": "queued",
+      "status": "awaiting_ci",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4982",
+      "branch": "migrate-FormLabel-v1",
+      "worktree": "migration-runs/2026-05-27/FormLabel-v1/worktree",
+      "iterations": 3,
       "merged_at": null,
-      "notes": "Type-only fix: replace `import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'` with own type. Switch + Checkbox + Radio all depend on this — sequence early in Tier 1."
+      "notes": "Type-only fix: replace `import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'` with own type. Switch + Checkbox + Radio all depend on this — sequence early in Tier 1. Prior v1 attempt aborted on transient Anthropic 529 (no migration work performed); worktree + branch reused for retry.",
+      "variants": {
+        "v1": {
+          "status": "awaiting_ci",
+          "pr": "https://github.com/toptal/picasso/pull/4982",
+          "branch": "migrate-FormLabel-v1",
+          "worktree": "migration-runs/2026-05-27/FormLabel-v1/worktree",
+          "iterations": 3,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": "2026-05-27T08:32:08.098Z"
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": "2026-05-27T08:32:08.098Z"
     },
     "Grid": {
       "tier": 1,

@@ -163,7 +163,7 @@ isOval?: boolean
 
 ### R10 — Extend `BaseProps` · **RULE**
 
-Every component's Props interface must extend `BaseProps`, which provides the shared root-element contract: `className?: string`, `style?: CSSProperties`, `'data-testid'?: string`. Do not redeclare these props locally.
+Every component's Props interface must extend `BaseProps`, which provides the shared root-element contract: `className?: string`, `style?: CSSProperties`, `'data-testid'?: string`.
 
 ```ts
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -192,9 +192,9 @@ as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
 
 **Internal translation**: Picasso's external `as` API is translated to Base UI's `render` mechanism internally — see §5 "Render prop". For button-default Base UI parts (Button, Menu.Trigger, Tabs.Tab, NumberField.Increment/Decrement, Toolbar.Button), the tag swap MUST pair with `nativeButton={false}`.
 
-**No runtime guards**: do NOT add `typeof`/`isValidAs` checks for `as` — TypeScript constrains it; reviewers will ask for removal.
+**No runtime guards**: do NOT add `typeof`/`isValidAs` checks for `as` — TypeScript constrains it; reviewers will ask for removal. (Promoted to `PICASSO_COMPONENT_DESIGN_PATTERNS.md §11` from `code-standards.md §"prop-by-prop boundary"`.)
 
-(source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §11; `code-standards.md §"prop-by-prop boundary"`)
+(source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §11)
 
 ### R12 — Use the shared size scale · **RULE**
 
@@ -216,9 +216,9 @@ export type Sizes =
 export type SizeType<T extends Sizes> = T
 ```
 
-Do NOT introduce custom size names (`tiny`, `big`, `huge`) or numeric scales.
+Size names mirror BASE design system tokens (see R8). Do NOT introduce custom size names (`tiny`, `big`, `huge`) or numeric scales.
 
-(source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §12)
+(source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §12 + §8)
 
 ### R13 — Use the shared color palette and shade scale · **RULE**
 
@@ -253,15 +253,13 @@ interface Palette {
 }
 ```
 
-Do NOT invent new color or shade names (`bright`, `pale`, `accent`, `orange`) or use raw hex/rgb values in the public API.
+Do NOT invent new color or shade names (`bright`, `pale`, `accent`, `orange`); do NOT use raw hex/rgb values in the public API.
 
 (source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §13)
 
 ### R14 — No `is` prefix on boolean props · **RULE**
 
 Boolean props are named with the adjective only: `open`, `disabled`, `loading`, `selected`, `collapsed`, `expanded`, `active`, `hovered`, `indeterminate`. NEVER `isOpen`, `isDisabled`, `isLoading`. The same applies to `has`/`should` prefixes.
-
-**Why**: 28/28 current compliance — Picasso's most consistent rule. New code must match.
 
 (source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §14)
 
@@ -283,7 +281,9 @@ Apply only when the design genuinely requires a compound consumer API (3+ distin
 
 Current adopters: Modal, Accordion, Drawer, Tabs, Menu, Dropdown, Note (plus the Button family internally). See §3 for the canonical `<Component>Compound/index.ts` wrapper-file pattern.
 
-(source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §15)
+**Migration carve-out**: do NOT preemptively restructure existing non-compound components into compound shape mid-migration. Library-swap PRs preserve the existing API; the compound refactor is a separate track. See Appendix A.1.
+
+(source: `PICASSO_COMPONENT_DESIGN_PATTERNS.md` §15 + `design-patterns-addendum.md §1`)
 
 ### R16 — Use `testIds` for multi-part test selectors · **RULE**
 
@@ -344,7 +344,7 @@ packages/base/<Component>/src/<Component>/
 └── __snapshots__/    # generated
 ```
 
-Variance (6/28): components with logical sub-components co-locate them in the same dir (Button has `ButtonBase.tsx`, `ButtonCheckbox.tsx` — not split into sibling dirs).
+If it makes sense to have sub-components, co-locate them in the same dir (e.g., Button has `ButtonBase.tsx`, `ButtonCheckbox.tsx` — not split into sibling dirs).
 
 **Hooks and utilities**: when a component needs custom hooks or helpers, co-locate as `hooks.ts` or `<use-hook-name>.ts` inside the component folder — never split into a parallel `packages/.../hooks/` directory.
 
@@ -357,14 +357,30 @@ When a component exposes a `Component.Item` / `Component.Tab` / `Component.Title
 - `<Component>.tsx` — the main functional component, unchanged shape.
 - `<Component>Compound/index.ts` — wraps the main export and attaches static properties (`Tabs.Tab = TabsTab`, `Menu.Item = MenuItem`).
 
-Tests import `TabsCompound as Tabs` to access the compound API. Examples:
+Canonical shape (`Object.assign` on the main export):
 
-- `Tabs.tsx:1-128` + `TabsCompound/index.ts` exposes `Tabs.Tab`.
-- `Menu.tsx:23-118` + `MenuCompound/index.ts` exposes `Menu.Item`.
-- `Dropdown.tsx:125-337` + `DropdownCompound/index.ts` exposes `Dropdown.Arrow`.
-- `Note.tsx:9-37` + `NoteCompound/index.ts` exposes `Note.Title`, `Note.Subtitle`, `Note.Content`.
+```ts
+// FormCompound/index.ts
+import { FormLabel } from '@toptal/picasso-form-label'
 
-Apply this split only when the design genuinely requires a compound consumer API (3+ distinct sub-parts). Don't introduce a `XCompound/` wrapper just to attach a single `.X.Item` — keep simple components monolithic.
+import { Form } from '../Form'
+import { FormError } from '../FormError'
+import { FormField } from '../FormField'
+import { FormHint } from '../FormHint'
+import { FormWarning } from '../FormWarning'
+
+export const FormCompound = Object.assign(Form, {
+  Field: FormField,
+  Hint: FormHint,
+  Error: FormError,
+  Label: FormLabel,
+  Warning: FormWarning,
+})
+```
+
+Tests import `FormCompound as Form` to access the compound API. Other examples: `TabsCompound`, `MenuCompound`, `DropdownCompound`, `NoteCompound`.
+
+For when to apply this pattern (3+ distinct sub-parts), see `PICASSO_COMPONENT_DESIGN_PATTERNS.md` rule 15 — single source of truth.
 
 (source: `code-standards.md §"Compound-component wrapper pattern"`)
 
@@ -388,28 +404,11 @@ Children call `useDropdownContext()?.close()`. This is the canonical Picasso pat
 
 (source: `code-standards.md §"Context-based coordination for compound parts"`)
 
-### `PrivateProps` / `PublicProps` split · **Convention** (1/28 — Notification)
+### Documented variance: `PrivateProps` / `PublicProps` split (1/28 — Notification only)
 
-When a component has internal-only props (e.g., `elevated`, `icon` consumed by internal composition but not part of the public API), use the split:
+Notification (`Notification.tsx:19-40`) uses an internal/public split: `PrivateProps` (with internal-only `elevated`/`icon`) consumed by the component body, `PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>` exported as the public type. 1/28 adoption — Notification-specific pattern, not a general rule. If a new component genuinely needs internal-only props, prefer this shape over JSDoc-marked "internal" comments because the type system enforces the API boundary.
 
-```ts
-// Notification.tsx:19-40
-interface PrivateProps extends StandardProps {
-  /** Internal: drawn with elevation when nested inside Modal */
-  elevated?: boolean
-  // ... other internal props
-  /** Public visible props */
-  variant?: 'success' | 'info' | 'warning'
-}
-
-export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
-// Component takes PrivateProps internally
-// index.ts exports only PublicProps as the public type
-```
-
-This pattern is preferred over commenting "// internal use only" — the type system enforces the API boundary.
-
-(source: `code-standards.md §"PrivateProps / PublicProps split"`)
+(source: `code-standards.md §"Documented variance: PrivateProps / PublicProps split"`)
 
 ### Export & component conventions · **RULE** (26/28 conform)
 
@@ -439,7 +438,7 @@ export type { Props as ButtonProps } from './Button'
 ### Props interface declaration · **RULE** (28/28 use `interface`)
 
 - Use `interface Props extends ...`, NEVER `type Props = { ... }`.
-- For boolean props: bare adjective only — `disabled`, `checked`, `loading`, `selected`, `collapsed`, `open`, `expanded`, `active`, `hovered`, `indeterminate` (R14).
+- Boolean prop naming follows R14 (see §1) — bare adjective only; no `is`/`has`/`should` prefix.
 - **Default values via destructuring** in the function signature, NEVER `Component.defaultProps = { ... }` static assignment (legacy anti-pattern; 26/28 components avoid it).
 
 ```tsx
@@ -449,7 +448,7 @@ forwardRef<HTMLButtonElement, Props>(function Button(
 ) { /* ... */ })
 ```
 
-**Carve-out**: `Dropdown.tsx` exposes `defaultProps?: Partial<PropsWithBaseSpacing>` in its Props type for overload support — that's a type-level field name, not the runtime anti-pattern. Don't introduce a new `defaultProps` type field unless you genuinely need overload support.
+> Documented variance: `Dropdown.tsx` exposes `defaultProps?: Partial<PropsWithBaseSpacing>` in its Props type for overload support — that's a type-level field name, not the runtime anti-pattern. Single-component carve-out; do NOT model new code on it.
 
 (source: `code-standards.md §"Props interface declaration"`)
 
@@ -469,35 +468,24 @@ interface Props extends BaseProps {
 }
 ```
 
-- **Forbidden** on passthrough internal props (`ownerState`, MUI-Base injected props, `data-private`, `data-testid` from BaseProps). These surface in TS doc generation as public API.
+- **Forbidden on passthrough internal props.** These surface in TS doc generation as public API. Reserved-props list (do NOT JSDoc, pass through silently):
+  - `data-private?: string` — framework hook (theme access / analytics). Used internally by Tooltip, Slider, Switch, Checkbox.
+  - `data-testid?: string` — comes from `BaseProps`; never declare per-component.
+  - `ownerState`, MUI-Base / `@base-ui/react` injected props — implementation detail of the underlying primitive.
+  If your migration touches a component that uses these, preserve the pass-through without adding JSDoc.
 - For `@deprecated` JSDoc tags: should include a Jira reference `[ABC-1234]` or URL. ESLint `todo-plz/ticket-ref` is configured as **warn** (not error), so non-compliant `@deprecated` tags ship without blocking CI — reviewers consistently flag this regardless.
 
 (source: `code-standards.md §"JSDoc rules"`)
 
-### Reserved props · **Convention**
-
-These props are framework-reserved; pass through without surfacing in JSDoc:
-
-- `data-private?: string` — framework hook (theme access / analytics). Used internally by Tooltip, Slider, Switch, Checkbox.
-- `data-testid?: string` — from `BaseProps`; never declare per-component.
-- `ownerState`, MUI-Base injected props — implementation detail.
-
-If your migration touches a component that uses these, preserve the pass-through; do NOT add JSDoc to them.
-
-(source: `code-standards.md §"Reserved props"`)
-
 ### Import conventions · **RULE**
 
-**Order** (observed in 28/28 components surveyed):
+**Order** — enforced + auto-fixable by `import/order` (error) in `@toptal/davinci-syntax`'s ESLint config. Groups: `[builtin, external]` → `internal` → `[parent, sibling, index, unknown]`, with `newlines-between: always`. Run `pnpm davinci-syntax lint code packages/base/<NAME>/src` to auto-fix.
 
-1. React / react-related (`react`, `react-dom`)
-2. Third-party (`@mui/base`, `@material-ui/*`, `@base-ui/react`, etc.)
-3. `@toptal/*` packages
-4. Relative imports (`./styles`, `../utils`)
+**Barrel imports — RULE (NEVER deep paths)**: `import { StandardProps, SizeType } from '@toptal/picasso-shared'`, not `import { StandardProps } from '@toptal/picasso-shared/src/...'`. Survey: 28/28 conform.
 
-**Barrel imports preferred**: `import { StandardProps, SizeType } from '@toptal/picasso-shared'` (not deep paths).
+#### No self-imports from aggregate package · **RULE** (ESLint error)
 
-**Forbidden**: import from `@toptal/picasso` within sub-packages (ESLint error `@toptal/davinci/no-package-self-imports`). Each sub-package imports directly from sibling packages, never via the aggregate.
+`@toptal/davinci/no-package-self-imports` is **error**: sub-packages MUST NOT import from `@toptal/picasso` (the aggregate). Each sub-package imports directly from sibling packages it depends on, never via the aggregate. Root `.eslintrc.js` excludes `*.example.jsx`/`*.example.tsx` (stories may use the aggregate for ergonomics).
 
 #### Where to import what
 
@@ -516,14 +504,15 @@ If your migration touches a component that uses these, preserve the pass-through
 ### Custom hooks · **Convention** (4+ examples)
 
 - `use*` prefix universal.
-- Co-locate inside the component folder (`Slider/hooks.ts`, `Tooltip/use-tooltip-state.ts`).
+- **Preferred filename: `use-{hook-name}.ts`** (one hook per file, searchable filename). `hooks.ts` is acceptable for legacy components or when a component owns 2–3 tiny related hooks where a single file is genuinely simpler.
+- Co-locate inside the component folder (e.g., `Tooltip/use-tooltip-state.ts`, `Slider/hooks.ts` for the legacy grouping).
 - Examples: `useLabelOverlap` (Slider), `useTooltipState` (Tooltip), `useOnScreen` (Slider), `useCombinedRefs` (shared utility for merging user + internal refs).
 
 (source: `code-standards.md §"Custom hooks"`)
 
 ### Re-export pattern · **RULE** (universal)
 
-The package's top-level `src/index.ts` re-exports every component and its Props type:
+The sub-package's top-level `src/index.ts` re-exports every component and its Props type:
 
 ```ts
 export { default as Button, type ButtonProps } from './Button'
@@ -532,16 +521,37 @@ export { default as Modal, type ModalProps } from './Modal'
 
 **Do NOT change this shape during a migration** — the package's public API surface is contractual.
 
+**Aggregate re-export — RULE**: every sub-package's public exports MUST also be surfaced in `packages/picasso/src/index.ts`. When a sub-package adds a new public symbol, also add it to the aggregate index in the same PR. If a symbol is missing from the aggregate, consumers using `@toptal/picasso` can't reach it. Canonical shape (315 lines as of 2026-05):
+
+```ts
+// packages/picasso/src/index.ts
+export { ButtonCompound as Button, ButtonCircular } from '@toptal/picasso-button'
+export type { ButtonProps, ButtonCheckboxProps, ButtonRadioProps } from '@toptal/picasso-button'
+```
+
 (source: `code-standards.md §"Re-export pattern"`)
 
 ### `*.example.tsx` story files · **Convention** (universal)
 
 - Location: `<Component>/story/<Domain>.example.tsx`. NEVER a central `stories.ts` index.
 - One example per file. Filename in PascalCase, matches the story title kebab-cased in URLs.
-- Story registration via `addExample` calls in a `story/index.jsx` (one per component) — read this file to discover the component's full story list.
+- Story registration in `story/index.jsx` via the PicassoBook API. Canonical chain — see `docs/contribution/creating-examples.md` for the full method surface:
+  ```js
+  import PicassoBook from '@toptal/picasso-book'
+
+  const page = PicassoBook.section('Components').createPage('Button')
+
+  page
+    .createChapter('Variants')
+    .addExample('Button/story/Primary.example.tsx', 'Primary')
+    .addExample('Button/story/Ghost.example.tsx', {
+      title: 'Ghost',
+      screenshotBreakpoints: true,    // responsive component → all breakpoints
+    })
+  ```
 - `.example.tsx` files exempt from SSR rules, multi-comp rule, and a number of `@typescript-eslint` rules.
 
-(source: `code-standards.md §"*.example.tsx story files"`)
+(source: `code-standards.md §"*.example.tsx story files"` + `docs/contribution/creating-examples.md`)
 
 ---
 
@@ -571,44 +581,16 @@ If you absolutely need to suppress a type, use `@ts-expect-error <reason>` so th
 
 ### The "prop-by-prop boundary" — canonical resolution for root-element-type mismatches · **RULE**
 
-When `@base-ui/react`'s root part has a type that doesn't fully line up with your public `Props` (e.g. `Props extends ButtonHTMLAttributes<HTMLButtonElement>` but `BaseUISwitch.Root.Props` doesn't extend `ButtonHTMLAttributes`), the canonical fix is **NOT**:
+When `@base-ui/react`'s root part has a type that doesn't fully line up with your public `Props`, **destructure SPECIFIC incompatible props** (or transform them via an adapter), then **spread `...rest` unchanged**. Three worked examples:
 
-#### Anti-pattern A — blanket cast
-
-Silences the type checker without addressing the mismatch:
+**Switch — `onChange` adapter + `checked` clamp:**
 
 ```tsx
-// WRONG: papers over the boundary mismatch with a cast.
-const Switch = (props: Props) => {
-  const rootProps = props as unknown as BaseUISwitch.Root.Props // ❌
-  return <BaseUISwitch.Root {...rootProps} />
-}
-```
-
-#### Anti-pattern B — exhaustive allowlist
-
-Narrows the runtime surface, silently drops every other prop the public type claims to accept:
-
-```tsx
-// WRONG: Props extends ButtonHTMLAttributes<HTMLButtonElement>, but
-// onClick / onFocus / onBlur / data-* / aria-* are now dropped at runtime.
-// Reviewers call this the "typed but no-op" anti-pattern.
-const Switch = ({ name, form, tabIndex, ['aria-label']: ariaLabel }: Props) => {
-  return <BaseUISwitch.Root name={name} form={form} tabIndex={tabIndex} aria-label={ariaLabel} /> // ❌
-}
-```
-
-#### Canonical — destructure SPECIFIC incompatible props, spread `...rest`
-
-```tsx
-// RIGHT: the only props that genuinely conflict with BaseUISwitch.Root's
-// shape are destructured out (or transformed); everything else spreads
-// through unchanged. Public API parity preserved, no cast, no allowlist.
 const Switch = (props: Props) => {
   const {
     onChange,     // signature differs — adapt to onCheckedChange below
-    checked,      // base-ui uses checked: boolean directly, but we want to clamp
-    ...rest       // ← all other ButtonHTMLAttributes flow through
+    checked,      // type narrowing (number? → boolean clamp)
+    ...rest       // ← everything else flows through, fully typed
   } = props
   return (
     <BaseUISwitch.Root
@@ -620,11 +602,44 @@ const Switch = (props: Props) => {
 }
 ```
 
-**How to find which props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` interface against your public `Props`. The intersection's NAME-OVERLAPS-WITH-DIFFERENT-TYPES set is what you destructure. Everything else is type-compatible and spreads.
+**Drawer — `onClose` adapter (Base UI uses `onOpenChange`):**
 
-**Empirical sanity check**: for Tier 0 components the destructure list is typically 1–3 props (onChange signature, occasional value/checked clamp, sometimes a removed prop). If you find yourself destructuring 6+ props, re-read the library's `.d.ts` — you're sliding into Anti-pattern B.
+```tsx
+const Drawer = (props: Props) => {
+  const { onClose, ...rest } = props
+  return (
+    <BaseUIDrawer.Root
+      {...rest}
+      onOpenChange={open => { if (!open) onClose?.() }}
+    />
+  )
+}
+```
 
-The migration-period oscillation observed on Switch review-iter 7 (2026-05-22) — allowlist → cast → allowlist across three consecutive iters — was the agent flipping between the two anti-patterns above because neither it nor the audit-agent named the canonical third option. Cite this section directly in PR replies when reviewers raise the question.
+**Slider — `onValueChange` re-expose (Base UI omits the synthetic event):**
+
+```tsx
+const Slider = (props: Props) => {
+  const { onChange, ...rest } = props
+  return (
+    <BaseUISlider.Root
+      {...rest}
+      onValueChange={(value, activeThumbIndex) =>
+        onChange?.(syntheticEvent, value, activeThumbIndex)
+      }
+    />
+  )
+}
+```
+
+**To find which props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props`. The NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. For Tier 0 components, typically 1–3 props.
+
+**Anti-patterns to avoid** (both forbidden):
+
+- **Blanket cast** `as unknown as BaseUISwitch.Root.Props` — silences the type checker without addressing the mismatch.
+- **Exhaustive allowlist** (manually picking 4–6 props to forward) — drops every other prop at runtime; reviewers call this the "typed but no-op" anti-pattern.
+
+If you find yourself destructuring 6+ props, you're sliding into the exhaustive-allowlist anti-pattern — re-read the library's `.d.ts`. Cite this section + `practices.md §"API preservation"` directly in PR replies when reviewers raise the question.
 
 (source: `code-standards.md §"prop-by-prop boundary"`, `practices.md §"API preservation"`)
 
@@ -651,7 +666,7 @@ This isolates the type-system compromise to one location instead of sprinkling c
 ### Polymorphic + ref forwarding · **RULE**
 
 - `forwardRef<HTMLButtonElement, Props>(...)` already types `ref` correctly. Don't cast `ref` at the JSX site.
-- Spreading `{...rest}` with a cast (`{...(rest as BaseUIButton.Props)}`) is `// @ts-ignore` in disguise. If `rest` doesn't conform, drop the offending Picasso-only prop BEFORE spreading. NEVER fall back to `any`.
+- **Drop Picasso-only props from `rest` before spreading to a `@base-ui/react` part.** When `rest` includes Picasso-specific props the underlying part doesn't accept, destructure them out before the spread — don't paper over the mismatch with `as BaseUIButton.Props`. NEVER fall back to `any`.
 
 (source: `practices.md §"Polymorphic + ref forwarding"`)
 
@@ -685,20 +700,30 @@ render?:    ReactElement | ((props: HTMLProps, state: State) => ReactElement);
 
 (source: `base-ui-styling.md §2`)
 
-### `className` composition — `twMerge(cx(...))` · **RULE**
+### `className` composition — `twMerge(...)` (with optional `cx`) · **RULE**
 
-Every Tailwind-on-headless codebase needs a class-merging pipeline that resolves conflicts. Picasso uses `classnames` (`cx`) + `twMerge` from `@toptal/picasso-tailwind-merge`:
+Every Tailwind-on-headless codebase needs a class-merging pipeline that resolves conflicts. Picasso uses `twMerge` from `@toptal/picasso-tailwind-merge`. `cx` from `classnames` is **optional** — only needed for clsx-object-syntax.
+
+**Default form — `twMerge(...)` alone:**
 
 ```ts
-import cx from 'classnames'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-twMerge(cx('px-4 text-sm', isLarge && 'px-6 text-base'), className)
+twMerge(
+  'px-4 text-sm',
+  isLarge && 'px-6 text-base',         // conditional via && — works directly
+  variant === 'primary' ? 'bg-blue-500' : 'bg-transparent',
+  className                            // consumer override LAST
+)
 ```
 
-**Why both?** `cx` only joins strings conditionally. If a wrapper applies `px-4` and the consumer passes `px-2`, `cx` alone produces `"px-4 px-2"` — both classes ship to the DOM and Tailwind's last-wins rule becomes order-of-CSS-rules dependent and brittle. `twMerge` deduplicates Tailwind-conflicting classes deterministically: **rightmost class wins regardless of source order**.
+Picasso's `twMerge` (via `extendTailwindMerge` per `packages/picasso-tailwind-merge/src/twMerge.ts:35`) accepts strings, arrays, and falsy values (`false`, `null`, `undefined`, `''`) — filtered out automatically. Adopter examples: `Tabs.tsx:98-103` (raw `twMerge`), `Drawer.tsx:112` (conditional `&&`), `Dropdown.tsx:271` (ternary), `PageHeadBase.tsx:74` (nested array).
 
-**Do NOT introduce `clsx`** — Picasso already ships `classnames`. The `cn = clsx + tailwind-merge` helper common in external tutorials maps to `twMerge(cx(...))` here.
+**`twMerge(cx(...))` is also valid** — reach for `cx` only when you need the clsx-object-syntax form (`cx({ active: isActive, disabled })`). Picasso's established forms (`&&`, ternary) don't need it. Button uses `twMerge(cx(...))` as legacy convention; new code can drop the `cx` wrapper.
+
+**Why `twMerge`?** If a wrapper applies `px-4` and the consumer passes `px-2`, plain string concat produces `"px-4 px-2"` — both classes ship to the DOM and Tailwind's last-wins rule becomes order-dependent and brittle. `twMerge` deduplicates Tailwind-conflicting classes deterministically: **rightmost class wins regardless of source order**.
+
+**Do NOT introduce `clsx`** — Picasso ships `classnames` already; `cx` is the equivalent if you actually need it.
 
 (source: `base-ui-styling.md §3.1`, `rules/styling.md §"Composition"`)
 
@@ -745,11 +770,11 @@ Every part exposing state accepts a function form:
 ```tsx
 <Switch.Thumb
   className={(state) =>
-    twMerge(cx(
+    twMerge(
       'block size-4 rounded-full transition-transform',
       state.checked ? 'translate-x-4 bg-white' : 'translate-x-0 bg-neutral-300',
       state.disabled && 'opacity-50',
-    ))
+    )
   }
 />
 ```
@@ -1032,11 +1057,14 @@ Do NOT add runtime `typeof`/`isValidAs` guards for the `as` prop — TypeScript 
 
 (source: `practices.md §"@base-ui/react idioms"`, `rules/styling.md §"@base-ui/react v1 prescriptions"`)
 
-### Slot-based styling — MUI-Base + `@base-ui/react` idiom · **Preferred** (legacy + Tier 3.b)
+### Slot-based styling (LEGACY Tier 3.b only — NOT a v1 pattern)
 
-When wrapping a primitive that accepts `slots` + `slotProps`, use them instead of pumping CSS through `classes`. Example from `OutlinedInput.tsx:174-202`:
+`slots` + `slotProps` is the **`@mui/base` v0** API. It is preserved ONLY for Tier 3.b legacy components (Dropdown, OutlinedInput, Modal) where external consumers still depend on the v0 shape. **`@base-ui/react` v1 has no `slotProps`** — each part is a separate component you style directly (see §5 above). Do NOT introduce `slots`/`slotProps` in new code.
+
+Example of the legacy shape (only valid for Tier 3.b's continued v0-API surface):
 
 ```tsx
+// LEGACY — Tier 3.b only (OutlinedInput.tsx:174-202)
 <Input
   slots={{ input: CustomInput }}
   slotProps={{
@@ -1046,11 +1074,9 @@ When wrapping a primitive that accepts `slots` + `slotProps`, use them instead o
 />
 ```
 
-This is the canonical Picasso pattern for multi-part `@base-ui/react` consumers — preferred over a `classes` prop (which is R5 forbidden) and over class dictionaries.
+**End-state**: Tier 3.b consolidates to v1 per-part styling once consumers migrate (see Appendix A.2). Anything else that survives a migration with `slotProps` is unmigrated — flag for the next iter.
 
-**Important caveat**: `slotProps={{ root: { className } }}` is `@mui/base` (v0), NOT `@base-ui/react` (v1). v1 has no `slotProps`. Each part is a separate component you style directly. Anything that survives a migration with `slotProps` is unmigrated (or one of the Tier 3.b carve-outs preserving the v0 shape for consumer compatibility).
-
-(source: `practices.md §"Slot-based styling"`, `base-ui-styling.md §Appendix·1`)
+(source: `practices.md §"Slot-based styling — LEGACY Tier 3.b ONLY"`, `base-ui-styling.md §Appendix·1`)
 
 ### Input-bearing slots · **Convention**
 
@@ -1182,60 +1208,75 @@ The consumer should always be able to win.
 
 ## 7. CSS specificity ladder (no `!important`)
 
-Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. **Pick the lowest rung that solves the problem** — escalate only if the lower rung doesn't work. Reviewers will block PRs that jump straight to a higher rung when a lower one was viable.
+> **Restructured 2026-05-26 (commit `3e9766e8`)**: the override-preference ladder + narrowed inline-vs-inline CSS specificity hierarchy are now TWO separate concepts. This section now reflects both.
 
-### Rung 0 — Pass `style` prop directly to the `@base-ui/react` component · **RULE**
+There are two related but separate ladders. Reviewers enforce both:
 
-`@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. For any per-component override of styles the kit sets internally (`translate`, `position`, `transform`, sizing, etc.), the IDIOMATIC path is the `style` prop — not Tailwind classes (which lose to inline styles by CSS spec), not `!important` (which indicates the wrong escape hatch was chosen).
+- **§7.1 Override-preference ladder** (`base-ui-styling.md §7.1`): which mechanism to reach for FIRST when you need to override Base UI defaults. Conceptual — start at the cheapest rung.
+- **§7.2 CSS specificity hierarchy** (`code-standards.md §"CSS specificity hierarchy"`): narrow case of what wins via the CSS cascade when both consumer and Base UI emit inline `style`. Mechanistic — describes what beats what.
 
-Example — override `<Slider.Thumb>`'s internal `translate: -50% -50%`:
+Do NOT conflate them. The preference ladder is about *which tool to pick*; the specificity hierarchy is about *what wins in the cascade*.
 
-```tsx
-<Slider.Thumb style={{ translate: 'none' }} ... />  // YES — rung 0, idiomatic
-<Slider.Thumb className='![translate:none]' ... />   // NO — wrong tool, reach for `style` prop first
-```
+### 7.1 Override-preference ladder · **RULE**
 
-**Why this exists**: when `@base-ui/react`'s component renders, the props your component passed are merged into the final element via `useRenderElement`. The style prop is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — so rightmost (yours) wins on each individual style property. This is the headless-kit's contract; it's designed for you to override its defaults. Tailwind `!important` against headless-kit internals is a code smell that the lower rung was skipped.
+Pick the lowest rung (lowest = cheapest). Reviewers will block PRs that skip rungs.
 
-**Limits**: rung 0 covers per-property overrides (e.g. `translate`, `position`). It does NOT cover style based on internal state (`data-focused`, `data-orientation`) — those still need rungs 1–2 below.
+| Rung | Mechanism | When to use |
+| --- | --- | --- |
+| **-1** | **Don't override** | **Check this FIRST.** Restructure DOM to use Base UI's native part hierarchy, OR embrace Base UI's geometry and accept any sub-pixel diff as approved improvement. The override that doesn't exist is the cheapest one to maintain. |
+| 1 | `className` + `data-[…]:` variants | State-driven styling that has a documented data attribute (e.g., `data-[checked]:bg-blue-500`). |
+| 2 | `className` function-of-state form | State-driven styling where the value depends on multiple state combinations (rare). |
+| 3 | `render` prop with `mergeProps` filtering | Change rendered element type, compose with custom components, OR strip/filter Base UI's injected `style` (e.g., remove `translate` while keeping `left: X%`). |
+| 4 | `useRender` + `mergeProps` | Build your own primitive that exposes its own `render` prop. |
+| 5 | inline `style` on the part | Genuine last resort: when render-prop filtering is impractical, AND the value can't be expressed as a class, AND rung -1 doesn't apply. |
+| ⊘ | `!important` | NEVER. If you're here, you skipped a rung. |
 
-The Slider v2 case (2026-05-24, PR #4975) reached for Tailwind `'![translate:none]'` + `'!absolute'` because the agent's mental model was "kit's inline style needs a CSS specificity weapon" — wrong; the kit's design contract is "consumer's `style` wins per the merge semantics."
+**Why rung 3 beats rung 5** (render-prop filtering beats consumer inline `style`):
+- The element ends up with only Base UI's inline `style` (for positioning), not consumer-added `style` on top.
+- The override is local to the wrapper element — easier to remove later than scattered `style={{...}}`.
+- Composes with other `render`-using wrappers (Tooltip → Dialog → Menu nesting).
 
-(source: `code-standards.md §"CSS specificity ladder"`, `practices.md §"@base-ui/react idioms"`)
+#### Rung -1 specifics (the doctrine headline)
 
-### Rung 1 — Exhaust `@base-ui/react`'s official customization API · **RULE**
+1. **Can DOM restructure remove the need?** Example: PR #4959 used `Slider.Track` with `bg-color/alpha` + nested `Indicator` per Base UI's native structure — eliminated the `!absolute` override v2's sibling-rail DOM required.
+2. **Can you embrace Base UI's geometry?** When the override defends a *legacy approximation* of what the new primitive does *exactly*, prefer the new geometry and propose the sub-pixel diff as "intentional improvement" via the approved-delta channel. Slider commit `4f5951f` removed `-mt-[7px] -ml-[6px]` + `style={{ translate: 'none' }}` together — geometric correctness over legacy defense.
+3. **Trigger**: if you're adding inline `style` or `!important` to match a legacy baseline byte-for-byte, you're at rung 5 or worse — step back to rung -1.
 
-Most slots accept `className`, and many composite components accept slot-targeted overrides:
-
-- Pass `className` directly on the part that owns the style you want to change.
-- Use the component's render prop if it exposes one (e.g., `<Slider.Thumb render={(props, state) => <Thumb {...props} className="..." />}>`).
-- Check the `@base-ui/react` source under `node_modules/@base-ui/react/<group>/<part>/` for documented props that customize the slot.
-
-(source: `code-standards.md §"CSS specificity ladder"`)
-
-### Rung 2 — Tailwind selectors matching emitted attributes · **RULE**
-
-`@base-ui/react` emits `data-*` attributes for state (`data-focused`, `data-expanded`, `data-orientation`, etc.). Target them with Tailwind: `data-[focused]:outline-2`, `data-[expanded]:bg-blue-100`, etc.
-
-(source: `code-standards.md §"CSS specificity ladder"`)
-
-### Rung 3 — Higher CSS specificity via selector compounds · **RULE**
-
-When rung 2 isn't enough, layer selectors (`[&_input]:`, `[&[data-state=open]]:`, `[&:hover:not([data-disabled])]:`) before reaching for the next rung.
-
-(source: `code-standards.md §"CSS specificity ladder"`)
-
-### Rung 4 — `!important` — LAST RESORT · **RULE**
-
-Acceptable ONLY after rungs 1–3 are exhausted. Reviewers will ask you to prove they don't work. When you use it, comment WHY the lower rungs failed:
+#### Slider Thumb worked example
 
 ```tsx
-className="[&_input]:!top-auto /* @base-ui/react/slider/thumb hard-codes top:0 via inline style — selector-level override doesn't win */"
+// Rung 3 — render-prop filtering (preferred over rung 5)
+<BaseUISlider.Thumb
+  render={(props) => {
+    const { translate, ...keepStyle } = props.style || {}
+    return <span {...props} style={keepStyle} className={thumbClassName} />
+  }}
+/>
+
+// Rung 5 — consumer-added inline style (only if rung 3 is impractical)
+<BaseUISlider.Thumb className={thumbClassName} style={{ translate: 'none' }} />
+
+// Rung -1 — best: remove the legacy `-mt -ml` margins that the override was defending;
+// accept Base UI's `translate: -50% -50%` centering; classify ~1.5px Happo diff as "intentional improvement"
+<BaseUISlider.Thumb className={thumbClassName} />   // -mt/-ml removed from thumbClassName
 ```
 
-The legacy occurrences in `Radio/styles.ts` and `RichTextEditorToolbar/styles.ts` predate `@base-ui/react`; don't model new code on them.
+(source: `base-ui-styling.md §7.1`)
 
-(source: `code-standards.md §"CSS specificity ladder"`, `rules/styling.md §"@base-ui/react v1 prescriptions"`)
+### 7.2 CSS specificity hierarchy (narrow case: inline-vs-inline overrides) · **RULE**
+
+When you're at rung 5 of §7.1 (inline `style` on the part) and need to know what wins in the cascade: `@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. So passing `<Slider.Thumb style={{ translate: 'none' }}>` cleanly defeats the kit's internal `translate: -50% -50%`.
+
+```tsx
+<Slider.Thumb style={{ translate: 'none' }} ... />  // YES — wins via mergeProps right-wins
+<Slider.Thumb className='![translate:none]' ... />   // NO — !important is forbidden
+```
+
+**Why inline `style` exists at all**: when @base-ui/react renders, props are merged into the final element via `useRenderElement`. `style` is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — rightmost (yours) wins per property. This is the headless-kit's contract; it's designed for you to override its defaults *when you need to*. But before reaching for rung 5, check whether §7.1 rung -1 (don't override) or rung 3 (render-prop filtering) applies.
+
+**Limits**: covers per-property overrides (e.g. `translate`, `position`). Does NOT cover style based on internal state (`data-focused`, `data-orientation`) — those go through `data-[…]:` per §7.1 rung 1.
+
+(source: `code-standards.md §"CSS specificity hierarchy for overriding @base-ui/react internal inline styles"`)
 
 ### ANTI-PATTERN — imperative `ref` callbacks mutating `.style` · **RULE — FORBIDDEN, no exceptions**
 
@@ -1244,22 +1285,21 @@ Examples that violate this:
 - `ref={n => n?.style.setProperty('translate', 'none')}`
 - `useCallback` wrapping any `.style.X = …` assignment passed as a slot ref.
 
-**Why this is forbidden**: it bypasses CSS, breaks responsive style changes, isn't tree-shaken, and creates a runtime side-channel that fights the design system. Use rung 1–4 instead.
+**Why this is forbidden**: it bypasses CSS, breaks responsive style changes, isn't tree-shaken, and creates a runtime side-channel that fights the design system. Use the §7.1 preference ladder instead.
 
 Earlier Switch migration code (iter 2) used this pattern; treat any such occurrence as a defect to remove during cleanup, NOT a precedent to extend. This rule has no "one-off compromise" carve-out.
 
 #### Explicitly rejected justifications (do not cite these to defend the pattern)
 
-- **"Tailwind `!important` slot selector failed Happo parity"** → fix the selector / baseline; do not fall back to `.style` mutation. Check whether the `[&_input]:` selector compounds correctly with the data-state attribute, whether the baseline is stale, whether the input is actually inside the matched parent. Fix the ladder rung; do not fall back to imperative refs.
-- **"base-ui inline `style=""` can't be overridden by CSS"** → false framing. The idiomatic fix is rung 0 (pass `style={{ ... }}` to the @base-ui/react component — its `mergeProps` shallow-merges with rightmost-wins semantics, so your `style` wins). If you genuinely need a CSS-class-based override (e.g. for responsive variants), `!important` at rung 4 does beat inline-style specificity — but try rung 0 FIRST.
-- **"base-ui writes `margin: -1px` into the hidden input inline style and we can't override inline style with CSS"** → you can: rung 3 (`[&_input]:!m-0` or `[&_input]:![margin:0]`) wins over inline style because `!important` beats inline-style specificity in the cascade. If your selector isn't winning, the selector chain is wrong, not the rung.
+- **"Tailwind `!important` slot selector failed Happo parity"** → `!important` is forbidden per `rules/styling.md`. Walk §7.1: check rung -1 (don't override) and rung 3 (`render` prop with `mergeProps` filtering) before reaching for higher-specificity tools. Do not fall back to `.style` mutation.
+- **"base-ui inline `style=""` can't be overridden by CSS"** → true that only inline `style` (§7.1 rung 5) beats inline `style` via CSS specificity. The idiomatic fix is the `style` prop on the part (mergeProps merges consumer style with rightmost-wins) — NOT an imperative ref-mutation. And before reaching for rung 5, check whether rung -1 applies.
 - **"Cited as a precedent in practices.md / lessons-learned"** → no, it's an anti-pattern. Older wording that framed it as a "compromise" was contamination superseded by this rule.
 
 Reviewers consistently rejected this pattern across Switch iters 2/3/9. Treat any new instance as a defect, not a precedent.
 
 **Imperative `ref` callbacks remain valid for non-style concerns** (focus management, measurement, third-party library handles, port resize observers).
 
-(source: `code-standards.md §"CSS specificity ladder"`, `practices.md §"API preservation"`)
+(source: `code-standards.md §"CSS specificity hierarchy ..."`, `practices.md §"API preservation"`)
 
 ---
 
@@ -1372,7 +1412,9 @@ md:flex lg:gap-12
 
 ## 9. JSS → Tailwind translation (migration PRs)
 
-Pattern table for translating common JSS shapes into Picasso Tailwind. Use alongside `tokens/picasso-tailwind-tokens.md` for token names.
+> **Scope: migration-only.** This section exists to support the @material-ui/core JSS → Tailwind translation during the modernization program. Once the migration completes, the structural patterns here (parent-refs, pseudo-elements, transitions) will be promoted to a Picasso Storybook tutorial (similar to the styled-components tutorial at <https://picasso.toptal.net/?path=/story/tutorials-styled-components--styled-components>), and the token-mapping rows will be retired in favor of pointing directly at `tokens/picasso-tailwind-tokens.md`.
+
+Pattern table for translating common JSS shapes into Picasso Tailwind. Use alongside `tokens/picasso-tailwind-tokens.md` for canonical token names.
 
 ### Spacing
 
@@ -1390,22 +1432,13 @@ MUI's `theme.spacing(N)` returns `N * 8px`. **Always verify the px value** befor
 
 ### Color
 
-MUI palette → Picasso tokens (most common):
+**Color tokens are Picasso-dependent and live in [`docs/migration/tokens/picasso-tailwind-tokens.md`](../migration/tokens/picasso-tailwind-tokens.md)** — the canonical source for MUI palette → Picasso Tailwind token mappings. Do NOT duplicate the mapping here; the tokens doc is the single source of truth (avoids drift when designers update the palette).
 
-| JSS                                 | Picasso Tailwind |
-|---|---|
-| `color: palette.text.primary`       | `text-graphite-800` |
-| `color: palette.text.secondary`     | `text-graphite-700` |
-| `color: palette.grey.dark`          | `text-gray-700` |
-| `color: palette.primary.main`       | `text-blue-500` |
-| `color: palette.primary.dark`       | `text-blue-600` |
-| `color: palette.success.main`       | `text-green-500` |
-| `color: palette.error.main`         | `text-red-500` |
-| `color: palette.warning.main`       | `text-yellow-500` |
-| `backgroundColor: palette.common.white` | `bg-white` |
-| `backgroundColor: palette.grey.light`   | `bg-gray-100` |
-| `backgroundColor: palette.background.paper` | `bg-white` |
-| `borderColor: palette.divider`      | `border-gray-300` |
+When translating a JSS color expression:
+
+1. Identify the MUI palette path (`palette.text.primary`, `palette.primary.main`, etc.).
+2. Look up the matching Picasso token in `tokens/picasso-tailwind-tokens.md`.
+3. If no canonical token exists, keep the literal `[arbitrary-value]` AND add `// TODO(tokens): <description>` (per §8 above + `rules/styling.md §"Token usage"`).
 
 ### Hover / focus / disabled
 
@@ -1984,6 +2017,12 @@ Picasso has 4 build-config layers; touching one usually requires updating the ot
 
 Authoritative source: `docs/contribution/changeset-guidelines.md` (lines 5-46).
 
+### Precedence (migration PRs) · **RULE**
+
+**Source of truth for migration PRs**: `docs/migration/manifest.json#versionBump` (ajv-enforced via `manifest.schema.json`). The taxonomy below is the **authoring guidance** for the value in that field + reviewer judgment on non-migration PRs. Agents must read the manifest value verbatim and not deviate; if the manifest value looks wrong for a specific migration, escalate rather than override (see `ORCHESTRATOR.md §Changesets`).
+
+For non-migration PRs (regular feature/bugfix work), apply the taxonomy directly to the change.
+
 ### Version bump taxonomy · **RULE**
 
 - **`patch`** — bug fix; change in existing functionality; change which does not affect Picasso users.
@@ -2321,6 +2360,13 @@ Per the codebase survey (`_survey-findings.md §H`, extended to 28 rows via scan
 
 **Form-component context integration** — `FormLabel` and `FormControlLabel` call `useFieldsLayoutContext()` to adapt styles based on form layout (horizontal vs vertical). This is the form-component-specific pattern documented in `_survey-findings.md §I`.
 
+**Rules explicitly covered by this carve-out** (do NOT enforce mid-migration on existing components):
+
+- **R5** (style overrides only via `className`/`style`) — Modal, Typography, Dropdown, OutlinedInput keep their existing `classes` shape. See A.2/A.3 for the audit-backed Tier 3.b decisions.
+- **R10** (`extends BaseProps`) — components still using `extends StandardProps` or mixed extends keep their existing extends. See A.4.
+- **R14** (no `is`/`has`/`should` prefix on boolean props) — if an existing component uses `isOpen`, preserve it; renaming to `open` is consumer-breaking and belongs in the post-migration refactor.
+- **R15** (compound components) — do NOT preemptively restructure existing non-compound components into compound shape; the consumer-facing API surface stays exactly the same as before the swap.
+
 **Rule of thumb**: does the existing component source already do X? If yes, preserve X. If no, follow the canonical rule.
 
 **Newly-introduced code paths** during the migration (e.g., a new adapter helper, a new wrapper around `@base-ui/react`) DO follow the canonical patterns. The carve-out covers preservation of existing public API, not justification for newly-introduced violations.
@@ -2329,27 +2375,27 @@ A future, separate refactor track (post-migration) will sweep components into fu
 
 (source: `design-patterns-addendum.md §1`)
 
-### A.2 — R5 (no `classes` prop) vs Tier 3.b locked decision
+### A.2 — R5 (no `classes` prop) vs Tier 3.b locked decision · **TEMPORARY**
 
 - **Tension scope**: 2 components (Dropdown, OutlinedInput) — transition only.
 - **What we do**: retain narrowed `classes?: { popper?, content? }` on Dropdown and `classes?: { input?, root? }` on OutlinedInput. Real external consumers depend on these slots (Dropdown 2 callsites, OutlinedInput 4 callsites per the cross-tier audit).
-- **End-state**: Dropdown + OutlinedInput consolidate to `className`-only API once consumers migrate. Tracked in `decisions/classes-audit.md §Tier 3.b`.
+- **End-state — REMOVED in coordinated post-migration cleanup**: Dropdown + OutlinedInput consolidate to `className`-only API once consumers migrate off the narrowed shape. Tracked in `decisions/classes-audit.md §Tier 3.b`. Removal lands as a future major bump on each component.
 
 (source: `design-patterns-addendum.md §2`)
 
-### A.3 — R5 (no `classes` prop) — Modal & Typography legacy
+### A.3 — R5 (no `classes` prop) — Modal & Typography legacy · **TEMPORARY**
 
 - **Tension scope**: 2 components (Modal, Typography). These were R5 violators before the migration started.
 - **What we do**: preserve their existing `classes?: { ... }` shape. Don't drop the prop in the migration PR even though R5 forbids it.
-- **End-state**: a separate API-cleanup sweep removes these `classes` props in a future major.
+- **End-state — REMOVED in a future major bump**: a separate API-cleanup sweep removes these `classes` props in the next major version of each affected package.
 
 (source: `design-patterns-addendum.md §2`)
 
-### A.4 — R10 (`extends BaseProps`) vs current Picasso shape
+### A.4 — R10 (`extends BaseProps`) vs current Picasso shape · **TEMPORARY**
 
 - **Tension scope**: ALL components mid-migration. Per survey, 20/28 already use `extends BaseProps`; 3/28 (Accordion, Tooltip) still use `extends StandardProps`; 5/28 use mixed extends.
 - **What we do**: preserve whatever the existing component already extends. **DO NOT** preemptively convert prop interfaces to `extends BaseProps` during a library-swap migration PR. Apply `Omit<StandardProps, 'classes'>` per the classes decision matrix where needed.
-- **End-state**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` are removed from `@toptal/picasso-shared`. The conversion to `BaseProps`-only happens in a coordinated post-migration sweep.
+- **End-state — REMOVED in coordinated post-migration sweep**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` are removed from `@toptal/picasso-shared` in one coordinated PR. The conversion to `BaseProps`-only happens in that sweep, not per-component during migration.
 
 (source: `design-patterns-addendum.md §2`)
 

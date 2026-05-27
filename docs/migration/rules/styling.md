@@ -15,9 +15,11 @@ These apply specifically to `@base-ui/react` v1 migrations (Tier 0). Background:
 
 ## Composition
 
-- Always compose `className` via `cx(...)` (from `classnames`).
-- If multiple sources of class strings merge, wrap in `twMerge(cx(...))` from `@toptal/picasso-tailwind-merge`. The Button reference shows the canonical pattern.
-- **Class arrays (`string[]`)** returned from helper functions in `styles.ts` are the canonical "styles" shape. See `reference/Button-styles.ts`.
+- **Default: `twMerge(...)` alone** from `@toptal/picasso-tailwind-merge`. It accepts strings, arrays, and falsy values (`false`, `null`, `undefined`, `''`) directly — so conditionals via `&&` and ternaries work without a wrapping helper. Adopter examples: `Tabs.tsx:98-103`, `Drawer.tsx:112`, `Dropdown.tsx:271`, `PageHeadBase.tsx:74`.
+- **Reach for `cx`** (from `classnames`) ONLY when you need the clsx-object-syntax form (`cx({ active: isActive, disabled })`). Picasso's established forms (`condition && 'class'`, ternary, nested arrays) don't need it. See `references/base-ui-styling.md §3.1` for the underlying mechanics.
+- **`twJoin`** is re-exported from `@toptal/picasso-tailwind-merge` for concatenation without conflict-resolution.
+- **Consumer `className` is always LAST** in the `twMerge(...)` argument list — rightmost wins.
+- **Class arrays (`string[]`)** returned from helper functions in `styles.ts` are the canonical "styles" shape for variant-driven classes. See `reference/Button-styles.ts`.
 
 ## What to avoid
 

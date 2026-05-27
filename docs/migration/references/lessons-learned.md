@@ -343,3 +343,19 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Sweep sibling-package `tsconfig.json` files for stale `references` entries pointing at packages whose dependency was just removed (Note's PR cleaned an orphaned `../base/Utils` reference in `picasso-tailwind-merge/tsconfig.json`) — these break the project-references build graph on CI even when the migrated package itself compiles.
 - Local happo diff artifacts (`/local--*.png`, `/baseline--*.png`) leak into the worktree during review-iter gates; add them to `.gitignore` once at the repo root rather than per-migration.
 - Reference: https://github.com/toptal/picasso/pull/4977
+
+## Container — 2026-05-26
+
+- Tier 1 · target_path: `none` · iterations: 3
+- Bump the migrating package's `react` peerDependency floor to `>=16.12.0` in `package.json` so consumer compatibility checks under React 19 don't fail post-swap.
+- After the runtime library swap, grep the package's `src/` for residual `@material-ui/core` *type-only* imports (e.g. `PropTypes.Alignment`) and replace each with an explicit literal union — type imports survive runtime swaps and the changeset must note them.
+- For Tier 1 vestigial `classes` drops, follow the `Omit<StandardProps, 'classes'>` + runtime destructure backstop recipe per `docs/migration/decisions/classes-audit.md` / `classes-shim.md` rather than re-deriving the shape per component.
+- Reference: https://github.com/toptal/picasso/pull/4980
+
+## Form — 2026-05-26
+
+- Tier 1 · target_path: `none` · iterations: 2
+- When the component's source is already `@mui`-clean, the migration scope collapses to a `peerDependencies` cleanup — drop `@material-ui/core` and widen the React peer range (e.g. drop `<19.0.0` upper bound to `>=16.12.0`) shipped as a `patch` changeset.
+- Detect this fast-path up front by grepping the package's `src/` for `@mui/` / `@material-ui/` imports before any code edits; if zero hits, skip the API-alignment work and ship only the `package.json` + changeset diff.
+- Changeset body for a peer-only swap should explicitly state "Source already MUI-clean; public API unchanged" so reviewers don't expect behavioral or visual diffs and Happo deltas aren't expected.
+- Reference: https://github.com/toptal/picasso/pull/4981
