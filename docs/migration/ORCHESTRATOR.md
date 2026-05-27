@@ -128,6 +128,8 @@ Why per-PR: `.changeset/*.md` files accumulate on `feature/picasso-modernization
 
 **Version bump source of truth.** Each component's `versionBump` is locked in [`manifest.json`](./manifest.json) (`patch` | `minor` | `major`) and enforced by [`manifest.schema.json`](./manifest.schema.json). The decision matrix was set per the [classes-audit decisions](./decisions/) cross-referenced with [`docs/contribution/changeset-guidelines.md`](../contribution/changeset-guidelines.md) — Tier 0 components dropping public `classes` are `major`; Tier 1 no-op cleanup (peer-dep + React 19 cap) is `patch`; Tier 3.b components keeping locally narrowed `classes` (Dropdown, OutlinedInput) are `patch`. Agents must read the manifest value and not deviate; if the value looks wrong for a specific migration, escalate rather than override.
 
+**Precedence (migration PRs ↔ taxonomy)**: `manifest.json#versionBump` is authoritative for the agent. The version-bump taxonomy in [`references/code-standards.md` §"Changeset conventions"](./references/code-standards.md) describes the rules that drove the manifest matrix and is the authoring guidance for reviewer judgment on non-migration PRs — it does NOT override the manifest value for in-flight migration PRs.
+
 **Opt-out:** `MIGRATION_GATE_CHANGESET=skip` bypasses the gate stage. Used by orchestrator self-tests + `--dry-run` sandbox runs that exercise the gate without authoring real changesets. Not for production migrations.
 
 ## Kill switch

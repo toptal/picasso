@@ -21,31 +21,38 @@ Additional NEW finding from scan #21: **Form-component context integration** —
 
 **Rule of thumb**: does the existing component source already do X? If yes, preserve X. If no, follow the canonical rule.
 
+**Rules explicitly covered by this carve-out** (do NOT enforce mid-migration on existing components):
+
+- **Rule 5** (style overrides only via `className`/`style`) — Modal, Typography, Dropdown, OutlinedInput keep their existing `classes` shape. See §2 below for the audit-backed Tier 3.b decisions.
+- **Rule 10** (`extends BaseProps`) — components still using `extends StandardProps` or mixed extends keep their existing extends. See §2.
+- **Rule 14** (no `is`/`has`/`should` prefix on boolean props) — if an existing component uses `isOpen`, preserve it; renaming to `open` is consumer-breaking and belongs in the post-migration refactor.
+- **Rule 15** (compound components) — do NOT preemptively restructure existing non-compound components into compound shape; the consumer-facing API surface stays exactly the same as before the swap.
+
 **Newly-introduced code paths** during the migration (e.g., a new adapter helper, a new wrapper around `@base-ui/react`) DO follow the canonical patterns. The carve-out covers preservation of existing public API, not justification for newly-introduced violations.
 
 A future, separate refactor track (post-migration) will sweep components into full compliance. That work is NOT in scope for the modernization program. Track it via the standards-compliance Jira queue, not migration PRs.
 
 ## 2. Migration-period architectural exceptions
 
-These are deliberate, audit-backed exceptions to the canonical rules, distinct from the existing-violations carve-out above.
+These are deliberate, audit-backed exceptions to the canonical rules — **TEMPORARY**, distinct from the existing-violations carve-out above. Each exception names its end-state cleanup track explicitly.
 
-### Rule 5 (no `classes` prop in public API) vs Tier 3.b locked decision
+### Rule 5 (no `classes` prop in public API) vs Tier 3.b locked decision · **TEMPORARY**
 
 - **Tension scope**: 2 components (Dropdown, OutlinedInput) — transition only.
 - **What we do**: retain narrowed `classes?: { popper?, content? }` on Dropdown and `classes?: { input?, root? }` on OutlinedInput. Real external consumers depend on these slots (Dropdown 2 callsites, OutlinedInput 4 callsites per the cross-tier audit).
-- **End-state**: Dropdown + OutlinedInput consolidate to `className`-only API once consumers migrate. Tracked in `decisions/classes-audit.md` §Tier 3.b.
+- **End-state — REMOVED in coordinated post-migration cleanup**: Dropdown + OutlinedInput consolidate to `className`-only API once consumers migrate off the narrowed shape. Tracked in `decisions/classes-audit.md §Tier 3.b`. Removal lands as a future major bump on each component.
 
-### Rule 10 (`extends BaseProps`) vs current Picasso shape
+### Rule 10 (`extends BaseProps`) vs current Picasso shape · **TEMPORARY**
 
 - **Tension scope**: ALL components mid-migration. Per survey, 20/28 already use `extends BaseProps`; 3/28 (Accordion, Tooltip) still use `extends StandardProps`; 5/28 use mixed extends.
 - **What we do**: preserve whatever the existing component already extends. **DO NOT** preemptively convert prop interfaces to `extends BaseProps` during a library-swap migration PR. Apply `Omit<StandardProps, 'classes'>` per the classes decision matrix where needed.
-- **End-state**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` are removed from `@toptal/picasso-shared`. The conversion to `BaseProps`-only happens in a coordinated post-migration sweep.
+- **End-state — REMOVED in coordinated post-migration sweep**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` are removed from `@toptal/picasso-shared` in one coordinated PR. The conversion to `BaseProps`-only happens in that sweep, not per-component during migration.
 
-### Rule 5 — Modal and Typography legacy
+### Rule 5 — Modal and Typography legacy · **TEMPORARY**
 
 - **Tension scope**: 2 components (Modal, Typography). These were rule-5 violators before the migration started.
 - **What we do**: preserve their existing `classes?: { ... }` shape. Don't drop the prop in the migration PR even though rule 5 forbids it.
-- **End-state**: a separate API-cleanup sweep removes these `classes` props in a future major.
+- **End-state — REMOVED in a future major bump**: a separate API-cleanup sweep removes these `classes` props in the next major version of each affected package.
 
 ## 3. How the agent applies design patterns during a migration
 
