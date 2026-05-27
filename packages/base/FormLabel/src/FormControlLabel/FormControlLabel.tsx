@@ -1,6 +1,10 @@
-import type { ReactElement, ReactNode, LabelHTMLAttributes } from 'react'
+import type {
+  ChangeEvent,
+  LabelHTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from 'react'
 import React, { forwardRef } from 'react'
-import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import type { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { useFieldsLayoutContext } from '@toptal/picasso-form-layout'
@@ -9,8 +13,10 @@ import type { RequiredDecoration } from '../FormLabel'
 import { FormLabel } from '../FormLabel'
 
 export type FormControlLabelAttributesType =
-  LabelHTMLAttributes<HTMLLabelElement> &
-    Pick<FormControlLabelProps, 'onChange'>
+  LabelHTMLAttributes<HTMLLabelElement> & {
+    /** Callback fired when the state of the underlying control is changed */
+    onChange?: (event: ChangeEvent<{}>, checked: boolean) => void
+  }
 
 export interface Props
   extends StandardProps,
