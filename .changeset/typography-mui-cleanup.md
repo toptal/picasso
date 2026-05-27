@@ -1,1 +1,3 @@
-<!-- superseded by typography-migration.md -->
+---
+'@toptal/picasso-typography': patch
+---
