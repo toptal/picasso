@@ -1,4 +1,4 @@
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agent when working with code in this repository.
 
 ## What this repo is
 
@@ -101,7 +101,6 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **Commit messages**: capital letter, imperative mood ("Add" not "Added"), no trailing period, ≤79 chars. Enforced by Danger in CI.
 - **`TODO` / `FIXME` / `@deprecated`** comments must include a Jira ref — either `[ABC-1234]` or the full `https://toptal-core.atlassian.net/browse/...` URL. The `todo-plz/ticket-ref` ESLint rule will warn otherwise.
 - **Changesets** are required for any PR that changes behavior for consumers. Run `pnpm changeset` and commit the generated file alongside the change. The release PR ("Version Packages") is opened automatically after merge. Check docs/contribution/changeset-guidelines.md for best practices.
-- **CSS naming**: See `docs/contribution/css-naming.md`.
 - **Icons/pictograms**: drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants for icons) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` or `pnpm generate:pictograms`.
 - **Design tokens** must match the BASE design system. Don't invent local synonyms.
 
