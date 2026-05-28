@@ -31,8 +31,8 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 ## API preservation
 
 - **Preserve consumer-facing handler signatures.** Wrap with an adapter — NEVER narrow. Examples:
-  - `onChange(event, checked)` from `@mui/base` → `@base-ui/react` emits `onCheckedChange(checked)`. Adapt by wrapping: `onCheckedChange={c => onChange?.(syntheticEvent, c)}` (Switch iter 2, iter 3 + Slider iter 12 review precedents).
-  - `onValueChange(value, activeThumbIndex)` from `@base-ui/react/slider` → wrap to re-expose `(event, value, activeThumbIndex)` matching `@mui/base` shape.
+  - `onChange(event, checked)` from `@mui/base` → `@base-ui/react` emits `onCheckedChange(checked, eventDetails)`. The `eventDetails.event` IS the native DOM event — bridge to Picasso's `React.ChangeEvent<T>` shape via the `toReactChangeEvent` helper from `@toptal/picasso-shared`: `onCheckedChange={(c, { event }) => onChange?.(toReactChangeEvent(event), c)}`. (Switch iter 2, iter 3 + Slider iter 12 review precedents; PR #4965 r3302165743 superseded the prior `syntheticEvent` fabrication pattern.)
+  - `onValueChange(value, activeThumbIndex)` from `@base-ui/react/slider` → wrap to re-expose `(event, value, activeThumbIndex)`. Use the generic `toReactEvent<R>(event)` from `@toptal/picasso-shared` for non-change-event cases.
 - **Preserve portal/behavior props.** Audit the new library's compound API first. Example: `disablePortal` on Drawer has no direct prop equivalent in `@base-ui/react/drawer`, but you can emulate it by conditionally omitting `<Drawer.Portal>`. Do NOT silently remove the prop (Drawer iter 2 precedent).
 - **Deprecate-don't-delete**: keep removed-in-new-lib props with `@deprecated` JSDoc + Jira ticket ref, route to `_unused` destructure:
   ```ts
@@ -43,6 +43,8 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 - **Canonical pattern — destructure SPECIFIC mismatching props, spread `...rest` unchanged:**
 
   ```tsx
+  import { toReactChangeEvent } from '@toptal/picasso-shared'
+
   // RIGHT: only props that genuinely conflict with BaseUISwitch.Root's shape
   // are destructured out (or transformed); everything else spreads through
   // unchanged. Public API parity preserved, no cast, no allowlist.
@@ -56,7 +58,9 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
       <BaseUISwitch.Root
         {...rest}
         checked={checked ?? false}
-        onCheckedChange={c => onChange?.(syntheticEvent(c), c)}
+        onCheckedChange={(c, { event }) =>
+          onChange?.(toReactChangeEvent(event), c)
+        }
       />
     )
   }

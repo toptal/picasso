@@ -586,6 +586,8 @@ When `@base-ui/react`'s root part has a type that doesn't fully line up with you
 **Switch — `onChange` adapter + `checked` clamp:**
 
 ```tsx
+import { toReactChangeEvent } from '@toptal/picasso-shared'
+
 const Switch = (props: Props) => {
   const {
     onChange,     // signature differs — adapt to onCheckedChange below
@@ -596,11 +598,15 @@ const Switch = (props: Props) => {
     <BaseUISwitch.Root
       {...rest}
       checked={checked ?? false}
-      onCheckedChange={c => onChange?.(syntheticEvent(c), c)}
+      onCheckedChange={(c, { event }) =>
+        onChange?.(toReactChangeEvent(event), c)
+      }
     />
   )
 }
 ```
+
+`@base-ui/react` v1 surfaces the native DOM event via `eventDetails.event`. `toReactChangeEvent` (from `@toptal/picasso-shared`) is a Proxy-based boundary cast that bridges to Picasso's `React.ChangeEvent<T>` public type with native event identity preserved and shim methods for `nativeEvent`/`persist`/`isDefaultPrevented`/`isPropagationStopped`.
 
 **Drawer — `onClose` adapter (Base UI uses `onOpenChange`):**
 
@@ -616,21 +622,29 @@ const Drawer = (props: Props) => {
 }
 ```
 
-**Slider — `onValueChange` re-expose (Base UI omits the synthetic event):**
+**Slider — `onValueChange` re-expose (Base UI's value-change event uses the generic helper):**
 
 ```tsx
+import { toReactEvent } from '@toptal/picasso-shared'
+
 const Slider = (props: Props) => {
   const { onChange, ...rest } = props
   return (
     <BaseUISlider.Root
       {...rest}
-      onValueChange={(value, activeThumbIndex) =>
-        onChange?.(syntheticEvent, value, activeThumbIndex)
+      onValueChange={(value, activeThumbIndex, event) =>
+        onChange?.(
+          toReactEvent<React.ChangeEvent<HTMLInputElement>>(event),
+          value,
+          activeThumbIndex
+        )
       }
     />
   )
 }
 ```
+
+Slider's value-change isn't a form `ChangeEvent` per se — use the generic `toReactEvent<R>` primitive when the React event type isn't the form-input common case. The specialized `toReactChangeEvent` only accepts form-input element generics.
 
 **To find which props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props`. The NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. For Tier 0 components, typically 1–3 props.
 
