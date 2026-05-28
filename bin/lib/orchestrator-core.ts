@@ -3178,7 +3178,7 @@ const gh = {
 
 /**
  * Default config for all three orchestrator flows (migration, review-sweep,
- * graduation). Opus 4.7 + effort=max + 64k thinking budget. CLI flags
+ * graduation). Opus 4.8 + effort=max + 64k thinking budget. CLI flags
  * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) shallow-merge
  * over this. Rationale lives in the PI-4318 plan
  * `~/.claude/plans/question-what-model-and-reflective-pie.md`.
@@ -3195,7 +3195,7 @@ export const DEFAULT_MODEL_CONFIG: ModelConfig = {
   // 200k cap. The 1M tier costs more per output token but stops the
   // forget-context-then-rebuild-cache cycle that drove most iter-loop
   // blowups.
-  model: 'claude-opus-4-7[1m]',
+  model: 'claude-opus-4-8[1m]',
   effort: 'max',
   thinkingTokens: 64000,
 }
@@ -9238,7 +9238,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
 
-  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Opus 4.7 + max + 64k)
+  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Opus 4.8 + max + 64k)
   // overlaid with any CLI flags. `--no-thinking` forces budget=0 regardless
   // of `--thinking-tokens` (so a stray `--no-thinking --thinking-tokens=N`
   // still disables thinking — least-surprise behavior).

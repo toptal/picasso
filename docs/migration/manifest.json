@@ -262,35 +262,22 @@
     "Tabs": {
       "tier": 0,
       "package": "packages/base/Tabs",
-      "status": "needs_human",
+      "status": "queued",
       "depends_on": [],
       "target_path": "@base-ui/react/tabs",
       "versionBump": "major",
       "pr": null,
-      "branch": "migrate-Tabs-v1",
-      "worktree": "migration-runs/2026-05-21/Tabs-v1/worktree",
-      "iterations": 2,
+      "branch": null,
+      "worktree": null,
+      "iterations": 0,
       "merged_at": null,
-      "escalation_reason": "migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest (identical content across 2 consecutive iters). Worktree left dirty for operator inspection.",
+      "notes": "Prior v1 run on 2026-05-21 escalated needs_human (migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest, identical content across 2 consecutive iters). Worktree migration-runs/2026-05-21/Tabs-v1/worktree was left dirty for operator inspection; discarded for clean restart.",
+      "escalation_reason": null,
       "last_ci_green_at": null,
       "last_review_seen_at": null,
       "session_id": null,
       "awaiting_ci_since": null,
-      "variants": {
-        "v1": {
-          "status": "needs_human",
-          "pr": null,
-          "branch": "migrate-Tabs-v1",
-          "worktree": "migration-runs/2026-05-21/Tabs-v1/worktree",
-          "iterations": 2,
-          "merged_at": null,
-          "escalation_reason": "migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest (identical content across 2 consecutive iters). Worktree left dirty for operator inspection.",
-          "last_ci_green_at": null,
-          "last_review_seen_at": null,
-          "session_id": null,
-          "awaiting_ci_since": null
-        }
-      }
+      "variants": {}
     },
     "Form": {
       "tier": 1,
