@@ -1,33 +1,10 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { toReactChangeEvent } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import cx from 'classnames'
-
-const toSyntheticChangeEvent = (
-  nativeEvent: Event
-): React.ChangeEvent<HTMLInputElement> => {
-  const target = nativeEvent.target as HTMLInputElement
-
-  return {
-    bubbles: nativeEvent.bubbles,
-    cancelable: nativeEvent.cancelable,
-    currentTarget: target,
-    defaultPrevented: nativeEvent.defaultPrevented,
-    eventPhase: nativeEvent.eventPhase,
-    isTrusted: nativeEvent.isTrusted,
-    nativeEvent,
-    preventDefault: () => nativeEvent.preventDefault(),
-    isDefaultPrevented: () => nativeEvent.defaultPrevented,
-    stopPropagation: () => nativeEvent.stopPropagation(),
-    isPropagationStopped: () => false,
-    persist: () => {},
-    target,
-    timeStamp: nativeEvent.timeStamp,
-    type: nativeEvent.type,
-  }
-}
 
 export interface Props
   extends BaseProps,
@@ -85,13 +62,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
   const handleCheckedChange: BaseUISwitch.Root.Props['onCheckedChange'] = (
     nextChecked,
     { event }
-  ) => {
-    if (!onChange) {
-      return
-    }
-
-    onChange(toSyntheticChangeEvent(event), nextChecked)
-  }
+  ) => onChange?.(toReactChangeEvent(event), nextChecked)
 
   const switchElement = (
     <BaseUISwitch.Root
