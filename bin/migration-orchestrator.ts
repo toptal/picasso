@@ -41,6 +41,7 @@ import {
   runBatch,
   runReviewSweep,
   parseOptions,
+  assertMcpConfig,
 } from './lib/orchestrator-core'
 import { runGraduate } from './lib/graduate'
 import type {
@@ -343,6 +344,12 @@ async function main(): Promise<void> {
       `  agent=${opts.agent}\n` +
       `  model=${opts.modelConfig.model} effort=${opts.modelConfig.effort} thinkingTokens=${opts.modelConfig.thinkingTokens}\n`
   )
+
+  // Loud startup check: when --with-mcp is set, confirm the agent MCP config
+  // resolves + has the playwright server. A missing/malformed config means
+  // agents silently run without Playwright tools — surface it now, not via
+  // blank screenshots mid-sweep.
+  assertMcpConfig(opts.withMcp)
 
   // `--base-branch=<ref>` lets the operator route this run's PR to a
   // different integration branch without editing the workflow descriptor.
