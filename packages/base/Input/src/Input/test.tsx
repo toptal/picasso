@@ -101,6 +101,49 @@ describe('Input', () => {
     expect(container).toMatchSnapshot()
   })
 
+  describe('reset button visibility', () => {
+    it('defaults to hover visibility (hidden until hover/focus)', () => {
+      const { getByTestId } = renderInput({
+        enableReset: true,
+        value: 'Some value',
+        testIds: { resetButton: testIds.resetButton },
+      })
+
+      const resetAdornment = getByTestId(testIds.resetButton)
+
+      expect(resetAdornment).toHaveClass('invisible')
+      expect(resetAdornment).not.toHaveClass('visible')
+    })
+
+    it('stays visible when resetVisibility is "always", even without a value', () => {
+      const { getByTestId } = renderInput({
+        enableReset: true,
+        resetVisibility: 'always',
+        value: '',
+        testIds: { resetButton: testIds.resetButton },
+      })
+
+      const resetAdornment = getByTestId(testIds.resetButton)
+
+      expect(resetAdornment).toHaveClass('visible')
+      expect(resetAdornment).not.toHaveClass('invisible')
+    })
+
+    it('matches hover behavior when resetVisibility is "hover"', () => {
+      const { getByTestId } = renderInput({
+        enableReset: true,
+        resetVisibility: 'hover',
+        value: 'Some value',
+        testIds: { resetButton: testIds.resetButton },
+      })
+
+      const resetAdornment = getByTestId(testIds.resetButton)
+
+      expect(resetAdornment).toHaveClass('invisible')
+      expect(resetAdornment).toHaveClass('group-hover:visible')
+    })
+  })
+
   it('should show manual resize handler', () => {
     const { container } = renderInput({
       multiline: true,

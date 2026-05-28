@@ -78,6 +78,8 @@ export interface Props
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
+  /** Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true. */
+  resetVisibility?: 'hover' | 'always'
   /** Callback invoked when reset button was clicked */
   onResetClick?: (
     event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
@@ -268,6 +270,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     endAdornment,
     limit,
     enableReset,
+    resetVisibility,
     outlineRef,
     testIds,
     setHasMultilineCounter,
@@ -338,6 +341,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         }
         onChange={onChange}
         enableReset={enableReset}
+        resetVisibility={resetVisibility}
         onResetClick={onResetClick}
         testIds={testIds}
       >
