@@ -24,10 +24,12 @@ export interface Props
 }
 
 export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
-  { disabled = false, onChange, ...props },
+  props,
   ref
 ) {
   const {
+    onChange,
+    disabled = false,
     label,
     id,
     className,
@@ -37,36 +39,33 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     value,
     color: _color, // eslint-disable-line @typescript-eslint/no-unused-vars
     'data-testid': dataTestId,
-    name,
-    form,
-    tabIndex,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledBy,
-    'aria-describedby': ariaDescribedBy,
+    ...rest
   } = props
-
-  // Forward only consumer-provided values so base-ui's internal defaults
-  // (e.g. `tabIndex` from useButton, `aria-labelledby` from useAriaLabelledBy)
-  // aren't clobbered with `undefined`.
-  const rootForwarded: Partial<BaseUISwitch.Root.Props> = {
-    ...(name !== undefined && { name }),
-    ...(form !== undefined && { form }),
-    ...(tabIndex !== undefined && { tabIndex }),
-    ...(ariaLabel !== undefined && { 'aria-label': ariaLabel }),
-    ...(ariaLabelledBy !== undefined && { 'aria-labelledby': ariaLabelledBy }),
-    ...(ariaDescribedBy !== undefined && {
-      'aria-describedby': ariaDescribedBy,
-    }),
-  }
 
   const handleCheckedChange: BaseUISwitch.Root.Props['onCheckedChange'] = (
     nextChecked,
     { event }
   ) => onChange?.(toReactChangeEvent(event), nextChecked)
 
+  // base-ui's Switch.Root renders a span; our public Props extends
+  // ButtonHTMLAttributes<HTMLButtonElement>. Event-handler element variance is
+  // a compile-time mismatch but runtime-safe — React synthetic handlers fire
+  // identically regardless of the currentTarget element type. Express the
+  // bridge once at the boundary per practices.md §Type-narrowing & casting.
+  const rootRest = rest as Omit<
+    BaseUISwitch.Root.Props,
+    | 'checked'
+    | 'disabled'
+    | 'id'
+    | 'value'
+    | 'className'
+    | 'style'
+    | 'onCheckedChange'
+  >
+
   const switchElement = (
     <BaseUISwitch.Root
-      {...rootForwarded}
+      {...rootRest}
       ref={ref}
       checked={checked}
       className={cx(
