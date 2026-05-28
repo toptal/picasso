@@ -600,7 +600,7 @@ export interface OrchestratorOptions {
 
   /**
    * Model + reasoning config for the spawned `claude -p` subagent.
-   * Defaults to `DEFAULT_MODEL_CONFIG` (Opus 4.7 + effort=max + 64k thinking).
+   * Defaults to `DEFAULT_MODEL_CONFIG` (Opus 4.8 + effort=max + 64k thinking).
    * CLI overrides: `--model`, `--effort`, `--no-thinking`, `--thinking-tokens`.
    * See plan `~/.claude/plans/question-what-model-and-reflective-pie.md`.
    */
