@@ -392,16 +392,36 @@
     "Typography": {
       "tier": 1,
       "package": "packages/base/Typography",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4983",
+      "branch": "migrate-Typography-v1",
+      "worktree": "migration-runs/2026-05-27/Typography-v1/worktree",
+      "iterations": 11,
       "merged_at": null,
-      "notes": "Already-clean source. Foundational primitive — many components depend on it. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>); see docs/migration/decisions/classes-audit.md."
+      "notes": "Already-clean source. Foundational primitive — many components depend on it. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>); see docs/migration/decisions/classes-audit.md.",
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4983",
+          "branch": "migrate-Typography-v1",
+          "worktree": "migration-runs/2026-05-27/Typography-v1/worktree",
+          "iterations": 11,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null
     },
     "Container": {
       "tier": 1,
