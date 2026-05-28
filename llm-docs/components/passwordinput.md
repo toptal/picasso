@@ -19,6 +19,7 @@ Input component for passwords
 | multilineResizable | `boolean` | - | If true, `TextArea` would be resizable vertical |
 | status | `"error" \| "success" \| "warning" \| "default"` | `default` | Indicate input status |
 | enableReset | `boolean` | - | Whether to render reset icon when there is a value in the input |
+| resetVisibility | `"hover" \| "always"` | - | Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true. |
 | onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
 | inputRef | `Ref<HTMLInputElement>` | - | Ref of the input element |
 
