@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-number-input",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Toptal UI components library - NumberInput",
   "publishConfig": {
     "access": "public"
