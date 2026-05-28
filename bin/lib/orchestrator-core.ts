@@ -178,6 +178,70 @@ function log(prefix: string, message: string): void {
 }
 
 /**
+ * Startup assertion for `--with-mcp`. Resolves the agent MCP config from the
+ * MAIN repo (the same `path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')`
+ * the agent invocation now passes to `--mcp-config`) and logs it.
+ *
+ * If the file is missing, unparseable, or has no `playwright` server, the
+ * agent silently spawns WITHOUT Playwright tools — no visual verification,
+ * blank screenshot audit trail (the failure mode the config's `_pinned`
+ * comment warns about). Surface that LOUDLY at startup rather than letting
+ * the operator discover it mid-sweep. No-op when `--with-mcp` isn't set.
+ */
+export function assertMcpConfig(withMcp: boolean): void {
+  if (!withMcp) {
+    return
+  }
+
+  const configPath = path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')
+
+  if (!existsSync(configPath)) {
+    log(
+      'mcp',
+      `⚠️  --with-mcp set but config NOT FOUND at ${configPath} — agents will ` +
+        'run WITHOUT Playwright tools (no visual verification). Fix before ' +
+        'relying on this sweep.'
+    )
+
+    return
+  }
+
+  try {
+    const parsed = JSON.parse(readFileSync(configPath, 'utf8')) as {
+      mcpServers?: Record<string, { args?: string[] }>
+    }
+    const playwright = parsed.mcpServers?.playwright
+
+    if (!playwright) {
+      log(
+        'mcp',
+        `⚠️  config at ${configPath} has no "playwright" mcpServer — agents ` +
+          'will run WITHOUT Playwright tools. Check mcpServers.playwright.'
+      )
+
+      return
+    }
+
+    const blocksPreview = (playwright.args ?? []).some(a =>
+      a.includes('toptal.github.io')
+    )
+
+    log(
+      'mcp',
+      `config ✓ ${configPath} (playwright server present; preview-host ` +
+        `block: ${blocksPreview ? 'on' : 'OFF — toptal.github.io reachable'})`
+    )
+  } catch (err) {
+    log(
+      'mcp',
+      `⚠️  config at ${configPath} failed to parse (${
+        err instanceof Error ? err.message : String(err)
+      }) — agents may run WITHOUT Playwright tools.`
+    )
+  }
+}
+
+/**
  * Build the agent prompt section for Happo visual-regression failures.
  *
  * Used in two places that share the same data shape:
@@ -3802,7 +3866,24 @@ const agent = {
           }
 
           if (inv.withMcp) {
-            args.push('--mcp-config', 'bin/lib/agent-mcp-config.json')
+            // Absolute path resolved from the MAIN repo (orchestrator process
+            // cwd via repoRoot()), NOT the agent's worktree cwd. The agent is
+            // spawned with `cwd: wtPath`, so a relative `--mcp-config
+            // bin/lib/agent-mcp-config.json` would read the worktree's copy —
+            // which is stale if the worktree was forked before a config change
+            // (e.g. the `--blocked-origins` guard added 2026-05-28). Reading
+            // from the main repo means every worktree picks up config changes
+            // on the next sweep with no per-branch propagation.
+            //
+            // The `command: node_modules/.bin/playwright-mcp` INSIDE the config
+            // stays worktree-resolved: child_process spawns it against the MCP
+            // server's cwd (the agent's worktree, which has its own
+            // node_modules), independent of where the config FILE lives. So
+            // worktree isolation of the browser binary is preserved.
+            args.push(
+              '--mcp-config',
+              path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')
+            )
           }
 
           // Session continuity (Tier 2.1). On iter 1, set the session id so
@@ -4398,6 +4479,72 @@ async function countScreenshotsByKind(
 }
 
 /**
+ * Relocate agent-authored screenshots from the worktree root into
+ * `<runDir>/playwright/` so the persistence checklist can find them.
+ *
+ * `@playwright/mcp` (≥0.0.75) resolves `browser_take_screenshot`'s
+ * `filename` arg against the MCP process cwd (the worktree) via
+ * `resolveClientFilename` → `workspaceFile`, NOT the `--output-dir` we
+ * pass on the command line. So `filename: 'local--<id>.png'` lands at
+ * `<worktree>/local--<id>.png`, not `<runDir>/playwright/`. Only the
+ * NO-filename code path goes through `outputFile()` and honors
+ * `--output-dir` — and the prompt mandates an explicit filename.
+ *
+ * Without this relocation, `countScreenshotsInPlaywrightDir` always sees
+ * 0 PNGs and the checklist forces a re-iter that a well-behaved agent can
+ * never satisfy (Drawer review-iter loop, 2026-05-28). Moving them here
+ * also realizes the original `--output-dir` intent: screenshots persist
+ * beyond worktree cleanup and leave the worktree root clean.
+ *
+ * Moves top-level `{local,baseline}--*.png` only (the naming convention
+ * the prompt + checklist use). worktree and playwright are siblings under
+ * runDir, so a same-device `rename` is sufficient. Returns the count moved.
+ */
+async function relocateScreenshotsFromWorktree(
+  runDir: string,
+  worktreePath: string
+): Promise<number> {
+  const dest = path.join(runDir, 'playwright')
+
+  if (!existsSync(worktreePath)) {
+    return 0
+  }
+
+  let moved = 0
+
+  try {
+    const entries = await fs.readdir(worktreePath)
+    const screenshots = entries.filter(e => {
+      const lower = e.toLowerCase()
+
+      return (
+        lower.endsWith('.png') &&
+        (lower.startsWith('local--') || lower.startsWith('baseline--'))
+      )
+    })
+
+    if (screenshots.length === 0) {
+      return 0
+    }
+
+    await fs.mkdir(dest, { recursive: true })
+
+    for (const name of screenshots) {
+      try {
+        await fs.rename(path.join(worktreePath, name), path.join(dest, name))
+        moved += 1
+      } catch {
+        /* collision or race — skip; checklist flags if none land */
+      }
+    }
+
+    return moved
+  } catch {
+    return moved
+  }
+}
+
+/**
  * Look for a successful `pnpm --filter <pkgName> build:package` invocation
  * in the agent's Bash tool inputs. Returns true iff the most recent matching
  * invocation appeared in the log AND no error marker followed it.
@@ -4567,12 +4714,20 @@ const checklist = {
         // 16 Playwright calls (incl. browser_take_screenshot), zero PNGs
         // on disk because the agent never passed `filename`.
         //
-        // Count PNGs created during this iter — anchor on iter-start mtime
-        // would be ideal but is fiddly; instead just count total PNGs in
-        // the playwright dir and require ≥1 when Playwright was used. The
-        // dir is pre-created empty per sweep tick (mkdir recursive is a
-        // no-op if it exists), so any PNG present here was written by
-        // this run.
+        // FIRST relocate any `{local,baseline}--*.png` the MCP wrote to the
+        // worktree root into `<runDir>/playwright/`. @playwright/mcp@≥0.0.75
+        // resolves a `browser_take_screenshot` `filename` against the MCP
+        // cwd (worktree), NOT `--output-dir`, so filenamed screenshots land
+        // in the worktree root — and the prompt mandates a filename. Without
+        // this relocation a well-behaved agent always fails the count below
+        // (Drawer review-iter loop, 2026-05-28). See
+        // `relocateScreenshotsFromWorktree`.
+        //
+        // Then count PNGs in the playwright dir and require ≥1 when
+        // Playwright was used. The dir is pre-created empty per sweep tick,
+        // so any PNG present (post-relocation) was written by this run.
+        await relocateScreenshotsFromWorktree(args.runDir, args.worktreePath)
+
         const screenshotCount = await countScreenshotsInPlaywrightDir(
           args.runDir
         )
@@ -4621,15 +4776,20 @@ const checklist = {
         }
 
         // TODO #16 (2026-05-22): deployed-preview navigation gate. The
-        // Playwright MCP has no built-in domain allowlist, so the agent
-        // can navigate anywhere — including `toptal.github.io/picasso/prs/<n>/`,
-        // which is the deployed PR-preview Storybook bundle, NOT the
-        // in-progress worktree. Observed on Switch sweep 2026-05-22:
-        // agent navigated to the preview URL, hit a 404 on the wrong
-        // story ID, and proceeded as if verification had happened.
-        // Evidence: <worktree>/.playwright-mcp/console-*.log entries.
+        // agent can navigate to `toptal.github.io/picasso/prs/<n>/`, the
+        // deployed PR-preview Storybook bundle, NOT the in-progress
+        // worktree. Observed on Switch sweep 2026-05-22 + Drawer sweep
+        // 2026-05-28: agent navigated to the preview URL, hit a 404 on the
+        // wrong story ID, and proceeded as if verification had happened.
         //
-        // Gate: scan the agent log for browser_navigate calls whose URL
+        // PRIMARY GUARD (2026-05-28): `bin/lib/agent-mcp-config.json` now
+        // passes `--blocked-origins https://toptal.github.io`, so the MCP
+        // aborts those requests at the route layer (ERR_BLOCKED_BY_CLIENT)
+        // — the agent CAN'T load the preview anymore. This post-hoc log
+        // scan is now a BACKSTOP (catches stale-config runs or new preview
+        // hosts not yet in the denylist).
+        //
+        // Backstop: scan the agent log for browser_navigate calls whose URL
         // contains `toptal.github.io/picasso/prs/` and fail the check
         // with explicit re-targeting instructions. Two and only two
         // hostnames are allowed: localhost (for local Storybook) and
