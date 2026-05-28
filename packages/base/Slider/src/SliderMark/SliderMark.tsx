@@ -25,7 +25,7 @@ const SliderMark = ({
       data-index={dataIndex}
       style={style}
       className={twJoin(
-        'absolute w-[10px] h-[10px] top-[3.5px] rounded-[50%] -translate-x-2/4 box-content',
+        'absolute w-[9px] h-[9px] top-[3px] rounded-[50%] -translate-x-2/4 box-content',
         getBgColor({ markActive, forceInactive, value: ownerState.value })
       )}
     />

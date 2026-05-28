@@ -205,7 +205,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   return (
     <div
       ref={containerRef}
-      className={twMerge('my-[4px] mx-0', className)}
+      className={twMerge('mb-[4px] mt-[5px] mx-0 h-[15px]', className)}
       style={style}
     >
       <BaseUISlider.Root
@@ -221,10 +221,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         onValueChange={handleValueChange}
         name={name}
         id={id}
-        className='block cursor-pointer width-full relative py-[8px] -my-[8px]'
+        className='block cursor-pointer width-full relative'
       >
-        <BaseUISlider.Control className='block absolute inset-0'>
-          <BaseUISlider.Track className='block w-full h-[1px] top-1/2 rounded-none bg-gray-500'>
+        <BaseUISlider.Control className='block absolute inset-0 h-[15px]'>
+          <BaseUISlider.Track className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'>
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',
