@@ -3,20 +3,20 @@
 exports[`Slider renders 1`] = `
 <div>
   <div
-    class="my-[4px] mx-0"
+    class="mb-[4px] mt-[5px] mx-0 h-[15px]"
   >
     <div
-      class="block cursor-pointer width-full relative py-[8px] -my"
+      class="block cursor-pointer width-full relative"
       data-orientation="horizontal"
       id="base-ui-:r0:"
       role="group"
     >
       <div
-        class="block absolute inset-0"
+        class="block absolute inset-0 h-[15px]"
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] top-1/2 rounded-none bg-gray"
+          class="block w-full h-[1px] top-[7px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -64,20 +64,20 @@ exports[`Slider renders 1`] = `
 exports[`Slider with initial value 1`] = `
 <div>
   <div
-    class="my-[4px] mx-0"
+    class="mb-[4px] mt-[5px] mx-0 h-[15px]"
   >
     <div
-      class="block cursor-pointer width-full relative py-[8px] -my"
+      class="block cursor-pointer width-full relative"
       data-orientation="horizontal"
       id="base-ui-:r8:"
       role="group"
     >
       <div
-        class="block absolute inset-0"
+        class="block absolute inset-0 h-[15px]"
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] top-1/2 rounded-none bg-gray"
+          class="block w-full h-[1px] top-[7px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
