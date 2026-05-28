@@ -240,6 +240,33 @@ Specifically:
 - `{...(rest as BaseUIButton.Props)}` is `// @ts-ignore` in disguise. If `rest` doesn't conform to `BaseUIButton.Props`, that's a real type mismatch — drop the offending Picasso-only prop *before* spreading, don't paper over.
 - The `as ComponentName.Props['<key>']` indexed-type-access pattern is still canonical — just hoist it. **Do NOT** change the public type to `any` to "fix" the type mismatch — that violates `rules/api-preservation.md` (no broadening of public types).
 
+### Boundary cast for form-component `onChange` adapters
+
+`@base-ui/react` v1 form-control callbacks (`onCheckedChange`, `onValueChange`, etc.) hand the consumer a native DOM `Event` via `eventDetails.event`. Picasso's public `onChange` types pre-date the migration and expect `React.ChangeEvent<T>` — a `React.SyntheticEvent` variant. React doesn't expose a public API to construct a SyntheticEvent, so the cast at the boundary is unavoidable. Two helpers in `@toptal/picasso-shared` concentrate the cast:
+
+- **`toReactChangeEvent<T>(event)`** — specialized for form-input `onChange` adapters (Switch, Checkbox, Radio, FileInput). Generic constrained to `HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement`; dev-warns on unexpected target shapes. **Prefer this** for the common form-input case.
+- **`toReactEvent<R>(event)`** — generic primitive for non-change-event boundary cases (Slider value events, MouseEvent adapters, FocusEvent adapters, etc.). Caller supplies the target React.SyntheticEvent type via the `R` generic.
+
+Both are Proxy-based: native event identity preserved, four React-SyntheticEvent shim methods synthesized (`nativeEvent`, `persist`, `isDefaultPrevented`, `isPropagationStopped`). Runtime: O(1) Proxy allocation; zero property copying.
+
+```tsx
+import { toReactChangeEvent } from '@toptal/picasso-shared'
+
+const Switch = (props: Props) => {
+  const { onChange, ...rest } = props
+  return (
+    <BaseUISwitch.Root
+      {...rest}
+      onCheckedChange={(checked, { event }) =>
+        onChange?.(toReactChangeEvent(event), checked)
+      }
+    />
+  )
+}
+```
+
+**Anti-pattern**: hand-fabricating a `React.ChangeEvent` by copying 13+ native event properties into a literal object (the prior `toSyntheticChangeEvent` pattern surfaced in PR #4965 r3302165743). The fabrication loses event identity, ships semantically-wrong copied props (`currentTarget`, `eventPhase`, `persist`-as-noop misleading), and re-implements the same shim in every form-component migration. Use the shared helpers instead.
+
 ---
 
 ## Data-attribute selectors (state styling)
