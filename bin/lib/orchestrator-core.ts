@@ -670,7 +670,7 @@ function buildHappoFailureSection(
     '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/iframe.html?id=<resolved-baseline-id>&viewMode=story` (pre-migration deployed baseline). Run the `.sb-show-errordisplay` check.\n' +
     '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`.\n' +
     '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/iframe.html?id=<resolved-local-id>&viewMode=story` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken). Run the `.sb-show-errordisplay` check.\n' +
-    '   - `mcp__playwright__browser_take_screenshot` → save under `local--<story-id>.png`.\n' +
+    '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/local--<story-id>.png`.\n' +
     '   - For interactive components (Slider/Switch/Tabs/etc.) repeat for `hover`/`focus`/`pressed`/`disabled` states. Use `browser_hover`/`browser_click`/`browser_press_key` between captures.\n' +
     '   - Read both baseline and local PNGs; the visual delta tells you what direction the shift is. But screenshots alone are NOT enough to identify the exact CSS property — go to step 5.\n' +
     '5. **MANDATORY: computed-style diff before declaring stalemate.** Screenshot inspection narrows down WHERE the diff is; computed styles tell you WHAT to change. For each migrated-component diff, you MUST run this diagnostic before considering escalation:\n' +
@@ -688,12 +688,12 @@ function buildHappoFailureSection(
     "       root:  dump(sel('.MuiSlider-root, [data-slider-root]')),\n" +
     '     }, null, 0)\n' +
     '     ```\n' +
-    "   - Save each browser's output to `migration-runs/<date>/<Component>/computed-styles-{baseline,local}.json`.\n" +
+    "   - Save each browser's output to `.scratch/computed-styles-{baseline,local}.json` (create the dir; `.scratch/` is gitignored so nothing there lands in the PR). **Any helper script you write — a PNG-diff scriptlet, etc. — MUST also go under `.scratch/`, never the worktree root.**\n" +
     '   - Diff the two JSON files property-by-property. The 5-10 properties that differ ARE your fix list. Common offenders during @mui/base → @base-ui/react migrations: `margin-left`, `margin-top` (master used negative margins for centering; @base-ui uses `translate:` property instead — these compose differently in some cases), `box-sizing`, `padding-{x,y}`, `width` (when `box-content` vs `border-box` differs), `transform-origin`, `inset-inline-start` rounding.\n' +
     "   - For each differing property, write a targeted Tailwind class OR (preferred for @base-ui/react internal-style overrides) a `style={{ ... }}` prop on the @base-ui/react component itself. **Rung 0 first**: @base-ui/react's `mergeProps` shallow-merges your `style` AFTER its internal inline style — `<Slider.Thumb style={{ translate: 'none' }}>` cleanly defeats the kit's `translate: -50% -50%` without Tailwind `!important`. See `code-standards.md §\"CSS specificity ladder\"` rung 0. If `style` prop is insufficient for the case (e.g. responsive breakpoint variants), escalate to Tailwind selectors.\n" +
     "   - Re-screenshot local. Re-run gate. If the diff count drops → progress, continue. If unchanged → the property you targeted wasn't the actual cause; pick the next differing property from the JSON diff.\n" +
     '6. **Stalemate (give-up) is FORBIDDEN until you have**:\n' +
-    '   - Captured `computed-styles-baseline.json` AND `computed-styles-local.json` for the failing component (kept locally — these are diagnostic artifacts, not PR-comment material).\n' +
+    '   - Captured `.scratch/computed-styles-baseline.json` AND `.scratch/computed-styles-local.json` for the failing component (kept locally under the gitignored `.scratch/` dir — these are diagnostic artifacts, not PR-comment material).\n' +
     '   - Made at least 2 distinct fix attempts targeting properties from the computed-style diff (NOT speculative Tailwind tweaks).\n' +
     '   - Posted ONE SHORT PR comment (≤60 words) summarising: (a) which 2-3 computed-style properties differ in one line, (b) which fix attempts you made + their diff count outcomes in one line each. Do NOT paste raw JSON dumps. Do NOT recite the full diagnostic procedure. The operator will read the local artifacts if they want detail.\n' +
     '   The "stop replying if stuck" review-response meta-rule (PROMPT-review-response.md) does NOT apply when you have an open Happo failure on a migrated component. Pixel-perfect on the migrated component is a hard requirement; the diagnostic procedure above always converges if followed (the computed-style diff is a finite list).\n\n' +
@@ -816,6 +816,217 @@ function shell(
       resolve({ exitCode: code ?? 1, stdout, stderr })
     })
   })
+}
+
+/**
+ * Migration-relevant path filters — the ONLY paths a migration legitimately
+ * commits. Used both as git pathspecs for the critic diff and as the
+ * stray-guard allowlist (single source of truth). Changing what a migration
+ * may touch happens HERE. Prefix entries end in `/`; everything else is an
+ * exact path.
+ */
+function migrationPathFilters(itemId: string): string[] {
+  return [
+    'packages/',
+    '.changeset/',
+    `docs/migration/components/${itemId.replace(/\//g, '__')}.md`,
+  ]
+}
+
+/**
+ * True if `p` is a path a migration may legitimately commit. Superset of
+ * `migrationPathFilters` — also allows the root `pnpm-lock.yaml` (a real
+ * dep-bump touches it), which the critic diff deliberately excludes as noise.
+ */
+function isMigrationPath(p: string, itemId: string): boolean {
+  const allowed = migrationPathFilters(itemId).some(f =>
+    f.endsWith('/') ? p.startsWith(f) : p === f
+  )
+
+  return allowed || p === 'pnpm-lock.yaml'
+}
+
+/**
+ * Fork point of the migration worktree = `merge-base(worktree HEAD,
+ * orchestrator branch)`. Everything in `forkSha..HEAD` is THIS migration's own
+ * work; everything tracked at/under `forkSha` is pre-existing pf-1992 history
+ * the stray-guard must never touch. merge-base is robust to the orchestrator
+ * branch advancing after the fork (resume runs) — it's the common ancestor
+ * either way.
+ *
+ * Returns '' if the orchestrator branch can't be resolved (detached HEAD, etc.).
+ * Callers MUST treat '' as "skip stripping" so the never-touch-pf-1992
+ * invariant outranks cleaning.
+ */
+async function migrationForkPoint(wtPath: string): Promise<string> {
+  const branchResult = await shell(
+    'git',
+    ['rev-parse', '--abbrev-ref', 'HEAD'],
+    { cwd: repoRoot() }
+  )
+  const orchestratorBranch = branchResult.stdout.trim()
+
+  if (!orchestratorBranch || orchestratorBranch === 'HEAD') {
+    return ''
+  }
+
+  const mbResult = await shell(
+    'git',
+    ['merge-base', 'HEAD', orchestratorBranch],
+    { cwd: wtPath }
+  )
+
+  return mbResult.exitCode === 0 ? mbResult.stdout.trim() : ''
+}
+
+/**
+ * Append a gitignore pattern for a stripped stray file to the OPERATOR
+ * checkout's `.gitignore` (`repoRoot()`, NOT the worktree) so it persists for
+ * the operator and never enters a migration PR diff. Deduped. `.scratch-*`
+ * files collapse to one glob; everything else is anchored by full path.
+ */
+async function ensureGitignored(file: string): Promise<void> {
+  const pattern = path.basename(file).startsWith('.scratch-')
+    ? '/.scratch-*'
+    : `/${file}`
+  const gitignorePath = path.join(repoRoot(), '.gitignore')
+  const current = await fs.readFile(gitignorePath, 'utf8').catch(() => '')
+
+  if (current.split('\n').some(line => line.trim() === pattern)) {
+    return
+  }
+
+  const prefix = current.length === 0 || current.endsWith('\n') ? '' : '\n'
+
+  await fs.appendFile(gitignorePath, `${prefix}${pattern}\n`, 'utf8')
+  log('loop', `stray-guard: added '${pattern}' to .gitignore`)
+}
+
+/**
+ * Mode A — unstage strays staged THIS iteration that the migration introduced.
+ * A path already tracked at `forkSha` (a pre-existing pf-1992 file the agent
+ * merely modified) is left alone. Returns the paths it unstaged.
+ */
+async function unstageNewStrays(
+  wtPath: string,
+  itemId: string,
+  forkSha: string
+): Promise<string[]> {
+  const staged = (
+    await shell('git', ['diff', '--cached', '--name-only'], { cwd: wtPath })
+  ).stdout
+    .split('\n')
+    .filter(Boolean)
+  const unstaged: string[] = []
+
+  for (const f of staged) {
+    if (isMigrationPath(f, itemId)) {
+      continue
+    }
+
+    // eslint-disable-next-line no-await-in-loop
+    const atFork = await shell('git', ['cat-file', '-e', `${forkSha}:${f}`], {
+      cwd: wtPath,
+    })
+
+    if (atFork.exitCode === 0) {
+      continue // pre-existing pf-1992 file — never touch
+    }
+
+    // eslint-disable-next-line no-await-in-loop
+    await shell('git', ['reset', '-q', 'HEAD', '--', f], { cwd: wtPath })
+    unstaged.push(f)
+  }
+
+  return unstaged
+}
+
+/**
+ * Mode B — `git rm --cached` strays THIS migration already committed (files
+ * ADDED in `forkSha..HEAD`). `--diff-filter=A` over that range structurally
+ * excludes pf-1992 history. Keeps the working-tree file on disk. Returns the
+ * paths it removed.
+ */
+async function rmCommittedStrays(
+  wtPath: string,
+  itemId: string,
+  forkSha: string
+): Promise<string[]> {
+  const added = (
+    await shell(
+      'git',
+      ['diff', '--name-only', '--diff-filter=A', `${forkSha}..HEAD`],
+      { cwd: wtPath }
+    )
+  ).stdout
+    .split('\n')
+    .filter(Boolean)
+  const removed: string[] = []
+
+  for (const f of added) {
+    if (isMigrationPath(f, itemId)) {
+      continue
+    }
+
+    // eslint-disable-next-line no-await-in-loop
+    await shell('git', ['rm', '--cached', '-q', '--', f], { cwd: wtPath })
+    removed.push(f)
+  }
+
+  return removed
+}
+
+/**
+ * Stage the agent's edits (`git add -A`) and strip orchestrator scratch that
+ * has nothing to do with the migration — both newly-staged (Mode A, unstage)
+ * and already-committed on this branch (Mode B, `git rm --cached`). Scoped to
+ * the migration's OWN commits via the fork point, so it NEVER touches an
+ * already-committed pf-1992 file (CLAUDE.md "Branch hygiene"). Each stripped
+ * file is added to the operator `.gitignore`. Returns whether in-scope changes
+ * remain staged, so callers keep their existing commit/amend logic.
+ *
+ * Replaces the bare `git add -A` previously duplicated at the migration-loop,
+ * review-sweep, and CI-loop commit sites.
+ */
+async function stripStrayFiles(
+  wtPath: string,
+  itemId: string
+): Promise<{ hasStagedChanges: boolean; filtered: string[] }> {
+  await shell('git', ['add', '-A'], { cwd: wtPath })
+
+  const forkSha = await migrationForkPoint(wtPath)
+
+  // Fail-safe: without a reliable fork point we can't prove a file belongs to
+  // the migration, so strip NOTHING — the "never touch a pf-1992 file"
+  // invariant outranks cleaning.
+  if (!forkSha) {
+    log(
+      'loop',
+      'stray-guard: no fork point resolved — skipping strip (fail-safe)'
+    )
+
+    const stagedOnly = await shell('git', ['diff', '--cached', '--quiet'], {
+      cwd: wtPath,
+    })
+
+    return { hasStagedChanges: stagedOnly.exitCode !== 0, filtered: [] }
+  }
+
+  const unstaged = await unstageNewStrays(wtPath, itemId, forkSha)
+  const removed = await rmCommittedStrays(wtPath, itemId, forkSha)
+  const filtered = [...new Set([...unstaged, ...removed])]
+
+  for (const f of filtered) {
+    log('loop', `stray-guard: stripped orchestrator scratch from PR: ${f}`)
+    // eslint-disable-next-line no-await-in-loop
+    await ensureGitignored(f)
+  }
+
+  const stagedCheck = await shell('git', ['diff', '--cached', '--quiet'], {
+    cwd: wtPath,
+  })
+
+  return { hasStagedChanges: stagedCheck.exitCode !== 0, filtered }
 }
 
 /** Spawn a shell command via `bash -c` so the workflow can pass complex command lines. */
@@ -5108,11 +5319,8 @@ const checklist = {
     // .changeset/** (migration's own changeset entry), and the per-item
     // plan/component-docs path. Exclude pnpm-lock.yaml + yarn.lock (huge
     // noise) and the rest of the repo (orchestrator infra, prompt docs).
-    const pathFilters = [
-      'packages/',
-      '.changeset/',
-      `docs/migration/components/${args.item.id.replace(/\//g, '__')}.md`,
-    ]
+    // Shared with the stray-guard allowlist — single source of truth.
+    const pathFilters = migrationPathFilters(args.item.id)
     const diffArgs = ['diff', diffRange, '--', ...pathFilters]
     const diffResult = await shell('git', diffArgs, {
       cwd: args.worktreePath,
@@ -6842,16 +7050,12 @@ async function sweepOne(
       // the sweep tick ends with at most ONE commit on the branch.
       //
       // If the agent made no source changes (MEDIUM/LOW-confidence reply
-      // path), `git add -A` is a no-op and `git commit`/`--amend` will
-      // either skip (no staged changes) or amend with no changes; we
-      // detect via `git diff --cached --quiet`.
+      // path), staging is a no-op and `git commit`/`--amend` will either skip
+      // (no staged changes) or amend with no changes; `stripStrayFiles` reports
+      // `hasStagedChanges` via `git diff --cached --quiet`. It also strips any
+      // orchestrator scratch the agent dropped (see its JSDoc).
       // eslint-disable-next-line no-await-in-loop
-      await shell('git', ['add', '-A'], { cwd: wtPath })
-      // eslint-disable-next-line no-await-in-loop
-      const stagedCheck = await shell('git', ['diff', '--cached', '--quiet'], {
-        cwd: wtPath,
-      })
-      const hasStagedChanges = stagedCheck.exitCode !== 0
+      const { hasStagedChanges } = await stripStrayFiles(wtPath, item.id)
 
       if (hasStagedChanges) {
         if (!sweepTickHasCommit) {
@@ -8232,17 +8436,12 @@ export async function run(
 
       // Stage + commit-or-amend the agent's edits BEFORE the gate runs.
       // This is required for Happo to see iter-fresh state (see comment
-      // on `migrationHasCommit` above). Mirrors `sweepOne`'s in-loop
-      // commit logic — keep the patterns aligned so future bug fixes
-      // apply uniformly.
-      await shell('git', ['add', '-A'], { cwd: wtPath })
-      const migrationStagedCheck = await shell(
-        'git',
-        ['diff', '--cached', '--quiet'],
-        { cwd: wtPath }
-      )
+      // on `migrationHasCommit` above). Shares `stripStrayFiles` with
+      // `sweepOne` and the CI loop — staging + scratch-stripping stay aligned
+      // across all three commit sites.
+      const { hasStagedChanges } = await stripStrayFiles(wtPath, item.id)
 
-      if (migrationStagedCheck.exitCode !== 0) {
+      if (hasStagedChanges) {
         if (!migrationHasCommit) {
           const migrationCommitMsg = workflow.commitMessage(item.id, item)
 
@@ -9346,7 +9545,9 @@ export async function run(
       )
 
       await fs.writeFile(ciCommitMsgFile, ciCommitMsg, 'utf8')
-      await shell('git', ['add', '-A'], { cwd: wtPath })
+      // Stage + strip orchestrator scratch (shared with the migration loop and
+      // sweepOne). Empty result → the commit below is a no-op (non-zero exit).
+      await stripStrayFiles(wtPath, item.id)
       const commitResult = await shell(
         'git',
         ['commit', '--no-verify', '--file', ciCommitMsgFile],
