@@ -13,6 +13,8 @@ Use "Amount" to render formatted amount with a currency, in desired locale.
 | locale | `string` | `en-US` | Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else. |
 | minimumFractionDigits | `number` | - | The minimum number of fraction digits to display |
 | maximumFractionDigits | `number` | - | The maximum number of fraction digits to display |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | variant | `"body" \| "heading"` | - | Font variant for inner text |
 | children | `ReactNode` | - | Text content |
 | inline | `boolean` | `true` | Controls whether the Typography is inline or not |
@@ -25,8 +27,6 @@ Use "Amount" to render formatted amount with a currency, in desired locale.
 | as | `ElementType<HTMLAttributes<HTMLElement>>` | `span` | Rendered HTML markup |
 | underline | `"solid" \| "dashed"` | - | Controls when the Typography should have an underline |
 | lineThrough | `boolean` | - | Controls when the Typography should have line through |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
