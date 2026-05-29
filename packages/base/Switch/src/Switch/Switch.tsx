@@ -64,41 +64,49 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
   >
 
   const switchElement = (
-    <BaseUISwitch.Root
-      {...rootRest}
-      ref={ref}
-      checked={checked}
-      className={cx(
-        'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
-        'cursor-pointer outline-none data-[disabled]:cursor-default',
-        className
-      )}
-      style={style}
-      disabled={disabled}
-      id={id}
-      value={value === undefined ? undefined : String(value)}
-      onCheckedChange={handleCheckedChange}
-      data-testid={label ? undefined : dataTestId}
-    >
-      <span
+    // base-ui's Switch.Root renders a visually-hidden <input> as a sibling of
+    // the root with inline `margin:-1px` (unreachable via base-ui's API). That
+    // 1px box has no paint (clip-path: inset(50%)) but contributes to layout,
+    // growing the component's footprint by 1px. `overflow-clip` removes that
+    // layout contribution while `overflow-clip-margin` keeps the thumb's focus
+    // shadow ink (4px) painting beyond the box.
+    <span className='relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip-margin:6px]'>
+      <BaseUISwitch.Root
+        {...rootRest}
+        ref={ref}
+        checked={checked}
         className={cx(
-          'w-full h-full border border-solid bg-gray-600 border-gray-600 opacity-100 rounded-[12px]',
-          'transition-colors duration-300 ease-out',
-          'group-data-[checked]:bg-blue-500 group-data-[checked]:border-blue-500',
-          'group-data-[disabled]:opacity-40',
-          'group-[[data-disabled][data-unchecked]]:bg-black'
+          'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
+          'cursor-pointer outline-none data-[disabled]:cursor-default',
+          className
         )}
-      />
-      <BaseUISwitch.Thumb
-        className={cx(
-          'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
-          'transition-transform duration-150 ease-out',
-          'group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-          'group-focus-visible:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-          'group-data-[checked]:translate-x-[16px]'
-        )}
-      />
-    </BaseUISwitch.Root>
+        style={style}
+        disabled={disabled}
+        id={id}
+        value={value === undefined ? undefined : String(value)}
+        onCheckedChange={handleCheckedChange}
+        data-testid={label ? undefined : dataTestId}
+      >
+        <span
+          className={cx(
+            'w-full h-full border border-solid bg-gray-600 border-gray-600 opacity-100 rounded-[12px]',
+            'transition-colors duration-300 ease-out',
+            'group-data-[checked]:bg-blue-500 group-data-[checked]:border-blue-500',
+            'group-data-[disabled]:opacity-40',
+            'group-[[data-disabled][data-unchecked]]:bg-black'
+          )}
+        />
+        <BaseUISwitch.Thumb
+          className={cx(
+            'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
+            'transition-transform duration-150 ease-out',
+            'group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
+            'group-focus-visible:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
+            'group-data-[checked]:translate-x-[16px]'
+          )}
+        />
+      </BaseUISwitch.Root>
+    </span>
   )
 
   if (!label) {
