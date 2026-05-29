@@ -359,3 +359,19 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Detect this fast-path up front by grepping the package's `src/` for `@mui/` / `@material-ui/` imports before any code edits; if zero hits, skip the API-alignment work and ship only the `package.json` + changeset diff.
 - Changeset body for a peer-only swap should explicitly state "Source already MUI-clean; public API unchanged" so reviewers don't expect behavioral or visual diffs and Happo deltas aren't expected.
 - Reference: https://github.com/toptal/picasso/pull/4981
+
+## Typography — 2026-05-29 (review iter 1)
+
+- Tier 1 · target_path: `none` · iterations: 1
+- Bump the changeset to `minor` (or `major`) whenever the public type surface changes — dropping `classes` from `StandardProps` is an API change, not a patch, per `docs/contribution/changeset-guidelines.md` and the Tier 0/1 `Omit<StandardProps, 'classes'>` pattern in `references/code-standards.md §Changeset conventions`.
+- When a Happo diff is unrelated to the migrated component (e.g. Slider tooltip race-timing flake during a Typography PR), call it out in the PR thread immediately with the offending story + reasoning so reviewers don't block on it — don't iterate the agent further on visuals it can't fix.
+- Split unrelated mechanical cleanup (peer-dep drop, React range widen) and API-surface changes into separate changesets with the correct bump per change, rather than collapsing both into one patch entry.
+- Reference: https://github.com/toptal/picasso/pull/4983
+
+## Container — 2026-05-29 (review iter 1)
+
+- Tier 1 · target_path: `none` · iterations: 1
+- Prefer dropping unused props at the type level only (`Omit<StandardProps, 'classes'>` plus a runtime destructure of `classes: _classes`) without re-widening via `& { classes?: unknown }` cast — reviewers flag the cast as confusing churn; see `docs/migration/references/design-patterns-addendum.md` "classes prop handling".
+- Replace `@material-ui/core` `PropTypes.Alignment` (and similar MUI type re-exports) with an explicit literal union inline on the prop — reviewers expect the MUI type dependency fully severed during migration, not aliased.
+- Never commit duplicate `.changeset/*.md` entries for the same package/bump — coalesce into one file; orchestrator-generated duplicates should be deleted before opening the PR, not annotated with a "safe to delete" note.
+- Reference: https://github.com/toptal/picasso/pull/4980

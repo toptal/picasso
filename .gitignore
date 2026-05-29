@@ -58,3 +58,11 @@ migration-runs
 /baseline--*.png
 /scripts/diff-happo.js
 **/__tests__/pixel-diff*.test.ts
+# Flat scratch dir the Happo-stalemate prompt now points the agent at, plus the
+# prefix-named computed-style dumps the old suffix globs above missed (the exact
+# files reviewers flagged in PR #4965 Switch: `.scratch-pngdiff.py`,
+# `computed-styles-local.json`). The orchestrator stray-guard also self-appends
+# here when it strips a novel scratch file.
+/.scratch/
+/.scratch-*
+/computed-styles-*.json
