@@ -1,0 +1,3 @@
+---
+'@toptal/picasso-typography': patch
+---
