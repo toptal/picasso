@@ -592,7 +592,7 @@ const Switch = (props: Props) => {
   const {
     onChange,     // signature differs — adapt to onCheckedChange below
     checked,      // type narrowing (number? → boolean clamp)
-    ...rest       // ← everything else flows through, fully typed
+    ...rest       // ← everything else flows through (see TS variance note below)
   } = props
   return (
     <BaseUISwitch.Root
@@ -646,7 +646,7 @@ const Slider = (props: Props) => {
 
 Slider's value-change isn't a form `ChangeEvent` per se — use the generic `toReactEvent<R>` primitive when the React event type isn't the form-input common case. The specialized `toReactChangeEvent` only accepts form-input element generics.
 
-**To find which props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props`. The NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. For Tier 0 components, typically 1–3 props.
+**To find which props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props`. The NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. Everything else is runtime-compatible and spreads safely. Under Picasso's `strict: true` tsconfig, event-handler element variance can still surface a `tsc` error on `...rest` even when the destructure list is correct — see "TS variance" below. For Tier 0 components, typically 1–3 props.
 
 **Anti-patterns to avoid** (both forbidden):
 
@@ -655,7 +655,24 @@ Slider's value-change isn't a form `ChangeEvent` per se — use the generic `toR
 
 If you find yourself destructuring 6+ props, you're sliding into the exhaustive-allowlist anti-pattern — re-read the library's `.d.ts`. Cite this section + `practices.md §"API preservation"` directly in PR replies when reviewers raise the question.
 
-(source: `code-standards.md §"prop-by-prop boundary"`, `practices.md §"API preservation"`)
+**TS variance: when `tsc --strict` rejects `...rest` · sanctioned escape**
+
+Picasso's `tsconfig.base.json` has `"strict": true` → `strictFunctionTypes` is on. If your `Props` extends an element-specific HTML attributes type (e.g. `ButtonHTMLAttributes<HTMLButtonElement>`) and the base-ui part renders a different element (Switch → `<span>`), `tsc` will reject `{...rest}` even when the destructure list is correct — because `MouseEventHandler<HTMLButtonElement>` is not assignable to base-ui's span-typed `BaseUIEvent<MouseEvent<HTMLSpanElement>>` due to function-parameter contravariance.
+
+This is a real, runtime-safe variance: React synthetic event handlers fire identically regardless of `currentTarget` element type. Do NOT narrow the public `Props` to fix this — reviewers explicitly reject contract narrowing (PR #4965 review 2026-05-20 16:10). Express the bridge once at the boundary, NOT in JSX:
+
+```tsx
+const rootRest = rest as Omit<
+  BaseUISwitch.Root.Props,
+  'checked' | 'disabled' | 'id' | 'value' | 'className' | 'style' | 'onCheckedChange'
+>
+
+return <BaseUISwitch.Root {...rootRest} … />
+```
+
+This is sanctioned, not a blanket cast: plain `as` (not `as unknown as`) between types with structural overlap; `Omit`s the props you explicitly override; local typed binding (not JSX-site); leave a one-line comment citing the variance reason. Reference: PR #4965 iter 11 (2026-05-28).
+
+(source: `code-standards.md §"prop-by-prop boundary"` + `§"TS variance: when tsc --strict rejects ...rest"`, `practices.md §"API preservation"`)
 
 ### Type alignment at the boundary · **RULE**
 

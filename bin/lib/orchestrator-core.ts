@@ -1725,6 +1725,103 @@ const worktree = {
     log('worktree', `recreated ${worktreePath} from ${branch}`)
     await this.bootstrap(worktreePath)
   },
+
+  /**
+   * Forward-sync an EXISTING worktree to its origin PR head, losslessly.
+   *
+   * Why: between sweep ticks the orchestrator rebases open PR branches onto
+   * the moving base as other migrations merge, so `origin/<branch>` advances
+   * under a worktree that never changed locally ("drift"). The agent must
+   * edit + answer reviewers against the SAME source the reviewer sees, and the
+   * end-of-tick `git push` must fast-forward — both require local == origin.
+   *
+   * How: fetch, then a cherry-GUARDED `git reset --hard origin/<branch>`. We
+   * never `git pull` — that merges origin's rebased history over the diverged
+   * local history and corrupts a branch meant to stay linear. The guard
+   * refuses to reset when local carries genuine unpushed work (a `+` in
+   * `git cherry`, e.g. an operator's hand-applied fix) or has uncommitted
+   * tracked edits, handing those cases to a human instead of destroying them.
+   *
+   * A `+` can occasionally be a rebase-granularity artifact (patch-id shifted
+   * by a squash/context change) that IS lossless, but confirming that needs a
+   * net-diff judgment call, so the automated stance is conservative: stop.
+   *
+   * Best-effort: a failed fetch (e.g. ssh-agent emptied after reboot) returns
+   * `skipped` rather than escalating, degrading to the pre-sync behavior so a
+   * transient auth gap doesn't wedge every awaiting_review item.
+   */
+  async syncToOrigin(
+    branch: string,
+    worktreePath: string
+  ): Promise<
+    | { kind: 'synced'; head: string }
+    | { kind: 'skipped'; reason: string }
+    | { kind: 'diverged'; reason: string }
+  > {
+    const opts = { cwd: worktreePath }
+
+    const fetchResult = await shell('git', ['fetch', 'origin', branch], opts)
+
+    if (fetchResult.exitCode !== 0) {
+      return {
+        kind: 'skipped',
+        reason: `git fetch origin ${branch} failed: ${
+          fetchResult.stderr || fetchResult.stdout
+        }`,
+      }
+    }
+
+    // Tracked-file edits only — `git reset --hard` leaves untracked scratch
+    // (gitignored PNG/JSON debris) in place, so those must not block a sync.
+    const statusResult = await shell('git', ['status', '--porcelain'], opts)
+
+    const trackedChanges = statusResult.stdout
+      .split('\n')
+      .filter(line => line.trim() !== '' && !line.startsWith('??'))
+
+    if (trackedChanges.length > 0) {
+      return {
+        kind: 'diverged',
+        reason: `worktree has ${trackedChanges.length} uncommitted tracked change(s); refusing reset --hard`,
+      }
+    }
+
+    // `+` = commit on HEAD with no patch-equivalent on origin (a reset would
+    // destroy it); `-` = already upstream (the lossless drift case).
+    const uniqueCommits = (
+      await shell('git', ['cherry', `origin/${branch}`, 'HEAD'], opts)
+    ).stdout
+      .split('\n')
+      .filter(line => line.startsWith('+'))
+
+    if (uniqueCommits.length > 0) {
+      return {
+        kind: 'diverged',
+        reason: `local has ${uniqueCommits.length} commit(s) not on origin/${branch}; reconcile (cherry-pick or confirm + reset) before sync`,
+      }
+    }
+
+    const resetResult = await shell(
+      'git',
+      ['reset', '--hard', `origin/${branch}`],
+      opts
+    )
+
+    if (resetResult.exitCode !== 0) {
+      return {
+        kind: 'diverged',
+        reason: `git reset --hard origin/${branch} failed: ${
+          resetResult.stderr || resetResult.stdout
+        }`,
+      }
+    }
+
+    const head = (
+      await shell('git', ['rev-parse', '--short', 'HEAD'], opts)
+    ).stdout.trim()
+
+    return { kind: 'synced', head }
+  },
 }
 
 // ---------------------------------------------------------------------------
@@ -5569,6 +5666,10 @@ async function sweepOne(
   // `wtPath` starts pointing at declared path if it exists, else rootDir
   // fallback. May be reassigned below if we auto-recreate the worktree.
   let wtPath = existsSync(declaredWtPath) ? declaredWtPath : rootDir
+  // Whether THIS tick freshly recreated the worktree from origin/<branch>
+  // (below). A fresh recreate is already at origin's tip, so the forward-sync
+  // step skips it.
+  let worktreeJustRecreated = false
 
   if (wtPath !== declaredWtPath) {
     log(
@@ -5779,6 +5880,7 @@ async function sweepOne(
       log('sweep', `${item.id}: worktree recreated successfully`)
       // Refresh wtPath now that the declared worktree path is live again.
       wtPath = declaredWtPath
+      worktreeJustRecreated = true
     } catch (err) {
       updateForVariant({
         status: 'needs_human',
@@ -5789,6 +5891,46 @@ async function sweepOne(
       log('sweep', `${item.id}: worktree recreate failed; escalated`)
 
       return
+    }
+  }
+
+  // Sync the existing worktree forward to origin's PR head before engaging
+  // the agent. Origin/<branch> may have been rebased onto the moving base
+  // since the last tick (drift), so without this the agent edits + answers
+  // reviewers against stale source AND the end-of-tick push bounces
+  // non-fast-forward into needs_human. Guarded reset, never `git pull`.
+  //
+  // ONLY on the real worktree (wtPath === declaredWtPath): a missing worktree
+  // falls back to rootDir for gh-only ops (see above), and we must never
+  // `git reset --hard` the operator's main checkout. Also skipped right after
+  // a fresh recreate (already at origin's tip). See worktree.syncToOrigin for
+  // the cherry-guard that protects genuine unpushed local work.
+  if (wtPath === declaredWtPath && !worktreeJustRecreated) {
+    const sync = await worktree.syncToOrigin(item.branch as string, wtPath)
+
+    if (sync.kind === 'diverged') {
+      updateForVariant({
+        status: 'needs_human',
+        escalation_reason: `worktree sync blocked: ${sync.reason}`,
+      })
+      log(
+        'sweep',
+        `${item.id}: worktree sync blocked — escalated (${sync.reason})`
+      )
+
+      return
+    }
+
+    if (sync.kind === 'skipped') {
+      log(
+        'sweep',
+        `${item.id}: worktree sync skipped (${sync.reason}); proceeding on current state`
+      )
+    } else {
+      log(
+        'sweep',
+        `${item.id}: worktree synced to origin/${item.branch} @ ${sync.head}`
+      )
     }
   }
 
