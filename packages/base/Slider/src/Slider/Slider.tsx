@@ -65,6 +65,23 @@ export interface Props extends BaseProps {
 const valueToPercent = (value: number, min: number, max: number) =>
   ((value - min) * 100) / (max - min)
 
+// Position the rail out of normal flow so it does not add to the component's
+// layout height (keeps the box height identical to the previous MUI
+// implementation). `top` matches the control's padding-top (`py-[6px]`),
+// reproducing the exact vertical position the rail, thumb and marks had before.
+const railStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '6px',
+}
+
+// Reproduce the MUI thumb offset exactly: MUI anchored the thumb at
+// `left: value%` and shifted it with `-ml-[6px]`. We override Base UI's default
+// `-50%` horizontal translate with `-6px` so the thumb lands on the same pixel;
+// vertical stays centered.
+const thumbStyle: React.CSSProperties = {
+  translate: '-6px -50%',
+}
+
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
   ref
@@ -209,7 +226,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         className='block width-full relative'
       >
         <BaseSlider.Control className='block cursor-pointer width-full relative py-[6px] -my-[6px]'>
-          <BaseSlider.Track className='block w-full h-[1px] rounded-none bg-gray-500/[0.24]'>
+          <BaseSlider.Track
+            className='block w-full h-[1px] rounded-none bg-gray-500/[0.24]'
+            style={railStyle}
+          >
             <BaseSlider.Indicator
               className={twJoin(
                 'block h-[1px]',
@@ -222,7 +242,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
                 data-index={mark.value}
                 markActive={isMarkActive(mark.value)}
                 forceInactive={disableTrackHighlight}
-                value={currentValue}
+                // When the thumb is hidden because the value is empty, marks must
+                // render inactive (matching the previous MUI behavior where an
+                // undefined value greys out the marks).
+                value={isThumbHidden ? undefined : currentValue}
                 style={{ left: `${mark.percent}%` }}
               />
             ))}
@@ -234,6 +257,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
                 className={thumbClassName}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                style={thumbStyle}
               >
                 <SliderValueLabel
                   index={index}

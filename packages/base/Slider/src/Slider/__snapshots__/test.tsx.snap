@@ -18,7 +18,7 @@ exports[`Slider renders 1`] = `
         <div
           class="block w-full h-[1px] rounded-none bg-gray"
           data-orientation="horizontal"
-          style="position: relative;"
+          style="position: absolute; top: 6px;"
         >
           <div
             class="block h-[1px] bg-blue"
@@ -78,7 +78,7 @@ exports[`Slider with initial value 1`] = `
         <div
           class="block w-full h-[1px] rounded-none bg-gray"
           data-orientation="horizontal"
-          style="position: relative;"
+          style="position: absolute; top: 6px;"
         >
           <div
             class="block h-[1px] bg-blue"
