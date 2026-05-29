@@ -128,8 +128,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-      "last_review_seen_at": "2026-05-29T07:02:35.443Z",
-      "session_id": "e09f1ac1-3347-4019-825a-e27a9ae7b2a8",
+      "last_review_seen_at": "2026-05-29T14:30:09.361Z",
+      "session_id": "63e4cd4b-3339-461e-b7d0-a12501bf4c8e",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -141,13 +141,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-          "last_review_seen_at": "2026-05-29T07:02:35.443Z",
-          "session_id": "e09f1ac1-3347-4019-825a-e27a9ae7b2a8",
+          "last_review_seen_at": "2026-05-29T14:30:09.361Z",
+          "session_id": "63e4cd4b-3339-461e-b7d0-a12501bf4c8e",
           "awaiting_ci_since": null,
-          "review_iterations": 5
+          "review_iterations": 6
         }
       },
-      "review_iterations": 5
+      "review_iterations": 6
     },
     "Modal": {
       "tier": 0,
@@ -282,7 +282,7 @@
     "Form": {
       "tier": 1,
       "package": "packages/base/Form",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -290,16 +290,16 @@
       "branch": "migrate-Form-v1",
       "worktree": "migration-runs/2026-05-26/Form-v1/worktree",
       "iterations": 2,
-      "merged_at": null,
+      "merged_at": "2026-05-29T13:22:00Z",
       "notes": "Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4981",
           "branch": "migrate-Form-v1",
           "worktree": "migration-runs/2026-05-26/Form-v1/worktree",
           "iterations": 2,
-          "merged_at": null,
+          "merged_at": "2026-05-29T13:22:00Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-26T22:27:53.701Z",
           "last_review_seen_at": "2026-05-29T07:56:52.295Z",
@@ -381,7 +381,7 @@
     "Typography": {
       "tier": 1,
       "package": "packages/base/Typography",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
@@ -389,16 +389,16 @@
       "branch": "migrate-Typography-v1",
       "worktree": "migration-runs/2026-05-27/Typography-v1/worktree",
       "iterations": 11,
-      "merged_at": null,
+      "merged_at": "2026-05-29T10:10:27Z",
       "notes": "Already-clean source. Foundational primitive — many components depend on it. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>); see docs/migration/decisions/classes-audit.md.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4983",
           "branch": "migrate-Typography-v1",
           "worktree": "migration-runs/2026-05-27/Typography-v1/worktree",
           "iterations": 11,
-          "merged_at": null,
+          "merged_at": "2026-05-29T10:10:27Z",
           "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": "2026-05-29T07:59:38.905Z",
@@ -417,7 +417,7 @@
     "Container": {
       "tier": 1,
       "package": "packages/base/Container",
-      "status": "awaiting_review",
+      "status": "needs_human",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
@@ -429,13 +429,13 @@
       "notes": "Type-only fix: replace `import type { PropTypes } from '@material-ui/core'` with own type or React.HTMLAttributes. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>).",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "needs_human",
           "pr": "https://github.com/toptal/picasso/pull/4980",
           "branch": "migrate-Container-v1",
           "worktree": "migration-runs/2026-05-26/Container-v1/worktree",
           "iterations": 2,
           "merged_at": null,
-          "escalation_reason": null,
+          "escalation_reason": "worktree sync blocked: worktree has 2 uncommitted tracked change(s); refusing reset --hard",
           "last_ci_green_at": "2026-05-26T16:21:14.640Z",
           "last_review_seen_at": "2026-05-29T08:05:52.902Z",
           "session_id": "795ff24e-aec1-421a-a07d-528914585ba8",
@@ -443,7 +443,7 @@
           "review_iterations": 1
         }
       },
-      "escalation_reason": null,
+      "escalation_reason": "worktree sync blocked: worktree has 2 uncommitted tracked change(s); refusing reset --hard",
       "last_ci_green_at": "2026-05-26T16:21:14.640Z",
       "last_review_seen_at": "2026-05-29T08:05:52.902Z",
       "session_id": "795ff24e-aec1-421a-a07d-528914585ba8",
@@ -453,7 +453,7 @@
     "FormLabel": {
       "tier": 1,
       "package": "packages/base/FormLabel",
-      "status": "needs_human",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -465,24 +465,24 @@
       "notes": "Type-only fix: replace `import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'` with own type. Switch + Checkbox + Radio all depend on this — sequence early in Tier 1. Prior v1 attempt aborted on transient Anthropic 529 (no migration work performed); worktree + branch reused for retry.",
       "variants": {
         "v1": {
-          "status": "needs_human",
+          "status": "awaiting_review",
           "pr": "https://github.com/toptal/picasso/pull/4982",
           "branch": "migrate-FormLabel-v1",
           "worktree": "migration-runs/2026-05-27/FormLabel-v1/worktree",
           "iterations": 3,
           "merged_at": null,
-          "escalation_reason": "awaiting_ci > 24h (47.9h since 2026-05-27T08:32:08.098Z)",
+          "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": null,
           "session_id": null,
-          "awaiting_ci_since": "2026-05-27T08:32:08.098Z"
+          "awaiting_ci_since": null
         }
       },
-      "escalation_reason": "awaiting_ci > 24h (47.9h since 2026-05-27T08:32:08.098Z)",
+      "escalation_reason": null,
       "last_ci_green_at": null,
       "last_review_seen_at": null,
       "session_id": null,
-      "awaiting_ci_since": "2026-05-27T08:32:08.098Z"
+      "awaiting_ci_since": null
     },
     "Grid": {
       "tier": 1,

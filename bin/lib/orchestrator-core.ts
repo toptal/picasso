@@ -5990,31 +5990,15 @@ async function sweepOne(
   //   (b) Part 4 (2026-05-13) — agent's CI poll timed out without verdict.
   // Both resume the same way: re-check the rollup, react to state.
   //   success → ready_to_merge if reviewer-approved, else awaiting_review.
-  //   timeout (still pending) → log + return; check 24h max-age cap.
+  //   timeout + checks running  → wait for CI (re-checked next tick).
+  //   timeout + nothing running → awaiting_review for a normal review pass.
   //   failure → flip to awaiting_review + thread failures to agent.
   if (item.status === 'awaiting_ci') {
-    // 24h max-age cap: if item has been in awaiting_ci > 24h, transition
-    // to needs_human. Catches "operator forgot" / "CI genuinely broken".
-    if (item.awaiting_ci_since) {
-      const ageMs = Date.now() - new Date(item.awaiting_ci_since).getTime()
-      const maxAgeMs = 24 * 60 * 60 * 1000
-
-      if (ageMs > maxAgeMs) {
-        const ageHours = (ageMs / 1000 / 60 / 60).toFixed(1)
-
-        log(
-          'sweep',
-          `${item.id}: awaiting_ci → needs_human (stuck for ${ageHours}h; 24h max-age cap)`
-        )
-        updateForVariant({
-          status: 'needs_human',
-          escalation_reason: `awaiting_ci > 24h (${ageHours}h since ${item.awaiting_ci_since})`,
-        })
-
-        return
-      }
-    }
-
+    // Re-check CI on every tick and let its CURRENT state drive the decision.
+    // This replaces a former blind "awaiting_ci > 24h → needs_human" cap that
+    // escalated WITHOUT re-checking — freezing PRs whose CI had since
+    // recovered out of the sweep entirely (FormLabel #4982 sat ~2 days on a
+    // stale awaiting_ci_since while it was approved and CI was re-running).
     const checks = await gh.snapshotChecks(prUrl, wtPath)
 
     if (checks.state === 'success') {
@@ -6035,14 +6019,34 @@ async function sweepOne(
       return
     }
     if (checks.state === 'timeout') {
+      if (checks.pending.length > 0) {
+        // CI is actively running → keep waiting; re-checked next tick. A live
+        // run is exactly what awaiting_ci is for, so never escalate here.
+        const since = item.awaiting_ci_since
+          ? ` (since ${item.awaiting_ci_since})`
+          : ''
+
+        log(
+          'sweep',
+          `${item.id}: awaiting_ci — ${checks.pending.length} check(s) still running${since}; waiting for CI to finish`
+        )
+
+        return
+      }
+      // No checks running (empty rollup, or all terminal but not green) → CI
+      // won't produce a verdict on its own. Hand to the agent for a normal
+      // review pass so an approved PR's outstanding comments get resolved
+      // instead of stalling. (Was: frozen to needs_human by the 24h cap.)
       log(
         'sweep',
-        `${item.id}: awaiting_ci — ${
-          checks.pending.length
-        } reported check(s) pending, mergeStateStatus=${
+        `${item.id}: awaiting_ci but no checks running (mergeStateStatus=${
           checks.mergeStateStatus ?? '?'
-        }`
+        }) → awaiting_review for normal review`
       )
+      updateForVariant({
+        status: 'awaiting_review',
+        awaiting_ci_since: null,
+      })
 
       return
     }
@@ -8955,9 +8959,11 @@ export async function run(
       // the next `--review-sweep` tick re-polls CI and continues iteration
       // when results land.
       //
-      // Safety net: sweep enforces a 24h max-age cap on `awaiting_ci`. If
-      // CI is STILL pending 24h later, sweep transitions to `needs_human`
-      // (operator forgot, or CI is genuinely broken on this PR).
+      // On each subsequent tick, sweep re-checks CI and lets its CURRENT
+      // state decide: checks still running → keep waiting; no checks running
+      // → awaiting_review for a normal review pass. (Formerly a blind 24h
+      // max-age cap here froze it to needs_human WITHOUT re-checking — that
+      // stranded approved PRs whose CI had recovered, so it was removed.)
       const pendingNames = pollResult.pending.map(c => c.name).join(', ')
       const reason = `CI timeout after ${ciTimeout}min; pending: ${pendingNames}`
 

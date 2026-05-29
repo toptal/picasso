@@ -81,9 +81,12 @@ export interface ManifestItem {
   last_ci_green_at?: string | null
   /**
    * Part 4 (2026-05-13) — ISO timestamp when item entered `awaiting_ci`
-   * status. Used by sweep mode to enforce the 24h max-age cap: items in
-   * `awaiting_ci` longer than 24h transition to `needs_human` (operator
-   * forgot). Cleared when item transitions out of `awaiting_ci`.
+   * status. On each sweep tick the orchestrator re-checks CI and lets its
+   * current state decide (checks running → keep waiting; none running →
+   * awaiting_review for a normal review pass); this timestamp is surfaced in
+   * the "waiting since …" log. Cleared when item transitions out of
+   * `awaiting_ci`. (Formerly drove a 24h max-age cap → needs_human; removed
+   * 2026-05-29 because it stranded approved PRs whose CI had recovered.)
    */
   awaiting_ci_since?: string | null
   /**
