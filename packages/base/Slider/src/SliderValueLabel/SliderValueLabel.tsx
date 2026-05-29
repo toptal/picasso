@@ -1,5 +1,4 @@
-import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
-import type { RefObject } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
@@ -26,21 +25,26 @@ const yPlacementClasses = {
   top: 'bottom-[calc(100%+2px)]',
 } as const
 
-const SliderValueLabel = ({
-  children,
-  index = -1,
-  tooltip = 'off',
-  onRender,
-  yPlacement,
-  isOverlaped,
-  ownerState: { value },
-}: SliderValueLabelSlotProps & {
+export type SliderValueLabelProps = {
+  children: ReactNode
+  index: number
+  value: number
   tooltip: ValueLabelDisplay
   yPlacement: 'top' | 'bottom'
   /** indicates if there are two SliderValueLabels that overlap each other */
   isOverlaped: boolean
   onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
-}) => {
+}
+
+const SliderValueLabel = ({
+  children,
+  index,
+  value,
+  tooltip,
+  onRender,
+  yPlacement,
+  isOverlaped,
+}: SliderValueLabelProps) => {
   const ref = useRef<HTMLSpanElement>(null)
 
   // we need to change the placement of the label if it is overlaped
@@ -58,9 +62,19 @@ const SliderValueLabel = ({
       return
     }
 
+    const rect = ref.current.getBoundingClientRect()
+
+    // Skip when label is not yet laid out (tooltip='off' applies display:none on
+    // first render). A 0×0 rect would otherwise return leftBoundary < gap and
+    // stick the label at xPlacement='right' before the tooltip becomes visible,
+    // racing the parent's overlap detection on `tooltip='on'`.
+    if (rect.width === 0 && rect.height === 0) {
+      return
+    }
+
     setXPlacement(
       getXPlacement({
-        rect: ref.current.getBoundingClientRect(),
+        rect,
         isOverlaped: isOverlaped,
         isFirstLabel: index === 0,
         currentPlacement: xPlacement,

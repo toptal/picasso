@@ -1,7 +1,7 @@
-// import type { ComponentProps } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import { Slider as MUIBaseSlider } from '@mui/base/Slider'
-import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
+import { Slider as BaseUISlider } from '@base-ui/react/slider'
+import type { SliderRootChangeEventDetails } from '@base-ui/react/slider'
+import { useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 
@@ -56,7 +56,62 @@ export interface Props extends BaseProps {
   id?: string
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider(
+const formatValueLabel = (
+  value: number,
+  index: number,
+  format?: string | ((value: number, index: number) => React.ReactNode)
+): React.ReactNode => {
+  if (typeof format === 'function') {
+    return format(value, index)
+  }
+
+  if (typeof format === 'string') {
+    return format
+  }
+
+  return value
+}
+
+const generateMarkPositions = (
+  min: number,
+  max: number,
+  step: number
+): number[] => {
+  const positions: number[] = []
+  const range = max - min
+
+  if (range <= 0 || step <= 0) {
+    return positions
+  }
+
+  for (let mark = min; mark <= max; mark += step) {
+    positions.push(mark)
+  }
+
+  return positions
+}
+
+const resolveThumbValues = (
+  value: number | number[] | undefined,
+  defaultValue: number | number[],
+  min: number
+): number[] => {
+  if (Array.isArray(value)) {
+    return value
+  }
+
+  if (typeof value === 'number') {
+    return [value]
+  }
+
+  if (Array.isArray(defaultValue)) {
+    return defaultValue
+  }
+
+  return [typeof defaultValue === 'number' ? defaultValue : min]
+}
+
+export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
   { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
   ref
 ) {
@@ -64,7 +119,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     marks,
     value,
     tooltipFormat,
-    step,
+    step = 1,
     disabled,
     onChange,
     onBlur,
@@ -79,7 +134,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-testid': dataTestid,
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
@@ -98,69 +152,122 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
+  const thumbValues = resolveThumbValues(value, defaultValue, min)
+
+  const handleValueChange = (
+    newValue: number | readonly number[],
+    eventDetails: SliderRootChangeEventDetails
+  ) => {
+    if (!onChange) {
+      return
+    }
+
+    const normalizedValue: number | number[] = Array.isArray(newValue)
+      ? [...newValue]
+      : (newValue as number)
+
+    onChange(eventDetails.event, normalizedValue, eventDetails.activeThumbIndex)
+  }
+
+  const thumbClassName = twJoin(
+    'group/thumb flex justify-center items-center w-[15px] h-[15px]',
+    'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
+    'outline-0 absolute transition-shadow cursor-pointer ml-[-6px]',
+    // base-ui sets `top: 50%; translate: -50% -50%` inline on the thumb to
+    // centre it; restore @mui/base's negative-margin centring (no GPU
+    // compositing layer, matches the baseline snapshot).
+    '![translate:none] !top-[-7px]',
+    // base-ui spreads `visuallyHidden` (position:fixed; width/height:100%) onto
+    // the inner <input type="range">; that inflates Happo's DOM snapshot height
+    // to the viewport. Constrain back to a 1×1 absolute box like @mui/base did.
+    '[&_input]:!absolute [&_input]:!w-px [&_input]:!h-px',
+    '[&_input]:!top-auto [&_input]:!left-auto',
+    isThumbHidden && 'hidden'
+  )
+
+  const indicatorClassName = twJoin(
+    'block h-[1px]',
+    disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
+  )
+
+  const markPositions = marks ? generateMarkPositions(min, max, step) : []
+
   return (
     <div
       ref={containerRef}
       className={twMerge('my-[6px] mx-0', className)}
       style={style}
     >
-      <MUIBaseSlider
-        ref={sliderRef}
+      <BaseUISlider.Root
+        ref={ref}
         defaultValue={defaultValue}
         value={value}
         min={min}
         max={max}
         step={step}
-        marks={marks}
         disabled={disabled}
+        name={name}
         data-testid={dataTestid}
         data-private={dataPrivate}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        name={name}
-        id={id}
-        slots={{
-          mark: SliderMark,
-          valueLabel: SliderValueLabel,
-        }}
-        slotProps={{
-          mark: {
-            // @ts-expect-error we have custom Mark component, where we extend props and MUI does not understand it
-            forceInactive: disableTrackHighlight,
-          },
-          root: {
-            className:
-              'block cursor-pointer width-full relative py-[6px] -my-[6px]',
-          },
-          rail: {
-            className:
-              'block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
-          },
-          thumb: {
-            className: twJoin(
-              'group/thumb flex justify-center items-center w-[15px] h-[15px]',
-              'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-              '-mt-[7px] -ml-[6px] outline-0 absolute  transition-shadow cursor-pointer',
-              isThumbHidden && 'hidden'
-            ),
-            role: 'slider',
-          },
-          track: {
-            className: twJoin(
-              'block absolute h-[1px]',
-              disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
-            ),
-          },
-          valueLabel: {
-            tooltip: isObserved ? tooltip : 'off',
-            onRender: handleValueLabelOnRender,
-            yPlacement: isOnScreen ? 'top' : 'bottom',
-            isOverlaped: isPartiallyOverlapped,
-          },
-        }}
-        valueLabelFormat={tooltipFormat}
-        onChange={onChange}
-      />
+        onValueChange={handleValueChange}
+        className='block w-full relative py-[6px] -my-[6px]'
+      >
+        {/* py/-my also on Control because @base-ui/react attaches
+            pointerdown to SliderControl (not Root); Root's padding alone
+            wouldn't make the 12px-tall click target hot. */}
+        <BaseUISlider.Control className='block w-full relative cursor-pointer py-[6px] -my-[6px]'>
+          {/* mb-[-1px] zeroes Track's 1px contribution to Control.contentBox,
+              matching @mui/base which rendered the rail as `position: absolute`
+              (0px layout impact). Without it, our wrapper renders 1px taller
+              than master, shifting the thumb 1px upward. */}
+          <BaseUISlider.Track className='block w-full h-[1px] mb-[-1px] rounded-none bg-gray-500/[0.24]'>
+            <BaseUISlider.Indicator className={indicatorClassName} />
+            {marks &&
+              markPositions.map((markValue, index) => (
+                <SliderMark
+                  key={`mark-${markValue}`}
+                  index={index}
+                  markValue={markValue}
+                  sliderValue={value}
+                  positionPercent={
+                    max === min ? 0 : ((markValue - min) / (max - min)) * 100
+                  }
+                  forceInactive={Boolean(disableTrackHighlight)}
+                />
+              ))}
+            {thumbValues.map((thumbValue, index) => {
+              const thumbId = index === 0 ? id : undefined
+              const label = formatValueLabel(thumbValue, index, tooltipFormat)
+
+              return (
+                <BaseUISlider.Thumb
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`thumb-${index}`}
+                  index={index}
+                  id={thumbId}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  className={thumbClassName}
+                  aria-valuemin={min}
+                  aria-valuemax={max}
+                  aria-valuenow={thumbValue}
+                >
+                  <SliderValueLabel
+                    index={index}
+                    value={thumbValue}
+                    tooltip={isObserved ? tooltip : 'off'}
+                    onRender={handleValueLabelOnRender}
+                    yPlacement={isOnScreen ? 'top' : 'bottom'}
+                    isOverlaped={isPartiallyOverlapped}
+                  >
+                    {label}
+                  </SliderValueLabel>
+                </BaseUISlider.Thumb>
+              )
+            })}
+          </BaseUISlider.Track>
+        </BaseUISlider.Control>
+      </BaseUISlider.Root>
     </div>
   )
 })

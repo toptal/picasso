@@ -58,3 +58,9 @@ migration-runs
 /baseline--*.png
 /scripts/diff-happo.js
 **/__tests__/pixel-diff*.test.ts
+# Per-sweep temp files the review-response agent writes for `gh pr comment
+# --body-file` (sandbox blocks shell-redirection to outside the worktree
+# and blocks rm/mv, so the file is written here, consumed by gh, and left
+# behind). Same rationale as .playwright-mcp.
+*.tmp.md
+
