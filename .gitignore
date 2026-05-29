@@ -66,3 +66,6 @@ migration-runs
 /.scratch/
 /.scratch-*
 /computed-styles-*.json
+/.tmp-payload.json
+/docs/migration/Button-diff.json
+/patches/@base-ui__utils@0.2.8.patch

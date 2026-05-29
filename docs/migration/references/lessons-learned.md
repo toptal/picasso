@@ -375,3 +375,11 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Replace `@material-ui/core` `PropTypes.Alignment` (and similar MUI type re-exports) with an explicit literal union inline on the prop — reviewers expect the MUI type dependency fully severed during migration, not aliased.
 - Never commit duplicate `.changeset/*.md` entries for the same package/bump — coalesce into one file; orchestrator-generated duplicates should be deleted before opening the PR, not annotated with a "safe to delete" note.
 - Reference: https://github.com/toptal/picasso/pull/4980
+
+## Drawer — 2026-05-29 (review iter 6)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 6
+- New @base-ui/react gestures/behaviors absent from the old API (e.g. swipe-to-dismiss) must default to OFF behind an opt-in prop to preserve pre-migration UX, with the default and rationale called out in the changeset.
+- @base-ui/react animates via CSS transitions on the popup (no inline resting transform like react-transition-group), so Happo specs must wait for the transition to settle (`should('be.visible')` + explicit `cy.wait`) before snapshotting or panels freeze mid-slide.
+- Migrations must ship a unit test file from iter 1 covering open/close, onClose, title, and disable-* prop branches — reviewers flag its absence even when Cypress visual coverage exists.
+- Reference: https://github.com/toptal/picasso/pull/4966
