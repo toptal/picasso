@@ -121,7 +121,7 @@ export type TypographyAlign =
   | 'justify'
 
 export interface Props
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     TextLabelProps,
     HTMLAttributes<HTMLElement> {
   /** Font variant for inner text */
@@ -174,8 +174,10 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     titleCase,
     underline,
     weight,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: _classes,
     ...rest
-  } = props
+  } = props as Props & { classes?: unknown }
 
   const Component: ElementType = as || variantToElement(variant, size)
 
