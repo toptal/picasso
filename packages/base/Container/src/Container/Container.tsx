@@ -73,7 +73,10 @@ type ContainerProps = {
 export const Container: ContainerProps = documentable(
   forwardRef<Props, HTMLDivElement>(
     <V extends VariantType>(
-      props: Props<V>,
+      // `classes` is dropped from the public Props via Omit<StandardProps,
+      // 'classes'>; widening it back here lets us strip it at runtime so a
+      // legacy untyped consumer can't leak it to the DOM via {...rest}.
+      props: Props<V> & { classes?: unknown },
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {
@@ -97,11 +100,10 @@ export const Container: ContainerProps = documentable(
         right,
         padded,
         gap,
-        // Backstop against legacy `classes` reaching {...rest} → DOM warning
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         classes: _classes,
         ...rest
-      } = props as Props<V> & { classes?: unknown }
+      } = props
 
       const spacingProps = { gap, padded, top, bottom, right, left }
       const isBorderedVariant =
