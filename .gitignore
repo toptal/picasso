@@ -58,3 +58,11 @@ migration-runs
 /baseline--*.png
 /scripts/diff-happo.js
 **/__tests__/pixel-diff*.test.ts
+
+# Orchestrator scratch the agent's `git add -A` step would otherwise sweep
+# into the PR. `.tmp-payload.json` is an orchestrator temp file written at the
+# worktree root; `docs/migration/*-diff.json` are prop-surface diffs the
+# orchestrator reads from disk to build the PR description — metadata, not PR
+# source (see docs/migration/rules/api-preservation.md).
+/.tmp-payload.json
+/docs/migration/*-diff.json
