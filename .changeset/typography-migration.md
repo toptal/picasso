@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-typography': patch
+'@toptal/picasso-typography': major
 ---
 
 ### Typography
