@@ -40,6 +40,9 @@ overrides:
   js-yaml: ^3.13.1
 
 patchedDependencies:
+  '@base-ui/utils@0.2.8':
+    hash: 9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835
+    path: patches/@base-ui__utils@0.2.8.patch
   webpack@5.98.0:
     hash: e2c4e4364d7f63ce4220ac564a0eb0a6789525608c04a20b13e962e3eccec20c
     path: patches/webpack@5.98.0.patch
@@ -1249,15 +1252,9 @@ importers:
 
   packages/base/Drawer:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-backdrop':
-        specifier: 2.0.0
-        version: link:../Backdrop
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: 5.0.0
         version: link:../Button
@@ -1270,9 +1267,6 @@ importers:
       '@toptal/picasso-paper':
         specifier: 4.0.5
         version: link:../Paper
-      '@toptal/picasso-slide':
-        specifier: 1.0.4
-        version: link:../Slide
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -5399,9 +5393,6 @@ packages:
     resolution: {integrity: sha512-JUFJad5lv7jxj926GPgymrWQxxjPYuJNiNjNMzqT+HiuP6Vl3dk5xzG+8sTX96np0ZAluvaMzPsjhHZ5rNuNQQ==}
     engines: {node: '>=14'}
 
-  '@floating-ui/core@1.6.8':
-    resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
-
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
 
@@ -5425,9 +5416,6 @@ packages:
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
-
-  '@floating-ui/utils@0.2.8':
-    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@gar/promise-retry@1.0.3':
     resolution: {integrity: sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA==}
@@ -19215,7 +19203,7 @@ snapshots:
   '@base-ui/react@1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@base-ui/utils': 0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/utils': 0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/react-dom': 2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/utils': 0.2.11
       react: 18.2.0
@@ -19225,7 +19213,7 @@ snapshots:
       '@types/react': 17.0.39
       date-fns: 2.30.0
 
-  '@base-ui/utils@0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@base-ui/utils@0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@floating-ui/utils': 0.2.11
@@ -19671,7 +19659,7 @@ snapshots:
 
   '@emotion/core@10.3.1(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@emotion/cache': 10.0.29
       '@emotion/css': 10.0.27
       '@emotion/serialize': 0.11.16
@@ -19715,7 +19703,7 @@ snapshots:
 
   '@emotion/styled-base@10.3.0(@emotion/core@10.3.1(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@emotion/core': 10.3.1(react@18.2.0)
       '@emotion/is-prop-valid': 0.8.8
       '@emotion/serialize': 0.11.16
@@ -19846,18 +19834,14 @@ snapshots:
 
   '@fastify/busboy@2.0.0': {}
 
-  '@floating-ui/core@1.6.8':
-    dependencies:
-      '@floating-ui/utils': 0.2.8
-
   '@floating-ui/core@1.7.5':
     dependencies:
       '@floating-ui/utils': 0.2.11
 
   '@floating-ui/dom@1.6.11':
     dependencies:
-      '@floating-ui/core': 1.6.8
-      '@floating-ui/utils': 0.2.8
+      '@floating-ui/core': 1.7.5
+      '@floating-ui/utils': 0.2.11
 
   '@floating-ui/dom@1.7.6':
     dependencies:
@@ -19877,8 +19861,6 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
 
   '@floating-ui/utils@0.2.11': {}
-
-  '@floating-ui/utils@0.2.8': {}
 
   '@gar/promise-retry@1.0.3': {}
 
@@ -20570,14 +20552,14 @@ snapshots:
 
   '@manypkg/find-root@1.1.0':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@types/node': 12.20.37
       find-up: 4.1.0
       fs-extra: 8.1.0
 
   '@manypkg/get-packages@1.1.3':
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@changesets/types': 4.1.0
       '@manypkg/find-root': 1.1.0
       fs-extra: 8.1.0
@@ -24805,13 +24787,13 @@ snapshots:
 
   babel-plugin-macros@2.8.0:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       cosmiconfig: 6.0.0
       resolve: 1.22.10
 
   babel-plugin-macros@3.1.0:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       cosmiconfig: 7.1.0
       resolve: 1.22.10
 
@@ -24953,7 +24935,7 @@ snapshots:
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
       '@babel/preset-react': 7.24.1(@babel/core@7.28.4)
       '@babel/preset-typescript': 7.23.3(@babel/core@7.28.4)
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       babel-plugin-macros: 3.1.0
       babel-plugin-transform-react-remove-prop-types: 0.4.24
     transitivePeerDependencies:
@@ -26043,7 +26025,7 @@ snapshots:
 
   css-vendor@2.0.8:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       is-in-browser: 1.1.3
 
   css-what@5.1.0: {}
@@ -26856,7 +26838,7 @@ snapshots:
 
   emotion-theming@10.3.0(@emotion/core@10.3.1(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@emotion/core': 10.3.1(react@18.2.0)
       '@emotion/weak-memoize': 0.2.5
       hoist-non-react-statics: 3.3.2
@@ -28625,7 +28607,7 @@ snapshots:
 
   history@4.9.0:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       loose-envify: 1.4.0
       resolve-pathname: 2.2.0
       tiny-invariant: 1.3.1
@@ -30199,46 +30181,46 @@ snapshots:
 
   jss-plugin-camel-case@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       hyphenate-style-name: 1.0.3
       jss: 10.9.1
 
   jss-plugin-default-unit@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       jss: 10.9.1
 
   jss-plugin-global@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       jss: 10.9.1
 
   jss-plugin-nested@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       jss: 10.9.1
       tiny-warning: 1.0.3
 
   jss-plugin-props-sort@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       jss: 10.9.1
 
   jss-plugin-rule-value-function@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       jss: 10.9.1
       tiny-warning: 1.0.3
 
   jss-plugin-vendor-prefixer@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       css-vendor: 2.0.8
       jss: 10.9.1
 
   jss@10.9.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       csstype: 3.1.2
       is-in-browser: 1.1.3
       tiny-warning: 1.0.3
@@ -30296,7 +30278,7 @@ snapshots:
 
   lazy-universal-dotenv@3.0.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       app-root-dir: 1.0.2
       core-js: 3.33.2
       dotenv: 8.6.0
@@ -32801,7 +32783,7 @@ snapshots:
 
   polished@3.6.7:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
 
   popper.js@1.16.1: {}
 
@@ -33235,7 +33217,7 @@ snapshots:
 
   react-clientside-effect@1.2.5(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       react: 18.2.0
 
   react-content-loader@6.2.1(react@18.2.0):
@@ -33307,7 +33289,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.4
       '@babel/generator': 7.28.3
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       ast-types: 0.14.2
       commander: 2.20.3
       doctrine: 3.0.0
@@ -33374,7 +33356,7 @@ snapshots:
 
   react-focus-lock@2.6.0(@types/react@17.0.39)(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       focus-lock: 0.9.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -33386,7 +33368,7 @@ snapshots:
 
   react-helmet-async@1.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       invariant: 2.2.4
       prop-types: 15.8.1
       react: 18.2.0
@@ -33455,14 +33437,14 @@ snapshots:
 
   react-popper-tooltip@2.11.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-popper: 1.3.11(react@18.2.0)
 
   react-popper@1.3.11(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@hypnosphi/create-react-context': 0.3.1(prop-types@15.8.1)(react@18.2.0)
       deep-equal: 1.1.1
       popper.js: 1.16.1
@@ -33494,7 +33476,7 @@ snapshots:
 
   react-router@5.3.4(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       history: 4.9.0
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
@@ -33575,7 +33557,7 @@ snapshots:
 
   react-syntax-highlighter@11.0.3(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       highlight.js: 9.18.5
       lowlight: 1.11.0
       prismjs: 1.30.0
@@ -33590,7 +33572,7 @@ snapshots:
 
   react-textarea-autosize@7.1.2(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       prop-types: 15.8.1
       react: 18.2.0
 
@@ -33808,7 +33790,7 @@ snapshots:
 
   redux@4.2.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
 
   refractor@2.10.1:
     dependencies:
@@ -33826,7 +33808,7 @@ snapshots:
 
   regenerator-transform@0.15.2:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
 
   regexp-tree@0.1.27: {}
 
@@ -36251,7 +36233,7 @@ snapshots:
       '@apideck/better-ajv-errors': 0.3.6(ajv@8.17.1)
       '@babel/core': 7.28.4
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
       '@rollup/plugin-babel': 5.3.1(@babel/core@7.28.4)(@types/babel__core@7.1.19)(rollup@2.79.2)
       '@rollup/plugin-node-resolve': 15.3.1(rollup@2.79.2)
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.2)

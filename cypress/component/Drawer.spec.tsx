@@ -88,6 +88,13 @@ const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
 
 const component = 'Drawer'
 
+// @base-ui/react drives the open/close slide via a CSS transition on the
+// `translate` property (default 300ms). Unlike the old react-transition-group
+// Slide, the resting transform is not written inline, so Happo's static DOM
+// capture can freeze the panel mid-slide (off-screen). Wait for the transition
+// to settle before snapshotting.
+const ANIMATION_TIME = 400
+
 describe('Drawer', () => {
   beforeEach(() => {
     cy.viewport(1280, 660)
@@ -106,6 +113,9 @@ describe('Drawer', () => {
     )
 
     cy.getByTestId('trigger').click()
+    cy.getByRole('presentation').should('be.visible')
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(ANIMATION_TIME)
     cy.get('body').happoScreenshot({
       component,
       variant: 'narrow-width/with-custom-title',
@@ -116,6 +126,9 @@ describe('Drawer', () => {
     cy.mount(<TestDrawer width='regular' title='This is a regular Drawer' />)
 
     cy.getByTestId('trigger').click()
+    cy.getByRole('presentation').should('be.visible')
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(ANIMATION_TIME)
     cy.get('body').happoScreenshot({
       component,
       variant: 'regular-width/with-title',
@@ -126,6 +139,9 @@ describe('Drawer', () => {
     cy.mount(<TestDrawerWithNotification width='medium' />)
 
     cy.getByTestId('trigger').click()
+    cy.getByRole('presentation').should('be.visible')
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(ANIMATION_TIME)
     cy.get('body').happoScreenshot({
       component,
       variant: 'medium-width/with-notification',
@@ -136,6 +152,9 @@ describe('Drawer', () => {
     cy.mount(<TestDrawer width='wide' />)
 
     cy.getByTestId('trigger').click()
+    cy.getByRole('presentation').should('be.visible')
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(ANIMATION_TIME)
     cy.get('body').happoScreenshot({
       component,
       variant: 'wide-width/without-title',
@@ -147,6 +166,8 @@ describe('Drawer', () => {
 
     cy.getByTestId('open-drawer').click()
     cy.getByTestId('open-modal').click()
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(ANIMATION_TIME)
 
     cy.get('body').happoScreenshot({
       component,
@@ -177,6 +198,8 @@ describe('Drawer', () => {
 
           cy.getByTestId('trigger').click()
           cy.getByRole('presentation').should('be.visible')
+          // eslint-disable-next-line cypress/no-unnecessary-waiting
+          cy.wait(ANIMATION_TIME)
           cy.get('body').happoScreenshot({
             component,
             variant: `drawer-${variant}-width/${width}-default`,
