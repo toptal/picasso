@@ -1,11 +1,24 @@
-import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
-import type { RefObject } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { getXPlacement } from '../utils'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
+
+export type SliderValueLabelProps = {
+  /** The formatted content of the label */
+  children: ReactNode
+  /** The index of the thumb the label belongs to */
+  index: number
+  /** The current value of the thumb the label belongs to */
+  value: number
+  tooltip: ValueLabelDisplay
+  yPlacement: 'top' | 'bottom'
+  /** indicates if there are two SliderValueLabels that overlap each other */
+  isOverlaped: boolean
+  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
+}
 
 const classesByTooltip: Record<ValueLabelDisplay, string> = {
   off: 'hidden',
@@ -28,19 +41,13 @@ const yPlacementClasses = {
 
 const SliderValueLabel = ({
   children,
-  index = -1,
+  index,
+  value,
   tooltip = 'off',
   onRender,
   yPlacement,
   isOverlaped,
-  ownerState: { value },
-}: SliderValueLabelSlotProps & {
-  tooltip: ValueLabelDisplay
-  yPlacement: 'top' | 'bottom'
-  /** indicates if there are two SliderValueLabels that overlap each other */
-  isOverlaped: boolean
-  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
-}) => {
+}: SliderValueLabelProps) => {
   const ref = useRef<HTMLSpanElement>(null)
 
   // we need to change the placement of the label if it is overlaped
