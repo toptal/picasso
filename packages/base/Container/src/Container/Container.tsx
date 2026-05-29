@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import type { SpacingType } from '@toptal/picasso-provider'
-import type { StandardProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
 import { documentable, forwardRef } from '@toptal/picasso-utils'
@@ -21,7 +21,7 @@ type BorderableType = 'transparent' | 'white'
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
 export interface Props<V extends VariantType = VariantType>
-  extends Omit<StandardProps, 'classes'>,
+  extends BaseProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
@@ -75,10 +75,7 @@ type ContainerProps = {
 export const Container: ContainerProps = documentable(
   forwardRef<Props, HTMLDivElement>(
     <V extends VariantType>(
-      // `classes` is dropped from the public Props via Omit<StandardProps,
-      // 'classes'>; widening it back here lets us strip it at runtime so a
-      // legacy untyped consumer can't leak it to the DOM via {...rest}.
-      props: Props<V> & { classes?: unknown },
+      props: Props<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {
@@ -102,8 +99,6 @@ export const Container: ContainerProps = documentable(
         right,
         padded,
         gap,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        classes: _classes,
         ...rest
       } = props
 
