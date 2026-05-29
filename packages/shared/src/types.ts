@@ -4,6 +4,7 @@ import type {
   ButtonHTMLAttributes,
   ElementType,
   ComponentPropsWithRef,
+  RefAttributes,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -56,7 +57,14 @@ interface NamedComponent<P> {
   defaultProps?: Partial<P>
   displayName?: string
 }
+// export interface OverridableComponent<P = {}> extends NamedComponent<P> {
+//   <T extends ElementType = ElementType<Omit<P, 'as'>>>(
+//     props: PropsWithOverridableAs<T, P>
+//   ): JSX.Element | null
+// }
+
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
+  (props: P & RefAttributes<any>): JSX.Element | null
   <T extends ElementType = ElementType<Omit<P, 'as'>>>(
     props: PropsWithOverridableAs<T, P>
   ): JSX.Element | null

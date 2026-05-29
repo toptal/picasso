@@ -26,3 +26,35 @@ reports
 gha-creds-*.json
 
 llm-docs
+
+# Per-run artifacts emitted by bin/migration-orchestrator.ts (PF-1992).
+# Worktrees, gate logs, diff reports, agent prompts/responses, escalation
+# blocks. Reproducible per run; do not commit.
+migration-runs
+
+# Playwright MCP runtime artifacts emitted into the worktree when the
+# orchestrator runs with `--with-mcp` (page snapshots, console logs, etc.).
+# Captured by the agent for inspection during iter but should not land in
+# the migration PR. Without this entry the agent's `git add -A` step
+# (orchestrator-driven) sweeps them into the commit. See PR #4949 for the
+# debris example.
+.playwright-mcp
+
+# Migration diagnostic scratch at the worktree root. The orchestrator's
+# Happo-stalemate prompt (orchestrator-core.ts) tells the agent to save
+# computed-style + thumb-position dumps under `migration-runs/<date>/
+# <Component>/...` — which is the worktree's PARENT dir, NOT the worktree
+# itself. Agents that don't expand the path correctly default to writing
+# the file in CWD (= the worktree root = the repo root from git's view),
+# which `git add -A` then sweeps into the PR. Reviewers consistently flag
+# these as committed scratch files (PR #4955 Slider, PR #4965 Switch).
+# These patterns are a defensive backstop alongside fixing the prompt.
+/*-computed.json
+/*-thumbs*.json
+/after-fix-*.json
+/baseline-*.json
+/local-*.json
+/local--*.png
+/baseline--*.png
+/scripts/diff-happo.js
+**/__tests__/pixel-diff*.test.ts
