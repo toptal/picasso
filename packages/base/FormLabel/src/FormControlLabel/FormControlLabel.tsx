@@ -14,7 +14,6 @@ import { FormLabel } from '../FormLabel'
 
 export type FormControlLabelAttributesType =
   LabelHTMLAttributes<HTMLLabelElement> & {
-    /** Callback fired when the state of the underlying control is changed */
     onChange?: (event: ChangeEvent<{}>, checked: boolean) => void
   }
 
