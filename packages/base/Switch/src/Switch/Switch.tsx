@@ -71,10 +71,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       className={cx(
         'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
         'cursor-pointer outline-none data-[disabled]:cursor-default',
-        // base-ui's hidden <input> renders as a sibling with inline `margin: -1px`
-        // which perturbs the flex container's static-position layout. Override at
-        // rung 3 of code-standards.md §CSS specificity ladder.
-        '[&~input]:m-0!',
         className
       )}
       style={style}
