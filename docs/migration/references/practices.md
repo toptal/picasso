@@ -47,7 +47,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 
   // RIGHT: only props that genuinely conflict with BaseUISwitch.Root's shape
   // are destructured out (or transformed); everything else spreads through
-  // unchanged. Public API parity preserved, no cast, no allowlist.
+  // unchanged. Public API parity preserved, no allowlist.
   const Switch = (props: Props) => {
     const {
       onChange,     // signature differs — adapt to onCheckedChange below
@@ -67,6 +67,18 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   ```
 
   More worked examples (Switch, Drawer, Slider) in `code-standards.md §"prop-by-prop boundary"`. How to find which props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props` — the NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. Typically 1–3 props for Tier 0 components.
+
+- **TS variance footnote**: when `Props` extends an element-specific HTML attributes type (e.g. `ButtonHTMLAttributes<HTMLButtonElement>`) and the base-ui part renders a different element (Switch → `<span>`), Picasso's `strict: true` tsconfig will reject `{...rest}` with event-handler element-variance errors (`MouseEventHandler<HTMLButtonElement>` vs span-typed handlers) even when the destructure list is correct. Do NOT narrow the public `Props` — reviewers explicitly reject contract narrowing (PR #4965 review 2026-05-20 16:10). Resolve once at the boundary with a local typed binding, NOT a JSX-site cast and NOT `as unknown as`:
+
+  ```ts
+  const rootRest = rest as Omit<
+    BaseUISwitch.Root.Props,
+    'checked' | 'disabled' | 'id' | 'value' | 'className' | 'style' | 'onCheckedChange'
+  >
+  // …then: <BaseUISwitch.Root {...rootRest} … />
+  ```
+
+  Full doctrinal treatment + concrete error shape: `code-standards.md §"TS variance: when tsc --strict rejects ...rest"`.
 
 - **Anti-patterns to avoid** (both forbidden):
   - **Blanket cast** `as unknown as BaseUISwitch.Root.Props` — silences the type checker without addressing the mismatch.

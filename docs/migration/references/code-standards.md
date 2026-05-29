@@ -203,7 +203,7 @@ const Slider = (props: Props) => {
 
 Slider's value-change isn't a form `ChangeEvent` per se — use the generic `toReactEvent<R>` primitive when the React event type isn't the form-input common case. The specialized `toReactChangeEvent` only accepts form-input element generics (`HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement`).
 
-**To find the props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and compare its `*.Props` interface against your public `Props`. The set of names that appear in BOTH with DIFFERENT types is your destructure list. Everything else is type-compatible and spreads safely. For Tier 0 components the destructure list is typically 1–3 props.
+**To find the props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and compare its `*.Props` interface against your public `Props`. The set of names that appear in BOTH with DIFFERENT types is your destructure list. Everything else is runtime-compatible and spreads safely. Under Picasso's `strict: true` tsconfig, event-handler element variance can still surface a `tsc` error on `...rest` even when the destructure list is correct — see "TS variance" below. For Tier 0 components the destructure list is typically 1–3 props.
 
 **Anti-patterns to avoid** (both are forbidden):
 
@@ -211,6 +211,42 @@ Slider's value-change isn't a form `ChangeEvent` per se — use the generic `toR
 - **Exhaustive allowlist** (manually picking 4–6 props and forwarding only those). Drops all other props at runtime — `onClick`/`onFocus`/`onBlur`/`data-*`/`aria-*` claimed by the public type silently disappear. Reviewers call this the "typed but no-op" anti-pattern.
 
 If you find yourself destructuring 6+ props, re-read the library's `.d.ts` — you're sliding into the exhaustive-allowlist anti-pattern. The library's type is probably more permissive than you think. Cite this section (and the worked example in `practices.md §"API preservation"`) directly in PR replies when reviewers raise the question.
+
+#### TS variance: when `tsc --strict` rejects `...rest`
+
+Picasso's `tsconfig.base.json` has `"strict": true` → `strictFunctionTypes` is on. If your `Props` extends an element-specific HTML attributes type (e.g. `ButtonHTMLAttributes<HTMLButtonElement>`) and the base-ui part renders a different element (Switch → `<span>`), `tsc` will reject `{...rest}` even when the destructure list is correct — because `MouseEventHandler<HTMLButtonElement>` is not assignable to base-ui's span-typed `BaseUIEvent<MouseEvent<HTMLSpanElement>>` due to function-parameter contravariance. Concrete error shape:
+
+```
+Types of property 'onCopy' are incompatible.
+  Type 'ClipboardEventHandler<HTMLButtonElement> | undefined' is not assignable
+  to type '((event: BaseUIEvent<ClipboardEvent<HTMLSpanElement>>) => void) | undefined'.
+```
+
+This is a real, runtime-safe variance: React synthetic event handlers fire identically regardless of the `currentTarget` element type. Do NOT narrow the public `Props` to fix this — reviewers explicitly reject contract narrowing (PR #4965 review 2026-05-20 16:10). Express the bridge ONCE at the boundary, NOT in JSX:
+
+```tsx
+const rootRest = rest as Omit<
+  BaseUISwitch.Root.Props,
+  | 'checked'
+  | 'disabled'
+  | 'id'
+  | 'value'
+  | 'className'
+  | 'style'
+  | 'onCheckedChange'
+>
+
+return <BaseUISwitch.Root {...rootRest} … />
+```
+
+Why this is sanctioned, not a blanket cast:
+
+- **Plain `as`, not `as unknown as`.** TypeScript permits `as` between types with structural overlap; `rest` and `BaseUISwitch.Root.Props` overlap on dozens of props (`className`, `style`, `id`, `data-*`, `aria-*`, etc.), differing only on element-typed handler variance. This is NOT the forbidden blanket cast.
+- **`Omit` the props you explicitly override** so the cast describes the exact post-destructure shape — reviewers can audit what's being widened and what isn't.
+- **Local typed binding, NOT JSX-site cast** — required by §"Type-narrowing & casting" ("Cast at the type BOUNDARY").
+- **Leave a one-line comment** at the binding citing the variance reason; reviewers reading the code in isolation should understand why the cast exists without consulting the PR thread.
+
+Reference: PR #4965 iter 11 (2026-05-28) — `packages/base/Switch/src/Switch/Switch.tsx`.
 
 ## CSS specificity hierarchy for overriding `@base-ui/react` internal inline styles (reviewer-enforced, NOT lint-enforced)
 
