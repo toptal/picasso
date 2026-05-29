@@ -14,7 +14,6 @@ exports[`Slider renders 1`] = `
       <div
         class="block cursor-pointer width-full relative py-[6px] -my"
         data-orientation="horizontal"
-        tabindex="-1"
       >
         <div
           class="block w-full h-[1px] rounded-none bg-gray"
@@ -32,7 +31,6 @@ exports[`Slider renders 1`] = `
             data-orientation="horizontal"
             id="base-ui-:r1:"
             style="position: absolute; inset-inline-start: 0%; top: 50%;"
-            tabindex="-1"
           >
             <span
               class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
@@ -50,7 +48,7 @@ exports[`Slider renders 1`] = `
               max="100"
               min="0"
               step="1"
-              style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px;"
+              style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
               type="range"
               value="0"
             />
@@ -76,7 +74,6 @@ exports[`Slider with initial value 1`] = `
       <div
         class="block cursor-pointer width-full relative py-[6px] -my"
         data-orientation="horizontal"
-        tabindex="-1"
       >
         <div
           class="block w-full h-[1px] rounded-none bg-gray"
@@ -94,7 +91,6 @@ exports[`Slider with initial value 1`] = `
             data-orientation="horizontal"
             id="base-ui-:r9:"
             style="position: absolute; inset-inline-start: 4%; top: 50%;"
-            tabindex="-1"
           >
             <span
               class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
@@ -112,7 +108,7 @@ exports[`Slider with initial value 1`] = `
               max="100"
               min="0"
               step="1"
-              style="overflow: hidden; white-space: nowrap; position: fixed; top: 0px; left: 0px; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px;"
+              style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
               type="range"
               value="4"
             />

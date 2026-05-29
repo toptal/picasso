@@ -5,8 +5,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { Slider as BaseSlider } from '@base-ui-components/react/slider'
-import type { SliderRoot } from '@base-ui-components/react/slider'
+import { Slider as BaseSlider } from '@base-ui/react/slider'
+import type { SliderRoot } from '@base-ui/react/slider'
 import { useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
