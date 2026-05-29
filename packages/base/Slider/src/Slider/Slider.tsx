@@ -74,12 +74,21 @@ const railStyle: React.CSSProperties = {
   top: '6px',
 }
 
-// Reproduce the MUI thumb offset exactly: MUI anchored the thumb at
-// `left: value%` and shifted it with `-ml-[6px]`. We override Base UI's default
-// `-50%` horizontal translate with `-6px` so the thumb lands on the same pixel;
-// vertical stays centered.
+// Position the thumb with MUI's original technique: whole-pixel offsets and no
+// transform. Base UI defaults to `top: 50%` + `translate: -50% -50%`; on a 15px
+// thumb the `-50%` resolves to `-7.5px`, and a fractional transform forces the
+// thumb into a composited layer that renders blurry on non-retina (1x) displays.
+// MUI used `-mt-[7px] -ml-[6px]` (whole pixels, no transform), which stays crisp.
+// We reproduce that:
+//   - `top: -7px` anchors the thumb's top edge -1px above the rail (which sits
+//     at 6px), exactly like MUI's `-mt-[7px]` from the same origin.
+//   - `marginLeft: -6px` reproduces `-ml-[6px]`; Base UI's
+//     `inset-inline-start: value%` provides the horizontal position.
+//   - `translate: none` removes Base UI's blurry sub-pixel transform.
 const thumbStyle: React.CSSProperties = {
-  translate: '-6px -50%',
+  translate: 'none',
+  top: '-7px',
+  marginLeft: '-6px',
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(

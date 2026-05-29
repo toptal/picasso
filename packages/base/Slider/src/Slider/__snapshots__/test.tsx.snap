@@ -30,7 +30,7 @@ exports[`Slider renders 1`] = `
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r1:"
-            style="position: absolute; inset-inline-start: 0%; top: 50%;"
+            style="position: absolute; inset-inline-start: 0%; top: -7px; margin-left: -6px;"
           >
             <span
               class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
@@ -90,7 +90,7 @@ exports[`Slider with initial value 1`] = `
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r9:"
-            style="position: absolute; inset-inline-start: 4%; top: 50%;"
+            style="position: absolute; inset-inline-start: 4%; top: -7px; margin-left: -6px;"
           >
             <span
               class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
