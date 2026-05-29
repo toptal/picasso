@@ -18,6 +18,8 @@ type WrapType = 'wrap' | 'nowrap' | 'wrap-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
+type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
+
 export interface Props<V extends VariantType = VariantType>
   extends Omit<StandardProps, 'classes'>,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
@@ -45,7 +47,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
-  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify'
+  align?: AlignType
   /** margin-top for the container transformed to `rem` */
   top?: SpacingType
   /** margin-bottom for the container transformed to `rem` */
