@@ -62,7 +62,7 @@ importers:
         version: 7.24.0(@babel/core@7.28.4)
       '@babel/preset-react':
         specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.28.4)
+        version: 7.24.1(@babel/core@7.28.4)(supports-color@7.2.0)
       '@babel/preset-typescript':
         specifier: ^7.22.5
         version: 7.23.3(@babel/core@7.28.4)
@@ -896,9 +896,6 @@ importers:
 
   packages/base/Backdrop:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-fade':
         specifier: 1.0.9
         version: link:../Fade
@@ -921,9 +918,6 @@ importers:
 
   packages/base/Badge:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -977,9 +971,9 @@ importers:
 
   packages/base/Button:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-checkbox':
         specifier: 5.0.23
         version: link:../Checkbox
@@ -1486,9 +1480,6 @@ importers:
 
   packages/base/Form:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-alert':
         specifier: 4.0.0
         version: link:../Alert
@@ -1547,9 +1538,6 @@ importers:
 
   packages/base/FormLabel:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-layout':
         specifier: 1.0.3
         version: link:../FormLayout
@@ -1993,9 +1981,6 @@ importers:
 
   packages/base/Note:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-container':
         specifier: 3.1.4
         version: link:../Container
@@ -3035,9 +3020,6 @@ importers:
 
   packages/base/Typography:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-tailwind-merge':
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
@@ -18867,13 +18849,6 @@ snapshots:
       '@babel/core': 7.28.4
       '@babel/helper-plugin-utils': 7.27.1
 
-  '@babel/plugin-transform-react-jsx-development@7.22.5(@babel/core@7.28.4)':
-    dependencies:
-      '@babel/core': 7.28.4
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
-    transitivePeerDependencies:
-      - supports-color
-
   '@babel/plugin-transform-react-jsx-development@7.22.5(@babel/core@7.28.4)(supports-color@7.2.0)':
     dependencies:
       '@babel/core': 7.28.4
@@ -19132,8 +19107,8 @@ snapshots:
       '@babel/helper-plugin-utils': 7.27.1
       '@babel/helper-validator-option': 7.27.1
       '@babel/plugin-transform-react-display-name': 7.24.1(@babel/core@7.28.4)
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
-      '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.28.4)
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)(supports-color@7.2.0)
+      '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.28.4)(supports-color@7.2.0)
       '@babel/plugin-transform-react-pure-annotations': 7.24.1(@babel/core@7.28.4)
     transitivePeerDependencies:
       - supports-color
@@ -22445,7 +22420,7 @@ snapshots:
       '@babel/core': 7.28.4
       '@babel/generator': 7.28.3
       '@babel/parser': 7.28.4
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)(supports-color@7.2.0)
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
       '@babel/traverse': 7.28.4
       '@babel/types': 7.28.4
@@ -23236,7 +23211,7 @@ snapshots:
       '@babel/cli': 7.23.0(@babel/core@7.28.4)
       '@babel/core': 7.28.4
       '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.28.4)
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)(supports-color@7.2.0)
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.28.4)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.28.4)
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
