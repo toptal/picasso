@@ -359,3 +359,67 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Detect this fast-path up front by grepping the package's `src/` for `@mui/` / `@material-ui/` imports before any code edits; if zero hits, skip the API-alignment work and ship only the `package.json` + changeset diff.
 - Changeset body for a peer-only swap should explicitly state "Source already MUI-clean; public API unchanged" so reviewers don't expect behavioral or visual diffs and Happo deltas aren't expected.
 - Reference: https://github.com/toptal/picasso/pull/4981
+
+## Typography — 2026-05-29 (review iter 1)
+
+- Tier 1 · target_path: `none` · iterations: 1
+- Bump the changeset to `minor` (or `major`) whenever the public type surface changes — dropping `classes` from `StandardProps` is an API change, not a patch, per `docs/contribution/changeset-guidelines.md` and the Tier 0/1 `Omit<StandardProps, 'classes'>` pattern in `references/code-standards.md §Changeset conventions`.
+- When a Happo diff is unrelated to the migrated component (e.g. Slider tooltip race-timing flake during a Typography PR), call it out in the PR thread immediately with the offending story + reasoning so reviewers don't block on it — don't iterate the agent further on visuals it can't fix.
+- Split unrelated mechanical cleanup (peer-dep drop, React range widen) and API-surface changes into separate changesets with the correct bump per change, rather than collapsing both into one patch entry.
+- Reference: https://github.com/toptal/picasso/pull/4983
+
+## Container — 2026-05-29 (review iter 1)
+
+- Tier 1 · target_path: `none` · iterations: 1
+- Prefer dropping unused props at the type level only (`Omit<StandardProps, 'classes'>` plus a runtime destructure of `classes: _classes`) without re-widening via `& { classes?: unknown }` cast — reviewers flag the cast as confusing churn; see `docs/migration/references/design-patterns-addendum.md` "classes prop handling".
+- Replace `@material-ui/core` `PropTypes.Alignment` (and similar MUI type re-exports) with an explicit literal union inline on the prop — reviewers expect the MUI type dependency fully severed during migration, not aliased.
+- Never commit duplicate `.changeset/*.md` entries for the same package/bump — coalesce into one file; orchestrator-generated duplicates should be deleted before opening the PR, not annotated with a "safe to delete" note.
+- Reference: https://github.com/toptal/picasso/pull/4980
+
+## Drawer — 2026-05-29 (review iter 6)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 6
+- New @base-ui/react gestures/behaviors absent from the old API (e.g. swipe-to-dismiss) must default to OFF behind an opt-in prop to preserve pre-migration UX, with the default and rationale called out in the changeset.
+- @base-ui/react animates via CSS transitions on the popup (no inline resting transform like react-transition-group), so Happo specs must wait for the transition to settle (`should('be.visible')` + explicit `cy.wait`) before snapshotting or panels freeze mid-slide.
+- Migrations must ship a unit test file from iter 1 covering open/close, onClose, title, and disable-* prop branches — reviewers flag its absence even when Cypress visual coverage exists.
+- Reference: https://github.com/toptal/picasso/pull/4966
+
+## FormLabel — 2026-05-29 (review iter 1)
+
+- Tier 1 · target_path: `none` · iterations: 1
+- Strip the last `@material-ui/core` peerDependency and lockfile entry as part of the migration PR — replace lone `import type` references with locally-defined types (e.g. `(event: ChangeEvent<{}>, checked: boolean) => void`) rather than re-importing from MUI ([[references_base-ui-react-api-crib]] / api-preservation §peer-dep-cleanup).
+- Don't leave authoring-only or inline reasoning comments in migrated source — reviewers will ask to remove them; keep rationale in the changeset and PR description, not the .tsx file.
+- Drop ad-hoc per-component artifacts under `docs/migration/` (e.g. `Button-diff.json`) before opening the PR — those are scratch outputs, not deliverables, and reviewers flag them as noise.
+- Reference: https://github.com/toptal/picasso/pull/4982
+
+## Drawer — 2026-05-29 (review iter 8)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 8
+- New gestures/behaviors that ship enabled-by-default in @base-ui/react (e.g. swipe-to-dismiss) must be made opt-in via a new prop with `default = true-to-disable` to preserve pre-migration UX, and the changeset must explicitly call out the toggle — reviewers will flag any silent behavior change from the upstream swap.
+- Happo specs for components migrated to @base-ui/react CSS-transition animations must `should('be.visible')` + `cy.wait(transitionDurationMs + buffer)` before `happoScreenshot`, because @base-ui/react drives motion via CSS `transition-*` (not inline transforms like react-transition-group), so static DOM capture otherwise freezes mid-slide — see `rules/styling` / Cypress animation guidance.
+- When the upstream lib swap retires the MUI runtime, prune `@material-ui/core` from `peerDependencies` AND lift the `react` upper-bound cap (`< 19.0.0` → unbounded) in the package's `package.json` in the same PR — reviewers consistently flag stale caps left behind by partial migrations.
+- Reference: https://github.com/toptal/picasso/pull/4966
+
+## Switch — 2026-05-29 (review iter 8)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 8
+- Centralize the `@base-ui/react` native-`Event` → `React.SyntheticEvent` adapter as a shared `toReactEvent` / `toReactChangeEvent` helper in `@toptal/picasso-shared/utils` and reuse from every form-component `onCheckedChange` / `onValueChange` boundary — inline Proxy/cast adapters per component are reviewer-flagged duplication.
+- Wrap base-ui form-component roots in an `overflow-clip [overflow-clip-margin:Npx]` container to neutralize the 1px layout footprint from base-ui's visually-hidden `<input>` (positioned with `margin:-1px`) while still letting focus-shadow ink paint outside — visual regression reviewers will catch otherwise.
+- When migrating off `@mui/base`, drop the `react` peer-dependency upper bound (`>=16.12.0 < 19.0.0` → `>=16.12.0`) in the same changeset, since `@base-ui/react` removes the React 19 incompatibility that motivated the cap.
+- Reference: https://github.com/toptal/picasso/pull/4965
+
+## Container — 2026-05-29 (review iter 2)
+
+- Tier 1 · target_path: `none` · iterations: 2
+- When dropping `classes` from a Tier 1 component's public API, extend `BaseProps` (or whichever base type doesn't carry `classes`) instead of `Omit<StandardProps, 'classes'>` + runtime `_classes` backstop — TypeScript consumers make the runtime strip redundant, and reviewers will flag both the inheritance choice and the dead destructure.
+- Inline local type aliases (e.g. `AlignType`, `WrapType`, `BorderableType`) must follow the existing top-of-file convention rather than reaching back into `@material-ui/core` (`PropTypes.Alignment`) — when scrubbing residual MUI type imports, mirror the sibling aliases' naming/placement instead of inventing a new style.
+- Emit exactly one changeset per migration; the orchestrator's filename-mismatch fallback that wrote a duplicate `container-tier1-mui-cleanup.md` alongside `container-migration.md` is noise reviewers will call out — reconcile to a single file before opening the PR.
+- Reference: https://github.com/toptal/picasso/pull/4980
+
+## Switch — 2026-05-30 (review iter 6)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 6
+- Use `twMerge` from `@toptal/picasso-tailwind-merge` (not `cx`/`classnames`) for Tailwind class composition — it dedupes conflicting utilities; reserve `classnames` for non-Tailwind conditional class joins.
+- When base-ui's root element type differs from Picasso's public `HTMLButtonElement`/`HTMLDivElement` contract, prefer a scoped `as Omit<..., handled-keys>` cast on the rest-prop bag with a comment explaining the element variance is runtime-safe — avoid `@ts-ignore` and avoid changing the public ref/Props element type per `rules/api-preservation`.
+- When a reviewer asks "why X over Y?" answer with the explicit tradeoff (risks of each option, why the chosen one wins) rather than just defending the chosen path — bake that rationale into the inline comment so the next reviewer doesn't re-ask.
+- Reference: https://github.com/toptal/picasso/pull/4965
