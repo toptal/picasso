@@ -1,7 +1,7 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { toReactChangeEvent } from '@toptal/picasso-shared'
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
@@ -9,13 +9,17 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
+    Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
   disabled?: boolean
   /** Text label for the `Switch` */
   label?: ReactNode
+  /** Name attribute submitted with the form */
+  name?: string
+  /** Value submitted with the form when the `Switch` is on */
+  value?: string | number | readonly string[]
   /** Callback invoked when `Switch` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -23,7 +27,7 @@ export interface Props
   ) => void
 }
 
-export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
+export const Switch = forwardRef<HTMLSpanElement, Props>(function Switch(
   props,
   ref
 ) {
@@ -47,22 +51,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     { event }
   ) => onChange?.(toReactChangeEvent(event), nextChecked)
 
-  // base-ui's Switch.Root renders a span; our public Props extends
-  // ButtonHTMLAttributes<HTMLButtonElement>. Event-handler element variance is
-  // a compile-time mismatch but runtime-safe — React synthetic handlers fire
-  // identically regardless of the currentTarget element type. Express the
-  // bridge once at the boundary per practices.md §Type-narrowing & casting.
-  const rootRest = rest as Omit<
-    BaseUISwitch.Root.Props,
-    | 'checked'
-    | 'disabled'
-    | 'id'
-    | 'value'
-    | 'className'
-    | 'style'
-    | 'onCheckedChange'
-  >
-
   const switchElement = (
     // base-ui's Switch.Root renders a visually-hidden <input> as a sibling of
     // the root with inline `margin:-1px` (unreachable via base-ui's API). That
@@ -72,7 +60,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     // shadow ink (4px) painting beyond the box.
     <span className='relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip-margin:6px]'>
       <BaseUISwitch.Root
-        {...rootRest}
+        {...rest}
         ref={ref}
         checked={checked}
         className={twMerge(
