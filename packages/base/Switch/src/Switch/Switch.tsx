@@ -4,7 +4,7 @@ import { toReactChangeEvent } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props
   extends BaseProps,
@@ -75,7 +75,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
         {...rootRest}
         ref={ref}
         checked={checked}
-        className={cx(
+        className={twMerge(
           'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
           'cursor-pointer outline-none data-[disabled]:cursor-default',
           className
@@ -88,7 +88,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
         data-testid={label ? undefined : dataTestId}
       >
         <span
-          className={cx(
+          className={twMerge(
             'w-full h-full border border-solid bg-gray-600 border-gray-600 opacity-100 rounded-[12px]',
             'transition-colors duration-300 ease-out',
             'group-data-[checked]:bg-blue-500 group-data-[checked]:border-blue-500',
@@ -97,7 +97,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
           )}
         />
         <BaseUISwitch.Thumb
-          className={cx(
+          className={twMerge(
             'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
             'transition-transform duration-150 ease-out',
             'group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
