@@ -1,20 +1,25 @@
-import { Switch as MUISwitch } from '@mui/base/Switch'
+import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import { toReactChangeEvent } from '@toptal/picasso-shared'
+import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
+    Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
   disabled?: boolean
   /** Text label for the `Switch` */
   label?: ReactNode
+  /** Name attribute submitted with the form */
+  name?: string
+  /** Value submitted with the form when the `Switch` is on */
+  value?: string | number | readonly string[]
   /** Callback invoked when `Switch` changed its value */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -22,73 +27,74 @@ export interface Props
   ) => void
 }
 
-export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
-  { disabled = false, onChange = () => {}, ...props },
+export const Switch = forwardRef<HTMLSpanElement, Props>(function Switch(
+  props,
   ref
 ) {
   const {
+    onChange,
+    disabled = false,
     label,
     id,
     className,
     style,
     checked,
     titleCase,
-    color, // eslint-disable-line
+    value,
+    color: _color, // eslint-disable-line @typescript-eslint/no-unused-vars
     'data-testid': dataTestId,
     ...rest
   } = props
 
-  const onChangeCallback: React.ChangeEventHandler<
-    HTMLInputElement
-  > = event => {
-    if (onChange) {
-      onChange(event, event.target.checked)
-    }
-  }
+  const handleCheckedChange: BaseUISwitch.Root.Props['onCheckedChange'] = (
+    nextChecked,
+    { event }
+  ) => onChange?.(toReactChangeEvent(event), nextChecked)
 
   const switchElement = (
-    <MUISwitch
-      {...rest}
-      color='primary'
-      ref={ref}
-      checked={checked}
-      className={className}
-      style={style}
-      disabled={disabled}
-      id={id}
-      onChange={onChangeCallback}
-      data-testid={label ? undefined : dataTestId}
-      slotProps={{
-        root: {
-          className:
-            'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
-        },
-        track: {
-          className: cx(
+    // base-ui's Switch.Root renders a visually-hidden <input> as a sibling of
+    // the root with inline `margin:-1px` (unreachable via base-ui's API). That
+    // 1px box has no paint (clip-path: inset(50%)) but contributes to layout,
+    // growing the component's footprint by 1px. `overflow-clip` removes that
+    // layout contribution while `overflow-clip-margin` keeps the thumb's focus
+    // shadow ink (4px) painting beyond the box.
+    <span className='relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip-margin:6px]'>
+      <BaseUISwitch.Root
+        {...rest}
+        ref={ref}
+        checked={checked}
+        className={twMerge(
+          'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
+          'cursor-pointer outline-none data-[disabled]:cursor-default',
+          className
+        )}
+        style={style}
+        disabled={disabled}
+        id={id}
+        value={value === undefined ? undefined : String(value)}
+        onCheckedChange={handleCheckedChange}
+        data-testid={label ? undefined : dataTestId}
+      >
+        <span
+          className={twMerge(
             'w-full h-full border border-solid bg-gray-600 border-gray-600 opacity-100 rounded-[12px]',
             'transition-colors duration-300 ease-out',
-            'group-[.base--checked]:bg-blue-500 group-[.base--checked]:border-blue-500',
-            'group-[.base--disabled]:opacity-40',
-            'group-[.base--disabled:not(.base--checked)]:bg-black'
-          ),
-        },
-        thumb: {
-          className: cx(
+            'group-data-[checked]:bg-blue-500 group-data-[checked]:border-blue-500',
+            'group-data-[disabled]:opacity-40',
+            'group-[[data-disabled][data-unchecked]]:bg-black'
+          )}
+        />
+        <BaseUISwitch.Thumb
+          className={twMerge(
             'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
             'transition-transform duration-150 ease-out',
-            'group-[:not(.base--disabled):hover]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-[.base--focusVisible]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-[.base--checked]:translate-x-[16px]'
-          ),
-        },
-        input: {
-          className: cx(
-            'w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20',
-            'group-[.base--disabled]:cursor-default'
-          ),
-        },
-      }}
-    />
+            'group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
+            'group-focus-visible:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
+            'group-data-[checked]:translate-x-[16px]'
+          )}
+        />
+      </BaseUISwitch.Root>
+    </span>
   )
 
   if (!label) {

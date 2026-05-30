@@ -62,7 +62,7 @@ importers:
         version: 7.24.0(@babel/core@7.28.4)
       '@babel/preset-react':
         specifier: ^7.24.1
-        version: 7.24.1(@babel/core@7.28.4)(supports-color@7.2.0)
+        version: 7.24.1(@babel/core@7.28.4)
       '@babel/preset-typescript':
         specifier: ^7.22.5
         version: 7.23.3(@babel/core@7.28.4)
@@ -2695,9 +2695,9 @@ importers:
 
   packages/base/Switch:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: 1.0.4
         version: link:../FormLabel
@@ -2707,9 +2707,6 @@ importers:
       '@toptal/picasso-tailwind':
         specifier: ^4.0.0
         version: link:../../picasso-tailwind
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2717,6 +2714,9 @@ importers:
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
@@ -18849,6 +18849,13 @@ snapshots:
       '@babel/core': 7.28.4
       '@babel/helper-plugin-utils': 7.27.1
 
+  '@babel/plugin-transform-react-jsx-development@7.22.5(@babel/core@7.28.4)':
+    dependencies:
+      '@babel/core': 7.28.4
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
+    transitivePeerDependencies:
+      - supports-color
+
   '@babel/plugin-transform-react-jsx-development@7.22.5(@babel/core@7.28.4)(supports-color@7.2.0)':
     dependencies:
       '@babel/core': 7.28.4
@@ -19107,8 +19114,8 @@ snapshots:
       '@babel/helper-plugin-utils': 7.27.1
       '@babel/helper-validator-option': 7.27.1
       '@babel/plugin-transform-react-display-name': 7.24.1(@babel/core@7.28.4)
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)(supports-color@7.2.0)
-      '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.28.4)(supports-color@7.2.0)
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
+      '@babel/plugin-transform-react-jsx-development': 7.22.5(@babel/core@7.28.4)
       '@babel/plugin-transform-react-pure-annotations': 7.24.1(@babel/core@7.28.4)
     transitivePeerDependencies:
       - supports-color
@@ -22420,7 +22427,7 @@ snapshots:
       '@babel/core': 7.28.4
       '@babel/generator': 7.28.3
       '@babel/parser': 7.28.4
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)(supports-color@7.2.0)
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
       '@babel/traverse': 7.28.4
       '@babel/types': 7.28.4
@@ -23211,7 +23218,7 @@ snapshots:
       '@babel/cli': 7.23.0(@babel/core@7.28.4)
       '@babel/core': 7.28.4
       '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.28.4)
-      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)(supports-color@7.2.0)
+      '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.28.4)
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.28.4)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.28.4)
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
