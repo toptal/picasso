@@ -3429,20 +3429,35 @@ const gh = {
     const repoArg = repoMatch
       ? `repos/${repoMatch[1]}/${repoMatch[2]}/pulls/${prNumber}/comments`
       : `repos/{owner}/{repo}/pulls/${prNumber}/comments`
+    // `--paginate` is REQUIRED. The comments endpoint returns 30 per page;
+    // on a long review thread (Switch #4965 had 59) the call silently drops
+    // everything past page 1 without it. Since GitHub returns line comments
+    // OLDEST-first, page 1 is the stalest 30 — so the orchestrator went blind
+    // to all RECENT reviewer feedback, logging "0 new comments" forever no
+    // matter the watermark. Pair `--paginate` with a STREAMING `--jq`
+    // (`.[] | {...}`, not `[.[] | {...}]`): gh applies the jq per page and
+    // concatenates, emitting one JSON object per line (NDJSON) across all
+    // pages — parsed line-by-line below. A wrapping-array jq would emit one
+    // array PER page, which `JSON.parse` can't consume as a single value.
     const lineCommentsResult = await shell(
       'gh',
       [
         'api',
+        '--paginate',
         repoArg,
         '--jq',
-        '[.[] | { body: .body, createdAt: .created_at, author: .user.login, authorAssociation: .author_association, path: .path, line: (.line // .original_line) }]',
+        '.[] | { body: .body, createdAt: .created_at, author: .user.login, authorAssociation: .author_association, path: .path, line: (.line // .original_line) }',
       ],
       { cwd }
     )
 
     if (lineCommentsResult.exitCode === 0 && lineCommentsResult.stdout.trim()) {
       try {
-        const lineComments = JSON.parse(lineCommentsResult.stdout) as {
+        // NDJSON — one comment object per line (see the `--paginate` note).
+        const lineComments = lineCommentsResult.stdout
+          .split('\n')
+          .filter(line => line.trim() !== '')
+          .map(line => JSON.parse(line)) as {
           body?: string
           createdAt?: string
           author?: string
@@ -5726,6 +5741,104 @@ export async function runBatch(
 // runReviewSweep — async review processor (Phase 3.5 redesign)
 // ---------------------------------------------------------------------------
 
+/**
+ * Run the workflow's post-merge hook for an item, swallowing errors (the hook
+ * is best-effort — a reference-copy failure must not abort the sweep). No-op
+ * when the workflow defines no hook. Extracted so callers stay flat (avoids a
+ * nested `if` inside the reconcile/merge branches).
+ */
+async function runPostMergeHook(
+  workflow: Workflow,
+  item: ManifestItem,
+  rootDir: string
+): Promise<void> {
+  if (!workflow.onPostMerge) {
+    return
+  }
+  await workflow
+    .onPostMerge(item, rootDir)
+    .catch((err: Error) =>
+      log('sweep', `${item.id}: onPostMerge failed (non-fatal): ${err.message}`)
+    )
+}
+
+/**
+ * Reconcile items the sweep deliberately does NOT walk — `needs_human` and
+ * `blocked` — against their PR's real terminal state. Those statuses are
+ * excluded from the sweep loop (we must not re-engage the agent on them), but
+ * the operator can still merge or close the PR out-of-band. The common case:
+ * the operator merges a PR the orchestrator escalated and gave up on. Without
+ * this the item stays red in the manifest (and its Confluence mirror) forever
+ * even though it shipped — see Container #4980 (audit-stuck → needs_human on
+ * 2026-05-29, operator-merged 2026-05-30, but the sweep's MERGED→done check
+ * never ran because needs_human items aren't swept).
+ *
+ * Cheap + agent-free: one `gh pr view` per stuck item, no worktree (gh
+ * resolves by URL). Returns the count transitioned; caller syncs Confluence
+ * when it's > 0.
+ */
+async function reconcileStuckPRs(
+  m: Manifest,
+  opts: OrchestratorOptions,
+  manifestAbs: string,
+  rootDir: string,
+  workflow: Workflow
+): Promise<number> {
+  let reconciled = 0
+
+  for (const item of Object.values(m.components)) {
+    if (opts.component && item.id !== opts.component) {
+      continue
+    }
+
+    for (const variantId of manifest.listVariantIds(item)) {
+      const state = manifest.getVariantState(item, variantId)
+      const isStuck =
+        state.status === 'needs_human' || state.status === 'blocked'
+
+      if (!isStuck || !state.pr) {
+        continue
+      }
+      const prState = (await gh
+        .viewPR(state.pr as string, 'state,mergedAt', rootDir)
+        .catch(() => null)) as {
+        state?: string
+        mergedAt?: string | null
+      } | null
+
+      if (prState?.state === 'MERGED') {
+        manifest.updateVariant(manifestAbs, item.id, variantId, {
+          status: 'done',
+          merged_at: prState.mergedAt ?? ISO(),
+        })
+        log(
+          'sweep',
+          `${item.id}: was ${state.status} but PR is MERGED — reconciled to done`
+        )
+        // `id` is non-enumerable on the manifest item, so re-attach it
+        // explicitly — the spread would otherwise drop it and the hook would
+        // read `undefined`.
+        const merged = { ...item, ...state, id: item.id } as ManifestItem
+
+        await runPostMergeHook(workflow, merged, rootDir)
+        reconciled += 1
+      } else if (prState?.state === 'CLOSED' && state.status !== 'blocked') {
+        manifest.updateVariant(manifestAbs, item.id, variantId, {
+          status: 'blocked',
+          escalation_reason: 'PR closed without merge (reconciled by sweep)',
+        })
+        log(
+          'sweep',
+          `${item.id}: was needs_human but PR is CLOSED — reconciled to blocked`
+        )
+        reconciled += 1
+      }
+    }
+  }
+
+  return reconciled
+}
+
 export async function runReviewSweep(
   workflow: Workflow,
   opts: OrchestratorOptions
@@ -5747,6 +5860,27 @@ export async function runReviewSweep(
   }
 
   const m = manifest.read(manifestAbs)
+
+  // Out-of-band reconciliation BEFORE candidate selection: items the sweep
+  // won't walk (needs_human / blocked) can still have had their PR merged or
+  // closed by the operator. Catch those so a shipped PR doesn't stay red in
+  // the manifest + Confluence. Agent-free; see reconcileStuckPRs.
+  const reconciledCount = await reconcileStuckPRs(
+    m,
+    opts,
+    manifestAbs,
+    rootDir,
+    workflow
+  )
+
+  if (reconciledCount > 0) {
+    log(
+      'sweep',
+      `reconciled ${reconciledCount} non-swept item(s) against merged/closed PRs`
+    )
+    await syncConfluence(manifestAbs)
+  }
+
   // Sweep candidates: enumerate every (component, variant) tuple whose
   // variant-state is in a sweepable status with a real PR. Pre-Part-4
   // multi-variant: one entry per component (flat fields). Post-Part-4:
