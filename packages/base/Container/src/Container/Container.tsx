@@ -1,7 +1,6 @@
 /* eslint-disable complexity */
-import type { PropTypes } from '@material-ui/core'
 import type { SpacingType } from '@toptal/picasso-provider'
-import type { StandardProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
 import { documentable, forwardRef } from '@toptal/picasso-utils'
@@ -19,8 +18,10 @@ type WrapType = 'wrap' | 'nowrap' | 'wrap-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
+type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
+
 export interface Props<V extends VariantType = VariantType>
-  extends StandardProps,
+  extends BaseProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
@@ -46,7 +47,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
-  align?: PropTypes.Alignment
+  align?: AlignType
   /** margin-top for the container transformed to `rem` */
   top?: SpacingType
   /** margin-bottom for the container transformed to `rem` */
@@ -98,9 +99,6 @@ export const Container: ContainerProps = documentable(
         right,
         padded,
         gap,
-        // Avoid passing external classes inside the rest props
-        /* eslint-disable @typescript-eslint/no-unused-vars */
-        classes: externalClasses,
         ...rest
       } = props
 
