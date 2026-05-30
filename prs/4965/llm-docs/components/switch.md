@@ -11,6 +11,8 @@ Switches are used to toggle the state of an element on or off.
 | checked | `boolean` | - | Show Switch initially as checked |
 | disabled | `boolean` | - | Disable changing `Switch` state |
 | label | `ReactNode` | - | Text label for the `Switch` |
+| name | `string` | - | Name attribute submitted with the form |
+| value | `string \| number \| readonly string[]` | - | Value submitted with the form when the `Switch` is on |
 | onChange | `((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void)` | - | Callback invoked when `Switch` changed its value |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
