@@ -104,6 +104,22 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **Icons/pictograms**: drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants for icons) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` or `pnpm generate:pictograms`.
 - **Design tokens** must match the BASE design system. Don't invent local synonyms.
 
+## Styling
+
+### Never produce sub-pixel values
+
+All positions and dimensions must resolve to whole pixels. Sub-pixel values (e.g. `12.5px`) make the browser anti-alias edges, producing blurry borders, dividers, and text.
+
+Do not use techniques that can yield a fractional pixel:
+
+- `transform: translate(-50%, …)` to center elements of odd size.
+- Percentage widths, heights, or offsets that don't divide evenly.
+- Dividing `calc()`, e.g. `calc(100% / 3)`.
+- Fractional `rem`/`em` (`1rem = 16px`, so `0.1rem = 1.6px`).
+- Fractional `line-height` or `border-width`.
+
+Instead, use whole-pixel values, `rem` multiples of `16px`, and fixed integer gaps.
+
 ## Reference docs in this repo
 
 - `README.md` — top-level project commands and Happo setup.
