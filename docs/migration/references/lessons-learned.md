@@ -423,3 +423,19 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - When base-ui's root element type differs from Picasso's public `HTMLButtonElement`/`HTMLDivElement` contract, prefer a scoped `as Omit<..., handled-keys>` cast on the rest-prop bag with a comment explaining the element variance is runtime-safe — avoid `@ts-ignore` and avoid changing the public ref/Props element type per `rules/api-preservation`.
 - When a reviewer asks "why X over Y?" answer with the explicit tradeoff (risks of each option, why the chosen one wins) rather than just defending the chosen path — bake that rationale into the inline comment so the next reviewer doesn't re-ask.
 - Reference: https://github.com/toptal/picasso/pull/4965
+
+## FormLayout — 2026-05-30
+
+- Tier 1 · target_path: `none` · iterations: 5
+- When dropping a peer dep with no source-level callsites, ship a patch-level changeset that bumps any incidental version caps (e.g. lift the React peer range) in the same diff so consumer-package resolution isn't pinned by the removed peer.
+- Co-locate orchestrator-shared helpers in `@toptal/picasso-shared` with a minor-bump changeset when migrations introduce reusable boundary adapters (e.g. `toReactEvent` / `toReactChangeEvent` for `@base-ui/react` ↔ Picasso form-component event bridging), rather than duplicating per-component shims.
+- Write any diagnostic scratch (computed-style JSONs, PNG-diff scriptlets, payload dumps) under the gitignored `.scratch/` dir — never the worktree root — so the stray-guard doesn't have to strip them and they never land in the PR diff.
+- Reference: https://github.com/toptal/picasso/pull/4987
+
+## Menu — 2026-05-31 (review iter 2)
+
+- Tier 1 · target_path: `none` · iterations: 2
+- Reviewers flag novel scratch artifacts (computed-style JSON dumps, PNG-diff scriptlets, payload files) that leak into PR diffs — agents must place all diagnostic artifacts under the gitignored `.scratch/` dir, never the worktree root, before captioning Happo investigations.
+- Changesets must be non-empty with the proper `'@toptal/<pkg>': patch|minor|major` frontmatter and a body explaining the change — empty stub changesets (like `.changeset/menu-migration.md`) get flagged; see `docs/contribution/changeset-guidelines.md` / `code-standards.md §Changeset conventions`.
+- When dropping a stale runtime dep declaration (e.g. `@mui/base`) as part of the migration, the changeset body must explicitly call out the dependency removal plus "Public API unchanged, behavioral parity preserved" so reviewers don't re-ask whether consumers are impacted.
+- Reference: https://github.com/toptal/picasso/pull/4989
