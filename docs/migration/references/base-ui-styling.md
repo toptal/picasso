@@ -46,30 +46,29 @@ render?:    ReactElement | ((props: HTMLProps, state: State) => ReactElement);
 
 ## 3. Mechanism 1 — `className` strategies
 
-### 3.1 Class composition — `twMerge(...)` (with optional `cx`)
+### 3.1 Class composition — `twMerge(cx(...))`
 
-Every Tailwind-on-headless codebase needs a class-merging pipeline that resolves conflicts. Picasso uses `twMerge` from [`@toptal/picasso-tailwind-merge`](../../../packages/picasso-tailwind-merge) (Tailwind-aware deduplication, extended with Picasso-specific font sizes). `cx` from [`classnames`](https://github.com/JedWatson/classnames) is **optional** — only needed for clsx-object-syntax.
+Every Tailwind-on-headless codebase needs a class-merging pipeline that resolves conflicts. Picasso pairs `cx` from [`classnames`](https://github.com/JedWatson/classnames) (conditional/variant composition) with `twMerge` from [`@toptal/picasso-tailwind-merge`](../../../packages/picasso-tailwind-merge) (Tailwind-aware conflict-resolution).
 
-**Default form — `twMerge(...)` alone**:
+**Canonical form for conditionals — `twMerge(cx(...))`**:
 
 ```ts
+import cx from 'classnames';
 import { twMerge } from '@toptal/picasso-tailwind-merge';
 
 twMerge(
-  'px-4 text-sm',
-  isLarge && 'px-6 text-base',         // conditional via && — works directly
-  variant === 'primary' ? 'bg-blue-500' : 'bg-transparent', // ternary works
-  className                            // consumer override LAST
+  cx('px-4 text-sm', {
+    'px-6 text-base': isLarge,
+    'bg-blue-500': variant === 'primary',
+    'bg-transparent': variant !== 'primary',
+  }),
+  className,                              // consumer override LAST
 )
 ```
 
-Picasso's `twMerge` (via `extendTailwindMerge` per `packages/picasso-tailwind-merge/src/twMerge.ts:35`) accepts the same input types as `twJoin`: strings, arrays, and falsy values (`false`, `null`, `undefined`, `''`) are filtered out. Adopter examples: `Tabs.tsx:98-103` (raw `twMerge`), `Drawer.tsx:112` (conditional `&&`), `Dropdown.tsx:271` (ternary), `PageHeadBase.tsx:74` (nested array).
+`cx` owns the branching (object syntax preferred for multi-branch — readable; `cond && 'x'` for one-offs). `twMerge` owns conflict-resolution: if a wrapper applies `px-4` and the consumer passes `px-2`, **rightmost wins regardless of source order** — the single most important guarantee for override ergonomics. **Prefer `cx` over scattering `&&`/ternary across `twMerge` args.** For simple no-branch concatenation, plain `twMerge('a', 'b', className)` is fine. (Picasso's `twMerge` = `extendTailwindMerge`, `twMerge.ts:35` — it accepts strings/arrays/falsy but NOT clsx-object syntax; that's `cx`'s job.)
 
-**`twMerge(cx(...))` is also valid** — reach for `cx` only when you need the clsx-object-syntax form (`cx({ active: isActive, disabled })`). The Picasso codebase uses `&&` / ternary forms above, so `cx` rarely earns its keep. Adopter example: Button (`twMerge(cx(...))`).
-
-**Why `twMerge`?** If a wrapper applies `px-4` and the consumer passes `px-2`, plain string concat produces `"px-4 px-2"` — both classes ship to the DOM and Tailwind's last-wins rule becomes order-of-CSS-rules dependent and brittle. `twMerge` deduplicates Tailwind-conflicting classes deterministically: **rightmost class wins regardless of source order**. This is the single most important guarantee for override ergonomics.
-
-> External Base UI tutorials commonly show a `cn = clsx + tailwind-merge` helper. Don't introduce `clsx` — Picasso ships `classnames` already; `cx` is the equivalent if you actually need it. See `rules/styling.md §"Composition"`.
+> External Base UI tutorials show a `cn = clsx + tailwind-merge` helper. Don't introduce `clsx` — Picasso ships `classnames`; `cx` is the equivalent. See `rules/styling.md §"Composition"`.
 
 ### 3.2 Default classes + consumer override
 

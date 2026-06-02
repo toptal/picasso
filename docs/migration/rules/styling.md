@@ -15,11 +15,12 @@ These apply specifically to `@base-ui/react` v1 migrations (Tier 0). Background:
 
 ## Composition
 
-- **Default: `twMerge(...)` alone** from `@toptal/picasso-tailwind-merge`. It accepts strings, arrays, and falsy values (`false`, `null`, `undefined`, `''`) directly — so conditionals via `&&` and ternaries work without a wrapping helper. Adopter examples: `Tabs.tsx:98-103`, `Drawer.tsx:112`, `Dropdown.tsx:271`, `PageHeadBase.tsx:74`.
-- **Reach for `cx`** (from `classnames`) ONLY when you need the clsx-object-syntax form (`cx({ active: isActive, disabled })`). Picasso's established forms (`condition && 'class'`, ternary, nested arrays) don't need it. See `references/base-ui-styling.md §3.1` for the underlying mechanics.
-- **`twJoin`** is re-exported from `@toptal/picasso-tailwind-merge` for concatenation without conflict-resolution.
+- **Conditionals use `twMerge(cx({ ... }))`** — `cx` (from `classnames`) expresses conditional/variant classes (object syntax `cx({ 'm-0': expanded })` or short `cond && 'x'`), wrapped in `twMerge` (from `@toptal/picasso-tailwind-merge`) for Tailwind conflict-resolution. Prefer `cx` over scattering `&&`/ternary across `twMerge` args — readability over terseness. (`twMerge` itself does NOT accept clsx-object syntax — that's `cx`'s job.)
+- **Plain `twMerge('a', 'b', className)`** for simple concatenation with no branching.
 - **Consumer `className` is always LAST** in the `twMerge(...)` argument list — rightmost wins.
-- **Class arrays (`string[]`)** returned from helper functions in `styles.ts` are the canonical "styles" shape for variant-driven classes. See `reference/Button-styles.ts`.
+- **`twJoin`** is re-exported from `@toptal/picasso-tailwind-merge` for concatenation without conflict-resolution.
+- **Class arrays (`string[]`)** from helper functions in `styles.ts` are a preferred (not required) shape for variant-driven classes. See `reference/Button-styles.ts`.
+- End-state (post-migration): conditionals consolidate as `twMerge(cx(...))` repo-wide. See `references/base-ui-styling.md §3.1`.
 
 ## What to avoid
 
@@ -30,11 +31,11 @@ These apply specifically to `@base-ui/react` v1 migrations (Tier 0). Background:
 
 ## Conditionals
 
-Plain ternaries or Tailwind's data-attribute selectors:
+`cx` object-syntax wrapped in `twMerge`, or Tailwind's data-attribute selectors:
 
 ```tsx
-// Good
-className={cx({ 'm-0': expanded, 'm-2': !expanded })}
+// Good — cx for conditionals, twMerge for conflict-resolution
+className={twMerge(cx({ 'm-0': expanded, 'm-2': !expanded }))}
 
 // Good — data-attribute driven (lets parent styling participate)
 <div data-state={expanded ? 'open' : 'closed'} className="data-[state=open]:bg-blue-500" />
@@ -45,7 +46,7 @@ className={cx({ 'm-0': expanded, 'm-2': !expanded })}
 
 ## Hover / focus / disabled / responsive
 
-Use Tailwind variant prefixes, not state-tracking JS:
+Use Tailwind variant prefixes:
 
 ```
 hover:bg-blue-500
@@ -73,11 +74,11 @@ Prefer arbitrary values when the result is a discrete enum (purgeable); use `sty
 Use Picasso tokens by their semantic name where possible:
 
 ```
-Good: text-graphite-800, bg-blue-100, shadow-2 (modal), p-4 (16px)
+Good: text-graphite-800, bg-blue-100, shadow-2, p-4
 Bad:  text-[#262D3D], bg-[#EDF1FD], shadow-[0_4px_8px_0_rgba(0,0,0,0.08)], p-[16px]
 ```
 
-If you find yourself reaching for an arbitrary value, double-check `tokens/picasso-tailwind-tokens.md` first. Then add a `// TODO(tokens):` comment so it surfaces in the P1-FIG-03 audit.
+Always check `tokens/picasso-tailwind-tokens.md` first. **Only as a last resort** — when no canonical token exists — keep the `[arbitrary-value]` literal AND add a `// TODO(tokens):` comment so it surfaces in the P1-FIG-03 audit for designers to resolve. Do not invent tokens or normalize to arbitrary values by default.
 
 ## Twmerge boundary
 

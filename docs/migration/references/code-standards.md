@@ -138,7 +138,9 @@ Notification (`Notification.tsx:19-40`) uses an internal/public split: `PrivateP
 
 ### The "prop-by-prop boundary" — canonical resolution for root-element-type mismatches
 
-When `@base-ui/react`'s root part has a type that doesn't fully line up with your public `Props` (e.g. `Props extends ButtonHTMLAttributes<HTMLButtonElement>` but `BaseUISwitch.Root.Props` doesn't extend `ButtonHTMLAttributes`), **destructure SPECIFIC incompatible props** (or transform them via an adapter), then **spread `...rest` unchanged**. Three worked examples:
+**Principle: the component's public `Props` interface stays unchanged. Absorb any `@base-ui/react` type mismatch at the boundary — never by narrowing, widening, or re-typing the public surface.** Consumers must see the same API before and after the migration.
+
+Mechanically: when `@base-ui/react`'s root part has a type that doesn't line up with your public `Props` (e.g. `Props extends ButtonHTMLAttributes<HTMLButtonElement>` but `BaseUISwitch.Root.Props` doesn't extend `ButtonHTMLAttributes`), **destructure the SPECIFIC incompatible props** (or transform them via an adapter), then **spread `...rest` unchanged**. Worked examples:
 
 **Switch — `onChange` adapter + `checked` clamp:**
 
@@ -351,23 +353,15 @@ When editing **orchestrator code** (`bin/lib/*.ts`), additional ESLint rules tri
 - **Snapshot ratio**: 2-3 snapshots per component for shape; 50-80% of tests are explicit assertions. NO "renders without crashing" anti-pattern (Backdrop iter 3 lesson — bare `render()` without assertion is reviewer-blocking).
 - **Mocks**: `jest.spyOn()` / `jest.fn()` for callbacks. NO DOM-API mocks.
 
-## Tailwind class composition (RULE — established by Button canonical)
+## Tailwind class composition
 
 > For the underlying Base UI styling model (mechanisms, `render` / `data-*` / CSS vars, anti-patterns, override escalation ladder), see `references/base-ui-styling.md`. The composition rules below are the Picasso operational form of that doctrine.
 
-- Class-building logic lives in `styles.ts` as **pure functions returning `string[]`** (Button pattern, 14/28 conform; 8/28 use `cx` inline).
-- Merge in `Component.tsx` via `twMerge(coreClassNames, variantClassNames, ..., className)` — **user-supplied `className` LAST** so consumer overrides win (Drawer iter 3 lesson).
-- **Default: `twMerge(...)` alone — `cx` is usually unnecessary.** Picasso's `twMerge` (via `extendTailwindMerge` per `packages/picasso-tailwind-merge/src/twMerge.ts:35`) accepts the same input types as `twJoin`: strings, arrays, and falsy values (`false`, `null`, `undefined`, `''`) are filtered out. So all of these work directly in `twMerge(...)`:
-  - `condition && 'class'` — e.g. `Drawer.tsx:112`, `PaginationButton.tsx:20-22`
-  - `condition ? 'a' : 'b'` — e.g. `Dropdown.tsx:271`, `DropdownArrow.tsx:21`
-  - Nested arrays — e.g. `PageHeadBase.tsx:74` uses `['py-3', rightPadding && 'pr-8']`
-  - Tabs canonical: `twMerge('relative min-h-0 flex overflow-hidden', classesByOrientation[orientation].root, classesByVariant[variant].root, className)` — no `cx`
-- **Reach for `cx` only** when you need the `clsx`-object-syntax (`cx({ active: isActive, disabled })`) — Picasso's established pattern uses `&&` / ternary forms above, so `cx` rarely earns its keep.
-- **`twJoin`** is also re-exported from `@toptal/picasso-tailwind-merge` for the case where you just need to concatenate without conflict-resolution.
-- `@toptal/picasso-tailwind-merge` has Picasso-specific extensions — see `packages/picasso-tailwind-merge/src/twMerge.ts`:
-  - Custom font sizes: `text-2xs`, `text-xxs`, `text-button-{small|medium|large}`, `font-inherit-size`
-  - Custom weights: `font-regular`, `font-semibold`, `font-inherit-weight`
-  - Text-align preservers: `text-align-inherit`, `text-start`, `text-end`
+- **Preferred** (not a hard RULE — ~50% adoption): class-building logic lives in `styles.ts` as pure functions returning `string[]` (Button pattern, 14/28; 8/28 use `cx` inline). Either is acceptable.
+- Merge in `Component.tsx` via `twMerge(..., className)` — **user-supplied `className` LAST** so consumer overrides win (Drawer iter 3 lesson).
+- **Conditionals: `twMerge(cx({ ... }))`.** `cx` (from `classnames`) is the preferred way to express conditional/variant classes — object syntax (`cx({ 'm-0': expanded })`) or short `cond && 'x'` inside `cx` — wrapped in `twMerge` for conflict resolution. **Prefer `cx` over scattering `&&`/ternary across `twMerge` args** — readability over terseness. Plain `twMerge('a', 'b', className)` is fine for simple concatenation (no branching). Picasso's `twMerge` (`extendTailwindMerge`, `packages/picasso-tailwind-merge/src/twMerge.ts:35`) does NOT accept clsx-object syntax itself — that's what `cx` is for.
+- **`twJoin`** is re-exported from `@toptal/picasso-tailwind-merge` for plain concatenation without conflict-resolution.
+- `@toptal/picasso-tailwind-merge` adds Picasso-specific tokens (custom font sizes, weights, text-align preservers) — see `packages/picasso-tailwind-merge/src/twMerge.ts` for the full list.
 
 ## SSR safety (RULE — ESLint-enforced)
 
