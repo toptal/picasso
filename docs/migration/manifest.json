@@ -338,18 +338,18 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-30T12:23:14.526Z",
-          "last_review_seen_at": "2026-05-31T12:44:49.251Z",
-          "session_id": "53829412-2337-4358-b502-7fb8a3c497b4",
+          "last_review_seen_at": "2026-06-02T12:40:42.061Z",
+          "session_id": "8863fba3-9022-4673-92c9-da5ac1a698cb",
           "awaiting_ci_since": null,
-          "review_iterations": 2
+          "review_iterations": 3
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-30T12:23:14.526Z",
-      "last_review_seen_at": "2026-05-31T12:44:49.251Z",
-      "session_id": "53829412-2337-4358-b502-7fb8a3c497b4",
+      "last_review_seen_at": "2026-06-02T12:40:42.061Z",
+      "session_id": "8863fba3-9022-4673-92c9-da5ac1a698cb",
       "awaiting_ci_since": null,
-      "review_iterations": 2
+      "review_iterations": 3
     },
     "ModalContext": {
       "tier": 1,
@@ -374,18 +374,18 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-31T12:49:38.643Z",
-          "session_id": "37daab91-9306-43fb-90b0-3502a4e8719a",
+          "last_review_seen_at": "2026-06-02T12:47:07.050Z",
+          "session_id": "2b1361ed-6b51-4e4c-8c7c-429f45877810",
           "awaiting_ci_since": null,
-          "review_iterations": 1
+          "review_iterations": 2
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-31T12:49:38.643Z",
-      "session_id": "37daab91-9306-43fb-90b0-3502a4e8719a",
+      "last_review_seen_at": "2026-06-02T12:47:07.050Z",
+      "session_id": "2b1361ed-6b51-4e4c-8c7c-429f45877810",
       "awaiting_ci_since": null,
-      "review_iterations": 1
+      "review_iterations": 2
     },
     "Note": {
       "tier": 1,
@@ -553,18 +553,18 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-31T13:03:31.210Z",
-          "session_id": "5171a5b7-2854-49a8-a44d-ae1888a601f7",
+          "last_review_seen_at": "2026-06-02T12:53:52.331Z",
+          "session_id": "95396ec6-3cc6-487c-9280-b88c2cd0fe18",
           "awaiting_ci_since": null,
-          "review_iterations": 2
+          "review_iterations": 3
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-31T13:03:31.210Z",
-      "session_id": "5171a5b7-2854-49a8-a44d-ae1888a601f7",
+      "last_review_seen_at": "2026-06-02T12:53:52.331Z",
+      "session_id": "95396ec6-3cc6-487c-9280-b88c2cd0fe18",
       "awaiting_ci_since": null,
-      "review_iterations": 2
+      "review_iterations": 3
     },
     "Notification": {
       "tier": 1,
@@ -603,18 +603,18 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-31T13:10:54.229Z",
-          "session_id": "a4f94be7-2509-4d9a-826c-e855b986fbbd",
+          "last_review_seen_at": "2026-06-02T12:59:44.310Z",
+          "session_id": "16e3098e-9ac7-47b0-a391-0d8de61e7ced",
           "awaiting_ci_since": null,
-          "review_iterations": 2
+          "review_iterations": 3
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-31T13:10:54.229Z",
-      "session_id": "a4f94be7-2509-4d9a-826c-e855b986fbbd",
+      "last_review_seen_at": "2026-06-02T12:59:44.310Z",
+      "session_id": "16e3098e-9ac7-47b0-a391-0d8de61e7ced",
       "awaiting_ci_since": null,
-      "review_iterations": 2
+      "review_iterations": 3
     },
     "Utils": {
       "tier": 1,

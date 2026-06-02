@@ -56,9 +56,11 @@ import { renderAnalysisForPrompt } from './happo-pixel-diff'
 import type {
   EscalationDecision,
   GateReport,
+  GraduationRequest,
   Manifest,
   ManifestItem,
   ModelConfig,
+  OperatorOverride,
   OrchestratorOptions,
   RunState,
   VariantState,
@@ -134,6 +136,317 @@ function isTrustedReviewer(review: RawReview): boolean {
   const assoc = (review.authorAssociation ?? '').toUpperCase()
 
   return TRUSTED_REVIEW_ASSOCIATIONS.has(assoc)
+}
+
+// Operator-override markers (2026-06-01). The review-response agent embeds
+// these HTML comments in its PR reply when it acts on (or holds for) an
+// operator-sanctioned exception to a documented rule. They render invisible
+// on GitHub but persist in the raw body, so the orchestrator can parse them
+// back, persist the decision to the manifest, and inject it into BOTH audit
+// paths as the highest-authority carve-out — stopping the audit↔operator
+// oscillation observed on PR #4965 (Switch HTMLSpanElement vs boundary-cast).
+//
+//   <!-- override-lock rule="code-standards.md §\"TS variance\"" sanctioned="Props+ref typed as HTMLSpanElement; boundary cast removed" evidence="https://github.com/.../pull/4965#discussion_r3328447186" -->
+//   <!-- override-unlock rule="code-standards.md §\"TS variance\"" -->
+//
+// Only markers inside the agent's own orchestrator-headered replies are read
+// (the caller passes `orchestratorReplies`), so a third-party commenter can't
+// inject a lock. Locks are operator-visible (raw thread) and reversible via
+// override-unlock, so a wrong lock is operator-correctable.
+// `[\s\S]*?` (not `[^>]`) so the marker body may contain `>` — sanctioned
+// shapes like `Omit<Root.Props, ...>` are common. The attr regex tolerates
+// escaped quotes (`\"`) inside a value, because rule citations carry inner
+// double-quotes, e.g. `code-standards.md §"TS variance"`.
+const OVERRIDE_LOCK_RE = /<!--\s*override-lock\s+([\s\S]*?)-->/gi
+const OVERRIDE_UNLOCK_RE = /<!--\s*override-unlock\s+([\s\S]*?)-->/gi
+const MARKER_ATTR_RE = /(\w+)\s*=\s*"((?:\\.|[^"\\])*)"/g
+
+function parseMarkerAttrs(inner: string): Record<string, string> {
+  const out: Record<string, string> = {}
+
+  for (const attr of inner.matchAll(MARKER_ATTR_RE)) {
+    // Unescape `\"` → `"` and `\\` → `\` so the stored citation matches what
+    // the audit cites (and what a re-parse on the next tick produces).
+    out[attr[1].toLowerCase()] = attr[2].replace(/\\(["\\])/g, '$1')
+  }
+
+  return out
+}
+
+interface OverrideMarkers {
+  locks: OperatorOverride[]
+  unlockedRules: string[]
+}
+
+/**
+ * Scan the agent's own orchestrator-headered replies for override-lock /
+ * -unlock markers. `at` is stamped on each lock (orchestrator's clock) so the
+ * record is deterministic regardless of GitHub timestamp availability.
+ */
+function parseOverrideMarkers(
+  orchestratorReplies: readonly RawReview[],
+  at: string
+): OverrideMarkers {
+  const locks: OperatorOverride[] = []
+  const unlockedRules: string[] = []
+
+  for (const reply of orchestratorReplies) {
+    const body = reply.body ?? ''
+
+    for (const match of body.matchAll(OVERRIDE_LOCK_RE)) {
+      const attrs = parseMarkerAttrs(match[1])
+
+      if (!attrs.rule || !attrs.sanctioned) {
+        continue
+      }
+      locks.push({
+        rule: attrs.rule.trim(),
+        sanctioned: attrs.sanctioned.trim(),
+        evidence: (attrs.evidence ?? '').trim(),
+        confirmed_by: (attrs.confirmed_by ?? reply.author ?? 'operator').trim(),
+        at,
+      })
+    }
+
+    for (const match of body.matchAll(OVERRIDE_UNLOCK_RE)) {
+      const attrs = parseMarkerAttrs(match[1])
+
+      if (attrs.rule) {
+        unlockedRules.push(attrs.rule.trim())
+      }
+    }
+  }
+
+  return { locks, unlockedRules }
+}
+
+/**
+ * Merge freshly-parsed markers over the manifest's existing overrides.
+ * Dedup by `rule` (last-write-wins, so an operator can refine the sanctioned
+ * shape by re-locking); `override-unlock` removes the matching rule. Returns
+ * a new array (sorted by rule for stable manifest diffs).
+ */
+function mergeOverrides(
+  existing: readonly OperatorOverride[] | undefined,
+  parsed: OverrideMarkers
+): OperatorOverride[] {
+  const byRule = new Map<string, OperatorOverride>()
+
+  for (const ovr of existing ?? []) {
+    byRule.set(ovr.rule, ovr)
+  }
+  for (const ovr of parsed.locks) {
+    const prev = byRule.get(ovr.rule)
+
+    // Re-parsing an unchanged lock from a prior reply must be a no-op —
+    // otherwise the fresh `at` stamp would rewrite the manifest every tick.
+    // Only overwrite when the sanctioned shape or evidence actually changed
+    // (operator refined the lock).
+    if (
+      prev &&
+      prev.sanctioned === ovr.sanctioned &&
+      prev.evidence === ovr.evidence
+    ) {
+      continue
+    }
+    byRule.set(ovr.rule, ovr)
+  }
+  for (const rule of parsed.unlockedRules) {
+    byRule.delete(rule)
+  }
+
+  return [...byRule.values()].sort((a, b) => a.rule.localeCompare(b.rule))
+}
+
+/**
+ * Human-readable carve-out block injected into both audit prompts (the
+ * conversational standards-audit and the Layer B `judgeAudit` subprocess).
+ * Returns '' when there are no active overrides, so callers can concatenate
+ * unconditionally.
+ */
+function renderOverrideCarveout(
+  overrides: readonly OperatorOverride[] | undefined
+): string {
+  if (!overrides || overrides.length === 0) {
+    return ''
+  }
+  const lines = overrides
+    .map(
+      o =>
+        `- Rule **${o.rule}** is EXCEPTED. Sanctioned shape: ${o.sanctioned}. ` +
+        `(confirmed by ${o.confirmed_by}${o.evidence ? `, ${o.evidence}` : ''})`
+    )
+    .join('\n')
+
+  return (
+    '\n## Operator overrides — HIGHEST-AUTHORITY carve-out (read FIRST)\n\n' +
+    'The operator has explicitly EXCEPTED the rules below on this PR. An ' +
+    'operator override outranks any RULE-strength documented rule — the ' +
+    'operator can always choose to make an exception. For each rule listed:\n\n' +
+    '- Do NOT flag the sanctioned shape as a violation.\n' +
+    '- Do NOT revert it, and do NOT re-classify it to HIGH, regardless of ' +
+    'RULE-strength wording in any standards doc or any prior MEDIUM proposal.\n' +
+    '- If you still think the documented rule should win, do NOT act — reply ' +
+    'in-thread asking the operator to reconsider, and leave the code as the ' +
+    'override sanctions.\n\n' +
+    lines +
+    '\n'
+  )
+}
+
+// Graduation-request markers (2026-06-01). Emitted by the review-response
+// agent in the reply where a trusted reviewer 👍-confirms a proposal to
+// promote a per-PR decision into a global rule. The orchestrator persists
+// them as `queued` candidates; `pnpm orchestrate --graduate` consumes them as
+// pre-qualified, reviewer-cited additions to practices.md (operator reviews
+// the doc diff before committing). Reuses the override marker-attr parser.
+//
+//   <!-- graduation-request rule="code-standards.md §\"TS variance\"" gist="Allow element-type narrowing (button→span) when the base-ui part renders a different element; the boundary cast is no longer mandatory." target="practices.md" trigger="reviewer-request" evidence="https://github.com/.../pull/4965#discussion_r..." -->
+const GRADUATION_REQUEST_RE = /<!--\s*graduation-request\s+([\s\S]*?)-->/gi
+
+function parseGraduationRequests(
+  orchestratorReplies: readonly RawReview[],
+  at: string
+): GraduationRequest[] {
+  const out: GraduationRequest[] = []
+
+  for (const reply of orchestratorReplies) {
+    for (const match of (reply.body ?? '').matchAll(GRADUATION_REQUEST_RE)) {
+      const attrs = parseMarkerAttrs(match[1])
+
+      if (!attrs.rule || !attrs.gist) {
+        continue
+      }
+      const trigger =
+        attrs.trigger === 'override-promotion' ||
+        attrs.trigger === 'recurring-override'
+          ? attrs.trigger
+          : 'reviewer-request'
+
+      out.push({
+        rule: attrs.rule.trim(),
+        gist: attrs.gist.trim(),
+        target: (attrs.target ?? 'practices.md').trim() || 'practices.md',
+        trigger,
+        evidence: (attrs.evidence ?? '').trim(),
+        confirmed_by: (attrs.confirmed_by ?? reply.author ?? 'operator').trim(),
+        at,
+        status: 'queued',
+      })
+    }
+  }
+
+  return out
+}
+
+/**
+ * Merge freshly-parsed graduation requests over the manifest's existing ones.
+ * Dedup by `rule`. A re-parse of an unchanged request preserves the stored
+ * record (incl. its `status` and original `at`) so a request already marked
+ * `graduated` is NOT reset to `queued`, and timestamps don't churn the
+ * manifest every tick.
+ */
+function mergeGraduationRequests(
+  existing: readonly GraduationRequest[] | undefined,
+  parsed: readonly GraduationRequest[]
+): GraduationRequest[] {
+  const byRule = new Map<string, GraduationRequest>()
+
+  for (const req of existing ?? []) {
+    byRule.set(req.rule, req)
+  }
+  for (const req of parsed) {
+    const prev = byRule.get(req.rule)
+
+    // Unchanged gist+target → keep the stored record (preserve status + at).
+    if (prev && prev.gist === req.gist && prev.target === req.target) {
+      continue
+    }
+    // Changed (reviewer refined the gist) → re-queue with the new wording.
+    byRule.set(req.rule, req)
+  }
+
+  return [...byRule.values()].sort((a, b) => a.rule.localeCompare(b.rule))
+}
+
+/**
+ * Count, per rule citation, how many distinct components have an operator
+ * override for it (checking flat fields + every variant, deduped per
+ * component). A count ≥2 means the same rule has been excepted on multiple
+ * PRs — a strong signal the rule itself is stale and should be graduated.
+ */
+function tallyOverrideRules(m: Manifest): Map<string, number> {
+  const counts = new Map<string, number>()
+
+  for (const comp of Object.values(m.components)) {
+    const rules = new Set<string>()
+
+    for (const ovr of comp.operator_overrides ?? []) {
+      rules.add(ovr.rule)
+    }
+    for (const variant of Object.values(comp.variants ?? {})) {
+      for (const ovr of variant.operator_overrides ?? []) {
+        rules.add(ovr.rule)
+      }
+    }
+    for (const rule of rules) {
+      counts.set(rule, (counts.get(rule) ?? 0) + 1)
+    }
+  }
+
+  return counts
+}
+
+/**
+ * Prompt block telling the agent (a) which rules on THIS PR are candidates for
+ * graduation and (b) whether any are recurring across PRs (a strong signal to
+ * propose fixing the rule). Returns '' when there's nothing to surface.
+ */
+function renderGraduationContext(args: {
+  overrides: readonly OperatorOverride[] | undefined
+  queued: readonly GraduationRequest[] | undefined
+  recurringCounts: ReadonlyMap<string, number>
+}): string {
+  const { overrides, queued, recurringCounts } = args
+  const queuedRules = new Set((queued ?? []).map(q => q.rule))
+  // Overrides on this PR that haven't already been queued for graduation.
+  const candidates = (overrides ?? []).filter(o => !queuedRules.has(o.rule))
+
+  if (candidates.length === 0 && (queued ?? []).length === 0) {
+    return ''
+  }
+  const candidateLines = candidates
+    .map(o => {
+      const n = recurringCounts.get(o.rule) ?? 1
+      const recurring =
+        n >= 2
+          ? ` **Overridden on ${n} PRs so far — strong signal the rule itself should change; propose graduation proactively.**`
+          : ''
+
+      return `- **${o.rule}** (sanctioned here: ${o.sanctioned}).${recurring}`
+    })
+    .join('\n')
+  const queuedLines = (queued ?? [])
+    .map(q => `- **${q.rule}** — ${q.status} (${q.trigger}).`)
+    .join('\n')
+
+  return (
+    '\n## Rule graduation — candidates on this PR\n\n' +
+    'See the protocol\'s "Rule graduation" section for the confirmation flow. ' +
+    'You must include a plain-language GIST in any graduation proposal.\n\n' +
+    (candidates.length > 0
+      ? 'Active overrides on this PR that are NOT yet queued for graduation — ' +
+        'after the override is applied + pushed, offer (once) to promote each ' +
+        'into a rule:\n' +
+        candidateLines +
+        '\n\n'
+      : '') +
+    ((queued ?? []).length > 0
+      ? "Already queued for the operator's `--graduate` pass (do NOT re-propose these):\n" +
+        queuedLines +
+        '\n'
+      : '')
+  )
 }
 
 interface RawCheckEntry {
@@ -1482,6 +1795,8 @@ const manifest = {
         review_iterations: updatedVariant.review_iterations,
         session_id: updatedVariant.session_id,
         awaiting_ci_since: updatedVariant.awaiting_ci_since,
+        operator_overrides: updatedVariant.operator_overrides,
+        graduation_requests: updatedVariant.graduation_requests,
       })
     }
 
@@ -1524,6 +1839,8 @@ const manifest = {
         review_iterations: item.review_iterations,
         session_id: item.session_id ?? null,
         awaiting_ci_since: item.awaiting_ci_since ?? null,
+        operator_overrides: item.operator_overrides,
+        graduation_requests: item.graduation_requests,
       }
     }
 
@@ -4926,6 +5243,15 @@ interface ChecklistArgs {
   iteration: number
   /** Run dir for persisting audit.<iter>.md. */
   runDir: string
+  /**
+   * Active operator overrides for this PR (review-sweep only). Injected into
+   * the Layer B audit prompt as the highest-authority carve-out so the blind
+   * subprocess does NOT flag an operator-sanctioned shape as a violation.
+   * Passed explicitly (not read off `item`) because the in-memory `item` in
+   * `sweepOne` is loaded at tick start and isn't re-read after the tick's
+   * marker merge. Undefined in the migrate-loop (no PR thread yet).
+   */
+  operatorOverrides?: readonly OperatorOverride[]
 }
 
 interface AuditViolation {
@@ -5440,6 +5766,20 @@ const checklist = {
       `5. Be CONCRETE: cite the file + line range in the diff. "packages/base/Modal/src/Modal.tsx line 42" is acceptable; "in some file" is not.\n` +
       `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n` +
       `7. Honor the migration carve-out (design-patterns-addendum.md §"Existing-violations carve-out"): pre-existing rule violations in already-shipped components REMAIN. Do NOT flag a violation if the diff PRESERVES an existing rule-violating shape (e.g., the component already had \`isOpen\` before the diff — preserving it is correct, NOT a violation of rule 14). Only flag violations that the DIFF INTRODUCES or that the agent had a clear opportunity to fix in the migration scope.\n\n` +
+      (args.operatorOverrides && args.operatorOverrides.length > 0
+        ? `8. **OPERATOR OVERRIDES — highest authority, overrides every rule in the checklist below.** The operator has explicitly EXCEPTED these rules on this PR (recorded from the PR thread, which you cannot see). If the diff matches a sanctioned shape below, it is NOT a violation — do NOT add it to <violations>, even when a doc uses NEVER / MUST NOT / forbidden wording for it. This is the #1 false positive to avoid; the operator already decided:\n` +
+          args.operatorOverrides
+            .map(
+              o =>
+                `   - Rule **${o.rule}** EXCEPTED → sanctioned shape: ${
+                  o.sanctioned
+                } (confirmed by ${o.confirmed_by}${
+                  o.evidence ? `, ${o.evidence}` : ''
+                }).\n`
+            )
+            .join('') +
+          `\n`
+        : '') +
       `**Standards compliance checklist — walk this in order on every audit.** Cite the matching §section for each violation. Skip items that don't apply to this diff:\n\n` +
       `### A. Hard rules (severity=high if violated)\n` +
       `1. **\`classes\` prop decision** (decisions/classes-audit.md + design-patterns-addendum.md §2): is the component Dropdown or OutlinedInput? If yes, the narrowed \`classes?: { ... }\` MUST be retained. For other Tier-0 components, audit-aligned drop via \`extends Omit<StandardProps, 'classes'>\` + runtime backstop. Flag any deviation.\n` +
@@ -6371,6 +6711,67 @@ async function sweepOne(
     PROPOSAL_PATTERN.test(r.body ?? '')
   )
 
+  // Operator-override locks (2026-06-01). Parse override-lock / -unlock
+  // markers out of the agent's own past replies, merge over the manifest's
+  // existing overrides, and persist any change. `activeOverrides` is injected
+  // into the conversational review prompt AND the Layer B `judgeAudit` so
+  // neither audit path reverts an operator-sanctioned change — the fix for
+  // the PR #4965 oscillation (audit kept reverting the operator-directed
+  // HTMLSpanElement typing back to the boundary cast). A marker the agent
+  // posts THIS tick lands in `orchestratorReplies` next tick; the same-tick
+  // gap is covered by the in-thread instruction in PROMPT-review-response.md.
+  const parsedOverrides = parseOverrideMarkers(orchestratorReplies, ISO())
+  const activeOverrides = mergeOverrides(
+    item.operator_overrides,
+    parsedOverrides
+  )
+  const existingNormalized = mergeOverrides(item.operator_overrides, {
+    locks: [],
+    unlockedRules: [],
+  })
+
+  if (JSON.stringify(activeOverrides) !== JSON.stringify(existingNormalized)) {
+    updateForVariant({ operator_overrides: activeOverrides })
+    log(
+      'sweep',
+      `${item.id}: operator-override locks updated → [${
+        activeOverrides.map(o => o.rule).join(', ') || 'none'
+      }] (${parsedOverrides.locks.length} lock / ${
+        parsedOverrides.unlockedRules.length
+      } unlock marker(s) parsed)`
+    )
+  }
+
+  // Reviewer-confirmed rule-graduation requests (2026-06-01). Parse
+  // graduation-request markers from the agent's own replies (emitted only
+  // after a reviewer 👍-confirms a graduation proposal), persist them as
+  // `queued` candidates, and surface them to the prompt below. The
+  // `pnpm orchestrate --graduate` pass consumes queued requests as
+  // pre-qualified, reviewer-cited additions to practices.md.
+  const parsedGraduations = parseGraduationRequests(orchestratorReplies, ISO())
+  const activeGraduations = mergeGraduationRequests(
+    item.graduation_requests,
+    parsedGraduations
+  )
+
+  if (
+    JSON.stringify(activeGraduations) !==
+    JSON.stringify(mergeGraduationRequests(item.graduation_requests, []))
+  ) {
+    updateForVariant({ graduation_requests: activeGraduations })
+    log(
+      'sweep',
+      `${item.id}: graduation requests updated → [${
+        activeGraduations.map(g => `${g.rule}:${g.status}`).join(', ') || 'none'
+      }]`
+    )
+  }
+
+  // Recurring-override tally across ALL components — a rule overridden on ≥2
+  // PRs signals the rule itself should change (graduation candidate). Read
+  // fresh so it reflects the override just persisted above for this PR.
+  const recurringOverrideCounts = tallyOverrideRules(manifest.read(manifestAbs))
+
   // Author-trust gate. Comments from authors outside TRUSTED_REVIEW_ASSOCIATIONS
   // (and from bots) are skipped — they never reach the agent prompt. The
   // watermark advances past them via `nowIso` below so they aren't re-logged
@@ -6642,6 +7043,12 @@ async function sweepOne(
     '# Review-response protocol\n\n' +
     reviewProtocol +
     '\n\n---\n\n' +
+    renderOverrideCarveout(activeOverrides) +
+    renderGraduationContext({
+      overrides: activeOverrides,
+      queued: activeGraduations,
+      recurringCounts: recurringOverrideCounts,
+    }) +
     `# This sweep tick — PR ${prUrl}\n\n` +
     `${newReviews.length} new comment(s) since ${
       item.last_review_seen_at ?? 'never'
@@ -6760,7 +7167,7 @@ async function sweepOne(
         'Per-finding action — apply the SAME confidence matrix as the conversational protocol, with calibration sharpened for this audit:\n\n' +
         '- **HIGH confidence — ACT NOW** when ALL THREE hold:\n' +
         '    1. The cited rule uses RULE-strength wording (`NEVER`, `MUST NOT`, `Do NOT`, `forbidden`, `explicitly forbidden`, `not allowed`, `is wrong`) — NOT preferred-strength wording (`prefer`, `should`, `typically`, `usually`, `consider`).\n' +
-        '    2. No carve-out applies (existing-violations carve-out, Tier 3.b `classes` exception, etc.).\n' +
+        '    2. No carve-out applies (existing-violations carve-out, Tier 3.b `classes` exception, AND — highest authority — any active operator override listed in the "Operator overrides" section above. An operator override outranks RULE-strength wording; if a finding matches an override\'s sanctioned shape, it is NOT a violation, full stop).\n' +
         '    3. A direct, unambiguous fix exists — e.g. replace `as unknown as T` with a typed adapter; replace `inputRef={n => n.style.x = y}` with a Tailwind class or `data-*` selector; correct a wrong changeset bump per the documented taxonomy.\n' +
         '  Action: make the code edit (Edit/Write) and post an IN-THREAD reply on the offending file:line citing the rule. One sentence body. Use `gh api .../pulls/<n>/comments` with `path` + `line` + `side` (no `in_reply_to`, since this is a new thread you are opening).\n' +
         '  **Common patterns that ARE HIGH (do not downgrade these to MEDIUM):**\n' +
@@ -6776,6 +7183,7 @@ async function sweepOne(
         '  Action: post an inline proposal on the offending file:line with the same `path` + `line` + `side` recipe, cap ~40 words, end with "👍 to confirm, or share thoughts." Subsequent sweep ticks act on confirmation per the existing pending-proposal flow.\n' +
         '- **LOW confidence / ambiguous** → skip. False positives in standards audits erode operator trust; better to miss one than to spam a PR with debatable nits.\n\n' +
         '**Calibration anti-pattern to avoid:** if you find yourself thinking "this is forbidden by RULE-strength wording but I posted a MEDIUM proposal in a prior tick that has no reaction" — that prior classification was wrong. RULE-strength + no carve-out + obvious fix = HIGH, regardless of whether you previously asked for 👍 on it. Treat the prior MEDIUM proposal as superseded; act now, then reply on the original proposal thread with "Acting on this — re-classified as HIGH per RULE-strength wording in <citation>." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
+        '**The one exception to the calibration anti-pattern — operator overrides:** the re-classify-to-HIGH escalation above does NOT apply to any finding sanctioned by an active operator override (see the "Operator overrides" section near the top of this prompt). An operator who explicitly directed an exception (or 👍-confirmed your proposal that contradicts a rule) has the final word — it is NOT a stale MEDIUM to be corrected. Do NOT revert, do NOT re-classify it to HIGH, and do NOT re-open it with a fresh audit comment each tick. Leave it; if you genuinely believe the rule should win, reply once asking the operator to reconsider, then drop it.\n\n' +
         'Reply formatting: every standards-audit comment uses the same orchestrator header as conversational replies:\n\n' +
         '```\n> 🤖 _Orchestrator agent (autonomous standards-audit)_\n```\n\n' +
         'The `(autonomous standards-audit)` suffix distinguishes audit comments from review-response comments in the thread — reviewers can tell at a glance which path produced the message.\n\n' +
@@ -7101,6 +7509,7 @@ async function sweepOne(
           rootDir,
           iteration: sweepIterNum,
           runDir,
+          operatorOverrides: activeOverrides,
         })
 
         const sections: string[] = []
@@ -7438,8 +7847,10 @@ async function sweepOne(
           )
           iterFeedback =
             '# Layer B audit disagreement — re-evaluate your calibration\n\n' +
+            renderOverrideCarveout(activeOverrides) +
             `Iter ${iter} converged the gate green BUT the post-iter audit STILL flags HIGH-severity rule violations against the post-iter worktree. Some violations may be from before this iter (unaddressed) and some may have been introduced by this iter's edits. Either way, the audit's RULE-strength reading is authoritative — if a rule says NEVER / MUST NOT / forbidden / explicitly forbidden / not allowed AND a direct fix exists AND no carve-out applies, that is HIGH-confidence by definition, not MEDIUM. This holds regardless of any prior MEDIUM proposal you posted asking for 👍, and regardless of whether you made other edits this iter.\n\n` +
-            'Action this iter: re-read the audit findings below, RE-CLASSIFY each as HIGH unless a carve-out clearly applies, and ACT — edit the code + reply IN-THREAD on the offending file:line citing the rule. If you previously posted a MEDIUM proposal on the same finding, ALSO post a follow-up reply on that prior thread: "Re-classified as HIGH per RULE-strength wording in <citation>. Acting on this now." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
+            "EXCEPTION (highest authority): if a flagged finding matches EITHER (a) the sanctioned shape of an active operator override listed above, OR (b) an explicit operator/reviewer directive or 👍-confirmation you can see in THIS PR's thread (the operator may have sanctioned it this very tick, before it was recorded), then it is NOT a violation — do NOT revert it, do NOT re-classify it to HIGH, and do NOT re-open it. The Layer B audit is blind to the PR thread, so it WILL keep re-flagging operator-sanctioned shapes; that is the false positive this carve-out exists to suppress. Leave the override-sanctioned code exactly as-is, make sure your reply carries the `<!-- override-lock ... -->` marker so it gets recorded, and move on to the other findings.\n\n" +
+            'Action this iter: re-read the audit findings below, RE-CLASSIFY each as HIGH unless a carve-out clearly applies (operator override is the strongest one), and ACT — edit the code + reply IN-THREAD on the offending file:line citing the rule. If you previously posted a MEDIUM proposal on the same finding, ALSO post a follow-up reply on that prior thread: "Re-classified as HIGH per RULE-strength wording in <citation>. Acting on this now." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
             'Common patterns the audit consistently flags as HIGH (do NOT downgrade these to MEDIUM in your re-evaluation):\n' +
             '- `as unknown as T` blanket casts on `...rest`, event handlers, or props — replace with a typed adapter (drop/transform incompatible keys before spread, or construct a synthetic event with the correct shape).\n' +
             '- Imperative `ref` callbacks that mutate `.style` for theme/visual purposes — replace with a Tailwind slot selector (e.g. `[&_input]:!m-0`) or a `data-*` attribute selector. Cite practices.md §"@base-ui/react idioms" which explicitly calls the ref-style pattern a "one-off Switch compromise, not the pattern."\n' +

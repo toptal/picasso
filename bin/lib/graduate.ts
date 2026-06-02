@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+/* eslint-disable id-length */
+/* eslint-disable max-lines */
 /**
  * bin/lib/graduate.ts
  *
@@ -41,7 +43,89 @@ import { promises as fs, existsSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import * as path from 'node:path'
 
-import type { ModelConfig } from './workflow'
+import type { GraduationRequest, Manifest, ModelConfig } from './workflow'
+
+/**
+ * Collect reviewer-confirmed graduation requests still in `queued` status,
+ * across all components (flat fields + variants), deduped by rule. These are
+ * pre-qualified candidates (graduate.ts criterion (b): explicit reviewer
+ * citation) recorded by `--review-sweep` when a reviewer 👍-confirms a
+ * graduation proposal. Best-effort: a missing/unparseable manifest yields [].
+ */
+const collectQueuedGraduationRequests = async (
+  rootDir: string
+): Promise<GraduationRequest[]> => {
+  const manifestPath = path.join(rootDir, 'docs/migration/manifest.json')
+
+  if (!existsSync(manifestPath)) {
+    return []
+  }
+  try {
+    const m = JSON.parse(await fs.readFile(manifestPath, 'utf8')) as Manifest
+    const byRule = new Map<string, GraduationRequest>()
+
+    for (const comp of Object.values(m.components ?? {})) {
+      const slots: readonly (readonly GraduationRequest[] | undefined)[] = [
+        comp.graduation_requests,
+        ...Object.values(comp.variants ?? {}).map(v => v.graduation_requests),
+      ]
+
+      for (const reqs of slots) {
+        for (const req of reqs ?? []) {
+          if (req.status === 'queued' && !byRule.has(req.rule)) {
+            byRule.set(req.rule, req)
+          }
+        }
+      }
+    }
+
+    return [...byRule.values()]
+  } catch {
+    return []
+  }
+}
+
+/**
+ * After a successful graduation pass, flip the consumed requests to
+ * `graduated` across flat fields + variants so they aren't re-injected on the
+ * next pass. Best-effort + non-fatal — the agent's "already covered → skip"
+ * logic is the correctness backstop if this write fails.
+ */
+const markRequestsGraduated = async (
+  rootDir: string,
+  graduatedRules: ReadonlySet<string>
+): Promise<void> => {
+  if (graduatedRules.size === 0) {
+    return
+  }
+  const manifestPath = path.join(rootDir, 'docs/migration/manifest.json')
+
+  try {
+    const m = JSON.parse(await fs.readFile(manifestPath, 'utf8')) as Manifest
+    const flip = (
+      reqs: readonly GraduationRequest[] | undefined
+    ): GraduationRequest[] | undefined =>
+      reqs?.map(r =>
+        graduatedRules.has(r.rule) && r.status === 'queued'
+          ? { ...r, status: 'graduated' }
+          : r
+      )
+
+    for (const comp of Object.values(m.components ?? {})) {
+      comp.graduation_requests = flip(comp.graduation_requests)
+      for (const variant of Object.values(comp.variants ?? {})) {
+        variant.graduation_requests = flip(variant.graduation_requests)
+      }
+    }
+    await fs.writeFile(manifestPath, `${JSON.stringify(m, null, 2)}\n`, 'utf8')
+  } catch (err) {
+    console.log(
+      `[graduate] could not mark requests graduated (non-fatal): ${
+        (err as Error).message
+      }`
+    )
+  }
+}
 
 export interface GraduateResult {
   status: 'graduated' | 'failed' | 'no-new-lessons'
@@ -90,6 +174,18 @@ export const runGraduate = async (
 
   const today = new Date().toISOString().slice(0, 10)
 
+  const graduationRequests = await collectQueuedGraduationRequests(rootDir)
+
+  if (graduationRequests.length > 0) {
+    console.log(
+      `[graduate] ${
+        graduationRequests.length
+      } reviewer-confirmed graduation request(s) queued from --review-sweep: [${graduationRequests
+        .map(r => r.rule)
+        .join(', ')}]`
+    )
+  }
+
   console.log(
     `[graduate] running graduation pass (today=${today}) — agent will edit ${path.relative(
       rootDir,
@@ -102,6 +198,7 @@ export const runGraduate = async (
     practicesPath,
     today,
     rootDir,
+    graduationRequests,
   })
 
   // Spawn `claude -p` with Read/Edit/Write/Bash/Grep tools.
@@ -182,6 +279,16 @@ export const runGraduate = async (
     agentSummary
   )
 
+  // Mark reviewer-confirmed requests as graduated so the next pass doesn't
+  // re-inject them. Only when the pass actually graduated something — a
+  // "0 patterns added" pass means nothing landed in practices.md yet.
+  if (!noNewLessons && graduationRequests.length > 0) {
+    await markRequestsGraduated(
+      rootDir,
+      new Set(graduationRequests.map(r => r.rule))
+    )
+  }
+
   return {
     status: noNewLessons ? 'no-new-lessons' : 'graduated',
     practicesPath,
@@ -196,8 +303,30 @@ const buildGraduationPrompt = (args: {
   practicesPath: string
   today: string
   rootDir: string
+  graduationRequests: readonly GraduationRequest[]
 }): string => {
-  const { lessonsPath, practicesPath, today, rootDir } = args
+  const { lessonsPath, practicesPath, today, rootDir, graduationRequests } =
+    args
+
+  // Reviewer-confirmed requests are pre-qualified under criterion (b)
+  // (explicit reviewer citation) and must be processed THIS pass even if
+  // lessons-learned has no new entries.
+  const requestsSection =
+    graduationRequests.length > 0
+      ? `## Reviewer-confirmed graduation requests (PRE-QUALIFIED — process these first)\n\n` +
+        `These were explicitly 👍-confirmed by a reviewer in a PR thread (criterion (b) below — already qualified). Graduate EACH into practices.md this pass UNLESS Step 5 finds it already covered or in conflict. Process them even if there are zero new lessons-learned entries. The "gist" is the reviewer-approved intent; refine the exact wording to match practices.md's terse style, and cite the source PR.\n\n` +
+        graduationRequests
+          .map(
+            (r, i) =>
+              `${i + 1}. Rule **${r.rule}** → target ${r.target} (trigger: ${
+                r.trigger
+              }; confirmed by ${r.confirmed_by}${
+                r.evidence ? `, ${r.evidence}` : ''
+              }).\n   Gist: ${r.gist}`
+          )
+          .join('\n') +
+        `\n\nIf a request targets a doc OTHER than practices.md (e.g. code-standards.md), do NOT edit that doc — note it under "Conflicts (require operator review)" so the operator hand-applies it.\n\n`
+      : ''
 
   return (
     `# Graduation pass — lessons-learned.md → practices.md\n\n` +
@@ -207,6 +336,7 @@ const buildGraduationPrompt = (args: {
     `## Files\n\n` +
     `- **Append-only audit log**:\n  \`${lessonsPath}\`\n` +
     `- **Curated practices (canonical, loaded by contextPack)**:\n  \`${practicesPath}\`\n\n` +
+    requestsSection +
     `## Procedure (follow exactly)\n\n` +
     `### Step 1. Read both files in full\n\n` +
     `Use the Read tool. Note these things from practices.md:\n` +
@@ -216,7 +346,7 @@ const buildGraduationPrompt = (args: {
     `- The total line count (you'll need to keep practices.md under ~250 lines; if new additions would exceed, consolidate weakest existing entries).\n\n` +
     `### Step 2. Identify new lessons-learned entries since last graduation\n\n` +
     `Lessons-learned entries have headings like \`## <ComponentName> — <YYYY-MM-DD>\` (with optional iter suffix). Parse the date from each heading. Treat entries DATED ON-OR-AFTER \`practices.md\`'s "Last graduation" date as new.\n\n` +
-    `If no new entries exist, jump to Step 7 and output \`GRADUATION_COMPLETE: 0 patterns added, 0 patterns skipped\`. Do NOT edit practices.md.\n\n` +
+    `If no new entries exist AND there are no reviewer-confirmed graduation requests above, jump to Step 7 and output \`GRADUATION_COMPLETE: 0 patterns added, 0 patterns skipped\`. Do NOT edit practices.md. (If there ARE reviewer-confirmed requests above, continue — they qualify under criterion (b) regardless of new lessons-learned entries.)\n\n` +
     `### Step 3. Cluster new entries by theme\n\n` +
     `Theme candidates (use existing practices.md sections as the taxonomy where possible):\n\n` +
     `- Build & snapshot precondition\n` +

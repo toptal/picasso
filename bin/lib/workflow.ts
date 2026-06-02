@@ -17,6 +17,85 @@
 /**
  * One queue item. The `id` field is the manifest key.
  */
+/**
+ * An explicit operator (or trusted reviewer) decision to EXCEPT a documented
+ * rule on a specific PR — recorded so it survives across review-sweep ticks.
+ *
+ * Why this exists: the review-sweep runs two autonomous audit paths (the
+ * conversational standards-audit and the blind Layer B `judgeAudit`
+ * subprocess). Both re-evaluate the PR diff against the canonical standards
+ * docs from scratch on every tick. When a reviewer/operator explicitly
+ * directs an exception to a RULE-strength doc (e.g. "do the exception here,
+ * use HTMLSpanElement" on PR #4965), the audit — which only knows the
+ * *documented* carve-outs — keeps re-flagging the sanctioned shape as a
+ * HIGH violation and reverting it, so the agent oscillates against the
+ * operator's own instruction.
+ *
+ * An `OperatorOverride` is the highest-authority carve-out: it is injected
+ * into BOTH audit prompts as a hard skip-rule, and the post-iter
+ * re-classification logic is forbidden from reverting anything it sanctions.
+ * The operator can always choose to make an exception, so an explicit
+ * override outranks any RULE-strength doc.
+ *
+ * Recorded by the orchestrator from `<!-- override-lock ... -->` markers the
+ * review-response agent embeds in its PR reply when it acts on an
+ * operator-sanctioned exception; removed by `<!-- override-unlock rule=... -->`.
+ * Visible (raw) + reversible in the PR thread, so a wrong lock is
+ * operator-correctable.
+ */
+export interface OperatorOverride {
+  /** The documented rule being excepted, cited by doc + section (e.g. `code-standards.md §"TS variance"`). Dedup key. */
+  rule: string
+  /** What the operator sanctioned instead — the shape the audit must NOT revert. One line. */
+  sanctioned: string
+  /** URL or comment-id of the operator directive / 👍-confirmed proposal in the PR thread (audit trail). */
+  evidence: string
+  /** GitHub login of the trusted reviewer/operator who directed or confirmed the exception. */
+  confirmed_by: string
+  /** ISO timestamp the override was recorded. */
+  at: string
+}
+
+/**
+ * A reviewer-confirmed request to promote a per-PR decision into a global
+ * rule (graduate it into `practices.md`). Bridges the per-PR
+ * {@link OperatorOverride} layer to the cross-component rule layer.
+ *
+ * Recorded when the review-response agent posts a graduation proposal (with a
+ * plain-language GIST of the proposed rule) and a trusted reviewer 👍-confirms
+ * it. The agent emits a `<!-- graduation-request ... -->` marker; the
+ * orchestrator persists it here with status `queued`. The next
+ * `pnpm orchestrate --graduate` pass picks queued requests up as
+ * pre-qualified, reviewer-cited candidates (graduate.ts criterion (b)) and the
+ * operator reviews the actual `practices.md` diff before committing — so the
+ * reviewer confirms INTENT and the operator confirms WORDING (two-stage).
+ *
+ * Triggers (see PROMPT-review-response.md §"Rule graduation"):
+ *  - `override-promotion`: an operator override was just applied + pushed, and
+ *    the agent asks whether to promote the exception into a rule.
+ *  - `reviewer-request`: a reviewer explicitly asked to change/introduce a rule.
+ *  - `recurring-override`: the same rule has been overridden on ≥2 PRs, so the
+ *    agent proactively proposes fixing the rule itself.
+ */
+export interface GraduationRequest {
+  /** The rule being changed (citation), or a short working title for a NEW rule. Dedup key. */
+  rule: string
+  /** Plain-language summary of the proposed rule text/change — what the reviewer approved. */
+  gist: string
+  /** Target doc for graduation. Default `practices.md` (graduate.ts's scope). */
+  target: string
+  /** Why this graduation was proposed. */
+  trigger: 'override-promotion' | 'reviewer-request' | 'recurring-override'
+  /** URL / comment-id of the 👍-confirmed graduation proposal in the PR thread. */
+  evidence: string
+  /** GitHub login of the trusted reviewer who confirmed graduating. */
+  confirmed_by: string
+  /** ISO timestamp the request was recorded. */
+  at: string
+  /** Lifecycle: `queued` until a --graduate pass consumes it, then `graduated`. */
+  status: 'queued' | 'graduated'
+}
+
 export interface ManifestItem {
   /** Manifest key (e.g. "Note", "query-builder/AutoComplete"). */
   readonly id: string
@@ -99,6 +178,19 @@ export interface ManifestItem {
   last_review_seen_at?: string | null
   /** Phase 3.5 — count of agent iterations driven by review feedback. */
   review_iterations?: number
+  /**
+   * Explicit operator/reviewer exceptions to documented rules on this PR,
+   * recorded so review-sweep audit passes never revert an operator-sanctioned
+   * change. Highest-authority carve-out — see {@link OperatorOverride}.
+   * Per-PR, so it lives per-variant; flat field mirrors the v1 variant.
+   */
+  operator_overrides?: readonly OperatorOverride[]
+  /**
+   * Reviewer-confirmed requests to promote a decision on this PR into a global
+   * rule. Consumed by `pnpm orchestrate --graduate`. See
+   * {@link GraduationRequest}. Per-PR origin; flat field mirrors v1.
+   */
+  graduation_requests?: readonly GraduationRequest[]
   // sweep_happo_reruns removed (v4 Step 4 strict Happo gate).
   /**
    * Phase 3.5 — Anthropic session ID generated at first migration
@@ -164,6 +256,14 @@ export interface VariantState {
   review_iter_failures?: number
   session_id?: string | null
   awaiting_ci_since?: string | null
+  /**
+   * Per-variant operator/reviewer rule-exceptions on this variant's PR.
+   * See {@link OperatorOverride}. Authoritative; flat ManifestItem field
+   * mirrors the v1 slot.
+   */
+  operator_overrides?: readonly OperatorOverride[]
+  /** Per-variant reviewer-confirmed graduation requests. See {@link GraduationRequest}. */
+  graduation_requests?: readonly GraduationRequest[]
 }
 
 /**
