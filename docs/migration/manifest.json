@@ -699,7 +699,7 @@
           "last_review_seen_at": "2026-06-08T23:07:26.781Z",
           "session_id": "fa9442a4-1911-45bf-956a-3914ba9bf7e5",
           "awaiting_ci_since": null,
-          "review_iterations": 2
+          "review_iterations": 3
         }
       },
       "escalation_reason": null,
@@ -707,7 +707,7 @@
       "last_review_seen_at": "2026-06-08T23:07:26.781Z",
       "session_id": "fa9442a4-1911-45bf-956a-3914ba9bf7e5",
       "awaiting_ci_since": null,
-      "review_iterations": 2
+      "review_iterations": 3
     },
     "Menu": {
       "tier": 1,
