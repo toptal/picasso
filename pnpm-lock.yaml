@@ -1597,9 +1597,6 @@ importers:
 
   packages/base/Grid:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-icons':
         specifier: workspace:*
         version: link:../Icons
