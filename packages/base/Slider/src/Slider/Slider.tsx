@@ -128,12 +128,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     [onChange]
   )
 
-  const resolvedValue = value ?? defaultValue
-  const valuesArr = Array.isArray(resolvedValue)
-    ? resolvedValue
-    : [resolvedValue]
-  const isRange = Array.isArray(resolvedValue)
-
   const marksList = useMemo(() => {
     if (!marks) {
       return []
@@ -148,16 +142,25 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     return list
   }, [marks, min, max, step])
 
-  const isMarkActive = (markValue: number): boolean => {
-    if (isRange) {
-      const [start, end] = valuesArr as number[]
+  // A mark's active state is derived from the slider's LIVE value, which we read
+  // from @base-ui/react's own state (`state.values`) at render time — see the
+  // <BaseUISlider.Control render> below. We deliberately avoid mirroring the value
+  // into React state (anti-pattern, see references/base-ui-styling.md §10) and
+  // avoid deriving it statically from `value ?? defaultValue` (which freezes marks
+  // and labels in uncontrolled mode).
+  const isMarkActive = (
+    markValue: number,
+    values: readonly number[]
+  ): boolean => {
+    if (values.length > 1) {
+      const [start, end] = values
 
       return (
         markValue >= Math.min(start, end) && markValue <= Math.max(start, end)
       )
     }
 
-    return markValue <= (valuesArr[0] ?? min)
+    return markValue <= (values[0] ?? min)
   }
 
   const thumbClassName = twJoin(
@@ -180,7 +183,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const handleThumbBlur: React.FocusEventHandler<HTMLInputElement> | undefined =
     onBlur as React.FocusEventHandler<HTMLInputElement> | undefined
 
-  const renderThumb = (index: number) => (
+  const renderThumb = (thumbValue: number, index: number) => (
     <BaseUISlider.Thumb
       key={index}
       index={index}
@@ -191,13 +194,13 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     >
       <SliderValueLabel
         index={index}
+        value={thumbValue}
         tooltip={isObserved ? tooltip : 'off'}
         onRender={handleValueLabelOnRender}
         yPlacement={isOnScreen ? 'top' : 'bottom'}
         isOverlaped={isPartiallyOverlapped}
-        ownerState={{ value: valuesArr[index] ?? 0 }}
       >
-        {formatTooltipValue(valuesArr[index] ?? 0, index, tooltipFormat)}
+        {formatTooltipValue(thumbValue, index, tooltipFormat)}
       </SliderValueLabel>
     </BaseUISlider.Thumb>
   )
@@ -223,40 +226,44 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         id={id}
         className='block cursor-pointer width-full relative'
       >
-        <BaseUISlider.Control className='block absolute inset-0 h-[15px]'>
-          <BaseUISlider.Track className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'>
-            <BaseUISlider.Indicator
-              className={twJoin(
-                'block h-[1px]',
-                disableTrackHighlight ? 'bg-gray-500' : 'bg-blue-500'
+        <BaseUISlider.Control
+          className='block absolute inset-0 h-[15px]'
+          // `render` exposes @base-ui/react's live state; `state.values` is the
+          // current value array (controlled or uncontrolled). Reading it here lets
+          // marks and value labels reflect the live value without a React-state
+          // mirror or a static `value ?? defaultValue` derivation.
+          render={(controlProps, { values }) => (
+            <div {...controlProps}>
+              <BaseUISlider.Track className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'>
+                <BaseUISlider.Indicator
+                  className={twJoin(
+                    'block h-[1px]',
+                    disableTrackHighlight ? 'bg-gray-500' : 'bg-blue-500'
+                  )}
+                />
+              </BaseUISlider.Track>
+
+              {marksList.map((markValue, idx) => {
+                const percent = ((markValue - min) / (max - min)) * 100
+
+                return (
+                  <SliderMark
+                    key={markValue}
+                    markActive={isMarkActive(markValue, values)}
+                    value={values[0]}
+                    style={{ left: `${percent}%` }}
+                    forceInactive={Boolean(disableTrackHighlight)}
+                    data-index={idx}
+                  />
+                )
+              })}
+
+              {values.map((thumbValue, index) =>
+                renderThumb(thumbValue, index)
               )}
-            />
-          </BaseUISlider.Track>
-
-          {marksList.map((markValue, idx) => {
-            const percent = ((markValue - min) / (max - min)) * 100
-
-            // Pass the controlled `value` prop unchanged so SliderMark's
-            // getBgColor can detect the undefined case (matches @mui/base's
-            // baseline behavior: an unset value renders all marks gray).
-            const ownerStateValue = (
-              Array.isArray(value) ? value[0] : value
-            ) as number
-
-            return (
-              <SliderMark
-                key={markValue}
-                markActive={isMarkActive(markValue)}
-                ownerState={{ value: ownerStateValue }}
-                style={{ left: `${percent}%` }}
-                forceInactive={Boolean(disableTrackHighlight)}
-                data-index={idx}
-              />
-            )
-          })}
-
-          {isRange ? [0, 1].map(renderThumb) : renderThumb(0)}
-        </BaseUISlider.Control>
+            </div>
+          )}
+        />
       </BaseUISlider.Root>
     </div>
   )

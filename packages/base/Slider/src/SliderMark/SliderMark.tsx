@@ -5,7 +5,7 @@ import { getBgColor } from '../utils'
 
 export type SliderMarkProps = {
   markActive: boolean
-  ownerState: { value: number }
+  value?: number
   style: React.CSSProperties
   'data-index': number
   forceInactive: boolean
@@ -15,7 +15,7 @@ export type SliderMarkProps = {
 // different bg color based on value of the Slider
 const SliderMark = ({
   markActive,
-  ownerState,
+  value,
   'data-index': dataIndex,
   style,
   forceInactive,
@@ -26,7 +26,7 @@ const SliderMark = ({
       style={style}
       className={twJoin(
         'absolute w-[9px] h-[9px] top-[3px] rounded-[50%] -translate-x-2/4 box-content',
-        getBgColor({ markActive, forceInactive, value: ownerState.value })
+        getBgColor({ markActive, forceInactive, value })
       )}
     />
   )

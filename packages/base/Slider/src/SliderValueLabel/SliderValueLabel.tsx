@@ -6,10 +6,15 @@ import { getXPlacement } from '../utils'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
-interface SliderValueLabelSlotProps {
+type SliderValueLabelProps = {
   children?: ReactNode
   index?: number
-  ownerState: { value: number }
+  value: number
+  tooltip: ValueLabelDisplay
+  yPlacement: 'top' | 'bottom'
+  /** indicates if there are two SliderValueLabels that overlap each other */
+  isOverlaped: boolean
+  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
 }
 
 const classesByTooltip: Record<ValueLabelDisplay, string> = {
@@ -34,18 +39,12 @@ const yPlacementClasses = {
 const SliderValueLabel = ({
   children,
   index = -1,
+  value,
   tooltip = 'off',
   onRender,
   yPlacement,
   isOverlaped,
-  ownerState: { value },
-}: SliderValueLabelSlotProps & {
-  tooltip: ValueLabelDisplay
-  yPlacement: 'top' | 'bottom'
-  /** indicates if there are two SliderValueLabels that overlap each other */
-  isOverlaped: boolean
-  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
-}) => {
+}: SliderValueLabelProps) => {
   const ref = useRef<HTMLSpanElement>(null)
 
   // we need to change the placement of the label if it is overlaped
