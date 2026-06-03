@@ -1861,9 +1861,6 @@ importers:
 
   packages/base/Menu:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-avatar':
         specifier: 7.0.0
         version: link:../Avatar
