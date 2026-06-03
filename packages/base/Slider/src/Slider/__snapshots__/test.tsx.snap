@@ -25,35 +25,35 @@ exports[`Slider renders 1`] = `
             data-orientation="horizontal"
             style="position: relative; height: inherit; inset-inline-start: 0; width: 0%;"
           />
-        </div>
-        <div
-          class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
-          data-index="0"
-          data-orientation="horizontal"
-          id="base-ui-:r1:"
-          role="slider"
-          style="position: absolute; inset-inline-start: 0%; top: 50%;"
-        >
-          <span
-            class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
+          <div
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 transition-shadow cursor-pointer"
+            data-index="0"
+            data-orientation="horizontal"
+            id="base-ui-:r1:"
+            role="slider"
+            style="position: absolute; inset-inline-start: 0%; top: 50%;"
           >
             <span
-              class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
+              class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
             >
-              0
+              <span
+                class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
+              >
+                0
+              </span>
             </span>
-          </span>
-          <input
-            aria-orientation="horizontal"
-            aria-valuenow="0"
-            id="base-ui-:r3:"
-            max="100"
-            min="0"
-            step="1"
-            style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
-            type="range"
-            value="0"
-          />
+            <input
+              aria-orientation="horizontal"
+              aria-valuenow="0"
+              id="base-ui-:r3:"
+              max="100"
+              min="0"
+              step="1"
+              style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+              type="range"
+              value="0"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -86,35 +86,35 @@ exports[`Slider with initial value 1`] = `
             data-orientation="horizontal"
             style="position: relative; height: inherit; inset-inline-start: 0; width: 4%;"
           />
-        </div>
-        <div
-          class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white contain-layout outline-0 transition-shadow cursor-pointer"
-          data-index="0"
-          data-orientation="horizontal"
-          id="base-ui-:r9:"
-          role="slider"
-          style="position: absolute; inset-inline-start: 4%; top: 50%;"
-        >
-          <span
-            class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
+          <div
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 transition-shadow cursor-pointer"
+            data-index="0"
+            data-orientation="horizontal"
+            id="base-ui-:r9:"
+            role="slider"
+            style="position: absolute; inset-inline-start: 4%; top: 50%;"
           >
             <span
-              class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
+              class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
             >
-              4
+              <span
+                class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
+              >
+                4
+              </span>
             </span>
-          </span>
-          <input
-            aria-orientation="horizontal"
-            aria-valuenow="4"
-            id="base-ui-:rb:"
-            max="100"
-            min="0"
-            step="1"
-            style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
-            type="range"
-            value="4"
-          />
+            <input
+              aria-orientation="horizontal"
+              aria-valuenow="4"
+              id="base-ui-:rb:"
+              max="100"
+              min="0"
+              step="1"
+              style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+              type="range"
+              value="4"
+            />
+          </div>
         </div>
       </div>
     </div>

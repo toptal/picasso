@@ -166,7 +166,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[19px] h-[19px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    'contain-layout',
+    // No `contain-layout`/`transform-gpu` needed: @base-ui/react sets
+    // `translate: -50% -50%` on the thumb (kept via rung -1), which already
+    // establishes the containing block that sizes the nested `position: fixed`
+    // range <input> to the thumb instead of the viewport.
     'outline-0 transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
@@ -218,6 +221,11 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         min={min}
         max={max}
         step={step}
+        // @base-ui/react defaults thumbCollisionBehavior to 'push' (thumbs shove
+        // each other and stay merged). '@mui/base' swapped thumbs when dragged
+        // past each other, so 'swap' preserves the prior range-slider behaviour
+        // (drag one thumb through the other and the range re-separates).
+        thumbCollisionBehavior='swap'
         disabled={disabled}
         data-testid={dataTestid}
         data-private={dataPrivate}
@@ -226,44 +234,45 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         id={id}
         className='block cursor-pointer width-full relative'
       >
-        <BaseUISlider.Control
-          className='block absolute inset-0 h-[15px]'
-          // `render` exposes @base-ui/react's live state; `state.values` is the
-          // current value array (controlled or uncontrolled). Reading it here lets
-          // marks and value labels reflect the live value without a React-state
-          // mirror or a static `value ?? defaultValue` derivation.
-          render={(controlProps, { values }) => (
-            <div {...controlProps}>
-              <BaseUISlider.Track className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'>
+        <BaseUISlider.Control className='block absolute inset-0 h-[15px]'>
+          {/* `render` exposes @base-ui/react's live state; `state.values` is the
+              current value array (controlled or uncontrolled). Reading it on Track
+              — which per @base-ui/react's anatomy wraps the Indicator, marks and
+              thumbs — lets marks and value labels reflect the live value without a
+              React-state mirror or a static `value ?? defaultValue` derivation. */}
+          <BaseUISlider.Track
+            className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'
+            render={(trackProps, { values }) => (
+              <div {...trackProps}>
                 <BaseUISlider.Indicator
                   className={twJoin(
                     'block h-[1px]',
                     disableTrackHighlight ? 'bg-gray-500' : 'bg-blue-500'
                   )}
                 />
-              </BaseUISlider.Track>
 
-              {marksList.map((markValue, idx) => {
-                const percent = ((markValue - min) / (max - min)) * 100
+                {marksList.map((markValue, idx) => {
+                  const percent = ((markValue - min) / (max - min)) * 100
 
-                return (
-                  <SliderMark
-                    key={markValue}
-                    markActive={isMarkActive(markValue, values)}
-                    value={values[0]}
-                    style={{ left: `${percent}%` }}
-                    forceInactive={Boolean(disableTrackHighlight)}
-                    data-index={idx}
-                  />
-                )
-              })}
+                  return (
+                    <SliderMark
+                      key={markValue}
+                      markActive={isMarkActive(markValue, values)}
+                      value={values[0]}
+                      style={{ left: `${percent}%` }}
+                      forceInactive={Boolean(disableTrackHighlight)}
+                      data-index={idx}
+                    />
+                  )
+                })}
 
-              {values.map((thumbValue, index) =>
-                renderThumb(thumbValue, index)
-              )}
-            </div>
-          )}
-        />
+                {values.map((thumbValue, index) =>
+                  renderThumb(thumbValue, index)
+                )}
+              </div>
+            )}
+          />
+        </BaseUISlider.Control>
       </BaseUISlider.Root>
     </div>
   )
