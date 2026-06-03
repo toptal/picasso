@@ -439,3 +439,21 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Changesets must be non-empty with the proper `'@toptal/<pkg>': patch|minor|major` frontmatter and a body explaining the change — empty stub changesets (like `.changeset/menu-migration.md`) get flagged; see `docs/contribution/changeset-guidelines.md` / `code-standards.md §Changeset conventions`.
 - When dropping a stale runtime dep declaration (e.g. `@mui/base`) as part of the migration, the changeset body must explicitly call out the dependency removal plus "Public API unchanged, behavioral parity preserved" so reviewers don't re-ask whether consumers are impacted.
 - Reference: https://github.com/toptal/picasso/pull/4989
+
+## Slider — 2026-06-03 (manual consolidation on #4976)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: manual takeover (consolidated the #4976 vedrani fork; harvested structural patterns from external PR #4986)
+- **A library default can change silently — exercise the interaction, not just the snapshot.** `@base-ui/react/slider` defaults `thumbCollisionBehavior='push'` (range thumbs shove together and stay merged as one dot); `@mui/base` swapped/crossed them. Set `thumbCollisionBehavior='swap'` to preserve. No prop rename flags it and a static render snapshot won't catch it — you only see it by dragging one thumb through the other.
+- **Derive marks/value-labels from the kit's LIVE value, not a mirror.** Read `state.values` via a function-of-state `render` on `Slider.Track`. A `useState` mirror is the §10 anti-pattern (doubled source of truth); a static `value ?? defaultValue` freezes marks/labels in uncontrolled mode. Component-level hooks that can't reach part state (Slider's `useLabelOverlap`) necessarily stay on the controlled `value` — a known limit, not a license to mirror.
+- **Canonical part nesting pays double.** Indicator + Thumb + custom marks nest inside `Slider.Track`. Keeping Base UI's native `translate: -50% -50%` on the thumb (rung -1) also establishes the containing block that sizes the `position: fixed` range `<input>` to the thumb — so no `transform-gpu` / `contain-layout` band-aid (v2 #4975 added `transform-gpu` only because it had killed the translate).
+- **Figma design-of-record divergence, recorded as approved-deltas.** The Slider spec moved off the `@mui/base` baseline (thumb 15→19px; rail solid vs `opacity-[0.24]`; mark 6px+border → 9px solid). Pre-authorized in `components/Slider.md §"Approved visual deltas"`. The `bg-color/alpha` rail technique is intentionally dropped because the spec is now a solid colour — design-of-record beats the parity trick.
+- **Modernize rewritten sub-components.** Dropped the vestigial `@mui/base` `ownerState: { value }` shape in `SliderMark` / `SliderValueLabel` for explicit `value` / `index` props (new code paths follow canonical rules per `design-patterns-addendum.md §3`).
+- Reference: https://github.com/toptal/picasso/pull/4976 (structural patterns cross-referenced from https://github.com/toptal/picasso/pull/4986)
+
+## Switch — 2026-06-03 (review iter 8)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 8
+- Base-ui form primitives (Switch, Checkbox, Radio) render a visually-hidden `<input>` sibling with `margin:-1px` that leaks 1px into layout — wrap the root in a `span` with `overflow-clip [overflow-clip-margin:Npx]` (margin sized to the largest focus-shadow ink) so layout pixel-parity matches master without clipping focus rings.
+- When base-ui replaces the slot system, port `slotProps.root.className` etc. by composing classes through `twMerge` (not `classnames`) so consumer `className` overrides component defaults — see `rules/styling.md §Tailwind class composition`.
+- Bridge base-ui's `onCheckedChange(checked, {event})` to the public `onChange(event, checked)` via `toReactChangeEvent` and keep state selectors as `data-[checked]` / `data-[disabled]` / `data-[unchecked]` (not `.base--checked`) — see `rules/api-preservation.md` and `rules/base-ui-react-api-crib.md`.
+- Reference: https://github.com/toptal/picasso/pull/4965

@@ -224,7 +224,7 @@
     "Switch": {
       "tier": 0,
       "package": "packages/base/Switch",
-      "status": "needs_human",
+      "status": "awaiting_review",
       "depends_on": [
         "FormLabel"
       ],
@@ -236,28 +236,30 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
-      "review_iterations": 6,
-      "escalation_reason": "review-iter loop stuck on deterministic gate stages: . Latest agent attempt has been pushed to the PR for visibility. Worktree left dirty for operator inspection.",
+      "review_iterations": 9,
+      "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-      "last_review_seen_at": "2026-05-30T09:54:53.479Z",
-      "session_id": "e6583181-4f22-42d3-8dcd-41fa11ed87c8",
+      "last_review_seen_at": "2026-06-03T14:06:58.731Z",
+      "session_id": "2db1db50-d114-41a1-bb6a-5f0151b99314",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "needs_human",
+          "status": "awaiting_review",
           "pr": "https://github.com/toptal/picasso/pull/4965",
           "branch": "migrate-Switch-v1",
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
           "iterations": 1,
           "merged_at": null,
-          "review_iterations": 6,
-          "escalation_reason": "review-iter loop stuck on deterministic gate stages: . Latest agent attempt has been pushed to the PR for visibility. Worktree left dirty for operator inspection.",
+          "review_iterations": 9,
+          "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-          "last_review_seen_at": "2026-05-30T09:54:53.479Z",
-          "session_id": "e6583181-4f22-42d3-8dcd-41fa11ed87c8",
-          "awaiting_ci_since": null
+          "last_review_seen_at": "2026-06-03T14:06:58.731Z",
+          "session_id": "2db1db50-d114-41a1-bb6a-5f0151b99314",
+          "awaiting_ci_since": null,
+          "operator_overrides": []
         }
-      }
+      },
+      "operator_overrides": []
     },
     "Tabs": {
       "tier": 0,

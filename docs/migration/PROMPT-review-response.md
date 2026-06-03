@@ -140,6 +140,26 @@ For any styling-override request, run this before deciding HIGH:
 
 Canonical case study: Slider PR #4975 (v2) accumulated `'![translate:none]'` + `'!absolute'` across 4 iters defending legacy `-mt-[7px] -ml-[6px]`. PR #4976 (vedrani fork) removed BOTH the overrides AND the legacy margins together in commit `4f5951f`; the resulting sub-pixel Happo diff was classified as approved-delta. See `references/base-ui-styling.md` §7.1 rung -1 + worked example.
 
+## Reviewer-supplied Figma link → design-of-record divergence (2026-06-03)
+
+This is the **mirror image** of the override-pressure cases above. There, you *resist* an override that defends a legacy approximation (rung -1). Here, a reviewer points you at a **new** design value — and you adopt it.
+
+Visual parity with the `@mui/base` baseline is the **default** target; you do NOT go hunting Figma unprompted. But the legacy baseline encodes the OLD design, and the current Figma spec may have moved on. So:
+
+- **When a trusted reviewer supplies a Figma link AND flags a visual mismatch** (rail colour, thumb size, spacing, etc. differs from what shipped), treat that Figma node as the **design-of-record**. Diverging from legacy parity to match it is **EXPECTED and HIGH-confidence** — edit to match Figma, reply. The reviewer's link is the authorization; don't propose-and-wait, and don't defend parity by citing the baseline.
+- **Record the delta so it isn't re-flagged as a Happo regression.** State the change + the Figma reference in your reply, and emit an approved-delta request so the orchestrator/operator persists it into `components/<X>.md §"Approved visual deltas"` (per-item docs are orchestrator-owned — same governance as graduation: don't hand-edit them from the PR worktree, flag them):
+
+  ```
+  > 🤖 _Orchestrator agent (autonomous review-response)_
+
+  Done — rail is now solid `bg-gray-500` to match the Figma spec you linked.
+
+  <!-- approved-delta component="Slider" delta="rail: solid bg-gray-500 (was opacity-[0.24])" figma="https://www.figma.com/design/…?node-id=319-12959" evidence="https://github.com/toptal/picasso/pull/4976#discussion_r…" -->
+  ```
+
+- **Distinguish from the override gate:** matching a reviewer-cited Figma value by adjusting the COMPONENT (size/colour/spacing token) is fine and HIGH-confidence. Reaching for `!important` or a rung-5 inline `style` to defeat a Base UI internal is still gated by §"Styling-override gating" regardless of the Figma link. Match the design via tokens/classes, not overrides.
+- If the reviewer references Figma **without** a link, or you can't tell which value is authoritative, stay MEDIUM — ask for the link/node so you cite the right source in the approved-delta record.
+
 ## Decision matrix per comment
 
 For every comment from a HUMAN reviewer (skip bots like `changeset-bot`, `github-actions`), choose ONE response posture:

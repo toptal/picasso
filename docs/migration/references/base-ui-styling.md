@@ -787,6 +787,7 @@ Consumer usage:
 | Replace a `<button>` slot with `<div>` via `render` and forget `nativeButton={false}` | Base UI keeps emitting button-keyboard handling | Always pair tag swap with `nativeButton={false}` on button-default parts |
 | Wrap `render` in a non-forwarding custom component | Refs and accessibility silently break | `React.forwardRef` (React 18) or accept `ref` as prop (React 19); spread props onto DOM |
 | `useState` to mirror `data-open` and re-style | Doubles source of truth, races on transitions | Style with `data-[open]:` variants directly |
+| `useState` to mirror a kit-owned **value** (e.g. slider value) for derived UI, OR deriving it statically as `value ?? defaultValue` | Doubles the source of truth (the kit owns the value); the static form **freezes** the derived UI in *uncontrolled* mode (marks/labels stop tracking as you drag) | Read the live value from the part's function-of-state — `<Slider.Track render={(props, { values }) => …}>` — then compute marks/labels from `values` |
 | Fork a component to add an icon | Loses every future Base UI improvement | Render the icon as a child of the part |
 | Mix `dark:` variants and token-scoped colors in one component | Cognitively expensive to maintain | Pick one per component (tokens recommended for color) |
 | Reading Base UI state with hooks to compute classes | The state is already on the DOM as `data-*` | `data-[…]:` variants are cheaper and SSR-stable |
@@ -800,6 +801,7 @@ When adding a Base-UI-backed component, verify:
 - [ ] Default classes live in helper functions returning `string[]` (variants present, per `rules/styling.md`) or inline class strings (none).
 - [ ] All slots accept `className` and merge through `twMerge(cx(...))` with consumer `className` **last** (rightmost).
 - [ ] `data-*` state styling is used for state-driven visuals — no React state mirroring.
+- [ ] Kit-owned **values** that drive derived UI (slider marks, value labels) are read from the part's function-of-state (`state.values`), not mirrored into `useState` and not frozen as `value ?? defaultValue`.
 - [ ] Animation phases use `data-[starting-style]:` / `data-[ending-style]:` or keyframes on `data-open` / `data-closed`.
 - [ ] Wrapping components forward refs correctly (React 18: `forwardRef`; React 19: `ref` prop).
 - [ ] Tag swaps via `render` for button-default parts include `nativeButton={false}`.
