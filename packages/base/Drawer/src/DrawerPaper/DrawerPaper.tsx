@@ -9,33 +9,42 @@ interface PaperProps extends HTMLAttributes<HTMLDivElement> {
   anchor?: AnchorType
 }
 
+// Resting (open) position is `translate-*-0`; the off-screen position is
+// applied for the enter (`data-starting-style`) and exit (`data-ending-style`)
+// frames so @base-ui/react drives the slide transition the legacy Slide handled.
+const anchorClassName: Record<AnchorType, string> = {
+  left: 'left-0 right-auto translate-x-0 data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full',
+  right:
+    'left-auto right-0 translate-x-0 data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full',
+  top: 'top-0 bottom-auto left-0 right-0 h-auto max-h-full translate-y-0 data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full',
+  bottom:
+    'bottom-0 top-auto left-0 right-0 h-auto max-h-full translate-y-0 data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full',
+}
+
 const DrawerPaper = forwardRef(
   (
-    { children, anchor = 'right', className, style }: PaperProps,
+    { anchor = 'right', className, children, ...rest }: PaperProps,
     ref: Ref<HTMLDivElement>
   ) => {
     return (
       <Paper
-        style={style}
         ref={ref}
-        tabIndex={-1}
         elevation={16}
         className={twMerge(
-          className,
           'fixed top-0 h-full flex flex-col outline-0 z-drawer',
           'max-w-full overflow-y-auto webkit-overflow-scrolling-touch',
-          anchor === 'left' && 'left-0 right-auto',
-          anchor === 'right' && 'left-auto right-0',
-          anchor === 'top' &&
-            'bottom-auto top-0 left-0 right-0 h-auto max-h-full',
-          anchor === 'bottom' &&
-            'bottom-0 top-auto left-0 right-0 h-auto max-h-full'
+          'transition-transform ease-out duration-300',
+          anchorClassName[anchor],
+          className
         )}
+        {...rest}
       >
         {children}
       </Paper>
     )
   }
 )
+
+DrawerPaper.displayName = 'DrawerPaper'
 
 export default DrawerPaper

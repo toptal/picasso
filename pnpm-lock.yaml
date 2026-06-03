@@ -1252,15 +1252,9 @@ importers:
 
   packages/base/Drawer:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-backdrop':
-        specifier: 2.0.0
-        version: link:../Backdrop
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: 5.0.0
         version: link:../Button
@@ -1273,9 +1267,6 @@ importers:
       '@toptal/picasso-paper':
         specifier: 4.0.5
         version: link:../Paper
-      '@toptal/picasso-slide':
-        specifier: 1.0.4
-        version: link:../Slide
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind

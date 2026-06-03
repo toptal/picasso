@@ -1,12 +1,10 @@
 import React, { useRef } from 'react'
-import { Modal } from '@mui/base/Modal'
+import { Drawer as BaseUIDrawer } from '@base-ui/react/drawer'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
-import { Slide } from '@toptal/picasso-slide'
-import { Backdrop } from '@toptal/picasso-backdrop'
 import { Container } from '@toptal/picasso-container'
 import {
   useIsomorphicLayoutEffect,
@@ -33,7 +31,7 @@ export interface Props extends BaseProps {
   onClose?: () => void
   /** Width of Drawer */
   width?: WidthType
-  /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
+  /** Animation lifecycle callbacks. `onExited` fires after the close animation completes; `timeout` (in ms) overrides the slide duration. */
   transitionProps?: TransitionProps
   /** enable Drawer to maintain body scroll lock */
   maintainBodyScrollLock?: boolean
@@ -51,12 +49,23 @@ const widthClassName: Record<WidthType, string> = {
   wide: 'w-[60rem]',
 }
 
-const oppositeDirection = {
-  left: 'right',
-  right: 'left',
-  top: 'down',
-  bottom: 'up',
-} as const
+// @base-ui/react drawer dismisses by swiping toward the anchored edge.
+const swipeDirectionByAnchor: Record<AnchorType, 'up' | 'down' | 'left' | 'right'> = {
+  left: 'left',
+  right: 'right',
+  top: 'up',
+  bottom: 'down',
+}
+
+const getTransitionDuration = (
+  timeout: TransitionProps['timeout']
+): number | undefined => {
+  if (typeof timeout === 'number') {
+    return timeout
+  }
+
+  return timeout?.enter ?? timeout?.appear
+}
 
 export const Drawer = ({
   anchor = 'right',
@@ -80,7 +89,7 @@ export const Drawer = ({
   } = props
   const { setHasDrawer } = useDrawer()
   const container = usePicassoRoot()
-  const ref = useRef<HTMLDivElement>(null)
+  const popupRef = useRef<HTMLDivElement>(null)
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
@@ -94,46 +103,38 @@ export const Drawer = ({
     return cleanup
   }, [open, setHasDrawer])
 
-  const handleOnClose = () => {
-    if (onClose) {
-      onClose()
-    }
-  }
+  const transitionDuration = getTransitionDuration(transitionProps?.timeout)
+  const popupStyle: CSSProperties | undefined =
+    transitionDuration != null
+      ? { ...style, transitionDuration: `${transitionDuration}ms` }
+      : style
 
-  const backdropProps = { invisible: transparentBackdrop }
-
-  return (
-    <Modal
-      open={open}
-      ref={ref}
-      className={twMerge(
-        className,
-        'z-drawer inset-0',
-        !disableBackdrop && 'fixed'
+  const overlay = (
+    <>
+      {!disableBackdrop && (
+        <BaseUIDrawer.Backdrop
+          className={twMerge(
+            'z-drawer fixed inset-0 bg-black transition-opacity duration-300',
+            'data-[starting-style]:opacity-0 data-[ending-style]:opacity-0',
+            transparentBackdrop ? 'bg-black/0' : 'bg-black/50'
+          )}
+        />
       )}
-      slots={{
-        backdrop: disableBackdrop ? undefined : Backdrop,
-      }}
-      slotProps={{
-        backdrop: backdropProps,
-      }}
-      data-testid={testId}
-      data-private={dataPrivate}
-      style={style}
-      closeAfterTransition
-      onClose={handleOnClose}
-      disablePortal={disablePortal}
-      container={container}
-      disableScrollLock
-      disableEscapeKeyDown={false}
-    >
-      <Slide
-        in={open}
-        direction={oppositeDirection[anchor]}
-        timeout={transitionProps?.timeout}
-        onExited={transitionProps?.onExited}
+      <BaseUIDrawer.Viewport
+        className={twMerge('z-drawer', !disableBackdrop && 'fixed inset-0')}
       >
-        <DrawerPaper anchor={anchor}>
+        <BaseUIDrawer.Popup
+          ref={popupRef}
+          render={
+            <DrawerPaper
+              anchor={anchor}
+              className={className}
+              style={popupStyle}
+              data-testid={testId}
+              data-private={dataPrivate}
+            />
+          }
+        >
           <Container
             flex
             direction='column'
@@ -149,14 +150,41 @@ export const Drawer = ({
             <ButtonCircular
               variant='flat'
               icon={<CloseMinor16 />}
-              onClick={handleOnClose}
+              onClick={() => onClose?.()}
               className='absolute right-6 top-4'
               aria-label='Close drawer'
             />
           </Container>
-        </DrawerPaper>
-      </Slide>
-    </Modal>
+        </BaseUIDrawer.Popup>
+      </BaseUIDrawer.Viewport>
+    </>
+  )
+
+  return (
+    <BaseUIDrawer.Root
+      open={open}
+      modal='trap-focus'
+      disablePointerDismissal={disableBackdrop}
+      swipeDirection={swipeDirectionByAnchor[anchor]}
+      onOpenChange={nextOpen => {
+        if (!nextOpen) {
+          onClose?.()
+        }
+      }}
+      onOpenChangeComplete={nextOpen => {
+        if (!nextOpen && popupRef.current) {
+          transitionProps?.onExited?.(popupRef.current)
+        }
+      }}
+    >
+      {disablePortal ? (
+        overlay
+      ) : (
+        <BaseUIDrawer.Portal container={container}>
+          {overlay}
+        </BaseUIDrawer.Portal>
+      )}
+    </BaseUIDrawer.Root>
   )
 }
 
