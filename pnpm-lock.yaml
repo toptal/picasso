@@ -1560,9 +1560,6 @@ importers:
 
   packages/base/FormLayout:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -1588,9 +1585,6 @@ importers:
 
   packages/base/Grid:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
@@ -1858,9 +1852,6 @@ importers:
 
   packages/base/Menu:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-avatar':
         specifier: 7.0.0
         version: link:../Avatar
@@ -1959,9 +1950,6 @@ importers:
 
   packages/base/ModalContext:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1

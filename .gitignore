@@ -58,11 +58,16 @@ migration-runs
 /baseline--*.png
 /scripts/diff-happo.js
 **/__tests__/pixel-diff*.test.ts
-
-# Orchestrator scratch the agent's `git add -A` step would otherwise sweep
-# into the PR. `.tmp-payload.json` is an orchestrator temp file written at the
-# worktree root; `docs/migration/*-diff.json` are prop-surface diffs the
-# orchestrator reads from disk to build the PR description — metadata, not PR
-# source (see docs/migration/rules/api-preservation.md).
+# Flat scratch dir the Happo-stalemate prompt now points the agent at, plus the
+# prefix-named computed-style dumps the old suffix globs above missed (the exact
+# files reviewers flagged in PR #4965 Switch: `.scratch-pngdiff.py`,
+# `computed-styles-local.json`). The orchestrator stray-guard also self-appends
+# here when it strips a novel scratch file.
+/.scratch/
+/.scratch-*
+/computed-styles-*.json
 /.tmp-payload.json
-/docs/migration/*-diff.json
+/docs/migration/Button-diff.json
+/patches/@base-ui__utils@0.2.8.patch
+/computed-styles-local.json
+/docs/migration/Switch-diff.json
