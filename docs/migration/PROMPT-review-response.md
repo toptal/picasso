@@ -229,7 +229,7 @@ Action:
 2. **Never silently disagree** — if you decline a suggestion, explain why and offer an alternative.
 3. **Re-read the entire thread before responding** — your past replies are part of the context. The reviewer's reactions on those replies signal direction.
 4. **NEVER reply to your own past replies.** Identify them by the `> 🤖 _Orchestrator agent` header at the top of body. The orchestrator pre-filters them out of the "new comments" list, but if you fetch from gh directly, treat orchestrator-headered comments as YOURS — skip them as targets for new replies. They're context, not new feedback.
-5. **For pending proposals (your past asks ending in "👍 to confirm"):** check for reactions BEFORE posting any new reply. Use `gh api "repos/<owner>/<repo>/pulls/comments/<your-comment-id>/reactions"`. If a human reviewer (not yourself) has reacted with 👍 / +1 / heart / hooray / rocket → that's confirmation → ACT on the proposal now. If 👎 / -1 → post brief "Ok, leaving as-is." closure under that thread. If neither → no-op, wait for next tick.
+5. **For pending proposals (any past reply of yours that asks for a 👍 — "👍 to confirm", "Want me to…? 👍", etc.):** check for reactions BEFORE posting any new reply. Use `gh api "repos/<owner>/<repo>/pulls/comments/<your-comment-id>/reactions"`. If 👍 / +1 / heart / hooray / rocket from a trusted human — **a reviewer (OWNER/MEMBER/COLLABORATOR) OR the operator's own gh account** (see the recipe note below) — → that's confirmation → ACT on the proposal now. If 👎 / -1 → post brief "Ok, leaving as-is." closure under that thread. If neither (or only an untrusted/unknown account reacted) → no-op, wait for next tick.
 6. **Bot comments (changeset-bot, github-actions, dependabot)** — skip. They aren't human review.
 7. **Empty-body reviews with no line comments** — skip (probably pure approval/request-changes signal that the orchestrator already classified at the wrapper level).
 8. **If after 3 round-trips you and the reviewer can't converge** — stop replying. The orchestrator will detect stalemate and escalate to the human operator.
@@ -243,11 +243,15 @@ gh api "repos/<owner>/<repo>/pulls/<pr-number>/comments" --jq '[.[] | select(.bo
 # Step 2: for each ID, fetch reactions
 gh api "repos/<owner>/<repo>/pulls/comments/<comment-id>/reactions" --jq '[.[] | {content, user: .user.login}]'
 
-# Step 3: filter to reactions from human reviewers (not your own gh user;
-# self-reactions don't count as confirmation)
+# Step 3: count reactions from trusted humans — a reviewer (OWNER/MEMBER/
+# COLLABORATOR) OR the operator's OWN gh account. The orchestrator runs gh as
+# the operator and NEVER adds reactions programmatically, so a 👍 on your own
+# login is the operator hand-confirming and DOES count. (This reverses the old
+# "ignore self-reactions" rule, which wrongly stranded the operator's 👍 — see
+# Slider PR #4976.) Ignore bot reactions and reactions from untrusted accounts.
 ```
 
-If you find a 👍 from someone OTHER than the gh-authenticated user (yourself) on a proposal you posted, treat that as HIGH confidence: act on the proposal, then post a brief acknowledgment ("Done — applied the SlottedProps refactor in <commit>.") in-thread.
+If you find a 👍 from any trusted human — a reviewer OR the operator's own gh account (the orchestrator never self-reacts, so a 👍 on your login is the operator confirming) — on a proposal you posted, treat that as HIGH confidence: act on the proposal, then post a brief acknowledgment ("Done — applied the SlottedProps refactor.") in-thread.
 
 ## Mandatory reply formatting
 

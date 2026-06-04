@@ -138,6 +138,35 @@ function isTrustedReviewer(review: RawReview): boolean {
   return TRUSTED_REVIEW_ASSOCIATIONS.has(assoc)
 }
 
+// Orchestrator-reply + pending-proposal detection. Shared by the
+// conversational sweep (which computes `pendingProposals`) and the
+// needs_human re-engagement check, so both agree on what an outstanding
+// proposal awaiting a 👍 looks like.
+//
+// `isPendingProposalBody` was broadened (2026-06-04) from the original literal
+// `/👍 to confirm/i`, which silently missed off-template phrasings — e.g.
+// Slider PR #4976's "...set a min-width on the label? 👍" (trailing 👍, no "to
+// confirm"). That proposal was never recognized as pending, so the operator's
+// confirming 👍 was never picked up. Now: an orchestrator reply that contains
+// a 👍 AND either solicits a "confirm" or poses a question counts as pending.
+const ORCH_REPLY_HEADER_RE = /^>\s*🤖\s*_Orchestrator agent/i
+
+function isOrchestratorReplyBody(body: string | undefined): boolean {
+  return !!body && ORCH_REPLY_HEADER_RE.test(body)
+}
+
+function isPendingProposalBody(body: string | undefined): boolean {
+  if (!body || !/👍/.test(body)) {
+    return false
+  }
+
+  return /\bconfirm/i.test(body) || body.includes('?')
+}
+
+// Reaction `content` values that signal a human "yes, do it" confirmation.
+// 👎/-1 is a rejection; laugh/confused/eyes are ambiguous → neither counts.
+const CONFIRMING_REACTIONS = new Set(['+1', 'heart', 'hooray', 'rocket'])
+
 // Operator-override markers (2026-06-01). The review-response agent embeds
 // these HTML comments in its PR reply when it acts on (or holds for) an
 // operator-sanctioned exception to a documented rule. They render invisible
@@ -6444,6 +6473,150 @@ async function runPostMergeHook(
 }
 
 /**
+ * Fetch a gh API list endpoint with `--paginate` and a streaming `--jq` that
+ * emits one JSON object per line (NDJSON); returns the parsed rows. Mirrors
+ * the line-comments fetch in `gh.fetchReviews`. Non-fatal: returns [] on any
+ * gh failure or parse error so a transient API blip can't wedge the sweep.
+ */
+async function ghApiNdjson(
+  apiPath: string,
+  jq: string,
+  cwd: string
+): Promise<Record<string, unknown>[]> {
+  const res = await shell('gh', ['api', '--paginate', apiPath, '--jq', jq], {
+    cwd,
+  }).catch(() => null)
+
+  if (!res || res.exitCode !== 0 || !res.stdout.trim()) {
+    return []
+  }
+  try {
+    return res.stdout
+      .split('\n')
+      .filter(line => line.trim() !== '')
+      .map(line => JSON.parse(line) as Record<string, unknown>)
+  } catch (_err) {
+    return []
+  }
+}
+
+/**
+ * Is there a confirming reaction (+1/heart/hooray/rocket), created after
+ * `sinceMs`, from a non-bot user, on one of the agent's pending-proposal
+ * comments? Checks BOTH issue comments and line (review) comments — a proposal
+ * can live in either. Loose WAKE trigger only: it does NOT adjudicate whose
+ * reaction is authoritative (operator vs trusted reviewer) — the conversational
+ * sweep re-reads the thread and makes that call. Bounded cost: per-comment
+ * reactions are fetched only for orchestrator proposals already reporting
+ * total_count > 0. Returns a short reason for the log, or null.
+ */
+async function freshConfirmingReactionReason(
+  owner: string,
+  repo: string,
+  prNumber: string,
+  cwd: string,
+  sinceMs: number
+): Promise<string | null> {
+  const base = `repos/${owner}/${repo}`
+  const endpoints = [
+    {
+      list: `${base}/issues/${prNumber}/comments`,
+      reactions: `${base}/issues/comments`,
+    },
+    {
+      list: `${base}/pulls/${prNumber}/comments`,
+      reactions: `${base}/pulls/comments`,
+    },
+  ]
+
+  for (const ep of endpoints) {
+    const comments = await ghApiNdjson(
+      ep.list,
+      '.[] | { id: .id, body: .body, reactions: .reactions.total_count }',
+      cwd
+    )
+    const proposals = comments.filter(
+      c =>
+        isPendingProposalBody(c.body as string | undefined) &&
+        Number(c.reactions ?? 0) > 0
+    )
+
+    for (const p of proposals) {
+      const reactions = await ghApiNdjson(
+        `${ep.reactions}/${String(p.id)}/reactions`,
+        '.[] | { content: .content, login: .user.login, at: .created_at }',
+        cwd
+      )
+      const hit = reactions.find(rx => {
+        const at = Date.parse((rx.at as string) ?? '')
+        const login = (rx.login as string) ?? ''
+
+        return (
+          CONFIRMING_REACTIONS.has((rx.content as string) ?? '') &&
+          !Number.isNaN(at) &&
+          at > sinceMs &&
+          !!login &&
+          !BOT_LOGIN_PATTERN.test(login)
+        )
+      })
+
+      if (hit) {
+        return `${String(hit.content)} from ${String(hit.login)}`
+      }
+    }
+  }
+
+  return null
+}
+
+/**
+ * Detect fresh reviewer activity on a non-swept PR that should re-engage the
+ * agent: a new trusted comment, or a confirming reaction on a pending
+ * proposal — anything newer than the `since` watermark. Cheap + agent-free.
+ * Returns a short reason for the log, or null when there's nothing fresh.
+ */
+async function detectReengagement(
+  prUrl: string,
+  cwd: string,
+  since: string | null | undefined
+): Promise<string | null> {
+  const parsed = since ? Date.parse(since) : 0
+  const sinceMs = Number.isNaN(parsed) ? 0 : parsed
+
+  // 1. New trusted reviewer comment (reuses the sweep's own fetch path).
+  const reviews = await gh
+    .fetchReviews(prUrl, cwd)
+    .catch(() => [] as RawReview[])
+  const newComment = reviews.find(r => {
+    if (isOrchestratorReplyBody(r.body) || !isTrustedReviewer(r)) {
+      return false
+    }
+    const at = Date.parse(r.at ?? '')
+
+    return !Number.isNaN(at) && at > sinceMs
+  })
+
+  if (newComment) {
+    return `new comment from ${newComment.author || '?'}`
+  }
+
+  // 2. Fresh confirming reaction on a pending proposal.
+  const prMatch = /github\.com\/([^/]+)\/([^/]+)\/pull\/(\d+)/.exec(prUrl)
+
+  if (!prMatch) {
+    return null
+  }
+
+  return freshConfirmingReactionReason(
+    prMatch[1],
+    prMatch[2],
+    prMatch[3],
+    cwd,
+    sinceMs
+  )
+}
+
+/**
  * Reconcile items the sweep deliberately does NOT walk — `needs_human` and
  * `blocked` — against their PR's real terminal state. Those statuses are
  * excluded from the sweep loop (we must not re-engage the agent on them), but
@@ -6454,9 +6627,20 @@ async function runPostMergeHook(
  * 2026-05-29, operator-merged 2026-05-30, but the sweep's MERGED→done check
  * never ran because needs_human items aren't swept).
  *
- * Cheap + agent-free: one `gh pr view` per stuck item, no worktree (gh
- * resolves by URL). Returns the count transitioned; caller syncs Confluence
- * when it's > 0.
+ * Also (2026-06-04) the inverse direction: a `needs_human` PR that's still
+ * OPEN but has fresh reviewer activity (a new trusted comment, or a confirming
+ * 👍 on a pending proposal) is flipped BACK to `awaiting_review` so the agent
+ * re-engages instead of staying parked. The operator asked for this directly:
+ * new comments/reactions should re-engage regardless of needs_human. The
+ * watermark is left untouched so the conversational sweep sees the activity as
+ * new; oscillation is bounded because that sweep advances the watermark past
+ * the triggering comment/reaction. `blocked` is intentionally NOT re-engaged
+ * (its PR is closed).
+ *
+ * Cheap + agent-free: a `gh pr view` per stuck item (plus a few comment/
+ * reaction reads for needs_human re-engagement checks), no worktree (gh
+ * resolves by URL). Returns counts; caller syncs Confluence on reconciled > 0
+ * and re-reads the manifest on reengaged > 0.
  */
 async function reconcileStuckPRs(
   m: Manifest,
@@ -6464,8 +6648,9 @@ async function reconcileStuckPRs(
   manifestAbs: string,
   rootDir: string,
   workflow: Workflow
-): Promise<number> {
+): Promise<{ reconciled: number; reengaged: number }> {
   let reconciled = 0
+  let reengaged = 0
 
   for (const item of Object.values(m.components)) {
     if (opts.component && item.id !== opts.component) {
@@ -6513,11 +6698,35 @@ async function reconcileStuckPRs(
           `${item.id}: was needs_human but PR is CLOSED — reconciled to blocked`
         )
         reconciled += 1
+      } else if (prState?.state === 'OPEN' && state.status === 'needs_human') {
+        // Inverse reconciliation: fresh reviewer activity on a parked PR
+        // re-arms the sweep. Flip to awaiting_review (clear escalation, reset
+        // the per-tick agent-failure budget); leave last_review_seen_at so the
+        // conversational sweep treats the comment/reaction as new and acts.
+        const reason = await detectReengagement(
+          state.pr as string,
+          rootDir,
+          state.last_review_seen_at
+        )
+
+        if (!reason) {
+          continue
+        }
+        manifest.updateVariant(manifestAbs, item.id, variantId, {
+          status: 'awaiting_review',
+          escalation_reason: null,
+          review_iter_failures: 0,
+        })
+        log(
+          'sweep',
+          `${item.id}: needs_human → awaiting_review — fresh reviewer activity (${reason})`
+        )
+        reengaged += 1
       }
     }
   }
 
-  return reconciled
+  return { reconciled, reengaged }
 }
 
 export async function runReviewSweep(
@@ -6546,7 +6755,7 @@ export async function runReviewSweep(
   // won't walk (needs_human / blocked) can still have had their PR merged or
   // closed by the operator. Catch those so a shipped PR doesn't stay red in
   // the manifest + Confluence. Agent-free; see reconcileStuckPRs.
-  const reconciledCount = await reconcileStuckPRs(
+  const { reconciled, reengaged } = await reconcileStuckPRs(
     m,
     opts,
     manifestAbs,
@@ -6554,13 +6763,25 @@ export async function runReviewSweep(
     workflow
   )
 
-  if (reconciledCount > 0) {
+  if (reconciled > 0) {
     log(
       'sweep',
-      `reconciled ${reconciledCount} non-swept item(s) against merged/closed PRs`
+      `reconciled ${reconciled} non-swept item(s) against merged/closed PRs`
     )
     await syncConfluence(manifestAbs)
   }
+
+  if (reengaged > 0) {
+    log(
+      'sweep',
+      `re-engaged ${reengaged} needs_human item(s) on fresh reviewer activity → awaiting_review`
+    )
+  }
+
+  // When re-engagement flipped items back to awaiting_review, re-read the
+  // manifest so the candidate scan below sees the fresh state and sweeps them
+  // THIS tick — reconcileStuckPRs writes to disk, not to the in-memory `m`.
+  const sweepManifest = reengaged > 0 ? manifest.read(manifestAbs) : m
 
   // Sweep candidates: enumerate every (component, variant) tuple whose
   // variant-state is in a sweepable status with a real PR. Pre-Part-4
@@ -6576,7 +6797,7 @@ export async function runReviewSweep(
   }
   const candidates: SweepTarget[] = []
 
-  for (const item of Object.values(m.components)) {
+  for (const item of Object.values(sweepManifest.components)) {
     // Component filter — when `--component=X` is passed alongside
     // `--review-sweep`, focus the sweep on a single component instead of
     // walking every sweepable item. Useful for targeted iteration when
@@ -7035,21 +7256,22 @@ async function sweepOne(
   // clock skew between the client (orchestrator's `nowIso()`) and GitHub's
   // server timestamps — if local clock lags, agent replies could slip
   // through and be re-processed. The header check is a deterministic backup.
-  // Pattern matches the protocol's mandatory `> 🤖 _Orchestrator agent` header.
-  const ORCH_HEADER_PATTERN = /^>\s*🤖\s*_Orchestrator agent/i
-  const PROPOSAL_PATTERN = /👍\s*to confirm/i
-  const isOrchestratorReply = (body: string | undefined): boolean =>
-    !!body && ORCH_HEADER_PATTERN.test(body)
+  // Self-filter via the shared `> 🤖 _Orchestrator agent` header detector
+  // (see `isOrchestratorReplyBody`).
   const orchestratorReplies = allReviews.filter(r =>
-    isOrchestratorReply(r.body)
+    isOrchestratorReplyBody(r.body)
   )
-  const externalReviews = allReviews.filter(r => !isOrchestratorReply(r.body))
+  const externalReviews = allReviews.filter(
+    r => !isOrchestratorReplyBody(r.body)
+  )
 
-  // Pending proposals — orchestrator replies that explicitly ask for 👍
-  // confirmation (MEDIUM-confidence path). On next sweep, the agent should
-  // re-read these and check for confirming reactions/replies.
+  // Pending proposals — orchestrator replies that ask for a 👍 confirmation
+  // (MEDIUM-confidence path). On next sweep, the agent re-reads these and
+  // checks for confirming reactions/replies. Detection is body-shape based
+  // (see `isPendingProposalBody`), NOT a literal "👍 to confirm" — the latter
+  // missed off-template phrasings and stranded confirmed proposals (#4976).
   const pendingProposals = orchestratorReplies.filter(r =>
-    PROPOSAL_PATTERN.test(r.body ?? '')
+    isPendingProposalBody(r.body)
   )
 
   // Operator-override locks (2026-06-01). Parse override-lock / -unlock
@@ -8577,18 +8799,73 @@ async function sweepOne(
   // Outcome 2: loop stuck (same deterministic-failure set two iters in a
   // row). Agent isn't making progress within this tick. Push the latest
   // attempt (so PR matches agent's replies + CI provides independent
-  // verdict), then escalate to needs_human.
+  // verdict), then escalate.
   if (convergence === 'stuck' && lastGateReport) {
-    const stuckFailures = lastGateReport.stages
+    const stuckStages = lastGateReport.stages
       .filter(s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name))
       .map(s => s.name)
-      .join(', ')
+    const stuckFailures = stuckStages.join(', ')
     const pushResult = await pushPendingCommit('stuck')
     const pushNote = pushResult.pushed
       ? 'Latest agent attempt has been pushed to the PR for visibility.'
       : pushResult.reason
       ? `Note: ${pushResult.reason}.`
       : ''
+
+    // Happo-only carve-out — parity with the migrate CI-loop (see its
+    // `allHappo` stuck branch). When the ONLY stuck deterministic
+    // stage is `happo`, the diffs need a designer's visual judgment, not
+    // operator intervention on orchestrator state: they're either intentional
+    // migration deltas (designer accepts in the Happo UI), environmental
+    // drift (accepts), or a real regression the agent couldn't fix (rejects
+    // → sweep re-engages the agent on the status flip). All three resolve via
+    // `awaiting_review`, NOT `needs_human` — which the sweep skips entirely
+    // (the sweepable predicate excludes it). Empirical motivation: Slider PR
+    // #4976 (2026-06-04) — the agent correctly left the 8 Happo diffs as the
+    // pre-authorized Figma deltas, but this stuck path still escalated to
+    // needs_human, freezing the PR's autonomous review-response (the
+    // operator's 👍 on a pending proposal was never picked up because
+    // needs_human items aren't swept).
+    const happoOnly =
+      stuckStages.length > 0 &&
+      stuckStages.every(name => name.toLowerCase().includes('happo'))
+
+    if (happoOnly) {
+      const designerPing = [
+        '🎨 **Visual regression — designer review needed**',
+        '',
+        `Agent iterated on the review feedback but the Happo visual diff(s) persist (\`${stuckFailures}\`) with no source fix that clears them.`,
+        '',
+        'Accept the diffs in the Happo UI if they are the intended migration deltas, or reject to re-engage the agent on the next sweep.',
+      ].join('\n')
+
+      try {
+        await gh.commentPR(prUrl, designerPing, rootDir)
+      } catch (e) {
+        log(
+          'sweep',
+          `${item.id}: Happo designer-review comment failed (non-fatal): ${
+            (e as Error).message
+          }`
+        )
+      }
+
+      updateForVariant({
+        status: 'awaiting_review',
+        escalation_reason: null,
+        last_review_seen_at: nowIso,
+      })
+      log(
+        'sweep',
+        `${
+          item.id
+        }: review-iter loop stuck on Happo-only diffs → awaiting_review (designer review)${
+          pushResult.pushed ? '; pushed latest attempt' : ''
+        }`
+      )
+
+      return
+    }
 
     updateForVariant({
       status: 'needs_human',

@@ -481,3 +481,11 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Visual parity must be validated in Storybook against the published PR preview (e.g. modal trigger buttons in `--modal#sizes`) before marking iter 1 done — class/structure drift from collapsing `Backdrop` + `Fade` wrappers into `Dialog.Backdrop`/`Dialog.Popup` silently broke sibling spacing that snapshots didn't catch.
 - When swapping dialog primitives, audit every behavioral default the legacy stack overrode (`disableEnforceFocus`, `disableScrollLock`, `closeAfterTransition`, backdrop-click routing) and re-pin the @base-ui/react equivalents (`modal={false}`, `disablePointerDismissal`, manual `event.target === event.currentTarget` click routing) — silent default changes are the dominant reviewer-flagged regression class.
 - Reference: https://github.com/toptal/picasso/pull/4993
+
+## Notification — 2026-06-04
+
+- Tier 1 · target_path: `none` · iterations: 3
+- Replace residual type-only imports from `@material-ui/core` (e.g. `SnackbarOrigin`) with a locally declared structural type at the point of use — keeps the dep off `dependencies`/peer surface without changing runtime behavior, and is cheaper than threading a shared type through `picasso-shared`.
+- Bundle the `react` peer widening to `>=16.12.0` (drop the `< 19.0.0` upper bound) into every migration's `package.json` sweep — same peer-policy fix lessons-learned called out for Drawer, applies to any package whose peer block still carries the legacy ceiling.
+- Even when `classes`-drop audit shows 0 internal/external usage (Tier 1 vestigial), the changeset must be `major` with the breaking surface explicitly named — removing `classes` from the public type is the breaking change, regardless of the runtime backstop noted in `references/design-patterns-addendum.md`.
+- Reference: https://github.com/toptal/picasso/pull/4995
