@@ -71,3 +71,9 @@ migration-runs
 /patches/@base-ui__utils@0.2.8.patch
 /computed-styles-local.json
 /docs/migration/Switch-diff.json
+/baseline--components-slider--slider--full-1280.png
+/baseline--components-slider--slider--tooltip-section.png
+/baseline--components-slider--slider.png
+/local--components-slider--slider--default.png
+/local--components-slider--slider--full-1280.png
+/local--components-slider--slider--tooltip-section.png
