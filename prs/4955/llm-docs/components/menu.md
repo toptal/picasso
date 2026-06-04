@@ -17,9 +17,10 @@ Menu list.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| menu | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Adds an arrow to the item |
+| as | `ElementType<any>` | `li` | Component name to render the item as |
 | disabled | `boolean` | - | Whether to render disabled item |
 | disableGutters | `boolean` | - | Whether to render without internal padding |
+| menu | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Adds an arrow to the item |
 | selected | `boolean` | - | Highlights the item as selected |
 | checkmarked | `boolean` | - | Checkmarks the item |
 | value | `string \| number \| readonly string[]` | - | Value of the item |
