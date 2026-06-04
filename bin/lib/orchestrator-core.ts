@@ -5027,12 +5027,25 @@ async function countAgentToolUses(
  * unrelated to the in-progress worktree, so any verification against
  * it is meaningless.
  *
- * Heuristic: scan the agent log for the substring
- * `toptal.github.io/picasso/prs/` — it appears inside the URL field
- * of any browser_navigate input that targets the preview. False
- * positives are unlikely (the substring is specific) but tolerable —
- * the failure message points the agent at the right hostname rather
- * than blocking the run hard.
+ * Match ONLY genuine `browser_navigate` tool calls whose `url` field targets
+ * the preview — NOT every occurrence of the substring. The bare substring
+ * `toptal.github.io/picasso/prs/` also appears in two innocent places that a
+ * raw scan wrongly counted as navigations:
+ *   1. The prompt's OWN anti-preview guidance, which quotes the URL as the
+ *      thing NOT to do ("If you find yourself about to navigate to
+ *      `toptal.github.io/picasso/prs/...`, STOP").
+ *   2. This checklist's prior-iter failure message — which contains the
+ *      substring — echoed back into the resumed session log on the next iter.
+ * Because (2) re-injects the token the detector greps for, the substring
+ * version was a SELF-PERPETUATING false positive: once it fired it could
+ * never clear, producing an unclearable Layer A hard failure that the
+ * gate=PASS stuck-detector escalated under a bogus `audit:` key (Drawer v2,
+ * 2026-06-03 — 0 real navigations across all 4 iters, detector reported
+ * 3/1/1/1; even iter 1's matches were the prompt guidance, not a nav).
+ *
+ * The tool call is serialized in the stream-json agent log as
+ * `"name":"mcp__playwright__browser_navigate","input":{"url":"<URL>"}`;
+ * we require that exact shape with the preview host inside the url.
  */
 async function countNavigationsToDeployedPreview(
   logPath: string
@@ -5041,7 +5054,9 @@ async function countNavigationsToDeployedPreview(
     return 0
   }
   const body = await fs.readFile(logPath, 'utf8')
-  const matches = body.match(/toptal\.github\.io\/picasso\/prs\//g)
+  const matches = body.match(
+    /"name":\s*"mcp__playwright__browser_navigate"\s*,\s*"input":\s*\{\s*"url":\s*"[^"]*toptal\.github\.io\/picasso\/prs\//g
+  )
 
   return matches ? matches.length : 0
 }
@@ -5182,6 +5197,165 @@ async function relocateScreenshotsFromWorktree(
   } catch {
     return moved
   }
+}
+
+/**
+ * Collect every path an agent plausibly wrote `pr-description.md` to, so the
+ * orchestrator can normalize it to the one location the toolchain reads.
+ *
+ * Sources, most-authoritative first:
+ *   1. `<runDir>/pr-description.md` — the orchestrator run dir, the narrative's
+ *      natural home next to prompt.N.txt / audit.N.md, and where the Drawer v2
+ *      run's agent actually landed it (iter 2).
+ *   2. A bounded sweep over `migration-runs/<this-month>*\/{<id>,<id>-<variant>}/`
+ *      under BOTH the operator repo root and the worktree — covers the observed
+ *      variance: the variant-suffixed dir (`Drawer-v2/`, iter 2) and a UTC date
+ *      rollover mid-run (`2026-06-04/`, iter 4).
+ */
+async function collectPrDescriptionCandidates(args: {
+  rootDir: string
+  runDir: string
+  worktreePath: string
+  runDate: string
+  itemId: string
+  variant: string
+}): Promise<string[]> {
+  const { rootDir, runDir, worktreePath, runDate, itemId, variant } = args
+  const yearMonth = runDate.slice(0, 7)
+  const compDirs = [itemId, `${itemId}-${variant}`]
+  const candidates = [path.join(runDir, 'pr-description.md')]
+
+  for (const searchRoot of [rootDir, worktreePath]) {
+    const runsRoot = path.join(searchRoot, 'migration-runs')
+
+    if (!existsSync(runsRoot)) {
+      continue
+    }
+
+    let dateDirs: string[] = []
+
+    try {
+      dateDirs = await fs.readdir(runsRoot)
+    } catch {
+      dateDirs = []
+    }
+
+    for (const dateDir of dateDirs) {
+      if (!dateDir.startsWith(yearMonth)) {
+        continue
+      }
+
+      for (const compDir of compDirs) {
+        candidates.push(
+          path.join(runsRoot, dateDir, compDir, 'pr-description.md')
+        )
+      }
+    }
+  }
+
+  return candidates
+}
+
+/**
+ * Of the given paths, return the one that exists and was modified most
+ * recently (a later iter's rewrite supersedes an earlier one). Null if none
+ * exist.
+ */
+async function freshestExistingFile(
+  paths: readonly string[]
+): Promise<string | null> {
+  let best: string | null = null
+  let bestMtime = -1
+
+  for (const candidate of paths) {
+    if (!existsSync(candidate)) {
+      continue
+    }
+
+    let mtime = -1
+
+    try {
+      mtime = (await fs.stat(candidate)).mtimeMs
+    } catch {
+      continue
+    }
+
+    if (mtime >= bestMtime) {
+      bestMtime = mtime
+      best = candidate
+    }
+  }
+
+  return best
+}
+
+/**
+ * Place the agent-authored PR description at the ONE canonical path the rest
+ * of the toolchain reads:
+ *   `<worktree>/migration-runs/<runDate>/<itemId>/pr-description.md`
+ * — exactly what `bin/migration-diff.sh report` prepends to the PR body (it
+ * `cd`s to the worktree root and uses bare COMPONENT + MIGRATION_RUN_DATE),
+ * and exactly what the Layer A checklist globs.
+ *
+ * Why this is needed: the prompt's path is worktree-relative, and the agent's
+ * cwd IS the worktree — so a relative write would land correctly. But agents
+ * empirically resolve it to an ABSOLUTE path in the operator repo (where they
+ * can see the sibling run artifacts) and waver on the dir name (`<id>` vs
+ * `<id>-<variant>`) and the date (a post-midnight UTC rollover). On the Drawer
+ * v2 run (2026-06-03) the narrative was written three times to three different
+ * main-repo paths, none of them canonical, so the Layer A check reported
+ * "PR description missing" on every iteration — a false-negative no agent
+ * action could clear, which the gate=PASS stuck-detector then escalated under
+ * a (misleading) `audit:` key. Mirrors `relocateScreenshotsFromWorktree`: go
+ * find what the agent wrote and put it where the toolchain looks.
+ *
+ * Returns the source it copied from, the canonical path if the agent already
+ * wrote there, or null if no description was authored at all.
+ */
+async function normalizePrDescription(args: {
+  rootDir: string
+  runDir: string
+  worktreePath: string
+  runDate: string
+  itemId: string
+  variant: string
+}): Promise<string | null> {
+  const canonical = path.join(
+    args.worktreePath,
+    'migration-runs',
+    args.runDate,
+    args.itemId,
+    'pr-description.md'
+  )
+
+  if (existsSync(canonical)) {
+    return canonical
+  }
+
+  const candidates = await collectPrDescriptionCandidates(args)
+  const source = await freshestExistingFile(
+    candidates.filter(candidate => candidate !== canonical)
+  )
+
+  if (source === null) {
+    return null
+  }
+
+  try {
+    await fs.mkdir(path.dirname(canonical), { recursive: true })
+    await fs.copyFile(source, canonical)
+  } catch {
+    return null
+  }
+
+  log(
+    'loop',
+    `normalized pr-description.md → canonical worktree path (from ${
+      path.relative(args.rootDir, source) || source
+    })`
+  )
+
+  return source
 }
 
 /**
@@ -5937,6 +6111,17 @@ async function escalate(
     iterations: state.iterations,
   })
 
+  // Report from the variant's OWN slot — NOT the flat `item.*` fields. For v2+
+  // runs the flat fields hold a different variant's data (updateVariant
+  // intentionally doesn't mirror non-v1 variants to flat), so reading
+  // `item.pr` / `item.worktree` here surfaced STALE cross-variant values:
+  // the Drawer v2 escalation block reported v1's PR #4966 and the 2026-05-18
+  // v1 worktree, and worse, would have posted the escalation comment onto v1's
+  // PR. Re-read post-write so the status/reason/iterations just written show up
+  // alongside the pr/worktree/branch set earlier in this run.
+  const freshItem = manifest.read(manifestPath).components[item.id] ?? item
+  const vState = manifest.getVariantState(freshItem, variant)
+
   // Emit an escalation block to the run dir.
   //
   // 2026-05-19 fix: prior path was `migration-runs/<date>/<item.id>/escalation.md`,
@@ -5957,8 +6142,8 @@ async function escalate(
     '',
     `**Trigger:** ${reason}`,
     `**Iterations:** ${state.iterations} / 3`,
-    `**PR:** ${item.pr ?? '(not opened)'}`,
-    `**Worktree:** \`${item.worktree ?? '(removed)'}\``,
+    `**PR:** ${vState.pr ?? '(not opened)'}`,
+    `**Worktree:** \`${vState.worktree ?? '(removed)'}\``,
     `**Last gate report:** \`${state.lastGate?.reportPath ?? '(none)'}\``,
     '',
     'See `docs/migration/references/escalation.md` for the full handoff procedure.',
@@ -5968,9 +6153,9 @@ async function escalate(
   await fs.mkdir(escDir, { recursive: true })
   await fs.writeFile(escPath, block, 'utf8')
 
-  if (item.pr) {
+  if (vState.pr) {
     try {
-      await gh.commentPR(item.pr, block, rootDir)
+      await gh.commentPR(vState.pr, block, rootDir)
     } catch (e) {
       log(
         'escalate',
@@ -8770,6 +8955,13 @@ export async function run(
     // documented procedure (practices.md §"Computed-style diff is
     // authoritative" + §"@base-ui/react idioms" specificity ladder).
     let lastMigrateStuckKey: string | null = null
+    // 2026-06-04: accurate fingerprint of the checklist (Layer A process +
+    // audit HIGH) failures, for the gate=PASS + lingering-checklist stuck path.
+    // Previously that path keyed on a blanket `audit:${lastAuditKey}` even when
+    // the only failures were Layer A process steps — misreporting the cause AND
+    // (since the key never reflected the changing Layer A set) hiding genuine
+    // progress from stuck-detection (Drawer v2, 2026-06-03).
+    let lastChecklistFailureKey = ''
     // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
     // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
     // keeps the full canonical-prompt + rules + per-item-plan context from
@@ -8885,6 +9077,22 @@ export async function run(
         continue
       }
 
+      // 2026-06-04: normalize the agent's PR description to the one path the
+      // checklist + post-pass `migration-diff.sh report` (the PR body) read.
+      // The agent writes it to absolute operator-repo paths with a varying
+      // dir name / date (see normalizePrDescription); without this the Layer A
+      // "PR description present" check is a permanent false-negative that the
+      // gate=PASS stuck-detector escalates as a bogus `audit:` key (Drawer v2,
+      // 2026-06-03 — escalated after 4 iters, narrative written but never found).
+      await normalizePrDescription({
+        rootDir,
+        runDir,
+        worktreePath: wtPath,
+        runDate,
+        itemId: item.id,
+        variant: opts.variant,
+      })
+
       // 2026-05-20: pre-gate checklist enforcement (Layer A mechanical +
       // Layer B LLM-judgment). Verifies the agent followed mandatory
       // PROCESS steps (changeset, Playwright, build:package) AND that
@@ -8971,6 +9179,39 @@ export async function run(
           }
         }
         lastAuditKey = checklistResult.auditKey
+
+        // Fingerprint the hard failures for stuck-detection (used by the
+        // gate=PASS path below). Layer A (process) failures are fingerprinted
+        // here — normalizing volatile counts (e.g. "1 time(s)") so the same
+        // failure across iters keys identically — while audit HIGH is already
+        // covered by auditKey. Labeled `process:` / `audit:` so the escalation
+        // reason names the real cause instead of a blanket `audit:`.
+        const processFailures = checklistResult.failures.filter(
+          f => !f.startsWith('Audit (')
+        )
+        const processKey = processFailures
+          .map(f =>
+            f
+              .replace(/\d+/g, '#')
+              .replace(/\s+/g, ' ')
+              .trim()
+              .slice(0, 80)
+              .toLowerCase()
+          )
+          .sort()
+          .join('|')
+        const checklistKeyParts = [
+          processKey !== '' ? `process:${processKey}` : '',
+          checklistResult.auditKey !== ''
+            ? `audit:${checklistResult.auditKey}`
+            : '',
+        ].filter(Boolean)
+
+        lastChecklistFailureKey =
+          checklistKeyParts.length > 0
+            ? checklistKeyParts.join('|')
+            : 'checklist'
+
         pendingChecklistFeedback =
           sections.length > 0 ? sections.join('\n\n---\n\n') : null
       } catch (err) {
@@ -9215,17 +9456,20 @@ export async function run(
         .sort()
         .join('|')
 
-      // 2026-05-22: extend failure key to include critic audit content
-      // when gate passed but critic flagged hard failures (the new
-      // gate=PASS + iter-continue path). Without this, two consecutive
-      // gate=PASS iters with DIFFERENT critic violations both produce
-      // empty gate-failure-keys → stuck-detection falsely fires.
-      // Observed Slider v2 2026-05-22 after critic-aware loop exit
-      // landed: iter 1 had 2 audit HIGH violations, iter 2 fixed one
-      // (real progress), but stuck-detection saw `"" === ""` → escalated.
+      // 2026-05-22: when the gate passes but the critic still flags hard
+      // failures (the gate=PASS + iter-continue path), key on the checklist
+      // failures instead of the (empty) gate key — otherwise two gate=PASS
+      // iters with DIFFERENT violations both produce empty keys → false stuck
+      // detection (Slider v2 2026-05-22: iter 1 had 2 audit HIGH, iter 2 fixed
+      // one — real progress — but stuck-detection saw `"" === ""` → escalated).
+      // 2026-06-04: use `lastChecklistFailureKey` (process: + audit: parts)
+      // rather than a blanket `audit:${lastAuditKey}`. The old form mislabeled
+      // Layer-A-only stalls as `audit:` AND, with no audit findings, collapsed
+      // to a constant `audit:` that masked a changing Layer A failure set as
+      // "stuck" (Drawer v2, 2026-06-03 escalated on phantom Layer A checks).
       const currentFailureKey =
         gateFailureKey === '' && pendingChecklistFeedback !== null
-          ? `audit:${lastAuditKey ?? 'no-audit-key'}`
+          ? lastChecklistFailureKey || 'checklist'
           : gateFailureKey
 
       // Transient happo:ERROR (upload propagation race) doesn't count
@@ -9260,13 +9504,21 @@ export async function run(
             } more iters`
           )
 
+          // Name the real cause: a `process:`/`audit:` key means the gate
+          // PASSED and the stall is in the checklist, not a gate stage.
+          const stuckOn =
+            currentFailureKey.startsWith('process:') ||
+            currentFailureKey.startsWith('audit:')
+              ? 'process-checklist / audit findings'
+              : 'deterministic gate stages'
+
           return escalate(
             workflow,
             item,
             state,
             {
               shouldEscalate: true,
-              reason: `migrate-loop stuck on deterministic gate stages: ${currentFailureKey} (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.`,
+              reason: `migrate-loop stuck on ${stuckOn}: ${currentFailureKey} (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.`,
             },
             manifestAbs,
             rootDir,

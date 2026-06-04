@@ -457,3 +457,11 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - When base-ui replaces the slot system, port `slotProps.root.className` etc. by composing classes through `twMerge` (not `classnames`) so consumer `className` overrides component defaults — see `rules/styling.md §Tailwind class composition`.
 - Bridge base-ui's `onCheckedChange(checked, {event})` to the public `onChange(event, checked)` via `toReactChangeEvent` and keep state selectors as `data-[checked]` / `data-[disabled]` / `data-[unchecked]` (not `.base--checked`) — see `rules/api-preservation.md` and `rules/base-ui-react-api-crib.md`.
 - Reference: https://github.com/toptal/picasso/pull/4965
+
+## Modal — 2026-06-04
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 3
+- Changeset filename must be exactly `<component>-migration.md` (orchestrator-expected) — if a differently-named changeset already landed, add an empty frontmatter-only `<component>-migration.md` with a "Superseded by …" body so the expected file is present without producing a duplicate changelog entry.
+- Drop Picasso's internal animation/backdrop wrappers (`@toptal/picasso-fade`, `@toptal/picasso-backdrop`) along with `@mui/base` from `dependencies`, lift the `react` peer to `>=16.12.0`, and let base-ui primitives drive open/close with `data-[starting-style]:` / `data-[ending-style]:` Tailwind variants — see `rules/base-ui-react-api-crib.md` for the parts mapping.
+- Un-ignore any `/patches/@base-ui__*.patch` in `.gitignore` when adopting `@base-ui/react` — pnpm's `patchedDependencies` reference fails CI installs on consumer packages if the patch file is git-ignored.
+- Reference: https://github.com/toptal/picasso/pull/4993
