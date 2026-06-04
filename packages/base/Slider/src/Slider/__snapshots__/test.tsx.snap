@@ -3,20 +3,20 @@
 exports[`Slider renders 1`] = `
 <div>
   <div
-    class="my-[6px] mx-0"
+    class="mb-[4px] mt-[5px] mx-0 h-[15px]"
   >
     <div
-      class="block w-full relative py-[6px] -my"
+      class="block cursor-pointer width-full relative"
       data-orientation="horizontal"
       id="base-ui-:r0:"
       role="group"
     >
       <div
-        class="block w-full relative cursor-pointer py-[6px] -my"
+        class="block absolute inset-0 h-[15px]"
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] mb-[-1px] rounded-none bg-gray"
+          class="block w-full h-[1px] top-[7px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -26,17 +26,15 @@ exports[`Slider renders 1`] = `
             style="position: relative; height: inherit; inset-inline-start: 0; width: 0%;"
           />
           <div
-            aria-valuemax="100"
-            aria-valuemin="0"
-            aria-valuenow="0"
-            class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[-6px] ![translate:none] !top-[-7px] [&_input]:!absolute [&_input]:!w-px [&_input]:!h-px [&_input]:!top-auto [&_input]:!left-auto"
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 transition-shadow cursor-pointer"
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r1:"
+            role="slider"
             style="position: absolute; inset-inline-start: 0%; top: 50%;"
           >
             <span
-              class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)]"
+              class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
             >
               <span
                 class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
@@ -66,20 +64,20 @@ exports[`Slider renders 1`] = `
 exports[`Slider with initial value 1`] = `
 <div>
   <div
-    class="my-[6px] mx-0"
+    class="mb-[4px] mt-[5px] mx-0 h-[15px]"
   >
     <div
-      class="block w-full relative py-[6px] -my"
+      class="block cursor-pointer width-full relative"
       data-orientation="horizontal"
       id="base-ui-:r8:"
       role="group"
     >
       <div
-        class="block w-full relative cursor-pointer py-[6px] -my"
+        class="block absolute inset-0 h-[15px]"
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] mb-[-1px] rounded-none bg-gray"
+          class="block w-full h-[1px] top-[7px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -89,17 +87,15 @@ exports[`Slider with initial value 1`] = `
             style="position: relative; height: inherit; inset-inline-start: 0; width: 4%;"
           />
           <div
-            aria-valuemax="100"
-            aria-valuemin="0"
-            aria-valuenow="4"
-            class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[-6px] ![translate:none] !top-[-7px] [&_input]:!absolute [&_input]:!w-px [&_input]:!h-px [&_input]:!top-auto [&_input]:!left-auto"
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 transition-shadow cursor-pointer"
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r9:"
+            role="slider"
             style="position: absolute; inset-inline-start: 4%; top: 50%;"
           >
             <span
-              class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)]"
+              class="absolute will-change transition-transform hidden bottom-[calc(100%+2px)] left-[calc(100%-13px)]"
             >
               <span
                 class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"

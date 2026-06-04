@@ -6,6 +6,17 @@ import { getXPlacement } from '../utils'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
+type SliderValueLabelProps = {
+  children?: ReactNode
+  index?: number
+  value: number
+  tooltip: ValueLabelDisplay
+  yPlacement: 'top' | 'bottom'
+  /** indicates if there are two SliderValueLabels that overlap each other */
+  isOverlaped: boolean
+  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
+}
+
 const classesByTooltip: Record<ValueLabelDisplay, string> = {
   off: 'hidden',
   // We need to use visibility: hidden instead of display: none to keep the
@@ -25,22 +36,11 @@ const yPlacementClasses = {
   top: 'bottom-[calc(100%+2px)]',
 } as const
 
-export type SliderValueLabelProps = {
-  children: ReactNode
-  index: number
-  value: number
-  tooltip: ValueLabelDisplay
-  yPlacement: 'top' | 'bottom'
-  /** indicates if there are two SliderValueLabels that overlap each other */
-  isOverlaped: boolean
-  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
-}
-
 const SliderValueLabel = ({
   children,
-  index,
+  index = -1,
   value,
-  tooltip,
+  tooltip = 'off',
   onRender,
   yPlacement,
   isOverlaped,
@@ -62,19 +62,9 @@ const SliderValueLabel = ({
       return
     }
 
-    const rect = ref.current.getBoundingClientRect()
-
-    // Skip when label is not yet laid out (tooltip='off' applies display:none on
-    // first render). A 0×0 rect would otherwise return leftBoundary < gap and
-    // stick the label at xPlacement='right' before the tooltip becomes visible,
-    // racing the parent's overlap detection on `tooltip='on'`.
-    if (rect.width === 0 && rect.height === 0) {
-      return
-    }
-
     setXPlacement(
       getXPlacement({
-        rect,
+        rect: ref.current.getBoundingClientRect(),
         isOverlaped: isOverlaped,
         isFirstLabel: index === 0,
         currentPlacement: xPlacement,

@@ -1,11 +1,19 @@
 ---
-'@toptal/picasso-slider': major
+'@toptal/picasso-slider': patch
 ---
 
 ### Slider
 
-- Migrate internals from @mui/base to @base-ui/react (behavioral parity)
-- Rebuild marks and value-label rendering on top of @base-ui/react's compound parts (Slider.Root + Slider.Control + Slider.Track + Slider.Indicator + Slider.Thumb)
-- Remove `@mui/base` peer dependency; add `@base-ui/react` peer dependency
-- React peer range lifted: upper bound dropped (`>=16.12.0 < 19.0.0` → `>=16.12.0`), enabling React 19 consumers
-- **DOM structure change**: the root element is now a `<div>` (was `<span>` in @mui/base). Nesting depth increases by two levels — all slider content now lives inside Control > Track wrappers rather than directly under the root. Snapshots that assert on the DOM tree will need updating.
+- Re-implement on `@base-ui/react/slider`; public API unchanged.
+
+## Intentional visual changes
+
+Slider now matches the current Figma design-of-record (diverged from the legacy
+`@mui/base` pixels). Pre-authorized in `docs/migration/components/Slider.md`
+§"Approved visual deltas":
+
+- Thumb diameter `15px` → `19px` (2px white border retained).
+- Rail fill: translucent `bg-gray-500` @ `opacity-[0.24]` → solid `bg-gray-500`.
+- Disabled track (under `disableTrackHighlight`): `bg-gray-200` → `bg-gray-500`.
+- Mark: `6px` + 2px white border → `9px` solid fill, no border.
+- Container vertical rhythm: `my-[6px]` → `mt-[5px] mb-[4px]` + `h-[15px]`.
