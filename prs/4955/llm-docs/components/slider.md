@@ -12,7 +12,7 @@ Slider is used to pick a numeric value from the predefined range
 | max | `number` | `100` | Maximum slider value |
 | value | `number \| number[]` | - | Controlled value of the component |
 | defaultValue | `number \| number[]` | `0` | The default value. Use when the component is not controlled |
-| step | `number` | - | Step for the thumb movement |
+| step | `number` | `1` | Step for the thumb movement |
 | marks | `boolean` | - | Whether marks are shown or not |
 | disabled | `boolean` | - | Whether component is disabled or not |
 | tooltip | `"on" \| "auto" \| "off"` | `off` | Controls when tooltip is displayed: - **auto** the value tooltip will display when the thumb is hovered or focused. - **on** will display persistently. - **off** will never display |
