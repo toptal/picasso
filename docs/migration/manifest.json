@@ -145,6 +145,20 @@
           "session_id": "688b330c-8e07-41f4-a72c-7f894341a536",
           "awaiting_ci_since": null,
           "review_iterations": 9
+        },
+        "v2": {
+          "status": "needs_human",
+          "pr": null,
+          "branch": "migrate-Drawer-v2",
+          "worktree": "migration-runs/2026-06-03/Drawer-v2/worktree",
+          "iterations": 4,
+          "merged_at": null,
+          "escalation_reason": "migrate-loop stuck on deterministic gate stages: audit: (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.",
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "review_iterations": 0,
+          "session_id": null,
+          "awaiting_ci_since": null
         }
       },
       "review_iterations": 9
@@ -152,24 +166,38 @@
     "Modal": {
       "tier": 0,
       "package": "packages/base/Modal",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [
         "Backdrop"
       ],
       "target_path": "@base-ui/react/dialog",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4993",
+      "branch": "migrate-Modal-v1",
+      "worktree": "migration-runs/2026-06-04/Modal-v1/worktree",
+      "iterations": 3,
       "merged_at": null,
       "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
-      "last_ci_green_at": null,
+      "last_ci_green_at": "2026-06-04T07:51:04.997Z",
       "last_review_seen_at": null,
-      "session_id": null,
+      "session_id": "a73f86fe-de5a-466b-83ae-f2e5a415edd4",
       "awaiting_ci_since": null,
-      "variants": {}
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4993",
+          "branch": "migrate-Modal-v1",
+          "worktree": "migration-runs/2026-06-04/Modal-v1/worktree",
+          "iterations": 3,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": "2026-06-04T07:51:04.997Z",
+          "last_review_seen_at": null,
+          "session_id": "a73f86fe-de5a-466b-83ae-f2e5a415edd4",
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Slider": {
       "tier": 0,
@@ -218,6 +246,20 @@
           "review_iterations": 0,
           "session_id": null,
           "awaiting_ci_since": null
+        },
+        "vedrani": {
+          "status": "needs_human",
+          "pr": "https://github.com/toptal/picasso/pull/4976",
+          "branch": "migrate-Slider-vedrani",
+          "worktree": "migration-runs/2026-05-24/Slider-vedrani/worktree",
+          "iterations": 0,
+          "merged_at": null,
+          "escalation_reason": "review-iter loop stuck on deterministic gate stages: happo. Latest agent attempt has been pushed to the PR for visibility. Worktree left dirty for operator inspection.",
+          "last_ci_green_at": null,
+          "last_review_seen_at": "2026-06-03T15:36:34.384Z",
+          "review_iterations": 0,
+          "session_id": null,
+          "awaiting_ci_since": null
         }
       }
     },
@@ -236,11 +278,11 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
-      "review_iterations": 9,
+      "review_iterations": 10,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-      "last_review_seen_at": "2026-06-03T14:06:58.731Z",
-      "session_id": "2db1db50-d114-41a1-bb6a-5f0151b99314",
+      "last_review_seen_at": "2026-06-03T15:52:25.022Z",
+      "session_id": "94301e1c-f7fb-4b57-9d93-7ebce039977a",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -250,11 +292,11 @@
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
           "iterations": 1,
           "merged_at": null,
-          "review_iterations": 9,
+          "review_iterations": 10,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-          "last_review_seen_at": "2026-06-03T14:06:58.731Z",
-          "session_id": "2db1db50-d114-41a1-bb6a-5f0151b99314",
+          "last_review_seen_at": "2026-06-03T15:52:25.022Z",
+          "session_id": "94301e1c-f7fb-4b57-9d93-7ebce039977a",
           "awaiting_ci_since": null,
           "operator_overrides": []
         }
@@ -320,7 +362,7 @@
     "FormLayout": {
       "tier": 1,
       "package": "packages/base/FormLayout",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -328,16 +370,16 @@
       "branch": "migrate-FormLayout-v1",
       "worktree": "migration-runs/2026-05-30/FormLayout-v1/worktree",
       "iterations": 3,
-      "merged_at": null,
+      "merged_at": "2026-06-03T15:14:23Z",
       "notes": "Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4987",
           "branch": "migrate-FormLayout-v1",
           "worktree": "migration-runs/2026-05-30/FormLayout-v1/worktree",
           "iterations": 3,
-          "merged_at": null,
+          "merged_at": "2026-06-03T15:14:23Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-30T12:23:14.526Z",
           "last_review_seen_at": "2026-06-02T12:40:42.061Z",
@@ -356,7 +398,7 @@
     "ModalContext": {
       "tier": 1,
       "package": "packages/base/ModalContext",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -364,16 +406,16 @@
       "branch": "migrate-ModalContext-v1",
       "worktree": "migration-runs/2026-05-31/ModalContext-v1/worktree",
       "iterations": 4,
-      "merged_at": null,
+      "merged_at": "2026-06-03T13:44:23Z",
       "notes": "Already-clean source (~4 LOC). Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4990",
           "branch": "migrate-ModalContext-v1",
           "worktree": "migration-runs/2026-05-31/ModalContext-v1/worktree",
           "iterations": 4,
-          "merged_at": null,
+          "merged_at": "2026-06-03T13:44:23Z",
           "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": "2026-06-02T12:47:07.050Z",
@@ -535,7 +577,7 @@
     "Grid": {
       "tier": 1,
       "package": "packages/base/Grid",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -543,16 +585,16 @@
       "branch": "migrate-Grid-v1",
       "worktree": "migration-runs/2026-05-30/Grid-v1/worktree",
       "iterations": 10,
-      "merged_at": null,
+      "merged_at": "2026-06-03T09:05:51Z",
       "notes": "Type-only fix: replace `export type { GridSize } from '@material-ui/core/Grid'` with own GridSize literal type union.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4988",
           "branch": "migrate-Grid-v1",
           "worktree": "migration-runs/2026-05-30/Grid-v1/worktree",
           "iterations": 10,
-          "merged_at": null,
+          "merged_at": "2026-06-03T09:05:51Z",
           "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": "2026-06-02T12:53:52.331Z",
@@ -585,7 +627,7 @@
     "Menu": {
       "tier": 1,
       "package": "packages/base/Menu",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -593,16 +635,16 @@
       "branch": "migrate-Menu-v1",
       "worktree": "migration-runs/2026-05-30/Menu-v1/worktree",
       "iterations": 12,
-      "merged_at": null,
+      "merged_at": "2026-06-03T14:20:12Z",
       "notes": "Source already migrated (uses @toptal/picasso-popper + @toptal/picasso-paper). Only package.json cleanup: remove stale @mui/base declaration.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4989",
           "branch": "migrate-Menu-v1",
           "worktree": "migration-runs/2026-05-30/Menu-v1/worktree",
           "iterations": 12,
-          "merged_at": null,
+          "merged_at": "2026-06-03T14:20:12Z",
           "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": "2026-06-02T12:59:44.310Z",
