@@ -1,12 +1,12 @@
 import type { ReactNode, HTMLAttributes, ReactElement } from 'react'
 import React, { forwardRef, useContext } from 'react'
-import type { TabProps } from '@mui/base/Tab'
-import { Tab as MUITab } from '@mui/base/Tab'
+import { Tabs as BaseUITabs } from '@base-ui/react/tabs'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
+import type { TabsValueType } from '../Tabs/Tabs'
 import { TabsContext } from '../Tabs/Tabs'
 import { TabLabel } from '../TabLabel'
 import { TabDescription } from '../TabDescription'
@@ -22,7 +22,7 @@ export interface Props
   disabled?: boolean
 
   /** You can provide your own value. Otherwise, we fallback to the child position index */
-  value?: TabProps['value']
+  value?: TabsValueType
 
   /** The label element */
   label?: ReactNode
@@ -39,8 +39,8 @@ export interface Props
   // Properties below are managed by Tabs component
 
   selected?: boolean
-  onChange?: TabProps['onChange']
-  onClick?: TabProps['onClick']
+  onChange?: (event: React.SyntheticEvent | null, value: TabsValueType) => void
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const getOpacityClass = (
@@ -105,7 +105,13 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
     value,
     label,
     icon,
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    // @base-ui/react drives selection through Tabs.Root's value, so these
+    // @mui/base-era managed props have no Tab-level equivalent — omit them
+    // from the spread to keep them off the DOM.
     onChange,
+    selected,
+    /* eslint-enable */
     onClick,
     titleCase: propsTitleCase,
     description,
@@ -127,42 +133,29 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
   })
 
   return (
-    <MUITab
+    <BaseUITabs.Tab
       {...rest}
-      className=''
       ref={ref}
-      tabIndex={0}
       disabled={disabled}
       value={value}
-      onChange={onChange}
-      slotProps={{
-        root: ownerState => {
-          return {
-            className: twMerge(
-              getOpacityClass(
-                ownerState.selected,
-                ownerState.disabled,
-                orientation
-              ),
-              rootClassesByOrientation(ownerState.selected)[orientation],
-              classesByVariant[variant],
-              ownerState.disabled
-                ? 'cursor-default text-gray-500'
-                : 'cursor-pointer',
-              ownerState.disabled && 'pointer-events-none',
-              icon && isHorizontal && 'min-h-0 pr-6',
-              'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
-              'border-0 cursor-pointer inline-flex outline-hidden',
-              'items-center select-none align-middle appearance-none',
-              'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
-              'normal-case whitespace-normal leading-4',
-              'relative ',
-              className
-            ),
-            ...(onClick && { onClick }),
-          }
-        },
-      }}
+      onClick={onClick}
+      className={state =>
+        twMerge(
+          getOpacityClass(state.active, state.disabled, orientation),
+          rootClassesByOrientation(state.active)[orientation],
+          classesByVariant[variant],
+          state.disabled ? 'cursor-default text-gray-500' : 'cursor-pointer',
+          state.disabled && 'pointer-events-none',
+          icon && isHorizontal && 'min-h-0 pr-6',
+          'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
+          'border-0 cursor-pointer inline-flex outline-hidden',
+          'items-center select-none align-middle appearance-none',
+          'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
+          'normal-case whitespace-normal leading-4',
+          'relative ',
+          className
+        )
+      }
     >
       <span
         className={twJoin('w-full', wrapperClassesByOrientation[orientation])}
@@ -174,7 +167,7 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
           </span>
         )}
       </span>
-    </MUITab>
+    </BaseUITabs.Tab>
   )
 })
 
