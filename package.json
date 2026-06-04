@@ -131,7 +131,8 @@
       "styled-components"
     ],
     "patchedDependencies": {
-      "webpack@5.98.0": "patches/webpack@5.98.0.patch"
+      "webpack@5.98.0": "patches/webpack@5.98.0.patch",
+      "@base-ui/utils@0.2.8": "packages/base/Modal/patches/@base-ui__utils@0.2.8.patch"
     }
   },
   "devDependencies": {
