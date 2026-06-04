@@ -6,17 +6,22 @@ These rules are **non-negotiable** for migrated components. The agent must follo
 
 ## @base-ui/react v1 prescriptions (RULE)
 
-These three apply specifically to `@base-ui/react` v1 migrations (Tier 0). Background: `references/base-ui-styling.md` §3.5, §4.1, §7.
+These apply specifically to `@base-ui/react` v1 migrations (Tier 0). Background: `references/base-ui-styling.md` §3.5, §4.1, §7.1.
 
 - **State-driven styling uses `data-[…]:` Tailwind variants** (e.g., `data-[checked]:`, `data-[highlighted]:`, `data-[disabled]:`, `data-[popup-open]:`). The legacy `group-[.base--checked]:` / `group-[.base--disabled]:` form belongs to `@mui/base` v0 — do NOT introduce in v1 code. Pre-v1 components retain `base--*` selectors until their own migration.
 - **`nativeButton={false}` is mandatory** whenever you use `render` to swap a button-default Base UI part to a non-button element (anchor, custom wrapper, Next.js `<Link>`, etc.). Affected parts include Button, Menu.Trigger, Tabs.Tab, NumberField.Increment/Decrement, Toolbar.Button. Omitting it silently breaks keyboard accessibility.
-- **No `!important`.** If a Tailwind utility isn't winning, walk the override ladder instead: `className` → `data-[…]:` variant → inline `style` rung-0 (transforms / positions / CSS vars) → `render` wrapper. See `references/base-ui-styling.md` §3.5 and `code-standards.md` §"CSS specificity ladder for @base-ui/react overrides".
+- **No `!important`.** If a Tailwind utility isn't winning, walk the override-preference ladder per `references/base-ui-styling.md` §7.1: rung -1 (don't override) → rung 1 (`data-[…]:`) → rung 2 (`className` fn) → rung 3 (`render` prop, optionally filtering style) → rung 4 (`useRender`) → rung 5 (inline `style`). `!important` means a rung was skipped — usually rung -1.
+- **Override-pressure check.** If you're adding `style={{ translate / position / transform: … }}` to a Base UI part to match legacy visual byte-for-byte, STOP. Check whether the legacy was a hand-rolled approximation of what the new primitive does geometrically exactly (e.g., legacy `-mt-[7px] -ml-[6px]` was approximating half-of-15px-thumb; Base UI's `translate: -50% -50%` does this exactly). If yes — remove the legacy offsets entirely, accept the new geometry, propose the sub-pixel diff as "intentional improvement" per `references/happo-iteration.md`. Don't reflexively reach for rung 5 inline `style` when rung -1 is correct. See `references/base-ui-styling.md` §7.1 rung -1.
+- **Derive state-driven visuals from the kit, not a React mirror.** Style state with `data-[…]:` variants. For kit-owned **values** that drive derived UI (slider marks, value labels), read the live value from the part's function-of-state (`render={(props, state) => …}`) — NOT a `useState` mirror (doubled source of truth) and NOT a static `value ?? defaultValue` (freezes the derived UI in uncontrolled mode). See `references/base-ui-styling.md` §10 anti-patterns + §11 checklist.
 
 ## Composition
 
-- Always compose `className` via `cx(...)` (from `classnames`).
-- If multiple sources of class strings merge, wrap in `twMerge(cx(...))` from `@toptal/picasso-tailwind-merge`. The Button reference shows the canonical pattern.
-- **Class arrays (`string[]`)** returned from helper functions in `styles.ts` are the canonical "styles" shape. See `reference/Button-styles.ts`.
+- **Conditionals use `twMerge(cx({ ... }))`** — `cx` (from `classnames`) expresses conditional/variant classes (object syntax `cx({ 'm-0': expanded })` or short `cond && 'x'`), wrapped in `twMerge` (from `@toptal/picasso-tailwind-merge`) for Tailwind conflict-resolution. Prefer `cx` over scattering `&&`/ternary across `twMerge` args — readability over terseness. (`twMerge` itself does NOT accept clsx-object syntax — that's `cx`'s job.)
+- **Plain `twMerge('a', 'b', className)`** for simple concatenation with no branching.
+- **Consumer `className` is always LAST** in the `twMerge(...)` argument list — rightmost wins.
+- **`twJoin`** is re-exported from `@toptal/picasso-tailwind-merge` for concatenation without conflict-resolution.
+- **Class arrays (`string[]`)** from helper functions in `styles.ts` are a preferred (not required) shape for variant-driven classes. See `reference/Button-styles.ts`.
+- End-state (post-migration): conditionals consolidate as `twMerge(cx(...))` repo-wide. See `references/base-ui-styling.md §3.1`.
 
 ## What to avoid
 
@@ -27,11 +32,11 @@ These three apply specifically to `@base-ui/react` v1 migrations (Tier 0). Backg
 
 ## Conditionals
 
-Plain ternaries or Tailwind's data-attribute selectors:
+`cx` object-syntax wrapped in `twMerge`, or Tailwind's data-attribute selectors:
 
 ```tsx
-// Good
-className={cx({ 'm-0': expanded, 'm-2': !expanded })}
+// Good — cx for conditionals, twMerge for conflict-resolution
+className={twMerge(cx({ 'm-0': expanded, 'm-2': !expanded }))}
 
 // Good — data-attribute driven (lets parent styling participate)
 <div data-state={expanded ? 'open' : 'closed'} className="data-[state=open]:bg-blue-500" />
@@ -42,7 +47,7 @@ className={cx({ 'm-0': expanded, 'm-2': !expanded })}
 
 ## Hover / focus / disabled / responsive
 
-Use Tailwind variant prefixes, not state-tracking JS:
+Use Tailwind variant prefixes:
 
 ```
 hover:bg-blue-500
@@ -70,11 +75,11 @@ Prefer arbitrary values when the result is a discrete enum (purgeable); use `sty
 Use Picasso tokens by their semantic name where possible:
 
 ```
-Good: text-graphite-800, bg-blue-100, shadow-2 (modal), p-4 (16px)
+Good: text-graphite-800, bg-blue-100, shadow-2, p-4
 Bad:  text-[#262D3D], bg-[#EDF1FD], shadow-[0_4px_8px_0_rgba(0,0,0,0.08)], p-[16px]
 ```
 
-If you find yourself reaching for an arbitrary value, double-check `tokens/picasso-tailwind-tokens.md` first. Then add a `// TODO(tokens):` comment so it surfaces in the P1-FIG-03 audit.
+Always check `tokens/picasso-tailwind-tokens.md` first. **Only as a last resort** — when no canonical token exists — keep the `[arbitrary-value]` literal AND add a `// TODO(tokens):` comment so it surfaces in the P1-FIG-03 audit for designers to resolve. Do not invent tokens or normalize to arbitrary values by default.
 
 ## Twmerge boundary
 

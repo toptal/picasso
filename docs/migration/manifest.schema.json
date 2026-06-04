@@ -119,6 +119,84 @@
           "type": "integer",
           "minimum": 0,
           "description": "Number of review-sweep ticks that have processed this item since it entered awaiting_review."
+        },
+        "operator_overrides": {
+          "type": "array",
+          "description": "Explicit operator/reviewer exceptions to documented rules on this PR, recorded from override-lock markers in the agent's PR replies. Injected into both review-sweep audit paths as the highest-authority carve-out so neither reverts an operator-sanctioned change. Mirrors the v1 variant slot.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rule", "sanctioned", "evidence", "confirmed_by", "at"],
+            "properties": {
+              "rule": {
+                "type": "string",
+                "description": "The documented rule being excepted, cited by doc + section (dedup key)."
+              },
+              "sanctioned": {
+                "type": "string",
+                "description": "The shape the operator sanctioned — what the audit must NOT revert."
+              },
+              "evidence": {
+                "type": "string",
+                "description": "URL or comment-id of the operator directive / confirmed proposal in the PR thread."
+              },
+              "confirmed_by": {
+                "type": "string",
+                "description": "GitHub login of the trusted reviewer/operator who directed or confirmed the exception."
+              },
+              "at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO-8601 timestamp the override was recorded."
+              }
+            }
+          }
+        },
+        "graduation_requests": {
+          "type": "array",
+          "description": "Reviewer-confirmed requests to promote a per-PR decision into a global rule (graduate into practices.md). Recorded by --review-sweep from graduation-request markers; consumed by `pnpm orchestrate --graduate`. Mirrors the v1 variant slot.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rule", "gist", "target", "trigger", "evidence", "confirmed_by", "at", "status"],
+            "properties": {
+              "rule": {
+                "type": "string",
+                "description": "The rule being changed (citation) or a short working title for a new rule. Dedup key."
+              },
+              "gist": {
+                "type": "string",
+                "description": "Plain-language summary of the proposed rule change the reviewer approved."
+              },
+              "target": {
+                "type": "string",
+                "description": "Target doc for graduation (default practices.md)."
+              },
+              "trigger": {
+                "type": "string",
+                "enum": ["override-promotion", "reviewer-request", "recurring-override"],
+                "description": "Why graduation was proposed."
+              },
+              "evidence": {
+                "type": "string",
+                "description": "URL/comment-id of the confirmed graduation proposal in the PR thread."
+              },
+              "confirmed_by": {
+                "type": "string",
+                "description": "GitHub login of the trusted reviewer who confirmed graduating."
+              },
+              "at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO-8601 timestamp the request was recorded."
+              },
+              "status": {
+                "type": "string",
+                "enum": ["queued", "graduated"],
+                "description": "queued until a --graduate pass consumes it, then graduated."
+              }
+            }
+          }
         }
       }
     }

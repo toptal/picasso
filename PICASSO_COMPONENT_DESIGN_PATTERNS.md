@@ -13,9 +13,9 @@ This document lists the design patterns that every Picasso component in this rep
 7. **Use `rem` for all sizes.** Express dimensions, spacing, font sizes, and radii in `rem`. The only exception is `1px` (e.g., hairline borders), which may be used directly.
 8. **Align token names with the BASE design system.** Names for colors, typography, sizes, spacings, and other design tokens must match those defined in the BASE design system, so design, code, and documentation share a single vocabulary. Do not introduce local synonyms or renamed aliases.
 9. **Use `variant` for visual variations.** When a component has multiple visual styles, expose them through a single `variant` prop typed as a string-literal union (e.g., `variant?: 'rectangle' | 'circular'`). Do not split variants across multiple boolean flags or ad-hoc prop names.
-10. **Extend `BaseProps`.** Every component's props interface must extend `BaseProps`, which provides the shared root-element contract: `className?: string`, `style?: CSSProperties`, and `'data-testid'?: string`. Do not redeclare these props locally.
-11. **Use `as` to change the rendered element.** When a component needs to render as a different HTML tag, expose this through an `as` prop typed as `as?: React.ElementType<React.HTMLAttributes<HTMLElement>>`. Prefer narrowing the type to the specific tags the component actually supports (e.g., `as?: 'a' | 'button'`) rather than accepting any element type. Do not introduce custom alternatives like `tag`, `component`, or `element`.
-12. **Use the shared size scale.** Expose size as a `size` prop typed against the shared `SizeType` helper, picking the subset the component supports from the canonical scale:
+10. **Extend `BaseProps`.** Every component's props interface must extend `BaseProps`, which provides the shared root-element contract: `className?: string`, `style?: CSSProperties`, and `'data-testid'?: string`.
+11. **Use `as` to change the rendered element.** When a component needs to render as a different HTML tag, expose this through an `as` prop typed as `as?: React.ElementType<React.HTMLAttributes<HTMLElement>>`. Prefer narrowing the type to the specific tags the component actually supports (e.g., `as?: 'a' | 'button'`) rather than accepting any element type. Do not introduce custom alternatives like `tag`, `component`, or `element`. Do NOT add runtime `typeof`/`isValidAs` guards for `as` — TypeScript constrains it at compile time; runtime guards are redundant and reviewers will ask for removal.
+12. **Use the shared size scale (BASE design system).** Expose size as a `size` prop typed against the shared `SizeType` helper, picking the subset the component supports from the canonical scale. Size names mirror the BASE design system tokens (see rule 8) — do not introduce custom size names (`tiny`, `big`, `huge`) or numeric scales:
 
     ```ts
     export type Sizes =
@@ -29,8 +29,8 @@ This document lists the design patterns that every Picasso component in this rep
     export type SizeType<T extends Sizes> = T
     ```
 
-    For example: `size?: SizeType<'small' | 'medium' | 'large'>`. Do not introduce custom size names (`tiny`, `big`, `huge`) or numeric scales.
-13. **Use the shared color palette and shade scale.** Color props must draw base color names from the canonical `Palette` and shade names from `ColorSample`, exposing only the subset the component supports. Do not invent new color or shade names (`bright`, `pale`, `accent`, `orange`) or use raw hex/rgb values in the public API.
+    For example: `size?: SizeType<'small' | 'medium' | 'large'>`.
+13. **Use the shared color palette and shade scale.** Color props must draw base color names from the canonical `Palette` and shade names from `ColorSample`, exposing only the subset the component supports. Do NOT invent new color or shade names (`bright`, `pale`, `accent`, `orange`); do NOT use raw hex/rgb values in the public API.
 
     ```ts
     interface ColorSample {
@@ -72,6 +72,8 @@ This document lists the design patterns that every Picasso component in this rep
       </Modal.Actions>
     </Modal>
     ```
+
+    **Migration carve-out**: mid-migration, do NOT preemptively restructure existing non-compound components into compound shape. Library-swap PRs preserve the existing API; the compound refactor is a separate track. See `docs/migration/references/design-patterns-addendum.md §1`.
 16. **Use `testIds` for multi-part test selectors.** When a component has multiple independently testable parts and the root `data-testid` is not enough, expose a single optional `testIds` prop — an object whose keys map to each addressable part. Each key is itself optional, and the component should fall back to sensible defaults or skip the attribute when unset. Do not add per-part `data-testid` props at the top level.
 
     ```ts

@@ -56,9 +56,11 @@ import { renderAnalysisForPrompt } from './happo-pixel-diff'
 import type {
   EscalationDecision,
   GateReport,
+  GraduationRequest,
   Manifest,
   ManifestItem,
   ModelConfig,
+  OperatorOverride,
   OrchestratorOptions,
   RunState,
   VariantState,
@@ -136,6 +138,317 @@ function isTrustedReviewer(review: RawReview): boolean {
   return TRUSTED_REVIEW_ASSOCIATIONS.has(assoc)
 }
 
+// Operator-override markers (2026-06-01). The review-response agent embeds
+// these HTML comments in its PR reply when it acts on (or holds for) an
+// operator-sanctioned exception to a documented rule. They render invisible
+// on GitHub but persist in the raw body, so the orchestrator can parse them
+// back, persist the decision to the manifest, and inject it into BOTH audit
+// paths as the highest-authority carve-out — stopping the audit↔operator
+// oscillation observed on PR #4965 (Switch HTMLSpanElement vs boundary-cast).
+//
+//   <!-- override-lock rule="code-standards.md §\"TS variance\"" sanctioned="Props+ref typed as HTMLSpanElement; boundary cast removed" evidence="https://github.com/.../pull/4965#discussion_r3328447186" -->
+//   <!-- override-unlock rule="code-standards.md §\"TS variance\"" -->
+//
+// Only markers inside the agent's own orchestrator-headered replies are read
+// (the caller passes `orchestratorReplies`), so a third-party commenter can't
+// inject a lock. Locks are operator-visible (raw thread) and reversible via
+// override-unlock, so a wrong lock is operator-correctable.
+// `[\s\S]*?` (not `[^>]`) so the marker body may contain `>` — sanctioned
+// shapes like `Omit<Root.Props, ...>` are common. The attr regex tolerates
+// escaped quotes (`\"`) inside a value, because rule citations carry inner
+// double-quotes, e.g. `code-standards.md §"TS variance"`.
+const OVERRIDE_LOCK_RE = /<!--\s*override-lock\s+([\s\S]*?)-->/gi
+const OVERRIDE_UNLOCK_RE = /<!--\s*override-unlock\s+([\s\S]*?)-->/gi
+const MARKER_ATTR_RE = /(\w+)\s*=\s*"((?:\\.|[^"\\])*)"/g
+
+function parseMarkerAttrs(inner: string): Record<string, string> {
+  const out: Record<string, string> = {}
+
+  for (const attr of inner.matchAll(MARKER_ATTR_RE)) {
+    // Unescape `\"` → `"` and `\\` → `\` so the stored citation matches what
+    // the audit cites (and what a re-parse on the next tick produces).
+    out[attr[1].toLowerCase()] = attr[2].replace(/\\(["\\])/g, '$1')
+  }
+
+  return out
+}
+
+interface OverrideMarkers {
+  locks: OperatorOverride[]
+  unlockedRules: string[]
+}
+
+/**
+ * Scan the agent's own orchestrator-headered replies for override-lock /
+ * -unlock markers. `at` is stamped on each lock (orchestrator's clock) so the
+ * record is deterministic regardless of GitHub timestamp availability.
+ */
+function parseOverrideMarkers(
+  orchestratorReplies: readonly RawReview[],
+  at: string
+): OverrideMarkers {
+  const locks: OperatorOverride[] = []
+  const unlockedRules: string[] = []
+
+  for (const reply of orchestratorReplies) {
+    const body = reply.body ?? ''
+
+    for (const match of body.matchAll(OVERRIDE_LOCK_RE)) {
+      const attrs = parseMarkerAttrs(match[1])
+
+      if (!attrs.rule || !attrs.sanctioned) {
+        continue
+      }
+      locks.push({
+        rule: attrs.rule.trim(),
+        sanctioned: attrs.sanctioned.trim(),
+        evidence: (attrs.evidence ?? '').trim(),
+        confirmed_by: (attrs.confirmed_by ?? reply.author ?? 'operator').trim(),
+        at,
+      })
+    }
+
+    for (const match of body.matchAll(OVERRIDE_UNLOCK_RE)) {
+      const attrs = parseMarkerAttrs(match[1])
+
+      if (attrs.rule) {
+        unlockedRules.push(attrs.rule.trim())
+      }
+    }
+  }
+
+  return { locks, unlockedRules }
+}
+
+/**
+ * Merge freshly-parsed markers over the manifest's existing overrides.
+ * Dedup by `rule` (last-write-wins, so an operator can refine the sanctioned
+ * shape by re-locking); `override-unlock` removes the matching rule. Returns
+ * a new array (sorted by rule for stable manifest diffs).
+ */
+function mergeOverrides(
+  existing: readonly OperatorOverride[] | undefined,
+  parsed: OverrideMarkers
+): OperatorOverride[] {
+  const byRule = new Map<string, OperatorOverride>()
+
+  for (const ovr of existing ?? []) {
+    byRule.set(ovr.rule, ovr)
+  }
+  for (const ovr of parsed.locks) {
+    const prev = byRule.get(ovr.rule)
+
+    // Re-parsing an unchanged lock from a prior reply must be a no-op —
+    // otherwise the fresh `at` stamp would rewrite the manifest every tick.
+    // Only overwrite when the sanctioned shape or evidence actually changed
+    // (operator refined the lock).
+    if (
+      prev &&
+      prev.sanctioned === ovr.sanctioned &&
+      prev.evidence === ovr.evidence
+    ) {
+      continue
+    }
+    byRule.set(ovr.rule, ovr)
+  }
+  for (const rule of parsed.unlockedRules) {
+    byRule.delete(rule)
+  }
+
+  return [...byRule.values()].sort((a, b) => a.rule.localeCompare(b.rule))
+}
+
+/**
+ * Human-readable carve-out block injected into both audit prompts (the
+ * conversational standards-audit and the Layer B `judgeAudit` subprocess).
+ * Returns '' when there are no active overrides, so callers can concatenate
+ * unconditionally.
+ */
+function renderOverrideCarveout(
+  overrides: readonly OperatorOverride[] | undefined
+): string {
+  if (!overrides || overrides.length === 0) {
+    return ''
+  }
+  const lines = overrides
+    .map(
+      o =>
+        `- Rule **${o.rule}** is EXCEPTED. Sanctioned shape: ${o.sanctioned}. ` +
+        `(confirmed by ${o.confirmed_by}${o.evidence ? `, ${o.evidence}` : ''})`
+    )
+    .join('\n')
+
+  return (
+    '\n## Operator overrides — HIGHEST-AUTHORITY carve-out (read FIRST)\n\n' +
+    'The operator has explicitly EXCEPTED the rules below on this PR. An ' +
+    'operator override outranks any RULE-strength documented rule — the ' +
+    'operator can always choose to make an exception. For each rule listed:\n\n' +
+    '- Do NOT flag the sanctioned shape as a violation.\n' +
+    '- Do NOT revert it, and do NOT re-classify it to HIGH, regardless of ' +
+    'RULE-strength wording in any standards doc or any prior MEDIUM proposal.\n' +
+    '- If you still think the documented rule should win, do NOT act — reply ' +
+    'in-thread asking the operator to reconsider, and leave the code as the ' +
+    'override sanctions.\n\n' +
+    lines +
+    '\n'
+  )
+}
+
+// Graduation-request markers (2026-06-01). Emitted by the review-response
+// agent in the reply where a trusted reviewer 👍-confirms a proposal to
+// promote a per-PR decision into a global rule. The orchestrator persists
+// them as `queued` candidates; `pnpm orchestrate --graduate` consumes them as
+// pre-qualified, reviewer-cited additions to practices.md (operator reviews
+// the doc diff before committing). Reuses the override marker-attr parser.
+//
+//   <!-- graduation-request rule="code-standards.md §\"TS variance\"" gist="Allow element-type narrowing (button→span) when the base-ui part renders a different element; the boundary cast is no longer mandatory." target="practices.md" trigger="reviewer-request" evidence="https://github.com/.../pull/4965#discussion_r..." -->
+const GRADUATION_REQUEST_RE = /<!--\s*graduation-request\s+([\s\S]*?)-->/gi
+
+function parseGraduationRequests(
+  orchestratorReplies: readonly RawReview[],
+  at: string
+): GraduationRequest[] {
+  const out: GraduationRequest[] = []
+
+  for (const reply of orchestratorReplies) {
+    for (const match of (reply.body ?? '').matchAll(GRADUATION_REQUEST_RE)) {
+      const attrs = parseMarkerAttrs(match[1])
+
+      if (!attrs.rule || !attrs.gist) {
+        continue
+      }
+      const trigger =
+        attrs.trigger === 'override-promotion' ||
+        attrs.trigger === 'recurring-override'
+          ? attrs.trigger
+          : 'reviewer-request'
+
+      out.push({
+        rule: attrs.rule.trim(),
+        gist: attrs.gist.trim(),
+        target: (attrs.target ?? 'practices.md').trim() || 'practices.md',
+        trigger,
+        evidence: (attrs.evidence ?? '').trim(),
+        confirmed_by: (attrs.confirmed_by ?? reply.author ?? 'operator').trim(),
+        at,
+        status: 'queued',
+      })
+    }
+  }
+
+  return out
+}
+
+/**
+ * Merge freshly-parsed graduation requests over the manifest's existing ones.
+ * Dedup by `rule`. A re-parse of an unchanged request preserves the stored
+ * record (incl. its `status` and original `at`) so a request already marked
+ * `graduated` is NOT reset to `queued`, and timestamps don't churn the
+ * manifest every tick.
+ */
+function mergeGraduationRequests(
+  existing: readonly GraduationRequest[] | undefined,
+  parsed: readonly GraduationRequest[]
+): GraduationRequest[] {
+  const byRule = new Map<string, GraduationRequest>()
+
+  for (const req of existing ?? []) {
+    byRule.set(req.rule, req)
+  }
+  for (const req of parsed) {
+    const prev = byRule.get(req.rule)
+
+    // Unchanged gist+target → keep the stored record (preserve status + at).
+    if (prev && prev.gist === req.gist && prev.target === req.target) {
+      continue
+    }
+    // Changed (reviewer refined the gist) → re-queue with the new wording.
+    byRule.set(req.rule, req)
+  }
+
+  return [...byRule.values()].sort((a, b) => a.rule.localeCompare(b.rule))
+}
+
+/**
+ * Count, per rule citation, how many distinct components have an operator
+ * override for it (checking flat fields + every variant, deduped per
+ * component). A count ≥2 means the same rule has been excepted on multiple
+ * PRs — a strong signal the rule itself is stale and should be graduated.
+ */
+function tallyOverrideRules(m: Manifest): Map<string, number> {
+  const counts = new Map<string, number>()
+
+  for (const comp of Object.values(m.components)) {
+    const rules = new Set<string>()
+
+    for (const ovr of comp.operator_overrides ?? []) {
+      rules.add(ovr.rule)
+    }
+    for (const variant of Object.values(comp.variants ?? {})) {
+      for (const ovr of variant.operator_overrides ?? []) {
+        rules.add(ovr.rule)
+      }
+    }
+    for (const rule of rules) {
+      counts.set(rule, (counts.get(rule) ?? 0) + 1)
+    }
+  }
+
+  return counts
+}
+
+/**
+ * Prompt block telling the agent (a) which rules on THIS PR are candidates for
+ * graduation and (b) whether any are recurring across PRs (a strong signal to
+ * propose fixing the rule). Returns '' when there's nothing to surface.
+ */
+function renderGraduationContext(args: {
+  overrides: readonly OperatorOverride[] | undefined
+  queued: readonly GraduationRequest[] | undefined
+  recurringCounts: ReadonlyMap<string, number>
+}): string {
+  const { overrides, queued, recurringCounts } = args
+  const queuedRules = new Set((queued ?? []).map(q => q.rule))
+  // Overrides on this PR that haven't already been queued for graduation.
+  const candidates = (overrides ?? []).filter(o => !queuedRules.has(o.rule))
+
+  if (candidates.length === 0 && (queued ?? []).length === 0) {
+    return ''
+  }
+  const candidateLines = candidates
+    .map(o => {
+      const n = recurringCounts.get(o.rule) ?? 1
+      const recurring =
+        n >= 2
+          ? ` **Overridden on ${n} PRs so far — strong signal the rule itself should change; propose graduation proactively.**`
+          : ''
+
+      return `- **${o.rule}** (sanctioned here: ${o.sanctioned}).${recurring}`
+    })
+    .join('\n')
+  const queuedLines = (queued ?? [])
+    .map(q => `- **${q.rule}** — ${q.status} (${q.trigger}).`)
+    .join('\n')
+
+  return (
+    '\n## Rule graduation — candidates on this PR\n\n' +
+    'See the protocol\'s "Rule graduation" section for the confirmation flow. ' +
+    'You must include a plain-language GIST in any graduation proposal.\n\n' +
+    (candidates.length > 0
+      ? 'Active overrides on this PR that are NOT yet queued for graduation — ' +
+        'after the override is applied + pushed, offer (once) to promote each ' +
+        'into a rule:\n' +
+        candidateLines +
+        '\n\n'
+      : '') +
+    ((queued ?? []).length > 0
+      ? "Already queued for the operator's `--graduate` pass (do NOT re-propose these):\n" +
+        queuedLines +
+        '\n'
+      : '')
+  )
+}
+
 interface RawCheckEntry {
   name?: string
   context?: string
@@ -175,6 +488,70 @@ type PollChecksResult =
 function log(prefix: string, message: string): void {
   // eslint-disable-next-line no-console
   console.log(`[${ISO()}] [${prefix}] ${message}`)
+}
+
+/**
+ * Startup assertion for `--with-mcp`. Resolves the agent MCP config from the
+ * MAIN repo (the same `path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')`
+ * the agent invocation now passes to `--mcp-config`) and logs it.
+ *
+ * If the file is missing, unparseable, or has no `playwright` server, the
+ * agent silently spawns WITHOUT Playwright tools — no visual verification,
+ * blank screenshot audit trail (the failure mode the config's `_pinned`
+ * comment warns about). Surface that LOUDLY at startup rather than letting
+ * the operator discover it mid-sweep. No-op when `--with-mcp` isn't set.
+ */
+export function assertMcpConfig(withMcp: boolean): void {
+  if (!withMcp) {
+    return
+  }
+
+  const configPath = path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')
+
+  if (!existsSync(configPath)) {
+    log(
+      'mcp',
+      `⚠️  --with-mcp set but config NOT FOUND at ${configPath} — agents will ` +
+        'run WITHOUT Playwright tools (no visual verification). Fix before ' +
+        'relying on this sweep.'
+    )
+
+    return
+  }
+
+  try {
+    const parsed = JSON.parse(readFileSync(configPath, 'utf8')) as {
+      mcpServers?: Record<string, { args?: string[] }>
+    }
+    const playwright = parsed.mcpServers?.playwright
+
+    if (!playwright) {
+      log(
+        'mcp',
+        `⚠️  config at ${configPath} has no "playwright" mcpServer — agents ` +
+          'will run WITHOUT Playwright tools. Check mcpServers.playwright.'
+      )
+
+      return
+    }
+
+    const blocksPreview = (playwright.args ?? []).some(a =>
+      a.includes('toptal.github.io')
+    )
+
+    log(
+      'mcp',
+      `config ✓ ${configPath} (playwright server present; preview-host ` +
+        `block: ${blocksPreview ? 'on' : 'OFF — toptal.github.io reachable'})`
+    )
+  } catch (err) {
+    log(
+      'mcp',
+      `⚠️  config at ${configPath} failed to parse (${
+        err instanceof Error ? err.message : String(err)
+      }) — agents may run WITHOUT Playwright tools.`
+    )
+  }
 }
 
 /**
@@ -606,7 +983,7 @@ function buildHappoFailureSection(
     '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/iframe.html?id=<resolved-baseline-id>&viewMode=story` (pre-migration deployed baseline). Run the `.sb-show-errordisplay` check.\n' +
     '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`.\n' +
     '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/iframe.html?id=<resolved-local-id>&viewMode=story` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken). Run the `.sb-show-errordisplay` check.\n' +
-    '   - `mcp__playwright__browser_take_screenshot` → save under `local--<story-id>.png`.\n' +
+    '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/local--<story-id>.png`.\n' +
     '   - For interactive components (Slider/Switch/Tabs/etc.) repeat for `hover`/`focus`/`pressed`/`disabled` states. Use `browser_hover`/`browser_click`/`browser_press_key` between captures.\n' +
     '   - Read both baseline and local PNGs; the visual delta tells you what direction the shift is. But screenshots alone are NOT enough to identify the exact CSS property — go to step 5.\n' +
     '5. **MANDATORY: computed-style diff before declaring stalemate.** Screenshot inspection narrows down WHERE the diff is; computed styles tell you WHAT to change. For each migrated-component diff, you MUST run this diagnostic before considering escalation:\n' +
@@ -624,12 +1001,12 @@ function buildHappoFailureSection(
     "       root:  dump(sel('.MuiSlider-root, [data-slider-root]')),\n" +
     '     }, null, 0)\n' +
     '     ```\n' +
-    "   - Save each browser's output to `migration-runs/<date>/<Component>/computed-styles-{baseline,local}.json`.\n" +
+    "   - Save each browser's output to `.scratch/computed-styles-{baseline,local}.json` (create the dir; `.scratch/` is gitignored so nothing there lands in the PR). **Any helper script you write — a PNG-diff scriptlet, etc. — MUST also go under `.scratch/`, never the worktree root.**\n" +
     '   - Diff the two JSON files property-by-property. The 5-10 properties that differ ARE your fix list. Common offenders during @mui/base → @base-ui/react migrations: `margin-left`, `margin-top` (master used negative margins for centering; @base-ui uses `translate:` property instead — these compose differently in some cases), `box-sizing`, `padding-{x,y}`, `width` (when `box-content` vs `border-box` differs), `transform-origin`, `inset-inline-start` rounding.\n' +
     "   - For each differing property, write a targeted Tailwind class OR (preferred for @base-ui/react internal-style overrides) a `style={{ ... }}` prop on the @base-ui/react component itself. **Rung 0 first**: @base-ui/react's `mergeProps` shallow-merges your `style` AFTER its internal inline style — `<Slider.Thumb style={{ translate: 'none' }}>` cleanly defeats the kit's `translate: -50% -50%` without Tailwind `!important`. See `code-standards.md §\"CSS specificity ladder\"` rung 0. If `style` prop is insufficient for the case (e.g. responsive breakpoint variants), escalate to Tailwind selectors.\n" +
     "   - Re-screenshot local. Re-run gate. If the diff count drops → progress, continue. If unchanged → the property you targeted wasn't the actual cause; pick the next differing property from the JSON diff.\n" +
     '6. **Stalemate (give-up) is FORBIDDEN until you have**:\n' +
-    '   - Captured `computed-styles-baseline.json` AND `computed-styles-local.json` for the failing component (kept locally — these are diagnostic artifacts, not PR-comment material).\n' +
+    '   - Captured `.scratch/computed-styles-baseline.json` AND `.scratch/computed-styles-local.json` for the failing component (kept locally under the gitignored `.scratch/` dir — these are diagnostic artifacts, not PR-comment material).\n' +
     '   - Made at least 2 distinct fix attempts targeting properties from the computed-style diff (NOT speculative Tailwind tweaks).\n' +
     '   - Posted ONE SHORT PR comment (≤60 words) summarising: (a) which 2-3 computed-style properties differ in one line, (b) which fix attempts you made + their diff count outcomes in one line each. Do NOT paste raw JSON dumps. Do NOT recite the full diagnostic procedure. The operator will read the local artifacts if they want detail.\n' +
     '   The "stop replying if stuck" review-response meta-rule (PROMPT-review-response.md) does NOT apply when you have an open Happo failure on a migrated component. Pixel-perfect on the migrated component is a hard requirement; the diagnostic procedure above always converges if followed (the computed-style diff is a finite list).\n\n' +
@@ -752,6 +1129,217 @@ function shell(
       resolve({ exitCode: code ?? 1, stdout, stderr })
     })
   })
+}
+
+/**
+ * Migration-relevant path filters — the ONLY paths a migration legitimately
+ * commits. Used both as git pathspecs for the critic diff and as the
+ * stray-guard allowlist (single source of truth). Changing what a migration
+ * may touch happens HERE. Prefix entries end in `/`; everything else is an
+ * exact path.
+ */
+function migrationPathFilters(itemId: string): string[] {
+  return [
+    'packages/',
+    '.changeset/',
+    `docs/migration/components/${itemId.replace(/\//g, '__')}.md`,
+  ]
+}
+
+/**
+ * True if `p` is a path a migration may legitimately commit. Superset of
+ * `migrationPathFilters` — also allows the root `pnpm-lock.yaml` (a real
+ * dep-bump touches it), which the critic diff deliberately excludes as noise.
+ */
+function isMigrationPath(p: string, itemId: string): boolean {
+  const allowed = migrationPathFilters(itemId).some(f =>
+    f.endsWith('/') ? p.startsWith(f) : p === f
+  )
+
+  return allowed || p === 'pnpm-lock.yaml'
+}
+
+/**
+ * Fork point of the migration worktree = `merge-base(worktree HEAD,
+ * orchestrator branch)`. Everything in `forkSha..HEAD` is THIS migration's own
+ * work; everything tracked at/under `forkSha` is pre-existing pf-1992 history
+ * the stray-guard must never touch. merge-base is robust to the orchestrator
+ * branch advancing after the fork (resume runs) — it's the common ancestor
+ * either way.
+ *
+ * Returns '' if the orchestrator branch can't be resolved (detached HEAD, etc.).
+ * Callers MUST treat '' as "skip stripping" so the never-touch-pf-1992
+ * invariant outranks cleaning.
+ */
+async function migrationForkPoint(wtPath: string): Promise<string> {
+  const branchResult = await shell(
+    'git',
+    ['rev-parse', '--abbrev-ref', 'HEAD'],
+    { cwd: repoRoot() }
+  )
+  const orchestratorBranch = branchResult.stdout.trim()
+
+  if (!orchestratorBranch || orchestratorBranch === 'HEAD') {
+    return ''
+  }
+
+  const mbResult = await shell(
+    'git',
+    ['merge-base', 'HEAD', orchestratorBranch],
+    { cwd: wtPath }
+  )
+
+  return mbResult.exitCode === 0 ? mbResult.stdout.trim() : ''
+}
+
+/**
+ * Append a gitignore pattern for a stripped stray file to the OPERATOR
+ * checkout's `.gitignore` (`repoRoot()`, NOT the worktree) so it persists for
+ * the operator and never enters a migration PR diff. Deduped. `.scratch-*`
+ * files collapse to one glob; everything else is anchored by full path.
+ */
+async function ensureGitignored(file: string): Promise<void> {
+  const pattern = path.basename(file).startsWith('.scratch-')
+    ? '/.scratch-*'
+    : `/${file}`
+  const gitignorePath = path.join(repoRoot(), '.gitignore')
+  const current = await fs.readFile(gitignorePath, 'utf8').catch(() => '')
+
+  if (current.split('\n').some(line => line.trim() === pattern)) {
+    return
+  }
+
+  const prefix = current.length === 0 || current.endsWith('\n') ? '' : '\n'
+
+  await fs.appendFile(gitignorePath, `${prefix}${pattern}\n`, 'utf8')
+  log('loop', `stray-guard: added '${pattern}' to .gitignore`)
+}
+
+/**
+ * Mode A — unstage strays staged THIS iteration that the migration introduced.
+ * A path already tracked at `forkSha` (a pre-existing pf-1992 file the agent
+ * merely modified) is left alone. Returns the paths it unstaged.
+ */
+async function unstageNewStrays(
+  wtPath: string,
+  itemId: string,
+  forkSha: string
+): Promise<string[]> {
+  const staged = (
+    await shell('git', ['diff', '--cached', '--name-only'], { cwd: wtPath })
+  ).stdout
+    .split('\n')
+    .filter(Boolean)
+  const unstaged: string[] = []
+
+  for (const f of staged) {
+    if (isMigrationPath(f, itemId)) {
+      continue
+    }
+
+    // eslint-disable-next-line no-await-in-loop
+    const atFork = await shell('git', ['cat-file', '-e', `${forkSha}:${f}`], {
+      cwd: wtPath,
+    })
+
+    if (atFork.exitCode === 0) {
+      continue // pre-existing pf-1992 file — never touch
+    }
+
+    // eslint-disable-next-line no-await-in-loop
+    await shell('git', ['reset', '-q', 'HEAD', '--', f], { cwd: wtPath })
+    unstaged.push(f)
+  }
+
+  return unstaged
+}
+
+/**
+ * Mode B — `git rm --cached` strays THIS migration already committed (files
+ * ADDED in `forkSha..HEAD`). `--diff-filter=A` over that range structurally
+ * excludes pf-1992 history. Keeps the working-tree file on disk. Returns the
+ * paths it removed.
+ */
+async function rmCommittedStrays(
+  wtPath: string,
+  itemId: string,
+  forkSha: string
+): Promise<string[]> {
+  const added = (
+    await shell(
+      'git',
+      ['diff', '--name-only', '--diff-filter=A', `${forkSha}..HEAD`],
+      { cwd: wtPath }
+    )
+  ).stdout
+    .split('\n')
+    .filter(Boolean)
+  const removed: string[] = []
+
+  for (const f of added) {
+    if (isMigrationPath(f, itemId)) {
+      continue
+    }
+
+    // eslint-disable-next-line no-await-in-loop
+    await shell('git', ['rm', '--cached', '-q', '--', f], { cwd: wtPath })
+    removed.push(f)
+  }
+
+  return removed
+}
+
+/**
+ * Stage the agent's edits (`git add -A`) and strip orchestrator scratch that
+ * has nothing to do with the migration — both newly-staged (Mode A, unstage)
+ * and already-committed on this branch (Mode B, `git rm --cached`). Scoped to
+ * the migration's OWN commits via the fork point, so it NEVER touches an
+ * already-committed pf-1992 file (CLAUDE.md "Branch hygiene"). Each stripped
+ * file is added to the operator `.gitignore`. Returns whether in-scope changes
+ * remain staged, so callers keep their existing commit/amend logic.
+ *
+ * Replaces the bare `git add -A` previously duplicated at the migration-loop,
+ * review-sweep, and CI-loop commit sites.
+ */
+async function stripStrayFiles(
+  wtPath: string,
+  itemId: string
+): Promise<{ hasStagedChanges: boolean; filtered: string[] }> {
+  await shell('git', ['add', '-A'], { cwd: wtPath })
+
+  const forkSha = await migrationForkPoint(wtPath)
+
+  // Fail-safe: without a reliable fork point we can't prove a file belongs to
+  // the migration, so strip NOTHING — the "never touch a pf-1992 file"
+  // invariant outranks cleaning.
+  if (!forkSha) {
+    log(
+      'loop',
+      'stray-guard: no fork point resolved — skipping strip (fail-safe)'
+    )
+
+    const stagedOnly = await shell('git', ['diff', '--cached', '--quiet'], {
+      cwd: wtPath,
+    })
+
+    return { hasStagedChanges: stagedOnly.exitCode !== 0, filtered: [] }
+  }
+
+  const unstaged = await unstageNewStrays(wtPath, itemId, forkSha)
+  const removed = await rmCommittedStrays(wtPath, itemId, forkSha)
+  const filtered = [...new Set([...unstaged, ...removed])]
+
+  for (const f of filtered) {
+    log('loop', `stray-guard: stripped orchestrator scratch from PR: ${f}`)
+    // eslint-disable-next-line no-await-in-loop
+    await ensureGitignored(f)
+  }
+
+  const stagedCheck = await shell('git', ['diff', '--cached', '--quiet'], {
+    cwd: wtPath,
+  })
+
+  return { hasStagedChanges: stagedCheck.exitCode !== 0, filtered }
 }
 
 /** Spawn a shell command via `bash -c` so the workflow can pass complex command lines. */
@@ -1207,6 +1795,8 @@ const manifest = {
         review_iterations: updatedVariant.review_iterations,
         session_id: updatedVariant.session_id,
         awaiting_ci_since: updatedVariant.awaiting_ci_since,
+        operator_overrides: updatedVariant.operator_overrides,
+        graduation_requests: updatedVariant.graduation_requests,
       })
     }
 
@@ -1249,6 +1839,8 @@ const manifest = {
         review_iterations: item.review_iterations,
         session_id: item.session_id ?? null,
         awaiting_ci_since: item.awaiting_ci_since ?? null,
+        operator_overrides: item.operator_overrides,
+        graduation_requests: item.graduation_requests,
       }
     }
 
@@ -1660,6 +2252,103 @@ const worktree = {
     }
     log('worktree', `recreated ${worktreePath} from ${branch}`)
     await this.bootstrap(worktreePath)
+  },
+
+  /**
+   * Forward-sync an EXISTING worktree to its origin PR head, losslessly.
+   *
+   * Why: between sweep ticks the orchestrator rebases open PR branches onto
+   * the moving base as other migrations merge, so `origin/<branch>` advances
+   * under a worktree that never changed locally ("drift"). The agent must
+   * edit + answer reviewers against the SAME source the reviewer sees, and the
+   * end-of-tick `git push` must fast-forward — both require local == origin.
+   *
+   * How: fetch, then a cherry-GUARDED `git reset --hard origin/<branch>`. We
+   * never `git pull` — that merges origin's rebased history over the diverged
+   * local history and corrupts a branch meant to stay linear. The guard
+   * refuses to reset when local carries genuine unpushed work (a `+` in
+   * `git cherry`, e.g. an operator's hand-applied fix) or has uncommitted
+   * tracked edits, handing those cases to a human instead of destroying them.
+   *
+   * A `+` can occasionally be a rebase-granularity artifact (patch-id shifted
+   * by a squash/context change) that IS lossless, but confirming that needs a
+   * net-diff judgment call, so the automated stance is conservative: stop.
+   *
+   * Best-effort: a failed fetch (e.g. ssh-agent emptied after reboot) returns
+   * `skipped` rather than escalating, degrading to the pre-sync behavior so a
+   * transient auth gap doesn't wedge every awaiting_review item.
+   */
+  async syncToOrigin(
+    branch: string,
+    worktreePath: string
+  ): Promise<
+    | { kind: 'synced'; head: string }
+    | { kind: 'skipped'; reason: string }
+    | { kind: 'diverged'; reason: string }
+  > {
+    const opts = { cwd: worktreePath }
+
+    const fetchResult = await shell('git', ['fetch', 'origin', branch], opts)
+
+    if (fetchResult.exitCode !== 0) {
+      return {
+        kind: 'skipped',
+        reason: `git fetch origin ${branch} failed: ${
+          fetchResult.stderr || fetchResult.stdout
+        }`,
+      }
+    }
+
+    // Tracked-file edits only — `git reset --hard` leaves untracked scratch
+    // (gitignored PNG/JSON debris) in place, so those must not block a sync.
+    const statusResult = await shell('git', ['status', '--porcelain'], opts)
+
+    const trackedChanges = statusResult.stdout
+      .split('\n')
+      .filter(line => line.trim() !== '' && !line.startsWith('??'))
+
+    if (trackedChanges.length > 0) {
+      return {
+        kind: 'diverged',
+        reason: `worktree has ${trackedChanges.length} uncommitted tracked change(s); refusing reset --hard`,
+      }
+    }
+
+    // `+` = commit on HEAD with no patch-equivalent on origin (a reset would
+    // destroy it); `-` = already upstream (the lossless drift case).
+    const uniqueCommits = (
+      await shell('git', ['cherry', `origin/${branch}`, 'HEAD'], opts)
+    ).stdout
+      .split('\n')
+      .filter(line => line.startsWith('+'))
+
+    if (uniqueCommits.length > 0) {
+      return {
+        kind: 'diverged',
+        reason: `local has ${uniqueCommits.length} commit(s) not on origin/${branch}; reconcile (cherry-pick or confirm + reset) before sync`,
+      }
+    }
+
+    const resetResult = await shell(
+      'git',
+      ['reset', '--hard', `origin/${branch}`],
+      opts
+    )
+
+    if (resetResult.exitCode !== 0) {
+      return {
+        kind: 'diverged',
+        reason: `git reset --hard origin/${branch} failed: ${
+          resetResult.stderr || resetResult.stdout
+        }`,
+      }
+    }
+
+    const head = (
+      await shell('git', ['rev-parse', '--short', 'HEAD'], opts)
+    ).stdout.trim()
+
+    return { kind: 'synced', head }
   },
 }
 
@@ -3057,20 +3746,35 @@ const gh = {
     const repoArg = repoMatch
       ? `repos/${repoMatch[1]}/${repoMatch[2]}/pulls/${prNumber}/comments`
       : `repos/{owner}/{repo}/pulls/${prNumber}/comments`
+    // `--paginate` is REQUIRED. The comments endpoint returns 30 per page;
+    // on a long review thread (Switch #4965 had 59) the call silently drops
+    // everything past page 1 without it. Since GitHub returns line comments
+    // OLDEST-first, page 1 is the stalest 30 — so the orchestrator went blind
+    // to all RECENT reviewer feedback, logging "0 new comments" forever no
+    // matter the watermark. Pair `--paginate` with a STREAMING `--jq`
+    // (`.[] | {...}`, not `[.[] | {...}]`): gh applies the jq per page and
+    // concatenates, emitting one JSON object per line (NDJSON) across all
+    // pages — parsed line-by-line below. A wrapping-array jq would emit one
+    // array PER page, which `JSON.parse` can't consume as a single value.
     const lineCommentsResult = await shell(
       'gh',
       [
         'api',
+        '--paginate',
         repoArg,
         '--jq',
-        '[.[] | { body: .body, createdAt: .created_at, author: .user.login, authorAssociation: .author_association, path: .path, line: (.line // .original_line) }]',
+        '.[] | { body: .body, createdAt: .created_at, author: .user.login, authorAssociation: .author_association, path: .path, line: (.line // .original_line) }',
       ],
       { cwd }
     )
 
     if (lineCommentsResult.exitCode === 0 && lineCommentsResult.stdout.trim()) {
       try {
-        const lineComments = JSON.parse(lineCommentsResult.stdout) as {
+        // NDJSON — one comment object per line (see the `--paginate` note).
+        const lineComments = lineCommentsResult.stdout
+          .split('\n')
+          .filter(line => line.trim() !== '')
+          .map(line => JSON.parse(line)) as {
           body?: string
           createdAt?: string
           author?: string
@@ -3178,7 +3882,7 @@ const gh = {
 
 /**
  * Default config for all three orchestrator flows (migration, review-sweep,
- * graduation). Opus 4.7 + effort=max + 64k thinking budget. CLI flags
+ * graduation). Opus 4.8 + effort=max + 64k thinking budget. CLI flags
  * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) shallow-merge
  * over this. Rationale lives in the PI-4318 plan
  * `~/.claude/plans/question-what-model-and-reflective-pie.md`.
@@ -3195,7 +3899,7 @@ export const DEFAULT_MODEL_CONFIG: ModelConfig = {
   // 200k cap. The 1M tier costs more per output token but stops the
   // forget-context-then-rebuild-cache cycle that drove most iter-loop
   // blowups.
-  model: 'claude-opus-4-7[1m]',
+  model: 'claude-opus-4-8[1m]',
   effort: 'max',
   thinkingTokens: 64000,
 }
@@ -3802,7 +4506,24 @@ const agent = {
           }
 
           if (inv.withMcp) {
-            args.push('--mcp-config', 'bin/lib/agent-mcp-config.json')
+            // Absolute path resolved from the MAIN repo (orchestrator process
+            // cwd via repoRoot()), NOT the agent's worktree cwd. The agent is
+            // spawned with `cwd: wtPath`, so a relative `--mcp-config
+            // bin/lib/agent-mcp-config.json` would read the worktree's copy —
+            // which is stale if the worktree was forked before a config change
+            // (e.g. the `--blocked-origins` guard added 2026-05-28). Reading
+            // from the main repo means every worktree picks up config changes
+            // on the next sweep with no per-branch propagation.
+            //
+            // The `command: node_modules/.bin/playwright-mcp` INSIDE the config
+            // stays worktree-resolved: child_process spawns it against the MCP
+            // server's cwd (the agent's worktree, which has its own
+            // node_modules), independent of where the config FILE lives. So
+            // worktree isolation of the browser binary is preserved.
+            args.push(
+              '--mcp-config',
+              path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')
+            )
           }
 
           // Session continuity (Tier 2.1). On iter 1, set the session id so
@@ -4306,12 +5027,25 @@ async function countAgentToolUses(
  * unrelated to the in-progress worktree, so any verification against
  * it is meaningless.
  *
- * Heuristic: scan the agent log for the substring
- * `toptal.github.io/picasso/prs/` — it appears inside the URL field
- * of any browser_navigate input that targets the preview. False
- * positives are unlikely (the substring is specific) but tolerable —
- * the failure message points the agent at the right hostname rather
- * than blocking the run hard.
+ * Match ONLY genuine `browser_navigate` tool calls whose `url` field targets
+ * the preview — NOT every occurrence of the substring. The bare substring
+ * `toptal.github.io/picasso/prs/` also appears in two innocent places that a
+ * raw scan wrongly counted as navigations:
+ *   1. The prompt's OWN anti-preview guidance, which quotes the URL as the
+ *      thing NOT to do ("If you find yourself about to navigate to
+ *      `toptal.github.io/picasso/prs/...`, STOP").
+ *   2. This checklist's prior-iter failure message — which contains the
+ *      substring — echoed back into the resumed session log on the next iter.
+ * Because (2) re-injects the token the detector greps for, the substring
+ * version was a SELF-PERPETUATING false positive: once it fired it could
+ * never clear, producing an unclearable Layer A hard failure that the
+ * gate=PASS stuck-detector escalated under a bogus `audit:` key (Drawer v2,
+ * 2026-06-03 — 0 real navigations across all 4 iters, detector reported
+ * 3/1/1/1; even iter 1's matches were the prompt guidance, not a nav).
+ *
+ * The tool call is serialized in the stream-json agent log as
+ * `"name":"mcp__playwright__browser_navigate","input":{"url":"<URL>"}`;
+ * we require that exact shape with the preview host inside the url.
  */
 async function countNavigationsToDeployedPreview(
   logPath: string
@@ -4320,7 +5054,9 @@ async function countNavigationsToDeployedPreview(
     return 0
   }
   const body = await fs.readFile(logPath, 'utf8')
-  const matches = body.match(/toptal\.github\.io\/picasso\/prs\//g)
+  const matches = body.match(
+    /"name":\s*"mcp__playwright__browser_navigate"\s*,\s*"input":\s*\{\s*"url":\s*"[^"]*toptal\.github\.io\/picasso\/prs\//g
+  )
 
   return matches ? matches.length : 0
 }
@@ -4398,6 +5134,231 @@ async function countScreenshotsByKind(
 }
 
 /**
+ * Relocate agent-authored screenshots from the worktree root into
+ * `<runDir>/playwright/` so the persistence checklist can find them.
+ *
+ * `@playwright/mcp` (≥0.0.75) resolves `browser_take_screenshot`'s
+ * `filename` arg against the MCP process cwd (the worktree) via
+ * `resolveClientFilename` → `workspaceFile`, NOT the `--output-dir` we
+ * pass on the command line. So `filename: 'local--<id>.png'` lands at
+ * `<worktree>/local--<id>.png`, not `<runDir>/playwright/`. Only the
+ * NO-filename code path goes through `outputFile()` and honors
+ * `--output-dir` — and the prompt mandates an explicit filename.
+ *
+ * Without this relocation, `countScreenshotsInPlaywrightDir` always sees
+ * 0 PNGs and the checklist forces a re-iter that a well-behaved agent can
+ * never satisfy (Drawer review-iter loop, 2026-05-28). Moving them here
+ * also realizes the original `--output-dir` intent: screenshots persist
+ * beyond worktree cleanup and leave the worktree root clean.
+ *
+ * Moves top-level `{local,baseline}--*.png` only (the naming convention
+ * the prompt + checklist use). worktree and playwright are siblings under
+ * runDir, so a same-device `rename` is sufficient. Returns the count moved.
+ */
+async function relocateScreenshotsFromWorktree(
+  runDir: string,
+  worktreePath: string
+): Promise<number> {
+  const dest = path.join(runDir, 'playwright')
+
+  if (!existsSync(worktreePath)) {
+    return 0
+  }
+
+  let moved = 0
+
+  try {
+    const entries = await fs.readdir(worktreePath)
+    const screenshots = entries.filter(e => {
+      const lower = e.toLowerCase()
+
+      return (
+        lower.endsWith('.png') &&
+        (lower.startsWith('local--') || lower.startsWith('baseline--'))
+      )
+    })
+
+    if (screenshots.length === 0) {
+      return 0
+    }
+
+    await fs.mkdir(dest, { recursive: true })
+
+    for (const name of screenshots) {
+      try {
+        await fs.rename(path.join(worktreePath, name), path.join(dest, name))
+        moved += 1
+      } catch {
+        /* collision or race — skip; checklist flags if none land */
+      }
+    }
+
+    return moved
+  } catch {
+    return moved
+  }
+}
+
+/**
+ * Collect every path an agent plausibly wrote `pr-description.md` to, so the
+ * orchestrator can normalize it to the one location the toolchain reads.
+ *
+ * Sources, most-authoritative first:
+ *   1. `<runDir>/pr-description.md` — the orchestrator run dir, the narrative's
+ *      natural home next to prompt.N.txt / audit.N.md, and where the Drawer v2
+ *      run's agent actually landed it (iter 2).
+ *   2. A bounded sweep over `migration-runs/<this-month>*\/{<id>,<id>-<variant>}/`
+ *      under BOTH the operator repo root and the worktree — covers the observed
+ *      variance: the variant-suffixed dir (`Drawer-v2/`, iter 2) and a UTC date
+ *      rollover mid-run (`2026-06-04/`, iter 4).
+ */
+async function collectPrDescriptionCandidates(args: {
+  rootDir: string
+  runDir: string
+  worktreePath: string
+  runDate: string
+  itemId: string
+  variant: string
+}): Promise<string[]> {
+  const { rootDir, runDir, worktreePath, runDate, itemId, variant } = args
+  const yearMonth = runDate.slice(0, 7)
+  const compDirs = [itemId, `${itemId}-${variant}`]
+  const candidates = [path.join(runDir, 'pr-description.md')]
+
+  for (const searchRoot of [rootDir, worktreePath]) {
+    const runsRoot = path.join(searchRoot, 'migration-runs')
+
+    if (!existsSync(runsRoot)) {
+      continue
+    }
+
+    let dateDirs: string[] = []
+
+    try {
+      dateDirs = await fs.readdir(runsRoot)
+    } catch {
+      dateDirs = []
+    }
+
+    for (const dateDir of dateDirs) {
+      if (!dateDir.startsWith(yearMonth)) {
+        continue
+      }
+
+      for (const compDir of compDirs) {
+        candidates.push(
+          path.join(runsRoot, dateDir, compDir, 'pr-description.md')
+        )
+      }
+    }
+  }
+
+  return candidates
+}
+
+/**
+ * Of the given paths, return the one that exists and was modified most
+ * recently (a later iter's rewrite supersedes an earlier one). Null if none
+ * exist.
+ */
+async function freshestExistingFile(
+  paths: readonly string[]
+): Promise<string | null> {
+  let best: string | null = null
+  let bestMtime = -1
+
+  for (const candidate of paths) {
+    if (!existsSync(candidate)) {
+      continue
+    }
+
+    let mtime = -1
+
+    try {
+      mtime = (await fs.stat(candidate)).mtimeMs
+    } catch {
+      continue
+    }
+
+    if (mtime >= bestMtime) {
+      bestMtime = mtime
+      best = candidate
+    }
+  }
+
+  return best
+}
+
+/**
+ * Place the agent-authored PR description at the ONE canonical path the rest
+ * of the toolchain reads:
+ *   `<worktree>/migration-runs/<runDate>/<itemId>/pr-description.md`
+ * — exactly what `bin/migration-diff.sh report` prepends to the PR body (it
+ * `cd`s to the worktree root and uses bare COMPONENT + MIGRATION_RUN_DATE),
+ * and exactly what the Layer A checklist globs.
+ *
+ * Why this is needed: the prompt's path is worktree-relative, and the agent's
+ * cwd IS the worktree — so a relative write would land correctly. But agents
+ * empirically resolve it to an ABSOLUTE path in the operator repo (where they
+ * can see the sibling run artifacts) and waver on the dir name (`<id>` vs
+ * `<id>-<variant>`) and the date (a post-midnight UTC rollover). On the Drawer
+ * v2 run (2026-06-03) the narrative was written three times to three different
+ * main-repo paths, none of them canonical, so the Layer A check reported
+ * "PR description missing" on every iteration — a false-negative no agent
+ * action could clear, which the gate=PASS stuck-detector then escalated under
+ * a (misleading) `audit:` key. Mirrors `relocateScreenshotsFromWorktree`: go
+ * find what the agent wrote and put it where the toolchain looks.
+ *
+ * Returns the source it copied from, the canonical path if the agent already
+ * wrote there, or null if no description was authored at all.
+ */
+async function normalizePrDescription(args: {
+  rootDir: string
+  runDir: string
+  worktreePath: string
+  runDate: string
+  itemId: string
+  variant: string
+}): Promise<string | null> {
+  const canonical = path.join(
+    args.worktreePath,
+    'migration-runs',
+    args.runDate,
+    args.itemId,
+    'pr-description.md'
+  )
+
+  if (existsSync(canonical)) {
+    return canonical
+  }
+
+  const candidates = await collectPrDescriptionCandidates(args)
+  const source = await freshestExistingFile(
+    candidates.filter(candidate => candidate !== canonical)
+  )
+
+  if (source === null) {
+    return null
+  }
+
+  try {
+    await fs.mkdir(path.dirname(canonical), { recursive: true })
+    await fs.copyFile(source, canonical)
+  } catch {
+    return null
+  }
+
+  log(
+    'loop',
+    `normalized pr-description.md → canonical worktree path (from ${
+      path.relative(args.rootDir, source) || source
+    })`
+  )
+
+  return source
+}
+
+/**
  * Look for a successful `pnpm --filter <pkgName> build:package` invocation
  * in the agent's Bash tool inputs. Returns true iff the most recent matching
  * invocation appeared in the log AND no error marker followed it.
@@ -4456,6 +5417,15 @@ interface ChecklistArgs {
   iteration: number
   /** Run dir for persisting audit.<iter>.md. */
   runDir: string
+  /**
+   * Active operator overrides for this PR (review-sweep only). Injected into
+   * the Layer B audit prompt as the highest-authority carve-out so the blind
+   * subprocess does NOT flag an operator-sanctioned shape as a violation.
+   * Passed explicitly (not read off `item`) because the in-memory `item` in
+   * `sweepOne` is loaded at tick start and isn't re-read after the tick's
+   * marker merge. Undefined in the migrate-loop (no PR thread yet).
+   */
+  operatorOverrides?: readonly OperatorOverride[]
 }
 
 interface AuditViolation {
@@ -4567,12 +5537,20 @@ const checklist = {
         // 16 Playwright calls (incl. browser_take_screenshot), zero PNGs
         // on disk because the agent never passed `filename`.
         //
-        // Count PNGs created during this iter — anchor on iter-start mtime
-        // would be ideal but is fiddly; instead just count total PNGs in
-        // the playwright dir and require ≥1 when Playwright was used. The
-        // dir is pre-created empty per sweep tick (mkdir recursive is a
-        // no-op if it exists), so any PNG present here was written by
-        // this run.
+        // FIRST relocate any `{local,baseline}--*.png` the MCP wrote to the
+        // worktree root into `<runDir>/playwright/`. @playwright/mcp@≥0.0.75
+        // resolves a `browser_take_screenshot` `filename` against the MCP
+        // cwd (worktree), NOT `--output-dir`, so filenamed screenshots land
+        // in the worktree root — and the prompt mandates a filename. Without
+        // this relocation a well-behaved agent always fails the count below
+        // (Drawer review-iter loop, 2026-05-28). See
+        // `relocateScreenshotsFromWorktree`.
+        //
+        // Then count PNGs in the playwright dir and require ≥1 when
+        // Playwright was used. The dir is pre-created empty per sweep tick,
+        // so any PNG present (post-relocation) was written by this run.
+        await relocateScreenshotsFromWorktree(args.runDir, args.worktreePath)
+
         const screenshotCount = await countScreenshotsInPlaywrightDir(
           args.runDir
         )
@@ -4621,15 +5599,20 @@ const checklist = {
         }
 
         // TODO #16 (2026-05-22): deployed-preview navigation gate. The
-        // Playwright MCP has no built-in domain allowlist, so the agent
-        // can navigate anywhere — including `toptal.github.io/picasso/prs/<n>/`,
-        // which is the deployed PR-preview Storybook bundle, NOT the
-        // in-progress worktree. Observed on Switch sweep 2026-05-22:
-        // agent navigated to the preview URL, hit a 404 on the wrong
-        // story ID, and proceeded as if verification had happened.
-        // Evidence: <worktree>/.playwright-mcp/console-*.log entries.
+        // agent can navigate to `toptal.github.io/picasso/prs/<n>/`, the
+        // deployed PR-preview Storybook bundle, NOT the in-progress
+        // worktree. Observed on Switch sweep 2026-05-22 + Drawer sweep
+        // 2026-05-28: agent navigated to the preview URL, hit a 404 on the
+        // wrong story ID, and proceeded as if verification had happened.
         //
-        // Gate: scan the agent log for browser_navigate calls whose URL
+        // PRIMARY GUARD (2026-05-28): `bin/lib/agent-mcp-config.json` now
+        // passes `--blocked-origins https://toptal.github.io`, so the MCP
+        // aborts those requests at the route layer (ERR_BLOCKED_BY_CLIENT)
+        // — the agent CAN'T load the preview anymore. This post-hoc log
+        // scan is now a BACKSTOP (catches stale-config runs or new preview
+        // hosts not yet in the denylist).
+        //
+        // Backstop: scan the agent log for browser_navigate calls whose URL
         // contains `toptal.github.io/picasso/prs/` and fail the check
         // with explicit re-targeting instructions. Two and only two
         // hostnames are allowed: localhost (for local Storybook) and
@@ -4851,11 +5834,8 @@ const checklist = {
     // .changeset/** (migration's own changeset entry), and the per-item
     // plan/component-docs path. Exclude pnpm-lock.yaml + yarn.lock (huge
     // noise) and the rest of the repo (orchestrator infra, prompt docs).
-    const pathFilters = [
-      'packages/',
-      '.changeset/',
-      `docs/migration/components/${args.item.id.replace(/\//g, '__')}.md`,
-    ]
+    // Shared with the stray-guard allowlist — single source of truth.
+    const pathFilters = migrationPathFilters(args.item.id)
     const diffArgs = ['diff', diffRange, '--', ...pathFilters]
     const diffResult = await shell('git', diffArgs, {
       cwd: args.worktreePath,
@@ -4960,6 +5940,20 @@ const checklist = {
       `5. Be CONCRETE: cite the file + line range in the diff. "packages/base/Modal/src/Modal.tsx line 42" is acceptable; "in some file" is not.\n` +
       `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n` +
       `7. Honor the migration carve-out (design-patterns-addendum.md §"Existing-violations carve-out"): pre-existing rule violations in already-shipped components REMAIN. Do NOT flag a violation if the diff PRESERVES an existing rule-violating shape (e.g., the component already had \`isOpen\` before the diff — preserving it is correct, NOT a violation of rule 14). Only flag violations that the DIFF INTRODUCES or that the agent had a clear opportunity to fix in the migration scope.\n\n` +
+      (args.operatorOverrides && args.operatorOverrides.length > 0
+        ? `8. **OPERATOR OVERRIDES — highest authority, overrides every rule in the checklist below.** The operator has explicitly EXCEPTED these rules on this PR (recorded from the PR thread, which you cannot see). If the diff matches a sanctioned shape below, it is NOT a violation — do NOT add it to <violations>, even when a doc uses NEVER / MUST NOT / forbidden wording for it. This is the #1 false positive to avoid; the operator already decided:\n` +
+          args.operatorOverrides
+            .map(
+              o =>
+                `   - Rule **${o.rule}** EXCEPTED → sanctioned shape: ${
+                  o.sanctioned
+                } (confirmed by ${o.confirmed_by}${
+                  o.evidence ? `, ${o.evidence}` : ''
+                }).\n`
+            )
+            .join('') +
+          `\n`
+        : '') +
       `**Standards compliance checklist — walk this in order on every audit.** Cite the matching §section for each violation. Skip items that don't apply to this diff:\n\n` +
       `### A. Hard rules (severity=high if violated)\n` +
       `1. **\`classes\` prop decision** (decisions/classes-audit.md + design-patterns-addendum.md §2): is the component Dropdown or OutlinedInput? If yes, the narrowed \`classes?: { ... }\` MUST be retained. For other Tier-0 components, audit-aligned drop via \`extends Omit<StandardProps, 'classes'>\` + runtime backstop. Flag any deviation.\n` +
@@ -5117,6 +6111,17 @@ async function escalate(
     iterations: state.iterations,
   })
 
+  // Report from the variant's OWN slot — NOT the flat `item.*` fields. For v2+
+  // runs the flat fields hold a different variant's data (updateVariant
+  // intentionally doesn't mirror non-v1 variants to flat), so reading
+  // `item.pr` / `item.worktree` here surfaced STALE cross-variant values:
+  // the Drawer v2 escalation block reported v1's PR #4966 and the 2026-05-18
+  // v1 worktree, and worse, would have posted the escalation comment onto v1's
+  // PR. Re-read post-write so the status/reason/iterations just written show up
+  // alongside the pr/worktree/branch set earlier in this run.
+  const freshItem = manifest.read(manifestPath).components[item.id] ?? item
+  const vState = manifest.getVariantState(freshItem, variant)
+
   // Emit an escalation block to the run dir.
   //
   // 2026-05-19 fix: prior path was `migration-runs/<date>/<item.id>/escalation.md`,
@@ -5137,8 +6142,8 @@ async function escalate(
     '',
     `**Trigger:** ${reason}`,
     `**Iterations:** ${state.iterations} / 3`,
-    `**PR:** ${item.pr ?? '(not opened)'}`,
-    `**Worktree:** \`${item.worktree ?? '(removed)'}\``,
+    `**PR:** ${vState.pr ?? '(not opened)'}`,
+    `**Worktree:** \`${vState.worktree ?? '(removed)'}\``,
     `**Last gate report:** \`${state.lastGate?.reportPath ?? '(none)'}\``,
     '',
     'See `docs/migration/references/escalation.md` for the full handoff procedure.',
@@ -5148,9 +6153,9 @@ async function escalate(
   await fs.mkdir(escDir, { recursive: true })
   await fs.writeFile(escPath, block, 'utf8')
 
-  if (item.pr) {
+  if (vState.pr) {
     try {
-      await gh.commentPR(item.pr, block, rootDir)
+      await gh.commentPR(vState.pr, block, rootDir)
     } catch (e) {
       log(
         'escalate',
@@ -5261,6 +6266,104 @@ export async function runBatch(
 // runReviewSweep — async review processor (Phase 3.5 redesign)
 // ---------------------------------------------------------------------------
 
+/**
+ * Run the workflow's post-merge hook for an item, swallowing errors (the hook
+ * is best-effort — a reference-copy failure must not abort the sweep). No-op
+ * when the workflow defines no hook. Extracted so callers stay flat (avoids a
+ * nested `if` inside the reconcile/merge branches).
+ */
+async function runPostMergeHook(
+  workflow: Workflow,
+  item: ManifestItem,
+  rootDir: string
+): Promise<void> {
+  if (!workflow.onPostMerge) {
+    return
+  }
+  await workflow
+    .onPostMerge(item, rootDir)
+    .catch((err: Error) =>
+      log('sweep', `${item.id}: onPostMerge failed (non-fatal): ${err.message}`)
+    )
+}
+
+/**
+ * Reconcile items the sweep deliberately does NOT walk — `needs_human` and
+ * `blocked` — against their PR's real terminal state. Those statuses are
+ * excluded from the sweep loop (we must not re-engage the agent on them), but
+ * the operator can still merge or close the PR out-of-band. The common case:
+ * the operator merges a PR the orchestrator escalated and gave up on. Without
+ * this the item stays red in the manifest (and its Confluence mirror) forever
+ * even though it shipped — see Container #4980 (audit-stuck → needs_human on
+ * 2026-05-29, operator-merged 2026-05-30, but the sweep's MERGED→done check
+ * never ran because needs_human items aren't swept).
+ *
+ * Cheap + agent-free: one `gh pr view` per stuck item, no worktree (gh
+ * resolves by URL). Returns the count transitioned; caller syncs Confluence
+ * when it's > 0.
+ */
+async function reconcileStuckPRs(
+  m: Manifest,
+  opts: OrchestratorOptions,
+  manifestAbs: string,
+  rootDir: string,
+  workflow: Workflow
+): Promise<number> {
+  let reconciled = 0
+
+  for (const item of Object.values(m.components)) {
+    if (opts.component && item.id !== opts.component) {
+      continue
+    }
+
+    for (const variantId of manifest.listVariantIds(item)) {
+      const state = manifest.getVariantState(item, variantId)
+      const isStuck =
+        state.status === 'needs_human' || state.status === 'blocked'
+
+      if (!isStuck || !state.pr) {
+        continue
+      }
+      const prState = (await gh
+        .viewPR(state.pr as string, 'state,mergedAt', rootDir)
+        .catch(() => null)) as {
+        state?: string
+        mergedAt?: string | null
+      } | null
+
+      if (prState?.state === 'MERGED') {
+        manifest.updateVariant(manifestAbs, item.id, variantId, {
+          status: 'done',
+          merged_at: prState.mergedAt ?? ISO(),
+        })
+        log(
+          'sweep',
+          `${item.id}: was ${state.status} but PR is MERGED — reconciled to done`
+        )
+        // `id` is non-enumerable on the manifest item, so re-attach it
+        // explicitly — the spread would otherwise drop it and the hook would
+        // read `undefined`.
+        const merged = { ...item, ...state, id: item.id } as ManifestItem
+
+        await runPostMergeHook(workflow, merged, rootDir)
+        reconciled += 1
+      } else if (prState?.state === 'CLOSED' && state.status !== 'blocked') {
+        manifest.updateVariant(manifestAbs, item.id, variantId, {
+          status: 'blocked',
+          escalation_reason: 'PR closed without merge (reconciled by sweep)',
+        })
+        log(
+          'sweep',
+          `${item.id}: was needs_human but PR is CLOSED — reconciled to blocked`
+        )
+        reconciled += 1
+      }
+    }
+  }
+
+  return reconciled
+}
+
 export async function runReviewSweep(
   workflow: Workflow,
   opts: OrchestratorOptions
@@ -5282,6 +6385,27 @@ export async function runReviewSweep(
   }
 
   const m = manifest.read(manifestAbs)
+
+  // Out-of-band reconciliation BEFORE candidate selection: items the sweep
+  // won't walk (needs_human / blocked) can still have had their PR merged or
+  // closed by the operator. Catch those so a shipped PR doesn't stay red in
+  // the manifest + Confluence. Agent-free; see reconcileStuckPRs.
+  const reconciledCount = await reconcileStuckPRs(
+    m,
+    opts,
+    manifestAbs,
+    rootDir,
+    workflow
+  )
+
+  if (reconciledCount > 0) {
+    log(
+      'sweep',
+      `reconciled ${reconciledCount} non-swept item(s) against merged/closed PRs`
+    )
+    await syncConfluence(manifestAbs)
+  }
+
   // Sweep candidates: enumerate every (component, variant) tuple whose
   // variant-state is in a sweepable status with a real PR. Pre-Part-4
   // multi-variant: one entry per component (flat fields). Post-Part-4:
@@ -5409,6 +6533,10 @@ async function sweepOne(
   // `wtPath` starts pointing at declared path if it exists, else rootDir
   // fallback. May be reassigned below if we auto-recreate the worktree.
   let wtPath = existsSync(declaredWtPath) ? declaredWtPath : rootDir
+  // Whether THIS tick freshly recreated the worktree from origin/<branch>
+  // (below). A fresh recreate is already at origin's tip, so the forward-sync
+  // step skips it.
+  let worktreeJustRecreated = false
 
   if (wtPath !== declaredWtPath) {
     log(
@@ -5521,31 +6649,15 @@ async function sweepOne(
   //   (b) Part 4 (2026-05-13) — agent's CI poll timed out without verdict.
   // Both resume the same way: re-check the rollup, react to state.
   //   success → ready_to_merge if reviewer-approved, else awaiting_review.
-  //   timeout (still pending) → log + return; check 24h max-age cap.
+  //   timeout + checks running  → wait for CI (re-checked next tick).
+  //   timeout + nothing running → awaiting_review for a normal review pass.
   //   failure → flip to awaiting_review + thread failures to agent.
   if (item.status === 'awaiting_ci') {
-    // 24h max-age cap: if item has been in awaiting_ci > 24h, transition
-    // to needs_human. Catches "operator forgot" / "CI genuinely broken".
-    if (item.awaiting_ci_since) {
-      const ageMs = Date.now() - new Date(item.awaiting_ci_since).getTime()
-      const maxAgeMs = 24 * 60 * 60 * 1000
-
-      if (ageMs > maxAgeMs) {
-        const ageHours = (ageMs / 1000 / 60 / 60).toFixed(1)
-
-        log(
-          'sweep',
-          `${item.id}: awaiting_ci → needs_human (stuck for ${ageHours}h; 24h max-age cap)`
-        )
-        updateForVariant({
-          status: 'needs_human',
-          escalation_reason: `awaiting_ci > 24h (${ageHours}h since ${item.awaiting_ci_since})`,
-        })
-
-        return
-      }
-    }
-
+    // Re-check CI on every tick and let its CURRENT state drive the decision.
+    // This replaces a former blind "awaiting_ci > 24h → needs_human" cap that
+    // escalated WITHOUT re-checking — freezing PRs whose CI had since
+    // recovered out of the sweep entirely (FormLabel #4982 sat ~2 days on a
+    // stale awaiting_ci_since while it was approved and CI was re-running).
     const checks = await gh.snapshotChecks(prUrl, wtPath)
 
     if (checks.state === 'success') {
@@ -5566,14 +6678,34 @@ async function sweepOne(
       return
     }
     if (checks.state === 'timeout') {
+      if (checks.pending.length > 0) {
+        // CI is actively running → keep waiting; re-checked next tick. A live
+        // run is exactly what awaiting_ci is for, so never escalate here.
+        const since = item.awaiting_ci_since
+          ? ` (since ${item.awaiting_ci_since})`
+          : ''
+
+        log(
+          'sweep',
+          `${item.id}: awaiting_ci — ${checks.pending.length} check(s) still running${since}; waiting for CI to finish`
+        )
+
+        return
+      }
+      // No checks running (empty rollup, or all terminal but not green) → CI
+      // won't produce a verdict on its own. Hand to the agent for a normal
+      // review pass so an approved PR's outstanding comments get resolved
+      // instead of stalling. (Was: frozen to needs_human by the 24h cap.)
       log(
         'sweep',
-        `${item.id}: awaiting_ci — ${
-          checks.pending.length
-        } reported check(s) pending, mergeStateStatus=${
+        `${item.id}: awaiting_ci but no checks running (mergeStateStatus=${
           checks.mergeStateStatus ?? '?'
-        }`
+        }) → awaiting_review for normal review`
       )
+      updateForVariant({
+        status: 'awaiting_review',
+        awaiting_ci_since: null,
+      })
 
       return
     }
@@ -5619,6 +6751,7 @@ async function sweepOne(
       log('sweep', `${item.id}: worktree recreated successfully`)
       // Refresh wtPath now that the declared worktree path is live again.
       wtPath = declaredWtPath
+      worktreeJustRecreated = true
     } catch (err) {
       updateForVariant({
         status: 'needs_human',
@@ -5629,6 +6762,46 @@ async function sweepOne(
       log('sweep', `${item.id}: worktree recreate failed; escalated`)
 
       return
+    }
+  }
+
+  // Sync the existing worktree forward to origin's PR head before engaging
+  // the agent. Origin/<branch> may have been rebased onto the moving base
+  // since the last tick (drift), so without this the agent edits + answers
+  // reviewers against stale source AND the end-of-tick push bounces
+  // non-fast-forward into needs_human. Guarded reset, never `git pull`.
+  //
+  // ONLY on the real worktree (wtPath === declaredWtPath): a missing worktree
+  // falls back to rootDir for gh-only ops (see above), and we must never
+  // `git reset --hard` the operator's main checkout. Also skipped right after
+  // a fresh recreate (already at origin's tip). See worktree.syncToOrigin for
+  // the cherry-guard that protects genuine unpushed local work.
+  if (wtPath === declaredWtPath && !worktreeJustRecreated) {
+    const sync = await worktree.syncToOrigin(item.branch as string, wtPath)
+
+    if (sync.kind === 'diverged') {
+      updateForVariant({
+        status: 'needs_human',
+        escalation_reason: `worktree sync blocked: ${sync.reason}`,
+      })
+      log(
+        'sweep',
+        `${item.id}: worktree sync blocked — escalated (${sync.reason})`
+      )
+
+      return
+    }
+
+    if (sync.kind === 'skipped') {
+      log(
+        'sweep',
+        `${item.id}: worktree sync skipped (${sync.reason}); proceeding on current state`
+      )
+    } else {
+      log(
+        'sweep',
+        `${item.id}: worktree synced to origin/${item.branch} @ ${sync.head}`
+      )
     }
   }
 
@@ -5722,6 +6895,67 @@ async function sweepOne(
   const pendingProposals = orchestratorReplies.filter(r =>
     PROPOSAL_PATTERN.test(r.body ?? '')
   )
+
+  // Operator-override locks (2026-06-01). Parse override-lock / -unlock
+  // markers out of the agent's own past replies, merge over the manifest's
+  // existing overrides, and persist any change. `activeOverrides` is injected
+  // into the conversational review prompt AND the Layer B `judgeAudit` so
+  // neither audit path reverts an operator-sanctioned change — the fix for
+  // the PR #4965 oscillation (audit kept reverting the operator-directed
+  // HTMLSpanElement typing back to the boundary cast). A marker the agent
+  // posts THIS tick lands in `orchestratorReplies` next tick; the same-tick
+  // gap is covered by the in-thread instruction in PROMPT-review-response.md.
+  const parsedOverrides = parseOverrideMarkers(orchestratorReplies, ISO())
+  const activeOverrides = mergeOverrides(
+    item.operator_overrides,
+    parsedOverrides
+  )
+  const existingNormalized = mergeOverrides(item.operator_overrides, {
+    locks: [],
+    unlockedRules: [],
+  })
+
+  if (JSON.stringify(activeOverrides) !== JSON.stringify(existingNormalized)) {
+    updateForVariant({ operator_overrides: activeOverrides })
+    log(
+      'sweep',
+      `${item.id}: operator-override locks updated → [${
+        activeOverrides.map(o => o.rule).join(', ') || 'none'
+      }] (${parsedOverrides.locks.length} lock / ${
+        parsedOverrides.unlockedRules.length
+      } unlock marker(s) parsed)`
+    )
+  }
+
+  // Reviewer-confirmed rule-graduation requests (2026-06-01). Parse
+  // graduation-request markers from the agent's own replies (emitted only
+  // after a reviewer 👍-confirms a graduation proposal), persist them as
+  // `queued` candidates, and surface them to the prompt below. The
+  // `pnpm orchestrate --graduate` pass consumes queued requests as
+  // pre-qualified, reviewer-cited additions to practices.md.
+  const parsedGraduations = parseGraduationRequests(orchestratorReplies, ISO())
+  const activeGraduations = mergeGraduationRequests(
+    item.graduation_requests,
+    parsedGraduations
+  )
+
+  if (
+    JSON.stringify(activeGraduations) !==
+    JSON.stringify(mergeGraduationRequests(item.graduation_requests, []))
+  ) {
+    updateForVariant({ graduation_requests: activeGraduations })
+    log(
+      'sweep',
+      `${item.id}: graduation requests updated → [${
+        activeGraduations.map(g => `${g.rule}:${g.status}`).join(', ') || 'none'
+      }]`
+    )
+  }
+
+  // Recurring-override tally across ALL components — a rule overridden on ≥2
+  // PRs signals the rule itself should change (graduation candidate). Read
+  // fresh so it reflects the override just persisted above for this PR.
+  const recurringOverrideCounts = tallyOverrideRules(manifest.read(manifestAbs))
 
   // Author-trust gate. Comments from authors outside TRUSTED_REVIEW_ASSOCIATIONS
   // (and from bots) are skipped — they never reach the agent prompt. The
@@ -5994,6 +7228,12 @@ async function sweepOne(
     '# Review-response protocol\n\n' +
     reviewProtocol +
     '\n\n---\n\n' +
+    renderOverrideCarveout(activeOverrides) +
+    renderGraduationContext({
+      overrides: activeOverrides,
+      queued: activeGraduations,
+      recurringCounts: recurringOverrideCounts,
+    }) +
     `# This sweep tick — PR ${prUrl}\n\n` +
     `${newReviews.length} new comment(s) since ${
       item.last_review_seen_at ?? 'never'
@@ -6112,7 +7352,7 @@ async function sweepOne(
         'Per-finding action — apply the SAME confidence matrix as the conversational protocol, with calibration sharpened for this audit:\n\n' +
         '- **HIGH confidence — ACT NOW** when ALL THREE hold:\n' +
         '    1. The cited rule uses RULE-strength wording (`NEVER`, `MUST NOT`, `Do NOT`, `forbidden`, `explicitly forbidden`, `not allowed`, `is wrong`) — NOT preferred-strength wording (`prefer`, `should`, `typically`, `usually`, `consider`).\n' +
-        '    2. No carve-out applies (existing-violations carve-out, Tier 3.b `classes` exception, etc.).\n' +
+        '    2. No carve-out applies (existing-violations carve-out, Tier 3.b `classes` exception, AND — highest authority — any active operator override listed in the "Operator overrides" section above. An operator override outranks RULE-strength wording; if a finding matches an override\'s sanctioned shape, it is NOT a violation, full stop).\n' +
         '    3. A direct, unambiguous fix exists — e.g. replace `as unknown as T` with a typed adapter; replace `inputRef={n => n.style.x = y}` with a Tailwind class or `data-*` selector; correct a wrong changeset bump per the documented taxonomy.\n' +
         '  Action: make the code edit (Edit/Write) and post an IN-THREAD reply on the offending file:line citing the rule. One sentence body. Use `gh api .../pulls/<n>/comments` with `path` + `line` + `side` (no `in_reply_to`, since this is a new thread you are opening).\n' +
         '  **Common patterns that ARE HIGH (do not downgrade these to MEDIUM):**\n' +
@@ -6128,6 +7368,7 @@ async function sweepOne(
         '  Action: post an inline proposal on the offending file:line with the same `path` + `line` + `side` recipe, cap ~40 words, end with "👍 to confirm, or share thoughts." Subsequent sweep ticks act on confirmation per the existing pending-proposal flow.\n' +
         '- **LOW confidence / ambiguous** → skip. False positives in standards audits erode operator trust; better to miss one than to spam a PR with debatable nits.\n\n' +
         '**Calibration anti-pattern to avoid:** if you find yourself thinking "this is forbidden by RULE-strength wording but I posted a MEDIUM proposal in a prior tick that has no reaction" — that prior classification was wrong. RULE-strength + no carve-out + obvious fix = HIGH, regardless of whether you previously asked for 👍 on it. Treat the prior MEDIUM proposal as superseded; act now, then reply on the original proposal thread with "Acting on this — re-classified as HIGH per RULE-strength wording in <citation>." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
+        '**The one exception to the calibration anti-pattern — operator overrides:** the re-classify-to-HIGH escalation above does NOT apply to any finding sanctioned by an active operator override (see the "Operator overrides" section near the top of this prompt). An operator who explicitly directed an exception (or 👍-confirmed your proposal that contradicts a rule) has the final word — it is NOT a stale MEDIUM to be corrected. Do NOT revert, do NOT re-classify it to HIGH, and do NOT re-open it with a fresh audit comment each tick. Leave it; if you genuinely believe the rule should win, reply once asking the operator to reconsider, then drop it.\n\n' +
         'Reply formatting: every standards-audit comment uses the same orchestrator header as conversational replies:\n\n' +
         '```\n> 🤖 _Orchestrator agent (autonomous standards-audit)_\n```\n\n' +
         'The `(autonomous standards-audit)` suffix distinguishes audit comments from review-response comments in the thread — reviewers can tell at a glance which path produced the message.\n\n' +
@@ -6453,6 +7694,7 @@ async function sweepOne(
           rootDir,
           iteration: sweepIterNum,
           runDir,
+          operatorOverrides: activeOverrides,
         })
 
         const sections: string[] = []
@@ -6540,16 +7782,12 @@ async function sweepOne(
       // the sweep tick ends with at most ONE commit on the branch.
       //
       // If the agent made no source changes (MEDIUM/LOW-confidence reply
-      // path), `git add -A` is a no-op and `git commit`/`--amend` will
-      // either skip (no staged changes) or amend with no changes; we
-      // detect via `git diff --cached --quiet`.
+      // path), staging is a no-op and `git commit`/`--amend` will either skip
+      // (no staged changes) or amend with no changes; `stripStrayFiles` reports
+      // `hasStagedChanges` via `git diff --cached --quiet`. It also strips any
+      // orchestrator scratch the agent dropped (see its JSDoc).
       // eslint-disable-next-line no-await-in-loop
-      await shell('git', ['add', '-A'], { cwd: wtPath })
-      // eslint-disable-next-line no-await-in-loop
-      const stagedCheck = await shell('git', ['diff', '--cached', '--quiet'], {
-        cwd: wtPath,
-      })
-      const hasStagedChanges = stagedCheck.exitCode !== 0
+      const { hasStagedChanges } = await stripStrayFiles(wtPath, item.id)
 
       if (hasStagedChanges) {
         if (!sweepTickHasCommit) {
@@ -6794,8 +8032,10 @@ async function sweepOne(
           )
           iterFeedback =
             '# Layer B audit disagreement — re-evaluate your calibration\n\n' +
+            renderOverrideCarveout(activeOverrides) +
             `Iter ${iter} converged the gate green BUT the post-iter audit STILL flags HIGH-severity rule violations against the post-iter worktree. Some violations may be from before this iter (unaddressed) and some may have been introduced by this iter's edits. Either way, the audit's RULE-strength reading is authoritative — if a rule says NEVER / MUST NOT / forbidden / explicitly forbidden / not allowed AND a direct fix exists AND no carve-out applies, that is HIGH-confidence by definition, not MEDIUM. This holds regardless of any prior MEDIUM proposal you posted asking for 👍, and regardless of whether you made other edits this iter.\n\n` +
-            'Action this iter: re-read the audit findings below, RE-CLASSIFY each as HIGH unless a carve-out clearly applies, and ACT — edit the code + reply IN-THREAD on the offending file:line citing the rule. If you previously posted a MEDIUM proposal on the same finding, ALSO post a follow-up reply on that prior thread: "Re-classified as HIGH per RULE-strength wording in <citation>. Acting on this now." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
+            "EXCEPTION (highest authority): if a flagged finding matches EITHER (a) the sanctioned shape of an active operator override listed above, OR (b) an explicit operator/reviewer directive or 👍-confirmation you can see in THIS PR's thread (the operator may have sanctioned it this very tick, before it was recorded), then it is NOT a violation — do NOT revert it, do NOT re-classify it to HIGH, and do NOT re-open it. The Layer B audit is blind to the PR thread, so it WILL keep re-flagging operator-sanctioned shapes; that is the false positive this carve-out exists to suppress. Leave the override-sanctioned code exactly as-is, make sure your reply carries the `<!-- override-lock ... -->` marker so it gets recorded, and move on to the other findings.\n\n" +
+            'Action this iter: re-read the audit findings below, RE-CLASSIFY each as HIGH unless a carve-out clearly applies (operator override is the strongest one), and ACT — edit the code + reply IN-THREAD on the offending file:line citing the rule. If you previously posted a MEDIUM proposal on the same finding, ALSO post a follow-up reply on that prior thread: "Re-classified as HIGH per RULE-strength wording in <citation>. Acting on this now." Reviewers prefer corrected calibration to an indefinite wait on a 👍 that never came.\n\n' +
             'Common patterns the audit consistently flags as HIGH (do NOT downgrade these to MEDIUM in your re-evaluation):\n' +
             '- `as unknown as T` blanket casts on `...rest`, event handlers, or props — replace with a typed adapter (drop/transform incompatible keys before spread, or construct a synthetic event with the correct shape).\n' +
             '- Imperative `ref` callbacks that mutate `.style` for theme/visual purposes — replace with a Tailwind slot selector (e.g. `[&_input]:!m-0`) or a `data-*` attribute selector. Cite practices.md §"@base-ui/react idioms" which explicitly calls the ref-style pattern a "one-off Switch compromise, not the pattern."\n' +
@@ -7715,6 +8955,13 @@ export async function run(
     // documented procedure (practices.md §"Computed-style diff is
     // authoritative" + §"@base-ui/react idioms" specificity ladder).
     let lastMigrateStuckKey: string | null = null
+    // 2026-06-04: accurate fingerprint of the checklist (Layer A process +
+    // audit HIGH) failures, for the gate=PASS + lingering-checklist stuck path.
+    // Previously that path keyed on a blanket `audit:${lastAuditKey}` even when
+    // the only failures were Layer A process steps — misreporting the cause AND
+    // (since the key never reflected the changing Layer A set) hiding genuine
+    // progress from stuck-detection (Drawer v2, 2026-06-03).
+    let lastChecklistFailureKey = ''
     // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
     // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
     // keeps the full canonical-prompt + rules + per-item-plan context from
@@ -7830,6 +9077,22 @@ export async function run(
         continue
       }
 
+      // 2026-06-04: normalize the agent's PR description to the one path the
+      // checklist + post-pass `migration-diff.sh report` (the PR body) read.
+      // The agent writes it to absolute operator-repo paths with a varying
+      // dir name / date (see normalizePrDescription); without this the Layer A
+      // "PR description present" check is a permanent false-negative that the
+      // gate=PASS stuck-detector escalates as a bogus `audit:` key (Drawer v2,
+      // 2026-06-03 — escalated after 4 iters, narrative written but never found).
+      await normalizePrDescription({
+        rootDir,
+        runDir,
+        worktreePath: wtPath,
+        runDate,
+        itemId: item.id,
+        variant: opts.variant,
+      })
+
       // 2026-05-20: pre-gate checklist enforcement (Layer A mechanical +
       // Layer B LLM-judgment). Verifies the agent followed mandatory
       // PROCESS steps (changeset, Playwright, build:package) AND that
@@ -7916,6 +9179,39 @@ export async function run(
           }
         }
         lastAuditKey = checklistResult.auditKey
+
+        // Fingerprint the hard failures for stuck-detection (used by the
+        // gate=PASS path below). Layer A (process) failures are fingerprinted
+        // here — normalizing volatile counts (e.g. "1 time(s)") so the same
+        // failure across iters keys identically — while audit HIGH is already
+        // covered by auditKey. Labeled `process:` / `audit:` so the escalation
+        // reason names the real cause instead of a blanket `audit:`.
+        const processFailures = checklistResult.failures.filter(
+          f => !f.startsWith('Audit (')
+        )
+        const processKey = processFailures
+          .map(f =>
+            f
+              .replace(/\d+/g, '#')
+              .replace(/\s+/g, ' ')
+              .trim()
+              .slice(0, 80)
+              .toLowerCase()
+          )
+          .sort()
+          .join('|')
+        const checklistKeyParts = [
+          processKey !== '' ? `process:${processKey}` : '',
+          checklistResult.auditKey !== ''
+            ? `audit:${checklistResult.auditKey}`
+            : '',
+        ].filter(Boolean)
+
+        lastChecklistFailureKey =
+          checklistKeyParts.length > 0
+            ? checklistKeyParts.join('|')
+            : 'checklist'
+
         pendingChecklistFeedback =
           sections.length > 0 ? sections.join('\n\n---\n\n') : null
       } catch (err) {
@@ -7930,17 +9226,12 @@ export async function run(
 
       // Stage + commit-or-amend the agent's edits BEFORE the gate runs.
       // This is required for Happo to see iter-fresh state (see comment
-      // on `migrationHasCommit` above). Mirrors `sweepOne`'s in-loop
-      // commit logic — keep the patterns aligned so future bug fixes
-      // apply uniformly.
-      await shell('git', ['add', '-A'], { cwd: wtPath })
-      const migrationStagedCheck = await shell(
-        'git',
-        ['diff', '--cached', '--quiet'],
-        { cwd: wtPath }
-      )
+      // on `migrationHasCommit` above). Shares `stripStrayFiles` with
+      // `sweepOne` and the CI loop — staging + scratch-stripping stay aligned
+      // across all three commit sites.
+      const { hasStagedChanges } = await stripStrayFiles(wtPath, item.id)
 
-      if (migrationStagedCheck.exitCode !== 0) {
+      if (hasStagedChanges) {
         if (!migrationHasCommit) {
           const migrationCommitMsg = workflow.commitMessage(item.id, item)
 
@@ -8165,17 +9456,20 @@ export async function run(
         .sort()
         .join('|')
 
-      // 2026-05-22: extend failure key to include critic audit content
-      // when gate passed but critic flagged hard failures (the new
-      // gate=PASS + iter-continue path). Without this, two consecutive
-      // gate=PASS iters with DIFFERENT critic violations both produce
-      // empty gate-failure-keys → stuck-detection falsely fires.
-      // Observed Slider v2 2026-05-22 after critic-aware loop exit
-      // landed: iter 1 had 2 audit HIGH violations, iter 2 fixed one
-      // (real progress), but stuck-detection saw `"" === ""` → escalated.
+      // 2026-05-22: when the gate passes but the critic still flags hard
+      // failures (the gate=PASS + iter-continue path), key on the checklist
+      // failures instead of the (empty) gate key — otherwise two gate=PASS
+      // iters with DIFFERENT violations both produce empty keys → false stuck
+      // detection (Slider v2 2026-05-22: iter 1 had 2 audit HIGH, iter 2 fixed
+      // one — real progress — but stuck-detection saw `"" === ""` → escalated).
+      // 2026-06-04: use `lastChecklistFailureKey` (process: + audit: parts)
+      // rather than a blanket `audit:${lastAuditKey}`. The old form mislabeled
+      // Layer-A-only stalls as `audit:` AND, with no audit findings, collapsed
+      // to a constant `audit:` that masked a changing Layer A failure set as
+      // "stuck" (Drawer v2, 2026-06-03 escalated on phantom Layer A checks).
       const currentFailureKey =
         gateFailureKey === '' && pendingChecklistFeedback !== null
-          ? `audit:${lastAuditKey ?? 'no-audit-key'}`
+          ? lastChecklistFailureKey || 'checklist'
           : gateFailureKey
 
       // Transient happo:ERROR (upload propagation race) doesn't count
@@ -8210,13 +9504,21 @@ export async function run(
             } more iters`
           )
 
+          // Name the real cause: a `process:`/`audit:` key means the gate
+          // PASSED and the stall is in the checklist, not a gate stage.
+          const stuckOn =
+            currentFailureKey.startsWith('process:') ||
+            currentFailureKey.startsWith('audit:')
+              ? 'process-checklist / audit findings'
+              : 'deterministic gate stages'
+
           return escalate(
             workflow,
             item,
             state,
             {
               shouldEscalate: true,
-              reason: `migrate-loop stuck on deterministic gate stages: ${currentFailureKey} (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.`,
+              reason: `migrate-loop stuck on ${stuckOn}: ${currentFailureKey} (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.`,
             },
             manifestAbs,
             rootDir,
@@ -8454,9 +9756,11 @@ export async function run(
       // the next `--review-sweep` tick re-polls CI and continues iteration
       // when results land.
       //
-      // Safety net: sweep enforces a 24h max-age cap on `awaiting_ci`. If
-      // CI is STILL pending 24h later, sweep transitions to `needs_human`
-      // (operator forgot, or CI is genuinely broken on this PR).
+      // On each subsequent tick, sweep re-checks CI and lets its CURRENT
+      // state decide: checks still running → keep waiting; no checks running
+      // → awaiting_review for a normal review pass. (Formerly a blind 24h
+      // max-age cap here froze it to needs_human WITHOUT re-checking — that
+      // stranded approved PRs whose CI had recovered, so it was removed.)
       const pendingNames = pollResult.pending.map(c => c.name).join(', ')
       const reason = `CI timeout after ${ciTimeout}min; pending: ${pendingNames}`
 
@@ -9044,7 +10348,9 @@ export async function run(
       )
 
       await fs.writeFile(ciCommitMsgFile, ciCommitMsg, 'utf8')
-      await shell('git', ['add', '-A'], { cwd: wtPath })
+      // Stage + strip orchestrator scratch (shared with the migration loop and
+      // sweepOne). Empty result → the commit below is a no-op (non-zero exit).
+      await stripStrayFiles(wtPath, item.id)
       const commitResult = await shell(
         'git',
         ['commit', '--no-verify', '--file', ciCommitMsgFile],
@@ -9238,7 +10544,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
 
-  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Opus 4.7 + max + 64k)
+  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Opus 4.8 + max + 64k)
   // overlaid with any CLI flags. `--no-thinking` forces budget=0 regardless
   // of `--thinking-tokens` (so a stray `--no-thinking --thinking-tokens=N`
   // still disables thinking — least-surprise behavior).

@@ -19,7 +19,7 @@ Canonical layout: `packages/base/<Component>/src/<Component>/`
 └── __snapshots__/    # generated
 ```
 
-Variance (6/28): components with logical sub-components co-locate them in the same dir (Button has `ButtonBase.tsx`, `ButtonCheckbox.tsx`, etc. — not split into sibling dirs).
+If it makes sense to have sub-components, co-locate them in the same dir (e.g., Button has `ButtonBase.tsx`, `ButtonCheckbox.tsx` — not split into sibling dirs).
 
 **Hooks and utilities**: when a component needs custom hooks or helpers, co-locate as `hooks.ts` or `<use-hook-name>.ts` inside the component folder — never split into a parallel `packages/.../hooks/` directory.
 
@@ -30,14 +30,30 @@ When a component exposes a `Component.Item` / `Component.Tab` / `Component.Title
 - `<Component>.tsx` — the main functional component, unchanged shape.
 - `<Component>Compound/index.ts` — wraps the main export and attaches static properties (`Tabs.Tab = TabsTab`, `Menu.Item = MenuItem`).
 
-Tests import `TabsCompound as Tabs` to access the compound API. Examples:
+Canonical shape (`Object.assign` on the main export):
 
-- `Tabs.tsx:1-128` + `TabsCompound/index.ts` exposes `Tabs.Tab`.
-- `Menu.tsx:23-118` + `MenuCompound/index.ts` exposes `Menu.Item`.
-- `Dropdown.tsx:125-337` + `DropdownCompound/index.ts` exposes `Dropdown.Arrow`.
-- `Note.tsx:9-37` + `NoteCompound/index.ts` exposes `Note.Title`, `Note.Subtitle`, `Note.Content`.
+```ts
+// FormCompound/index.ts
+import { FormLabel } from '@toptal/picasso-form-label'
 
-Apply this split only when the design genuinely requires a compound consumer API (3+ distinct sub-parts the consumer must compose). Don't introduce a `XCompound/` wrapper just to attach a single `.X.Item` — keep simple components monolithic.
+import { Form } from '../Form'
+import { FormError } from '../FormError'
+import { FormField } from '../FormField'
+import { FormHint } from '../FormHint'
+import { FormWarning } from '../FormWarning'
+
+export const FormCompound = Object.assign(Form, {
+  Field: FormField,
+  Hint: FormHint,
+  Error: FormError,
+  Label: FormLabel,
+  Warning: FormWarning,
+})
+```
+
+Tests import `FormCompound as Form` to access the compound API. Other examples: `TabsCompound`, `MenuCompound`, `DropdownCompound`, `NoteCompound`.
+
+For when to apply this pattern (3+ distinct sub-parts), see `PICASSO_COMPONENT_DESIGN_PATTERNS.md` rule 15 — single source of truth.
 
 ### Context-based coordination for compound parts (2/28 — Dropdown, Menu)
 
@@ -57,26 +73,9 @@ export const useDropdownContext = () => useContext(DropdownContext)
 
 Children call `useDropdownContext()?.close()`. This is the canonical Picasso pattern for compound-internal state sharing — do NOT thread callbacks through props or use refs for this purpose.
 
-### `PrivateProps` / `PublicProps` split (1/28 — Notification)
+### Documented variance: `PrivateProps` / `PublicProps` split (1/28 — Notification only)
 
-When a component has internal-only props (e.g., `elevated`, `icon` consumed by internal composition but not part of the public API), use the split:
-
-```ts
-// Notification.tsx:19-40
-interface PrivateProps extends StandardProps {
-  /** Internal: drawn with elevation when nested inside Modal */
-  elevated?: boolean
-  // ... other internal props
-  /** Public visible props */
-  variant?: 'success' | 'info' | 'warning'
-}
-
-export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
-// Component takes PrivateProps internally
-// index.ts exports only PublicProps as the public type
-```
-
-This pattern is preferred over commenting "// internal use only" — the type system enforces the API boundary.
+Notification (`Notification.tsx:19-40`) uses an internal/public split: `PrivateProps` (with internal-only `elevated`/`icon`) consumed by the component body, `PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>` exported as the public type. This is a Notification-specific pattern with 1/28 adoption — not a general rule. If a new component genuinely needs internal-only props, prefer this shape over JSDoc-marked "internal" comments because the type system enforces the API boundary.
 
 ## Export & component conventions (RULE — 26/28 conform)
 
@@ -99,14 +98,16 @@ This pattern is preferred over commenting "// internal use only" — the type sy
 ## Props interface declaration (RULE — 28/28 use interface, NEVER type)
 
 - Use `interface Props extends ...`, never `type Props = { ... }`.
-- For boolean props: bare adjective only — `disabled`, `checked`, `loading`, `selected`, `collapsed`, `open`, `expanded`, `active`, `hovered`, `indeterminate`. NEVER `isOpen`, `hasLabel`, `shouldRender` (rule 14, 28/28 compliance).
-- Default values: destructuring in function signature, NEVER use React's `Component.defaultProps = { ... }` static assignment (legacy anti-pattern). 26/28 components surveyed avoid the static-assignment pattern entirely. **Note**: `Dropdown.tsx` exposes `defaultProps?: Partial<PropsWithBaseSpacing>` in its Props type for overload support — that's a type-level field name, not the runtime anti-pattern. Don't introduce a new `defaultProps` type field unless you genuinely need overload support.
+- Boolean prop naming follows `PICASSO_COMPONENT_DESIGN_PATTERNS.md` rule 14 (bare adjective; no `is`/`has`/`should` prefix) — see canonical for the rule.
+- Default values: destructuring in function signature, NEVER use React's `Component.defaultProps = { ... }` static assignment (legacy anti-pattern). 26/28 components surveyed avoid the static-assignment pattern entirely.
   ```tsx
   forwardRef<HTMLButtonElement, Props>(function Button(
     { disabled = false, variant = 'primary', size = 'medium', ...rest },
     ref
   ) { ... })
   ```
+
+> Documented variance: `Dropdown.tsx` exposes `defaultProps?: Partial<PropsWithBaseSpacing>` in its Props type for overload support — that's a type-level field name, not the runtime anti-pattern. Single-component carve-out; do NOT model new code on it.
 
 ## JSDoc rules (RULE — 24/28 have 100% public-prop coverage; ESLint enforcement is WARN-level only)
 
@@ -122,7 +123,11 @@ This pattern is preferred over commenting "// internal use only" — the type sy
     children?: ReactNode
   }
   ```
-- **Forbidden** on passthrough internal props (`ownerState`, MUI-Base injected props, `data-private`, `data-testid` from BaseProps). These surface in TS doc generation as public API (Backdrop iter 9 review feedback).
+- **Forbidden on passthrough internal props.** These surface in TS doc generation as public API (Backdrop iter 9 review feedback). The reserved-props list (do NOT JSDoc, pass through silently):
+  - `data-private?: string` — framework hook (theme access / analytics). Used internally by Tooltip, Slider, Switch, Checkbox.
+  - `data-testid?: string` — comes from `BaseProps`; never declare per-component.
+  - `ownerState`, MUI-Base / `@base-ui/react` injected props — implementation detail of the underlying primitive.
+  If your migration touches a component that uses these, preserve the pass-through without adding JSDoc.
 - For `@deprecated` JSDoc tags: should include a Jira reference `[ABC-1234]` or URL. ESLint `todo-plz/ticket-ref` is configured as **warn** (not error), so non-compliant `@deprecated` tags ship without blocking CI (verified violation: `PageHead.tsx` has `@deprecated` with no ticket ref). Reviewers consistently flag this; the warn-level rule produces visible CI warnings but does NOT fail the build.
 
 ## Type-narrowing & casting (RULE — 0 violations across the 28 migration-scope components)
@@ -133,17 +138,18 @@ This pattern is preferred over commenting "// internal use only" — the type sy
 
 ### The "prop-by-prop boundary" — canonical resolution for root-element-type mismatches
 
-When `@base-ui/react`'s root part has a type that doesn't fully line up with your public `Props` (e.g. `Props extends ButtonHTMLAttributes<HTMLButtonElement>` but `BaseUISwitch.Root.Props` doesn't extend `ButtonHTMLAttributes`), the canonical fix is **NOT**:
+**Principle: the component's public `Props` interface stays unchanged. Absorb any `@base-ui/react` type mismatch at the boundary — never by narrowing, widening, or re-typing the public surface.** Consumers must see the same API before and after the migration.
 
-- **Anti-pattern A — blanket cast** (`const rootProps = rest as unknown as BaseUISwitch.Root.Props`). Silences the type checker without addressing the mismatch. Listed in §"Type-narrowing & casting" as forbidden.
-- **Anti-pattern B — exhaustive allowlist** (manually picking 4–6 props and forwarding only those). Drops all other props at runtime — `onClick`/`onFocus`/`onBlur`/`data-*`/`aria-*` claimed by the public type silently disappear. Reviewers call this the "typed but no-op" anti-pattern.
+Mechanically: when `@base-ui/react`'s root part has a type that doesn't line up with your public `Props` (e.g. `Props extends ButtonHTMLAttributes<HTMLButtonElement>` but `BaseUISwitch.Root.Props` doesn't extend `ButtonHTMLAttributes`), **destructure the SPECIFIC incompatible props** (or transform them via an adapter), then **spread `...rest` unchanged**. Worked examples:
 
-The canonical fix is to **destructure SPECIFIC incompatible props** (or transform them via an adapter), **then spread `...rest` unchanged**:
+**Switch — `onChange` adapter + `checked` clamp:**
 
 ```tsx
+import { toReactChangeEvent } from '@toptal/picasso-shared'
+
 const Switch = (props: Props) => {
   const {
-    onChange, // signature mismatch — adapt below
+    onChange, // signature mismatch — adapt to onCheckedChange below
     checked,  // type narrowing (number? → boolean clamp)
     ...rest   // ← everything else flows through, fully typed
   } = props
@@ -151,47 +157,132 @@ const Switch = (props: Props) => {
     <BaseUISwitch.Root
       {...rest}
       checked={checked ?? false}
-      onCheckedChange={c => onChange?.(syntheticEvent(c), c)}
+      onCheckedChange={(c, { event }) =>
+        onChange?.(toReactChangeEvent(event), c)
+      }
     />
   )
 }
 ```
 
-To find the props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and compare its `*.Props` interface against your public `Props`. The set of names that appear in BOTH with DIFFERENT types is your destructure list. Everything else is type-compatible and spreads safely.
+`@base-ui/react` v1 surfaces the native DOM event via `eventDetails.event`. The `toReactChangeEvent` helper (from `@toptal/picasso-shared`) is a Proxy-based boundary cast that bridges to Picasso's `React.ChangeEvent<T>` public type — runtime no-op (preserves native event identity), shims the four React-SyntheticEvent methods (`nativeEvent`, `persist`, `isDefaultPrevented`, `isPropagationStopped`). See PR #4965 r3302165743 for the doctrinal shift away from the prior `syntheticEvent` fabrication pattern.
 
-**Empirical sanity check.** For Tier 0 components the destructure list is typically 1–3 props (onChange signature, occasional value/checked clamp, sometimes a removed prop). If you find yourself destructuring 6+ props, re-read the library's `.d.ts` — you're sliding into Anti-pattern B. The library's type is probably more permissive than you think.
+**Drawer — `onClose` adapter (Base UI uses `onOpenChange`):**
 
-The migration-period oscillation observed on Switch review-iter 7 (2026-05-22) — allowlist → cast → allowlist across three consecutive iters — was the agent flipping between the two anti-patterns above because neither it nor the audit-agent named the canonical third option. Cite this section (and the worked example in `practices.md §"API preservation"`) directly in PR replies when reviewers raise the question.
+```tsx
+const Drawer = (props: Props) => {
+  const { onClose, ...rest } = props
+  return (
+    <BaseUIDrawer.Root
+      {...rest}
+      onOpenChange={open => { if (!open) onClose?.() }}
+    />
+  )
+}
+```
 
-## CSS specificity ladder for `@base-ui/react` overrides (reviewer-enforced, NOT lint-enforced)
+**Slider — `onValueChange` re-expose (Base UI's value-change event uses the generic helper):**
 
-Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. Pick the **lowest rung that solves the problem** — escalate only if the lower rung doesn't work. Reviewers will block PRs that jump straight to a higher rung when a lower one was viable.
+```tsx
+import { toReactEvent } from '@toptal/picasso-shared'
 
-0. **Pass `style` prop directly to the `@base-ui/react` component.** `@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. For any per-component override of styles the kit sets internally (`translate`, `position`, `transform`, sizing, etc.), the IDIOMATIC path is the `style` prop — not Tailwind classes (which lose to inline styles by CSS spec), not `!important` (which indicates the wrong escape hatch was chosen).
+const Slider = (props: Props) => {
+  const { onChange, ...rest } = props
+  return (
+    <BaseUISlider.Root
+      {...rest}
+      onValueChange={(value, activeThumbIndex, event) =>
+        onChange?.(
+          toReactEvent<React.ChangeEvent<HTMLInputElement>>(event),
+          value,
+          activeThumbIndex
+        )
+      }
+    />
+  )
+}
+```
+
+Slider's value-change isn't a form `ChangeEvent` per se — use the generic `toReactEvent<R>` primitive when the React event type isn't the form-input common case. The specialized `toReactChangeEvent` only accepts form-input element generics (`HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement`).
+
+**To find the props to destructure**: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and compare its `*.Props` interface against your public `Props`. The set of names that appear in BOTH with DIFFERENT types is your destructure list. Everything else is runtime-compatible and spreads safely. Under Picasso's `strict: true` tsconfig, event-handler element variance can still surface a `tsc` error on `...rest` even when the destructure list is correct — see "TS variance" below. For Tier 0 components the destructure list is typically 1–3 props.
+
+**Anti-patterns to avoid** (both are forbidden):
+
+- **Blanket cast** (`const rootProps = rest as unknown as BaseUISwitch.Root.Props`). Silences the type checker without addressing the mismatch. Listed in §"Type-narrowing & casting" as forbidden.
+- **Exhaustive allowlist** (manually picking 4–6 props and forwarding only those). Drops all other props at runtime — `onClick`/`onFocus`/`onBlur`/`data-*`/`aria-*` claimed by the public type silently disappear. Reviewers call this the "typed but no-op" anti-pattern.
+
+If you find yourself destructuring 6+ props, re-read the library's `.d.ts` — you're sliding into the exhaustive-allowlist anti-pattern. The library's type is probably more permissive than you think. Cite this section (and the worked example in `practices.md §"API preservation"`) directly in PR replies when reviewers raise the question.
+
+#### TS variance: when `tsc --strict` rejects `...rest`
+
+Picasso's `tsconfig.base.json` has `"strict": true` → `strictFunctionTypes` is on. If your `Props` extends an element-specific HTML attributes type (e.g. `ButtonHTMLAttributes<HTMLButtonElement>`) and the base-ui part renders a different element (Switch → `<span>`), `tsc` will reject `{...rest}` even when the destructure list is correct — because `MouseEventHandler<HTMLButtonElement>` is not assignable to base-ui's span-typed `BaseUIEvent<MouseEvent<HTMLSpanElement>>` due to function-parameter contravariance. Concrete error shape:
+
+```
+Types of property 'onCopy' are incompatible.
+  Type 'ClipboardEventHandler<HTMLButtonElement> | undefined' is not assignable
+  to type '((event: BaseUIEvent<ClipboardEvent<HTMLSpanElement>>) => void) | undefined'.
+```
+
+This is a real, runtime-safe variance: React synthetic event handlers fire identically regardless of the `currentTarget` element type. Do NOT narrow the public `Props` to fix this — reviewers explicitly reject contract narrowing (PR #4965 review 2026-05-20 16:10). Express the bridge ONCE at the boundary, NOT in JSX:
+
+```tsx
+const rootRest = rest as Omit<
+  BaseUISwitch.Root.Props,
+  | 'checked'
+  | 'disabled'
+  | 'id'
+  | 'value'
+  | 'className'
+  | 'style'
+  | 'onCheckedChange'
+>
+
+return <BaseUISwitch.Root {...rootRest} … />
+```
+
+Why this is sanctioned, not a blanket cast:
+
+- **Plain `as`, not `as unknown as`.** TypeScript permits `as` between types with structural overlap; `rest` and `BaseUISwitch.Root.Props` overlap on dozens of props (`className`, `style`, `id`, `data-*`, `aria-*`, etc.), differing only on element-typed handler variance. This is NOT the forbidden blanket cast.
+- **`Omit` the props you explicitly override** so the cast describes the exact post-destructure shape — reviewers can audit what's being widened and what isn't.
+- **Local typed binding, NOT JSX-site cast** — required by §"Type-narrowing & casting" ("Cast at the type BOUNDARY").
+- **Leave a one-line comment** at the binding citing the variance reason; reviewers reading the code in isolation should understand why the cast exists without consulting the PR thread.
+
+Reference: PR #4965 iter 11 (2026-05-28) — `packages/base/Switch/src/Switch/Switch.tsx`.
+
+## CSS specificity hierarchy for overriding `@base-ui/react` internal inline styles (reviewer-enforced, NOT lint-enforced)
+
+> **Scope**: this section addresses the narrow case of overriding Base UI's **internal inline styles** (e.g., `translate: -50% -50%` on `Slider.Thumb`, `position: relative` on `Slider.Track`). For the general **override-preference ladder** — when to reach for `className` vs `data-[…]:` vs `render` vs inline `style` vs `useRender` vs not-overriding-at-all — see `references/base-ui-styling.md §7.1`. This section describes what wins via the CSS cascade in the specific inline-vs-inline case; that section describes the broader preference order. They are different ladders measuring different things; do not conflate.
+
+Style conflicts with `@base-ui/react` emitted styles (inline `style=""`, `data-*` attributes, internal CSS) happen often during migration. Pick the **lowest-specificity tool that solves the problem** — escalate only if the lower one doesn't work. Reviewers will block PRs that jump straight to a higher-specificity tool when a lower one was viable.
+
+- **Pass `style` prop directly to the `@base-ui/react` component.** `@base-ui/react`'s `mergeProps` (`node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics on key collisions. For any per-component override of styles the kit sets internally (`translate`, `position`, `transform`, sizing, etc.), inline `style` is the only thing that beats inline `style` without `!important`. This is doctrine §7.1's **rung 5** for the broader ladder, but in the narrow inline-vs-inline case it's the natural — and often only — answer.
 
    Example — override `<Slider.Thumb>`'s internal `translate: -50% -50%`:
    ```tsx
-   <Slider.Thumb style={{ translate: 'none' }} ... />  // YES — rung 0, idiomatic
-   <Slider.Thumb className='![translate:none]' ... />   // NO — wrong tool, reach for `style` prop first
+   <Slider.Thumb style={{ translate: 'none' }} ... />  // YES — wins via mergeProps right-wins
+   <Slider.Thumb className='![translate:none]' ... />   // NO — !important is forbidden; this is the wrong tool
    ```
 
-   Why this exists: when @base-ui/react's component renders, the props your component passed are merged into the final element via `useRenderElement`. The style prop is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — so rightmost (yours) wins on each individual style property. This is the headless-kit's contract; it's designed for you to override its defaults. Tailwind `!important` against headless-kit internals is a code smell that the lower rung was skipped.
+   But first, ask whether rung -1 applies (doctrine §7.1): can DOM restructure remove the need? Can you accept Base UI's geometry and remove the legacy approximation you're defending? In the Slider Thumb case, removing legacy `-mt -ml` margins is rung -1 and beats this rung 5 path. Rung 3 (`render` prop with `mergeProps` filtering) also beats rung 5 when it's practical.
 
-   Limits: rung 0 covers per-property overrides (e.g. `translate`, `position`). It does NOT cover style based on internal state (`data-focused`, `data-orientation`) — those still need rungs 1-2 below.
+   Why inline `style` exists at all: when @base-ui/react's component renders, the props your component passed are merged into the final element via `useRenderElement`. The style prop is merged last with `mergeObjects(componentInternalStyle, consumerStyle)` — so rightmost (yours) wins on each individual style property. This is the headless-kit's contract; it's designed for you to override its defaults *when you need to*. Tailwind `!important` against headless-kit internals is a code smell that doctrine §7.1's higher-preference rungs were skipped.
 
-1. **Exhaust `@base-ui/react`'s official customization API.** Most slots accept `className`, and many composite components accept slot-targeted overrides:
+   Limits: inline `style` covers per-property overrides (e.g. `translate`, `position`). It does NOT cover style based on internal state (`data-focused`, `data-orientation`) — for state-driven styling use `data-[…]:` per doctrine rung 1.
+
+- **Exhaust `@base-ui/react`'s official customization API.** Most slots accept `className`, and many composite components accept slot-targeted overrides:
    - Pass `className` directly on the part that owns the style you want to change.
-   - Use the component's render prop if it exposes one (e.g., `<Slider.Thumb render={(props, state) => <Thumb {...props} className="..." />}>`).
+   - Use the component's render prop if it exposes one (e.g., `<Slider.Thumb render={(props, state) => <Thumb {...props} className="..." />}>`). This is doctrine §7.1's rung 3 and is OFTEN the right answer.
    - Check the `@base-ui/react` source under `node_modules/@base-ui/react/<group>/<part>/` for documented props that customize the slot.
-2. **Tailwind selectors matching emitted attributes.** `@base-ui/react` emits `data-*` attributes for state (`data-focused`, `data-expanded`, `data-orientation`, etc.). Target them with Tailwind: `data-[focused]:outline-2`, `data-[expanded]:bg-blue-100`, etc.
-3. **Higher CSS specificity via selector compounds.** When step 2 isn't enough, layer selectors (`[&_input]:`, `[&[data-state=open]]:`, `[&:hover:not([data-disabled])]:`) before reaching for the next rung.
-4. **`!important` — LAST RESORT.** Acceptable ONLY after rungs 1–3 are exhausted. Reviewers will ask you to prove they don't work. When you use it, comment WHY the lower rungs failed (e.g., `[&_input]:!top-auto /* @base-ui/react/slider/thumb hard-codes top:0 via inline style — selector-level override doesn't win */`). The legacy occurrences in `Radio/styles.ts` and `RichTextEditorToolbar/styles.ts` predate `@base-ui/react`; don't model new code on them.
+- **Tailwind selectors matching emitted attributes.** `@base-ui/react` emits `data-*` attributes for state (`data-focused`, `data-expanded`, `data-orientation`, etc.). Target them with Tailwind: `data-[focused]:outline-2`, `data-[expanded]:bg-blue-100`, etc. This is doctrine §7.1's rung 1.
+- **Higher CSS specificity via selector compounds.** When data-attribute selectors aren't enough, layer selectors (`[&_input]:`, `[&[data-state=open]]:`, `[&:hover:not([data-disabled])]:`) before reaching for `!important`.
+- **`!important` — FORBIDDEN.** Per `rules/styling.md` §"@base-ui/react v1 prescriptions" and doctrine §7.1, `!important` is never the right answer. If a Tailwind utility isn't winning, the doctrine §7.1 ladder has a rung you haven't tried. The legacy occurrences in `Radio/styles.ts` and `RichTextEditorToolbar/styles.ts` predate `@base-ui/react`; don't model new code on them.
 
-**ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for theme/visual purposes are FORBIDDEN, no exceptions.** Examples: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, `useCallback` wrapping any `.style.X = …` assignment passed as a slot ref. It bypasses CSS, breaks responsive style changes, isn't tree-shaken, and creates a runtime side-channel that fights the design system. Use rung 1–4 instead.
+**ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for theme/visual purposes are FORBIDDEN, no exceptions.** Examples: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, `useCallback` wrapping any `.style.X = …` assignment passed as a slot ref. It bypasses CSS, breaks responsive style changes, isn't tree-shaken, and creates a runtime side-channel that fights the design system. Use the doctrine §7.1 preference ladder instead.
 
 Earlier Switch migration code (iter 2) used this pattern; treat any such occurrence as a defect to remove during cleanup, NOT a precedent to extend. This rule has no "one-off compromise" carve-out. Explicitly rejected justifications (do not cite these to defend the pattern):
-- "Tailwind `!important` slot selector failed Happo parity" → fix the selector / baseline; do not fall back to `.style` mutation.
-- "base-ui inline `style=""` can't be overridden by CSS" → false framing. The idiomatic fix is rung 0 (pass `style={{ ... }}` to the @base-ui/react component — its `mergeProps` shallow-merges with rightmost-wins semantics, so your `style` wins). If you genuinely need a CSS-class-based override (e.g. for responsive variants), `!important` at rung 4 does beat inline-style specificity — but try rung 0 FIRST.
+- "Tailwind `!important` slot selector failed Happo parity" → `!important` is forbidden per `rules/styling.md`. Walk doctrine §7.1: check rung -1 (don't override) and rung 3 (`render` prop with `mergeProps` filtering) before reaching for higher-specificity tools. Do not fall back to `.style` mutation.
+- "base-ui inline `style=""` can't be overridden by CSS" → true that only inline `style` (doctrine §7.1 rung 5) beats inline `style` via CSS specificity. The idiomatic fix is the `style` prop on the part (mergeProps merges consumer style with rightmost-wins) — NOT an imperative ref-mutation. And before reaching for rung 5, check whether rung -1 (don't override) applies.
 - "Cited as a precedent in practices.md / lessons-learned" → no, it's an anti-pattern. Older wording that framed it as a "compromise" was contamination superseded by this rule.
 
 Imperative `ref` callbacks remain valid for non-style concerns (focus management, measurement, third-party library handles, port resize observers).
@@ -231,13 +322,12 @@ When editing **orchestrator code** (`bin/lib/*.ts`), additional ESLint rules tri
 
 ## Import conventions
 
-- **Order** (observed in 28/28 components surveyed):
-  1. React / react-related (`react`, `react-dom`)
-  2. Third-party (`@mui/base`, `@material-ui/*`, `@base-ui/react`, etc.)
-  3. `@toptal/*` packages
-  4. Relative imports (`./styles`, `../utils`)
-- **Barrel imports preferred**: `import { StandardProps, SizeType } from '@toptal/picasso-shared'` (not deep paths).
-- **Forbidden**: import from `@toptal/picasso` within sub-packages (ESLint error). Each sub-package imports directly from sibling packages it depends on, never via the aggregate.
+- **Order** — enforced + auto-fixable by `import/order` (error) in `@toptal/davinci-syntax`'s ESLint config. Groups: `[builtin, external]` → `internal` → `[parent, sibling, index, unknown]`, with `newlines-between: always`. Run `pnpm davinci-syntax lint code packages/base/<NAME>/src` to auto-fix.
+- **Barrel imports — RULE (NEVER deep paths)**: `import { StandardProps, SizeType } from '@toptal/picasso-shared'`, not `import { StandardProps } from '@toptal/picasso-shared/src/...'`. Survey: 28/28 conform.
+
+### No self-imports from aggregate package · **RULE** (ESLint error)
+
+`@toptal/davinci/no-package-self-imports` ESLint rule is **error**: sub-packages MUST NOT import from `@toptal/picasso` (the aggregate). Each sub-package imports directly from sibling packages it depends on, never via the aggregate. Config in root `.eslintrc.js` excludes `*.example.jsx`/`*.example.tsx` (stories may use the aggregate for ergonomics).
 
 ### Where to import what
 
@@ -263,18 +353,15 @@ When editing **orchestrator code** (`bin/lib/*.ts`), additional ESLint rules tri
 - **Snapshot ratio**: 2-3 snapshots per component for shape; 50-80% of tests are explicit assertions. NO "renders without crashing" anti-pattern (Backdrop iter 3 lesson — bare `render()` without assertion is reviewer-blocking).
 - **Mocks**: `jest.spyOn()` / `jest.fn()` for callbacks. NO DOM-API mocks.
 
-## Tailwind class composition (RULE — established by Button canonical)
+## Tailwind class composition
 
 > For the underlying Base UI styling model (mechanisms, `render` / `data-*` / CSS vars, anti-patterns, override escalation ladder), see `references/base-ui-styling.md`. The composition rules below are the Picasso operational form of that doctrine.
 
-- Class-building logic lives in `styles.ts` as **pure functions returning `string[]`** (Button pattern, 14/28 conform; 8/28 use `cx` inline).
-- Merge in `Component.tsx` via `twMerge(coreClassNames, variantClassNames, ..., className)` — **user-supplied `className` LAST** so consumer overrides win (Drawer iter 3 lesson).
-- `cx` for conditional/boolean grouping when no conflict resolution is needed.
-- `twMerge` for merging conflicting Tailwind classes (one wins via the merge algorithm).
-- `@toptal/picasso-tailwind-merge` has Picasso-specific extensions — see `packages/picasso-tailwind-merge/src/twMerge.ts`:
-  - Custom font sizes: `text-2xs`, `text-xxs`, `text-button-{small|medium|large}`, `font-inherit-size`
-  - Custom weights: `font-regular`, `font-semibold`, `font-inherit-weight`
-  - Text-align preservers: `text-align-inherit`, `text-start`, `text-end`
+- **Preferred** (not a hard RULE — ~50% adoption): class-building logic lives in `styles.ts` as pure functions returning `string[]` (Button pattern, 14/28; 8/28 use `cx` inline). Either is acceptable.
+- Merge in `Component.tsx` via `twMerge(..., className)` — **user-supplied `className` LAST** so consumer overrides win (Drawer iter 3 lesson).
+- **Conditionals: `twMerge(cx({ ... }))`.** `cx` (from `classnames`) is the preferred way to express conditional/variant classes — object syntax (`cx({ 'm-0': expanded })`) or short `cond && 'x'` inside `cx` — wrapped in `twMerge` for conflict resolution. **Prefer `cx` over scattering `&&`/ternary across `twMerge` args** — readability over terseness. Plain `twMerge('a', 'b', className)` is fine for simple concatenation (no branching). Picasso's `twMerge` (`extendTailwindMerge`, `packages/picasso-tailwind-merge/src/twMerge.ts:35`) does NOT accept clsx-object syntax itself — that's what `cx` is for.
+- **`twJoin`** is re-exported from `@toptal/picasso-tailwind-merge` for plain concatenation without conflict-resolution.
+- `@toptal/picasso-tailwind-merge` adds Picasso-specific tokens (custom font sizes, weights, text-align preservers) — see `packages/picasso-tailwind-merge/src/twMerge.ts` for the full list.
 
 ## SSR safety (RULE — ESLint-enforced)
 
@@ -285,22 +372,19 @@ When editing **orchestrator code** (`bin/lib/*.ts`), additional ESLint rules tri
 ## Custom hooks (CONVENTION — 4+ examples)
 
 - `use*` prefix universal.
-- Co-locate inside the component folder (`Slider/hooks.ts`, `Tooltip/use-tooltip-state.ts`).
+- **Preferred filename: `use-{hook-name}.ts`** (one hook per file, searchable filename). `hooks.ts` is acceptable for legacy components or when a component owns 2–3 tiny related hooks where a single file is genuinely simpler.
+- Co-locate inside the component folder (e.g., `Tooltip/use-tooltip-state.ts`, `Slider/hooks.ts` for the legacy grouping).
 - Examples: `useLabelOverlap` (Slider), `useTooltipState` (Tooltip), `useOnScreen` (Slider), `useCombinedRefs` (shared utility for merging user + internal refs).
-
-## Reserved props (CONVENTION — documented internal)
-
-The following props are framework-reserved; pass through without surfacing in JSDoc:
-
-- `data-private?: string` — framework hook (theme access / analytics). Used internally by Tooltip, Slider, Switch, Checkbox.
-- `data-testid?: string` — from `BaseProps`; never declare per-component.
-- `ownerState`, MUI-Base injected props — implementation detail, do not document.
-
-If your migration touches a component that uses these, preserve the pass-through; do NOT add JSDoc to them.
 
 ## Changeset conventions
 
 Authoritative source: `docs/contribution/changeset-guidelines.md` (lines 5-46).
+
+### Precedence (migration PRs) · **RULE**
+
+**Source of truth for migration PRs**: `docs/migration/manifest.json#versionBump` (ajv-enforced via `manifest.schema.json`). The taxonomy below is the **authoring guidance** for the value in that field + reviewer judgment on non-migration PRs. Agents must read the manifest value verbatim and not deviate; if the manifest value looks wrong for a specific migration, escalate rather than override (see `ORCHESTRATOR.md §Changesets`).
+
+For non-migration PRs (regular feature/bugfix work), apply the taxonomy directly to the change.
 
 ### Version bump taxonomy (from changeset-guidelines.md:5-26)
 
@@ -380,12 +464,31 @@ Picasso has 4 build-config layers; touching one usually requires updating the ot
 
 - Location: `<Component>/story/<Domain>.example.tsx`. NEVER a central `stories.ts` index.
 - One example per file. Filename in PascalCase, matches the story title kebab-cased in URLs (see `references/visual-verification.md` §"Story URLs").
-- Story registration via `addExample` calls in a `story/index.jsx` (one per component) — read this file to discover the component's full story list.
+- Story registration in `story/index.jsx` via the PicassoBook API. Canonical chain — see `docs/contribution/creating-examples.md` for the full method surface:
+
+  ```js
+  import PicassoBook from '@toptal/picasso-book'
+
+  const page = PicassoBook.section('Components').createPage('Button')
+
+  page
+    .createChapter('Variants')
+    .addExample('Button/story/Primary.example.tsx', 'Primary')
+    .addExample('Button/story/Secondary.example.tsx', 'Secondary')
+    .addExample('Button/story/Ghost.example.tsx', {
+      title: 'Ghost',
+      screenshotBreakpoints: true,    // responsive component → all breakpoints
+    })
+  ```
+
+  Available methods include `section`, `createPage`, `createChapter`, `addExample` (with title or options object), `addTextSection`, etc. — see `docs/contribution/creating-examples.md`.
 - `.example.tsx` files exempt from SSR rules, multi-comp rule, and a number of `@typescript-eslint` rules.
 
 ## Re-export pattern (UNIVERSAL)
 
-The package's top-level `src/index.ts` re-exports every component and its Props type:
+### Sub-package `src/index.ts`
+
+The sub-package's top-level `src/index.ts` re-exports every component and its Props type:
 
 ```ts
 export { default as Button, type ButtonProps } from './Button'
@@ -393,6 +496,27 @@ export { default as Modal, type ModalProps } from './Modal'
 ```
 
 DO NOT change this shape during a migration — the package's public API surface is contractual.
+
+### Aggregate package re-export · **RULE** (universal)
+
+Every sub-package's public exports MUST also be surfaced in `packages/picasso/src/index.ts` (the aggregate `@toptal/picasso` package). Canonical shape (315 lines as of 2026-05; one named-component + one matching `type` export per sub-package):
+
+```ts
+// packages/picasso/src/index.ts
+export { AccordionCompound as Accordion } from '@toptal/picasso-accordion'
+export type { AccordionProps } from '@toptal/picasso-accordion'
+
+export { ButtonCompound as Button, ButtonCircular } from '@toptal/picasso-button'
+export type {
+  ButtonCheckboxProps,
+  ButtonProps,
+  ButtonRadioProps,
+  ButtonCircularProps,
+  VariantType as ButtonVariantType,
+} from '@toptal/picasso-button'
+```
+
+When a sub-package adds a new public symbol, also add it to `packages/picasso/src/index.ts` in the same PR. If a symbol is missing from the aggregate, consumers using `@toptal/picasso` can't reach it. Reviewers verify this on every PR that touches a sub-package's public API.
 
 ## Prettier formatting (inferred — verify with `pnpm prettier --check`)
 

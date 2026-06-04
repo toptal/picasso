@@ -12,11 +12,17 @@ Categorized by problem domain. The agent applies the relevant category as each m
 - **Always run `pnpm -F @toptal/picasso-<NAME> build:package` before `pnpm jest -u` on consumer snaps.** Bootstrap-build failures produce 1-line empty `<div>` snapshots that CI then diffs as `-1 / +120` against prior baseline (Modal restart precedent). If the orchestrator logged `continuing anyway (consumers stage may fail)`, that's your cue: STOP and fix the migrating package's build BEFORE any snapshot work.
 - **Detect consumer packages by import scan**, not by classname in snap files. The orchestrator's local gate does this automatically — but a manual takeover must use `grep -rn "from '@toptal/picasso-<name>'" packages/` to find ALL consumers. Snap-file regeneration to new Base UI DOM (e.g., `data-base-ui-portal` replacing `base-Modal` classNames) breaks the className-based heuristic.
 
-## Pixel-perfect visual parity
+## Visual parity by default; geometric improvements via approved-delta channel
+
+The migration target is zero Happo diff vs the @mui/base baseline. But the baseline encodes the OLD design and the OLD primitive's geometry. When Base UI v1 provides a geometrically correct version of what the legacy approximated (Slider thumb centering via `translate: -50% -50%` vs legacy half-element margin offsets, Popup `transform-origin` vs legacy hand-rolled origins, etc.), defending the legacy with override-laden code is a doctrine violation, NOT a parity preservation. The escape valve is the **approved-delta channel**.
 
 - **Default classification for any non-zero pixel diff on a migrated-component story is REGRESSION.**
-- **INTENTIONAL** requires explicit plan-file authorization in `docs/migration/components/<X>.md` §"Approved visual deltas". Self-classification is not allowed; agent reaching for INTENTIONAL is a STOP signal.
-- **When a positional shift is < 5 px**, capture `getComputedStyle()` JSON for baseline + local BEFORE attempting fixes. Screenshots tell you WHERE; computed styles tell you WHAT. Stalemate is forbidden until ≥ 2 fix attempts have targeted properties from the computed-style diff (Slider PR #4955 burned 5 iterations skipping this).
+- **INTENTIONAL** classifications come in three flavors:
+  - **Approved visual delta** (operator pre-authorized): listed in `docs/migration/components/<X>.md` §"Approved visual deltas" before the iter runs. Self-classification is not allowed. (Slider's Figma-driven thumb/rail/mark deltas are the reference example — see `components/Slider.md`.)
+  - **Intentional improvement** (agent-proposed, operator-approved in PR): when the diff is sub-pixel and traces to Base UI's geometry being more correct than the legacy. Agent posts a MEDIUM PR comment naming the diff, citing `references/base-ui-styling.md §7.1 rung -1`, and explaining the geometric reasoning. Operator approves via 👍 reaction. Then the diff becomes INTENTIONAL.
+  - **Reviewer-directed Figma divergence** (mid-review): when a trusted reviewer supplies a **Figma link** and flags a visual mismatch, that link is the design-of-record — diverge from legacy parity to match it, and record the delta in `components/<X>.md §"Approved visual deltas"`. See `PROMPT-review-response.md §"Reviewer-supplied Figma link"`. Parity stays the **default** target; the agent does not chase Figma unprompted — this is the documented exception, triggered by the reviewer/operator, not a license to self-classify.
+- **Override-laden parity defense is forbidden.** Fighting the new primitive with `!important` or rung-5 inline `style` to match a legacy approximation byte-for-byte is a doctrine violation per `rules/styling.md` §"@base-ui/react v1 prescriptions" — see also `references/base-ui-styling.md §7.1` for the override-preference ladder.
+- **When a positional shift is < 5 px**, capture `getComputedStyle()` JSON for baseline + local BEFORE attempting fixes. Screenshots tell you WHERE; computed styles tell you WHAT. Stalemate is forbidden until ≥ 2 fix attempts have targeted properties from the computed-style diff (Slider PR #4955 burned 5 iterations skipping this). If the computed-style diff is geometric (transform / translate / position), check whether you're at rung -1 territory before walking the override ladder.
 - **Common @base-ui/react compensations** (more in `references/visual-verification.md`):
   - New `data-*` attribute on slot → add `[data-attr]:<style>` selector replicating prior visual.
   - Mirror old `:focus-visible` under `data-[focused]:`.
@@ -26,41 +32,24 @@ Categorized by problem domain. The agent applies the relevant category as each m
 ## API preservation
 
 - **Preserve consumer-facing handler signatures.** Wrap with an adapter — NEVER narrow. Examples:
-  - `onChange(event, checked)` from `@mui/base` → `@base-ui/react` emits `onCheckedChange(checked)`. Adapt by wrapping: `onCheckedChange={c => onChange?.(syntheticEvent, c)}` (Switch iter 2, iter 3 + Slider iter 12 review precedents).
-  - `onValueChange(value, activeThumbIndex)` from `@base-ui/react/slider` → wrap to re-expose `(event, value, activeThumbIndex)` matching `@mui/base` shape.
+  - `onChange(event, checked)` from `@mui/base` → `@base-ui/react` emits `onCheckedChange(checked, eventDetails)`. The `eventDetails.event` IS the native DOM event — bridge to Picasso's `React.ChangeEvent<T>` shape via the `toReactChangeEvent` helper from `@toptal/picasso-shared`: `onCheckedChange={(c, { event }) => onChange?.(toReactChangeEvent(event), c)}`. (Switch iter 2, iter 3 + Slider iter 12 review precedents; PR #4965 r3302165743 superseded the prior `syntheticEvent` fabrication pattern.)
+  - `onValueChange(value, activeThumbIndex)` from `@base-ui/react/slider` → wrap to re-expose `(event, value, activeThumbIndex)`. Use the generic `toReactEvent<R>(event)` from `@toptal/picasso-shared` for non-change-event cases.
 - **Preserve portal/behavior props.** Audit the new library's compound API first. Example: `disablePortal` on Drawer has no direct prop equivalent in `@base-ui/react/drawer`, but you can emulate it by conditionally omitting `<Drawer.Portal>`. Do NOT silently remove the prop (Drawer iter 2 precedent).
+- **Audit changed interaction DEFAULTS, not just props.** `@base-ui/react` can change a default *behavior* that `@mui/base` had, with no prop rename to flag it. Example: `@base-ui/react/slider` defaults `thumbCollisionBehavior` to `'push'` (range thumbs shove each other and stay merged as one dot); `@mui/base` swapped/crossed them. Set `thumbCollisionBehavior='swap'` to preserve the prior behavior (Slider PR #4976). When migrating an interactive component, exercise the *interaction* (drag through, keyboard past-the-end, etc.), not just the static render — a silent default change won't show in a snapshot.
 - **Deprecate-don't-delete**: keep removed-in-new-lib props with `@deprecated` JSDoc + Jira ticket ref, route to `_unused` destructure:
   ```ts
   /** @deprecated [PF-1234] no equivalent in @base-ui/react; will be removed in next major */
   disablePortal?: boolean
   ```
-- **No `as unknown as T` blanket casts on `...rest` spread.** If `@base-ui/react`'s root element type mismatches the public Props, address it at the prop-by-prop boundary, not a blanket bridge cast (Switch iter 3 precedent).
-- **The "prop-by-prop boundary" means: destructure SPECIFIC incompatible props, then spread `...rest` unchanged.** Two binary anti-patterns regularly get reached for instead — neither is the right answer:
+- **At the type boundary, drop Picasso-only props from `rest` before spreading to a `@base-ui/react` part.** Address shape mismatches at the prop-by-prop boundary (`code-standards.md §"prop-by-prop boundary"`), not with a blanket bridge cast (Switch iter 3 precedent).
+- **Canonical pattern — destructure SPECIFIC mismatching props, spread `...rest` unchanged:**
 
-  **Anti-pattern A (blanket cast)** — silences the type checker without addressing the actual mismatch:
   ```tsx
-  // WRONG: papers over the boundary mismatch with a cast.
-  const Switch = (props: Props) => {
-    const rootProps = props as unknown as BaseUISwitch.Root.Props // ❌
-    return <BaseUISwitch.Root {...rootProps} />
-  }
-  ```
+  import { toReactChangeEvent } from '@toptal/picasso-shared'
 
-  **Anti-pattern B (exhaustive allowlist)** — narrows the runtime surface, silently drops every other prop the public type claims to accept:
-  ```tsx
-  // WRONG: Props extends ButtonHTMLAttributes<HTMLButtonElement>, but
-  // onClick / onFocus / onBlur / data-* / aria-* are now dropped at runtime.
-  // Reviewers call this the "typed but no-op" anti-pattern.
-  const Switch = ({ name, form, tabIndex, ['aria-label']: ariaLabel }: Props) => {
-    return <BaseUISwitch.Root name={name} form={form} tabIndex={tabIndex} aria-label={ariaLabel} /> // ❌
-  }
-  ```
-
-  **CANONICAL — drop the specific mismatching props, spread the rest:**
-  ```tsx
-  // RIGHT: the only props that genuinely conflict with BaseUISwitch.Root's
-  // shape are destructured out (or transformed); everything else spreads
-  // through unchanged. Public API parity preserved, no cast, no allowlist.
+  // RIGHT: only props that genuinely conflict with BaseUISwitch.Root's shape
+  // are destructured out (or transformed); everything else spreads through
+  // unchanged. Public API parity preserved, no allowlist.
   const Switch = (props: Props) => {
     const {
       onChange,     // signature differs — adapt to onCheckedChange below
@@ -71,24 +60,42 @@ Categorized by problem domain. The agent applies the relevant category as each m
       <BaseUISwitch.Root
         {...rest}
         checked={checked ?? false}
-        onCheckedChange={c => onChange?.(syntheticEvent(c), c)}
+        onCheckedChange={(c, { event }) =>
+          onChange?.(toReactChangeEvent(event), c)
+        }
       />
     )
   }
   ```
 
-  How to find which props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` interface against your public `Props`. The intersection's NAME-OVERLAPS-WITH-DIFFERENT-TYPES set is what you destructure. Everything else is type-compatible and spreads. Typically this is 1–3 props for a Tier 0 component (onChange signature mismatch, sometimes `value`/`checked` clamp, sometimes a removed prop). If you find yourself destructuring 6+ props, you're sliding into Anti-pattern B — re-read the library's `.d.ts` and confirm those props ARE actually incompatible.
+  More worked examples (Switch, Drawer, Slider) in `code-standards.md §"prop-by-prop boundary"`. How to find which props to destructure: open `node_modules/@base-ui/react/<group>/<part>/<Part>.d.ts` and diff its `*.Props` against your public `Props` — the NAME-OVERLAPS-WITH-DIFFERENT-TYPES intersection is your destructure list. Typically 1–3 props for Tier 0 components.
+
+- **TS variance footnote**: when `Props` extends an element-specific HTML attributes type (e.g. `ButtonHTMLAttributes<HTMLButtonElement>`) and the base-ui part renders a different element (Switch → `<span>`), Picasso's `strict: true` tsconfig will reject `{...rest}` with event-handler element-variance errors (`MouseEventHandler<HTMLButtonElement>` vs span-typed handlers) even when the destructure list is correct. Do NOT narrow the public `Props` — reviewers explicitly reject contract narrowing (PR #4965 review 2026-05-20 16:10). Resolve once at the boundary with a local typed binding, NOT a JSX-site cast and NOT `as unknown as`:
+
+  ```ts
+  const rootRest = rest as Omit<
+    BaseUISwitch.Root.Props,
+    'checked' | 'disabled' | 'id' | 'value' | 'className' | 'style' | 'onCheckedChange'
+  >
+  // …then: <BaseUISwitch.Root {...rootRest} … />
+  ```
+
+  Full doctrinal treatment + concrete error shape: `code-standards.md §"TS variance: when tsc --strict rejects ...rest"`.
+
+- **Anti-patterns to avoid** (both forbidden):
+  - **Blanket cast** `as unknown as BaseUISwitch.Root.Props` — silences the type checker without addressing the mismatch.
+  - **Exhaustive allowlist** (manually picking 4–6 props to forward) — drops every other prop at runtime; reviewers call this the "typed but no-op" anti-pattern.
+
+  If you find yourself destructuring 6+ props, you're sliding into the exhaustive-allowlist anti-pattern — re-read the library's `.d.ts` and confirm those props are actually incompatible.
 - **No `any`** in component source (ESLint `@typescript-eslint/no-explicit-any` is **error** in source, off in tests).
-- **CSS override specificity ladder for `@base-ui/react`** — pick the lowest rung that works; reviewers block PRs that skip rungs. See `code-standards.md §CSS specificity ladder` for the full version. Short form:
-  1. Exhaust `@base-ui/react`'s customization API (slot `className`, render prop, documented slot props).
-  2. Tailwind selectors matching emitted `data-*` attributes (`data-[focused]:`, `data-[expanded]:`).
-  3. Higher specificity via selector compounds (`[&_input]:`, `[&[data-state=open]]:`).
-  4. `!important` — **LAST RESORT**, acceptable only when rungs 1–3 demonstrably can't override. Comment WHY the lower rungs failed.
-- **ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for visual overrides are FORBIDDEN, no exceptions.** Examples that violate this: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, any `useCallback` wrapping a `.style.X = …` assignment passed to a slot ref. This is NOT a "one-off compromise" — earlier Switch migration code that used the pattern was a migration defect to be removed during cleanup, not a sanctioned precedent. Reviewers WILL block PRs that introduce or retain it. Use the CSS specificity ladder (rungs 1–4 above).
+- **Override pathways for `@base-ui/react`** — pick the lowest-cost mechanism that solves the problem; reviewers block PRs that reach for higher-cost ones prematurely. Two related but separate ladders:
+  - **Override-preference ladder** (when to reach for which mechanism in general): `references/base-ui-styling.md §7.1`. Rungs: -1 (don't override) → 1 (`data-[…]:`) → 2 (`className` fn) → 3 (`render` prop, optionally filtering style) → 4 (`useRender`) → 5 (inline `style`). `!important` is forbidden.
+  - **CSS specificity hierarchy** (narrow case: overriding Base UI's internal inline styles like `translate: -50% -50%`): `code-standards.md §"CSS specificity hierarchy for overriding @base-ui/react internal inline styles"`. In that narrow case, consumer inline `style` wins via `mergeProps` rightmost-wins — but first check whether doctrine §7.1 rung -1 (don't override) or rung 3 (`render` prop with style filtering) is the better answer.
+- **ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for visual overrides are FORBIDDEN, no exceptions.** Examples that violate this: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, any `useCallback` wrapping a `.style.X = …` assignment passed to a slot ref. This is NOT a "one-off compromise" — earlier Switch migration code that used the pattern was a migration defect to be removed during cleanup, not a sanctioned precedent. Reviewers WILL block PRs that introduce or retain it. Use the doctrine §7.1 preference ladder instead.
 - **Explicitly rejected justifications for the ref-callback anti-pattern** (do not cite these to defend the pattern):
-  - "Tailwind `!important` slot selector failed to restore Happo parity" — that's a baseline / specificity-ladder problem (check whether the `[&_input]:` selector compounds correctly with the data-state attribute, whether the baseline is stale, whether the input is actually inside the matched parent). Fix the ladder rung; do not fall back to imperative refs.
+  - "Tailwind `!important` slot selector failed to restore Happo parity" — `!important` is forbidden per `rules/styling.md`; the alternative is doctrine §7.1's preference ladder, not a `.style` ref callback. Check baselines, selector compounds, and whether rung -1 (don't override) applies before chasing higher-specificity tools.
   - "It's documented as a one-off compromise in practices.md" — no, it's documented as an ANTI-PATTERN. Earlier wording that framed it as a "compromise" was contamination; this rule is the authoritative version.
-  - "base-ui writes `margin: -1px` into the hidden input inline style and we can't override inline style with CSS" — you can: rung 3 (`[&_input]:!m-0` or `[&_input]:![margin:0]`) wins over inline style because `!important` beats inline-style specificity in the cascade. If your selector isn't winning, the selector chain is wrong, not the rung.
+  - "base-ui writes `margin: -1px` into the hidden input inline style and we can't override inline style with CSS" — partly true: only inline `style` (rung 5) or `!important` beats inline `style` via CSS specificity. `!important` is forbidden; rung 5 is acceptable when rungs -1 through 4 don't apply. Imperative `.style` ref-mutation is still forbidden — use the `style` prop on the part instead.
   - Reviewers consistently rejected this pattern across Switch iters 2/3/9. Treat any new instance as a defect, not a precedent.
 
 ## Changesets
@@ -111,7 +118,15 @@ Categorized by problem domain. The agent applies the relevant category as each m
 
 - **Polymorphic components**: use `nativeButton={false} + render={React.createElement(as)}` (Button precedent). The `nativeButton={false}` pair is **mandatory** when swapping a button-default Base UI part (Button, Menu.Trigger, Tabs.Tab, NumberField.Increment/Decrement, Toolbar.Button) to a non-button element — without it Base UI keeps emitting `<button>`-keyboard handling and accessibility silently breaks. Do NOT add runtime `typeof`/`isValidAs` guards for the `as` prop — TypeScript constrains it; reviewers ask for removal.
 - **Custom polymorphic primitives**: when a kit component needs its OWN `render` prop (so consumers can keep composing — `<MyButton render={<a />}>`), use the `useRender` hook from `@base-ui/react/use-render`. See `references/base-ui-styling.md` §4.5 for the recipe + React 18 vs 19 ref handling.
-- **Inline-style overrides on `@base-ui/react` parts**: apply the CSS specificity ladder (rungs 0–4 in `code-standards.md §"CSS specificity ladder for @base-ui/react overrides"`). **Rung 0 first**: `@base-ui/react`'s `mergeProps` (see `node_modules/@base-ui/react/.../mergeProps.js`) shallow-merges the consumer's `style` AFTER the component's internal inline style with rightmost-wins semantics. So passing `<Slider.Thumb style={{ translate: 'none' }}>` cleanly defeats the kit's internal `translate: -50% -50%` — no specificity hacks, no `!important`. Try this BEFORE Tailwind classes (which lose to inline styles) or `!important`. The Slider v2 case (2026-05-24, PR #4975) reached for Tailwind `'![translate:none]'` + `'!absolute'` because the agent's mental model was "kit's inline style needs a CSS specificity weapon" — wrong; the kit's design contract is "consumer's `style` wins per the merge semantics." `!important` against a @base-ui/react inline style is a code smell that rung 0 was skipped. Imperative `ref` callbacks that mutate `.style` for visual purposes are a forbidden anti-pattern — see the explicit anti-pattern rule + rejected justifications in code-standards.md. There is no "Switch iter 2 precedent" that sanctions the pattern; earlier Switch code that used it was a migration defect.
+- **Overriding `@base-ui/react`'s internal inline styles** (e.g., `translate: -50% -50%` on `Slider.Thumb`, `position: relative` on `Slider.Track`): walk the doctrine §7.1 preference ladder first.
+   - **Rung -1 — don't override**: if the override defends a legacy approximation of what Base UI does geometrically exactly (e.g., legacy `-mt-[7px] -ml-[6px]` was approximating half-of-15px-thumb; Base UI's `translate: -50% -50%` does this exactly), remove the legacy offsets entirely and propose the sub-pixel diff as "intentional improvement". Slider commit `4f5951f` did this for v2 #4975 — both rung-0 inline style overrides became unnecessary.
+   - **Rung 3 — `render` prop with `mergeProps` filtering**: strip the offending Base UI inline style via render-prop filter (`const { translate, ...keepStyle } = props.style || {}`). Cleaner than consumer-added inline `style` because the element ends up with only Base UI's positioning, not a consumer override layered on top.
+   - **Rung 5 — inline `style` on the part**: `<Slider.Thumb style={{ translate: 'none' }}>` works because `mergeProps` rightmost-wins on consumer `style`. Use this when rung -1 doesn't apply and rung 3 filtering is impractical. NOT a first reach.
+   - **Never `!important`** (forbidden per `rules/styling.md`). Lesson from Slider v2 PR #4975: agent reached for `'![translate:none]'` + `'!absolute'` thinking "kit's inline style needs a CSS specificity weapon" — wrong; the kit's design contract is "consumer's `style` wins per merge semantics" AND the cleaner path was rung -1 (remove the legacy that was being defended). PR #4976 demonstrated this by removing both overrides and the legacy margins together.
+   - Imperative `ref` callbacks that mutate `.style` are a forbidden anti-pattern. There is no "Switch iter 2 precedent" sanctioning it; that earlier code was a migration defect.
+- **Assemble per Base UI's documented part anatomy.** Nest parts the way the kit's docs show — for Slider that's `Indicator` + `Thumb` (+ any custom marks) **inside `Slider.Track`**, which sits inside `Slider.Control`. Don't hoist parts to arbitrary wrapper levels. The native hierarchy keeps positioning correct AND preserves the rung -1 containing-block behavior for free: Base UI's `translate: -50% -50%` on the thumb establishes the containing block that sizes the nested `position: fixed` range `<input>` to the thumb — so no `transform-gpu` / `contain-layout` band-aid is needed (Slider PR #4976; v2 PR #4975 added `transform-gpu` only because it had killed the translate).
+- **Derive UI from the kit's LIVE value via function-of-state — never a React mirror or a static prop derivation.** When marks / value labels / etc. need the current value, read it from the part's `render`-of-state (`<Slider.Track render={(props, { values }) => …}>`) and compute from `values`. Do NOT mirror the value into `useState` (doubled source of truth) and do NOT derive it as `value ?? defaultValue` (freezes the derived UI in uncontrolled mode — marks/labels stop tracking as the user drags). See `references/base-ui-styling.md §10` + §11 checklist. Slider PR #4976. (Component-level hooks that genuinely can't reach part state — e.g. Slider's `useLabelOverlap` — necessarily stay on the controlled `value`; that's a known limit, not a license to mirror.)
+- **Translucent containers with nested parts**: prefer `bg-color/alpha` (alpha-blended fill) over `opacity: X`. `opacity` on a parent creates a stacking context that propagates into descendants — fatal when Base UI nests parts. Example: `Slider.Track` with `opacity-[0.24]` would fade the nested `Slider.Indicator` to 24% blue. `bg-gray-500/24` paints only Track's background pixels at alpha, leaves descendants at 100%. Slider PR #4959 used this; v2 PR #4975 burned 2 iters on opacity-cascade debugging before extracting a sibling rail span instead — fully preventable with this rule. **Caveat — design-of-record wins:** the `bg-color/alpha` technique exists to *preserve a translucent legacy fill*. If the current Figma spec defines a **solid** colour for that element (as Slider's rail now does — `bg-gray-500` with no alpha, per `components/Slider.md`), use the solid token directly; do NOT layer the alpha trick to "restore" the old translucency.
 - **Input-bearing slots** (`Slider.Thumb`, `Switch.Input`): hide visible native `<input>` via:
   ```
   [&_input]:!top-auto [&_input]:!left-auto
@@ -121,9 +136,10 @@ Categorized by problem domain. The agent applies the relevant category as each m
 - **`disablePortal` emulation**: conditionally omit `<Drawer.Portal>` wrapper rather than searching for a non-existent prop.
 - **Transition/animation parity**: when swapping the primitive, port the prior open/close motion (`data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full` on `Drawer.Popup`) before opening review. Missing animations are a guaranteed regression flag.
 - **For typecheck-noise from upstream type drift**, prefer inline `@ts-expect-error` over a `patches/*.patch` entry. Patches add repo-wide maintenance overhead; reviewers push back unless suppression would spread across many call sites (Drawer iter 2 precedent).
-- **The `@base-ui/utils@0.2.8` patch** (strips `const` from generic params) IS required for Tier 0 components — apply via `pnpm.patchedDependencies` + lockfile `patch_hash`. Do NOT re-derive (Drawer + Modal precedent).
-- **Slot-based styling (MUI-Base + `@base-ui/react` idiom)**: when wrapping a primitive that accepts `slots` + `slotProps`, use them instead of pumping CSS through `classes`. Example from `OutlinedInput.tsx:174-202`:
+- **The `@base-ui/utils@0.2.8` patch** (strips `const` from generic params) IS required for Tier 0 components — apply via `pnpm.patchedDependencies` + lockfile `patch_hash`. Do NOT re-derive (Drawer + Modal precedent). _TODO: remove after master rebase confirms the patch is obsolete (TC-4)._
+- **Slot-based styling — LEGACY Tier 3.b ONLY (NOT a `@base-ui/react` v1 pattern)**: `slots` + `slotProps` is the **`@mui/base` v0** API. It is preserved ONLY for Tier 3.b legacy components (Dropdown, OutlinedInput, Modal) where external consumers still depend on the v0 shape. `@base-ui/react` v1 has no `slotProps` — each part is a separate component you style directly (see `references/base-ui-styling.md §Appendix·1` + `design-patterns-addendum.md §2`). Do NOT introduce `slots`/`slotProps` in new code. Example of the legacy shape (only valid for Tier 3.b's continued v0-API surface):
   ```tsx
+  // LEGACY — Tier 3.b only (OutlinedInput.tsx:174-202)
   <Input
     slots={{ input: CustomInput }}
     slotProps={{
@@ -132,7 +148,7 @@ Categorized by problem domain. The agent applies the relevant category as each m
     }}
   />
   ```
-  This is the canonical Picasso pattern for multi-part `@base-ui/react` consumers — preferred over a `classes` prop (which is rule 5 forbidden) and over class dictionaries.
+  End-state: Tier 3.b consolidates onto v1 per-part styling once consumers migrate.
 - **Responsive spacing utilities**: components accepting breakpoint-aware spacing (e.g., Dropdown's `offset?.top` / `offset?.bottom`) should use `makeResponsiveSpacingProps()` from `@toptal/picasso-provider` to generate responsive Tailwind classes dynamically. See `Dropdown.tsx:106-109,236-242` for the canonical usage. Do NOT hand-roll responsive class strings for spacing values that should match the breakpoint API.
 
 ## Tailwind & class composition
@@ -153,6 +169,7 @@ Categorized by problem domain. The agent applies the relevant category as each m
 - **Verify intended code changes are actually present in the diff** before opening PR. Reviewer comment on `Switch.tsx:55` (Switch iter 2 precedent) was triggered by the initial diff still showing the OLD `@mui/base` code — an avoidable iteration because the planned edit wasn't applied.
 - **If `pnpm build:package` failed at bootstrap**, do NOT proceed to `pnpm jest -u`. See "Build & snapshot precondition" above.
 - **Strip JSDoc from internal passthrough props** before opening PR (`ownerState`, `data-private`). These surface in TS doc generation as public API (Backdrop iter 9 precedent).
+- **Modernize rewritten internal sub-components — drop dead `@mui/base` prop shapes.** When you rewrite an internal sub-component as part of the swap (it's NEW code, so canonical rules apply per `design-patterns-addendum.md §3`), don't carry the kit's `ownerState: { value }` wrapper forward out of inertia — replace it with explicit props (`value`, `index`, …). `ownerState` is a `@mui/base` concept with no meaning post-migration. Slider's `SliderMark` / `SliderValueLabel` did this (PR #4976); v2/v1 kept the vestigial `ownerState` shape.
 
 ## Test conventions
 
@@ -164,7 +181,7 @@ Categorized by problem domain. The agent applies the relevant category as each m
 ## Polymorphic + ref forwarding
 
 - `forwardRef<HTMLButtonElement, Props>(...)` already types `ref` correctly. Don't cast `ref` at the JSX site.
-- Spreading `{...rest}` with a cast (`{...(rest as BaseUIButton.Props)}`) is `// @ts-ignore` in disguise. If `rest` doesn't conform, drop the offending Picasso-only prop BEFORE spreading. NEVER fall back to `any`.
+- **Drop Picasso-only props from `rest` before spreading to a `@base-ui/react` part.** When `rest` includes Picasso-specific props the underlying part doesn't accept, destructure them out before the spread — don't paper over the mismatch with `as BaseUIButton.Props`. NEVER fall back to `any`.
 - See `rules/base-ui-react-api-crib.md` §"Polymorphic Button" for the `nativeButton + render` pattern.
 
 ## Responsive component visual testing (MANDATORY)

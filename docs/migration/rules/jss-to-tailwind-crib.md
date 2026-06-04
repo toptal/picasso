@@ -1,6 +1,8 @@
 # JSS → Tailwind cribsheet
 
-Pattern table for translating common JSS shapes into Picasso Tailwind. Use alongside `tokens/picasso-tailwind-tokens.md` for token names.
+> **Scope: migration-only doc.** This cribsheet exists to support the @material-ui/core JSS → Tailwind translation during the modernization program. Once the migration completes, the structural patterns here (parent-refs, pseudo-elements, transitions) will be promoted to a Picasso Storybook tutorial (similar to the styled-components tutorial at <https://picasso.toptal.net/?path=/story/tutorials-styled-components--styled-components>), and the token-mapping rows will be retired in favor of pointing directly at `tokens/picasso-tailwind-tokens.md`. Until then, this file remains the migration agent's authoritative translation reference.
+
+Pattern table for translating common JSS shapes into Picasso Tailwind. Use alongside `tokens/picasso-tailwind-tokens.md` for canonical token names.
 
 ## Spacing
 
@@ -18,22 +20,13 @@ MUI's `theme.spacing(N)` returns `N * 8px`. **Always verify the px value** befor
 
 ## Color
 
-MUI palette → Picasso tokens (most common):
+**Color tokens are Picasso-dependent and live in [`docs/migration/tokens/picasso-tailwind-tokens.md`](../tokens/picasso-tailwind-tokens.md)** — the canonical source for MUI palette → Picasso Tailwind token mappings. Do NOT duplicate the mapping here; the tokens doc is the single source of truth (avoids drift when designers update the palette).
 
-| JSS                                 | Picasso Tailwind |
-|---|---|
-| `color: palette.text.primary`       | `text-graphite-800` |
-| `color: palette.text.secondary`     | `text-graphite-700` |
-| `color: palette.grey.dark`          | `text-gray-700` |
-| `color: palette.primary.main`       | `text-blue-500` |
-| `color: palette.primary.dark`       | `text-blue-600` |
-| `color: palette.success.main`       | `text-green-500` |
-| `color: palette.error.main`         | `text-red-500` |
-| `color: palette.warning.main`       | `text-yellow-500` |
-| `backgroundColor: palette.common.white` | `bg-white` |
-| `backgroundColor: palette.grey.light`   | `bg-gray-100` |
-| `backgroundColor: palette.background.paper` | `bg-white` |
-| `borderColor: palette.divider`      | `border-gray-300` |
+When translating a JSS color expression:
+
+1. Identify the MUI palette path (`palette.text.primary`, `palette.primary.main`, etc.).
+2. Look up the matching Picasso token in `tokens/picasso-tailwind-tokens.md`.
+3. If no canonical token exists, keep the literal `[arbitrary-value]` AND add `// TODO(tokens): <description>` (per §"Token usage" in `rules/styling.md`).
 
 ## Hover / focus / disabled
 

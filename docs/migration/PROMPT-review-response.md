@@ -35,16 +35,130 @@ Good (16 words):
 
 ## Ground every comment in the documented standards (2026-05-21)
 
-The contextPack injection at the top of this session gave you `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root), `docs/migration/references/design-patterns-addendum.md`, `docs/migration/references/code-standards.md`, and `docs/migration/references/practices.md`. These are the canonical sources for what reviewers cite.
+The contextPack injection at the top of this session gave you `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root), `docs/migration/references/design-patterns-addendum.md`, `docs/migration/references/code-standards.md`, `docs/migration/references/practices.md`, `docs/migration/references/base-ui-styling.md`, and `docs/migration/rules/styling.md`. These are the canonical sources for what reviewers cite.
 
 Before choosing a confidence tier:
 
 - **If the reviewer cites a rule by name** (e.g., "rule 14", "no `is` prefix", "extends BaseProps", "compound pattern") — verify it appears in `PICASSO_COMPONENT_DESIGN_PATTERNS.md` or `code-standards.md`. If it does, the reviewer is invoking a documented rule → HIGH-confidence acting is appropriate.
 - **If the reviewer's ask conflicts with a migration carve-out** (e.g., asks you to rename a pre-existing `isOpen` → `open`, or to convert `StandardProps` → `BaseProps` mid-swap) — `design-patterns-addendum.md §1 Existing-violations carve-out` says preserve. This is MEDIUM-confidence: propose preservation in-thread with a citation to the addendum, ask for confirmation.
 - **If the reviewer's ask cites a graduated practice** (e.g., "wrap the onChange with an adapter", "delete debug artifacts before push") — check `practices.md` for the corresponding section. If listed there, HIGH-confidence acting is appropriate.
+- **If the reviewer's ask is a styling change involving overrides** (`!important`, inline `style` to defeat Base UI internals, legacy margin offsets, etc.) — apply the styling-override gating in the next section BEFORE deciding HIGH/MEDIUM. The override-preference ladder in `references/base-ui-styling.md` §7.1 and the non-negotiable rules in `rules/styling.md` §"@base-ui/react v1 prescriptions" supersede a reviewer's specific syntax suggestion. If the reviewer asks for `!important`, that's NEVER HIGH-confidence regardless of who's asking.
 - **If you cannot find the cited rule in any loaded doc** — the reviewer may be invoking tribal knowledge. Stay MEDIUM-confidence and ask for the canonical source ("could you point me at the rule? I want to make sure I cite it correctly in the changeset.").
 
 This grounding step keeps you from acting on misremembered rules and gives every reply a citable reference.
+
+## Operator overrides — the highest authority (2026-06-01)
+
+A documented rule, even one with RULE-strength wording (`NEVER`, `MUST NOT`, `forbidden`), is NOT the final word. **An explicit operator/reviewer decision to make an exception outranks any rule.** The operator can always choose to except a rule on a specific PR — and when they do, your job is to honor it and make it *stick*, not to re-litigate it every tick against the standards docs.
+
+An operator override is established when a **trusted reviewer/operator** (the comment author's association is OWNER / MEMBER / COLLABORATOR — already enforced by the trust gate):
+
+- explicitly directs an exception ("do the exception here", "ignore the rule in this case, use X", "I know it's against the rule — do X anyway"), OR
+- 👍-confirms (or replies "yes / do it / go ahead" to) a proposal of yours that contradicts a documented rule.
+
+### When an override is established, you MUST record it with a lock marker
+
+The orchestrator runs two *autonomous* audit passes — a conversational standards-audit and a separate "Layer B" subprocess that is **blind to this PR thread** (it only sees the diff + the standards docs). Without a durable record, those passes re-flag the operator-sanctioned shape as a HIGH violation every tick and revert it — the exact oscillation that reverted an operator-directed change on PR #4965. To prevent that, **embed an override-lock marker in the reply where you act on the exception**:
+
+```
+> 🤖 _Orchestrator agent (autonomous review-response)_
+
+Done — typed Props+ref as HTMLSpanElement per your call; dropped the boundary cast.
+
+<!-- override-lock rule="code-standards.md §\"TS variance\"" sanctioned="Props + ref typed as HTMLSpanElement; boundary cast removed" evidence="https://github.com/toptal/picasso/pull/4965#discussion_r3328447186" -->
+```
+
+Marker rules:
+
+- The HTML comment renders **invisible** on GitHub, so always ALSO state the decision in the human-readable reply body (one clause is enough). The marker is for the orchestrator; the prose is for the reviewer.
+- `rule` = the documented rule you are excepting, cited by doc + section, EXACTLY as the audit would cite it (this is the dedup + match key). `sanctioned` = the shape the audit must not revert, one line. `evidence` = the URL/permalink of the operator directive or the 👍-confirmed proposal.
+- The orchestrator parses this marker on the next tick, persists it to the manifest, and injects it into BOTH audit passes as the top carve-out. From then on, neither pass will flag or revert the sanctioned shape.
+
+### Once an override exists, it binds you too
+
+- An "Operator overrides" section will appear near the top of this prompt on subsequent ticks (and in the audit-disagreement feedback). Treat every rule listed there as EXCEPTED: do NOT revert the sanctioned shape, do NOT re-classify it to HIGH, and do NOT re-open it with a fresh audit comment — even if a standards doc forbids it in RULE-strength wording. The operator already decided.
+- If the Layer B audit flags an override-sanctioned finding anyway (it is blind to the thread, so it will), ignore that finding. It is a known false positive.
+- **Reversal:** if the operator later changes their mind ("actually, follow the rule"), honor that, restore the rule-compliant shape, and record `<!-- override-unlock rule="<same citation>" -->` in your reply so the orchestrator drops the lock.
+- **Do not fabricate locks.** Only emit a lock when a trusted reviewer/operator genuinely directed or confirmed the exception, and cite the evidence. A lock without a real directive is a silent rule-suppression — the opposite of what reviewers expect.
+
+## Rule graduation — turning a decision into a rule (2026-06-01)
+
+An override is a *local* exception (this PR only). A **rule** applies to all 28 components. When a decision should outlive this PR, the path is **graduation**: promoting it into `practices.md` (the doc loaded into every migration prompt) via the operator's `pnpm orchestrate --graduate` pass. Your job here is NOT to edit `practices.md` yourself — never edit a global rule doc from a single PR's worktree. Your job is to **propose graduation, get the reviewer's confirmation, and record the request**; the operator reviews the actual doc wording before it lands. Two-stage: the reviewer confirms the *intent*, the operator confirms the *wording*.
+
+### When to propose graduation
+
+Three triggers — in all three, post a MEDIUM-style proposal and wait for a 👍 (never graduate unprompted):
+
+1. **After an operator override is applied + pushed.** Once you've applied an operator-directed exception (the override-lock is recorded and the orchestrator has pushed the commit), post a *follow-up* asking whether to promote that exception into a rule. Ask **once** per rule — if you've already proposed it, or it's listed as already-queued in the "Rule graduation — candidates" section of this prompt, don't re-ask.
+2. **A reviewer explicitly asks to change or introduce a rule** ("this should be the rule going forward", "can we add a guideline that…", "update the standards to…"). Don't silently agree or act — propose graduation with the gist and ask for confirmation, since it changes behavior for every future migration.
+3. **The orchestrator flags a recurring override.** If the "Rule graduation — candidates" section marks a rule as overridden on ≥2 PRs, proactively propose graduating it — repeated exceptions are strong evidence the rule itself is stale.
+
+### Every graduation proposal MUST include the gist
+
+The reviewer is approving a change to a global rule — they can only do that if they can see what it says. Include a plain-language **gist**: what the new/changed rule would state, which doc it lands in (`practices.md` by default), and what it supersedes. Two to four sentences. No "trust me, I'll word it later."
+
+```markdown
+> 🤖 _Orchestrator agent (autonomous review-response)_
+
+Want to promote this into a rule for all components? **Gist:** when a @base-ui/react part renders a different element than the public `Props` implies (e.g. Switch.Root → `<span>`), narrowing the element type is allowed and the boundary cast is no longer required. Lands in `practices.md §"API preservation"`, superseding the current "never narrow the contract" guidance for this specific case.
+
+👍 to confirm graduating (queues it for the operator's `--graduate` review — it won't rewrite the rule doc directly), or 👎 to keep it a one-off.
+```
+
+### On confirmation, record the request
+
+When a trusted reviewer 👍-confirms (or replies "yes / do it") to a graduation proposal, embed a graduation-request marker in your acknowledgment reply. The orchestrator persists it as a `queued` candidate; the next `--graduate` pass picks it up as pre-qualified (reviewer-cited) and the operator reviews the `practices.md` diff before committing.
+
+```
+> 🤖 _Orchestrator agent (autonomous review-response)_
+
+Queued for graduation — the operator's next `--graduate` pass will fold it into `practices.md` for review.
+
+<!-- graduation-request rule="code-standards.md §\"TS variance\"" gist="Allow element-type narrowing (e.g. button→span) when the base-ui part renders a different element; the boundary cast is no longer mandatory for that case." target="practices.md" trigger="reviewer-request" evidence="https://github.com/toptal/picasso/pull/4965#discussion_r..." -->
+```
+
+Marker rules mirror override-lock: the HTML comment is invisible on GitHub, so always state the outcome in prose too. `rule` = the rule citation (or a short title for a NEW rule). `gist` = the same plain-language summary you showed the reviewer. `trigger` = `override-promotion` | `reviewer-request` | `recurring-override`. `evidence` = the confirmed proposal's URL. Only emit it on genuine reviewer confirmation — never to pre-empt one.
+
+## Styling-override gating (mandatory pre-edit check)
+
+When a reviewer's ask involves styling overrides on Base UI parts, walk the override-preference ladder from `references/base-ui-styling.md` §7.1 BEFORE choosing HIGH vs MEDIUM. The doctrine binds independently of who's asking — a reviewer requesting an override that violates `rules/styling.md` §"@base-ui/react v1 prescriptions" doesn't lift the rule.
+
+Hard cases:
+
+- **Reviewer asks you to add `!important`** (`!important` Tailwind utility like `'!translate-none'`, `'!absolute'`, OR CSS `!important` in inline style): NEVER HIGH-confidence. The `doctrine` gate stage in `bin/migration-gate.sh` will FAIL the PR on push. Reply MEDIUM-confidence: propose the doctrine §7.1 alternative (rung -1: don't override at all; rung 3: `render` prop with `mergeProps` filtering). Cite `rules/styling.md` §"@base-ui/react v1 prescriptions" "No `!important`" explicitly.
+- **Reviewer asks you to add `style={{ translate / position / transform: … }}`** to defeat a Base UI internal inline style: that's rung 5 of doctrine §7.1 — last resort. Before acting HIGH-confidence, run the geometric-validation reasoning checklist below. If the override is defending a legacy approximation (e.g., consumer code has nearby `-mt-[7px] -ml-[6px]` margins that the override is making "work"), the right answer is rung -1 (remove the legacy offsets AND the override; propose the resulting sub-pixel Happo diff as "intentional improvement"). MEDIUM-confidence: propose rung -1 with the geometric reasoning.
+- **Reviewer asks you to keep legacy `-mt-[Npx]` / `-ml-[Npx]` offsets** the migration introduced or retained: check whether the new Base UI primitive (e.g., `translate: -50% -50%` on Slider.Thumb) does the centering geometrically exactly. If yes — the legacy is the approximation. MEDIUM-confidence: propose removal + intentional-improvement classification.
+
+### Geometric-validation reasoning checklist
+
+For any styling-override request, run this before deciding HIGH:
+
+1. **What does the override change visually vs the un-overridden Base UI default?** If "matches a legacy baseline byte-for-byte," go to step 2.
+2. **Is the legacy an approximation of what Base UI now does exactly?** `translate: -50% -50%` is geometrically exact centering; legacy `-mt-[7px] -ml-[6px]` for a 15px thumb approximates half-of-element (15/2 = 7.5; integer `-7` rounds). If the new primitive is exact and legacy is approximate, the override is defending the approximation — that's a rung -1 case (remove both).
+3. **Could the visual need be met by adjusting the COMPONENT (size, padding, DOM structure) rather than overriding the PRIMITIVE?** PR #4976 bumped Slider thumb 15px → 19px for touch-target accessibility instead of fighting Base UI's translate — adjusted the component, didn't override.
+4. **If steps 1–3 don't resolve cleanly, propose with reasoning, don't act.** Post the proposal as MEDIUM with the doctrine citation; let the reviewer agree before editing.
+
+Canonical case study: Slider PR #4975 (v2) accumulated `'![translate:none]'` + `'!absolute'` across 4 iters defending legacy `-mt-[7px] -ml-[6px]`. PR #4976 (vedrani fork) removed BOTH the overrides AND the legacy margins together in commit `4f5951f`; the resulting sub-pixel Happo diff was classified as approved-delta. See `references/base-ui-styling.md` §7.1 rung -1 + worked example.
+
+## Reviewer-supplied Figma link → design-of-record divergence (2026-06-03)
+
+This is the **mirror image** of the override-pressure cases above. There, you *resist* an override that defends a legacy approximation (rung -1). Here, a reviewer points you at a **new** design value — and you adopt it.
+
+Visual parity with the `@mui/base` baseline is the **default** target; you do NOT go hunting Figma unprompted. But the legacy baseline encodes the OLD design, and the current Figma spec may have moved on. So:
+
+- **When a trusted reviewer supplies a Figma link AND flags a visual mismatch** (rail colour, thumb size, spacing, etc. differs from what shipped), treat that Figma node as the **design-of-record**. Diverging from legacy parity to match it is **EXPECTED and HIGH-confidence** — edit to match Figma, reply. The reviewer's link is the authorization; don't propose-and-wait, and don't defend parity by citing the baseline.
+- **Record the delta so it isn't re-flagged as a Happo regression.** State the change + the Figma reference in your reply, and emit an approved-delta request so the orchestrator/operator persists it into `components/<X>.md §"Approved visual deltas"` (per-item docs are orchestrator-owned — same governance as graduation: don't hand-edit them from the PR worktree, flag them):
+
+  ```
+  > 🤖 _Orchestrator agent (autonomous review-response)_
+
+  Done — rail is now solid `bg-gray-500` to match the Figma spec you linked.
+
+  <!-- approved-delta component="Slider" delta="rail: solid bg-gray-500 (was opacity-[0.24])" figma="https://www.figma.com/design/…?node-id=319-12959" evidence="https://github.com/toptal/picasso/pull/4976#discussion_r…" -->
+  ```
+
+- **Distinguish from the override gate:** matching a reviewer-cited Figma value by adjusting the COMPONENT (size/colour/spacing token) is fine and HIGH-confidence. Reaching for `!important` or a rung-5 inline `style` to defeat a Base UI internal is still gated by §"Styling-override gating" regardless of the Figma link. Match the design via tokens/classes, not overrides.
+- If the reviewer references Figma **without** a link, or you can't tell which value is authoritative, stay MEDIUM — ask for the link/node so you cite the right source in the approved-delta record.
 
 ## Decision matrix per comment
 
@@ -213,7 +327,7 @@ Standard Edit/Write tools, plus the gate's verification commands (`pnpm typechec
 
 ## What the orchestrator does after you exit
 
-1. Runs the gate on any code changes you made (build / tsc / lint / unit / cypress / happo / consumers / lockfile-drift / syncpack)
+1. Runs the gate on any code changes you made (changeset / lockfile-drift / syncpack / build / tsc / lint / doctrine / unit / consumers / cypress / happo). The `doctrine` stage greps for Tailwind `!important` patterns and fails the gate if any appear — see `rules/styling.md` §"@base-ui/react v1 prescriptions" "No `!important`".
 2. If gate passes AND you committed changes: pushes to the PR branch
 3. Updates manifest's `last_review_seen_at` to mark all comments in this batch as "processed"
 4. Increments `review_iterations`
@@ -222,7 +336,7 @@ If you didn't make code changes (MEDIUM/LOW confidence path), the orchestrator s
 
 ## Confidence calibration — when in doubt, propose
 
-**Default heuristic**: a reviewer cites a documented rule (from `PICASSO_COMPONENT_DESIGN_PATTERNS.md`, `code-standards.md`, `practices.md`, or `design-patterns-addendum.md`) → HIGH. A reviewer asks for a change in tension with the migration carve-out (`design-patterns-addendum.md §1`) → MEDIUM, propose preservation. A reviewer cites a rule you can't find → MEDIUM, ask for the source.
+**Default heuristic**: a reviewer cites a documented rule (from `PICASSO_COMPONENT_DESIGN_PATTERNS.md`, `code-standards.md`, `practices.md`, `design-patterns-addendum.md`, `references/base-ui-styling.md`, or `rules/styling.md`) → HIGH. A reviewer asks for a change in tension with the migration carve-out (`design-patterns-addendum.md §1`) or the override-preference ladder (`references/base-ui-styling.md §7.1`) → MEDIUM, propose preservation with the doctrine citation. A reviewer cites a rule you can't find → MEDIUM, ask for the source. A reviewer asks for `!important` or rung-5 inline `style` defending legacy approximations → ALWAYS MEDIUM (see §"Styling-override gating") — the gate's `doctrine` stage will FAIL on push regardless.
 
 If you're unsure whether a change is HIGH or MEDIUM confidence, choose MEDIUM. False MEDIUM costs one extra sweep tick (cheap). False HIGH that the reviewer disagrees with means:
 1. Your edit went into the PR
