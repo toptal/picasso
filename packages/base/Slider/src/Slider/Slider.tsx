@@ -178,13 +178,12 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   // Public Props.onFocus/onBlur are typed for HTMLElement; @base-ui/react SliderThumb's
   // onFocus/onBlur are forwarded to the nested <input>, so the handler signature narrows
   // to HTMLInputElement. Cast at the helper boundary, not at the JSX call site.
-  const handleThumbFocus:
-    | React.FocusEventHandler<HTMLInputElement>
-    | undefined = onFocus as
+  const handleThumbFocus = onFocus as
     | React.FocusEventHandler<HTMLInputElement>
     | undefined
-  const handleThumbBlur: React.FocusEventHandler<HTMLInputElement> | undefined =
-    onBlur as React.FocusEventHandler<HTMLInputElement> | undefined
+  const handleThumbBlur = onBlur as
+    | React.FocusEventHandler<HTMLInputElement>
+    | undefined
 
   const renderThumb = (thumbValue: number, index: number) => (
     <BaseUISlider.Thumb
