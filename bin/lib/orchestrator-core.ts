@@ -1342,6 +1342,158 @@ async function stripStrayFiles(
   return { hasStagedChanges: stagedCheck.exitCode !== 0, filtered }
 }
 
+/**
+ * A short, stable preamble that pins the agent's file-tool path root to its
+ * working directory. Read/Edit/Write demand ABSOLUTE paths, so an agent that
+ * holds a relative source path (from `git diff` / `ls` / `gh pr diff`) must
+ * prepend its cwd to absolutize it. When the cwd is a migration worktree
+ * nested under the operator's main checkout, agents have prepended the MAIN
+ * checkout prefix instead — it shadows the same files, so the edit silently
+ * lands in the wrong tree and the worktree-scoped commit flow reports "no
+ * source changes" (Drawer review-sweep, 2026-06-04). Stated up front, anchored
+ * on the actual absolute cwd.
+ */
+function worktreeAnchorPreamble(cwd: string): string {
+  return (
+    '# File-tool path anchor (READ FIRST)\n\n' +
+    `Your working directory for this task is:\n\n    ${cwd}\n\n` +
+    'Every `file_path` you pass to Read / Edit / Write MUST be an absolute ' +
+    'path that BEGINS WITH the directory above. This repository has other ' +
+    "working copies on disk — the operator's main checkout and sibling git " +
+    'worktrees — that contain the SAME files at a DIFFERENT absolute prefix. ' +
+    'If you edit one of those, your change lands in the wrong tree and is ' +
+    'silently discarded: the gate sees no change and your fix is lost.\n\n' +
+    'When a tool hands you a relative path (`git diff`, `git status`, ' +
+    '`gh pr diff`, `ls`), prepend the working directory above to absolutize ' +
+    'it. NEVER reconstruct a path from a remembered project location such as ' +
+    '`/Users/.../<repo>/<file>` — always anchor on the directory above.\n'
+  )
+}
+
+/**
+ * Paths currently dirty (modified / staged / untracked) in the operator's MAIN
+ * checkout (`repoRoot()`). Linked worktrees are separate working trees, so a
+ * `git status` here never recurses into a `migration-runs/.../worktree` dir —
+ * this reports only edits to the main checkout itself. Used to bracket an
+ * `agent.invoke` so leaked main-checkout edits surface via a before/after diff.
+ */
+async function snapshotMainDirty(): Promise<Set<string>> {
+  const res = await shell(
+    'git',
+    ['status', '--porcelain=v1', '--untracked-files=all'],
+    { cwd: repoRoot() }
+  )
+  const paths = new Set<string>()
+
+  for (const line of res.stdout.split('\n')) {
+    if (!line.trim()) {
+      continue
+    }
+
+    // porcelain v1: `XY <path>`; renames render as `orig -> new`.
+    const raw = line.slice(3).trim()
+    const finalPath = raw.includes(' -> ') ? raw.split(' -> ')[1] : raw
+
+    paths.add(finalPath)
+  }
+
+  return paths
+}
+
+/**
+ * Global docs the orchestrator itself writes to the MAIN checkout during a run
+ * — never treated as an agent leak even if dirtied inside an invoke window.
+ * Defense-in-depth on top of the before/after set-diff.
+ */
+const ORCHESTRATOR_OWNED_MAIN_FILES = new Set([
+  'docs/migration/manifest.json',
+  'docs/migration/references/lessons-learned.md',
+  '.gitignore',
+])
+
+/**
+ * Attempt to move ONE leaked main-checkout edit into the worktree. Returns
+ * 'relocated' on success (applied to the worktree, restored in main), or
+ * 'unresolved' when the diff is empty/untracked or won't apply cleanly — the
+ * caller surfaces those LOUD for manual recovery (the patch persists under
+ * runDir either way).
+ */
+async function relocateOneLeak(
+  file: string,
+  root: string,
+  wtPath: string,
+  runDir: string
+): Promise<'relocated' | 'unresolved'> {
+  const diff = await shell('git', ['diff', 'HEAD', '--', file], { cwd: root })
+
+  if (diff.exitCode !== 0 || diff.stdout.trim() === '') {
+    return 'unresolved'
+  }
+
+  const patchPath = path.join(
+    runDir,
+    `leaked-${file.replace(/\//g, '__')}.patch`
+  )
+
+  await fs.writeFile(patchPath, diff.stdout, 'utf8')
+
+  const check = await shell('git', ['apply', '--check', patchPath], {
+    cwd: wtPath,
+  })
+
+  if (check.exitCode !== 0) {
+    return 'unresolved'
+  }
+
+  const applied = await shell('git', ['apply', patchPath], { cwd: wtPath })
+
+  if (applied.exitCode !== 0) {
+    return 'unresolved'
+  }
+
+  await shell('git', ['checkout', '--', file], { cwd: root })
+
+  return 'relocated'
+}
+
+/**
+ * Reconcile source edits an agent wrote into the operator's MAIN checkout
+ * instead of its worktree (the wrong-path-root bug — Drawer sweep, 2026-06-04).
+ * `before` is the main-checkout dirty set captured immediately BEFORE the agent
+ * ran, so only paths dirtied DURING the run are considered (orchestrator-owned
+ * writes already dirty are excluded structurally; the owned-files allowlist
+ * covers ones freshly written inside the window). Each leaked file is moved
+ * into the worktree so the normal stripStrayFiles→commit flow picks it up;
+ * un-relocatable ones are returned for a LOUD operator-facing log.
+ */
+async function relocateMainCheckoutLeak(args: {
+  wtPath: string
+  before: Set<string>
+  runDir: string
+}): Promise<{ relocated: string[]; unresolved: string[] }> {
+  const { wtPath, before, runDir } = args
+  const root = repoRoot()
+  const after = await snapshotMainDirty()
+  const leaked = [...after].filter(
+    p => !before.has(p) && !ORCHESTRATOR_OWNED_MAIN_FILES.has(p)
+  )
+  const relocated: string[] = []
+  const unresolved: string[] = []
+
+  for (const file of leaked) {
+    // eslint-disable-next-line no-await-in-loop
+    const outcome = await relocateOneLeak(file, root, wtPath, runDir)
+
+    if (outcome === 'relocated') {
+      relocated.push(file)
+    } else {
+      unresolved.push(file)
+    }
+  }
+
+  return { relocated, unresolved }
+}
+
 /** Spawn a shell command via `bash -c` so the workflow can pass complex command lines. */
 /**
  * Patterns indicating an agent failure where retrying makes no sense — the
@@ -4548,7 +4700,22 @@ const agent = {
       }
     })()
 
-    await fs.writeFile(logPath, `# prompt\n${inv.prompt}\n\n# stdout\n`, 'utf8')
+    // File-tool path anchor (2026-06-04): pin the agent's Read/Edit/Write
+    // path root to its actual cwd. Read/Edit/Write require ABSOLUTE paths, so
+    // an agent holding a relative source path must prepend its cwd — and
+    // agents have prepended the operator's MAIN checkout instead of their
+    // worktree (it shadows the same files), silently landing edits in the
+    // wrong tree where the worktree-scoped commit flow drops them (Drawer
+    // sweep, 2026-06-04). The preamble states the absolute cwd up front.
+    const anchoredPrompt = inv.cwd
+      ? `${worktreeAnchorPreamble(path.resolve(inv.cwd))}\n---\n\n${inv.prompt}`
+      : inv.prompt
+
+    await fs.writeFile(
+      logPath,
+      `# prompt\n${anchoredPrompt}\n\n# stdout\n`,
+      'utf8'
+    )
 
     // Reasoning config travels via env so the child claude inherits effort
     // + thinking budget regardless of what the operator's shell happens to
@@ -4605,7 +4772,7 @@ const agent = {
         env: childEnv,
       })
 
-      child.stdin?.write(inv.prompt)
+      child.stdin?.write(anchoredPrompt)
       child.stdin?.end()
 
       // Visibility: track per-tool-call activity so the orchestrator can
@@ -5660,54 +5827,43 @@ const checklist = {
       }
     }
 
-    // 4. PR description authored. Mandatory per PROMPT §8 (added
-    //    2026-05-20). Path mirrors what `bin/migration-diff.sh report`
-    //    reads when prepending the narrative above the mechanical diff:
-    //    `<wt>/migration-runs/<run-date>/<id>/pr-description.md`.
-    //    Missing → agent skipped the mandate; reviewers will get the
-    //    mechanical diff only.
-    //
-    //    Note: `<run-date>` here is computed from TODAY() — same source
-    //    the orchestrator uses for runDate elsewhere. If the migration
-    //    started YESTERDAY and the agent is iterating today, the file
-    //    won't be at today's date — but that's a degenerate case
-    //    (single-iter migrations close within minutes). For correctness
-    //    in cross-day cases, we glob across recent dates and accept any
-    //    matching file.
-    const prDescGlobMatches: string[] = []
+    // 4. PR description authored. Mandatory per PROMPT §8 (added 2026-05-20).
+    //    Reuses the canonical resolver (`collectPrDescriptionCandidates` +
+    //    `freshestExistingFile`) — the SAME logic `normalizePrDescription`
+    //    uses — instead of re-globbing. The prior inline glob searched only
+    //    `<worktreePath>/migration-runs` with the bare `item.id` and TODAY()'s
+    //    month, so it false-failed whenever the run dir carried a variant
+    //    suffix (`Drawer-v2/`) OR lived under the operator root rather than the
+    //    worktree — e.g. the Drawer-v2 sweep on 2026-06-04, where the file
+    //    existed at `<runDir>/pr-description.md` but the check reported it
+    //    missing (a false-negative no agent action could clear). `runDate` +
+    //    `variant` are derived from `runDir`
+    //    (`migration-runs/<runDate>/<itemId>[-<variant>]`); the canonical
+    //    resolver also probes `<runDir>/pr-description.md` directly, so it is
+    //    robust even when that derivation is off.
+    const prDescCompDir = path.basename(args.runDir)
+    const prDescRunDate = path.basename(path.dirname(args.runDir))
+    const prDescVariant = prDescCompDir.startsWith(`${args.item.id}-`)
+      ? prDescCompDir.slice(args.item.id.length + 1)
+      : 'v1'
+    const prDescCandidates = await collectPrDescriptionCandidates({
+      rootDir: args.rootDir,
+      runDir: args.runDir,
+      worktreePath: args.worktreePath,
+      runDate: prDescRunDate,
+      itemId: args.item.id,
+      variant: prDescVariant,
+    })
+    const prDescPath = await freshestExistingFile(prDescCandidates)
 
-    try {
-      const yearMonth = TODAY().slice(0, 7) // YYYY-MM
-      const runsRoot = path.join(args.worktreePath, 'migration-runs')
-
-      if (existsSync(runsRoot)) {
-        const dirs = await fs.readdir(runsRoot)
-
-        for (const d of dirs) {
-          if (!d.startsWith(yearMonth)) {
-            continue
-          }
-          const candidate = path.join(
-            runsRoot,
-            d,
-            args.item.id,
-            'pr-description.md'
-          )
-
-          if (existsSync(candidate)) {
-            prDescGlobMatches.push(candidate)
-          }
-        }
-      }
-    } catch {
-      // Best-effort — checklist remains a warning, not a blocker.
-    }
-
-    if (prDescGlobMatches.length === 0) {
+    if (prDescPath === null) {
       failures.push(
-        `PR description missing: expected at \`migration-runs/<run-date>/${args.item.id}/pr-description.md\` ` +
-          `(mandatory per PROMPT §8). The orchestrator's PR body uses this as the narrative ` +
-          `above the mechanical diff — without it, reviewers get file-level facts but no Summary / Decisions / Limitations / Verification.`
+        `PR description missing: expected at \`${path.join(
+          args.runDir,
+          'pr-description.md'
+        )}\` (mandatory per PROMPT §8). The orchestrator's PR body uses this ` +
+          `as the narrative above the mechanical diff — without it, reviewers ` +
+          `get file-level facts but no Summary / Decisions / Limitations / Verification.`
       )
     } else {
       passed.push(`pr-description.md present`)
@@ -7614,6 +7770,12 @@ async function sweepOne(
         `${item.id}: review-iter ${reviewIters} loop iter ${iter}/${MAX_SWEEP_ITERS}`
       )
 
+      // Bracket the agent run so we can detect edits it wrote into the
+      // operator's MAIN checkout instead of this worktree (wrong-path-root
+      // bug). Reconciled just before staging, below.
+      // eslint-disable-next-line no-await-in-loop
+      const mainDirtyBefore = await snapshotMainDirty()
+
       // eslint-disable-next-line no-await-in-loop
       const agentResult = await agent.invoke(
         {
@@ -7786,6 +7948,41 @@ async function sweepOne(
       // (no staged changes) or amend with no changes; `stripStrayFiles` reports
       // `hasStagedChanges` via `git diff --cached --quiet`. It also strips any
       // orchestrator scratch the agent dropped (see its JSDoc).
+      //
+      // BEFORE staging: reconcile any edits the agent leaked into the operator
+      // MAIN checkout (wrong-path-root bug) back into this worktree, so they
+      // get staged + committed by the flow below instead of being silently
+      // dropped as a false "reply-only" tick (Drawer sweep, 2026-06-04).
+      // eslint-disable-next-line no-await-in-loop
+      const { relocated: leakRelocated, unresolved: leakUnresolved } =
+        await relocateMainCheckoutLeak({
+          wtPath,
+          before: mainDirtyBefore,
+          runDir,
+        })
+
+      if (leakRelocated.length > 0) {
+        log(
+          'sweep',
+          `${item.id}: relocated ${
+            leakRelocated.length
+          } agent edit(s) from the MAIN checkout into the worktree (wrong path-root): ${leakRelocated.join(
+            ', '
+          )}`
+        )
+      }
+
+      if (leakUnresolved.length > 0) {
+        log(
+          'sweep',
+          `${item.id}: ⚠ ${
+            leakUnresolved.length
+          } agent edit(s) leaked into the MAIN checkout but would not apply cleanly to the worktree — left for manual recovery (patches: ${runDir}/leaked-*.patch): ${leakUnresolved.join(
+            ', '
+          )}`
+        )
+      }
+
       // eslint-disable-next-line no-await-in-loop
       const { hasStagedChanges } = await stripStrayFiles(wtPath, item.id)
 

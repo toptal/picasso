@@ -465,3 +465,19 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Drop Picasso's internal animation/backdrop wrappers (`@toptal/picasso-fade`, `@toptal/picasso-backdrop`) along with `@mui/base` from `dependencies`, lift the `react` peer to `>=16.12.0`, and let base-ui primitives drive open/close with `data-[starting-style]:` / `data-[ending-style]:` Tailwind variants — see `rules/base-ui-react-api-crib.md` for the parts mapping.
 - Un-ignore any `/patches/@base-ui__*.patch` in `.gitignore` when adopting `@base-ui/react` — pnpm's `patchedDependencies` reference fails CI installs on consumer packages if the patch file is git-ignored.
 - Reference: https://github.com/toptal/picasso/pull/4993
+
+## Modal — 2026-06-04 (review iter 1)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 1
+- Patches for upstream dependencies must be committed under the migrated package's own `patches/` dir (e.g. `packages/base/Modal/patches/`) and referenced from root `package.json#patchedDependencies` — never gitignored at repo root, because reviewers expect patched-dep state to travel with the package and survive across machines/CI.
+- Legacy callback contracts that don't 1:1 map to `@base-ui/react` need explicit shim wiring with a code comment naming the legacy edge being mirrored — here: `onOpen` as a closed→open rising-edge `useEffect`, `transitionProps.onExited` via `onOpenChangeComplete`, `container` as function-or-value, and consumer `onClick` forwarded alongside the synthetic backdrop-click route on `Dialog.Popup` — extend `rules/base-ui-react-api-crib` with these MUI-Modal → Dialog shim entries so iter 1 emits them.
+- When disabling `@base-ui/react`'s built-in interaction layers (`modal={false}`, `disablePointerDismissal`, manual focus/scroll) because Picasso owns those mechanisms, leave an inline comment naming the legacy `disable*` flag being mirrored (e.g. "mirrors legacy `disableEnforceFocus` + `disableScrollLock`") so reviewers don't have to re-derive the intent on every migration.
+- Reference: https://github.com/toptal/picasso/pull/4993
+
+## Modal — 2026-06-04 (review iter 2)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 2
+- @base-ui/react `Dialog.Popup` auto-focuses the first tabbable child via `initialFocus={true}` — components whose mount/focus triggers a side-effect (date-picker calendars, autocompletes) break unless the migration explicitly sets `initialFocus={false}` to match @mui/base's non-focusing default; bake this into `base-ui-react-api-crib` Dialog section.
+- Visual parity must be validated in Storybook against the published PR preview (e.g. modal trigger buttons in `--modal#sizes`) before marking iter 1 done — class/structure drift from collapsing `Backdrop` + `Fade` wrappers into `Dialog.Backdrop`/`Dialog.Popup` silently broke sibling spacing that snapshots didn't catch.
+- When swapping dialog primitives, audit every behavioral default the legacy stack overrode (`disableEnforceFocus`, `disableScrollLock`, `closeAfterTransition`, backdrop-click routing) and re-pin the @base-ui/react equivalents (`modal={false}`, `disablePointerDismissal`, manual `event.target === event.currentTarget` click routing) — silent default changes are the dominant reviewer-flagged regression class.
+- Reference: https://github.com/toptal/picasso/pull/4993
