@@ -147,18 +147,18 @@
           "review_iterations": 9
         },
         "v2": {
-          "status": "needs_human",
-          "pr": null,
+          "status": "awaiting_ci",
+          "pr": "https://github.com/toptal/picasso/pull/4994",
           "branch": "migrate-Drawer-v2",
           "worktree": "migration-runs/2026-06-03/Drawer-v2/worktree",
           "iterations": 4,
           "merged_at": null,
-          "escalation_reason": "migrate-loop stuck on deterministic gate stages: audit: (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.",
+          "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": null,
           "review_iterations": 0,
           "session_id": null,
-          "awaiting_ci_since": null
+          "awaiting_ci_since": "2026-06-04T12:44:57Z"
         }
       },
       "review_iterations": 9
