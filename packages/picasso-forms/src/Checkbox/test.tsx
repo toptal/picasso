@@ -79,14 +79,18 @@ describe('Form.Checkbox', () => {
   })
 
   it('shows the label in default case', () => {
-    const { getByLabelText } = renderCheckbox({})
+    const { getByRole } = renderCheckbox({})
 
-    expect(getByLabelText('The checkbox label')).toBeInTheDocument()
+    expect(
+      getByRole('checkbox', { name: 'The checkbox label' })
+    ).toBeInTheDocument()
   })
 
   it('shows the label in title case', () => {
-    const { getByLabelText } = renderCheckbox({ titleCase: true })
+    const { getByRole } = renderCheckbox({ titleCase: true })
 
-    expect(getByLabelText('The Checkbox Label')).toBeInTheDocument()
+    expect(
+      getByRole('checkbox', { name: 'The Checkbox Label' })
+    ).toBeInTheDocument()
   })
 })
