@@ -489,3 +489,19 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Bundle the `react` peer widening to `>=16.12.0` (drop the `< 19.0.0` upper bound) into every migration's `package.json` sweep — same peer-policy fix lessons-learned called out for Drawer, applies to any package whose peer block still carries the legacy ceiling.
 - Even when `classes`-drop audit shows 0 internal/external usage (Tier 1 vestigial), the changeset must be `major` with the breaking surface explicitly named — removing `classes` from the public type is the breaking change, regardless of the runtime backstop noted in `references/design-patterns-addendum.md`.
 - Reference: https://github.com/toptal/picasso/pull/4995
+
+## Tabs — 2026-06-04
+
+- Tier 0 · target_path: `@base-ui/react/tabs` · iterations: 3
+- When swapping `@mui/base/*` for `@base-ui/react/*`, the package's `react` peer cap must be lifted (Tabs went to `>=16.12.0`) and the bump declared in the changeset alongside the dep swap — pure source rewrites omit this and break peer resolution in CI.
+- Run `pnpm changeset status` before opening the PR: this run shipped an empty stray `.changeset/picasso-tabs-base-ui-migration.md` (just `---\n---\n`) alongside the real `tabs-migration.md`, which CI's changeset gate will flag as malformed.
+- For the `@mui/base/Tabs` → `@base-ui/react/tabs` slot rename (`Tabs.Root` / `Tabs.List` / `Tabs.Tab`), don't restate slot mapping here — defer to `rules/base-ui-react-api-crib.md` and verify by structural rewrite of the JSX tree, not literal find/replace.
+- Reference: https://github.com/toptal/picasso/pull/4996
+
+## Utils — 2026-06-05
+
+- Tier 1 · target_path: `none` · iterations: 5
+- Bundle the `@material-ui/core` peer-dep drop and the `react` peer widen (`>=16.12.0`) into the migration's changeset entry atomically — Utils declared both in one note so consumers see the full peer surface change.
+- Emit exactly one `.changeset/*.md` per migration; Utils accidentally landed two byte-identical files (`picasso-utils-base-ui-migration.md` + `utils-migration.md`), which is a changelog hazard reviewers will flag.
+- Add Happo visual-test artifacts (`baseline--*.png`, `local--*.png` at repo root) to `.gitignore` proactively — local Happo runs drop them into the worktree and they leaked into the Utils PR before being ignored.
+- Reference: https://github.com/toptal/picasso/pull/4997
