@@ -98,8 +98,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   // <div> and types its ref as RefObject<HTMLDivElement>; sliderRef is widened
   // to HTMLElement for public back-compat. HTMLDivElement IS HTMLElement at
   // runtime, so the narrow is sound at this kit boundary (not consumer-facing).
-  const baseUiSliderRef: React.RefObject<HTMLDivElement> =
-    sliderRef as React.RefObject<HTMLDivElement>
+  const baseUiSliderRef = sliderRef as React.RefObject<HTMLDivElement>
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
