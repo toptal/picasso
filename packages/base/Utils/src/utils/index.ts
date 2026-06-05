@@ -30,7 +30,8 @@ export {
   type OverridableComponent,
 } from '@toptal/picasso-shared'
 
-export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
+export { default as ClickAwayListener } from './ClickAwayListener'
+export type { ClickAwayListenerProps } from './ClickAwayListener'
 
 export { capitalize } from './capitalize'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
