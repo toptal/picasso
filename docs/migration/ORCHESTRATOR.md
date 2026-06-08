@@ -36,9 +36,42 @@ pnpm orchestrate --component=Note
 
 # Real run, all queued items in a tier
 pnpm orchestrate --tier=1
+
+# Strip review-aid comments from an open PR before merging it manually
+pnpm orchestrate --cleanup --component=Slider --variant=vedrani --dry-run   # preview
+pnpm orchestrate --cleanup --component=Slider --variant=vedrani             # apply + push
 ```
 
-CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent=claude|cursor|codex`, `--max-iterations=<N>` (default 3), `--base-branch=<ref>` (override the workflow's PR target for this run).
+CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--review-sweep`, `--cleanup`, `--agent=claude|cursor|codex`, `--max-iterations=<N>` (default 3), `--base-branch=<ref>` (override the workflow's PR target for this run).
+
+## Cleanup before merge (`--cleanup`)
+
+A standalone, operator-invoked pass that strips **review-aid comments** (multi-paragraph migration
+narration, `see …md §X` doc pointers, `@mui/base`-vs-`@base-ui/react` history, restatement-of-code)
+from an open PR's diff right before you merge it manually. It preserves load-bearing comments
+(eslint-disable rationale, `@ts-expect-error` reasons, `@deprecated`/Props JSDoc, `TODO(tokens):`,
+ownerState-passthrough and mirrored-legacy-flag notes). Protocol: `PROMPT-cleanup-comments.md`.
+
+Decoupled from `--review-sweep`: it does **not** read approvals, does **not** change `status`, and
+**never merges**. One focused agent pass over the PR's `+`-added lines, then a package-scoped verify
+(`build:package` + `davinci-syntax lint` — comment removal can only break the build via a malformed
+block comment), then commit `[cleanup] strip review-aid comments` + push.
+
+```bash
+pnpm orchestrate --cleanup --component=<Name> [--variant=<id>] [--dry-run]
+```
+
+- **`--dry-run`** prints the proposed strip and restores the worktree — no commit, no push, no state
+  change. Run it first to eyeball what would go.
+- Idempotent via `cleanup_done_at` on the variant (a record, not a gate). Re-running is a no-op once
+  nothing strippable remains.
+- **Re-approval caveat:** the pushed commit changes HEAD, which dismisses the existing approval on
+  branch-protected repos. That's why this is an explicit pre-merge step — re-approve (or admin-merge)
+  after it lands, then merge manually.
+- Log: `<runDir>/agent.cleanup.log` (alongside the variant's worktree).
+- **Retry:** clear `cleanup_done_at` from the manifest entry to re-run a fresh pass from scratch.
+- Requires an existing worktree on the variant's branch and a **clean** working tree (it refuses on
+  uncommitted changes so it never folds local edits into the cleanup commit).
 
 ## Prerequisites
 

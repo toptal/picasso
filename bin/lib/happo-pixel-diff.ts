@@ -129,6 +129,23 @@ const readPng = async (filePath: string): Promise<PNG> => {
 }
 
 /**
+ * Read only the dimensions of a PNG (no pixel analysis). Used by the
+ * orchestrator's small-residual-diff gate to measure how much a
+ * `dimension_mismatch` pair grew/shrank. Returns null on decode failure.
+ */
+export const readPngDimensions = async (
+  filePath: string
+): Promise<{ width: number; height: number } | null> => {
+  try {
+    const png = await readPng(filePath)
+
+    return { width: png.width, height: png.height }
+  } catch {
+    return null
+  }
+}
+
+/**
  * Test whether a pixel at offset `idx` in pixelmatch's output buffer is
  * a diff-marker. Default pixelmatch settings write diff pixels as red
  * (R=255, G=0, B=0, A=255). Non-diff pixels are the original image faded

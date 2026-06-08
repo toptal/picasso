@@ -40,6 +40,7 @@ import {
   run,
   runBatch,
   runReviewSweep,
+  runCleanup,
   parseOptions,
   assertMcpConfig,
 } from './lib/orchestrator-core'
@@ -334,9 +335,9 @@ async function main(): Promise<void> {
         opts.tier ?? '(any)'
       } variant=${opts.variant}\n` +
       `  maxIterations=${opts.maxIterations} maxCIIterations=${opts.maxCIIterations} ciTimeoutMinutes=${opts.ciTimeoutMinutes}\n` +
-      `  batch=${opts.batch} reviewSweep=${opts.reviewSweep} withStandards=${
-        opts.withStandards
-      } dryRun=${opts.dryRun ?? false}\n` +
+      `  batch=${opts.batch} reviewSweep=${opts.reviewSweep} cleanup=${
+        opts.cleanup
+      } withStandards=${opts.withStandards} dryRun=${opts.dryRun ?? false}\n` +
       `  withMcp=${opts.withMcp} noMerge=${opts.noMerge ?? false}\n` +
       `  baseBranch=${opts.baseBranch ?? '(workflow default)'} branch=${
         opts.branch ?? '(workflow default)'
@@ -361,6 +362,9 @@ async function main(): Promise<void> {
   // Phase 3.5 redesign — modes are mutually exclusive in priority order:
   //   --graduate      → run lessons-learned → practices.md graduation pass,
   //                     no worktree/agent loop. Doc-curation only.
+  //   --cleanup       → strip review-aid comments from one open PR's diff
+  //                     before a manual merge (single agent, no merge). Needs
+  //                     --component (optional --variant, --dry-run).
   //   --review-sweep  → walk all awaiting_review items, process new
   //                     review activity, persist state, exit
   //   --batch         → loop run() over every queued item in tier
@@ -391,7 +395,9 @@ async function main(): Promise<void> {
 
     return
   }
-  const result = opts.reviewSweep
+  const result = opts.cleanup
+    ? await runCleanup(workflow, opts)
+    : opts.reviewSweep
     ? await runReviewSweep(workflow, opts)
     : opts.batch
     ? await runBatch(workflow, opts)
