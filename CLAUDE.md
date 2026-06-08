@@ -12,7 +12,7 @@ Planning docs: `docs/modernization/`
 Active migration tooling: `docs/migration/`
 - Orchestrator runbook: `docs/migration/ORCHESTRATOR.md`
 - Operational migration plan: `docs/migration/migration-plan.md`
-- Run: `pnpm orchestrate --component=<Name>` (or `--tier=N`, `--dry-run`, `--no-merge`)
+- Run: `pnpm orchestrate --component=<Name>` (or `--tier=N`, `--dry-run`, `--no-merge`, `--review-sweep`, `--cleanup`)
 
 ## Canonical references for Picasso code
 
@@ -70,6 +70,8 @@ The orchestrator's `--review-sweep` runs in conversational mode (since 2026-05-0
 Protocol details: `docs/migration/PROMPT-review-response.md`. Agent has `gh pr comment`, `gh api .../pulls/<n>/comments` (with `in_reply_to`), and reaction-read tools allowlisted for this. Code commits remain orchestrator-owned; the agent only edits + replies.
 
 When in doubt about a suggestion, the agent should propose (MEDIUM) rather than act (HIGH). False MEDIUM costs one extra sweep tick. False HIGH costs a revert.
+
+**Pre-merge comment cleanup (`--cleanup`, since 2026-06-08).** Separate from the sweep: `pnpm orchestrate --cleanup --component=<X> [--variant=<Y>] [--dry-run]` runs one focused agent that strips **review-aid comments** (migration narration, `see …md §X` pointers, `@mui/base` history) from an open PR's added lines while preserving load-bearing ones, then commits + pushes. Run it right before a manual merge. It does not read approvals, change status, or merge; the push may dismiss the approval (re-approve after). Protocol: `docs/migration/PROMPT-cleanup-comments.md`; gated by `cleanup_done_at` on the variant; runbook in `docs/migration/ORCHESTRATOR.md §"Cleanup before merge"`.
 
 ## `classes` prop handling per tier (locked 2026-05-11)
 

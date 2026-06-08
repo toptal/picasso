@@ -179,6 +179,13 @@ export interface ManifestItem {
   /** Phase 3.5 — count of agent iterations driven by review feedback. */
   review_iterations?: number
   /**
+   * Cleanup-on-demand (`--cleanup`) — ISO timestamp when the review-aid
+   * comment-strip pass last completed on this variant's PR. A record/marker,
+   * not a hard gate: re-running `--cleanup` is a harmless no-op once nothing
+   * strippable remains. Per-PR origin; flat field mirrors the v1 variant.
+   */
+  cleanup_done_at?: string | null
+  /**
    * Explicit operator/reviewer exceptions to documented rules on this PR,
    * recorded so review-sweep audit passes never revert an operator-sanctioned
    * change. Highest-authority carve-out — see {@link OperatorOverride}.
@@ -254,6 +261,12 @@ export interface VariantState {
    * escalates with the usual reason.
    */
   review_iter_failures?: number
+  /**
+   * Cleanup-on-demand (`--cleanup`) — ISO timestamp when the review-aid
+   * comment-strip pass last completed on this variant's PR. Authoritative;
+   * flat ManifestItem field mirrors the v1 slot.
+   */
+  cleanup_done_at?: string | null
   session_id?: string | null
   awaiting_ci_since?: string | null
   /**
@@ -640,6 +653,17 @@ export interface OrchestratorOptions {
    * CLI: `--graduate`.
    */
   readonly graduate: boolean
+
+  /**
+   * Cleanup-on-demand mode. Standalone, operator-invoked: strip review-aid
+   * comments from an open PR's diff right before a manual merge, preserving
+   * load-bearing comments (eslint-disable rationale, @ts-expect-error reasons,
+   * @deprecated/Props JSDoc, TODO(tokens), etc.). Single focused agent pass;
+   * no sweep coupling, no auto-merge. Mutually exclusive with other modes.
+   * CLI: `--cleanup` with `--component=<X>` (optional `--variant=<Y>`,
+   * `--dry-run` to preview the strip without committing/pushing).
+   */
+  readonly cleanup: boolean
 
   /**
    * Override the branch name that the orchestrator creates for this run.

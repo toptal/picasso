@@ -216,11 +216,12 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-04T21:34:47.486Z",
+          "last_review_seen_at": "2026-06-05T19:44:34.153Z",
           "review_iterations": 0,
           "session_id": null,
           "awaiting_ci_since": null,
-          "review_iter_failures": 0
+          "review_iter_failures": 0,
+          "cleanup_done_at": "2026-06-08T11:44:48.800Z"
         }
       }
     },
@@ -259,10 +260,12 @@
           "last_review_seen_at": "2026-06-04T21:54:17.183Z",
           "session_id": "dc50cb18-c303-44cb-b022-8012ab6dc5d2",
           "awaiting_ci_since": null,
-          "operator_overrides": []
+          "operator_overrides": [],
+          "cleanup_done_at": "2026-06-08T11:47:09.606Z"
         }
       },
-      "operator_overrides": []
+      "operator_overrides": [],
+      "cleanup_done_at": "2026-06-08T11:47:09.606Z"
     },
     "Tabs": {
       "tier": 0,
@@ -694,18 +697,38 @@
     "Checkbox": {
       "tier": 2,
       "package": "packages/base/Checkbox",
-      "status": "queued",
+      "status": "needs_human",
       "depends_on": [
         "FormLabel"
       ],
       "target_path": "@base-ui/react/checkbox + @base-ui/react/checkbox-group",
       "versionBump": "major",
       "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "branch": "migrate-Checkbox-v1",
+      "worktree": "migration-runs/2026-06-05/Checkbox-v1/worktree",
+      "iterations": 3,
       "merged_at": null,
-      "notes": "Heavy path: MUI v4 + JSS rewrite. CheckboxGroup included."
+      "notes": "Heavy path: MUI v4 + JSS rewrite. CheckboxGroup included.",
+      "variants": {
+        "v1": {
+          "status": "needs_human",
+          "pr": null,
+          "branch": "migrate-Checkbox-v1",
+          "worktree": "migration-runs/2026-06-05/Checkbox-v1/worktree",
+          "iterations": 3,
+          "merged_at": null,
+          "escalation_reason": "migrate-loop stuck on deterministic gate stages: happo:snapshots:Checkbox/Checkbox group grid/chrome-desktop+Checkbox/Checkbox group horizontal/chrome-desktop+Checkbox/Checkbox group vertical/chrome-desktop+Checkbox/Controlled/chrome-desktop+Checkbox/Custom label/chrome-desktop+Checkbox/Disabled/chrome-desktop+Checkbox/Indeterminate/chrome-desktop+Checkbox/Uncontrolled/chrome-desktop (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.",
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": "migrate-loop stuck on deterministic gate stages: happo:snapshots:Checkbox/Checkbox group grid/chrome-desktop+Checkbox/Checkbox group horizontal/chrome-desktop+Checkbox/Checkbox group vertical/chrome-desktop+Checkbox/Controlled/chrome-desktop+Checkbox/Custom label/chrome-desktop+Checkbox/Disabled/chrome-desktop+Checkbox/Indeterminate/chrome-desktop+Checkbox/Uncontrolled/chrome-desktop (identical content across 3 consecutive iters incl. stuck-recovery attempt). Worktree left dirty for operator inspection.",
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null
     },
     "Radio": {
       "tier": 2,

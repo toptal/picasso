@@ -51,8 +51,12 @@ import { classifyCIFailure } from './failure-classifier'
 import { classifyReview, type Review as RawReview } from './review-classifier'
 import { appendCostSnapshot } from './token-telemetry'
 import { syncToConfluence } from './confluence-sync'
-import { fetchHappoDiffsForCheck, type HappoCheckDiffs } from './happo-fetch'
-import { renderAnalysisForPrompt } from './happo-pixel-diff'
+import {
+  fetchHappoDiffsForCheck,
+  type HappoCheckDiffs,
+  type LocalHappoDiff,
+} from './happo-fetch'
+import { renderAnalysisForPrompt, readPngDimensions } from './happo-pixel-diff'
 import type {
   EscalationDecision,
   GateReport,
@@ -796,6 +800,171 @@ interface PrefetchPostGateArgs {
   runDir: string
   iter: number
   loopName: 'migrate' | 'sweep' | 'ci'
+}
+
+// ---------------------------------------------------------------------------
+// Small-residual-Happo-diff gate
+//
+// PF (2026-06-05, operator request): when the migrate loop gets stuck ONLY on
+// a Happo visual diff and that diff is small (a benign sub-pixel / font-metric
+// reflow), open a PR for human visual sign-off instead of hard-escalating to a
+// dirty worktree. Reviewers + `--review-sweep` finish it (often just a Happo
+// "accept"). Larger visual breakage still escalates. Thresholds are env-tunable.
+// ---------------------------------------------------------------------------
+
+/** Max per-axis pixel growth for a `dimension_mismatch` diff to still count as
+ * "small" (e.g. a 1-2px line-height/border reflow). */
+const HAPPO_AUTOPR_MAX_DIM_DELTA_PX = Number(
+  process.env.MIGRATION_HAPPO_AUTOPR_MAX_DIM_DELTA ?? 2
+)
+/** Max changed-pixel fraction for a same-dimension diff to count as "small". */
+const HAPPO_AUTOPR_MAX_AREA_FRACTION = Number(
+  process.env.MIGRATION_HAPPO_AUTOPR_MAX_AREA_FRACTION ?? 0.01
+)
+
+interface ResidualDiffVerdict {
+  shippable: boolean
+  reason: string
+}
+
+interface PairSize {
+  small: boolean
+  label: string
+}
+
+/** Classify one fetched diff pair as small-enough-to-ship-for-review or not. */
+async function assessHappoPairSize(d: LocalHappoDiff): Promise<PairSize> {
+  const name = `${d.component}/${d.variant}`
+  const a = d.analysis
+
+  if (!a) {
+    return { small: false, label: `${name}: unanalyzed` }
+  }
+
+  if (a.verdict === 'negligible') {
+    return { small: true, label: `${name}: negligible (${a.diffPixels}px)` }
+  }
+
+  if (a.verdict === 'dimension_mismatch') {
+    const newDims = await readPngDimensions(d.newPath)
+    const dw =
+      newDims && a.width != null ? Math.abs(newDims.width - a.width) : Infinity
+    const dh =
+      newDims && a.height != null
+        ? Math.abs(newDims.height - a.height)
+        : Infinity
+    const small =
+      dw <= HAPPO_AUTOPR_MAX_DIM_DELTA_PX && dh <= HAPPO_AUTOPR_MAX_DIM_DELTA_PX
+
+    return { small, label: `${name}: dimension Δ${dw}×${dh}px` }
+  }
+
+  if (a.diffPixels >= 0 && a.width && a.height) {
+    const frac = a.diffPixels / (a.width * a.height)
+    const small = frac <= HAPPO_AUTOPR_MAX_AREA_FRACTION
+
+    return {
+      small,
+      label: `${name}: ${a.diffPixels}px (${(frac * 100).toFixed(2)}%, ${
+        a.verdict
+      })`,
+    }
+  }
+
+  return { small: false, label: `${name}: ${a.verdict}` }
+}
+
+/**
+ * Decide whether a stuck Happo-only failure is a SMALL residual visual diff
+ * that should be handed to human review (open a PR) rather than hard-escalated.
+ * Re-fetches the current iter's diff PNGs (each already carries a pixelmatch
+ * `analysis`) and checks every pair against the small-diff thresholds.
+ * Shippable iff ALL pairs are small.
+ */
+async function classifyResidualHappoDiff({
+  reportDir,
+  runDir,
+  iter,
+}: {
+  reportDir: string
+  runDir: string
+  iter: number
+}): Promise<ResidualDiffVerdict> {
+  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+
+  if (!existsSync(verifyJsonPath)) {
+    return {
+      shippable: false,
+      reason: 'no happo-verify.json to measure diff size',
+    }
+  }
+
+  let reportUrl: string
+
+  try {
+    const v = JSON.parse(await fs.readFile(verifyJsonPath, 'utf8')) as {
+      reportUrl?: string
+      status?: string
+    }
+
+    if (v.status !== 'FAIL' || !v.reportUrl) {
+      return { shippable: false, reason: 'happo-verify.json not in FAIL state' }
+    }
+    reportUrl = v.reportUrl
+  } catch (err) {
+    return {
+      shippable: false,
+      reason: `could not read happo-verify.json: ${(err as Error).message}`,
+    }
+  }
+
+  const apiKey = process.env.HAPPO_API_KEY
+  const apiSecret = process.env.HAPPO_API_SECRET
+
+  if (!apiKey || !apiSecret) {
+    return {
+      shippable: false,
+      reason: 'HAPPO_API_KEY/SECRET unset; cannot fetch diff PNGs to size them',
+    }
+  }
+
+  const destDir = path.join(
+    runDir,
+    'happo-diffs',
+    `migrate-iter-${iter}-storybook`
+  )
+  const fresh = await fetchHappoDiffsForCheck({
+    checkName: 'Happo (Picasso/Storybook)',
+    reportUrl,
+    destDir,
+    apiKey,
+    apiSecret,
+  })
+
+  if (fresh.totalDiffs === 0) {
+    return {
+      shippable: false,
+      reason: 'gate reported happo FAIL but no diff pairs were fetched',
+    }
+  }
+
+  const sizes = await Promise.all(fresh.diffs.map(assessHappoPairSize))
+  const big = sizes.filter(s => !s.small)
+  const labelOf = (xs: PairSize[]): string => xs.map(s => s.label).join('; ')
+
+  if (big.length === 0) {
+    return {
+      shippable: true,
+      reason: `${fresh.totalDiffs} small diff(s): ${labelOf(sizes)}`,
+    }
+  }
+
+  return {
+    shippable: false,
+    reason: `${big.length}/${
+      fresh.totalDiffs
+    } diff(s) over threshold: ${labelOf(big)}`,
+  }
 }
 
 async function prefetchHappoPostGate({
@@ -1974,6 +2143,7 @@ const manifest = {
         last_ci_green_at: updatedVariant.last_ci_green_at,
         last_review_seen_at: updatedVariant.last_review_seen_at,
         review_iterations: updatedVariant.review_iterations,
+        cleanup_done_at: updatedVariant.cleanup_done_at,
         session_id: updatedVariant.session_id,
         awaiting_ci_since: updatedVariant.awaiting_ci_since,
         operator_overrides: updatedVariant.operator_overrides,
@@ -6268,7 +6438,14 @@ const checklist = {
 // ---------------------------------------------------------------------------
 
 interface RunResult {
-  status: 'pr-opened' | 'merged' | 'escalated' | 'dry-run' | 'no-work'
+  status:
+    | 'pr-opened'
+    | 'merged'
+    | 'escalated'
+    | 'dry-run'
+    | 'no-work'
+    // --cleanup pushed a review-aid comment-strip commit to the PR branch.
+    | 'cleaned'
   prUrl?: string
   reason?: string
 }
@@ -6866,6 +7043,270 @@ export async function runReviewSweep(
   log('sweep', `done — processed ${processed}/${candidates.length}`)
 
   return { status: 'no-work' }
+}
+
+/**
+ * `--cleanup` mode (2026-06-08). Standalone, operator-invoked review-aid
+ * comment strip on an open migration PR, run right before a manual merge.
+ *
+ * Unlike `--review-sweep`, this is DECOUPLED from review state: it does not
+ * read approvals, does not transition status, and never merges. It invokes a
+ * single focused agent (PROMPT-cleanup-comments.md) over the PR's added lines,
+ * stages, verifies (package build:package + lint — comment removal can only
+ * break compilation via a malformed block comment, which tsc catches; the
+ * full gate's cypress/happo/jest/consumers stages are irrelevant here),
+ * commits, and pushes. The operator merges manually afterward.
+ *
+ * Idempotent: records `cleanup_done_at` on the variant. Re-running is a
+ * harmless no-op once nothing strippable remains.
+ *
+ * Flags: `--component=<X>` (required), `--variant=<Y>` (default v1),
+ * `--dry-run` (preview the strip + restore the worktree; no commit/push, no
+ * `cleanup_done_at`).
+ */
+export async function runCleanup(
+  workflow: Workflow,
+  opts: OrchestratorOptions
+): Promise<RunResult> {
+  const rootDir = repoRoot()
+  const manifestAbs = path.join(rootDir, workflow.manifestPath)
+
+  if (!existsSync(manifestAbs)) {
+    throw new Error(`Manifest not found at ${manifestAbs}`)
+  }
+
+  if (!opts.component) {
+    throw new Error('--cleanup requires --component=<Name>')
+  }
+  await gh.assertAuth()
+  await loadEnvrcUpwards(rootDir)
+
+  const m = manifest.read(manifestAbs)
+  const item = m.components[opts.component]
+
+  if (!item) {
+    throw new Error(`No manifest entry for --component=${opts.component}`)
+  }
+
+  const variantId = opts.variant
+  const state = manifest.getVariantState(item, variantId)
+  const prUrl = state.pr
+  const branch = state.branch
+  const wtPath = state.worktree
+    ? path.isAbsolute(state.worktree)
+      ? state.worktree
+      : path.join(rootDir, state.worktree)
+    : null
+
+  if (!prUrl || !branch || !wtPath) {
+    throw new Error(
+      `${opts.component}:${variantId} has no open PR / branch / worktree to clean (status=${state.status})`
+    )
+  }
+
+  if (!existsSync(wtPath)) {
+    throw new Error(
+      `Worktree missing at ${wtPath} — re-create it or reset the manifest entry before --cleanup.`
+    )
+  }
+
+  // Refuse on TRACKED modifications: the dry-run path runs `git reset --hard`
+  // (which would discard them) and the commit path must not fold operator work
+  // into the cleanup commit. Untracked files are ignored — they survive a hard
+  // reset and stripStrayFiles' stray-guard keeps them out of the commit (same
+  // posture as the review-sweep, which shares that guard). An awaiting_review
+  // PR's worktree is normally committed-clean, so this only trips on real edits.
+  const dirty = await shell(
+    'git',
+    ['status', '--porcelain', '--untracked-files=no'],
+    { cwd: wtPath }
+  )
+
+  if (dirty.stdout.trim()) {
+    throw new Error(
+      `Worktree ${wtPath} has uncommitted changes to tracked files — commit or stash them before --cleanup.`
+    )
+  }
+
+  const updateForVariant = (patch: Partial<VariantState>): Manifest =>
+    manifest.updateVariant(manifestAbs, item.id, variantId, patch)
+
+  const runDir = path.dirname(wtPath)
+  const cleanupLogPath = path.join(runDir, 'agent.cleanup.log')
+
+  if (state.cleanup_done_at) {
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: previously cleaned at ${state.cleanup_done_at} — re-running (no-op if nothing strippable remains)`
+    )
+  }
+
+  const protocolPath = path.join(
+    rootDir,
+    'docs/migration/PROMPT-cleanup-comments.md'
+  )
+
+  if (!existsSync(protocolPath)) {
+    throw new Error(`Cleanup protocol missing at ${protocolPath}`)
+  }
+
+  const protocol = await fs.readFile(protocolPath, 'utf8')
+  const base = workflow.baseBranch
+  const diffResult = await shell('git', ['diff', `${base}...HEAD`], {
+    cwd: wtPath,
+  })
+
+  // Build the prompt from string parts (NOT a single template literal) so the
+  // ```diff fence below doesn't terminate the surrounding backtick string.
+  const cleanupPrompt =
+    worktreeAnchorPreamble(wtPath) +
+    '\n\n' +
+    protocol +
+    '\n\n---\n\n' +
+    "## This PR's diff (`" +
+    base +
+    '`...HEAD)\n\n' +
+    'Only comments on `+`-added lines are in scope. NEVER touch pre-existing comments.\n\n' +
+    '```diff\n' +
+    diffResult.stdout +
+    '\n```\n'
+
+  const sessionId = randomUUID()
+
+  log(
+    'cleanup',
+    `${item.id}:${variantId}: invoking cleanup agent (cwd=${wtPath}, log=${cleanupLogPath})`
+  )
+
+  const agentResult = await agent.invoke(
+    {
+      prompt: cleanupPrompt,
+      cwd: wtPath,
+      agent: opts.agent,
+      modelConfig: opts.modelConfig,
+      withMcp: false,
+      sessionId,
+      isFirstIteration: true,
+    },
+    cleanupLogPath
+  )
+
+  await recordTokenSnapshot(runDir, item.id, sessionId, 2000, wtPath)
+
+  if (agentResult.exitCode !== 0) {
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: cleanup agent exited ${agentResult.exitCode} — see ${cleanupLogPath}`
+    )
+
+    return {
+      status: 'escalated',
+      reason: `cleanup agent exit ${agentResult.exitCode}`,
+    }
+  }
+
+  // Stage the agent's edits + strip any orchestrator scratch it dropped.
+  const { hasStagedChanges } = await stripStrayFiles(wtPath, item.id)
+
+  if (!hasStagedChanges) {
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: no review-aid comments to strip — nothing changed`
+    )
+
+    if (!opts.dryRun) {
+      updateForVariant({ cleanup_done_at: ISO() })
+    }
+
+    return { status: 'no-work', reason: 'nothing to clean' }
+  }
+
+  if (opts.dryRun) {
+    const preview = await shell('git', ['--no-pager', 'diff', '--cached'], {
+      cwd: wtPath,
+    })
+
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: --dry-run proposed strip (NOT committed/pushed):\n${preview.stdout}`
+    )
+    // Restore the worktree to HEAD so a real run starts clean. Safe: we
+    // refused above unless the worktree was committed-clean.
+    await shell('git', ['reset', '--hard', 'HEAD'], { cwd: wtPath })
+
+    return { status: 'dry-run' }
+  }
+
+  // Verify: package typecheck (tsc -b via build:package) + lint. A malformed
+  // block-comment removal is the only way comment edits break the build.
+  const pkgName = JSON.parse(
+    await fs.readFile(path.join(wtPath, item.package, 'package.json'), 'utf8')
+  ).name as string
+  const typecheck = await shell(
+    'pnpm',
+    ['--filter', pkgName, 'build:package'],
+    { cwd: wtPath }
+  )
+  const lint = await shell(
+    'pnpm',
+    ['davinci-syntax', 'lint', 'code', '--check', `${item.package}/src`],
+    { cwd: wtPath }
+  )
+
+  if (typecheck.exitCode !== 0 || lint.exitCode !== 0) {
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: verify FAILED (build:package exit ${typecheck.exitCode}, lint exit ${lint.exitCode}) — edits left staged for inspection in ${wtPath}\n${typecheck.stderr}\n${lint.stdout}`
+    )
+
+    return { status: 'escalated', reason: 'cleanup verify failed' }
+  }
+
+  const commitMsgFile = path.join(
+    os.tmpdir(),
+    `commit-msg-${item.id.replace(/\//g, '__')}.cleanup.${process.pid}`
+  )
+
+  await fs.writeFile(
+    commitMsgFile,
+    workflow.commitMessage(item.id, item) +
+      '\n\n[cleanup] strip review-aid comments before merge',
+    'utf8'
+  )
+
+  const commitResult = await shell(
+    'git',
+    ['commit', '--no-verify', '--file', commitMsgFile],
+    { cwd: wtPath }
+  )
+
+  if (commitResult.exitCode !== 0) {
+    return {
+      status: 'escalated',
+      reason: `cleanup commit failed: ${commitResult.stderr}`,
+    }
+  }
+
+  const pushResult = await shell(
+    'git',
+    ['push', '--no-verify', 'origin', branch],
+    { cwd: wtPath }
+  )
+
+  if (pushResult.exitCode !== 0) {
+    return {
+      status: 'escalated',
+      reason: `cleanup push failed: ${pushResult.stderr}`,
+    }
+  }
+
+  updateForVariant({ cleanup_done_at: ISO() })
+  log(
+    'cleanup',
+    `${item.id}:${variantId}: pushed [cleanup] commit to ${branch}. NOTE: a new HEAD SHA may dismiss the existing approval on branch-protected repos — re-approve before your manual merge.`
+  )
+
+  return { status: 'cleaned', prUrl }
 }
 
 async function sweepOne(
@@ -9429,6 +9870,13 @@ export async function run(
     // documented procedure (practices.md §"Computed-style diff is
     // authoritative" + §"@base-ui/react idioms" specificity ladder).
     let lastMigrateStuckKey: string | null = null
+    // PF (2026-06-05): when the migrate loop is stuck ONLY on a small Happo
+    // visual diff, hand it to human review (open a PR) instead of hard-
+    // escalating. Set in the second-collision stuck branch; read after the
+    // loop to skip the "gate did not pass" escalation and fall through to the
+    // push + PR-open path. Opt out with MIGRATION_HAPPO_AUTOPR=off.
+    let shipDespiteHappo: { reason: string } | null = null
+    const happoAutoPrDisabled = process.env.MIGRATION_HAPPO_AUTOPR === 'off'
     // 2026-06-04: accurate fingerprint of the checklist (Layer A process +
     // audit HIGH) failures, for the gate=PASS + lingering-checklist stuck path.
     // Previously that path keyed on a blanket `audit:${lastAuditKey}` even when
@@ -9968,7 +10416,41 @@ export async function run(
         // giving up too early without running the prescribed procedure.
         // Only if the third iter ALSO produces the same key do we escalate.
         if (lastMigrateStuckKey === currentFailureKey) {
-          // Second collision in a row → really stuck. Escalate.
+          // Second collision in a row → really stuck.
+          //
+          // PF (2026-06-05): before dead-ending, check whether the ONLY
+          // failing stage is Happo AND every residual diff is small. If so,
+          // open a PR in awaiting_review and let reviewers + --review-sweep
+          // finish it (often just a Happo "accept") instead of leaving a
+          // dirty worktree. Larger visual breakage still escalates below.
+          const happoOnlyStuck =
+            failedDeterministicStages.length === 1 &&
+            failedDeterministicStages[0].name === 'happo'
+
+          if (happoOnlyStuck && !happoAutoPrDisabled) {
+            const residual = await classifyResidualHappoDiff({
+              reportDir,
+              runDir,
+              iter: state.iterations,
+            })
+
+            if (residual.shippable) {
+              log(
+                'loop',
+                `iter ${state.iterations}: stuck on Happo-only with a SMALL residual diff (${residual.reason}) — opening PR for human visual sign-off instead of escalating`
+              )
+              shipDespiteHappo = { reason: residual.reason }
+
+              break
+            }
+
+            log(
+              'loop',
+              `iter ${state.iterations}: stuck on Happo-only but residual diff exceeds small-diff thresholds (${residual.reason}) — escalating`
+            )
+          }
+
+          // Escalate.
           log(
             'loop',
             `iter ${
@@ -10066,7 +10548,13 @@ export async function run(
       }
     }
 
-    if (!state.lastGate || state.lastGate.composite !== 'PASS') {
+    // `shipDespiteHappo` (set in the stuck branch) means the gate is NOT PASS
+    // but the only failure is a small residual Happo diff we're deliberately
+    // handing to human review — skip the escalation and fall through to PR-open.
+    if (
+      (!state.lastGate || state.lastGate.composite !== 'PASS') &&
+      !shipDespiteHappo
+    ) {
       return escalate(
         workflow,
         item,
@@ -10175,6 +10663,59 @@ export async function run(
     })
 
     updateForVariant({ pr: prUrl })
+
+    if (shipDespiteHappo) {
+      // Hand off to humans + --review-sweep instead of entering the CI-fix
+      // loop: the Happo check is the known small residual we're deferring,
+      // and the migrate loop already established it can't close it. Open as a
+      // ready PR in awaiting_review (operator choice 2026-06-05).
+      const note =
+        '🟡 **Auto-opened with a small residual Happo visual diff.**\n\n' +
+        'All functional gates (build, tsc, lint, jest, consumers, cypress) pass. ' +
+        `The migrate loop could not drive the visual diff to zero after ${state.iterations} ` +
+        'iterations, but it is under the small-diff threshold:\n\n' +
+        `> ${shipDespiteHappo.reason}\n\n` +
+        'This is usually a benign sub-pixel / font-metric rendering difference that just ' +
+        'needs a Happo **accept**, or a tiny CSS compensation a reviewer can spot. Opened ' +
+        'for human visual sign-off rather than hard-escalating; `--review-sweep` will keep ' +
+        'iterating on any review comments.'
+
+      try {
+        await gh.commentPR(prUrl, note, wtPath)
+      } catch (err) {
+        log(
+          'loop',
+          `note: could not post sign-off comment (${
+            (err as Error).message
+          }); PR is open regardless`
+        )
+      }
+
+      const labelResult = await shell(
+        'gh',
+        ['pr', 'edit', prUrl, '--add-label', 'needs-visual-signoff'],
+        { cwd: wtPath }
+      )
+
+      if (labelResult.exitCode !== 0) {
+        log(
+          'loop',
+          `note: could not add 'needs-visual-signoff' label (${labelResult.stderr.trim()}); continuing`
+        )
+      }
+
+      updateForVariant({
+        status: 'awaiting_review',
+        escalation_reason: null,
+        iterations: state.iterations,
+      })
+      log(
+        'loop',
+        `${item.id}: opened PR with a small residual Happo diff → awaiting_review for human sign-off: ${prUrl}`
+      )
+
+      return { status: 'pr-opened', prUrl, reason: shipDespiteHappo.reason }
+    }
 
     // Lessons-learned append moved post-CI (2026-05-07). Previously this
     // ran right after PR-open, which captured ONLY the initial migration
@@ -11073,6 +11614,10 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     // the standards-audit injection in sweepOne for the full contract.
     withStandards: has('--with-standards'),
     graduate: has('--graduate'),
+    // --cleanup (2026-06-08): standalone, operator-invoked review-aid comment
+    // strip on an open PR before a manual merge. Decoupled from the sweep —
+    // see runCleanup. Use with --component=<X> (optional --variant, --dry-run).
+    cleanup: has('--cleanup'),
     maxItems: maxItemsStr ? Number(maxItemsStr) : null,
     variant: variantRaw ?? 'v1',
     // `variantRaw` is `string | undefined` from `get()`; previously this

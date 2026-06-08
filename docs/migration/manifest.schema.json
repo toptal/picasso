@@ -120,6 +120,11 @@
           "minimum": 0,
           "description": "Number of review-sweep ticks that have processed this item since it entered awaiting_review."
         },
+        "cleanup_done_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO-8601 timestamp when the `--cleanup` review-aid comment-strip pass last completed (flat v1 mirror; authoritative value lives per-variant). A record, not a gate — re-running --cleanup is a no-op once nothing strippable remains."
+        },
         "operator_overrides": {
           "type": "array",
           "description": "Explicit operator/reviewer exceptions to documented rules on this PR, recorded from override-lock markers in the agent's PR replies. Injected into both review-sweep audit paths as the highest-authority carve-out so neither reverts an operator-sanctioned change. Mirrors the v1 variant slot.",
