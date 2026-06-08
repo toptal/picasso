@@ -249,12 +249,12 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     >
       <Dialog.Portal container={resolvedContainer}>
         {!hideBackdrop && (
-          // Enter is instant (opacity stays 1) so a synchronous DOM snapshot —
-          // e.g. happo-cypress capturing right after mount — never freezes the
-          // backdrop mid-fade. Exit fade is preserved via data-[ending-style],
-          // which base-ui keeps mounted until the transition completes.
+          // Enter + exit fade mirror the legacy @toptal/picasso-fade wrapper.
+          // Safe for happo-cypress: Happo's cloud renderer freezes CSS
+          // transitions and captures the settled (opacity-1) state, so the
+          // mid-fade frame is never serialized (same pattern as Drawer).
           <Dialog.Backdrop
-            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-[ending-style]:opacity-0'
+            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
             style={durationStyle}
           />
         )}
@@ -268,7 +268,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           initialFocus={false}
           className={twMerge(
             className,
-            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[ending-style]:opacity-0'
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
           )}
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
