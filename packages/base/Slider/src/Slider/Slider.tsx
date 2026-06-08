@@ -141,12 +141,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     return list
   }, [marks, min, max, step])
 
-  // A mark's active state is derived from the slider's LIVE value, which we read
-  // from @base-ui/react's own state (`state.values`) at render time — see the
-  // <BaseUISlider.Control render> below. We deliberately avoid mirroring the value
-  // into React state (anti-pattern, see references/base-ui-styling.md §10) and
-  // avoid deriving it statically from `value ?? defaultValue` (which freezes marks
-  // and labels in uncontrolled mode).
+  // Derive active state from the live value (`state.values`), not from
+  // `value ?? defaultValue`, which would freeze marks/labels in uncontrolled mode.
   const isMarkActive = (
     markValue: number,
     values: readonly number[]
@@ -173,7 +169,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     isThumbHidden && 'hidden'
   )
 
-  // Type alignment at the boundary — see code-standards §"Type alignment at the boundary".
   // Public Props.onFocus/onBlur are typed for HTMLElement; @base-ui/react SliderThumb's
   // onFocus/onBlur are forwarded to the nested <input>, so the handler signature narrows
   // to HTMLInputElement. Cast at the helper boundary, not at the JSX call site.
@@ -233,11 +228,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         className='block cursor-pointer width-full relative'
       >
         <BaseUISlider.Control className='block absolute inset-0 h-[15px]'>
-          {/* `render` exposes @base-ui/react's live state; `state.values` is the
-              current value array (controlled or uncontrolled). Reading it on Track
-              — which per @base-ui/react's anatomy wraps the Indicator, marks and
-              thumbs — lets marks and value labels reflect the live value without a
-              React-state mirror or a static `value ?? defaultValue` derivation. */}
           <BaseUISlider.Track
             className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'
             render={(trackProps, { values }) => (
