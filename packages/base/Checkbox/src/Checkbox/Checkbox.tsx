@@ -78,11 +78,26 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       | 'style'
     >
 
+    const rootRef: React.Ref<HTMLElement> | undefined = label
+      ? undefined
+      : (ref as React.Ref<HTMLElement>)
+
     const checkboxElement = (
-      <Container as='span' flex inline className='self-start align-middle'>
+      <Container
+        as='span'
+        flex
+        inline
+        // Tame Base UI's visually-hidden <input>, which ships
+        // `position:absolute; top:0; left:0; margin:-1px` (inline). `relative` +
+        // the `translate-[1px]` pair anchor it inside the 16px box so its bounds
+        // don't grow the rendered box past the legacy size (fixes the Happo
+        // dimension_mismatch). `appearance-none` keeps the native control from
+        // ever painting now that the input sits over the box.
+        className='relative self-start align-middle [&_input]:appearance-none [&_input]:translate-x-[1px] [&_input]:translate-y-[1px]'
+      >
         <BaseCheckbox.Root
           {...rootRest}
-          ref={(label ? undefined : ref) as React.Ref<HTMLElement> | undefined}
+          ref={rootRef}
           checked={checked}
           disabled={disabled}
           id={id}

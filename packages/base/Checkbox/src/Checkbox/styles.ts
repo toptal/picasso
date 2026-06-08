@@ -5,7 +5,9 @@
 // state attributes (a checkbox is never both at once).
 export const checkboxClassNames: string[] = [
   'relative box-border inline-block h-4 w-4 rounded-sm border border-solid',
-  'text-[1rem]',
+  // `leading-4` pins line-height to 1rem; without it the line box falls back to
+  // `normal` and grows the rendered box ~1px (legacy MuiCheckbox.root pinned this).
+  'text-[1rem] leading-4',
   'cursor-pointer transition-all duration-350 ease-in-out',
 
   // Resting state colours
