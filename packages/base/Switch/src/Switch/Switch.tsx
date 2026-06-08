@@ -47,23 +47,12 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     { event }
   ) => onChange?.(toReactChangeEvent(event), nextChecked)
 
-  // base-ui's Switch.Root renders a <span>, so its props are span-typed while
-  // the public Props stay button-typed (HTMLButtonElement, master's contract).
-  // React synthetic handlers fire identically regardless of element type;
-  // bridge the variance once here rather than narrowing the public contract.
-  // See code-standards §"TS variance: when tsc --strict rejects ...rest".
   const rootRest = rest as Omit<
     BaseUISwitch.Root.Props,
     'checked' | 'disabled' | 'id' | 'value' | 'className' | 'style' | 'onCheckedChange'
   >
 
   const switchElement = (
-    // base-ui's Switch.Root renders a visually-hidden <input> as a sibling of
-    // the root with inline `margin:-1px` (unreachable via base-ui's API). That
-    // 1px box has no paint (clip-path: inset(50%)) but contributes to layout,
-    // growing the component's footprint by 1px. `overflow-clip` removes that
-    // layout contribution while `overflow-clip-margin` keeps the thumb's focus
-    // shadow ink (4px) painting beyond the box.
     <span className='relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip-margin:6px]'>
       <BaseUISwitch.Root
         {...rootRest}
