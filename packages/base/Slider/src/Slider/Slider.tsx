@@ -94,10 +94,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
-  // Local typed binding at the @base-ui/react boundary. SliderRoot renders
-  // <div> and types its ref as RefObject<HTMLDivElement>; sliderRef is widened
-  // to HTMLElement for public back-compat. HTMLDivElement IS HTMLElement at
-  // runtime, so the narrow is sound at this kit boundary (not consumer-facing).
   const baseUiSliderRef = sliderRef as React.RefObject<HTMLDivElement>
 
   // The rootMargin is not working correctly in the storybooks iframe
@@ -161,17 +157,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[19px] h-[19px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    // No `contain-layout`/`transform-gpu` needed: @base-ui/react sets
-    // `translate: -50% -50%` on the thumb (kept via rung -1), which already
-    // establishes the containing block that sizes the nested `position: fixed`
-    // range <input> to the thumb instead of the viewport.
     'outline-0 transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
 
-  // Public Props.onFocus/onBlur are typed for HTMLElement; @base-ui/react SliderThumb's
-  // onFocus/onBlur are forwarded to the nested <input>, so the handler signature narrows
-  // to HTMLInputElement. Cast at the helper boundary, not at the JSX call site.
   const handleThumbFocus = onFocus as
     | React.FocusEventHandler<HTMLInputElement>
     | undefined
@@ -214,10 +203,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         min={min}
         max={max}
         step={step}
-        // @base-ui/react defaults thumbCollisionBehavior to 'push' (thumbs shove
-        // each other and stay merged). '@mui/base' swapped thumbs when dragged
-        // past each other, so 'swap' preserves the prior range-slider behaviour
-        // (drag one thumb through the other and the range re-separates).
         thumbCollisionBehavior='swap'
         disabled={disabled}
         data-testid={dataTestid}
