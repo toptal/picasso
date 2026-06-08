@@ -17,7 +17,9 @@ const Example = () => {
             <Slider value={value} onChange={handleChange} max={100} />
           </Grid.Item>
           <Grid.Item>
-            <Typography size='medium'>{value}</Typography>
+            <Typography size='medium' className='inline-block min-w-[2rem] text-right'>
+              {value}
+            </Typography>
           </Grid.Item>
         </Grid>
       </Grid.Item>
