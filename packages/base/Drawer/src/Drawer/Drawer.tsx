@@ -49,14 +49,6 @@ const widthClassName: Record<WidthType, string> = {
   wide: 'w-[60rem]',
 }
 
-// @base-ui/react drawer dismisses by swiping toward the anchored edge.
-const swipeDirectionByAnchor: Record<AnchorType, 'up' | 'down' | 'left' | 'right'> = {
-  left: 'left',
-  right: 'right',
-  top: 'up',
-  bottom: 'down',
-}
-
 const getTransitionDuration = (
   timeout: TransitionProps['timeout']
 ): number | undefined => {
@@ -120,43 +112,36 @@ export const Drawer = ({
           )}
         />
       )}
-      <BaseUIDrawer.Viewport
-        className={twMerge('z-drawer', !disableBackdrop && 'fixed inset-0')}
+      <BaseUIDrawer.Popup
+        ref={popupRef}
+        render={
+          <DrawerPaper
+            anchor={anchor}
+            className={className}
+            style={popupStyle}
+            data-testid={testId}
+            data-private={dataPrivate}
+          />
+        }
       >
-        <BaseUIDrawer.Popup
-          ref={popupRef}
-          render={
-            <DrawerPaper
-              anchor={anchor}
-              className={className}
-              style={popupStyle}
-              data-testid={testId}
-              data-private={dataPrivate}
-            />
-          }
+        <Container
+          flex
+          direction='column'
+          className={twMerge('max-w-full relative flex-1', widthClassName[width])}
         >
-          <Container
-            flex
-            direction='column'
-            className={twMerge(
-              'max-w-full relative flex-1',
-              widthClassName[width]
-            )}
-          >
-            <DrawerTitle title={title} />
-            <Container flex className='flex-1'>
-              {children}
-            </Container>
-            <ButtonCircular
-              variant='flat'
-              icon={<CloseMinor16 />}
-              onClick={() => onClose?.()}
-              className='absolute right-6 top-4'
-              aria-label='Close drawer'
-            />
+          <DrawerTitle title={title} />
+          <Container flex className='flex-1'>
+            {children}
           </Container>
-        </BaseUIDrawer.Popup>
-      </BaseUIDrawer.Viewport>
+          <ButtonCircular
+            variant='flat'
+            icon={<CloseMinor16 />}
+            onClick={() => onClose?.()}
+            className='absolute right-6 top-4'
+            aria-label='Close drawer'
+          />
+        </Container>
+      </BaseUIDrawer.Popup>
     </>
   )
 
@@ -165,7 +150,6 @@ export const Drawer = ({
       open={open}
       modal='trap-focus'
       disablePointerDismissal={disableBackdrop}
-      swipeDirection={swipeDirectionByAnchor[anchor]}
       onOpenChange={nextOpen => {
         if (!nextOpen) {
           onClose?.()
