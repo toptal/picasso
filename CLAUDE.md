@@ -1,3 +1,7 @@
+@AGENTS.md
+
+> Repo + component-authoring rules live in `AGENTS.md` (imported above) — the canonical, tool-agnostic guide. This file is the **migration-program operator layer**: orchestrator code style, review-sweep posture, `classes`-per-tier decisions, the Happo gate, and branch hygiene. It is transient and retires with the migration.
+
 # Picasso — Claude Code working notes
 
 Active program: **PI-4318 (Picasso Modernization + AI Developer Experience)**.
