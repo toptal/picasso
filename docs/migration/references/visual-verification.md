@@ -16,6 +16,13 @@ Playwright is the **fast iteration tool** during your loop. Happo is the **autho
 - **Baseline** — `https://picasso.toptal.net/` — Picasso's deployed Storybook from master. Always-on, represents the pre-migration look. Use this as your reference image.
 - **Local** — `http://localhost:9001/` — Storybook running inside your worktree, auto-started by the orchestrator after `pnpm install` and BEFORE your session began. Reflects your edits in real-time as you save files. If port 9001 was taken, fallback port is in `migration-runs/<run-date>/<Component>/storybook-url.txt` — read it first.
 
+## The production font is domain-locked — localhost renders Arial, not proxima-nova
+
+proxima-nova loads from a domain-locked Adobe Typekit kit (`use.typekit.net/rlr4crj.css`) that only serves on `*.toptal.net`. So **`picasso.toptal.net` (baseline) renders the real font, but `localhost:9001` (your worktree) falls back to Arial.** Two consequences you MUST account for:
+
+- Font-metric differences (`line-height`, `letter-spacing`, glyph widths) render differently between your two reference Storybooks for reasons that have nothing to do with your diff — don't chase those.
+- More importantly: a **real** font-metric regression in your migration (e.g. a dropped `line-height` pin) will **NOT reproduce on localhost** (Arial masks it), yet it IS present in Happo's cloud render (real font). So **"I couldn't reproduce it locally" is never grounds to call a Happo diff environmental, flaky, or unfixable** (see `references/happo-iteration.md`). When a Happo `dimension_mismatch` won't repro locally, stop comparing rendered boxes and diff the SOURCE styles instead — old `createStyles` / `PicassoProvider.override` vs your new Tailwind.
+
 ## DO NOT use the deployed PR preview for verification
 
 `https://toptal.github.io/picasso/prs/<pr-number>/` is the GitHub Pages deployment of the PR's Storybook bundle — useful for human reviewers to click around, but **wrong for your visual verification**:

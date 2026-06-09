@@ -449,7 +449,10 @@ export const analyzeDiffPair = async (
         `Image dimensions differ between baseline (${oldPng.width}x${oldPng.height}) ` +
         `and after (${newPng.width}x${newPng.height}). This is NOT a positional ` +
         'offset — the element changed size. Look for layout-level changes: ' +
-        'box-sizing, padding, margin, border-width, line-height, or content reflow.',
+        'box-sizing, padding, margin, border-width, line-height, or content reflow. ' +
+        'This is ALWAYS a real, fixable property change in your diff — never environmental. ' +
+        'Diff the old createStyles / PicassoProvider.override against the new Tailwind; ' +
+        'a dropped pinned line-height (becomes line-height: normal) is the classic miss (Checkbox PF-1994).',
     }
   }
 

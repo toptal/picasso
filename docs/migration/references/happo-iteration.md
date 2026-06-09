@@ -26,6 +26,8 @@ Every Happo diff falls into one of three classes:
 | **UNRELATED FLAKE** | The diff's `component` field does NOT match the migration target | Document briefly, do not fix. Happo's flakes resolve on re-run. |
 | **INTENTIONAL** | Pre-approved design-led change with operator authorization | Allowed ONLY if `docs/migration/components/<Component>.md` has an "Approved visual deltas" section enumerating the specific delta. |
 
+**A `dimension_mismatch` verdict is ALWAYS REGRESSION.** When the pixel-diff analysis reports `dimension_mismatch` (the snapshot's width/height changed) on a story whose `component` matches the migration target, the element changed SIZE — that traces to a box-model/line-box property you changed (`line-height`, `box-sizing`, `padding`, `border-width`, `font-size`), never to an environmental/flake cause and never to an approved-delta. Diff the pre-migration source styles (old `createStyles` + any `PicassoProvider.override`) against your new Tailwind classes property-by-property; the dropped/changed property IS the fix. A dropped pinned `line-height` → `line-height: normal` is the canonical case (Checkbox PF-1994).
+
 ### INTENTIONAL is effectively forbidden
 
 Self-declared "INTENTIONAL" calls have produced wrong outcomes:
@@ -83,6 +85,10 @@ return Object.fromEntries(
 ```
 
 Save the baseline computed styles, then repeat on local. Diff the two JSON objects — the answer is in there. Skip this step at your peril; it's the only way to converge on a fix without burning 5+ speculative iterations.
+
+### "It doesn't reproduce on localhost" is not a verdict
+
+A font-metric diff (anything driven by `line-height` / `letter-spacing` / glyph metrics) will NOT reproduce in your local Playwright render: proxima-nova is domain-locked (loads only from `use.typekit.net` on toptal.* domains), so `localhost:9001` falls back to Arial with different metrics. That is EXPECTED, and is **not** evidence the diff is environmental, flaky, or unfixable. The Happo cloud render (and the downloaded `.old`/`.new` PNGs) use the real font and ARE authoritative. When local repro fails, stop comparing rendered boxes and diff the SOURCE styles (old `createStyles` / `PicassoProvider.override` vs your new Tailwind) instead. See `references/visual-verification.md §"The production font is domain-locked"`.
 
 ## Exit criterion for Happo
 
