@@ -505,3 +505,27 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Emit exactly one `.changeset/*.md` per migration; Utils accidentally landed two byte-identical files (`picasso-utils-base-ui-migration.md` + `utils-migration.md`), which is a changelog hazard reviewers will flag.
 - Add Happo visual-test artifacts (`baseline--*.png`, `local--*.png` at repo root) to `.gitignore` proactively — local Happo runs drop them into the worktree and they leaked into the Utils PR before being ignored.
 - Reference: https://github.com/toptal/picasso/pull/4997
+
+## Drawer — 2026-06-08 (review iter 3)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 3
+- Like-for-like migrations must NOT silently add new interaction surfaces (e.g. `Drawer.Viewport` + `swipeDirection` enabling swipe-to-dismiss) — omit base-ui behaviors absent in the legacy component unless gated by an explicit new prop with tests, per `rules/api-preservation.md`.
+- Happo specs must wait for the open transition to settle before screenshotting (`should('be.visible').and('not.have.attr', 'data-starting-style')`) — bake this into every `@base-ui/react` Cypress happo step from iter 1 to prevent mid-animation diffs.
+- Don't paper over upstream type-friction with a vendored patch (e.g. `patches/@base-ui__utils@0.2.8.patch` stripping `const` type-params) committed to a component package — escalate as a tsconfig/version question instead of shipping a patch reviewers will reject.
+- Reference: https://github.com/toptal/picasso/pull/4994
+
+## Modal — 2026-06-08 (review iter 4)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 4
+- When swapping a transition wrapper (`Fade` → `data-[starting-style]/data-[ending-style]` Tailwind), preserve closed→open lifecycle callbacks (`onOpen`/`onEnter`) with a `wasOpen` ref + `useEffect` rather than dropping them — see `references/base-ui-react-api-crib.md` on transition idioms.
+- `@base-ui/react` Dialog defaults differ from `@mui/base` Modal in ways that silently break legacy callers: `initialFocus={false}` (auto-focuses first tabbable by default, e.g. opens a date picker on mount), `modal={false}` + `disablePointerDismissal` (to keep custom focus/scroll handling and per-backdrop `onClick` semantics for multi-modal coexistence) must be set explicitly.
+- The changeset must call out portal/wrapper DOM-structure breaks (`data-base-ui-portal`, focus guards, removed `sentinelStart/End`, class-name churn) as **breaking for selector- or snapshot-based consumers**, even when the public Props API is unchanged — generic "behavioral parity" claims aren't enough.
+- Reference: https://github.com/toptal/picasso/pull/4993
+
+## Utils — 2026-06-08 (review iter 1)
+
+- Tier 1 · target_path: `none` · iterations: 1
+- When migrating a shared utility package (Utils), grep ALL consumer packages' snapshot files for affected class names / data-attrs (e.g. `base-Modal`, `Rotate180-transition`, `data-disabled`) and update them in iter 1 — reviewers will flag stale snapshots across Modal/Pagination/Section/PromptModal that the agent failed to refresh after dropping MUI artifacts.
+- Local re-implementations of MUI utilities must explicitly preserve and document non-obvious behavioral details — the throw-on-non-string contract for `capitalize`, native DOM event as runtime value for `ClickAwayListener.onClickAway` (bridged via `toReactEvent`), and child-handler preservation — since reviewers diff against MUI source for parity.
+- Dropping a peer dependency (`@material-ui/core`) and widening another (`react`) belongs in the changeset with an explicit behavioral-parity claim per re-implemented export, not just a generic "migrate off MUI" line — reviewers expect a per-slot enumeration so consumers can audit the surface change.
+- Reference: https://github.com/toptal/picasso/pull/4997

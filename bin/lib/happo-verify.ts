@@ -1,4 +1,5 @@
 #!/usr/bin/env tsx
+/* eslint-disable max-lines -- cohesive single-purpose gate verifier: one linear flow (derive Happo compare coords → fetch diff counts → apply the operator approved-delta waiver → emit one JSON verdict). Same convention as happo-pixel-diff.ts; splitting would scatter the flow with no callsite benefit. */
 /**
  * Happo gate verifier — runs as a CLI from migration-gate.sh's strict-Happo
  * block, after `pnpm exec happo run <sha>` has uploaded a full-Storybook
@@ -108,6 +109,12 @@ interface VerifyOutput {
   totalDiffs?: number
   componentDiffs?: number
   unrelatedDiffs?: number
+  /** Operator-approved deltas waived from the gate decision (2026-06-05). */
+  approvedDiffs?: number
+  /** Migrated-component diffs left after waiving approved deltas. */
+  unresolvedDiffs?: number
+  /** The specific snapshot IDs waived as operator-approved deltas. */
+  waivedSnapshots?: string[]
   diffComponents?: string[]
   /**
    * Per-snapshot identifiers for stuck-detection (2026-05-20).
@@ -135,6 +142,125 @@ const git = (args: string[], cwd: string): string => {
   }
 
   return result.stdout.trim()
+}
+
+// ---------------------------------------------------------------------------
+// Approved-delta override (operator-gated)
+//
+// Closes the long-standing doc-vs-code gap: happo-iteration.md §"Exit criterion"
+// + the migration prompts promise that a Happo diff flagged INTENTIONAL with an
+// operator-approved entry in `docs/migration/components/<Component>.md` clears
+// the gate — but this verifier only ever passed on a zero diff count. Now it
+// waives the SPECIFIC snapshot IDs an operator approved, so a deliberate,
+// authorized visual change can pass while any unlisted diff still fails.
+// ---------------------------------------------------------------------------
+
+/**
+ * `git show <ref>:<path>` across a couple of candidate ref forms; returns file
+ * content or null if no ref resolves / the file is absent. Unlike the `git`
+ * helper above it does NOT die() on failure — a missing approved-delta file is
+ * a graceful "no approvals", never a gate ERROR.
+ */
+const showFileOnRef = (
+  cwd: string,
+  baseBranch: string,
+  relPath: string
+): string | null => {
+  for (const ref of [baseBranch, `origin/${baseBranch}`]) {
+    const result = spawnSync('git', ['show', `${ref}:${relPath}`], {
+      cwd,
+      encoding: 'utf8',
+    })
+
+    if (result.status === 0) {
+      return result.stdout
+    }
+  }
+
+  return null
+}
+
+/**
+ * Extract approved snapshot IDs from a plan file's `## Approved visual deltas`
+ * section. Liberal parse: lines inside a ```happo-approved fence AND inline
+ * `backtick` tokens shaped like `<Component>/<variant>/<target>` (>=2 slashes).
+ * Over-extraction is safe — the caller intersects with the ACTUAL diff
+ * snapshots, so only exact matches to real diffs are ever waived.
+ */
+const parseApprovedDeltaSection = (markdown: string): Set<string> => {
+  const ids = new Set<string>()
+  let inSection = false
+  let inFence = false
+
+  for (const raw of markdown.split('\n')) {
+    const line = raw.trim()
+
+    if (line.startsWith('## ')) {
+      inSection = /approved visual deltas/i.test(line)
+      inFence = false
+      continue
+    }
+
+    if (!inSection) {
+      continue
+    }
+
+    if (line.startsWith('```')) {
+      inFence = /happo-approved/i.test(line)
+      continue
+    }
+
+    if (inFence && line) {
+      ids.add(line)
+      continue
+    }
+    const inlineTokens = raw.match(/`([^`]+)`/g) ?? []
+
+    for (const token of inlineTokens) {
+      const id = token.slice(1, -1).trim()
+
+      if (id.split('/').length >= 3) {
+        ids.add(id)
+      }
+    }
+  }
+
+  return ids
+}
+
+/**
+ * Operator-gated approved-delta lookup. Reads `docs/migration/components/<C>.md`
+ * AS IT EXISTS ON THE BASE BRANCH (not the worktree) and returns the authorized
+ * snapshot IDs.
+ *
+ * Why base-branch, not the worktree file: migration commits carry no author
+ * override, so authorship can't distinguish operator from agent. The plan files
+ * are operator-/orchestrator-owned ("don't hand-edit from the PR worktree" —
+ * docs/migration/PROMPT-review-response.md), so a delta the agent adds in its
+ * worktree must NOT count. Base-branch provenance is the trust anchor: only
+ * deltas the operator landed on the integration branch are honored.
+ */
+const readApprovedDeltaIds = (
+  cwd: string,
+  baseBranch: string,
+  component: string
+): { ids: Set<string>; note: string } => {
+  const relPath = `docs/migration/components/${component}.md`
+  const content = showFileOnRef(cwd, baseBranch, relPath)
+
+  if (content === null) {
+    return {
+      ids: new Set<string>(),
+      note: `no approved-delta source (${relPath} absent on ${baseBranch})`,
+    }
+  }
+
+  const ids = parseApprovedDeltaSection(content)
+
+  return {
+    ids,
+    note: `${ids.size} approved id(s) from ${relPath}@${baseBranch}`,
+  }
 }
 
 const basicAuthHeader = (apiKey: string, apiSecret: string): string =>
@@ -411,11 +537,36 @@ const main = async (): Promise<void> => {
     )
   ).sort()
 
-  // Gate criterion: zero diffs on the migrated component (or, if no
-  // migratedComponent given, zero diffs total). Unrelated diffs are
-  // surfaced but don't fail the local gate — they're handled at sweep
-  // level as "unrelated flake → PR comment for designer".
-  const status: 'PASS' | 'FAIL' = componentDiffs === 0 ? 'PASS' : 'FAIL'
+  // Operator-approved deltas: snapshot IDs the operator authorized in the
+  // base-branch plan file are waived (matched per-snapshot against the ACTUAL
+  // diff set, so only real, currently-diffing snapshots can be waived).
+  const approved = args.migratedComponent
+    ? readApprovedDeltaIds(
+        args.worktree,
+        args.baseBranch,
+        args.migratedComponent
+      )
+    : { ids: new Set<string>(), note: 'override skipped (no --component)' }
+
+  const waivedSnapshots = diffSnapshots.filter(id => approved.ids.has(id))
+  const unresolvedSnapshots = diffSnapshots.filter(id => !approved.ids.has(id))
+
+  // Gate criterion: zero UNRESOLVED diffs on the migrated component (or, if no
+  // migratedComponent given, zero diffs total — no waiver applies). Operator-
+  // approved deltas are waived; unrelated diffs are surfaced but don't fail the
+  // local gate — they're handled at sweep level as "unrelated flake".
+  const status: 'PASS' | 'FAIL' =
+    unresolvedSnapshots.length === 0 ? 'PASS' : 'FAIL'
+
+  if (waivedSnapshots.length > 0) {
+    // stderr (→ happo.log), keeping stdout pure JSON for the gate's jq parse.
+    // eslint-disable-next-line no-console
+    console.error(
+      `[happo-verify] waived ${waivedSnapshots.length} operator-approved delta(s): ` +
+        `${waivedSnapshots.join(', ')} — ${approved.note}; ` +
+        `${unresolvedSnapshots.length} unresolved diff(s) remain`
+    )
+  }
 
   emit({
     status,
@@ -425,12 +576,21 @@ const main = async (): Promise<void> => {
     totalDiffs: allDiffs.length,
     componentDiffs,
     unrelatedDiffs,
+    approvedDiffs: waivedSnapshots.length,
+    unresolvedDiffs: unresolvedSnapshots.length,
+    waivedSnapshots,
     diffComponents: Array.from(new Set(diffComponents)),
     diffSnapshots,
     reason:
       status === 'FAIL'
-        ? `${componentDiffs} unaccepted Happo diff(s) on migrated component ${
+        ? `${
+            unresolvedSnapshots.length
+          } unresolved Happo diff(s) on migrated component ${
             args.migratedComponent ?? '(unspecified)'
+          }${
+            waivedSnapshots.length > 0
+              ? ` (${waivedSnapshots.length} operator-approved delta(s) waived)`
+              : ''
           }. Report: ${compareUrl}`
         : undefined,
   })

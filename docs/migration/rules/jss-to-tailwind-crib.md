@@ -127,6 +127,10 @@ Or, when the state belongs on a parent and the styling on a child, use `data-*` 
 | `fontWeight: 400`                                | `font-regular` |
 | `fontSize: '0.875rem'` + `lineHeight: '1.375rem'` | `text-md` |
 | `fontSize: '1rem'` + `lineHeight: '1.5rem'`      | `text-lg` |
+| `lineHeight: '1rem'` (standalone, not paired)    | `leading-4` |
+| `lineHeight: '1.5rem'` (standalone)              | `leading-6` |
+
+> **Don't drop a standalone `lineHeight`.** The `text-*` tokens above bundle font-size **and** line-height, but a JSS rule (or a `PicassoProvider.override`) that pins ONLY `lineHeight` — common on form-control roots — has no `text-*` equivalent. Translate it to `leading-*`. Omitting it leaves `line-height: normal`, which on proxima-nova is ≈1.07× the font-size → a ~1px box growth that fails Happo as a `dimension_mismatch` on every story (Checkbox PF-1994). `text-[1rem]` sets font-size only — it does NOT carry line-height.
 
 ## Layout
 
@@ -150,6 +154,16 @@ Or, when the state belongs on a parent and the styling on a child, use `data-*` 
 | `width: ${size}px` where size ∈ {120,160,200} | `w-[120px]` / `w-[160px]` / `w-[200px]` (purgeable) |
 | `transform: rotate(${angle}deg)`             | `style={{ transform: \`rotate(${angle}deg)\` }}` |
 | `gridTemplateColumns: \`repeat(${cols}, 1fr)\`` | `style={{ gridTemplateColumns: \`repeat(${cols}, 1fr)\` }}` |
+
+## Property parity — account for every declaration
+
+When `styles.ts` is done, **enumerate every property in the old `createStyles` AND any `PicassoProvider.override(() => ({ MuiX: { root: {...} } }))` block for this component, and confirm each is represented** in the new Tailwind classes — mapped to a class / `data-[…]:` variant, or consciously dropped with a `//` reason. Silent omissions are the #1 cause of "phantom" Happo diffs.
+
+High-risk omission vectors (MUI pins these, and no `text-*`/utility bundles them in):
+
+- **`lineHeight`** → `leading-*`. Dropping it ⇒ `line-height: normal` ⇒ ~1px font-metric reflow ⇒ Happo `dimension_mismatch` on every story (Checkbox PF-1994).
+- **`letterSpacing`** → `tracking-*`. **`verticalAlign`** → `align-*`. **`boxSizing`** → `box-border` / `box-content`.
+- `PicassoProvider.override` rules are easy to miss — they live OUTSIDE the component's `createStyles` but still styled the old component. Grep the old source for `override` and the component's `Mui<Name>` class before declaring parity.
 
 ## When in doubt
 
@@ -343,6 +357,7 @@ export const createInlineClassNames = (): string[] => [
 ## Anti-patterns to avoid
 
 - **Don't sprinkle `[arbitrary]` values when a token exists.** Always check `tokens/picasso-tailwind-tokens.md` first.
+- **Don't translate `fontSize` without its `lineHeight`.** `text-[1rem]` sets font-size only; if the JSS (or a `PicassoProvider.override`) also pinned `lineHeight`, carry it as `leading-*`. A dropped pin → `line-height: normal` → ~1px reflow that fails Happo (Checkbox PF-1994). See §"Property parity".
 - **Don't use `style={{...}}` for static values.** Only use inline `style` when the value is computed at runtime from props (Example 3-style "Dynamic values" table above).
 - **Don't keep `cx` chains longer than ~6 entries.** If you're listing 10 classes via `cx`, factor into a `createXxxClassNames` function in `styles.ts` (Button pattern).
 - **Don't rebuild parent-refs as `:has()`.** Use `data-*` attributes — `:has()` has weaker browser support and is harder to test.
