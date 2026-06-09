@@ -2,10 +2,9 @@ import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { createRotate180ClassNames } from './styles'
 
 export interface Props extends BaseProps {
   /** Flag for transition execution. */
@@ -14,18 +13,11 @@ export interface Props extends BaseProps {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'Rotate180',
-})
-
 export const Rotate180 = (props: Props) => {
   const { children, style, className, on, ...rest } = props
-  const classes = useStyles()
 
   const childProps = {
-    className: cx(className, classes.transition, {
-      [classes.rotate180]: on,
-    }),
+    className: twMerge(cx(createRotate180ClassNames(on)), className),
     style,
     ...rest,
   }

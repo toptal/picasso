@@ -3089,9 +3089,6 @@ importers:
 
   packages/base/Utils:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
