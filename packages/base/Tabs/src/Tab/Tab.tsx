@@ -66,25 +66,15 @@ const wrapperClassesByOrientation = {
 
 const rootClassesByOrientation = (selected: boolean) => ({
   horizontal: [
-    'm-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem]',
-    'text-center bg-transparent transition-shadow z-10 rounded-none',
+    'm-0 [&:not(:last-of-type)]:mr-8 p-0 pb-[0.4375rem]',
+    'text-center bg-transparent z-10 rounded-none',
     selected ? 'text-black' : 'text-inheritColor',
-    selected && 'shadow-blue-500 shadow-[inset_0_-2px_0]',
   ],
   vertical: [
-    'first:mt-4 last:mb-4 my-1 mx-0 py-2 px-4',
+    'first-of-type:mt-4 last-of-type:mb-4 my-1 mx-0 py-2 px-4',
     'text-left rounded-l-sm rounded-r-none transition-all',
     'w-full overflow-hidden',
     selected && 'shadow-1',
-    selected && [
-      'before:absolute',
-      'before:content-[""]',
-      'before:bottom-0',
-      'before:left-0',
-      'before:top-0',
-      'before:w-[3px]',
-      'before:bg-blue-500',
-    ],
     selected
       ? 'bg-gray-50 text-black'
       : 'bg-gray-100 hover:bg-gray-200 text-graphite-700 hover:text-black',

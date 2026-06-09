@@ -14,7 +14,7 @@ exports[`Tabs renders 1`] = `
         class="after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="flex"
+          class="relative flex"
           data-activation-direction="none"
           data-orientation="horizontal"
           role="tablist"
@@ -22,7 +22,7 @@ exports[`Tabs renders 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="horizontal"
             data-testid="tab-1"
             id="base-ui-:r0:"
@@ -43,7 +43,7 @@ exports[`Tabs renders 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="horizontal"
             data-testid="tab-2"
             id="base-ui-:r1:"
@@ -82,7 +82,7 @@ exports[`Tabs renders in full width 1`] = `
         class="w-full overflow-hidden after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="flex"
+          class="relative flex"
           data-activation-direction="none"
           data-orientation="horizontal"
           role="tablist"
@@ -90,7 +90,7 @@ exports[`Tabs renders in full width 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-inheritColor shrink grow basis-0 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink grow basis-0 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="horizontal"
             data-testid="tab-1"
             id="base-ui-:re:"
@@ -111,7 +111,7 @@ exports[`Tabs renders in full width 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-inheritColor shrink grow basis-0 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink grow basis-0 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="horizontal"
             data-testid="tab-2"
             id="base-ui-:rf:"
@@ -151,7 +151,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
       >
         <div
           aria-orientation="vertical"
-          class="flex flex-col"
+          class="relative flex flex-col"
           data-activation-direction="none"
           data-orientation="vertical"
           role="tablist"
@@ -159,7 +159,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-100 first:mt-4 last:mb-4 my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-100 first-of-type:mt last-of-type:mb my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="vertical"
             data-testid="tab-1"
             id="base-ui-:r2:"
@@ -180,7 +180,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-100 first:mt-4 last:mb-4 my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-100 first-of-type:mt last-of-type:mb my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="vertical"
             data-testid="tab-2"
             id="base-ui-:r3:"
@@ -219,7 +219,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
         class="after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="flex"
+          class="relative flex"
           data-activation-direction="none"
           data-orientation="horizontal"
           role="tablist"
@@ -227,7 +227,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="horizontal"
             data-testid="tab-1"
             id="base-ui-:r4:"
@@ -248,7 +248,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
           <button
             aria-disabled="false"
             aria-selected="true"
-            class="opacity-100 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-black shadow-blue shadow-[inset_0_-2px_0] shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-100 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-active=""
             data-composite-item-active=""
             data-orientation="horizontal"
@@ -268,6 +268,14 @@ exports[`Tabs renders with a pre-selected option 1`] = `
               </div>
             </span>
           </button>
+          <span
+            class="absolute bottom-0 left-0 h-[2px] bg-blue w-[var(--active-tab translate-x-[var(--active-tab transition-[transform,width] duration-300 ease-in"
+            data-activation-direction="none"
+            data-orientation="horizontal"
+            hidden=""
+            role="presentation"
+            style="--active-tab-left: 0px; --active-tab-right: 0px; --active-tab-top: 0px; --active-tab-bottom: 0px; --active-tab-width: 0px; --active-tab-height: 0px;"
+          />
         </div>
       </div>
     </div>
@@ -296,7 +304,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
         class="after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="flex"
+          class="relative flex"
           data-activation-direction="none"
           data-orientation="horizontal"
           role="tablist"
@@ -304,7 +312,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
           <button
             aria-disabled="false"
             aria-selected="true"
-            class="opacity-100 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-black shadow-blue shadow-[inset_0_-2px_0] shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-100 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-active=""
             data-composite-item-active=""
             data-orientation="horizontal"
@@ -327,7 +335,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem] text-center bg-transparent transition-shadow z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-orientation="horizontal"
             data-testid="tab-2"
             id="base-ui-:r7:"
@@ -345,6 +353,14 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
               </div>
             </span>
           </button>
+          <span
+            class="absolute bottom-0 left-0 h-[2px] bg-blue w-[var(--active-tab translate-x-[var(--active-tab transition-[transform,width] duration-300 ease-in"
+            data-activation-direction="none"
+            data-orientation="horizontal"
+            hidden=""
+            role="presentation"
+            style="--active-tab-left: 0px; --active-tab-right: 0px; --active-tab-top: 0px; --active-tab-bottom: 0px; --active-tab-width: 0px; --active-tab-height: 0px;"
+          />
         </div>
       </div>
     </div>

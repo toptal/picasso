@@ -65,6 +65,25 @@ const classesByVariant = {
   },
 } as const
 
+// Sliding active-tab indicator. @base-ui/react's Tabs.Indicator exposes the
+// active tab's geometry as CSS vars (--active-tab-left/width/top/height); the
+// transition on transform restores MUI v4's sliding-underline animation that
+// the per-tab box-shadow lost.
+const indicatorClassesByOrientation = {
+  horizontal: [
+    'absolute bottom-0 left-0 h-[2px] bg-blue-500',
+    'w-[var(--active-tab-width)]',
+    'translate-x-[var(--active-tab-left)]',
+    'transition-[transform,width] duration-300 ease-in-out',
+  ],
+  vertical: [
+    'absolute left-0 top-0 w-[3px] bg-blue-500',
+    'h-[var(--active-tab-height)]',
+    'translate-y-[var(--active-tab-top)]',
+    'transition-[transform,height] duration-300 ease-in-out',
+  ],
+}
+
 // @base-ui/react's Tab needs an explicit `value`; @mui/base auto-assigned each
 // Tab its 0-based position index when no `value` was given. Preserve that
 // fallback so consumers can keep selecting tabs by numeric index.
@@ -137,9 +156,12 @@ const Tabs = forwardRef(
             )}
           >
             <BaseUITabs.List
-              className={twJoin('flex', isVertical && 'flex-col')}
+              className={twJoin('relative flex', isVertical && 'flex-col')}
             >
               {withFallbackValue(children)}
+              <BaseUITabs.Indicator
+                className={twJoin(indicatorClassesByOrientation[orientation])}
+              />
             </BaseUITabs.List>
           </div>
         </BaseUITabs.Root>
