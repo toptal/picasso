@@ -118,9 +118,6 @@ export const ClickAwayListener = (props: Props) => {
       const insideDOM = isEventInsideNode(event, node, doc)
 
       if (!insideDOM && (disableReactTree || !insideReactTree)) {
-        // The runtime value is the native DOM event (parity with MUI v4, which
-        // also passed the native event); `toReactEvent` bridges it to the React
-        // synthetic-event type the public `onClickAway` exposes.
         onClickAway(toReactEvent<ReactMouseEvent>(event))
       }
     },
