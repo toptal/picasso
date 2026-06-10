@@ -461,7 +461,7 @@ export interface Workflow {
  * Reasoning-effort level for the spawned agent. Maps directly to Claude
  * Code's `CLAUDE_EFFORT` env var. Higher = more compute spent per turn.
  */
-export type Effort = 'low' | 'medium' | 'high' | 'max'
+export type Effort = 'low' | 'medium' | 'high' | 'xhigh' | 'max'
 
 /**
  * Model + reasoning configuration for a spawned `claude -p` subagent.
@@ -727,7 +727,7 @@ export interface OrchestratorOptions {
 
   /**
    * Model + reasoning config for the spawned `claude -p` subagent.
-   * Defaults to `DEFAULT_MODEL_CONFIG` (Opus 4.8 + effort=max + 64k thinking).
+   * Defaults to `DEFAULT_MODEL_CONFIG` (Fable 5 + effort=xhigh + 64k thinking).
    * CLI overrides: `--model`, `--effort`, `--no-thinking`, `--thinking-tokens`.
    * See plan `~/.claude/plans/question-what-model-and-reflective-pie.md`.
    */
