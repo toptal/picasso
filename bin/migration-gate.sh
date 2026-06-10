@@ -471,6 +471,13 @@ else
     | tee -a "$RUN_DIR/console.log"
 fi
 
+# HEAD SHA — stable across the Cypress + Happo stages (the orchestrator commits
+# before the gate; no commits happen mid-gate). Hoisted here so the Cypress
+# stage can key its Happo upload to it via HAPPO_CURRENT_SHA, matching the
+# Storybook stage's explicit `happo run "$HEAD_SHA"`. Recomputed identically
+# in step 6.
+HEAD_SHA="$(git rev-parse HEAD 2>/dev/null || echo)"
+
 # 5. Cypress component spec, only if it exists.
 #    When HAPPO_API_KEY + HAPPO_API_SECRET are present, wrap with `happo-e2e`
 #    to also produce Cypress visual diffs (matches `test:integration:ci`).
@@ -482,6 +489,10 @@ if [ -f "$CY_SPEC" ]; then
     # Default to the Picasso repo's Cypress project per README.md §"Run Happo
     # locally for Cypress". Operator can override via env.
     export HAPPO_PROJECT="${HAPPO_PROJECT:-Picasso/Cypress}"
+    # Key the Happo-Cypress upload to HEAD so step 6's Cypress verify can
+    # compare base→HEAD for the Picasso/Cypress project (same as Storybook).
+    # happo-e2e auto-finalizes on exit 0 — no HAPPO_NONCE (synchronous upload).
+    export HAPPO_CURRENT_SHA="$HEAD_SHA"
     run_stage "cypress" \
       pnpm happo-e2e -- pnpm test:setup cypress run --component --spec "$CY_SPEC"
   else
@@ -741,6 +752,66 @@ else
             | tee -a "$RUN_DIR/console.log"
           ;;
       esac
+
+      # ---- Cypress-Happo verify (advisory by default, 2026-06-09) --------
+      # Step 5 uploaded a Picasso/Cypress report for HEAD via happo-e2e's
+      # auto-finalize. Verify it the SAME way as Storybook, reusing the
+      # project-agnostic happo-verify.ts against the Cypress project
+      # (HAPPO_CYPRESS_PROJECT_ID, default 848). Writes a sibling
+      # happo-verify-cypress.json the orchestrator reads to re-fetch Cypress
+      # diff PNGs for the agent and to fold into the stuck-key.
+      #
+      # ADVISORY by default: a Cypress diff is logged + surfaced but does NOT
+      # fail the gate (Cypress specs compose multiple components and compare
+      # against master, so they're noisier than Storybook — see
+      # docs/migration/ORCHESTRATOR.md §"Cypress visual verification"). Set
+      # MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1 for full Storybook parity, or
+      # MIGRATION_GATE_HAPPO_CYPRESS=skip to disable.
+      if [ "${MIGRATION_GATE_HAPPO_CYPRESS:-run}" != "skip" ] &&
+         [ -f "$CY_SPEC" ] &&
+         [ -n "${HAPPO_CYPRESS_PROJECT_ID:-}" ]; then
+        CY_VERIFY_OUT_FILE="$RUN_DIR/happo-verify-cypress.json"
+
+        echo "  [happo-cypress] running happo-verify.ts (account=$EXPECTED_ACCOUNT_ID project=$HAPPO_CYPRESS_PROJECT_ID base=$HAPPO_BASE_BRANCH)" \
+          | tee -a "$RUN_DIR/console.log"
+
+        pnpm exec tsx "$GATE_SCRIPT_DIR/lib/happo-verify.ts" \
+          --worktree="$(pwd)" \
+          --base-branch="$HAPPO_BASE_BRANCH" \
+          --account-id="$EXPECTED_ACCOUNT_ID" \
+          --project-id="$HAPPO_CYPRESS_PROJECT_ID" \
+          --project-label="Picasso/Cypress" \
+          --component="${COMPONENT##*/}" \
+          >"$CY_VERIFY_OUT_FILE" 2>>"$HAPPO_LOG"
+
+        CY_VERIFY_STATUS=$(jq -r '.status // "ERROR"' "$CY_VERIFY_OUT_FILE" 2>/dev/null || echo "ERROR")
+        CY_VERIFY_REPORT_URL=$(jq -r '.reportUrl // ""' "$CY_VERIFY_OUT_FILE" 2>/dev/null)
+        CY_VERIFY_COMPONENT_DIFFS=$(jq -r '.componentDiffs // 0' "$CY_VERIFY_OUT_FILE" 2>/dev/null)
+
+        echo "  [happo-cypress] status=$CY_VERIFY_STATUS componentDiffs=$CY_VERIFY_COMPONENT_DIFFS report=$CY_VERIFY_REPORT_URL" \
+          | tee -a "$RUN_DIR/console.log"
+
+        if [ "${MIGRATION_GATE_HAPPO_CYPRESS_STRICT:-0}" = "1" ]; then
+          # Strict: Cypress diffs/errors gate exactly like Storybook.
+          case "$CY_VERIFY_STATUS" in
+            PASS|NO_BASELINE) ;;
+            FAIL)
+              HAPPO_STATUS="FAIL"
+              HAPPO_REASON="${HAPPO_REASON:+$HAPPO_REASON; }$CY_VERIFY_COMPONENT_DIFFS unresolved Cypress-Happo diff(s) on ${COMPONENT##*/} (strict) — see $CY_VERIFY_REPORT_URL"
+              ;;
+            *)
+              HAPPO_STATUS="FAIL"
+              HAPPO_REASON="${HAPPO_REASON:+$HAPPO_REASON; }Cypress-Happo verifier ERROR (strict) — see $CY_VERIFY_OUT_FILE"
+              ;;
+          esac
+        elif [ "$CY_VERIFY_STATUS" = "FAIL" ]; then
+          # Advisory: surface but never gate. The orchestrator still re-fetches
+          # the Cypress diff PNGs for the agent from happo-verify-cypress.json.
+          echo "  [happo-cypress] ADVISORY: $CY_VERIFY_COMPONENT_DIFFS Cypress diff(s) on ${COMPONENT##*/} — NOT gating (set MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1 to gate). Report: $CY_VERIFY_REPORT_URL" \
+            | tee -a "$RUN_DIR/console.log"
+        fi
+      fi
+      # -------------------------------------------------------------------
     fi
   fi
 

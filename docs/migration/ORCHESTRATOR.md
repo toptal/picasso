@@ -118,7 +118,7 @@ This complements (not replaces) Happo. Happo catches pixel regressions vs. basel
 The gate runs Happo on two paths when applicable:
 
 1. **Storybook visual regression** — `pnpm happo --only <Component>`. Runs against the `Picasso/Storybook` project. Required env: `HAPPO_API_KEY`, `HAPPO_API_SECRET`. Per-component filtering via `--only` matches example names (case-sensitive substring on the story descriptor).
-2. **Cypress visual regression** — `pnpm happo-e2e -- pnpm test:setup cypress run --component --spec <SPEC>`. Runs against the `Picasso/Cypress` project. Only fires when the component has a Cypress spec at `cypress/component/<Component>.spec.tsx` AND Happo creds are present. The gate auto-sets `HAPPO_PROJECT=Picasso/Cypress` for this stage.
+2. **Cypress visual regression + verify** — `pnpm happo-e2e -- pnpm test:setup cypress run --component --spec <SPEC>` uploads to the `Picasso/Cypress` project (keyed to HEAD); the gate then **verifies** that comparison via `happo-verify.ts` and writes `happo-verify-cypress.json` (**advisory by default**). Only fires when the component has a Cypress spec at `cypress/component/<Component>.spec.tsx` AND Happo creds are present. The gate auto-sets `HAPPO_PROJECT=Picasso/Cypress` for this stage. See §"Cypress visual verification" below.
 
 If Happo creds are unset, the gate's Happo stage skips with a clear log line; the Cypress stage degrades to plain Cypress (no visual diff). The gate's other stages (build/tsc/lint/jest/react19) are unaffected.
 
@@ -136,7 +136,15 @@ source /Users/<you>/Projects/.envrc && pnpm orchestrate --component=Note
 direnv exec . pnpm orchestrate --component=Note
 ```
 
-For the `HAPPO_PREVIOUS_SHA` / `HAPPO_CURRENT_SHA` env vars (Cypress-Happo CI mode per [README §Run Happo locally for Cypress](../../README.md#run-happo-locally-for-cypress)): the gate does **not** set these — they're optional and only matter for cross-commit comparison reports. The orchestrator's per-component runs produce a single Happo report per iteration, not a comparison.
+### Cypress visual verification (2026-06-10)
+
+The gate now **verifies** the Cypress-Happo comparison, not just uploads it. After the Cypress stage uploads a `Picasso/Cypress` report for HEAD — the gate sets `HAPPO_CURRENT_SHA=$HEAD_SHA` so `happo-e2e`'s auto-finalize keys the report to HEAD, **superseding the earlier "single report, not a comparison" behavior** — step 6 runs `happo-verify.ts --project-id=$HAPPO_CYPRESS_PROJECT_ID --project-label=Picasso/Cypress` and writes `happo-verify-cypress.json`. The orchestrator re-fetches the Cypress diff PNGs into `happo-diffs/<loop>-iter-N-cypress/` so the agent can see + fix them, folds both suites into stuck-detection, and considers both in the small-residual auto-PR classifier.
+
+- **Advisory by default** — a Cypress diff is surfaced to the agent but does **not** block the gate. Promote to a hard gate per-run with `MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1`; disable entirely with `MIGRATION_GATE_HAPPO_CYPRESS=skip`. (Cypress visual tests can be flakier than Storybook — animation/timing/render-order — hence advisory until proven.)
+- **Project IDs** are wired in `buildHappoGateEnv` (`bin/lib/orchestrator-core.ts`): account `675`, Storybook `HAPPO_STORYBOOK_PROJECT_ID=1189`, Cypress `HAPPO_CYPRESS_PROJECT_ID=848`.
+- **Baseline = master.** The integration branch has no Cypress baseline, so the verifier's base cascade (`merge-base → base-HEAD → master`) lands on master. Because the gate runs only the migrated component's own spec, the local Cypress comparison is a clean, component-scoped diff set — but **cross-component Cypress regressions** (e.g. a Checkbox change breaking `Table/selectable`) are a **CI-only signal**: a single-spec local run can't reproduce them.
+- **Operator-approved deltas** work for Cypress snapshot IDs too (`<Component>/<variant>/<target>` under `## Approved visual deltas` in `docs/migration/components/<Component>.md`).
+- `HAPPO_PREVIOUS_SHA` is not set by the gate; the verifier derives the base via its own cascade.
 
 ## Output paths
 

@@ -529,3 +529,11 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Local re-implementations of MUI utilities must explicitly preserve and document non-obvious behavioral details — the throw-on-non-string contract for `capitalize`, native DOM event as runtime value for `ClickAwayListener.onClickAway` (bridged via `toReactEvent`), and child-handler preservation — since reviewers diff against MUI source for parity.
 - Dropping a peer dependency (`@material-ui/core`) and widening another (`react`) belongs in the changeset with an explicit behavioral-parity claim per re-implemented export, not just a generic "migrate off MUI" line — reviewers expect a per-slot enumeration so consumers can audit the surface change.
 - Reference: https://github.com/toptal/picasso/pull/4997
+
+## Modal — 2026-06-09 (review iter 5)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 5
+- Co-locate package-scoped pnpm patches under `packages/<pkg>/patches/` (and reference that path in root `package.json` `patchedDependencies`) instead of dropping them in the repo-root `/patches/` and `.gitignore`-ing them.
+- Drop React peer-dep upper bounds when migrating off `@mui/base` — use open-ended `">=16.12.0"` so consumers on React 19 aren't blocked by an artificial cap inherited from the legacy dep.
+- The changeset must explicitly enumerate non-API breaks (portal/backdrop DOM shape, `data-base-ui-portal`, dropped `sentinelStart`/`sentinelEnd`, transition classes replacing `@toptal/picasso-fade`) for selector- and snapshot-based consumers — Props-API-preserved is not the same as no-consumer-impact, and reviewers expect that called out.
+- Reference: https://github.com/toptal/picasso/pull/4993
