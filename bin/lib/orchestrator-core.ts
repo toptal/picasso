@@ -4376,7 +4376,7 @@ const gh = {
 
 /**
  * Default config for all three orchestrator flows (migration, review-sweep,
- * graduation). Opus 4.8 + effort=max + 64k thinking budget. CLI flags
+ * graduation). Fable 5 + effort=xhigh + 64k thinking budget. CLI flags
  * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) shallow-merge
  * over this. Rationale lives in the PI-4318 plan
  * `~/.claude/plans/question-what-model-and-reflective-pie.md`.
@@ -4392,9 +4392,10 @@ export const DEFAULT_MODEL_CONFIG: ModelConfig = {
   // Happo HTML + contextPack), which silently truncated under the default
   // 200k cap. The 1M tier costs more per output token but stops the
   // forget-context-then-rebuild-cache cycle that drove most iter-loop
-  // blowups.
-  model: 'claude-opus-4-8[1m]',
-  effort: 'max',
+  // blowups. Fable 5 lists ~2x Opus 4.8 per MTok ($10/$50 in/out vs
+  // $5/$25), so the doubled rate compounds the 1M premium.
+  model: 'claude-fable-5[1m]',
+  effort: 'xhigh',
   thinkingTokens: 64000,
 }
 
@@ -4961,15 +4962,16 @@ const agent = {
             // travel via env below.
             '--model',
             inv.modelConfig.model,
-            // `--fallback-model` lets the CLI silently degrade to Sonnet
-            // when Opus is 529-overloaded, instead of escalating the whole
+            // `--fallback-model` lets the CLI silently degrade to Opus 4.8
+            // when Fable 5 is 529-overloaded, instead of escalating the whole
             // sweep tick to `needs_human`. Only fires on overload — happy
             // path stays on the primary model. Trade-off: a transient
-            // overload window can land Sonnet output on a HIGH-confidence
-            // edit, but Sonnet >> failure, and the gate still gates
-            // (typecheck/lint/Happo will catch regressions).
+            // overload window can land Opus 4.8 output on a HIGH-confidence
+            // edit, but Opus is one tier below Fable (small drop, was Sonnet
+            // 4.5), and the gate still gates (typecheck/lint/Happo catch
+            // regressions). `[1m]` matches the primary's 1M-context tier.
             '--fallback-model',
-            'claude-sonnet-4-5',
+            'claude-opus-4-8[1m]',
             '--allowedTools',
             [...baseTools, ...mcpTools].join(' '),
             // B4a (2026-05-18): `AskUserQuestion` is a built-in Claude
@@ -11613,7 +11615,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
 
-  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Opus 4.8 + max + 64k)
+  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Fable 5 + xhigh + 64k)
   // overlaid with any CLI flags. `--no-thinking` forces budget=0 regardless
   // of `--thinking-tokens` (so a stray `--no-thinking --thinking-tokens=N`
   // still disables thinking — least-surprise behavior).
@@ -11622,6 +11624,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
       effortRaw === 'low' ||
       effortRaw === 'medium' ||
       effortRaw === 'high' ||
+      effortRaw === 'xhigh' ||
       effortRaw === 'max'
     ) {
       return effortRaw

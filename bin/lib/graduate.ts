@@ -227,7 +227,7 @@ export const runGraduate = async (
       '--model',
       modelConfig.model,
       '--fallback-model',
-      'claude-sonnet-4-5',
+      'claude-opus-4-8[1m]',
       '--allowed-tools',
       allowedTools,
       '--max-turns',
