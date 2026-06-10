@@ -16,6 +16,8 @@ migration-runs/<run-date>/<Component>/happo-diffs/<idx>-<check-slug>/<idx>-<comp
 
 **Read each PNG via the multimodal `Read` tool** — that's the authoritative source. The Happo report URL (`https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>`) is a fallback if pre-fetch failed.
 
+**Cypress-Happo diffs (advisory).** The gate also verifies the `Picasso/Cypress` project; its diff PNGs are re-fetched into `happo-diffs/<loop>-iter-N-cypress/` and read the same way. Cypress diffs are **advisory by default** — fix them if the cause is clear, but they do NOT block the gate unless `MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1`. They compare against master and cover only the migrated component's own Cypress spec, so a clean local Cypress run does NOT prove CI's full Cypress suite is green (cross-component regressions surface only in CI). The same classification matrix below applies.
+
 ## Classification matrix
 
 Every Happo diff falls into one of three classes:

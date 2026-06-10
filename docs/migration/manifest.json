@@ -141,9 +141,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-08T22:20:51.236Z",
-          "review_iterations": 3,
-          "session_id": "c530312a-253f-4b12-b134-7c8e606f3dc4",
+          "last_review_seen_at": "2026-06-09T22:38:54.921Z",
+          "review_iterations": 4,
+          "session_id": "63effcd8-4bd2-45f0-bbec-697f60cbc52f",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -167,8 +167,8 @@
       "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-      "last_review_seen_at": "2026-06-08T22:30:58.203Z",
-      "session_id": "fc251b62-a98a-43b6-9287-eca373056d8c",
+      "last_review_seen_at": "2026-06-09T22:46:02.657Z",
+      "session_id": "5ae57c73-f889-4e76-b227-68532c3a8897",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -180,13 +180,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-          "last_review_seen_at": "2026-06-08T22:30:58.203Z",
-          "session_id": "fc251b62-a98a-43b6-9287-eca373056d8c",
+          "last_review_seen_at": "2026-06-09T22:46:02.657Z",
+          "session_id": "5ae57c73-f889-4e76-b227-68532c3a8897",
           "awaiting_ci_since": null,
-          "review_iterations": 4
+          "review_iterations": 5
         }
       },
-      "review_iterations": 4
+      "review_iterations": 5
     },
     "Slider": {
       "tier": 0,
@@ -282,7 +282,7 @@
       "notes": "Prior v1 run on 2026-05-21 escalated needs_human (migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest, identical content across 2 consecutive iters). Worktree migration-runs/2026-05-21/Tabs-v1/worktree was left dirty for operator inspection; discarded for clean restart.",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T23:19:45.030Z",
-      "last_review_seen_at": "2026-06-08T22:55:25.575Z",
+      "last_review_seen_at": "2026-06-09T23:01:59.556Z",
       "session_id": "8f8e400d-534a-4d1e-b713-0b8401df7e16",
       "awaiting_ci_since": null,
       "variants": {
@@ -295,7 +295,7 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T23:19:45.030Z",
-          "last_review_seen_at": "2026-06-08T22:55:25.575Z",
+          "last_review_seen_at": "2026-06-09T23:01:59.556Z",
           "session_id": "8f8e400d-534a-4d1e-b713-0b8401df7e16",
           "awaiting_ci_since": null,
           "review_iterations": 1
@@ -593,7 +593,7 @@
     "Notification": {
       "tier": 1,
       "package": "packages/base/Notification",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
@@ -601,16 +601,16 @@
       "branch": "migrate-Notification-v1",
       "worktree": "migration-runs/2026-06-04/Notification-v1/worktree",
       "iterations": 3,
-      "merged_at": null,
+      "merged_at": "2026-06-09T15:28:34Z",
       "notes": "Type-only fix: replace `import type { SnackbarOrigin } from '@material-ui/core/Snackbar'` with own type ({ vertical, horizontal }). Keep notistack integration. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>).",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4995",
           "branch": "migrate-Notification-v1",
           "worktree": "migration-runs/2026-06-04/Notification-v1/worktree",
           "iterations": 3,
-          "merged_at": null,
+          "merged_at": "2026-06-09T15:28:34Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T18:31:48.504Z",
           "last_review_seen_at": "2026-06-08T23:07:26.781Z",
@@ -665,7 +665,7 @@
     "Utils": {
       "tier": 1,
       "package": "packages/base/Utils",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "patch",
@@ -673,16 +673,16 @@
       "branch": "migrate-Utils-v1",
       "worktree": "migration-runs/2026-06-05/Utils-v1/worktree",
       "iterations": 5,
-      "merged_at": null,
+      "merged_at": "2026-06-09T11:52:14Z",
       "notes": "Small re-export rewrite: reimplement capitalize (1-line) + ClickAwayListener (small custom hook OR consumers swap to @base-ui/react built-in dismiss); replace Rotate180 JSS with Tailwind transition-transform. Accordion (Tier 3) depends on Rotate180.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4997",
           "branch": "migrate-Utils-v1",
           "worktree": "migration-runs/2026-06-05/Utils-v1/worktree",
           "iterations": 5,
-          "merged_at": null,
+          "merged_at": "2026-06-09T11:52:14Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-05T06:36:45.083Z",
           "last_review_seen_at": "2026-06-08T23:13:25.028Z",
@@ -703,7 +703,7 @@
     "Checkbox": {
       "tier": 2,
       "package": "packages/base/Checkbox",
-      "status": "awaiting_review",
+      "status": "needs_human",
       "depends_on": [
         "FormLabel"
       ],
@@ -717,13 +717,13 @@
       "notes": "Heavy path: MUI v4 + JSS rewrite. CheckboxGroup included.",
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "needs_human",
           "pr": "https://github.com/toptal/picasso/pull/4998",
           "branch": "migrate-Checkbox-v1",
           "worktree": "migration-runs/2026-06-05/Checkbox-v1/worktree",
           "iterations": 3,
           "merged_at": null,
-          "escalation_reason": null,
+          "escalation_reason": "worktree sync blocked: local has 1 commit(s) not on origin/migrate-Checkbox-v1; reconcile (cherry-pick or confirm + reset) before sync",
           "last_ci_green_at": null,
           "last_review_seen_at": null,
           "session_id": null,
@@ -731,7 +731,7 @@
           "review_iter_failures": 1
         }
       },
-      "escalation_reason": null,
+      "escalation_reason": "worktree sync blocked: local has 1 commit(s) not on origin/migrate-Checkbox-v1; reconcile (cherry-pick or confirm + reset) before sync",
       "last_ci_green_at": null,
       "last_review_seen_at": null,
       "session_id": null,

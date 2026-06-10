@@ -706,21 +706,220 @@ async function prefetchHappoDiffs(
   return result
 }
 
+// ---------------------------------------------------------------------------
+// Happo suites — the gate verifies TWO Happo projects: Storybook (always) and
+// Cypress (advisory by default; gates only under
+// MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1). Each writes its own verify JSON. The
+// consumers below fold BOTH in so the agent sees + can fix Cypress diffs and
+// stuck-detection spans both suites. The gate runs only the migrated
+// component's own Cypress spec and compares against master, so the local
+// Cypress diff set is clean + component-scoped (validated 2026-06-09).
+// ---------------------------------------------------------------------------
+
+interface HappoSuite {
+  suite: 'storybook' | 'cypress'
+  /** Verify JSON the gate (and waitForHappoIndexing) writes for this suite. */
+  verifyFile: string
+  /** Check name used for diff-PNG fetch logging + prompt section headers. */
+  checkName: string
+}
+
+const HAPPO_SUITES: readonly HappoSuite[] = [
+  {
+    suite: 'storybook',
+    verifyFile: 'happo-verify.json',
+    checkName: 'Happo (Picasso/Storybook)',
+  },
+  {
+    suite: 'cypress',
+    verifyFile: 'happo-verify-cypress.json',
+    checkName: 'Happo (Picasso/Cypress)',
+  },
+]
+
 /**
- * Read the happo-verify.json written by the gate's strict-Happo block
- * for the most recent gate run. Returns a content-aware "happo failure
- * key" for stuck-detection, or null if the gate's failedStages doesn't
- * include `happo`.
+ * True when a Cypress diff should GATE (full Storybook parity). Otherwise
+ * Cypress is advisory: surfaced to the agent but never blocks the loop.
+ * Mirrors the gate script's MIGRATION_GATE_HAPPO_CYPRESS_STRICT handling.
+ */
+const happoCypressGates = (): boolean =>
+  process.env.MIGRATION_GATE_HAPPO_CYPRESS_STRICT === '1'
+
+interface HappoSuiteVerdict extends HappoSuite {
+  status?: string
+  reportUrl?: string
+  componentDiffs?: number
+  diffComponents?: string[]
+  diffSnapshots?: string[]
+}
+
+/**
+ * Read every Happo verify JSON present in `reportDir` (Storybook +, when the
+ * gate ran it, Cypress). Missing or unparseable files are skipped. With
+ * `gatingOnly`, keeps only suites whose diffs actually fail the gate
+ * (Storybook always; Cypress only under the strict flag) — so advisory Cypress
+ * flake never perturbs the Storybook stuck-key.
+ */
+async function readHappoVerdicts(
+  reportDir: string,
+  opts: { gatingOnly?: boolean } = {}
+): Promise<HappoSuiteVerdict[]> {
+  const suites = opts.gatingOnly
+    ? HAPPO_SUITES.filter(s => s.suite === 'storybook' || happoCypressGates())
+    : HAPPO_SUITES
+  const verdicts = await Promise.all(
+    suites.map(async (s): Promise<HappoSuiteVerdict | null> => {
+      const verifyPath = path.join(reportDir, s.verifyFile)
+
+      if (!existsSync(verifyPath)) {
+        return null
+      }
+      try {
+        const v = JSON.parse(await fs.readFile(verifyPath, 'utf8')) as {
+          status?: string
+          reportUrl?: string
+          componentDiffs?: number
+          diffComponents?: string[]
+          diffSnapshots?: string[]
+        }
+
+        return { ...s, ...v }
+      } catch {
+        return null
+      }
+    })
+  )
+
+  return verdicts.filter((v): v is HappoSuiteVerdict => v !== null)
+}
+
+/** Per-verdict guidance shared across both suites' diff-PNG prompt sections. */
+const HAPPO_VERDICT_GUIDANCE =
+  'Each pair includes a quantitative `analysis` block (verdict + bbox + shift-vector). Use it to pick your next edit:\n' +
+  '- **positional_offset** → apply a positioning correction matching `bestDx`/`bestDy` (translate/inset/margin).\n' +
+  '- **structural_difference** → stop iterating on translate/margin/inset; the diff is shape/color/shadow/blur/opacity. Run the computed-style diff.\n' +
+  '- **dimension_mismatch** → element changed size — a real, fixable property change (line-height/box-sizing/padding/border-width; the classic Checkbox PF-1994 dropped pinned line-height).\n' +
+  '- **negligible** → noise; ignore.\n\n'
+
+/**
+ * Render one suite's freshly-fetched diff PNGs as a labeled prompt section.
+ * Cypress is flagged ADVISORY unless the strict flag makes it gate.
+ */
+function renderHappoSuiteSection(
+  suite: 'storybook' | 'cypress',
+  fresh: HappoCheckDiffs
+): string {
+  const advisory = suite === 'cypress' && !happoCypressGates()
+  const heading =
+    suite === 'cypress'
+      ? `## Fresh Cypress-Happo diff PNGs${
+          advisory
+            ? ' (ADVISORY — fix if straightforward; these do NOT block the gate)'
+            : ' (BLOCKING — strict mode)'
+        }`
+      : '## Fresh Happo diff PNGs (post-edit — reflect your latest changes, not the pre-edit state)'
+  const preamble =
+    suite === 'cypress'
+      ? 'Cypress integration screenshots (Picasso/Cypress project; baseline is master). Read each pair (oldPath = baseline, newPath = your worktree HEAD).\n\n' +
+        HAPPO_VERDICT_GUIDANCE
+      : 'Read each pair to see what diff PERSISTS after your last attempt (oldPath = baseline, newPath = your worktree HEAD).\n\n' +
+        HAPPO_VERDICT_GUIDANCE
+  const body = fresh.diffs
+    .map((d, j) => {
+      const head =
+        `${j + 1}. ${d.component} / ${d.variant} / ${d.target}\n` +
+        `   - oldPath: ${d.oldPath}\n` +
+        `   - newPath: ${d.newPath}`
+
+      return d.analysis
+        ? `${head}\n${renderAnalysisForPrompt(d.analysis)}`
+        : head
+    })
+    .join('\n')
+
+  return `${heading}\n\n${preamble}${body}`
+}
+
+/**
+ * Re-fetch post-gate diff PNGs for every FAILing Happo suite into
+ * `runDir/happo-diffs/<dirPrefix>-<suite>/` and build a labeled markdown
+ * section per suite for the next iter's agent prompt (Storybook + Cypress).
+ * Returns the concatenated sections, or null when nothing was fetched. Shared
+ * by the migrate-loop (prefetchHappoPostGate) and the review-iter loop.
+ */
+async function fetchHappoSuiteSections(
+  reportDir: string,
+  runDir: string,
+  dirPrefix: string
+): Promise<string | null> {
+  const apiKey = process.env.HAPPO_API_KEY
+  const apiSecret = process.env.HAPPO_API_SECRET
+
+  if (!apiKey || !apiSecret) {
+    return null
+  }
+  const verdicts = (await readHappoVerdicts(reportDir)).filter(
+    v => v.status === 'FAIL' && Boolean(v.reportUrl)
+  )
+
+  if (verdicts.length === 0) {
+    return null
+  }
+  const sections = await Promise.all(
+    verdicts.map(async v => {
+      const destDir = path.join(
+        runDir,
+        'happo-diffs',
+        `${dirPrefix}-${v.suite}`
+      )
+
+      try {
+        const fresh = await fetchHappoDiffsForCheck({
+          checkName: v.checkName,
+          reportUrl: v.reportUrl as string,
+          destDir,
+          apiKey,
+          apiSecret,
+        })
+
+        log(
+          'happo',
+          `${dirPrefix} re-fetched ${fresh.totalDiffs} ${v.suite} diff pair(s) post-gate-fail → ${destDir}`
+        )
+
+        return fresh.totalDiffs > 0
+          ? renderHappoSuiteSection(v.suite, fresh)
+          : null
+      } catch (err) {
+        log(
+          'happo',
+          `${dirPrefix} ${v.suite} re-fetch failed: ${(err as Error).message}`
+        )
+
+        return null
+      }
+    })
+  )
+  const joined = sections.filter(Boolean).join('\n\n')
+
+  return joined.length > 0 ? joined : null
+}
+
+/**
+ * Read the happo-verify JSON(s) written by the gate's strict-Happo block for
+ * the most recent gate run. Returns a content-aware "happo failure key" for
+ * stuck-detection, or null if the gate's failedStages doesn't include `happo`.
+ *
+ * Folds BOTH suites (Storybook + gating Cypress) so changing WHICH snapshots
+ * fail in EITHER suite counts as progress, not stuck. Advisory Cypress is
+ * excluded (gatingOnly) so its flake can't perturb storybook stuck-detection.
  *
  * Key format:
- *   - `happo:<N>:<sortedComponents>`  — N unaccepted diffs on these components
- *   - `happo:ERROR`                    — verifier itself errored (transient propagation race)
- *   - `happo:NO_BASELINE`              — best-effort PASS (missing base)
- *   - `happo:UNKNOWN`                  — JSON missing or unparseable (defensive)
- *
- * Originally inlined in sweepOne; extracted 2026-05-18 so runOne's
- * migrate-loop + CI-iter loop can share the same logic. See A1/A2/B9
- * in the orchestrator improvement plan.
+ *   - `happo:snapshots:<suite>:<c/v/t>+...`  — sorted, suite-prefixed
+ *   - `happo:<N>:<sortedComponents>`         — fallback (no diffSnapshots)
+ *   - `happo:ERROR`        — every gating suite errored (transient race)
+ *   - `happo:NO_BASELINE`  — every gating suite missing-base (best-effort)
+ *   - `happo:UNKNOWN`      — JSON missing or unparseable (defensive)
  */
 async function readHappoFailureKey(
   failedStageNames: readonly string[],
@@ -729,57 +928,42 @@ async function readHappoFailureKey(
   if (!failedStageNames.includes('happo')) {
     return null
   }
-  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+  const verdicts = await readHappoVerdicts(reportDir, { gatingOnly: true })
 
-  if (!existsSync(verifyJsonPath)) {
+  if (verdicts.length === 0) {
     return 'happo:UNKNOWN'
   }
-  try {
-    const raw = await fs.readFile(verifyJsonPath, 'utf8')
-    const verify = JSON.parse(raw) as {
-      status?: string
-      componentDiffs?: number
-      diffComponents?: string[]
-      diffSnapshots?: string[]
-    }
-
-    if (verify.status === 'ERROR') {
-      return 'happo:ERROR'
-    }
-
-    if (verify.status === 'NO_BASELINE') {
-      return 'happo:NO_BASELINE'
-    }
-    // 2026-05-20: per-snapshot key (was per-count key).
-    //
-    // Previously: `happo:<N>:<components>` — e.g. `happo:8:Slider`. This
-    // false-positive-flagged Slider PR #4955 review-iter 12 as stuck
-    // because iter 1 and iter 2 both produced 8 diffs on Slider, even
-    // though the agent's iter-2 edits affected DIFFERENT snapshots
-    // (added aria-* attrs in iter 1; removed -ml-[6px] in iter 2).
-    // Same count, completely different set → not actually stuck.
-    //
-    // Now: `happo:<sorted-snapshot-list>` keyed on the actual failing
-    // `<component>/<variant>/<target>` identifiers. Iter-to-iter:
-    //   - Identical set → genuinely stuck (agent isn't shifting which
-    //     snapshots fail) → escalate as before.
-    //   - Different set → agent shifted the failure surface (fixed some,
-    //     broke others, etc.) → progress signal → continue iterating.
-    //
-    // Fallback to component-count key when diffSnapshots is missing
-    // (older verifier output, edge cases) so the failure-key remains
-    // well-formed across versions.
-    const snapshots = verify.diffSnapshots ?? []
-
-    if (snapshots.length > 0) {
-      return `happo:snapshots:${snapshots.slice().sort().join('+')}`
-    }
-    const components = (verify.diffComponents ?? []).slice().sort().join(',')
-
-    return `happo:${verify.componentDiffs ?? 0}:${components}`
-  } catch {
-    return 'happo:UNKNOWN'
+  // Transient/best-effort only when EVERY gating suite is that status — keeps
+  // the exact `happo:ERROR` key the transient-skip check matches.
+  if (verdicts.every(v => v.status === 'ERROR')) {
+    return 'happo:ERROR'
   }
+
+  if (verdicts.every(v => v.status === 'NO_BASELINE')) {
+    return 'happo:NO_BASELINE'
+  }
+  // Per-snapshot key across all gating suites, suite-prefixed so a Cypress and
+  // a Storybook snapshot of the same name stay distinct. Changing WHICH
+  // snapshots fail in EITHER suite is progress, not stuck.
+  const snapshots = verdicts.flatMap(v =>
+    (v.diffSnapshots ?? []).map(id => `${v.suite}:${id}`)
+  )
+
+  if (snapshots.length > 0) {
+    return `happo:snapshots:${snapshots.slice().sort().join('+')}`
+  }
+  // Fallback (older verifier output without diffSnapshots): count + components.
+  const components = Array.from(
+    new Set(verdicts.flatMap(v => v.diffComponents ?? []))
+  )
+    .sort()
+    .join(',')
+  const totalComponentDiffs = verdicts.reduce(
+    (n, v) => n + (v.componentDiffs ?? 0),
+    0
+  )
+
+  return `happo:${totalComponentDiffs}:${components}`
 }
 
 /**
@@ -890,34 +1074,6 @@ async function classifyResidualHappoDiff({
   runDir: string
   iter: number
 }): Promise<ResidualDiffVerdict> {
-  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
-
-  if (!existsSync(verifyJsonPath)) {
-    return {
-      shippable: false,
-      reason: 'no happo-verify.json to measure diff size',
-    }
-  }
-
-  let reportUrl: string
-
-  try {
-    const v = JSON.parse(await fs.readFile(verifyJsonPath, 'utf8')) as {
-      reportUrl?: string
-      status?: string
-    }
-
-    if (v.status !== 'FAIL' || !v.reportUrl) {
-      return { shippable: false, reason: 'happo-verify.json not in FAIL state' }
-    }
-    reportUrl = v.reportUrl
-  } catch (err) {
-    return {
-      shippable: false,
-      reason: `could not read happo-verify.json: ${(err as Error).message}`,
-    }
-  }
-
   const apiKey = process.env.HAPPO_API_KEY
   const apiSecret = process.env.HAPPO_API_SECRET
 
@@ -927,43 +1083,59 @@ async function classifyResidualHappoDiff({
       reason: 'HAPPO_API_KEY/SECRET unset; cannot fetch diff PNGs to size them',
     }
   }
-
-  const destDir = path.join(
-    runDir,
-    'happo-diffs',
-    `migrate-iter-${iter}-storybook`
+  // Consider BOTH suites: a "small residual" auto-PR must be visually clean on
+  // Storybook AND Cypress. A large (even advisory) Cypress diff blocks the
+  // auto-PR so we never claim a clean residual when Cypress regressed.
+  const verdicts = (await readHappoVerdicts(reportDir)).filter(
+    v => v.status === 'FAIL' && Boolean(v.reportUrl)
   )
-  const fresh = await fetchHappoDiffsForCheck({
-    checkName: 'Happo (Picasso/Storybook)',
-    reportUrl,
-    destDir,
-    apiKey,
-    apiSecret,
-  })
 
-  if (fresh.totalDiffs === 0) {
+  if (verdicts.length === 0) {
+    return {
+      shippable: false,
+      reason: 'no happo-verify FAIL state to measure diff size',
+    }
+  }
+  const fetched = await Promise.all(
+    verdicts.map(v =>
+      fetchHappoDiffsForCheck({
+        checkName: v.checkName,
+        reportUrl: v.reportUrl as string,
+        destDir: path.join(
+          runDir,
+          'happo-diffs',
+          `migrate-iter-${iter}-${v.suite}`
+        ),
+        apiKey,
+        apiSecret,
+      })
+    )
+  )
+  const allDiffs = fetched.flatMap(f => f.diffs)
+
+  if (allDiffs.length === 0) {
     return {
       shippable: false,
       reason: 'gate reported happo FAIL but no diff pairs were fetched',
     }
   }
 
-  const sizes = await Promise.all(fresh.diffs.map(assessHappoPairSize))
+  const sizes = await Promise.all(allDiffs.map(assessHappoPairSize))
   const big = sizes.filter(s => !s.small)
   const labelOf = (xs: PairSize[]): string => xs.map(s => s.label).join('; ')
 
   if (big.length === 0) {
     return {
       shippable: true,
-      reason: `${fresh.totalDiffs} small diff(s): ${labelOf(sizes)}`,
+      reason: `${allDiffs.length} small diff(s): ${labelOf(sizes)}`,
     }
   }
 
   return {
     shippable: false,
-    reason: `${big.length}/${
-      fresh.totalDiffs
-    } diff(s) over threshold: ${labelOf(big)}`,
+    reason: `${big.length}/${allDiffs.length} diff(s) over threshold: ${labelOf(
+      big
+    )}`,
   }
 }
 
@@ -977,75 +1149,9 @@ async function prefetchHappoPostGate({
   if (!failedStageNames.includes('happo')) {
     return null
   }
-  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
 
-  if (!existsSync(verifyJsonPath)) {
-    return null
-  }
-
-  try {
-    const verifyJson = JSON.parse(
-      await fs.readFile(verifyJsonPath, 'utf8')
-    ) as { reportUrl?: string; status?: string }
-
-    if (!verifyJson.reportUrl || verifyJson.status !== 'FAIL') {
-      return null
-    }
-    const iterDestDir = path.join(
-      runDir,
-      'happo-diffs',
-      `${loopName}-iter-${iter}-storybook`
-    )
-    const apiKey = process.env.HAPPO_API_KEY
-
-    const apiSecret = process.env.HAPPO_API_SECRET
-
-    if (!apiKey || !apiSecret) {
-      return null
-    }
-
-    const fresh = await fetchHappoDiffsForCheck({
-      checkName: 'Happo (Picasso/Storybook)',
-      reportUrl: verifyJson.reportUrl,
-      destDir: iterDestDir,
-      apiKey,
-      apiSecret,
-    })
-
-    log(
-      'happo',
-      `${loopName}-iter ${iter} re-fetched ${fresh.totalDiffs} diff pair(s) post-gate-fail → ${iterDestDir}`
-    )
-
-    return (
-      `\n\n## Fresh Happo diff PNGs (post-iter-${iter} — reflect your latest edits, not the pre-edit state)\n\n` +
-      'Read each pair to see what diff PERSISTS after your last attempt. Your prior edit either did not converge OR introduced different diffs. Compare oldPath (baseline) vs newPath (your worktree HEAD).\n\n' +
-      'Each pair includes a quantitative `analysis` block (verdict + bbox + shift-vector). Use it to pick your next edit:\n' +
-      '- **positional_offset** → apply a positioning correction matching `bestDx`/`bestDy` (translate/inset/margin). The visual-Read is still useful for confirming WHICH element shifted.\n' +
-      '- **structural_difference** → stop iterating on translate/margin/inset. The diff is shape/color/shadow/blur/opacity. Run the computed-style diff to identify which non-positional property differs, OR flag to operator for explicit values.\n' +
-      '- **dimension_mismatch** → element changed size — ALWAYS a real, fixable property change in your diff (never environmental). Diff the old JSS createStyles (+ any PicassoProvider.override) against your Tailwind; a dropped pinned line-height becomes line-height: normal — the classic miss (Checkbox PF-1994). Also box-sizing/padding/border-width.\n' +
-      '- **negligible** → noise; ignore.\n\n' +
-      fresh.diffs
-        .map((d, j) => {
-          const head =
-            `${j + 1}. ${d.component} / ${d.variant} / ${d.target}\n` +
-            `   - oldPath: ${d.oldPath}\n` +
-            `   - newPath: ${d.newPath}`
-
-          return d.analysis
-            ? `${head}\n${renderAnalysisForPrompt(d.analysis)}`
-            : head
-        })
-        .join('\n')
-    )
-  } catch (err) {
-    log(
-      'happo',
-      `${loopName}-iter ${iter} re-fetch failed: ${(err as Error).message}`
-    )
-
-    return null
-  }
+  // Re-fetch BOTH suites (Storybook + Cypress) — see fetchHappoSuiteSections.
+  return fetchHappoSuiteSections(reportDir, runDir, `${loopName}-iter-${iter}`)
 }
 
 /**
@@ -3472,6 +3578,39 @@ const gate = {
         log('happo-gate', parts.join(' '))
       } catch {
         /* malformed JSON — skip; gate report.md will surface the failure */
+      }
+    }
+    // Cypress-Happo verdict (advisory by default) — surface its decisive
+    // fields too so the operator sees BOTH suites in the top-level log.
+    const happoCypressVerifyPath = path.join(
+      reportDir,
+      'happo-verify-cypress.json'
+    )
+
+    if (existsSync(happoCypressVerifyPath)) {
+      try {
+        const verify = JSON.parse(
+          readFileSync(happoCypressVerifyPath, 'utf8')
+        ) as {
+          status?: string
+          componentDiffs?: number
+          reportUrl?: string
+        }
+        const parts = [
+          `status=${verify.status ?? '?'}`,
+          happoCypressGates() ? 'mode=strict' : 'mode=advisory',
+        ]
+
+        if (typeof verify.componentDiffs === 'number') {
+          parts.push(`componentDiffs=${verify.componentDiffs}`)
+        }
+
+        if (verify.reportUrl) {
+          parts.push(`report=${verify.reportUrl}`)
+        }
+        log('happo-cypress-gate', parts.join(' '))
+      } catch {
+        /* malformed JSON — skip */
       }
     }
 
@@ -8945,57 +9084,19 @@ async function sweepOne(
         break
       }
 
-      // Build a content-aware failure-set key for stuck-detection. The
-      // previous version only compared stage NAMES — so iter 1's "happo:
-      // 8 Slider diffs" and iter 2's "happo: ERROR (report not indexed
-      // yet)" both produced the same key (`happo`), making stuck-
-      // detection escalate on what was actually a transient verifier
-      // error. Now we read happo-verify.json (written by the gate's
-      // strict-Happo block) and fold the diff count + diff component
-      // list into the key. ERROR results are tagged distinctly so they
-      // never look "same as" a real diff failure.
-      //
-      // Pattern: `<stage>` for non-happo stages, or
-      //   `happo:<count>:<sortedComponents>` for happo with diff data
-      //   `happo:ERROR`                     for happo verifier ERROR
-      //   `happo:NO_BASELINE`               for missing-base best-effort
-      const happoVerifyJsonPath = path.join(
-        path.dirname(gateReport.reportPath),
-        'happo-verify.json'
-      )
+      // Build a content-aware failure-set key for stuck-detection. Comparing
+      // stage NAMES alone made iter 1's "happo: 8 diffs" and iter 2's "happo:
+      // ERROR (not indexed yet)" collide on the key `happo`, escalating a
+      // transient verifier error. readHappoFailureKey instead folds the
+      // failing snapshot identifiers across BOTH gating suites (Storybook +,
+      // under the strict flag, Cypress) so changing WHICH snapshots fail is
+      // progress, and tags ERROR/NO_BASELINE distinctly so they never look
+      // "same as" a real diff failure. See its doc for the key format.
       // eslint-disable-next-line no-await-in-loop
-      const happoVerifyKey = await (async () => {
-        if (!failedDeterministic.some(s => s.name === 'happo')) {
-          return null
-        }
-        if (!existsSync(happoVerifyJsonPath)) {
-          return 'happo:UNKNOWN'
-        }
-        try {
-          const raw = await fs.readFile(happoVerifyJsonPath, 'utf8')
-          const verify = JSON.parse(raw) as {
-            status?: string
-            componentDiffs?: number
-            diffComponents?: string[]
-          }
-
-          if (verify.status === 'ERROR') {
-            return 'happo:ERROR'
-          }
-
-          if (verify.status === 'NO_BASELINE') {
-            return 'happo:NO_BASELINE'
-          }
-          const components = (verify.diffComponents ?? [])
-            .slice()
-            .sort()
-            .join(',')
-
-          return `happo:${verify.componentDiffs ?? 0}:${components}`
-        } catch {
-          return 'happo:UNKNOWN'
-        }
-      })()
+      const happoVerifyKey = await readHappoFailureKey(
+        failedDeterministic.map(s => s.name),
+        path.dirname(gateReport.reportPath)
+      )
 
       const currentFailureSet = failedDeterministic
         .map(s =>
@@ -9079,73 +9180,22 @@ async function sweepOne(
         }
 
         // Happo iteration: when the gate's happo stage failed, the agent
-        // needs FRESH diff PNGs reflecting the post-iter-N state — not
-        // the stale pre-iter-1 PNGs that were pre-fetched at sweep
-        // start. Read the verifier's JSON output (written by the gate's
-        // strict-Happo block to <reportDir>/happo-verify.json) to get
-        // the new compare URL, then re-fetch PNGs into a fresh dir.
+        // needs FRESH diff PNGs reflecting the post-iter-N state — not the
+        // stale pre-iter-1 PNGs pre-fetched at sweep start.
         if (failedDeterministic.some(s => s.name === 'happo')) {
-          const reportDir = path.dirname(gateReport.reportPath)
-          const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+          // fetchHappoSuiteSections reads BOTH verifier JSONs (Storybook +
+          // Cypress) and re-fetches each FAILing suite's PNGs into
+          // iter-<n>-<suite>/ so the agent inspects the latest state and can
+          // fix Cypress diffs too (advisory or strict).
+          // eslint-disable-next-line no-await-in-loop
+          const happoSection = await fetchHappoSuiteSections(
+            path.dirname(gateReport.reportPath),
+            runDir,
+            `iter-${iter}`
+          )
 
-          if (existsSync(verifyJsonPath)) {
-            try {
-              // eslint-disable-next-line no-await-in-loop
-              const verifyJson = JSON.parse(
-                await fs.readFile(verifyJsonPath, 'utf8')
-              ) as { reportUrl?: string; status?: string }
-
-              if (verifyJson.reportUrl && verifyJson.status === 'FAIL') {
-                const iterDestDir = path.join(
-                  runDir,
-                  'happo-diffs',
-                  `iter-${iter}-storybook`
-                )
-                const apiKey = process.env.HAPPO_API_KEY
-                const apiSecret = process.env.HAPPO_API_SECRET
-
-                if (apiKey && apiSecret) {
-                  // eslint-disable-next-line no-await-in-loop
-                  const fresh = await fetchHappoDiffsForCheck({
-                    checkName: 'Happo (Picasso/Storybook)',
-                    reportUrl: verifyJson.reportUrl,
-                    destDir: iterDestDir,
-                    apiKey,
-                    apiSecret,
-                  })
-
-                  log(
-                    'happo',
-                    `iter ${iter} re-fetched ${fresh.totalDiffs} diff pair(s) post-gate-fail → ${iterDestDir}`
-                  )
-
-                  // Append the fresh PNG paths to the next iter's
-                  // feedback so the agent looks at the latest state.
-                  const freshSection =
-                    '\n\n## Fresh Happo diff PNGs (post-iter-' +
-                    iter +
-                    ' — these reflect your latest edits, NOT the pre-edit state from sweep start)\n\n' +
-                    'Read each pair to see what diff PERSISTS after your last attempt. Your prior edit either did not converge OR introduced different diffs. Compare oldPath (master baseline) vs newPath (your worktree HEAD).\n\n' +
-                    fresh.diffs
-                      .map(
-                        (d, j) =>
-                          `${j + 1}. ${d.component} / ${d.variant} / ${
-                            d.target
-                          }\n` +
-                          `   - oldPath: ${d.oldPath}\n` +
-                          `   - newPath: ${d.newPath}`
-                      )
-                      .join('\n')
-
-                  iterFeedback = (iterFeedback ?? '') + freshSection
-                }
-              }
-            } catch (err) {
-              log(
-                'happo',
-                `iter ${iter} re-fetch failed: ${(err as Error).message}`
-              )
-            }
+          if (happoSection) {
+            iterFeedback = (iterFeedback ?? '') + '\n\n' + happoSection
           }
         }
       }
