@@ -1952,6 +1952,152 @@ async function loadEnvrcUpwards(cwd: string): Promise<readonly string[]> {
   return injected
 }
 
+type PreflightSeverity = 'required' | 'warn' | 'info'
+
+/** Which flow is starting — only `migrate` requires the Happo visual gate. */
+type PreflightKind = 'migrate' | 'sweep' | 'cleanup'
+
+interface PrereqCheck {
+  label: string
+  severity: PreflightSeverity
+  /** Skip the check entirely when false (mode-gated). */
+  applies: boolean
+  probe: () => Promise<boolean>
+  fix: string
+}
+
+/**
+ * Build the prerequisite list for a flow. Mode-gating lives here: Happo is a
+ * migration-only gate (sweep/cleanup never run it); gh is unconditional for
+ * sweep/cleanup (they read + comment on PRs) but `!dryRun`-gated for migrate
+ * (mirrors the prior `gh.assertAuth` placement); a push happens in every
+ * non-dry flow (the orchestrator owns commits); `--dry-run` never spawns the
+ * agent, so its CLI is a warning there rather than a hard requirement.
+ */
+function buildPrereqChecks(
+  opts: OrchestratorOptions,
+  kind: PreflightKind
+): PrereqCheck[] {
+  const dryRun = opts.dryRun === true
+  const happoSkip = process.env.MIGRATION_GATE_HAPPO === 'skip'
+  const agentBin =
+    opts.agent === 'cursor'
+      ? 'cursor'
+      : opts.agent === 'codex'
+      ? 'codex'
+      : 'claude'
+  const needsHappo = kind === 'migrate' && !dryRun && !happoSkip
+  const needsGh = kind === 'migrate' ? !dryRun : true
+  const needsPush = !dryRun
+
+  return [
+    {
+      label: 'gh CLI authenticated',
+      severity: 'required',
+      applies: needsGh,
+      probe: async () => (await shell('gh', ['auth', 'status'])).exitCode === 0,
+      fix: 'gh auth login   (scopes: repo + read:org)',
+    },
+    {
+      label: `agent CLI on PATH (${agentBin})`,
+      severity: dryRun ? 'warn' : 'required',
+      applies: true,
+      probe: async () => (await shell('which', [agentBin])).exitCode === 0,
+      fix:
+        agentBin === 'claude'
+          ? 'install the Claude Code CLI, then: claude login'
+          : `install the ${agentBin} CLI`,
+    },
+    {
+      label: 'HAPPO_API_KEY + HAPPO_API_SECRET',
+      severity: 'required',
+      applies: needsHappo,
+      probe: async () =>
+        Boolean(process.env.HAPPO_API_KEY && process.env.HAPPO_API_SECRET),
+      fix: 'add to .envrc (see .envrc.example) — or MIGRATION_GATE_HAPPO=skip for sandbox runs',
+    },
+    {
+      label: 'ssh key loaded (git push)',
+      severity: 'warn',
+      applies: needsPush,
+      probe: async () => (await shell('ssh-add', ['-l'])).exitCode === 0,
+      fix: 'ssh-add --apple-use-keychain ~/.ssh/id_ed25519   (push falls back to gh HTTPS otherwise)',
+    },
+    {
+      label: 'NPM_TOKEN set (pnpm node_modules layout)',
+      severity: 'warn',
+      applies: true,
+      probe: async () => Boolean(process.env.NPM_TOKEN),
+      fix: 'export NPM_TOKEN=dummy   (any value; only authenticates registry fetches)',
+    },
+    {
+      label: 'ATLASSIAN_EMAIL + ATLASSIAN_API_TOKEN (Confluence sync)',
+      severity: 'info',
+      applies: true,
+      probe: async () =>
+        Boolean(process.env.ATLASSIAN_EMAIL && process.env.ATLASSIAN_API_TOKEN),
+      fix: 'optional — Confluence status sync is skipped without it',
+    },
+  ]
+}
+
+/**
+ * One-shot prerequisite report, run at the top of every flow (migration,
+ * review-sweep, cleanup) right after `.envrc` is loaded. Probes every
+ * applicable prerequisite, collects ALL failures (not fail-on-first), logs a
+ * single ✅/⚠️/❌ block, and returns ok=false only when a *required*
+ * prerequisite is missing — so the operator sees everything wrong at once
+ * instead of fixing one, re-running, and hitting the next.
+ *
+ * Callers act on ok=false per their prior convention: `run` returns a no-work
+ * result (matching the old Happo-creds refusal); sweep/cleanup throw (matching
+ * the old `gh.assertAuth` throw).
+ */
+async function preflight(
+  opts: OrchestratorOptions,
+  kind: PreflightKind
+): Promise<{ ok: boolean; reason?: string }> {
+  const dryRun = opts.dryRun === true
+  const active = buildPrereqChecks(opts, kind).filter(c => c.applies)
+  const results = await Promise.all(
+    active.map(async c => ({ check: c, ok: await c.probe() }))
+  )
+  const failIcon: Record<PreflightSeverity, string> = {
+    required: '❌',
+    warn: '⚠️',
+    info: 'ℹ️',
+  }
+
+  log('preflight', `prerequisites${dryRun ? ' (dry-run)' : ''}:`)
+
+  for (const { check, ok } of results) {
+    const icon = ok ? '✅' : failIcon[check.severity]
+
+    log('preflight', `  ${icon} ${check.label}${ok ? '' : `  → ${check.fix}`}`)
+  }
+
+  log(
+    'preflight',
+    '  new operator? cp .envrc.example .envrc → fill → direnv allow  (ORCHESTRATOR.md §First-time setup)'
+  )
+
+  const missingRequired = results.filter(
+    r => !r.ok && r.check.severity === 'required'
+  )
+
+  if (missingRequired.length > 0) {
+    const reason = `preflight failed — missing required: ${missingRequired
+      .map(r => r.check.label)
+      .join('; ')}`
+
+    log('preflight', `❌ ${reason} — refusing to start.`)
+
+    return { ok: false, reason }
+  }
+
+  return { ok: true }
+}
+
 /**
  * Tier 2 batch B / Slice 3 — log a non-fatal warning if telemetry fails.
  * Token snapshots are best-effort: if Claude Code didn't write a session
@@ -4375,28 +4521,107 @@ const gh = {
 // ---------------------------------------------------------------------------
 
 /**
- * Default config for all three orchestrator flows (migration, review-sweep,
- * graduation). Fable 5 + effort=xhigh + 64k thinking budget. CLI flags
- * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) shallow-merge
- * over this. Rationale lives in the PI-4318 plan
+ * Named model presets, selectable via `--preset=<name>` or the
+ * `MIGRATION_MODEL_PRESET` env var (the flag wins). A preset is just a starting
+ * `ModelConfig`; explicit `--model` / `--effort` / `--thinking-tokens` flags
+ * still override individual fields on top of it (see `resolveModelConfig`).
+ * Rationale for the defaults lives in the PI-4318 plan
  * `~/.claude/plans/question-what-model-and-reflective-pie.md`.
  *
- * Historically the orchestrator passed no `--model` flag, so the child
- * inherited whatever the `claude` CLI happened to default to that week
- * (drifted from Opus 4.7 to Sonnet 4.5 between 2026-05-11 and 2026-05-21,
- * unnoticed — see migration-runs/2026-05-21/*\/agent.1.log).
+ * The two presets differ ONLY in `model` — same effort + thinking budget — so
+ * `--preset=opus` is a pure model swap at identical reasoning settings. Opus
+ * 4.8 lists at ~half Fable 5's per-MTok rate ($5/$25 vs $10/$50 in/out), so
+ * `opus` is the documented billing cut lever (see CLAUDE.md / billing notes).
+ *
+ * `[1m]` on both unlocks the 1M-context tier. Migration iter 3 on Tier 3
+ * components routinely accumulates >150k tokens (prior session history + Happo
+ * HTML + contextPack), which silently truncated under the default 200k cap;
+ * the 1M tier costs more per output token but stops the
+ * forget-context-then-rebuild-cache cycle that drove most iter-loop blowups.
+ *
+ * Historically the orchestrator passed no `--model`, so the child inherited
+ * whatever the `claude` CLI defaulted to that week (drifted Opus 4.7 → Sonnet
+ * 4.5 between 2026-05-11 and 2026-05-21, unnoticed). Pinning a preset (or the
+ * explicit flags) avoids that.
  */
-export const DEFAULT_MODEL_CONFIG: ModelConfig = {
-  // `[1m]` suffix unlocks the 1M-context tier. Migration iter 3 on Tier 3
-  // components routinely accumulates >150k tokens (prior session history +
-  // Happo HTML + contextPack), which silently truncated under the default
-  // 200k cap. The 1M tier costs more per output token but stops the
-  // forget-context-then-rebuild-cache cycle that drove most iter-loop
-  // blowups. Fable 5 lists ~2x Opus 4.8 per MTok ($10/$50 in/out vs
-  // $5/$25), so the doubled rate compounds the 1M premium.
-  model: 'claude-fable-5[1m]',
-  effort: 'xhigh',
-  thinkingTokens: 64000,
+export const MODEL_PRESETS = {
+  fable: {
+    model: 'claude-fable-5[1m]',
+    effort: 'xhigh',
+    thinkingTokens: 64000,
+  },
+  opus: {
+    model: 'claude-opus-4-8[1m]',
+    effort: 'xhigh',
+    thinkingTokens: 64000,
+  },
+} as const
+
+export type ModelPreset = keyof typeof MODEL_PRESETS
+
+/** Preset used when neither `--preset` nor `MIGRATION_MODEL_PRESET` is set. */
+export const DEFAULT_PRESET: ModelPreset = 'fable'
+
+/**
+ * Default config for all flows (migration, review-sweep, graduation) — the
+ * `fable` preset. Kept as a named export because the option parser,
+ * `migration-orchestrator.ts`, and the graduate flow reference it directly.
+ */
+export const DEFAULT_MODEL_CONFIG: ModelConfig = MODEL_PRESETS[DEFAULT_PRESET]
+
+/**
+ * Reverse-map a resolved model back to its preset name for log lines
+ * (`'custom'` when an explicit `--model` matches no preset).
+ */
+export function presetLabelForModel(model: string): string {
+  const hit = Object.entries(MODEL_PRESETS).find(
+    ([, cfg]) => cfg.model === model
+  )
+
+  return hit ? hit[0] : 'custom'
+}
+
+/**
+ * Resolve the run's `ModelConfig`: start from the selected preset (`--preset`
+ * flag > `MIGRATION_MODEL_PRESET` env > `fable`), then overlay any explicit
+ * `--model` / `--effort` / `--thinking-tokens` flags. `--no-thinking` forces a
+ * 0 budget regardless of `--thinking-tokens` (least-surprise). Throws on an
+ * unknown preset so a typo fails fast instead of silently using the default.
+ */
+export function resolveModelConfig(flags: {
+  preset?: string
+  model?: string
+  effort?: string
+  thinkingTokens?: string
+  noThinking: boolean
+}): ModelConfig {
+  const presetName =
+    flags.preset ?? process.env.MIGRATION_MODEL_PRESET ?? DEFAULT_PRESET
+
+  if (!(presetName in MODEL_PRESETS)) {
+    throw new Error(
+      `Unknown model preset "${presetName}". Valid: ${Object.keys(
+        MODEL_PRESETS
+      ).join(', ')}`
+    )
+  }
+
+  const base = MODEL_PRESETS[presetName as ModelPreset]
+  const effort: ModelConfig['effort'] =
+    flags.effort === 'low' ||
+    flags.effort === 'medium' ||
+    flags.effort === 'high' ||
+    flags.effort === 'xhigh' ||
+    flags.effort === 'max'
+      ? flags.effort
+      : base.effort
+  const thinkingTokens = flags.noThinking
+    ? 0
+    : flags.thinkingTokens
+    ? Number(flags.thinkingTokens)
+    : base.thinkingTokens
+
+  return { model: flags.model ?? base.model, effort, thinkingTokens }
 }
 
 /**
@@ -5081,7 +5306,11 @@ const agent = {
     // (consistent for a single run since modelConfig is run-scoped).
     log(
       'agent',
-      `model=${inv.modelConfig.model} effort=${inv.modelConfig.effort} thinkingTokens=${inv.modelConfig.thinkingTokens}`
+      `preset=${presetLabelForModel(inv.modelConfig.model)} model=${
+        inv.modelConfig.model
+      } effort=${inv.modelConfig.effort} thinkingTokens=${
+        inv.modelConfig.thinkingTokens
+      }`
     )
     try {
       const runDir = path.dirname(logPath)
@@ -7061,8 +7290,13 @@ export async function runReviewSweep(
   if (!existsSync(manifestAbs)) {
     throw new Error(`Manifest not found at ${manifestAbs}`)
   }
-  await gh.assertAuth()
   await loadEnvrcUpwards(rootDir)
+
+  const pf = await preflight(opts, 'sweep')
+
+  if (!pf.ok) {
+    throw new Error(pf.reason)
+  }
 
   if (process.env.ORCHESTRATOR_TRUST_ALL === '1') {
     log(
@@ -7223,8 +7457,13 @@ export async function runCleanup(
   if (!opts.component) {
     throw new Error('--cleanup requires --component=<Name>')
   }
-  await gh.assertAuth()
   await loadEnvrcUpwards(rootDir)
+
+  const pf = await preflight(opts, 'cleanup')
+
+  if (!pf.ok) {
+    throw new Error(pf.reason)
+  }
 
   const m = manifest.read(manifestAbs)
   const item = m.components[opts.component]
@@ -9535,10 +9774,6 @@ export async function run(
     throw new Error(`Manifest not found at ${manifestAbs}`)
   }
 
-  if (!opts.dryRun) {
-    await gh.assertAuth()
-  }
-
   // Phase 3 — auto-load .envrc when running outside an interactive direnv-
   // hooked shell. Lets local Happo (HAPPO_API_KEY/SECRET) fire correctly
   // for canaries launched from CI/automation/LLM tools instead of silently
@@ -9554,35 +9789,15 @@ export async function run(
     )
   }
 
-  // Part 4 (2026-05-13): Happo is mandatory for migrations. If creds
-  // aren't set AND operator hasn't explicitly opted out via
-  // MIGRATION_GATE_HAPPO=skip, refuse to start. Catches the common
-  // "ran without setting up Happo" footgun BEFORE the agent invocation
-  // burns iterations. Gate also re-checks this — defense in depth.
-  if (
-    !opts.dryRun &&
-    process.env.MIGRATION_GATE_HAPPO !== 'skip' &&
-    (!process.env.HAPPO_API_KEY || !process.env.HAPPO_API_SECRET)
-  ) {
-    log(
-      'env',
-      '❌ HAPPO_API_KEY / HAPPO_API_SECRET unset — Happo is required for migrations.'
-    )
-    log('env', '   Setup: docs/migration/ORCHESTRATOR.md §Happo setup')
-    log(
-      'env',
-      '   Quick fix (inline): HAPPO_API_KEY=... HAPPO_API_SECRET=... pnpm orchestrate ...'
-    )
-    log(
-      'env',
-      '   Explicit opt-out (sandbox only): MIGRATION_GATE_HAPPO=skip pnpm orchestrate ...'
-    )
+  // Consolidated prerequisite report (gh auth, agent CLI, Happo creds, ssh,
+  // NPM_TOKEN, Confluence). Collects ALL problems into one ✅/⚠️/❌ block so the
+  // operator fixes everything at once, and refuses to start on a missing
+  // *required* prereq BEFORE the agent invocation burns iterations (the gate
+  // re-checks Happo too — defense in depth). See `preflight`.
+  const pf = await preflight(opts, 'migrate')
 
-    return {
-      status: 'no-work',
-      reason:
-        'HAPPO_API_KEY/HAPPO_API_SECRET unset — refusing to start migration',
-    }
+  if (!pf.ok) {
+    return { status: 'no-work', reason: pf.reason }
   }
 
   const m = manifest.read(manifestAbs)
@@ -11615,33 +11830,17 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
 
-  // Resolve reasoning config: DEFAULT_MODEL_CONFIG (Fable 5 + xhigh + 64k)
-  // overlaid with any CLI flags. `--no-thinking` forces budget=0 regardless
-  // of `--thinking-tokens` (so a stray `--no-thinking --thinking-tokens=N`
-  // still disables thinking — least-surprise behavior).
-  const effort: ModelConfig['effort'] = ((): ModelConfig['effort'] => {
-    if (
-      effortRaw === 'low' ||
-      effortRaw === 'medium' ||
-      effortRaw === 'high' ||
-      effortRaw === 'xhigh' ||
-      effortRaw === 'max'
-    ) {
-      return effortRaw
-    }
-
-    return DEFAULT_MODEL_CONFIG.effort
-  })()
-  const thinkingTokens = has('--no-thinking')
-    ? 0
-    : thinkingTokensStr
-    ? Number(thinkingTokensStr)
-    : DEFAULT_MODEL_CONFIG.thinkingTokens
-  const modelConfig: ModelConfig = {
-    model: modelRaw ?? DEFAULT_MODEL_CONFIG.model,
-    effort,
-    thinkingTokens,
-  }
+  // Resolve reasoning config: pick the preset (`--preset` flag >
+  // MIGRATION_MODEL_PRESET env > `fable`), then overlay any explicit `--model`
+  // / `--effort` / `--thinking-tokens`. `--no-thinking` forces budget=0
+  // regardless of `--thinking-tokens` (least-surprise). See resolveModelConfig.
+  const modelConfig: ModelConfig = resolveModelConfig({
+    preset: get('--preset'),
+    model: modelRaw,
+    effort: effortRaw,
+    thinkingTokens: thinkingTokensStr,
+    noThinking: has('--no-thinking'),
+  })
 
   return {
     dryRun: has('--dry-run'),
