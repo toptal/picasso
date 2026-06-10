@@ -43,6 +43,7 @@ import {
   runCleanup,
   parseOptions,
   assertMcpConfig,
+  presetLabelForModel,
 } from './lib/orchestrator-core'
 import { runGraduate } from './lib/graduate'
 import type {
@@ -343,7 +344,11 @@ async function main(): Promise<void> {
         opts.branch ?? '(workflow default)'
       }\n` +
       `  agent=${opts.agent}\n` +
-      `  model=${opts.modelConfig.model} effort=${opts.modelConfig.effort} thinkingTokens=${opts.modelConfig.thinkingTokens}\n`
+      `  preset=${presetLabelForModel(opts.modelConfig.model)} model=${
+        opts.modelConfig.model
+      } effort=${opts.modelConfig.effort} thinkingTokens=${
+        opts.modelConfig.thinkingTokens
+      }\n`
   )
 
   // Loud startup check: when --with-mcp is set, confirm the agent MCP config

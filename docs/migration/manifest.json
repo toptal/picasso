@@ -740,18 +740,38 @@
     "Radio": {
       "tier": 2,
       "package": "packages/base/Radio",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [
         "FormLabel"
       ],
       "target_path": "@base-ui/react/radio + @base-ui/react/field",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4999",
+      "branch": "migrate-Radio-v1",
+      "worktree": "migration-runs/2026-06-10/Radio-v1/worktree",
+      "iterations": 4,
       "merged_at": null,
-      "notes": "Heavy path: MUI v4 + JSS rewrite. RadioGroup composition uses @base-ui/react/field + own context."
+      "notes": "Heavy path: MUI v4 + JSS rewrite. RadioGroup composition uses @base-ui/react/field + own context.",
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4999",
+          "branch": "migrate-Radio-v1",
+          "worktree": "migration-runs/2026-06-10/Radio-v1/worktree",
+          "iterations": 4,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null
     },
     "Tooltip": {
       "tier": 2,

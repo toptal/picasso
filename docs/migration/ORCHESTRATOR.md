@@ -73,12 +73,57 @@ pnpm orchestrate --cleanup --component=<Name> [--variant=<id>] [--dry-run]
 - Requires an existing worktree on the variant's branch and a **clean** working tree (it refuses on
   uncommitted changes so it never folds local edits into the cleanup commit).
 
+## First-time setup (new operators)
+
+Running the orchestrator on a fresh machine needs three things: env vars, CLI auth, and (optionally) a model preset. The full per-run checklist is §Prerequisites below — this is the one-time setup that precedes it. Shortcut: `pnpm orchestrate --component=<X> --dry-run` prints a consolidated prerequisite report (✅/⚠️/❌ per item, each with its fix) so you can confirm the whole setup without starting a real run.
+
+**1. Environment variables** — copy the tracked template and fill it in:
+
+```bash
+cp .envrc.example .envrc      # repo root (gitignored); or ~/Projects/.envrc
+$EDITOR .envrc                # set HAPPO_API_KEY / HAPPO_API_SECRET / NPM_TOKEN
+direnv allow
+```
+
+`loadEnvrcUpwards` walks **up** from the repo and auto-loads the nearest `.envrc` via direnv, so a `.envrc` at the repo root *or* any parent dir (e.g. `~/Projects/.envrc`) works. No direnv? `source .envrc` before `pnpm orchestrate`, or pass the vars inline (see §Happo setup for the three credential-passing options). Required: `HAPPO_API_KEY` + `HAPPO_API_SECRET` (your **own** creds with access to the Picasso Happo org, account 675 — or `MIGRATION_GATE_HAPPO=skip` to run without Happo) and `NPM_TOKEN` (`dummy` is fine). Optional: `ATLASSIAN_EMAIL` / `ATLASSIAN_API_TOKEN` for Confluence sync.
+
+**2. CLI / agent auth** — per-machine, and *not* env vars:
+
+| Tool | Set up | Verify |
+| --- | --- | --- |
+| `claude` (the agent) | install the Claude Code CLI, then `claude login` | `claude --version` — note it bills the logged-in account per run |
+| `gh` | `gh auth login` (scopes `repo` + `read:org`) | `gh auth status` |
+| ssh | `ssh-add --apple-use-keychain ~/.ssh/id_ed25519` (macOS) | `ssh-add -l`; `ssh -T git@github.com` → "Hi `<user>`!" (push has an HTTPS-via-`gh` fallback if SSH :22 is blocked) |
+
+**3. Model preset (optional)** — `--preset=fable` (default; current config, `claude-fable-5[1m]`) or `--preset=opus` (`claude-opus-4-8[1m]`, same effort, ≈half the per-token cost — the documented billing cut lever). Also settable via `MIGRATION_MODEL_PRESET`. Per-field overrides (`--model` / `--effort` / `--thinking-tokens`) still win over the preset. The resolved choice is echoed in the startup banner as `preset=… model=…`.
+
+## Environment knobs (reference)
+
+All run-tuning is via **env vars** (deliberately — they propagate to the gate subprocess `bin/migration-gate.sh`, work in `.envrc` for set-and-forget, and match how CI sets them). Model is *additionally* flag-settable (`--preset` / `--model` / `--effort` / `--thinking-tokens`). Defaults in **bold**.
+
+| Env var | Values (**default**) | Effect |
+| --- | --- | --- |
+| `MIGRATION_GATE_HAPPO` | **`run`** / `skip` | `skip` bypasses the Happo visual gate (sandbox / smoke runs). |
+| `MIGRATION_GATE_HAPPO_AUTOSKIP` | **`1`** / `0` | `0` forces Happo even when HEAD is a config-only commit. |
+| `MIGRATION_GATE_HAPPO_CYPRESS` | **`run`** / `skip` | `skip` disables the Cypress visual suite. |
+| `MIGRATION_GATE_HAPPO_CYPRESS_STRICT` | **`0`** / `1` | `1` makes Cypress diffs gate (default: advisory). |
+| `MIGRATION_GATE_CHANGESET` | **`run`** / `skip` | `skip` bypasses changeset validation. |
+| `MIGRATION_GATE_DOCTRINE` | **`run`** / `skip` | `skip` bypasses the code-doctrine check. |
+| `MIGRATION_GATE_CONSUMERS` | **`run`** / `skip` | `skip` bypasses the downstream-consumer build check. |
+| `MIGRATION_HAPPO_AUTOPR` | **on** / `off` | `off` disables the auto-PR on a small residual Happo diff. |
+| `MIGRATION_HAPPO_AUTOPR_MAX_DIM_DELTA` | **`2`** (px) | Max per-axis dimension delta still classed as a "small" diff. |
+| `MIGRATION_HAPPO_AUTOPR_MAX_AREA_FRACTION` | **`0.01`** | Max changed-area fraction still classed as "small" (1%). |
+| `MIGRATION_MODEL_PRESET` | **`fable`** / `opus` | Model preset (or `--preset=`); `opus` ≈ half the per-token cost. |
+| `ORCHESTRATOR_TRUST_ALL` | **`0`** / `1` | `1` trusts all PR-comment authors in `--review-sweep` (testing only). |
+
+Credentials (`HAPPO_API_KEY` / `HAPPO_API_SECRET`, `NPM_TOKEN`, `ATLASSIAN_*`) also live in `.envrc` — see §First-time setup and `.envrc.example`.
+
 ## Prerequisites
 
 - `gh` authenticated with `repo` + `read:org` scopes. Verify: `gh auth status`.
 - `ssh-add -l` shows your GitHub SSH key loaded (the orchestrator's `git push` step uses SSH per Picasso's `origin` remote). On macOS after reboot, run `ssh-add --apple-use-keychain ~/.ssh/id_ed25519` (or whichever key) to load from Keychain.
 - `pnpm install` clean.
-- **`NPM_TOKEN` set in env** — without it, pnpm silently drops the `.npmrc` parse on the `${NPM_TOKEN}` substitution failure and falls back to `nodeLinker: isolated` mode, which doesn't hoist `@types/*` to top-level `node_modules` (tsc then can't resolve react types). Picasso operators typically have it via `direnv` on `~/Projects/.envrc` (the orchestrator's `loadEnvrcUpwards` finds it automatically). Without direnv, set `NPM_TOKEN=dummy` is sufficient — pnpm only uses the token to authenticate fetches, not for layout decisions.
+- **`NPM_TOKEN` set in env** — without it, pnpm silently drops the `.npmrc` parse on the `${NPM_TOKEN}` substitution failure and falls back to `nodeLinker: isolated` mode, which doesn't hoist `@types/*` to top-level `node_modules` (tsc then can't resolve react types). Picasso operators typically have it via `direnv` on `~/Projects/.envrc` (the orchestrator's `loadEnvrcUpwards` finds it automatically). Without direnv, set `NPM_TOKEN=dummy` is sufficient — pnpm only uses the token to authenticate fetches, not for layout decisions. New operators: copy `.envrc.example` → `.envrc` (see §First-time setup).
 - Node v22.20.0 (per `.nvmrc` + `engines`). `nvm use 22.20.0`. The webpack patch this branch ships (`patches/webpack@5.98.0.patch`) fixes the symlink-dedup `RangeError` in `FileSystemInfo.js` that crashes Storybook startup on Node 22; the patch lands automatically via `pnpm.patchedDependencies`.
 - Working tree clean. Worktree base defaults to `HEAD` (current branch tip) — see [bin/lib/orchestrator-core.ts `worktree.add`](../../bin/lib/orchestrator-core.ts) for the rationale.
 - For full gate including Happo: `HAPPO_API_KEY` + `HAPPO_API_SECRET` set in env (see §Happo setup below).
