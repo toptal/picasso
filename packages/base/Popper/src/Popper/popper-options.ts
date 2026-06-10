@@ -110,20 +110,29 @@ const parsePopperOffset = (value: number | string) => {
   }
 }
 
+// popper.js v1 boundary semantics: 'viewport'/'window' measured ONLY against
+// the viewport/document, ignoring clipping ancestors; 'scrollParent' measured
+// against the closest scroll parent. `boundary: []` disables floating-ui's
+// clipping-ancestors detection so only rootBoundary applies — without it,
+// in-place poppers (disablePortal) inside padded containers clamp to the
+// container instead of the viewport, unlike popper.js.
 const getBoundaryOptions = (
   boundariesElement?: string | Element
-): { boundary?: Boundary; rootBoundary?: RootBoundary } => {
+): { boundary: Boundary; rootBoundary?: RootBoundary } => {
   if (boundariesElement && typeof boundariesElement === 'object') {
     return { boundary: boundariesElement }
   }
 
   if (boundariesElement === 'window') {
-    return { rootBoundary: 'document' }
+    return { boundary: [], rootBoundary: 'document' }
   }
 
-  // 'viewport' and 'scrollParent' both resolve via floating-ui's default
-  // clipping-ancestors + viewport overflow detection
-  return {}
+  if (boundariesElement === 'scrollParent') {
+    return { boundary: 'clippingAncestors' }
+  }
+
+  // popper.js default: 'viewport'
+  return { boundary: [], rootBoundary: 'viewport' }
 }
 
 export const createMiddleware = (options: PopperOptions): Middleware[] => {
@@ -141,7 +150,12 @@ export const createMiddleware = (options: PopperOptions): Middleware[] => {
     middleware.push(
       flip({
         ...getBoundaryOptions(modifiers.flip?.boundariesElement),
-        padding: modifiers.flip?.padding as Padding | undefined,
+        // popper.js v1 flip only ever tried the opposite SIDE (bottom↔top,
+        // left↔right) on main-axis overflow — never alignment variations
+        // (bottom-end → bottom-start) and never cross-axis triggers
+        crossAxis: false,
+        flipAlignment: false,
+        padding: (modifiers.flip?.padding as Padding | undefined) ?? 5,
       })
     )
   }
@@ -150,6 +164,8 @@ export const createMiddleware = (options: PopperOptions): Middleware[] => {
     middleware.push(
       shift({
         ...getBoundaryOptions(modifiers.preventOverflow?.boundariesElement),
+        // popper.js v1 preventOverflow constrained all four sides
+        crossAxis: true,
         padding: modifiers.preventOverflow?.padding as Padding | undefined,
       })
     )

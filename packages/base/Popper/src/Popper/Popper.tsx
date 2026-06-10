@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useContext, useMemo } from 'react'
+import React, { forwardRef, useContext, useEffect, useMemo } from 'react'
 import { autoUpdate, FloatingPortal, useFloating } from '@floating-ui/react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
@@ -174,9 +174,22 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     },
   })
 
+  // Transitional [PF-1994]: legacy popper.js-positioned descendants (the
+  // pre-migration Tooltip) measure synchronously once and re-measure only on
+  // scroll/resize. popper.js positioned synchronously, so an open Tooltip
+  // mounted together with this popper used to latch correct coordinates;
+  // floating-ui positions a frame later. Nudge legacy descendants via a
+  // synthetic scroll whenever our geometry settles or changes. Remove when
+  // Tooltip migrates off popper.js.
+  useEffect(() => {
+    if (open && isPositioned) {
+      window.dispatchEvent(new Event('scroll'))
+    }
+  }, [open, isPositioned, x, y])
+
   usePopperLifecycle({
     open,
-    isPositioned,
+    ready: isPositioned,
     x,
     y,
     onCreate: resolvedOptions.onCreate,

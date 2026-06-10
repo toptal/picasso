@@ -4,7 +4,8 @@ import type { PopperLifecycleCallback } from './popper-options'
 
 interface UsePopperLifecycleOptions {
   open: boolean
-  isPositioned: boolean
+  /** Positioned AND content committed — the popper is fully usable */
+  ready: boolean
   x: number
   y: number
   onCreate?: PopperLifecycleCallback
@@ -21,7 +22,7 @@ const toArgless = (callback?: PopperLifecycleCallback) =>
 // subsequent position change while open.
 export const usePopperLifecycle = ({
   open,
-  isPositioned,
+  ready,
   x,
   y,
   onCreate,
@@ -42,7 +43,7 @@ export const usePopperLifecycle = ({
       return
     }
 
-    if (!isPositioned) {
+    if (!ready) {
       return
     }
 
@@ -52,7 +53,7 @@ export const usePopperLifecycle = ({
     } else {
       toArgless(onUpdateRef.current)?.()
     }
-  }, [open, isPositioned, x, y])
+  }, [open, ready, x, y])
 }
 
 export default usePopperLifecycle
