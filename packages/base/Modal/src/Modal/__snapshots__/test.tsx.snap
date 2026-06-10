@@ -32,9 +32,11 @@ exports[`Modal renders 1`] = `
     id=":r2:"
   >
     <div
-      aria-hidden="true"
-      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-      style="transition-duration: 300ms; opacity: 1;"
+      class="fixed z-modal inset-0 bg-black/50 transition-opacity data-[ending-style]:opacity-0"
+      data-base-ui-inert=""
+      data-open=""
+      role="presentation"
+      style="user-select: none; transition-duration: 300ms;"
     />
     <span
       data-base-ui-focus-guard=""
@@ -45,7 +47,7 @@ exports[`Modal renders 1`] = `
       tabindex="0"
     />
     <div
-      class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0"
+      class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[ending-style]:opacity-0"
       data-base-ui-focusable=""
       data-open=""
       id=":r0:"
@@ -172,9 +174,12 @@ exports[`Modal useModal opens and closes modal 1`] = `
         id=":r5:"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 bg-black/50 transition-opacity data-[ending-style]:opacity-0"
+          data-base-ui-inert=""
+          data-open=""
+          data-starting-style=""
+          role="presentation"
+          style="user-select: none; transition-duration: 300ms;"
         />
         <span
           data-base-ui-focus-guard=""
@@ -185,7 +190,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
           tabindex="0"
         />
         <div
-          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[ending-style]:opacity-0"
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
@@ -320,9 +325,12 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         id=":rg:"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 bg-black/50 transition-opacity data-[ending-style]:opacity-0"
+          data-base-ui-inert=""
+          data-open=""
+          data-starting-style=""
+          role="presentation"
+          style="user-select: none; transition-duration: 300ms;"
         />
         <span
           data-base-ui-focus-guard=""
@@ -333,7 +341,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           tabindex="0"
         />
         <div
-          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[ending-style]:opacity-0"
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
@@ -387,9 +395,12 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         id=":rh:"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 bg-black/50 transition-opacity data-[ending-style]:opacity-0"
+          data-base-ui-inert=""
+          data-open=""
+          data-starting-style=""
+          role="presentation"
+          style="user-select: none; transition-duration: 300ms;"
         />
         <span
           data-base-ui-focus-guard=""
@@ -400,7 +411,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           tabindex="0"
         />
         <div
-          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[ending-style]:opacity-0"
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
