@@ -1,28 +1,21 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps } from '@toptal/picasso-shared'
 
-import styles from './styles'
+import { summaryWrapperClasses } from './styles'
 
-export type Borders = 'all' | 'middle' | 'none'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAccordion',
-})
-
-export interface SummaryProps extends StandardProps {
+export interface SummaryProps extends Omit<StandardProps, 'classes'> {
+  /** Content of the summary */
   children: ReactNode
 }
 
 const Summary = (props: SummaryProps) => {
   const { children, className, ...rest } = props
-  const classes = useStyles(props)
 
   return (
-    <div {...rest} className={cx(className, classes.summaryWrapper)}>
+    <div {...rest} className={twMerge(cx(...summaryWrapperClasses), className)}>
       {children}
     </div>
   )

@@ -6,75 +6,90 @@ exports[`Accordion renders collapsed by default 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
+      data-component-type="accordion"
+      data-orientation="vertical"
+      dir="ltr"
+      role="region"
     >
       <div
-        aria-disabled="false"
-        aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
-        role="button"
-        tabindex="0"
+        data-closed=""
+        data-index="0"
+        data-orientation="vertical"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
+          data-closed=""
+          data-index="0"
+          data-orientation="vertical"
         >
           <div
-            class="PicassoAccordion-summaryWrapper"
-            data-testid="accordion-summary"
-          >
-            What is a dog?
-          </div>
-          <div
-            class="PicassoAccordion-expandIconAlignTop"
-          >
-            <button
-              aria-disabled="false"
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
-              data-component-type="button"
-              role="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="items-center inline-flex font-semibold text-blue text-md"
-              >
-                <svg
-                  class="fill-current inline-block align-[-.125em] text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
-                  style="min-width: 16px; min-height: 16px;"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiCollapse-root MuiCollapse-hidden"
-        style="min-height: 0px;"
-      >
-        <div
-          class="MuiCollapse-wrapper"
-        >
-          <div
-            class="MuiCollapse-wrapperInner"
+            aria-expanded="false"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            data-component-type="accordion-summary"
+            data-orientation="vertical"
+            data-value=""
+            id="base-ui-:r2:"
+            role="button"
+            tabindex="0"
           >
             <div
-              role="region"
+              class="flex grow flex-row items-center justify-between m-0 text-[0.875em] leading-[1.5em]"
+              data-component-type="accordion-summary-content"
             >
               <div
-                class="flex p-0"
+                class="text-black"
+                data-testid="accordion-summary"
               >
-                <div
-                  class="PicassoAccordion-detailsWrapper"
-                  data-testid="accordion-details"
-                >
-                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
-                </div>
+                What is a dog?
               </div>
+              <div
+                class="flex items-center h-[1.5em] self-start"
+              >
+                <button
+                  aria-disabled="false"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+                  data-component-type="button"
+                  role="button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="items-center inline-flex font-semibold text-blue text-md"
+                  >
+                    <svg
+                      class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-[0.7em] text-graphite transition-transform duration-150 ease-in"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-labelledby="base-ui-:r2:"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-[starting-style]:h-0 data-[ending-style]:h-0"
+          data-closed=""
+          data-index="0"
+          data-orientation="vertical"
+          hidden=""
+          id="base-ui-:r1:"
+          role="region"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+        >
+          <div
+            class="flex p-0"
+          >
+            <div
+              class="text-[0.875em] font-regular leading-[1.5em] mb-[0.75em] text-graphite"
+              data-testid="accordion-details"
+            >
+              A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
             </div>
           </div>
         </div>
@@ -90,66 +105,81 @@ exports[`Accordion renders custom icon when passed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
+      data-component-type="accordion"
+      data-orientation="vertical"
+      dir="ltr"
+      role="region"
     >
       <div
-        aria-disabled="false"
-        aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
-        role="button"
-        tabindex="0"
+        data-closed=""
+        data-index="0"
+        data-orientation="vertical"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
+          data-closed=""
+          data-index="0"
+          data-orientation="vertical"
         >
           <div
-            class="PicassoAccordion-summaryWrapper"
-            data-testid="accordion-summary"
-          >
-            What is a dog?
-          </div>
-          <button
-            aria-disabled="false"
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
-            data-component-type="button"
+            aria-expanded="false"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            data-component-type="accordion-summary"
+            data-orientation="vertical"
+            data-value=""
+            id="base-ui-:rh:"
             role="button"
             tabindex="0"
-            type="button"
-          >
-            <span
-              class="items-center inline-flex font-semibold text-blue text-md"
-            >
-              <span
-                class="text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
-                data-testid="custom-expand-icon"
-              />
-            </span>
-          </button>
-        </div>
-      </div>
-      <div
-        class="MuiCollapse-root MuiCollapse-hidden"
-        style="min-height: 0px;"
-      >
-        <div
-          class="MuiCollapse-wrapper"
-        >
-          <div
-            class="MuiCollapse-wrapperInner"
           >
             <div
-              role="region"
+              class="flex grow flex-row items-center justify-between m-0 text-[0.875em] leading-[1.5em]"
+              data-component-type="accordion-summary-content"
             >
               <div
-                class="flex p-0"
+                class="text-black"
+                data-testid="accordion-summary"
               >
-                <div
-                  class="PicassoAccordion-detailsWrapper"
-                  data-testid="accordion-details"
-                >
-                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
-                </div>
+                What is a dog?
               </div>
+              <button
+                aria-disabled="false"
+                class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+                data-component-type="button"
+                role="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="items-center inline-flex font-semibold text-blue text-md"
+                >
+                  <span
+                    class="flex-1 w-4 h-4 text-[0.7em] text-graphite transition-transform duration-150 ease-in"
+                    data-testid="custom-expand-icon"
+                  />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-labelledby="base-ui-:rh:"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-[starting-style]:h-0 data-[ending-style]:h-0"
+          data-closed=""
+          data-index="0"
+          data-orientation="vertical"
+          hidden=""
+          id="base-ui-:rg:"
+          role="region"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+        >
+          <div
+            class="flex p-0"
+          >
+            <div
+              class="text-[0.875em] font-regular leading-[1.5em] mb-[0.75em] text-graphite"
+              data-testid="accordion-details"
+            >
+              A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
             </div>
           </div>
         </div>
@@ -165,75 +195,96 @@ exports[`Accordion renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll Mui-disabled MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
+      data-component-type="accordion"
+      data-disabled=""
+      data-orientation="vertical"
+      dir="ltr"
+      role="region"
     >
       <div
-        aria-disabled="true"
-        aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-disabled Mui-disabled"
-        role="button"
-        tabindex="-1"
+        data-closed=""
+        data-disabled=""
+        data-index="0"
+        data-orientation="vertical"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
+          data-closed=""
+          data-disabled=""
+          data-index="0"
+          data-orientation="vertical"
         >
           <div
-            class="PicassoAccordion-summaryWrapper"
-            data-testid="accordion-summary"
-          >
-            What is a dog?
-          </div>
-          <div
-            class="PicassoAccordion-expandIconAlignTop"
-          >
-            <button
-              aria-disabled="false"
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
-              data-component-type="button"
-              role="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="items-center inline-flex font-semibold text-blue text-md"
-              >
-                <svg
-                  class="fill-current inline-block align-[-.125em] text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
-                  style="min-width: 16px; min-height: 16px;"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiCollapse-root MuiCollapse-hidden"
-        style="min-height: 0px;"
-      >
-        <div
-          class="MuiCollapse-wrapper"
-        >
-          <div
-            class="MuiCollapse-wrapperInner"
+            aria-disabled="true"
+            aria-expanded="false"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            data-component-type="accordion-summary"
+            data-disabled=""
+            data-orientation="vertical"
+            data-value=""
+            id="base-ui-:rb:"
+            role="button"
+            tabindex="0"
           >
             <div
-              role="region"
+              class="flex grow flex-row items-center justify-between m-0 text-[0.875em] leading-[1.5em]"
+              data-component-type="accordion-summary-content"
             >
               <div
-                class="flex p-0"
+                class="text-black"
+                data-testid="accordion-summary"
               >
-                <div
-                  class="PicassoAccordion-detailsWrapper"
-                  data-testid="accordion-details"
-                >
-                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
-                </div>
+                What is a dog?
               </div>
+              <div
+                class="flex items-center h-[1.5em] self-start"
+              >
+                <button
+                  aria-disabled="false"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+                  data-component-type="button"
+                  role="button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="items-center inline-flex font-semibold text-blue text-md"
+                  >
+                    <svg
+                      class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-[0.7em] text-graphite transition-transform duration-150 ease-in"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-labelledby="base-ui-:rb:"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-[starting-style]:h-0 data-[ending-style]:h-0"
+          data-closed=""
+          data-disabled=""
+          data-index="0"
+          data-orientation="vertical"
+          hidden=""
+          id="base-ui-:ra:"
+          role="region"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+        >
+          <div
+            class="flex p-0"
+          >
+            <div
+              class="text-[0.875em] font-regular leading-[1.5em] mb-[0.75em] text-graphite"
+              data-testid="accordion-details"
+            >
+              A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
             </div>
           </div>
         </div>

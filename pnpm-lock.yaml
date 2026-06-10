@@ -615,15 +615,18 @@ importers:
 
   packages/base/Accordion:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: 5.0.0
         version: link:../Button
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
+      '@toptal/picasso-shared':
+        specifier: 15.0.0
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.6.0'
         version: link:../../picasso-tailwind
@@ -637,9 +640,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-provider':
-        specifier: 5.0.2
-        version: link:../../picasso-provider
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils

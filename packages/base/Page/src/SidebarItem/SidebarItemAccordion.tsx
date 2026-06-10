@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
+import cx from 'classnames'
 import { Accordion } from '@toptal/picasso-accordion'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 
@@ -44,10 +45,14 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
       <ParentItemContextProvider isOpened={isExpanded || false}>
         <Accordion
           onChange={handleAccordionChange}
-          classes={{
-            summary: 'p-0 pl-4 mx-4',
-            content: 'max-w-full',
-          }}
+          // Slot styling routed through the root className until Page's own
+          // migration rewrites this component on @base-ui/react parts
+          className={cx(
+            '[&_[data-component-type="accordion-summary"]]:p-0',
+            '[&_[data-component-type="accordion-summary"]]:pl-4',
+            '[&_[data-component-type="accordion-summary"]]:mx-4',
+            '[&_[data-component-type="accordion-summary-content"]]:max-w-full'
+          )}
           content={content}
           borders='none'
           disabled={disabled}

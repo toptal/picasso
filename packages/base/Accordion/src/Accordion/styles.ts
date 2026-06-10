@@ -1,105 +1,99 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-provider'
+export type Borders = 'all' | 'middle' | 'none'
 
-PicassoProvider.override(() => ({
-  MuiAccordion: {
-    root: {
-      '&$expanded': {
-        margin: 0,
-        '&:before': {
-          opacity: 1,
-        },
-      },
-      '&$disabled': {
-        backgroundColor: 'unset',
-      },
-    },
-  },
-}))
+const separatorBeforeClasses = [
+  'before:content-[""]',
+  'before:absolute',
+  'before:left-0',
+  'before:right-0',
+  'before:h-[1px]',
+  'before:bg-gray-400',
+]
 
-export default ({ palette, typography }: Theme) => {
-  const separatorStyles = {
-    display: 'block',
-    left: 0,
-    right: 0,
-    height: '1px',
-    content: '""',
-    opacity: 1,
-    backgroundColor: palette.grey.light2,
-    position: 'absolute',
+// The legacy JSS ::after had no top/bottom, so its absolute static position
+// sat 1px BELOW the box edge (overlapping the next sibling's first row).
+// -bottom-[1px] reproduces that exact placement.
+const separatorAfterClasses = [
+  'after:content-[""]',
+  'after:absolute',
+  'after:left-0',
+  'after:right-0',
+  'after:-bottom-[1px]',
+  'after:h-[1px]',
+  'after:bg-gray-400',
+]
+
+const createBorderClassNames = (borders: Borders): string[] => {
+  switch (borders) {
+    case 'all':
+      return [
+        ...separatorBeforeClasses,
+        'before:-top-[1px]',
+        ...separatorAfterClasses,
+        // An accordion directly preceded by another accordion hides its own
+        // top separator — the previous sibling's bottom separator already
+        // draws the same line
+        '[[data-component-type="accordion"]+&]:before:hidden',
+      ]
+    case 'middle':
+      return [
+        ...separatorBeforeClasses,
+        'before:top-0',
+        'before:hidden',
+        // The middle separator only shows between two stacked accordions
+        '[[data-component-type="accordion"]+&]:before:block',
+      ]
+    case 'none':
+      return []
+  }
+}
+
+export const createRootClassNames = (borders: Borders): string[] => [
+  'relative',
+  'bg-transparent',
+  'text-[1rem]',
+  'text-graphite-700',
+  ...createBorderClassNames(borders),
+]
+
+export const createExpandIconClassNames = (expanded: boolean): string[] => {
+  const classNames = [
+    'text-[0.7em]',
+    'text-graphite-700',
+    'transition-transform',
+    'duration-150',
+    'ease-in-out',
+  ]
+
+  if (expanded) {
+    classNames.push('rotate-180')
   }
 
-  return createStyles({
-    root: {
-      background: 'transparent',
-      fontSize: '1rem',
-    },
-    bordersAll: {
-      '&:before, &:after': {
-        ...separatorStyles,
-      },
-      '&:first-child:before': {
-        display: 'block',
-      },
-      '& + $root:before': {
-        display: 'none',
-      },
-    },
-    bordersMiddle: {
-      '&:before': {
-        display: 'none',
-      },
-      '&$root + $root:before': {
-        ...separatorStyles,
-        display: 'block',
-        transform: 'translateY(1px)',
-      },
-    },
-    bordersNone: {
-      '&:before, &:after': {
-        display: 'none',
-      },
-    },
-    summaryFontWeightInherit: {
-      fontWeight: 'inherit',
-    },
-    expandIcon: {
-      fontSize: '0.7em',
-      color: palette.grey.dark,
-      transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    },
-    expandIconExpanded: {
-      transform: 'rotate(180deg)',
-    },
-    expandIconAlignTop: {
-      display: 'flex',
-      alignItems: 'center',
-      height: '1.5em',
-      alignSelf: 'flex-start',
-    },
-    summary: {
-      color: palette.common.black,
-    },
-    details: {
-      padding: 0,
-    },
-    summaryWrapper: {
-      color: palette.common.black,
-    },
-    detailsWrapper: {
-      lineHeight: '1.5em',
-      color: palette.grey.darker,
-      fontSize: '0.875em',
-      fontWeight: typography.fontWeights.regular,
-      marginBottom: '0.75em',
-    },
-    content: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      lineHeight: '1.5em',
-    },
-  })
+  return classNames
 }
+
+export const expandIconAlignTopClasses = [
+  'flex',
+  'items-center',
+  'h-[1.5em]',
+  'self-start',
+]
+
+export const panelClasses = [
+  'overflow-hidden',
+  'h-[var(--accordion-panel-height)]',
+  'transition-[height]',
+  'duration-200',
+  'ease-in-out',
+  'data-[starting-style]:h-0',
+  'data-[ending-style]:h-0',
+]
+
+export const summaryWrapperClasses = ['text-black']
+
+export const detailsWrapperClasses = [
+  'text-[0.875em]',
+  'font-regular',
+  'leading-[1.5em]',
+  'mb-[0.75em]',
+  'text-graphite-800',
+]
