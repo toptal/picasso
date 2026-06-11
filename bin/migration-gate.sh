@@ -478,6 +478,14 @@ fi
 # in step 6.
 HEAD_SHA="$(git rev-parse HEAD 2>/dev/null || echo)"
 
+# Decoy sha for the LOCAL Happo-Cypress upload. The gate runs ONLY the migrated
+# component's spec, so keying the upload to the real HEAD sha finalizes a
+# component-scoped Picasso/Cypress report that shadows CI's full-suite report on
+# the PR — every other component then shows as "deleted" (PR #4999). Keying the
+# local upload to a decoy sha leaves the real commit's Cypress comparison to CI
+# alone; step 6's verify reads this decoy comparison via --head-sha.
+CY_LOCAL_SHA="${HEAD_SHA}-miglocal"
+
 # 5. Cypress component spec, only if it exists.
 #    When HAPPO_API_KEY + HAPPO_API_SECRET are present, wrap with `happo-e2e`
 #    to also produce Cypress visual diffs (matches `test:integration:ci`).
@@ -489,10 +497,11 @@ if [ -f "$CY_SPEC" ]; then
     # Default to the Picasso repo's Cypress project per README.md §"Run Happo
     # locally for Cypress". Operator can override via env.
     export HAPPO_PROJECT="${HAPPO_PROJECT:-Picasso/Cypress}"
-    # Key the Happo-Cypress upload to HEAD so step 6's Cypress verify can
-    # compare base→HEAD for the Picasso/Cypress project (same as Storybook).
+    # Key the upload to a DECOY sha (not real HEAD) so it doesn't shadow CI's
+    # full-suite Picasso/Cypress report for this commit — see CY_LOCAL_SHA
+    # above. Step 6's Cypress verify reads base→CY_LOCAL_SHA via --head-sha.
     # happo-e2e auto-finalizes on exit 0 — no HAPPO_NONCE (synchronous upload).
-    export HAPPO_CURRENT_SHA="$HEAD_SHA"
+    export HAPPO_CURRENT_SHA="$CY_LOCAL_SHA"
     run_stage "cypress" \
       pnpm happo-e2e -- pnpm test:setup cypress run --component --spec "$CY_SPEC"
   else
@@ -754,8 +763,9 @@ else
       esac
 
       # ---- Cypress-Happo verify (advisory by default, 2026-06-09) --------
-      # Step 5 uploaded a Picasso/Cypress report for HEAD via happo-e2e's
-      # auto-finalize. Verify it the SAME way as Storybook, reusing the
+      # Step 5 uploaded a Picasso/Cypress report keyed to the decoy
+      # CY_LOCAL_SHA (not real HEAD) via happo-e2e's auto-finalize. Verify it
+      # the SAME way as Storybook, reusing the
       # project-agnostic happo-verify.ts against the Cypress project
       # (HAPPO_CYPRESS_PROJECT_ID, default 848). Writes a sibling
       # happo-verify-cypress.json the orchestrator reads to re-fetch Cypress
@@ -782,6 +792,7 @@ else
           --project-id="$HAPPO_CYPRESS_PROJECT_ID" \
           --project-label="Picasso/Cypress" \
           --component="${COMPONENT##*/}" \
+          --head-sha="$CY_LOCAL_SHA" \
           >"$CY_VERIFY_OUT_FILE" 2>>"$HAPPO_LOG"
 
         CY_VERIFY_STATUS=$(jq -r '.status // "ERROR"' "$CY_VERIFY_OUT_FILE" 2>/dev/null || echo "ERROR")
