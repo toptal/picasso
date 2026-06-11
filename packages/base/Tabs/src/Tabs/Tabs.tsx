@@ -65,29 +65,22 @@ const classesByVariant = {
   },
 } as const
 
-// Sliding active-tab indicator. @base-ui/react's Tabs.Indicator exposes the
-// active tab's geometry as CSS vars (--active-tab-left/width/top/height); the
-// transition on transform restores MUI v4's sliding-underline animation that
-// the per-tab box-shadow lost.
-const indicatorClassesByOrientation = {
-  horizontal: [
-    // z-10 matches the tabs' stacking level so the indicator paints above the
-    // gray baseline (after:z-0); without it the 1px border overpaints the
-    // indicator's bottom edge (the old box-shadow sat on a z-10 tab).
-    'absolute bottom-0 left-0 h-[2px] bg-blue-500 z-10',
-    'w-[var(--active-tab-width)]',
-    'translate-x-[var(--active-tab-left)]',
-    // Tailwind v4 drives translate-x via the `translate` property (not
-    // `transform`), so the slide transition must target `translate`.
-    'transition-[translate,width] duration-300 ease-in-out',
-  ],
-  vertical: [
-    'absolute left-0 top-0 w-[3px] bg-blue-500 rounded-l-sm z-10',
-    'h-[var(--active-tab-height)]',
-    'translate-y-[var(--active-tab-top)]',
-    'transition-[translate,height] duration-300 ease-in-out',
-  ],
-}
+// Sliding active-tab indicator — horizontal only. @base-ui/react's
+// Tabs.Indicator exposes the active tab's geometry as CSS vars
+// (--active-tab-left/width); the transition restores MUI v4's
+// sliding-underline animation that the per-tab box-shadow lost. Vertical tabs
+// use a static per-tab `before:` bar instead (see Tab.tsx) — no slide.
+const horizontalIndicatorClasses = [
+  // z-10 matches the tabs' stacking level so the indicator paints above the
+  // gray baseline (after:z-0); without it the 1px border overpaints the
+  // indicator's bottom edge (the old box-shadow sat on a z-10 tab).
+  'absolute bottom-0 left-0 h-[2px] bg-blue-500 z-10',
+  'w-[var(--active-tab-width)]',
+  'translate-x-[var(--active-tab-left)]',
+  // Tailwind v4 drives translate-x via the `translate` property (not
+  // `transform`), so the slide transition must target `translate`.
+  'transition-[translate,width] duration-300 ease-in-out',
+]
 
 // @base-ui/react's Tab needs an explicit `value`; @mui/base auto-assigned each
 // Tab its 0-based position index when no `value` was given. Preserve that
@@ -164,9 +157,11 @@ const Tabs = forwardRef(
               className={twJoin('relative flex', isVertical && 'flex-col')}
             >
               {withFallbackValue(children)}
-              <BaseUITabs.Indicator
-                className={twJoin(indicatorClassesByOrientation[orientation])}
-              />
+              {!isVertical && (
+                <BaseUITabs.Indicator
+                  className={twJoin(horizontalIndicatorClasses)}
+                />
+              )}
             </BaseUITabs.List>
           </div>
         </BaseUITabs.Root>

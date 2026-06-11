@@ -75,6 +75,17 @@ const rootClassesByOrientation = (selected: boolean) => ({
     'text-left rounded-l-sm rounded-r-none transition-all',
     'w-full overflow-hidden',
     selected && 'shadow-1',
+    // Static active bar (no slide animation for vertical tabs) — clipped by
+    // the tab's own rounded-l-sm + overflow-hidden so it follows the border.
+    selected && [
+      'before:absolute',
+      'before:content-[""]',
+      'before:bottom-0',
+      'before:left-0',
+      'before:top-0',
+      'before:w-[3px]',
+      'before:bg-blue-500',
+    ],
     selected
       ? 'bg-gray-50 text-black'
       : 'bg-gray-100 hover:bg-gray-200 text-graphite-700 hover:text-black',
