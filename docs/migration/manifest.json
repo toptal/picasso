@@ -141,9 +141,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-11T05:54:29.599Z",
-          "review_iterations": 5,
-          "session_id": "0fe7f13a-57f7-4117-b88b-ccc3bbe71fc2",
+          "last_review_seen_at": "2026-06-11T10:47:07.716Z",
+          "review_iterations": 6,
+          "session_id": "e973b771-b366-4d8e-bd96-d6dfbae686c0",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -703,7 +703,7 @@
     "Checkbox": {
       "tier": 2,
       "package": "packages/base/Checkbox",
-      "status": "needs_human",
+      "status": "awaiting_review",
       "depends_on": [
         "FormLabel"
       ],
@@ -717,21 +717,21 @@
       "notes": "Heavy path: MUI v4 + JSS rewrite. CheckboxGroup included.",
       "variants": {
         "v1": {
-          "status": "needs_human",
+          "status": "awaiting_review",
           "pr": "https://github.com/toptal/picasso/pull/4998",
           "branch": "migrate-Checkbox-v1",
           "worktree": "migration-runs/2026-06-05/Checkbox-v1/worktree",
           "iterations": 3,
           "merged_at": null,
-          "escalation_reason": "worktree sync blocked: local has 1 commit(s) not on origin/migrate-Checkbox-v1; reconcile (cherry-pick or confirm + reset) before sync",
+          "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": null,
           "session_id": null,
           "awaiting_ci_since": null,
-          "review_iter_failures": 1
+          "review_iter_failures": 0
         }
       },
-      "escalation_reason": "worktree sync blocked: local has 1 commit(s) not on origin/migrate-Checkbox-v1; reconcile (cherry-pick or confirm + reset) before sync",
+      "escalation_reason": null,
       "last_ci_green_at": null,
       "last_review_seen_at": null,
       "session_id": null,
