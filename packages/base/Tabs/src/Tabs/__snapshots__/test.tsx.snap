@@ -269,7 +269,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
             </span>
           </button>
           <span
-            class="absolute bottom-0 left-0 h-[2px] bg-blue w-[var(--active-tab translate-x-[var(--active-tab transition-[transform,width] duration-300 ease-in"
+            class="absolute bottom-0 left-0 h-[2px] bg-blue z-10 w-[var(--active-tab translate-x-[var(--active-tab transition-[translate,width] duration-300 ease-in"
             data-activation-direction="none"
             data-orientation="horizontal"
             hidden=""
@@ -354,7 +354,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
             </span>
           </button>
           <span
-            class="absolute bottom-0 left-0 h-[2px] bg-blue w-[var(--active-tab translate-x-[var(--active-tab transition-[transform,width] duration-300 ease-in"
+            class="absolute bottom-0 left-0 h-[2px] bg-blue z-10 w-[var(--active-tab translate-x-[var(--active-tab transition-[translate,width] duration-300 ease-in"
             data-activation-direction="none"
             data-orientation="horizontal"
             hidden=""

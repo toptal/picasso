@@ -71,16 +71,21 @@ const classesByVariant = {
 // the per-tab box-shadow lost.
 const indicatorClassesByOrientation = {
   horizontal: [
-    'absolute bottom-0 left-0 h-[2px] bg-blue-500',
+    // z-10 matches the tabs' stacking level so the indicator paints above the
+    // gray baseline (after:z-0); without it the 1px border overpaints the
+    // indicator's bottom edge (the old box-shadow sat on a z-10 tab).
+    'absolute bottom-0 left-0 h-[2px] bg-blue-500 z-10',
     'w-[var(--active-tab-width)]',
     'translate-x-[var(--active-tab-left)]',
-    'transition-[transform,width] duration-300 ease-in-out',
+    // Tailwind v4 drives translate-x via the `translate` property (not
+    // `transform`), so the slide transition must target `translate`.
+    'transition-[translate,width] duration-300 ease-in-out',
   ],
   vertical: [
-    'absolute left-0 top-0 w-[3px] bg-blue-500',
+    'absolute left-0 top-0 w-[3px] bg-blue-500 rounded-l-sm z-10',
     'h-[var(--active-tab-height)]',
     'translate-y-[var(--active-tab-top)]',
-    'transition-[transform,height] duration-300 ease-in-out',
+    'transition-[translate,height] duration-300 ease-in-out',
   ],
 }
 
