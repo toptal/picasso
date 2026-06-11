@@ -58,9 +58,14 @@ Cypress.Commands.add(
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {
-    cy.get('[data-starting-style]', { timeout: 4000 }).should('not.exist')
-
-    return originalFn(subject, options)
+    // happo-cypress serializes the DOM SYNCHRONOUSLY inside its command body,
+    // so the wait must complete before originalFn is invoked. Calling
+    // originalFn outside .then() would serialize immediately — before the
+    // queued cy.get() retries — capturing the opacity-0 first frame.
+    return cy
+      .get('[data-starting-style]', { timeout: 4000 })
+      .should('not.exist')
+      .then(() => originalFn(subject, options))
   }
 )
 

@@ -263,11 +263,16 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         <Dialog.Popup
           {...rest}
           ref={modalRef}
-          // Legacy @mui/base Modal did not move focus into the dialog on open;
-          // base-ui's default initialFocus={true} auto-focuses the first
-          // tabbable element, which e.g. opens a date-picker's calendar on
-          // mount. Picasso's own document-focus handler manages focus instead.
-          initialFocus={false}
+          // Legacy @mui/base Modal's FocusTrap (only enforce-focus was
+          // disabled, not auto-focus) moved focus to the modal ROOT on open
+          // unless focus was already inside — never to the first tabbable
+          // element (base-ui's default, which e.g. opens a date-picker's
+          // calendar on mount). Mirror that exactly.
+          initialFocus={() =>
+            modalRef.current?.contains(document.activeElement)
+              ? undefined
+              : modalRef.current
+          }
           className={twMerge(
             className,
             'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
