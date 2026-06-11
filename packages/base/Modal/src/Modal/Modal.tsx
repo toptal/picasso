@@ -249,15 +249,14 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     >
       <Dialog.Portal container={resolvedContainer}>
         {!hideBackdrop && (
-          // Exit fade mirrors the legacy @toptal/picasso-fade wrapper. The
-          // enter fade is intentionally NOT gated on data-[starting-style]:
-          // base-ui clears that attribute via requestAnimationFrame, but
-          // happo-cypress re-renders the serialized DOM statically (no JS), so
-          // the attribute stays applied in the cloud render and would pin the
-          // backdrop at opacity-0. The open state must therefore be opaque
-          // without depending on JS clearing a transient attribute.
+          // Enter + exit fade mirrors the legacy @toptal/picasso-fade wrapper.
+          // base-ui drives the enter via a transient data-starting-style
+          // attribute it clears on the next animation frame; happoScreenshot is
+          // overridden (cypress/support/commands.jsx) to wait for that
+          // attribute to clear before serializing, so the static cloud render
+          // captures the settled (opaque) state rather than a blank frame.
           <Dialog.Backdrop
-            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-[ending-style]:opacity-0'
+            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
             style={durationStyle}
           />
         )}
@@ -271,7 +270,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           initialFocus={false}
           className={twMerge(
             className,
-            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[ending-style]:opacity-0'
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
           )}
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
