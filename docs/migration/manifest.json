@@ -141,9 +141,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-09T22:38:54.921Z",
-          "review_iterations": 4,
-          "session_id": "63effcd8-4bd2-45f0-bbec-697f60cbc52f",
+          "last_review_seen_at": "2026-06-11T05:54:29.599Z",
+          "review_iterations": 5,
+          "session_id": "0fe7f13a-57f7-4117-b88b-ccc3bbe71fc2",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -167,8 +167,8 @@
       "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-      "last_review_seen_at": "2026-06-09T22:46:02.657Z",
-      "session_id": "5ae57c73-f889-4e76-b227-68532c3a8897",
+      "last_review_seen_at": "2026-06-11T06:03:30.044Z",
+      "session_id": "11d56742-3cdf-4844-998d-ba9badaa4377",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -180,13 +180,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-          "last_review_seen_at": "2026-06-09T22:46:02.657Z",
-          "session_id": "5ae57c73-f889-4e76-b227-68532c3a8897",
+          "last_review_seen_at": "2026-06-11T06:03:30.044Z",
+          "session_id": "11d56742-3cdf-4844-998d-ba9badaa4377",
           "awaiting_ci_since": null,
-          "review_iterations": 5
+          "review_iterations": 6
         }
       },
-      "review_iterations": 5
+      "review_iterations": 6
     },
     "Slider": {
       "tier": 0,
@@ -282,8 +282,8 @@
       "notes": "Prior v1 run on 2026-05-21 escalated needs_human (migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest, identical content across 2 consecutive iters). Worktree migration-runs/2026-05-21/Tabs-v1/worktree was left dirty for operator inspection; discarded for clean restart.",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T23:19:45.030Z",
-      "last_review_seen_at": "2026-06-09T23:01:59.556Z",
-      "session_id": "8f8e400d-534a-4d1e-b713-0b8401df7e16",
+      "last_review_seen_at": "2026-06-11T06:18:01.862Z",
+      "session_id": "64fe94e7-1518-4ad3-8507-c82b43974821",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -295,13 +295,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T23:19:45.030Z",
-          "last_review_seen_at": "2026-06-09T23:01:59.556Z",
-          "session_id": "8f8e400d-534a-4d1e-b713-0b8401df7e16",
+          "last_review_seen_at": "2026-06-11T06:18:01.862Z",
+          "session_id": "64fe94e7-1518-4ad3-8507-c82b43974821",
           "awaiting_ci_since": null,
-          "review_iterations": 1
+          "review_iterations": 2
         }
       },
-      "review_iterations": 1
+      "review_iterations": 2
     },
     "Form": {
       "tier": 1,
@@ -762,16 +762,18 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": null,
-          "session_id": null,
-          "awaiting_ci_since": null
+          "last_review_seen_at": "2026-06-11T06:53:05.075Z",
+          "session_id": "d376f4d9-3237-4571-b68b-baef33da7c35",
+          "awaiting_ci_since": null,
+          "review_iterations": 1
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": null,
-      "session_id": null,
-      "awaiting_ci_since": null
+      "last_review_seen_at": "2026-06-11T06:53:05.075Z",
+      "session_id": "d376f4d9-3237-4571-b68b-baef33da7c35",
+      "awaiting_ci_since": null,
+      "review_iterations": 1
     },
     "Tooltip": {
       "tier": 2,
@@ -806,16 +808,39 @@
     "Popper": {
       "tier": 2,
       "package": "packages/base/Popper",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "@floating-ui/react",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/5001",
+      "branch": "migrate-Popper-v1",
+      "worktree": "migration-runs/2026-06-10/Popper-v1/worktree",
+      "iterations": 5,
       "merged_at": null,
-      "notes": "Heavy path. No standalone Popper in @base-ui/react. Decision LOCKED: docs/migration/decisions/popper-replacement.md — @floating-ui/react direct dep (already transitive via @base-ui/react). Dropdown (Tier 3) depends on this."
+      "notes": "Heavy path. No standalone Popper in @base-ui/react. Decision LOCKED: docs/migration/decisions/popper-replacement.md — @floating-ui/react direct dep (already transitive via @base-ui/react). Dropdown (Tier 3) depends on this.",
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/5001",
+          "branch": "migrate-Popper-v1",
+          "worktree": "migration-runs/2026-06-10/Popper-v1/worktree",
+          "iterations": 5,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": "2026-06-11T07:03:53.029Z",
+          "session_id": "919ff2a0-eecf-415e-bcc0-0822a4fb242c",
+          "awaiting_ci_since": null,
+          "review_iter_failures": 0,
+          "review_iterations": 1
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": "2026-06-11T07:03:53.029Z",
+      "session_id": "919ff2a0-eecf-415e-bcc0-0822a4fb242c",
+      "awaiting_ci_since": null,
+      "review_iterations": 1
     },
     "Accordion": {
       "tier": 3,
@@ -852,7 +877,7 @@
     "Page": {
       "tier": 3,
       "package": "packages/base/Page",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [
         "Backdrop",
         "Modal",
@@ -867,12 +892,34 @@
       ],
       "target_path": "none",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/5003",
+      "branch": "migrate-Page-v1",
+      "worktree": "migration-runs/2026-06-10/Page-v1/worktree",
+      "iterations": 2,
       "merged_at": null,
-      "notes": "Heavy composite, pure Tailwind rewrite. No @base-ui/react Page analog. Picasso-specific shell (hamburger, responsive). Migrate absolutely last in base/* — depends on most of Tier 0 + Tier 2."
+      "notes": "Heavy composite, pure Tailwind rewrite. No @base-ui/react Page analog. Picasso-specific shell (hamburger, responsive). Migrate absolutely last in base/* — depends on most of Tier 0 + Tier 2.",
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/5003",
+          "branch": "migrate-Page-v1",
+          "worktree": "migration-runs/2026-06-10/Page-v1/worktree",
+          "iterations": 2,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": "2026-06-10T18:51:29.057Z",
+          "last_review_seen_at": "2026-06-11T07:15:13.119Z",
+          "session_id": "0eaa2036-0a69-4dbe-8bd4-c454ebfa9ddc",
+          "awaiting_ci_since": null,
+          "review_iterations": 1
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": "2026-06-10T18:51:29.057Z",
+      "last_review_seen_at": "2026-06-11T07:15:13.119Z",
+      "session_id": "0eaa2036-0a69-4dbe-8bd4-c454ebfa9ddc",
+      "awaiting_ci_since": null,
+      "review_iterations": 1
     },
     "OutlinedInput": {
       "tier": 3,

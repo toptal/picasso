@@ -537,3 +537,27 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Drop React peer-dep upper bounds when migrating off `@mui/base` — use open-ended `">=16.12.0"` so consumers on React 19 aren't blocked by an artificial cap inherited from the legacy dep.
 - The changeset must explicitly enumerate non-API breaks (portal/backdrop DOM shape, `data-base-ui-portal`, dropped `sentinelStart`/`sentinelEnd`, transition classes replacing `@toptal/picasso-fade`) for selector- and snapshot-based consumers — Props-API-preserved is not the same as no-consumer-impact, and reviewers expect that called out.
 - Reference: https://github.com/toptal/picasso/pull/4993
+
+## Page — 2026-06-10
+
+- Tier 3 · target_path: `none` · iterations: 2
+- When the JSS theme exposed a *runtime-configurable* field (e.g. `layout.contentMinWidth`, set via `PicassoProvider.disableResponsiveStyle()` / `extendTheme`), read it via `PicassoProvider.theme.X` and emit it as inline `style`/CSS-var — static Tailwind classes can't replace values that are mutated at runtime.
+- Peer-dependency cleanup on a JSS→Tailwind swap drops `@material-ui/core` AND lifts the inherited `<19.0.0` React cap (widen `"react"` to `">=16.12.0"`); also prune now-unused runtime deps like `classnames` from both `dependencies` and `pnpm-lock.yaml` in the same PR.
+- Removing the JSS `name: '<Component>'` option drops the auto-generated `<Component>-root` class from the rendered output, so the component's own Jest snapshot needs regenerating — and any downstream consumer/integration snapshots or CSS/test selectors targeting that legacy class need to be called out as breaking in the changeset.
+- Reference: https://github.com/toptal/picasso/pull/5003
+
+## Modal — 2026-06-11 (review iter 6)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 6
+- When porting any component whose legacy implementation used `Fade` (or any open/close transition), preserve **symmetric** enter+exit fade on the base-ui replacement via paired `data-[starting-style]:opacity-0` + `data-[ending-style]:opacity-0` on the animated part — reviewers will reject one-sided or absent transitions as a visible regression, even when functional parity is intact.
+- happo-cypress serializes the live DOM and re-renders it statically, so any element still carrying base-ui's transient `data-starting-style` attribute at capture time renders at its starting style (e.g. blank/opacity-0); the durable fix is the global `Cypress.Commands.overwrite('happoScreenshot', …)` that waits for `[data-starting-style]` to disappear before serializing — add this to `cypress/support/commands.jsx` once, not per-component, and document it in `docs/migration/references/base-ui-styling.md` alongside the styling override ladder.
+- When the agent flip-flops on a visual decision across iterations (animations on → off → on), that's a signal it's guessing at parity instead of grounding in the legacy behavior + the base-ui upstream demo; future migrations should cite the base-ui docs page for the primitive in the PR description and lock the transition decision to "match legacy + match base-ui demo" up front, not negotiate it via Happo failures.
+- Reference: https://github.com/toptal/picasso/pull/4993
+
+## Tabs — 2026-06-11 (review iter 2)
+
+- Tier 0 · target_path: `@base-ui/react/tabs` · iterations: 2
+- When a migrated component depends on a sliding/animated indicator (`Tabs.Indicator`, similar Base UI slot-driven primitives), pair it with the right Tailwind v4 transition target — animations driven by CSS vars use the `translate` property, so `transition-[translate,width]` is required (not `transition-transform`), and the indicator must inherit the tab's border-radius (e.g. `rounded-l-sm` on vertical) — see `docs/migration/references/base-ui-styling.md`.
+- Reviewers measure visual parity in pixels, not "feature present": indicator thickness, border-radius, and slide animation are part of the visual contract, so reproduce them from the MUI v4 baseline (2px horizontal / 3px vertical, rounded-corner conformance, 0.3s slide between tabs) and confirm in Storybook before pushing — declaring "added Tabs.Indicator" without exercising selection in the browser leaves the most-flagged regression class on the PR.
+- When swapping a primitive that drove selection styling via a per-item rule (e.g. `box-shadow` on selected tab) for one driven by a parent-level indicator slot, remove the per-item visual entirely — leaving both produces stacked/doubled affordances that reviewers will flag, and the indicator must be the single source of truth for "active" geometry.
+- Reference: https://github.com/toptal/picasso/pull/4996

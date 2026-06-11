@@ -51,6 +51,11 @@ interface VerifyArgs {
    * surfaced in the output but don't fail the gate (they're handled at
    * sweep level as "unrelated flake"). */
   migratedComponent?: string
+  /** Explicit HEAD sha to verify, overriding `git rev-parse HEAD`. The
+   * migration gate keys its LOCAL Happo-Cypress upload to a decoy sha
+   * (`<HEAD>-miglocal`) so it doesn't shadow CI's full-suite report for the
+   * real commit; this lets the verifier read that decoy comparison. */
+  headShaOverride?: string
 }
 
 interface CompareDiffSnap {
@@ -92,6 +97,7 @@ const parseArgs = (): VerifyArgs => {
     projectId: required('project-id'),
     projectLabel: required('project-label'),
     migratedComponent: get('component'),
+    headShaOverride: get('head-sha'),
   }
 }
 
@@ -301,9 +307,12 @@ const main = async (): Promise<void> => {
     die('HAPPO_API_KEY / HAPPO_API_SECRET unset — gate cannot verify')
   }
 
-  // Resolve HEAD SHA from the worktree's git state. This is the SHA that
-  // `pnpm happo` just uploaded for (Happo CLI uses `git rev-parse HEAD`).
-  const headSha = git(['rev-parse', 'HEAD'], args.worktree)
+  // Resolve HEAD SHA. Defaults to the worktree's git HEAD (the SHA the Happo
+  // CLI uploads under — `git rev-parse HEAD`). The Cypress gate passes
+  // --head-sha to point at its decoy upload key (`<HEAD>-miglocal`) instead,
+  // so its local report doesn't shadow CI's full-suite report for the commit.
+  const headSha =
+    args.headShaOverride || git(['rev-parse', 'HEAD'], args.worktree)
 
   // Cascade BASE SHA selection. Picasso has two CI paths that upload
   // Happo reports:
