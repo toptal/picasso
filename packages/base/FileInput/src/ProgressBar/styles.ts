@@ -1,24 +1,10 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared'
+// palette.grey.light (#e5e7ea) → gray-300; palette.blue.light (#25a9ef) → blue-400
+// sizes.borderRadius.small (4px) → rounded-sm
+// TODO(tokens): [PF-1994] 80px / 29px min-widths and 18px line-height are off the Picasso scales
+export const progressBarClasses =
+  'w-full min-w-[5rem] h-2 bg-gray-300 rounded-sm'
 
-export default ({ palette, sizes }: Theme) =>
-  createStyles({
-    progressBar: {
-      width: '100%',
-      minWidth: rem('80px'),
-      height: '0.5rem',
-      background: palette.grey.light,
-      borderRadius: sizes.borderRadius.small,
-    },
-    progressIndicator: {
-      height: '0.5rem',
-      borderRadius: sizes.borderRadius.small,
-      background: palette.blue.light,
-      transition: 'width 0.3s ease-in-out',
-    },
-    percentageValue: {
-      minWidth: rem('29px'),
-      lineHeight: rem('18px'),
-    },
-  })
+export const progressIndicatorClasses =
+  'h-2 rounded-sm bg-blue-400 transition-[width] duration-300 ease-in-out'
+
+export const percentageValueClasses = 'min-w-[1.8125rem] leading-[1.125rem]'

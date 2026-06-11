@@ -1,18 +1,7 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared'
+// palette.grey.lighter2 (#ebeced) → gray-200
+// TODO(tokens): [PF-1994] 5px vertical padding is off the 4px Picasso spacing scale
+export const rootClasses = 'border-b border-gray-200 py-[0.3125rem]'
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    root: {
-      borderBottom: `1px solid ${palette.grey.lighter2}`,
-      paddingTop: rem('5px'),
-      paddingBottom: rem('5px'),
-    },
-    label: {
-      lineHeight: rem('22px'),
-    },
-    fileNodeContent: {
-      minWidth: 0,
-    },
-  })
+export const labelClasses = 'leading-[1.375rem]'
+
+export const fileNodeContentClasses = 'min-w-0'
