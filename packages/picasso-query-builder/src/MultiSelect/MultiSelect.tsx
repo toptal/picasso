@@ -1,21 +1,18 @@
 import React, { useMemo } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Select } from '@toptal/picasso-select'
-import { makeStyles } from '@material-ui/core/styles'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
 } from '../types/query-builder'
-import styles from './styles'
+import { rootClassName } from './styles'
 
 type Props = BaseVersatileSelectorProps &
   ValueEditorValidationProps & {
     valueEditorTestId?: string
   }
-
-const useStyles = makeStyles(styles)
 
 export const MultiSelect = ({
   options,
@@ -29,8 +26,6 @@ export const MultiSelect = ({
   fieldData,
   valueEditorTestId,
 }: Props) => {
-  const classes = useStyles()
-
   const hasError = validateValueEditor({
     validation,
     touched,
@@ -45,7 +40,7 @@ export const MultiSelect = ({
   }, [value])
 
   return (
-    <Container className={classes.root}>
+    <Container className={rootClassName}>
       <Select
         disabled={disabled}
         className={className}

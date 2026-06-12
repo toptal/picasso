@@ -3,7 +3,6 @@ import { Container } from '@toptal/picasso-container'
 import { TagSelector as PicassoTagSelector } from '@toptal/picasso-tagselector'
 import { useDebouncedCallback } from 'use-debounce'
 import type { Item } from '@toptal/picasso-tagselector'
-import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { validateValueEditor } from '../utils'
@@ -11,7 +10,7 @@ import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
 } from '../types/query-builder'
-import styles from './styles'
+import { rootClassName, fullWidthClassName } from './styles'
 
 interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
   fullWidth?: boolean
@@ -20,8 +19,6 @@ interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
 
 const EMPTY_INPUT_VALUE = ''
 const NO_OPTIONS_TEXT = 'No matches found'
-
-const useStyles = makeStyles(styles)
 
 export const AutoComplete = ({
   handleOnChange,
@@ -34,8 +31,6 @@ export const AutoComplete = ({
   handleTouched,
   valueEditorTestId,
 }: Props) => {
-  const classes = useStyles()
-
   const hasError = validateValueEditor({
     validation,
     touched,
@@ -73,8 +68,8 @@ export const AutoComplete = ({
   return (
     <Container
       className={cx({
-        [classes.fullWidth]: fullWidth,
-        [classes.root]: !fullWidth,
+        [fullWidthClassName]: fullWidth,
+        [rootClassName]: !fullWidth,
       })}
       style={{ background: fullWidth ? 'none' : 'transparent' }}
     >

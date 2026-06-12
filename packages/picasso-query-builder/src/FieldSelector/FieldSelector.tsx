@@ -2,13 +2,10 @@ import React from 'react'
 import type { ComponentProps } from 'react'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
-import { makeStyles } from '@material-ui/core/styles'
 import { SPACING_4 } from '@toptal/picasso-provider'
 
 import { Select } from '../Select'
-import styles from './styles'
-
-const useStyles = makeStyles(styles)
+import { tooltipOptionTextClassName } from './styles'
 
 export const FieldSelector = ({
   context: { resetSubmitButtonClicked, getDisabledFields, testIds },
@@ -17,7 +14,6 @@ export const FieldSelector = ({
 }: ComponentProps<typeof Select>) => {
   // TODO: https://toptal-core.atlassian.net/browse/CPT-947
   const disabledFields = getDisabledFields()
-  const classes = useStyles()
 
   return (
     <Select
@@ -44,7 +40,7 @@ export const FieldSelector = ({
               }}
             >
               <Typography
-                className={classes.tooltipOptionText}
+                className={tooltipOptionTextClassName}
                 variant='body'
                 size='medium'
                 color='inherit'

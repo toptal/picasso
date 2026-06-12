@@ -1,8 +1,1 @@
-import { createStyles } from '@material-ui/core/styles'
-
-export default () =>
-  createStyles({
-    root: {
-      flex: '1 0 9.25rem',
-    },
-  })
+export const rootClassName = 'flex-[1_0_9.25rem]'
