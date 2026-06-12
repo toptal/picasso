@@ -324,8 +324,11 @@ export const Dropdown: DropdownProps = forwardRef<
             <Paper
               style={contentStyle}
               className={twMerge(
-                'transition-[opacity,transform] duration-200 ease-out',
-                isOpen ? 'scale-100 opacity-100' : 'invisible scale-90 opacity-0',
+                // Fade only — no transform. MUI Grow settled at `transform: none`;
+                // a lingering `scale(1)` would make Paper a containing block and
+                // re-anchor any Popper-positioned content (e.g. a Tooltip) inside it.
+                'transition-opacity duration-200 ease-out',
+                isOpen ? 'opacity-100' : 'invisible opacity-0',
                 contentOverflow === 'visible'
                   ? contentClass.contentVisible
                   : contentClass.content,

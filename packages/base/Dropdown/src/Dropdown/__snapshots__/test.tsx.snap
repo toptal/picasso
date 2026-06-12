@@ -65,7 +65,7 @@ exports[`Dropdown should render menu 1`] = `
       >
         <div>
           <div
-            class="bg-white shadow-0 delay-0 transition-[opacity,transform] duration-200 ease-out scale-100 opacity-100 overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
+            class="bg-white shadow-0 delay-0 transition-opacity duration-200 ease-out opacity-100 overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
           >
             <div>
               <ul
@@ -194,7 +194,7 @@ exports[`Dropdown should render menu with focus 1`] = `
       >
         <div>
           <div
-            class="bg-white shadow-0 delay-0 transition-[opacity,transform] duration-200 ease-out scale-100 opacity-100 overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
+            class="bg-white shadow-0 delay-0 transition-opacity duration-200 ease-out opacity-100 overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
           >
             <div>
               <ul
