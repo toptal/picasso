@@ -115,28 +115,31 @@ const branches: string[] = [
   '[&_.queryBuilder-branches_.rule:last-child]:before:rounded-bl-none',
   '[&_.queryBuilder-branches_.rule:last-child]:after:hidden',
 
-  // nested `.ruleGroup .ruleGroup` connectors (calc offsets applied)
+  // nested `.ruleGroup .ruleGroup` connectors. The legacy JSS defined a +1px
+  // (`calc(-1rem - 1px)`) override block for these, but the base connector block
+  // wins in the deployed baseline, so the connector geometry matches `.rule`
+  // (-16px offsets). Only the `p-4` padding from the override survives.
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:relative',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:p-4',
   "[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:content-['']",
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:absolute',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:w-3',
-  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[left:calc(-1rem_-_0.0625rem)]',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:-left-4',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:border-blue-400',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:border-solid',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:rounded-none',
-  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[top:calc(-1rem_-_0.0625rem)]',
-  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[height:calc(50%_+_1rem_+_0.0625rem)]',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:-top-4',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[height:calc(50%_+_1rem)]',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[border-width:0_0_0.0625rem_0.0625rem]',
   "[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:content-['']",
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:absolute',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:w-3',
-  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:[left:calc(-1rem_-_0.0625rem)]',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:-left-4',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:border-blue-400',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:border-solid',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:rounded-none',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:top-1/2',
-  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:[height:calc(50%_+_0.0625rem)]',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:h-1/2',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:[border-width:0_0_0_0.0625rem]',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup:last-child]:before:rounded-bl-none',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup:last-child]:after:hidden',
