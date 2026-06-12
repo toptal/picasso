@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import type { Field } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
   defaultOperators,
+  type Field,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import type { DefaultOperator, RuleType } from 'react-querybuilder'

@@ -6,14 +6,13 @@ import type {
   CommonSubComponentProps,
   ValidationResult,
 } from 'react-querybuilder'
-import { makeStyles } from '@material-ui/core/styles'
 
 import type {
   RangeFieldOptions,
   RangeValue,
   ValueEditorValidationProps,
 } from '../types/query-builder'
-import styles from './styles'
+import { inputClassName } from './styles'
 
 type Props = RangeFieldOptions & {
   /**
@@ -24,8 +23,6 @@ type Props = RangeFieldOptions & {
   valueEditorTestId?: string
 } & ValueEditorValidationProps &
   Pick<CommonSubComponentProps, 'context'>
-
-const useStyles = makeStyles(styles)
 
 export const RangeInput = ({
   value,
@@ -38,8 +35,6 @@ export const RangeInput = ({
   handleTouched,
   valueEditorTestId,
 }: Props) => {
-  const classes = useStyles()
-
   const fromValue = (value as RangeValue).from ?? ''
   const toValue = (value as RangeValue).to ?? ''
 
@@ -58,7 +53,7 @@ export const RangeInput = ({
       <Typography variant='body' className='self-center'>
         From
       </Typography>
-      <Container flex className={classes.input}>
+      <Container flex className={inputClassName}>
         <NumberInput
           hideControls
           enableReset
@@ -88,7 +83,7 @@ export const RangeInput = ({
       <Typography variant='body' className='self-center'>
         To
       </Typography>
-      <Container flex className={classes.input}>
+      <Container flex className={inputClassName}>
         <NumberInput
           hideControls
           enableReset

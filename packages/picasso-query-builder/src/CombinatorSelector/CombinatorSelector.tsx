@@ -3,13 +3,10 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { RadioGroup as PicassoRadioGroup } from '@toptal/picasso-radio'
 import type { CombinatorSelectorProps } from 'react-querybuilder'
-import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { RadioOptions } from './RadioOptions'
-import styles from './styles'
-
-const useStyles = makeStyles(styles)
+import { rootClassName } from './styles'
 
 export const CombinatorSelector = ({
   value,
@@ -19,14 +16,12 @@ export const CombinatorSelector = ({
   className,
   level,
 }: Omit<CombinatorSelectorProps, 'schema'>) => {
-  const classes = useStyles()
-
   return (
     <Container
       flex
       alignItems='center'
       gap='small'
-      className={cx(className, classes.root)}
+      className={cx(className, rootClassName)}
     >
       {level === 0 && <Typography weight='semibold'>Query</Typography>}
       <PicassoRadioGroup

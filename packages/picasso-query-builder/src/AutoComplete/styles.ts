@@ -1,12 +1,2 @@
-import { createStyles } from '@material-ui/core/styles'
-
-export default () =>
-  createStyles({
-    root: {
-      width: '206px',
-      flexShrink: 0,
-    },
-    fullWidth: {
-      flexGrow: 1,
-    },
-  })
+export const rootClassName = 'w-[206px] shrink-0'
+export const fullWidthClassName = 'grow'

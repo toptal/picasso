@@ -1,12 +1,11 @@
 import React from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Input } from '@toptal/picasso-input'
-import { makeStyles } from '@material-ui/core/styles'
 import type { CommonSubComponentProps } from 'react-querybuilder'
 
 import { validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
-import styles from '../ValueEditor/styles'
+import { rootClassName } from '../ValueEditor/styles'
 
 type Props = {
   value: string
@@ -17,8 +16,6 @@ type Props = {
   valueEditorTestId?: string
 } & ValueEditorValidationProps &
   Pick<CommonSubComponentProps, 'context'>
-
-const useStyles = makeStyles(styles)
 
 export const TextInput = ({
   value,
@@ -31,15 +28,13 @@ export const TextInput = ({
   handleTouched,
   valueEditorTestId,
 }: Props) => {
-  const classes = useStyles()
-
   const hasError = validateValueEditor({
     validation,
     touched,
   })
 
   return (
-    <Container className={classes.root}>
+    <Container className={rootClassName}>
       <Input
         width='full'
         value={value}
