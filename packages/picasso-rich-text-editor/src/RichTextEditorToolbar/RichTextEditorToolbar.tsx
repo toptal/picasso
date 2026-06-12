@@ -1,5 +1,3 @@
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import {
   Bold16,
   Italic16,
@@ -40,10 +38,6 @@ type Props = {
   onOrderedClick?: ButtonHandlerType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'RichTextEditorToolbar',
-})
-
 export const ALLOWED_HEADER_TYPE = '3'
 
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
@@ -70,16 +64,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 
     const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
 
-    const classes = useStyles({
-      format,
-      onBoldClick,
-      onItalicClick,
-      onHeaderChange,
-      onUnorderedClick,
-      onOrderedClick,
-      testIds,
-      id,
-    })
+    const classes = styles
 
     const isInlineFormattingDisabled =
       disabled || disabledFormatting || !focused

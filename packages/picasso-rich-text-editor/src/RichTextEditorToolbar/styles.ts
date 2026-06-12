@@ -1,35 +1,11 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+const group =
+  "flex items-center relative [pointer-events:unset] [&:not(:last-child):not(:empty)]:after:content-[''] [&:not(:last-child):not(:empty)]:after:h-[1em] [&:not(:last-child):not(:empty)]:after:w-px [&:not(:last-child):not(:empty)]:after:relative [&:not(:last-child):not(:empty)]:after:mx-[0.5em] [&:not(:last-child):not(:empty)]:after:bg-gray-200"
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    toolbar: {
-      display: 'flex',
-      borderBottom: `1px solid ${palette.grey.light2}`,
-      paddingBottom: '0.5em',
-    },
-    group: {
-      display: 'flex',
-      alignItems: 'center',
-      position: 'relative',
-      pointerEvents: 'unset',
+const styles: Record<string, string> = {
+  toolbar: 'flex border-b border-gray-400 pb-[0.5em]',
+  group,
+  select: 'w-[7.125em]',
+  groupDisabled: 'pointer-events-none',
+}
 
-      '&:not(:last-child):not(:empty)::after': {
-        content: '""',
-        height: '1em',
-        width: '1px',
-        position: 'relative',
-        marginLeft: '0.5em',
-        marginRight: '0.5em',
-        backgroundColor: palette.grey.lighter2,
-      },
-    },
-    select: {
-      // XXX: Using important to override Tailwind styles, remove when migrating RTE to Tailwind
-      width: '7.125em !important',
-    },
-
-    groupDisabled: {
-      pointerEvents: 'none',
-    },
-  })
+export default styles

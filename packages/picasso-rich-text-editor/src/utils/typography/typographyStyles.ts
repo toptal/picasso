@@ -1,114 +1,36 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+// Static Tailwind class map keyed identically to the legacy JSS class names so
+// `getTypographyClassName` can keep looking entries up by computed key.
+// All body variants share the same look as the legacy MUI body1 variant.
+export const typographyStyles: Record<string, string> = {
+  // text-* tokens bundle the matching font-size + line-height pairs.
+  bodyXxsmall: 'text-graphite-700 font-regular text-2xs',
+  bodyXsmall: 'text-graphite-700 font-regular text-xxs',
+  bodySmall: 'text-graphite-700 font-regular text-sm',
+  bodyMedium: 'text-graphite-700 font-regular text-md',
+  bodyLarge: 'text-black font-regular text-lg',
+  // No token covers the em-relative inherit variant.
+  bodyInherit: 'text-graphite-700 font-regular text-[1em] leading-[1.5em]',
 
-const getHeadingMedium = (theme: Theme) => ({
-  color: theme.palette.common.black,
-  fontWeight: theme.typography.fontWeights.semibold,
-  fontSize: '16px',
-  lineHeight: '24px',
-})
+  headingMedium: 'text-black font-semibold text-lg',
 
-export const typographyStyles = (theme: Theme) => {
-  const { palette, typography } = theme
+  regular: 'font-regular',
+  semibold: 'font-semibold',
+  inheritWeight: 'font-inherit',
 
-  // All the body variants are mapped to the same MUI variant (body1) -> declaring styles via custom class names
-  return createStyles({
-    bodyXxsmall: {
-      color: palette.text.primary,
-      fontWeight: typography.fontWeights.regular,
-      fontSize: typography.fontSizes.xxsmall,
-      lineHeight: '16px',
-    },
-    bodyXsmall: {
-      color: palette.text.primary,
-      fontWeight: typography.fontWeights.regular,
-      fontSize: typography.fontSizes.xsmall,
-      lineHeight: '18px',
-    },
-    bodySmall: {
-      color: palette.text.primary,
-      fontWeight: typography.fontWeights.regular,
-      fontSize: typography.fontSizes.small,
-      lineHeight: '20px',
-    },
-    bodyMedium: {
-      color: palette.text.primary,
-      fontWeight: typography.fontWeights.regular,
-      fontSize: typography.fontSizes.medium,
-      lineHeight: '22px',
-    },
-    bodyLarge: {
-      color: palette.common.black,
-      fontWeight: typography.fontWeights.regular,
-      fontSize: typography.fontSizes.large,
-      lineHeight: '24px',
-    },
-    bodyInherit: {
-      fontSize: '1em',
-      lineHeight: '1.5em',
-      fontWeight: typography.fontWeights.regular,
-      color: palette.text.primary,
-    },
+  green: 'text-green-600',
+  red: 'text-red-500',
+  yellow: 'text-yellow-500',
+  lightGrey: 'text-gray-400',
+  grey: 'text-gray-500',
+  'greyMain-2': 'text-gray-600',
+  darkGrey: 'text-graphite-700',
+  black: 'text-black',
+  lightBlue: 'text-blue-400',
+  invert: 'text-white',
+  inherit: 'text-inheritColor',
+  blue: 'text-blue-500',
 
-    headingMedium: getHeadingMedium(theme),
-
-    regular: {
-      fontWeight: typography.fontWeights.regular,
-    },
-    semibold: {
-      fontWeight: typography.fontWeights.semibold,
-    },
-    inheritWeight: {
-      fontWeight: 'inherit',
-    },
-
-    green: {
-      color: palette.green.dark,
-    },
-    red: {
-      color: palette.red.main,
-    },
-    yellow: {
-      color: palette.yellow.main,
-    },
-    lightGrey: {
-      color: palette.grey.light2,
-    },
-    grey: {
-      color: palette.grey.main,
-    },
-    'greyMain-2': {
-      color: palette.grey.main2,
-    },
-    darkGrey: {
-      color: palette.text.primary,
-    },
-    black: {
-      color: palette.common.black,
-    },
-    lightBlue: {
-      color: palette.blue.light,
-    },
-    invert: {
-      color: palette.common.white,
-    },
-    inherit: {
-      color: 'inherit',
-    },
-    blue: {
-      color: palette.blue.main,
-    },
-
-    solid: {
-      textDecoration: 'underline',
-      textDecorationStyle: 'solid',
-    },
-    dashed: {
-      textDecoration: 'underline',
-      textDecorationStyle: 'dashed',
-    },
-    lineThrough: {
-      textDecoration: 'line-through',
-    },
-  })
+  solid: 'underline decoration-solid',
+  dashed: 'underline decoration-dashed',
+  lineThrough: 'line-through',
 }

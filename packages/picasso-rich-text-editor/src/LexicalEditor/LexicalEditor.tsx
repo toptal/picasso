@@ -10,8 +10,6 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode } from '@lexical/rich-text'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -39,10 +37,6 @@ import type {
 } from './types'
 import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
 import type { CustomEmojiGroup } from '../plugins/EmojiPlugin'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'LexicalEditor',
-})
 
 const removeAttributesFromString = (htmlString: string) => {
   return htmlString.replace(/\s(class|dir|value)="[^"]*"/g, '')
@@ -140,7 +134,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     hiddenInputId,
   } = props
 
-  const classes = useStyles()
+  const classes = styles
 
   const toolbarRef = useRef<HTMLDivElement | null>(null)
 
