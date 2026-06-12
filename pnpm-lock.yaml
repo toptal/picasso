@@ -3738,6 +3738,9 @@ importers:
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../picasso-tailwind
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../picasso-tailwind-merge
       '@toptal/picasso-tooltip':
         specifier: 2.0.5
         version: link:../base/Tooltip

@@ -44,6 +44,7 @@
     "@toptal/picasso-number-input": "5.0.0",
     "@toptal/picasso-prompt-modal": "3.0.0",
     "@toptal/picasso-notification": "5.0.0",
+    "@toptal/picasso-tailwind-merge": "2.0.4",
     "@toptal/picasso-utils": "4.0.0",
     "classnames": "^2.5.1",
     "react-dnd": "^16.0.1",

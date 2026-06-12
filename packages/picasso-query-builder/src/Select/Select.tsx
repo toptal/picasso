@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Select as PicassoSelect } from '@toptal/picasso-select'
 import type { VersatileSelectorProps } from 'react-querybuilder'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
@@ -40,7 +40,7 @@ export const Select = ({
   })
 
   return (
-    <Container className={cx(className, rootClassName)}>
+    <Container className={twMerge(rootClassName, className)}>
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}
