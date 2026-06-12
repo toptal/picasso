@@ -1,5 +1,10 @@
 import type { MouseEvent } from 'react'
-import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+} from 'react'
 import {
   InputAdornment,
   InputValidIconAdornment,
@@ -8,11 +13,7 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { noop } from '@toptal/picasso-utils'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
-import { Input, type InputOwnerState } from '@mui/base/Input'
-import {
-  TextareaAutosize,
-  type TextareaAutosizeProps,
-} from '@mui/base/TextareaAutosize'
+import TextareaAutosize from 'react-textarea-autosize'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { getRootClassName } from './stylesRoot'
@@ -53,22 +54,6 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const Textarea = forwardRef<
-  HTMLTextAreaElement,
-  { ownerState: InputOwnerState } & TextareaAutosizeProps
->(
-  (
-    {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ownerState,
-      ...rest
-    },
-    ref
-  ) => {
-    return <TextareaAutosize ref={ref} {...rest} />
-  }
-)
-
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   {
     width = 'auto',
@@ -83,6 +68,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const {
     className,
     style,
+    'data-testid': dataTestId,
     multiline,
     multilineResizable,
     autoFocus,
@@ -101,8 +87,42 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     testIds,
     highlight,
     classes,
-    ...rest
+    onClick,
+    // @mui/base's Input rendered its own children (adornments + control) and
+    // dropped any consumer `children`; preserve that by not forwarding them.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    children: _children,
+    // The native attrs the legacy @mui/base Input forwarded to its inner
+    // control (its `propsToForward` set) — keep them on the control so they
+    // stay functional.
+    'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoComplete,
+    id,
+    name,
+    onKeyDown,
+    onKeyUp,
+    // @mui/base's useInput forwarded onFocus/onBlur/onChange to the input slot;
+    // keep them on the control so consumer handlers see the input as
+    // `event.currentTarget` (React's focus bubbling would otherwise fire them
+    // with the outline <div> as currentTarget).
+    onFocus,
+    onBlur,
+    placeholder,
+    readOnly,
+    required,
+    // Everything else lands on the outline root <div>, matching @mui/base's
+    // behaviour of spreading unrecognised props (`role`, `tabIndex`, `data-*`,
+    // …) onto the root slot rather than the input.
+    ...rootAttrs
   } = props
+
+  // @mui/base routed unrecognised props onto its root slot regardless of
+  // whether they were valid on the rendered element; mirror that here. The
+  // residual `InputHTMLAttributes` keys (`min`, `max`, `step`, …) are harmless
+  // on the <div> and preserve the legacy placement.
+  const rootElementAttrs = rootAttrs as React.HTMLAttributes<HTMLDivElement>
 
   const { layout } = useFieldsLayoutContext()
   const isDark = inputProps?.variant === 'dark'
@@ -127,8 +147,23 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   )
 
   const divRef = useRef<HTMLDivElement | null>(null)
+  const controlRef = useRef<HTMLElement | null>(null)
 
   useImperativeHandle(ref, () => divRef.current as HTMLElement, [])
+
+  const setControlRef = useCallback(
+    (node: HTMLElement | null) => {
+      controlRef.current = node
+
+      if (typeof inputRef === 'function') {
+        inputRef(node as HTMLInputElement)
+      } else if (inputRef) {
+        ;(inputRef as React.MutableRefObject<HTMLInputElement | null>).current =
+          node as HTMLInputElement
+      }
+    },
+    [inputRef]
+  )
 
   const isError = Boolean(status === 'error')
   const isWarning = Boolean(status === 'warning')
@@ -158,48 +193,82 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     isWarning,
   })
 
-  const multilineProps = multiline
-    ? ({
-        multiline: true,
-        // to keep the same behavior as in MUI@4
-        // rows: getRows(rows),
-        minRows: getRows(rows),
-        maxRows: getRows(rowsMax),
-      } as const)
-    : {}
+  const computedInputClassName = twMerge(
+    inputClassName,
+    classes?.input,
+    inputProps?.className
+  )
+
+  // The control is polymorphic — a native `<input>`, an autosizing
+  // `<textarea>` (multiline), or a consumer-supplied `inputComponent` (e.g. a
+  // `<select>`). The legacy @mui/base Input also assembled it via its slot
+  // system; render it through `createElement` so the shared prop bag flows to
+  // whichever element renders, without per-element JSX type narrowing.
+  // `React.ElementType` keeps `createElement` on its permissive overload so the
+  // shared prop bag flows to whichever element renders (native `<input>`,
+  // autosizing `<textarea>` for multiline, or a consumer `inputComponent` such
+  // as a `<select>`) without per-element JSX type narrowing. @mui/base's Input
+  // likewise assembled the control through its slot system.
+  const ControlComponent: React.ElementType = multiline
+    ? TextareaAutosize
+    : inputComponent ?? 'input'
+
+  const control = React.createElement(ControlComponent, {
+    'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoComplete,
+    id,
+    name,
+    onKeyDown,
+    onKeyUp,
+    onFocus,
+    onBlur,
+    placeholder,
+    readOnly,
+    required,
+    ...inputProps,
+    ref: setControlRef,
+    className: computedInputClassName,
+    type,
+    'aria-invalid': isError,
+    disabled,
+    autoFocus,
+    defaultValue,
+    value,
+    onChange,
+    ...(multiline && {
+      minRows: getRows(rows),
+      maxRows: getRows(rowsMax),
+    }),
+  })
+
+  const handleRootClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    // Clicking the outline (padding / gaps around the control) focuses the
+    // control, preserving the legacy @mui/base Input root-click-to-focus.
+    if (controlRef.current && event.currentTarget === event.target) {
+      controlRef.current.focus()
+    }
+
+    // The public `onClick` type targets `HTMLInputElement`; the outline renders
+    // a `<div>`. React synthetic handlers fire identically regardless of
+    // `currentTarget` element type — bridge at this boundary.
+    ;(onClick as React.MouseEventHandler<HTMLDivElement> | undefined)?.(event)
+  }
 
   return (
-    <Input
-      {...rest}
-      slots={{ input: inputComponent, textarea: Textarea }}
-      slotProps={{
-        root: {
-          ref: divRef,
-          className: twMerge(rootClassName, classes?.root, className),
-        },
-        input: {
-          ...inputProps,
-          ref: inputRef,
-          className: twMerge(
-            inputClassName,
-            classes?.input,
-            inputProps?.className
-          ),
-          type,
-          'aria-invalid': isError,
-        },
-      }}
+    <div
+      {...rootElementAttrs}
+      ref={divRef}
+      className={twMerge(rootClassName, classes?.root, className)}
       style={style}
-      error={isError}
-      defaultValue={defaultValue}
-      value={value}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-      autoFocus={autoFocus}
-      onChange={onChange}
-      disabled={disabled}
-      {...multilineProps}
-    />
+      data-testid={dataTestId}
+      onClick={handleRootClick}
+    >
+      {startAdornment}
+      {control}
+      {endAdornment}
+    </div>
   )
 })
 

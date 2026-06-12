@@ -3,11 +3,21 @@ import type {
   ReactType,
   ReactNode,
   InputHTMLAttributes,
+  HTMLAttributes,
   MouseEvent,
 } from 'react'
-import type { SizeType, BaseProps } from '@toptal/picasso-shared'
-// TODO: replace with mui/base
-import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
+import type { SizeType, BaseProps, StandardProps } from '@toptal/picasso-shared'
+
+// Mirrors @material-ui/core's `InputBaseComponentProps`: based on
+// `HTMLAttributes` (NOT `InputHTMLAttributes`) so it does not strictly type
+// `size` / `disabled` — consumers (e.g. Input) declare their own widened
+// `size` union, which an `InputHTMLAttributes`-based shape would reject.
+export interface InputBaseComponentProps
+  extends HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  // Accommodate arbitrary additional props forwarded to a custom `inputComponent`
+  // (e.g. NativeSelectInput's `IconComponent` / `multiple`).
+  [arbitrary: string]: unknown
+}
 
 export type WidthType = 'full' | 'shrink' | 'auto'
 
@@ -34,7 +44,11 @@ export interface InputProps
 }
 
 export interface Props
-  extends BaseProps,
+  // Tier 3.b: drop the open-ended inherited `Classes` map via
+  // `Omit<StandardProps, 'classes'>`, but keep the locally narrowed
+  // `classes?: { input?, root? }` below — external consumers depend on those
+  // two slots (decisions/classes-audit.md §5).
+  extends Omit<StandardProps, 'classes'>,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'defaultValue' | 'size' | 'color'

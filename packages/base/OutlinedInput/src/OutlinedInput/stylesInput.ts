@@ -80,7 +80,9 @@ export const getInputClassName = ({
     isDark,
     disabled,
     type,
-    inputPropsDisabled: inputProps?.disabled,
+    // `inputProps` carries an index signature (`[k: string]: unknown`), so
+    // `disabled` reads as `unknown`; it is only used as a boolean flag below.
+    inputPropsDisabled: Boolean(inputProps?.disabled),
   }),
   isDark ? placeholderClasses.dark : placeholderClasses.default,
   multiline && multilineResizable && 'resize-y',
