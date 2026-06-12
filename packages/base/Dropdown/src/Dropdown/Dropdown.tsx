@@ -1,7 +1,5 @@
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
-import Grow from '@material-ui/core/Grow'
-import type { PopperPlacementType } from '@material-ui/core/Popper'
 import type { PopperOptions } from 'popper.js'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type {
@@ -13,9 +11,23 @@ import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
 import { noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
-import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { contentClass } from './styles'
+import { useClickAway } from './use-click-away'
+
+type PopperPlacementType =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top'
 
 type ContentOverflowType = 'scroll' | 'visible'
 
@@ -157,6 +169,7 @@ export const Dropdown: DropdownProps = forwardRef<
   } = props
 
   const contentRef = useRef<HTMLDivElement>(null)
+  const clickAwayRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -258,6 +271,8 @@ export const Dropdown: DropdownProps = forwardRef<
     forceClose()
   }
 
+  useClickAway(clickAwayRef, handleClickAway, isOpen)
+
   return (
     <div
       {...rest}
@@ -303,29 +318,27 @@ export const Dropdown: DropdownProps = forwardRef<
           container={popperContainer}
           {...popperProps}
         >
-          <ClickAwayListener onClickAway={handleClickAway}>
-            {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
-            {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
-            <div onClick={close}>
-              <Grow in={isOpen} appear>
-                <Paper
-                  style={contentStyle}
-                  className={twMerge(
-                    contentOverflow === 'visible'
-                      ? contentClass.contentVisible
-                      : contentClass.content,
-                    externalClasses?.content
-                  )}
-                  onKeyDown={handleContentKeyDown}
-                  elevation={0}
-                >
-                  <DropdownContext.Provider value={context}>
-                    <div ref={contentRef}>{content}</div>
-                  </DropdownContext.Provider>
-                </Paper>
-              </Grow>
-            </div>
-          </ClickAwayListener>
+          {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
+          {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
+          <div ref={clickAwayRef} onClick={close}>
+            <Paper
+              style={contentStyle}
+              className={twMerge(
+                'transition-[opacity,transform] duration-200 ease-out',
+                isOpen ? 'scale-100 opacity-100' : 'invisible scale-90 opacity-0',
+                contentOverflow === 'visible'
+                  ? contentClass.contentVisible
+                  : contentClass.content,
+                externalClasses?.content
+              )}
+              onKeyDown={handleContentKeyDown}
+              elevation={0}
+            >
+              <DropdownContext.Provider value={context}>
+                <div ref={contentRef}>{content}</div>
+              </DropdownContext.Provider>
+            </Paper>
+          </div>
         </Popper>
       )}
     </div>
