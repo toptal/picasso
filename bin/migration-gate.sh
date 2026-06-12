@@ -50,6 +50,11 @@ resolve_package_path() {
     rich-text-editor/*)
       echo "packages/picasso-rich-text-editor/src/${id#rich-text-editor/}"
       ;;
+    picasso-*)
+      # Whole-package Tier 4/5 migration: id == package dir name
+      # (e.g. "picasso-query-builder" -> packages/picasso-query-builder).
+      echo "packages/$id"
+      ;;
     */*)
       # Unknown sibling prefix; flag as error
       echo ""
@@ -71,6 +76,10 @@ resolve_workspace_name() {
     charts/*)            echo "@toptal/picasso-charts" ;;
     query-builder/*)     echo "@toptal/picasso-query-builder" ;;
     rich-text-editor/*)  echo "@toptal/picasso-rich-text-editor" ;;
+    # Whole-package Tier 4/5 migration: id already carries the `picasso-`
+    # prefix, so the npm name is just `@toptal/<id>` (avoids the kebab
+    # fallback's double-prefix bug: `@toptal/picasso-picasso-query-builder`).
+    picasso-*)           echo "@toptal/$id" ;;
     *)
       # PascalCase -> kebab-case via sed; prepend prefix
       local kebab

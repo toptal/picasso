@@ -561,3 +561,37 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Reviewers measure visual parity in pixels, not "feature present": indicator thickness, border-radius, and slide animation are part of the visual contract, so reproduce them from the MUI v4 baseline (2px horizontal / 3px vertical, rounded-corner conformance, 0.3s slide between tabs) and confirm in Storybook before pushing — declaring "added Tabs.Indicator" without exercising selection in the browser leaves the most-flagged regression class on the PR.
 - When swapping a primitive that drove selection styling via a per-item rule (e.g. `box-shadow` on selected tab) for one driven by a parent-level indicator slot, remove the per-item visual entirely — leaving both produces stacked/doubled affordances that reviewers will flag, and the indicator must be the single source of truth for "active" geometry.
 - Reference: https://github.com/toptal/picasso/pull/4996
+
+## Drawer — 2026-06-11 (review iter 7)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 7
+- Cypress tests for components with `data-[starting-style]`/`data-[ending-style]` enter/exit animations must assert the popup is visible AND `not.have.attr('data-starting-style')` before `happoScreenshot`, otherwise Happo captures the mid-animation frame and produces flaky diffs.
+- JSDoc on legacy `TransitionProps`-shaped props must be rewritten to describe the @base-ui/react reality (e.g. "`onExited` fires after the close animation completes") instead of perpetuating the stale `react-transition-group/Transition` link — reviewers flag dangling documentation pointers to the dropped backing library.
+- When bridging a legacy `TransitionProps` API onto `@base-ui/react`, preserve full semantics at the boundary: route `onExited` through `onOpenChangeComplete(nextOpen=false)` with the popup `ref`, and translate `timeout` into an inline `transitionDuration` style on the Popup — don't silently drop the prop just because Base UI doesn't accept it directly (see `rules/api-preservation.md`).
+- Reference: https://github.com/toptal/picasso/pull/4994
+
+## Modal — 2026-06-11 (review iter 7)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 7
+- Components whose enter animation relies on @base-ui/react's `data-[starting-style]:` get blank Happo captures because happo-cypress serializes the DOM before base-ui clears the attribute on the next frame — install the global `cy.happoScreenshot` override (`cy.get('[data-starting-style]').should('not.exist')` before delegating) and verify Happo locally before requesting review, instead of merging the override after a reviewer flags blank shots.
+
+- Picasso's per-backdrop `onClose(event, reason)` + `onBackdropClick` + `disableBackdropClick` semantics don't map onto @base-ui/react's single `onOpenChange`; preserve them by setting `modal={false}` + `disablePointerDismissal` and routing backdrop clicks through an `event.target === event.currentTarget` check on the popup (see `references/base-ui-react-api-crib.md` event-bridging — same shape as the `toReactChangeEvent` adapter pattern in `api-preservation`).
+
+- A library-swap PR whose public Props are unchanged is still major-breaking when the rendered DOM changes (`data-base-ui-portal` wrapper, `Dialog.Backdrop` replacing `<Backdrop>`, `data-[starting-style]` replacing `Fade`'s inline opacity) — the changeset's body must spell out the selector/snapshot break so consumers' visual tests don't regress silently, per the `Major` taxonomy in `references/code-standards.md §Changeset conventions`.
+- Reference: https://github.com/toptal/picasso/pull/4993
+
+## Tabs — 2026-06-11 (review iter 3)
+
+- Tier 0 · target_path: `@base-ui/react/tabs` · iterations: 3
+- Restore-lost-behavior fixes must be scoped to the exact original conditions: when reintroducing a feature (here, MUI v4's sliding underline via `Tabs.Indicator`), check master's per-orientation/per-variant paths first — the vertical branch used a static `:before` bar, not a slide, and blanket-applying the indicator regresses parity reviewers spot immediately.
+- For multi-orientation/multi-variant components, the agent should diff master per-branch (horizontal vs vertical, default vs full-width) before picking a single Base UI primitive — `practices.md §"visual classification"` already calls this out, but Tabs shows it applies to *restoring* behavior, not just preserving it.
+- When a Base UI primitive offers a centralized slot (e.g. `Tabs.Indicator`) that replaces what was previously per-child styling, default to gating it behind the orientation/variant where master actually drew the affordance — don't assume the primitive's default placement matches every layout the component supports.
+- Reference: https://github.com/toptal/picasso/pull/4996
+
+## Checkbox — 2026-06-11 (review iter 1)
+
+- Tier 2 · target_path: `@base-ui/react/checkbox + @base-ui/react/checkbox-group` · iterations: 1
+- Use Picasso/Tailwind tokens — never raw `rgba(32,78,207,0.48)` or hand-written `color-mix(in_srgb,theme(colors.blue.500)_84%,white)`; reviewers flag color literals on sight, per `AGENTS.md §Styling "Tokens over arbitrary values"` (token names + `bg-blue/84` style mixing, not bespoke `color-mix` strings).
+- Pixel-parity is a first-iteration gate, not a Happo-loop fix-up — port `line-height` and font metrics from the JSS source on the first pass and resolve Base UI's visually-hidden `<input>` geometry via the override ladder in `references/base-ui-styling.md §7.1` rather than reaching for wrapper-level `[&_input]:translate-x-[1px]` compensation hacks that reviewers will reject as unmaintainable.
+- Bridge the element-variance boundary with explicit prop-by-prop destructuring + `toReactChangeEvent` as `references/code-standards.md §"prop-by-prop boundary"` and `AGENTS.md §"Migration in flight"` prescribe — a single broad `as Omit<BaseCheckbox.Root.Props, ...>` cast invites "how do we support this?" pushback because it hides which props actually cross.
+- Reference: https://github.com/toptal/picasso/pull/4998

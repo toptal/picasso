@@ -38,6 +38,9 @@ resolve_package_path() {
     charts/*)            echo "packages/picasso-charts/src/${id#charts/}" ;;
     query-builder/*)     echo "packages/picasso-query-builder/src/${id#query-builder/}" ;;
     rich-text-editor/*)  echo "packages/picasso-rich-text-editor/src/${id#rich-text-editor/}" ;;
+    # Whole-package Tier 4/5 migrations: the manifest id IS the package dir
+    # name (e.g. "picasso-query-builder" -> packages/picasso-query-builder).
+    picasso-*)           echo "packages/$id" ;;
     *)                   echo "packages/base/$id" ;;
   esac
 }
@@ -48,6 +51,7 @@ resolve_pkgjson_path() {
     charts/*)            echo "packages/picasso-charts/package.json" ;;
     query-builder/*)     echo "packages/picasso-query-builder/package.json" ;;
     rich-text-editor/*)  echo "packages/picasso-rich-text-editor/package.json" ;;
+    picasso-*)           echo "packages/$id/package.json" ;;
     *)                   echo "packages/base/$id/package.json" ;;
   esac
 }

@@ -141,9 +141,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-11T10:47:07.716Z",
-          "review_iterations": 6,
-          "session_id": "e973b771-b366-4d8e-bd96-d6dfbae686c0",
+          "last_review_seen_at": "2026-06-11T21:31:25.746Z",
+          "review_iterations": 7,
+          "session_id": "11626417-9ef8-4021-9b19-514229fad9f9",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -167,8 +167,8 @@
       "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-      "last_review_seen_at": "2026-06-11T06:03:30.044Z",
-      "session_id": "11d56742-3cdf-4844-998d-ba9badaa4377",
+      "last_review_seen_at": "2026-06-11T21:38:56.348Z",
+      "session_id": "44d5b5ac-654d-4784-ba01-82d68fa29a7a",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -180,13 +180,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-          "last_review_seen_at": "2026-06-11T06:03:30.044Z",
-          "session_id": "11d56742-3cdf-4844-998d-ba9badaa4377",
+          "last_review_seen_at": "2026-06-11T21:38:56.348Z",
+          "session_id": "44d5b5ac-654d-4784-ba01-82d68fa29a7a",
           "awaiting_ci_since": null,
-          "review_iterations": 6
+          "review_iterations": 7
         }
       },
-      "review_iterations": 6
+      "review_iterations": 7
     },
     "Slider": {
       "tier": 0,
@@ -282,8 +282,8 @@
       "notes": "Prior v1 run on 2026-05-21 escalated needs_human (migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest, identical content across 2 consecutive iters). Worktree migration-runs/2026-05-21/Tabs-v1/worktree was left dirty for operator inspection; discarded for clean restart.",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T23:19:45.030Z",
-      "last_review_seen_at": "2026-06-11T06:18:01.862Z",
-      "session_id": "64fe94e7-1518-4ad3-8507-c82b43974821",
+      "last_review_seen_at": "2026-06-11T21:56:29.570Z",
+      "session_id": "85807031-c08d-4a52-9168-42f476139b9e",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -295,13 +295,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T23:19:45.030Z",
-          "last_review_seen_at": "2026-06-11T06:18:01.862Z",
-          "session_id": "64fe94e7-1518-4ad3-8507-c82b43974821",
+          "last_review_seen_at": "2026-06-11T21:56:29.570Z",
+          "session_id": "85807031-c08d-4a52-9168-42f476139b9e",
           "awaiting_ci_since": null,
-          "review_iterations": 2
+          "review_iterations": 3
         }
       },
-      "review_iterations": 2
+      "review_iterations": 3
     },
     "Form": {
       "tier": 1,
@@ -725,17 +725,19 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": null,
-          "session_id": null,
+          "last_review_seen_at": "2026-06-11T22:09:35.743Z",
+          "session_id": "456d90af-9138-47ab-a8ce-36d17e3856c9",
           "awaiting_ci_since": null,
-          "review_iter_failures": 0
+          "review_iter_failures": 0,
+          "review_iterations": 1
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": null,
-      "session_id": null,
-      "awaiting_ci_since": null
+      "last_review_seen_at": "2026-06-11T22:09:35.743Z",
+      "session_id": "456d90af-9138-47ab-a8ce-36d17e3856c9",
+      "awaiting_ci_since": null,
+      "review_iterations": 1
     },
     "Radio": {
       "tier": 2,
@@ -765,7 +767,8 @@
           "last_review_seen_at": "2026-06-11T06:53:05.075Z",
           "session_id": "d376f4d9-3237-4571-b68b-baef33da7c35",
           "awaiting_ci_since": null,
-          "review_iterations": 1
+          "review_iterations": 1,
+          "review_iter_failures": 1
         }
       },
       "escalation_reason": null,
@@ -787,7 +790,23 @@
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Heavy path. Direct match: Tooltip.Provider + Tooltip.Root + Tooltip.Trigger + Tooltip.Portal + Tooltip.Positioner + Tooltip.Popup. FileInput + RTE depend on this — sequence first within Tier 2."
+      "notes": "Heavy path. Direct match: Tooltip.Provider + Tooltip.Root + Tooltip.Trigger + Tooltip.Portal + Tooltip.Positioner + Tooltip.Popup. FileInput + RTE depend on this — sequence first within Tier 2.",
+      "variants": {
+        "vedrani": {
+          "status": "needs_human",
+          "pr": null,
+          "branch": "migrate-Tooltip-vedrani",
+          "worktree": "migration-runs/2026-06-11/Tooltip-vedrani/worktree",
+          "iterations": 10,
+          "merged_at": null,
+          "escalation_reason": "gate did not pass after 10 iterations",
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "review_iterations": 0,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      }
     },
     "FileInput": {
       "tier": 2,
@@ -831,7 +850,7 @@
           "last_review_seen_at": "2026-06-11T07:03:53.029Z",
           "session_id": "919ff2a0-eecf-415e-bcc0-0822a4fb242c",
           "awaiting_ci_since": null,
-          "review_iter_failures": 0,
+          "review_iter_failures": 1,
           "review_iterations": 1
         }
       },
@@ -911,7 +930,8 @@
           "last_review_seen_at": "2026-06-11T07:15:13.119Z",
           "session_id": "0eaa2036-0a69-4dbe-8bd4-c454ebfa9ddc",
           "awaiting_ci_since": null,
-          "review_iterations": 1
+          "review_iterations": 1,
+          "review_iter_failures": 1
         }
       },
       "escalation_reason": null,
@@ -970,7 +990,27 @@
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "11 components / 21 source files. Indirect @base-ui/react consumption via migrated Picasso primitives. Batch into 3-4 PRs by cluster (Selectors / Inputs / Buttons / QueryBuilder root)."
+      "notes": "11 components / 21 source files. Indirect @base-ui/react consumption via migrated Picasso primitives. Batch into 3-4 PRs by cluster (Selectors / Inputs / Buttons / QueryBuilder root).",
+      "variants": {
+        "v1": {
+          "status": "queued",
+          "pr": null,
+          "branch": null,
+          "worktree": null,
+          "iterations": 0,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      },
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null
     },
     "picasso-rich-text-editor": {
       "tier": 4,
