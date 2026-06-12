@@ -16,15 +16,20 @@ import { queryBuilderGlobalStyles } from './query-builder-global-styles'
 const root: string[] = ['rounded-[0.5em]', 'bg-gray-100']
 
 // Higher-specificity branch recoloring for the two shallowest nesting levels
-// (blue.main → blue-500). Wins over the blue-400 connectors via the extra
-// attribute selector specificity. Numeric attribute values MUST be quoted —
+// (blue.main → blue-500). Numeric attribute values MUST be quoted —
 // `[data-level=1]` is invalid CSS (an unquoted value cannot start with a digit),
 // which Tailwind compiles to an empty rule.
+//
+// Rules win over the base `.rule` connector (lower specificity). Groups must beat
+// the base nested-group connector `.queryBuilder-branches .ruleGroup .ruleGroup`
+// (0,4,1) — which a single-class `.rule-group[data-level=N]` only TIES (and then
+// loses on source order). The compound `.ruleGroup.rule-group` class lifts the
+// group overrides to (0,5,1) so they win.
 const branchLevelColor: string[] = [
-  "[&_.query-builder-branches_.rule-group[data-level='1']]:before:content-['']",
-  "[&_.query-builder-branches_.rule-group[data-level='1']]:before:border-blue-500",
-  "[&_.query-builder-branches_.rule-group[data-level='1']]:after:content-['']",
-  "[&_.query-builder-branches_.rule-group[data-level='1']]:after:border-blue-500",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='1']]:before:content-['']",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='1']]:before:border-blue-500",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='1']]:after:content-['']",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='1']]:after:border-blue-500",
   "[&_.query-builder-branches_.rule[data-level='1']]:before:content-['']",
   "[&_.query-builder-branches_.rule[data-level='1']]:before:border-blue-500",
   "[&_.query-builder-branches_.rule[data-level='1']]:after:content-['']",
@@ -33,10 +38,10 @@ const branchLevelColor: string[] = [
   "[&_.query-builder-branches_.rule[data-level='2']]:before:border-blue-500",
   "[&_.query-builder-branches_.rule[data-level='2']]:after:content-['']",
   "[&_.query-builder-branches_.rule[data-level='2']]:after:border-blue-500",
-  "[&_.query-builder-branches_.rule-group[data-level='2']]:before:content-['']",
-  "[&_.query-builder-branches_.rule-group[data-level='2']]:before:border-blue-500",
-  "[&_.query-builder-branches_.rule-group[data-level='2']]:after:content-['']",
-  "[&_.query-builder-branches_.rule-group[data-level='2']]:after:border-blue-500",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='2']]:before:content-['']",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='2']]:before:border-blue-500",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='2']]:after:content-['']",
+  "[&_.query-builder-branches_.ruleGroup.rule-group[data-level='2']]:after:border-blue-500",
 ]
 
 // Alternating rule-group backgrounds by nesting depth (odd → white, even → gray-50).
