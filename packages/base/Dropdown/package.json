@@ -24,6 +24,7 @@
   "dependencies": {
     "@toptal/picasso-paper": "4.0.5",
     "@toptal/picasso-popper": "2.0.2",
+    "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "4.0.0",
     "classnames": "^2.5.1"
   },

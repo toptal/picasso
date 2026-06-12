@@ -2,6 +2,7 @@ import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
 import type { PopperOptions } from 'popper.js'
 import type { StandardProps } from '@toptal/picasso-shared'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import type {
   DeprecatedSpacingType,
   SpacingType,
@@ -172,6 +173,18 @@ export const Dropdown: DropdownProps = forwardRef<
   const clickAwayRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
+  // Replicates MUI Grow's mount-collapsed geometry. The content's first render
+  // is the collapsed (scale-75) state; a layout effect expands it to full size
+  // before paint. Because child layout effects run before the parent's, any
+  // Popper-positioned content nested in the dropdown (e.g. a Tooltip) measures
+  // the dropdown while still collapsed and freezes against that pre-grow
+  // geometry — matching the legacy Grow's anchoring — while Happo only ever
+  // serializes the settled, expanded state.
+  const [growIn, setGrowIn] = useState(false)
+
+  useIsomorphicLayoutEffect(() => {
+    setGrowIn(isOpen)
+  }, [isOpen])
 
   const handleAnchorClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -324,11 +337,9 @@ export const Dropdown: DropdownProps = forwardRef<
             <Paper
               style={contentStyle}
               className={twMerge(
-                // Fade only — no transform. MUI Grow settled at `transform: none`;
-                // a lingering `scale(1)` would make Paper a containing block and
-                // re-anchor any Popper-positioned content (e.g. a Tooltip) inside it.
-                'transition-opacity duration-200 ease-out',
-                isOpen ? 'opacity-100' : 'invisible opacity-0',
+                'origin-center transition-[opacity,transform] duration-200 ease-out',
+                growIn ? 'scale-100 opacity-100' : 'scale-75 opacity-0',
+                isOpen ? '' : 'invisible',
                 contentOverflow === 'visible'
                   ? contentClass.contentVisible
                   : contentClass.content,

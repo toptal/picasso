@@ -1295,6 +1295,9 @@ importers:
       '@toptal/picasso-popper':
         specifier: 2.0.2
         version: link:../Popper
+      '@toptal/picasso-shared':
+        specifier: 15.0.0
+        version: link:../../shared
       '@toptal/picasso-utils':
         specifier: 4.0.0
         version: link:../Utils
