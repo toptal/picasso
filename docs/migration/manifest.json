@@ -918,7 +918,23 @@
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Heavy composite + mixed-state PR. Single PR covers @mui/base portion + @material-ui/core/Grow transition replacement. Replace Grow with CSS data-starting-style/data-ending-style transitions. versionBump=patch: locally narrowed `classes?: { popper, content }` is preserved (2 external callsites — see classes-audit §6). Promote to minor if new functionality is added in the rewrite."
+      "notes": "Heavy composite + mixed-state PR. Single PR covers @mui/base portion + @material-ui/core/Grow transition replacement. Replace Grow with CSS data-starting-style/data-ending-style transitions. versionBump=patch: locally narrowed `classes?: { popper, content }` is preserved (2 external callsites — see classes-audit §6). Promote to minor if new functionality is added in the rewrite.",
+      "variants": {
+        "v2": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/5008",
+          "branch": "migrate-Dropdown-v2",
+          "worktree": "migration-runs/2026-06-12/Dropdown-v2/worktree",
+          "iterations": 2,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "review_iterations": 0,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Page": {
       "tier": 3,
