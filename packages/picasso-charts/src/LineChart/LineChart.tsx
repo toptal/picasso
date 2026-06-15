@@ -68,11 +68,6 @@ export type Props = BaseLineChartProps & {
   referenceLines?: ReferenceLineType[]
 }
 
-// recharts renders its own SVG internals (axis ticks, grid lines, tspans) whose
-// nodes can't be reached with per-element classes, so the chart's styling lives
-// in a scoped <style> block. The hide-bottom-y-axis-label rule is gated by an
-// instance-level marker class so it only affects charts that opt out of the
-// bottom label (replaces the former JSS `&$hideBottomYAxisLabel` parent-ref).
 const StyleOverrides = () => (
   <style
     dangerouslySetInnerHTML={{
