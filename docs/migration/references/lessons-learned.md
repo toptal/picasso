@@ -595,3 +595,28 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Pixel-parity is a first-iteration gate, not a Happo-loop fix-up — port `line-height` and font metrics from the JSS source on the first pass and resolve Base UI's visually-hidden `<input>` geometry via the override ladder in `references/base-ui-styling.md §7.1` rather than reaching for wrapper-level `[&_input]:translate-x-[1px]` compensation hacks that reviewers will reject as unmaintainable.
 - Bridge the element-variance boundary with explicit prop-by-prop destructuring + `toReactChangeEvent` as `references/code-standards.md §"prop-by-prop boundary"` and `AGENTS.md §"Migration in flight"` prescribe — a single broad `as Omit<BaseCheckbox.Root.Props, ...>` cast invites "how do we support this?" pushback because it hides which props actually cross.
 - Reference: https://github.com/toptal/picasso/pull/4998
+
+
+## Tooltip — 2026-06-11
+
+- Tier 2 · target_path: `@base-ui/react/tooltip` · iterations: 3
+- When migrating any portal/popup component (Tooltip, Popper, Dropdown, Menu, Modal), expect `@base-ui/react` to **unmount the popup on close** rather than hide it — flip consumer Cypress/RTL assertions from `should('not.be.visible')` to `should('not.exist')` as a required CI-fix, and call it out as a breaking DOM-lifecycle change in the changeset.
+- For hover-driven popups, preserve Picasso's click-to-dismiss-and-stay-dismissed behavior by layering a controlled `open` state over base-ui (Picasso decides whether to honor base-ui's hover/focus open requests), since base-ui's native hover model has no dismiss-and-stay-dismissed equivalent.
+- Don't re-derive the already-documented churn: snapshot deltas (`data-disabled=""` appearing, the stale `base-` class dropping) are covered in `rules/base-ui-react-api-crib.md §"Jest snapshot impact"`, and narrowing MUI-leaked alias types like `PlacementType` to explicit unions in `rules/api-preservation.md §"MUI-leaked types"` — regenerate snapshots with `-u` rather than preserving old DOM shape.
+- Reference: https://github.com/toptal/picasso/pull/5005
+
+## Tooltip — 2026-06-12 (review iter 1)
+
+- Tier 2 · target_path: `@base-ui/react/tooltip` · iterations: 1
+- When swapping libraries, forwarded `className`/`...rest` must land on the same DOM node the old library put them on (e.g. the trigger, not the new popup) — reviewers treat any silent relocation as a consumer API change, so preserve placement per `rules/*` api-preservation or explicitly justify the move in the changeset.
+- Regenerate component snapshots as part of the migration rather than committing stale ones, and when the DOM lifecycle changes (popup now unmounts when closed instead of staying mounted-but-hidden) update the matching assertions from `not.be.visible` → `not.exist`.
+- Keep changeset breaking-change bullets deduplicated (each change stated once) and extract clustered handler/interaction logic into dedicated hooks so the component body stays readable — both are first-pass review expectations, not follow-up cleanup.
+- Reference: https://github.com/toptal/picasso/pull/5005
+
+## Tooltip — 2026-06-12 (review iter 2)
+
+- Tier 2 · target_path: `@base-ui/react/tooltip` · iterations: 2
+- base-ui's `Tooltip.Arrow` (and slot primitives generally) render with different default geometry than MUI's arrow, and reviewers visually diff the Storybook popup against the old MUI render — bake arrow size/shape/offset Tailwind parity in from iter 1 rather than waiting for a screenshot comparison in review (extends `rules/styling` visual-parity guidance to slot sub-parts).
+- base-ui popups unmount when closed (vs MUI's mounted-but-hidden), so any Cypress/test assertion of a closed tooltip must be `should('not.exist')` not `should('not.be.visible')` — convert these proactively during the migration instead of letting them fail CI or surface in review.
+- When a primitive swap changes observable behavior (DOM lifecycle, narrowed prop unions like `PlacementType`), enumerate each as an explicit **Breaking** bullet in the changeset up-front — reviewers expect the migration PR to call out consumer-visible deltas, not just claim "parity preserved."
+- Reference: https://github.com/toptal/picasso/pull/5005
