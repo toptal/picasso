@@ -6,7 +6,10 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageHamburgerContextProvider } from '../PageHamburger'
 import type { PageContextProps, ViewportWidthType } from './types'
-import { createRootClassNames } from './styles'
+import {
+  createRootClassNames,
+  createRootVariableClassNames,
+} from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
@@ -45,7 +48,11 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
     <div
       {...rest}
       ref={ref}
-      className={twMerge(...createRootClassNames(), className)}
+      className={twMerge(
+        ...createRootClassNames(),
+        className,
+        ...createRootVariableClassNames()
+      )}
       style={{
         ...(contentMinWidth && { minWidth: contentMinWidth }),
         ...style,
