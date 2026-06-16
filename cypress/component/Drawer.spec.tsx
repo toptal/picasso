@@ -188,7 +188,9 @@ describe('Drawer', () => {
           )
 
           cy.getByTestId('trigger').click()
-          cy.getByRole('presentation').should('be.visible')
+          cy.get('[role="dialog"]')
+            .should('be.visible')
+            .and('not.have.attr', 'data-starting-style')
           cy.get('body').happoScreenshot({
             component,
             variant: `drawer-${variant}-width/${width}-default`,

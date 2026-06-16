@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 // Backed by Dialog, not @base-ui/react/drawer: the drawer primitive always
 // enables swipe-to-dismiss (its Viewport hard-wires useSwipeDismiss and omitting
 // Viewport emits a dev console.error), and Picasso's Drawer has no swipe
@@ -87,6 +87,13 @@ export const Drawer = ({
   const { setHasDrawer } = useDrawer()
   const container = usePicassoRoot()
   const popupRef = useRef<HTMLDivElement>(null)
+  // @base-ui/react's Dialog.Popup requires a Dialog.Portal ancestor, and its
+  // portal always relocates the popup (no inline mode). To emulate the legacy
+  // `disablePortal` (children stay in the parent DOM hierarchy) we portal into
+  // a mount node rendered inline at the Drawer's location instead of the root.
+  const [inlineContainer, setInlineContainer] = useState<HTMLElement | null>(
+    null
+  )
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
@@ -119,6 +126,7 @@ export const Drawer = ({
       )}
       <BaseUIDialog.Popup
         ref={popupRef}
+        initialFocus={popupRef}
         render={
           <DrawerPaper
             anchor={anchor}
@@ -166,13 +174,12 @@ export const Drawer = ({
         }
       }}
     >
-      {disablePortal ? (
-        overlay
-      ) : (
-        <BaseUIDialog.Portal container={container}>
-          {overlay}
-        </BaseUIDialog.Portal>
-      )}
+      {disablePortal && <span ref={setInlineContainer} />}
+      <BaseUIDialog.Portal
+        container={disablePortal ? inlineContainer : container}
+      >
+        {overlay}
+      </BaseUIDialog.Portal>
     </BaseUIDialog.Root>
   )
 }
