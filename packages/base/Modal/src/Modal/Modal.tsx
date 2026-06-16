@@ -256,7 +256,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           // attribute to clear before serializing, so the static cloud render
           // captures the settled (opaque) state rather than a blank frame.
           <Dialog.Backdrop
-            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
+            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
             style={durationStyle}
           />
         )}
@@ -275,7 +275,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           }
           className={twMerge(
             className,
-            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0'
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
           )}
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
