@@ -12,7 +12,7 @@ import React, { forwardRef } from 'react'
 
 import { useRTEPluginContext, useToolbarPortalRegister } from '../plugins/api'
 import TextEditorButton from '../RichTextEditorButton'
-import styles from './styles'
+import styles, { selectStyle } from './styles'
 import type {
   ButtonHandlerType,
   FormatType,
@@ -90,7 +90,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             ]}
             size='small'
             menuWidth='auto'
-            className={classes.select}
+            style={selectStyle}
             disabled={isBlockFormattingDisabled}
             data-testid={testIds?.headerSelect}
           />
