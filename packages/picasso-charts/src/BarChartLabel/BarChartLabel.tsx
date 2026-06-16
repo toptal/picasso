@@ -28,7 +28,7 @@ const BarChartLabel = ({
       x={xPosition + width / 2}
       y={yPosition}
       fill={fillColor}
-      style={{ fontSize: 11 }}
+      className='text-[11px]'
       textAnchor='middle'
       dy={-6}
     >
