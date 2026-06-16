@@ -1,5 +1,10 @@
 import React, { useRef } from 'react'
-import { Drawer as BaseUIDrawer } from '@base-ui/react/drawer'
+// Backed by Dialog, not @base-ui/react/drawer: the drawer primitive always
+// enables swipe-to-dismiss (its Viewport hard-wires useSwipeDismiss and omitting
+// Viewport emits a dev console.error), and Picasso's Drawer has no swipe
+// affordance. Dialog gives the same compound parts + slide transition data-attrs
+// without swipe.
+import { Dialog as BaseUIDialog } from '@base-ui/react/dialog'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import type { CSSProperties, ReactNode } from 'react'
@@ -104,7 +109,7 @@ export const Drawer = ({
   const overlay = (
     <>
       {!disableBackdrop && (
-        <BaseUIDrawer.Backdrop
+        <BaseUIDialog.Backdrop
           className={twMerge(
             'z-drawer fixed inset-0 bg-black transition-opacity duration-300',
             'data-[starting-style]:opacity-0 data-[ending-style]:opacity-0',
@@ -112,7 +117,7 @@ export const Drawer = ({
           )}
         />
       )}
-      <BaseUIDrawer.Popup
+      <BaseUIDialog.Popup
         ref={popupRef}
         render={
           <DrawerPaper
@@ -141,12 +146,12 @@ export const Drawer = ({
             aria-label='Close drawer'
           />
         </Container>
-      </BaseUIDrawer.Popup>
+      </BaseUIDialog.Popup>
     </>
   )
 
   return (
-    <BaseUIDrawer.Root
+    <BaseUIDialog.Root
       open={open}
       modal='trap-focus'
       disablePointerDismissal={disableBackdrop}
@@ -164,11 +169,11 @@ export const Drawer = ({
       {disablePortal ? (
         overlay
       ) : (
-        <BaseUIDrawer.Portal container={container}>
+        <BaseUIDialog.Portal container={container}>
           {overlay}
-        </BaseUIDrawer.Portal>
+        </BaseUIDialog.Portal>
       )}
-    </BaseUIDrawer.Root>
+    </BaseUIDialog.Root>
   )
 }
 
