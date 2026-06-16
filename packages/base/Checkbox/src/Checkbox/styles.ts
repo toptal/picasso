@@ -18,6 +18,8 @@ export const checkboxClassNames: string[] = [
   // Hover (enabled only — a disabled checkbox keeps its resting border).
   // color-mix replicates the legacy JSS `mix(blue.main, white, 0.16)` from the
   // blue-500 token (84% blue + 16% white = #446AD7).
+  // TODO(tokens) [PI-4318]: no canonical token for the hover shade (blue-500
+  // mixed 84/16 with white) — derived inline from blue-500 via color-mix.
   '[&[data-unchecked]:not([data-disabled]):hover]:border-gray-600',
   '[&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
   '[&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
@@ -29,8 +31,10 @@ export const checkboxClassNames: string[] = [
   // attribute on the activeElement at snapshot time, and `:focus-visible`
   // doesn't survive Happo's DOM serialization (the legacy ring was a real
   // class added by MUI's focusVisibleClassName, so it serialized naturally).
-  'focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]',
-  'data-[happo-focus]:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]',
+  // TODO(tokens) [PI-4318]: no canonical token for the focus-ring colour
+  // (blue-500 @ 48% alpha) — derived inline from blue-500 via color-mix.
+  'focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
+  'data-[happo-focus]:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
 
   // Disabled
   'data-[disabled]:opacity-[0.48] data-[disabled]:cursor-default',
