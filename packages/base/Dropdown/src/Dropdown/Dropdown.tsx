@@ -10,11 +10,10 @@ import type {
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
-import { noop } from '@toptal/picasso-utils'
+import { ClickAwayListener, noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { contentClass } from './styles'
-import { useClickAway } from './use-click-away'
 
 type PopperPlacementType =
   | 'bottom-end'
@@ -170,7 +169,6 @@ export const Dropdown: DropdownProps = forwardRef<
   } = props
 
   const contentRef = useRef<HTMLDivElement>(null)
-  const clickAwayRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
   // Replicates MUI Grow's mount-collapsed geometry. The content's first render
@@ -271,7 +269,7 @@ export const Dropdown: DropdownProps = forwardRef<
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: MouseEvent | TouchEvent) => {
+  const handleClickAway = (event: React.MouseEvent<unknown, unknown>) => {
     const target = event.target
 
     const isAnchorTapEvent =
@@ -283,8 +281,6 @@ export const Dropdown: DropdownProps = forwardRef<
 
     forceClose()
   }
-
-  useClickAway(clickAwayRef, handleClickAway, isOpen)
 
   return (
     <div
@@ -331,10 +327,9 @@ export const Dropdown: DropdownProps = forwardRef<
           container={popperContainer}
           {...popperProps}
         >
-          {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
-          {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
-          <div ref={clickAwayRef} onClick={close}>
+          <ClickAwayListener onClickAway={handleClickAway}>
             <Paper
+              onClick={close}
               style={contentStyle}
               className={twMerge(
                 'origin-center transition-[opacity,transform] duration-200 ease-out',
@@ -352,7 +347,7 @@ export const Dropdown: DropdownProps = forwardRef<
                 <div ref={contentRef}>{content}</div>
               </DropdownContext.Provider>
             </Paper>
-          </div>
+          </ClickAwayListener>
         </Popper>
       )}
     </div>
