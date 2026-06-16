@@ -20,7 +20,6 @@ import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
 import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
-import { HIDE_BOTTOM_Y_AXIS_LABEL_CLASS } from './styles'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import type {
   CoordinatePayload,
@@ -42,6 +41,8 @@ const {
   Y_AXIS_WIDTH,
   NUMBER_OF_TICKS,
 } = CHART_CONSTANTS
+
+const HIDE_BOTTOM_Y_AXIS_LABEL_CLASS = 'picasso-charts-hide-bottom-y-axis-label'
 
 type RechartsOnMouseMove = CoordinatePayload | null
 
