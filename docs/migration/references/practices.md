@@ -1,6 +1,6 @@
 # Picasso migration practices (graduated)
 
-> Last graduation: 2026-05-21 from `lessons-learned.md` entries through 2026-05-20.
+> Last graduation: 2026-06-17 from `lessons-learned.md` entries through 2026-06-16.
 > Next graduation due: after 5–10 more successful migrations, or when `lessons-learned.md` accumulates ~50 new entries past this point.
 
 Cross-cutting patterns that have proven load-bearing across multiple migrations. Each pattern here appears in **≥ 3 lessons-learned entries** OR is cited explicitly by **≥ 1 reviewer** as a blocking rule. Read this whole file at the start of every migration — these are the rules whose violation has cost real iteration time.
@@ -25,9 +25,9 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 - **When a positional shift is < 5 px**, capture `getComputedStyle()` JSON for baseline + local BEFORE attempting fixes. Screenshots tell you WHERE; computed styles tell you WHAT. Stalemate is forbidden until ≥ 2 fix attempts have targeted properties from the computed-style diff (Slider PR #4955 burned 5 iterations skipping this). If the computed-style diff is geometric (transform / translate / position), check whether you're at rung -1 territory before walking the override ladder.
 - **Common @base-ui/react compensations** (more in `references/visual-verification.md`):
   - New `data-*` attribute on slot → add `[data-attr]:<style>` selector replicating prior visual.
-  - Mirror old `:focus-visible` under `data-[focused]:`.
+  - Mirror old `:focus-visible` under `data-focused:`.
   - Adjust geometry via `gap`/`p-*`/`m-*` when wrapper elements shift.
-  - Preserve transition parity via `data-[starting-style]`/`data-[ending-style]` translate classes on portal-host elements.
+  - Preserve transition parity via `data-starting-style:`/`data-ending-style:` translate classes on portal-host elements.
 
 ## API preservation
 
@@ -36,6 +36,8 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   - `onValueChange(value, activeThumbIndex)` from `@base-ui/react/slider` → wrap to re-expose `(event, value, activeThumbIndex)`. Use the generic `toReactEvent<R>(event)` from `@toptal/picasso-shared` for non-change-event cases.
 - **Preserve portal/behavior props.** Audit the new library's compound API first. Example: `disablePortal` on Drawer has no direct prop equivalent in `@base-ui/react/drawer`, but you can emulate it by conditionally omitting `<Drawer.Portal>`. Do NOT silently remove the prop (Drawer iter 2 precedent).
 - **Audit changed interaction DEFAULTS, not just props.** `@base-ui/react` can change a default *behavior* that `@mui/base` had, with no prop rename to flag it. Example: `@base-ui/react/slider` defaults `thumbCollisionBehavior` to `'push'` (range thumbs shove each other and stay merged as one dot); `@mui/base` swapped/crossed them. Set `thumbCollisionBehavior='swap'` to preserve the prior behavior (Slider PR #4976). When migrating an interactive component, exercise the *interaction* (drag through, keyboard past-the-end, etc.), not just the static render — a silent default change won't show in a snapshot.
+- **Gate new base-ui behaviors absent from the legacy component behind an explicit opt-in prop** (default = legacy behavior), with tests and a changeset note — a like-for-like swap must NOT silently add an interaction surface (Drawer swipe-to-dismiss / `Drawer.Viewport`). (Drawer iters 4/6/8 + PR #4994 iter 3 precedents.)
+- **`toReactEvent`/`toReactChangeEvent` adapters must bind forwarded native methods** (`preventDefault`/`stopPropagation`) to the underlying event — an unbound Proxy `this` throws "Illegal invocation" in real browsers, surfacing only when a consumer handler invokes them (Accordion precedent).
 - **Deprecate-don't-delete**: keep removed-in-new-lib props with `@deprecated` JSDoc + Jira ticket ref, route to `_unused` destructure:
   ```ts
   /** @deprecated [PF-1234] no equivalent in @base-ui/react; will be removed in next major */
@@ -92,11 +94,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   - **Override-preference ladder** (when to reach for which mechanism in general): `references/base-ui-styling.md §7.1`. Rungs: -1 (don't override) → 1 (`data-[…]:`) → 2 (`className` fn) → 3 (`render` prop, optionally filtering style) → 4 (`useRender`) → 5 (inline `style`). `!important` is forbidden.
   - **CSS specificity hierarchy** (narrow case: overriding Base UI's internal inline styles like `translate: -50% -50%`): `code-standards.md §"CSS specificity hierarchy for overriding @base-ui/react internal inline styles"`. In that narrow case, consumer inline `style` wins via `mergeProps` rightmost-wins — but first check whether doctrine §7.1 rung -1 (don't override) or rung 3 (`render` prop with style filtering) is the better answer.
 - **ANTI-PATTERN — imperative `ref` callbacks that mutate `.style` for visual overrides are FORBIDDEN, no exceptions.** Examples that violate this: `inputRef={node => { node.style.margin = '0' }}`, `ref={n => n?.style.setProperty('translate', 'none')}`, any `useCallback` wrapping a `.style.X = …` assignment passed to a slot ref. This is NOT a "one-off compromise" — earlier Switch migration code that used the pattern was a migration defect to be removed during cleanup, not a sanctioned precedent. Reviewers WILL block PRs that introduce or retain it. Use the doctrine §7.1 preference ladder instead.
-- **Explicitly rejected justifications for the ref-callback anti-pattern** (do not cite these to defend the pattern):
-  - "Tailwind `!important` slot selector failed to restore Happo parity" — `!important` is forbidden per `rules/styling.md`; the alternative is doctrine §7.1's preference ladder, not a `.style` ref callback. Check baselines, selector compounds, and whether rung -1 (don't override) applies before chasing higher-specificity tools.
-  - "It's documented as a one-off compromise in practices.md" — no, it's documented as an ANTI-PATTERN. Earlier wording that framed it as a "compromise" was contamination; this rule is the authoritative version.
-  - "base-ui writes `margin: -1px` into the hidden input inline style and we can't override inline style with CSS" — partly true: only inline `style` (rung 5) or `!important` beats inline `style` via CSS specificity. `!important` is forbidden; rung 5 is acceptable when rungs -1 through 4 don't apply. Imperative `.style` ref-mutation is still forbidden — use the `style` prop on the part instead.
-  - Reviewers consistently rejected this pattern across Switch iters 2/3/9. Treat any new instance as a defect, not a precedent.
+- **Rejected justifications for the ref-callback anti-pattern** (do not cite to defend it): "`!important` slot selector failed" (`!important` is forbidden — use the §7.1 ladder), "documented as a one-off compromise" (no — it's an ANTI-PATTERN; earlier "compromise" wording was contamination), "can't override base-ui's inline `margin:-1px` with CSS" (true only vs inline `style` — use rung 5's `style` prop on the part, never `.style` ref-mutation). Reviewers rejected this across Switch iters 2/3/9; treat any new instance as a defect, not a precedent.
 
 ## Changesets
 
@@ -111,6 +109,9 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   - `major`: name the specific breaking surface — required. Optionally enumerate compound parts being assembled (e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`") if consumers will need to know.
 - For modified Props interfaces (any tier), state per-prop whether it's NEW or was INHERITED from a removed parent type (e.g., `ModalBackdropSlotProps`).
 - For `@deprecated` props with `_unused` destructure: name them and the planned removal version.
+- **Precedence**: `manifest.versionBump` is the default source of truth for the bump; an operator-confirmed taxonomy correction overrides a stale manifest value (e.g. manifest reads `major` for a clean behavioral-parity swap that is actually `patch`). (PR #4994 reviewer-confirmed.)
+- **A library swap with unchanged public Props is still `major` when the rendered DOM changes** — portal wrappers (`data-base-ui-portal`), `Dialog.Backdrop` replacing `<Backdrop>`, `data-starting-style` replacing `Fade`, dropped `base-` classNames. These break selector- and snapshot-based consumers; spell the break out in the body — "behavioral parity" alone is insufficient. (Modal iters 4/5/7 + Tooltip iter 2 + Checkbox iter 2 + Accordion precedents.)
+- **Exactly one changeset file per migration**, named `<component>-migration.md`. Delete orchestrator-generated duplicates and empty/stray frontmatter-only stubs; run `pnpm changeset status` to catch malformed files before opening the PR. (Container/Menu/Tabs/Utils/OutlinedInput precedents.)
 
 ## @base-ui/react idioms
 
@@ -133,10 +134,13 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   [&_input]:![clip-path:none] [&_input]:[clip:rect(0,0,0,0)]
   ```
 - **Async focus management** (rAF-deferred `FloatingFocusManager`) — diverges from `@mui/base`'s synchronous focus. Add a `useIsomorphicLayoutEffect` blur-on-open shim with an explanatory comment when reviewers flag visual-snapshot regressions tied to focus timing.
+- **`Dialog`/`Popup` auto-focuses its first tabbable child** (`initialFocus={true}` default); `@mui/base/Modal` did not. Set `initialFocus={false}` (or a `ref` to the `tabindex=-1` popup) to match legacy non-focusing behavior — otherwise mount side-effects fire (date-pickers open on mount) and focus rings drift. Reviewers screenshot focus rings. (Modal iters 2/4/7 + Drawer iter 11 precedents.)
+- **Portals/popups unmount on close** in `@base-ui/react` (vs `@mui/base`'s mounted-but-hidden). Flip closed-state test assertions `should('not.be.visible')` → `should('not.exist')` across consumer Cypress/RTL specs, and call the DOM-lifecycle change out in the changeset. (Tooltip iters 1/2 precedents.)
+- **Wait for the enter transition to settle before `happoScreenshot`.** happo-cypress serializes the live DOM, so an element still carrying `data-starting-style` captures blank/opacity-0. Assert `should('be.visible').and('not.have.attr', 'data-starting-style')`, or install the global `cy.happoScreenshot` override (`[data-starting-style]` must not exist) once in `cypress/support/commands.jsx`, not per-component. (Drawer iters 3/6/7/8/11 + Modal iters 6/7 precedents.)
 - **`disablePortal` emulation**: conditionally omit `<Drawer.Portal>` wrapper rather than searching for a non-existent prop.
-- **Transition/animation parity**: when swapping the primitive, port the prior open/close motion (`data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full` on `Drawer.Popup`) before opening review. Missing animations are a guaranteed regression flag.
+- **Transition/animation parity**: port the prior open/close motion (`data-starting-style:translate-x-full data-ending-style:translate-x-full` on `Drawer.Popup`) before opening review, preserving **symmetric** enter+exit (paired starting/ending classes on the animated part) — missing or one-sided animations are a guaranteed regression flag. Bridge legacy `TransitionProps` at the boundary: route `onExited` through `onOpenChangeComplete(open=false)` with the popup `ref`, translate `timeout` into an inline `transitionDuration` style, map JS-driven enter/exit to base-ui's CSS panel via `onTransitionEnd`, and rewrite the prop's JSDoc to the base-ui reality (no `react-transition-group` link). (Drawer iters 3/7 + Modal iter 4 + Accordion precedents.)
 - **For typecheck-noise from upstream type drift**, prefer inline `@ts-expect-error` over a `patches/*.patch` entry. Patches add repo-wide maintenance overhead; reviewers push back unless suppression would spread across many call sites (Drawer iter 2 precedent).
-- **The `@base-ui/utils@0.2.8` patch** (strips `const` from generic params) IS required for Tier 0 components — apply via `pnpm.patchedDependencies` + lockfile `patch_hash`. Do NOT re-derive (Drawer + Modal precedent). _TODO: remove after master rebase confirms the patch is obsolete (TC-4)._
+- **The `@base-ui/utils@0.2.8` patch** (strips `const` from generic params) IS required for Tier 0 components — apply via `pnpm.patchedDependencies` + lockfile `patch_hash`. Do NOT re-derive (Drawer + Modal precedent). If a pnpm patch must ship, **co-locate it under `packages/<pkg>/patches/` and reference it from root `package.json#patchedDependencies` — never gitignore it at repo root** (consumer-package CI installs fail otherwise; Modal iters 1/5). _TODO: remove after master rebase confirms the patch is obsolete (TC-4)._
 - **Slot-based styling — LEGACY Tier 3.b ONLY (NOT a `@base-ui/react` v1 pattern)**: `slots` + `slotProps` is the **`@mui/base` v0** API. It is preserved ONLY for Tier 3.b legacy components (Dropdown, OutlinedInput, Modal) where external consumers still depend on the v0 shape. `@base-ui/react` v1 has no `slotProps` — each part is a separate component you style directly (see `references/base-ui-styling.md §Appendix·1` + `design-patterns-addendum.md §2`). Do NOT introduce `slots`/`slotProps` in new code. Example of the legacy shape (only valid for Tier 3.b's continued v0-API surface):
   ```tsx
   // LEGACY — Tier 3.b only (OutlinedInput.tsx:174-202)
@@ -153,11 +157,17 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 
 ## Tailwind & class composition
 
+- **Prefer the bare boolean data-variant form for `@base-ui/react` parts** — `data-starting-style:`, `data-ending-style:`, `data-open:`, `data-closed:`, `data-checked:`, `data-disabled:` — over the bracketed arbitrary form (`data-[starting-style]:`). Tailwind v4 matches bare boolean data-attributes natively (identical compiled CSS) and it mirrors the base-ui styling docs. Reserve brackets for value-matching variants only (`data-[side=top]:`, `data-[orientation=vertical]:`). (PR #4993 reviewer-confirmed + Modal iter 9.)
 - **`twMerge(className, '…')` ordering is semantic**: put structural/positional classes BEFORE caller-provided `className` so consumer overrides win. The wrong order (`twMerge(className, structural)`) silently breaks consumer customization (Drawer iter 3 precedent).
 - **Tier 0 light-path: Tailwind class composition (`cx`/`twMerge`) stays as-is.** Don't rewrite styles when the package swap is the only change.
 - **Tier 1+ heavy-path: read `rules/jss-to-tailwind-crib.md` IN FULL** before touching any JSS. The cribsheet's worked examples cover parent-ref selectors, dynamic class-from-state, raw hex → tokens, pseudo selectors, and theme.spacing → gap utilities.
 - **Property parity, not just class parity.** When porting JSS, account for EVERY declaration in the old `createStyles` AND any `PicassoProvider.override` for the component — map each, or drop it with a reason. The silent killer is a pinned `lineHeight` (MUI sets it on form-control roots): `text-[…]` only sets font-size, so dropping line-height leaves `line-height: normal` → ~1px font-metric reflow that fails Happo as a `dimension_mismatch` on every story (Checkbox PF-1994). Carry it as `leading-*`. See `rules/jss-to-tailwind-crib.md §"Property parity"`.
 - **Token fallback**: when no canonical token exists for a JSS value, keep the literal + add a `TODO(tokens): <description>` comment. Don't invent a token; that creates drift between code and the BASE design system.
+
+## Tier 1 peer-dep-only fast path
+
+- **Grep `src/` for `@mui/` / `@material-ui/` imports first.** Zero hits ⇒ the migration collapses to a `package.json` change: drop `@material-ui/core` from peers, widen the `react` peer (drop the `< 19.0.0` cap → `>=16.12.0`), prune now-unused runtime deps (`classnames`) from `package.json` + lockfile, and ship a `patch` changeset framed "Source already MUI-clean; public API unchanged". No source edits. (Note/Form/FormLabel/FormLayout/Menu/Utils precedents.)
+- **Residual type-only MUI imports survive the runtime swap** — replace each (`PropTypes.Alignment`, `SnackbarOrigin`, `PopperPlacementType`) with a local literal union enumerating the *same* members, byte-identical (never narrow during a library swap — see `AGENTS.md §"Preserve existing violations"`). Mirror the file's existing local-alias naming/placement. (Container/Notification/Dropdown/FormLabel precedents.)
 
 ## tsconfig & build hygiene
 

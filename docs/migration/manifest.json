@@ -171,7 +171,7 @@
               "evidence": "https://github.com/toptal/picasso/pull/4994#issuecomment-4717398097",
               "confirmed_by": "vedrani",
               "at": "2026-06-16T21:47:32.089Z",
-              "status": "queued"
+              "status": "graduated"
             }
           ]
         }
@@ -195,8 +195,8 @@
       "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-      "last_review_seen_at": "2026-06-16T22:28:30.040Z",
-      "session_id": "6135b70a-77f4-4d48-a2d7-c69ef8188b2b",
+      "last_review_seen_at": "2026-06-17T11:59:20.240Z",
+      "session_id": "242a00f7-1a15-45ad-a269-0e4850930004",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -208,10 +208,10 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-          "last_review_seen_at": "2026-06-16T22:28:30.040Z",
-          "session_id": "6135b70a-77f4-4d48-a2d7-c69ef8188b2b",
+          "last_review_seen_at": "2026-06-17T11:59:20.240Z",
+          "session_id": "242a00f7-1a15-45ad-a269-0e4850930004",
           "awaiting_ci_since": null,
-          "review_iterations": 9,
+          "review_iterations": 11,
           "review_iter_failures": 0,
           "operator_overrides": [
             {
@@ -221,10 +221,22 @@
               "confirmed_by": "vedrani",
               "at": "2026-06-16T22:28:30.035Z"
             }
+          ],
+          "graduation_requests": [
+            {
+              "rule": "practices.md §\"Tailwind & class composition\"",
+              "gist": "For @base-ui/react parts, prefer Tailwind bare boolean data-variant form (data-starting-style:, data-ending-style:, data-open:, data-closed:) over the bracketed arbitrary form (data-[starting-style]:). Tailwind v4 matches bare boolean data-attributes natively (identical compiled CSS) and it mirrors base-ui styling docs; brackets remain only for value-matching variants (e.g. data-[side=top]:).",
+              "target": "practices.md",
+              "trigger": "reviewer-request",
+              "evidence": "https://github.com/toptal/picasso/pull/4993#discussion_r3427600639",
+              "confirmed_by": "vedrani",
+              "at": "2026-06-17T11:59:20.238Z",
+              "status": "graduated"
+            }
           ]
         }
       },
-      "review_iterations": 9,
+      "review_iterations": 11,
       "operator_overrides": [
         {
           "rule": "rules/styling.md §\"Composition\" (consumer className always LAST)",
@@ -232,6 +244,18 @@
           "evidence": "https://github.com/toptal/picasso/pull/4993#discussion_r3420390779",
           "confirmed_by": "vedrani",
           "at": "2026-06-16T22:28:30.035Z"
+        }
+      ],
+      "graduation_requests": [
+        {
+          "rule": "practices.md §\"Tailwind & class composition\"",
+          "gist": "For @base-ui/react parts, prefer Tailwind bare boolean data-variant form (data-starting-style:, data-ending-style:, data-open:, data-closed:) over the bracketed arbitrary form (data-[starting-style]:). Tailwind v4 matches bare boolean data-attributes natively (identical compiled CSS) and it mirrors base-ui styling docs; brackets remain only for value-matching variants (e.g. data-[side=top]:).",
+          "target": "practices.md",
+          "trigger": "reviewer-request",
+          "evidence": "https://github.com/toptal/picasso/pull/4993#discussion_r3427600639",
+          "confirmed_by": "vedrani",
+          "at": "2026-06-17T11:59:20.238Z",
+          "status": "graduated"
         }
       ]
     },
@@ -317,7 +341,7 @@
     "Tabs": {
       "tier": 0,
       "package": "packages/base/Tabs",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "@base-ui/react/tabs",
       "versionBump": "major",
@@ -325,7 +349,7 @@
       "branch": "migrate-Tabs-v1",
       "worktree": "migration-runs/2026-06-04/Tabs-v1/worktree",
       "iterations": 3,
-      "merged_at": null,
+      "merged_at": "2026-06-17T11:08:46Z",
       "notes": "Prior v1 run on 2026-05-21 escalated needs_human (migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest, identical content across 2 consecutive iters). Worktree migration-runs/2026-05-21/Tabs-v1/worktree was left dirty for operator inspection; discarded for clean restart.",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T23:19:45.030Z",
@@ -334,12 +358,12 @@
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4996",
           "branch": "migrate-Tabs-v1",
           "worktree": "migration-runs/2026-06-04/Tabs-v1/worktree",
           "iterations": 3,
-          "merged_at": null,
+          "merged_at": "2026-06-17T11:08:46Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T23:19:45.030Z",
           "last_review_seen_at": "2026-06-16T12:28:34.382Z",
