@@ -2,7 +2,6 @@ import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
 import type { PopperOptions } from 'popper.js'
 import type { StandardProps } from '@toptal/picasso-shared'
-import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import type {
   DeprecatedSpacingType,
   SpacingType,
@@ -171,18 +170,6 @@ export const Dropdown: DropdownProps = forwardRef<
   const contentRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
-  // Replicates MUI Grow's mount-collapsed geometry. The content's first render
-  // is the collapsed (scale-75) state; a layout effect expands it to full size
-  // before paint. Because child layout effects run before the parent's, any
-  // Popper-positioned content nested in the dropdown (e.g. a Tooltip) measures
-  // the dropdown while still collapsed and freezes against that pre-grow
-  // geometry — matching the legacy Grow's anchoring — while Happo only ever
-  // serializes the settled, expanded state.
-  const [growIn, setGrowIn] = useState(false)
-
-  useIsomorphicLayoutEffect(() => {
-    setGrowIn(isOpen)
-  }, [isOpen])
 
   const handleAnchorClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -331,9 +318,20 @@ export const Dropdown: DropdownProps = forwardRef<
             <Paper
               onClick={close}
               style={contentStyle}
+              // Open (grow) animation, replacing MUI <Grow>. CSS @starting-style
+              // animates from the collapsed state on first paint — no JS timing,
+              // and the resting state is scale-100 so static captures are stable.
+              // scale (not transform) is the property Tailwind v4 sets, so it must
+              // be in the transition list.
+              // TODO: [PF-1994] When Popper moves to @floating-ui/react it
+              // positions a frame after mount, so the Paper must only be inserted
+              // (or revealed) once positioned, otherwise @starting-style fires
+              // while unpositioned and the grow plays from the wrong spot. Gate on
+              // floating-ui's isPositioned, or switch to base-ui's
+              // data-[starting-style] hook.
               className={twMerge(
-                'origin-center transition-[opacity,transform] duration-200 ease-out',
-                growIn ? 'scale-100 opacity-100' : 'scale-75 opacity-0',
+                'origin-center transition-[opacity,scale] duration-200 ease-out',
+                'scale-100 opacity-100 starting:scale-75 starting:opacity-0',
                 isOpen ? '' : 'invisible',
                 contentOverflow === 'visible'
                   ? contentClass.contentVisible
