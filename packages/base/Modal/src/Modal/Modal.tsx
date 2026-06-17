@@ -199,8 +199,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
 
   usePageScrollLock(open)
 
-  // onOpen mirrors the legacy Fade `onEnter`: fire once each time the modal
-  // transitions from closed to open.
   useEffect(() => {
     if (open && !wasOpen.current) {
       onOpen?.()
@@ -216,10 +214,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     picassoRootContainer
 
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    // Clicks landing on the popup container itself (the area around the paper)
-    // are the @base-ui/react equivalent of the legacy backdrop click. Outside
-    // pointer dismissal is disabled so we can route per-modal here, matching
-    // @mui/base's per-backdrop onClick semantics.
     if (event.target === event.currentTarget && !disableBackdropClick) {
       onBackdropClick?.()
       onClose?.()
@@ -231,9 +225,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   return (
     <Dialog.Root
       open={open}
-      // Focus and page scroll are managed by Picasso (custom focus handler +
-      // usePageScrollLock) so the Modal can coexist with tooltips and other
-      // open modals — mirrors the legacy disableEnforceFocus + disableScrollLock.
       modal={false}
       disablePointerDismissal
       onOpenChange={isOpen => {
@@ -249,12 +240,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     >
       <Dialog.Portal container={resolvedContainer}>
         {!hideBackdrop && (
-          // Enter + exit fade mirrors the legacy @toptal/picasso-fade wrapper.
-          // base-ui drives the enter via a transient data-starting-style
-          // attribute it clears on the next animation frame; happoScreenshot is
-          // overridden (cypress/support/commands.jsx) to wait for that
-          // attribute to clear before serializing, so the static cloud render
-          // captures the settled (opaque) state rather than a blank frame.
           <Dialog.Backdrop
             className='fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
             style={durationStyle}
@@ -263,11 +248,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         <Dialog.Popup
           {...rest}
           ref={modalRef}
-          // Legacy @mui/base Modal's FocusTrap (only enforce-focus was
-          // disabled, not auto-focus) moved focus to the modal ROOT on open
-          // unless focus was already inside — never to the first tabbable
-          // element (base-ui's default, which e.g. opens a date-picker's
-          // calendar on mount). Mirror that exactly.
           initialFocus={() =>
             modalRef.current?.contains(document.activeElement)
               ? undefined
