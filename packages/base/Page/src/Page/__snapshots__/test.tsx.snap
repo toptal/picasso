@@ -6,7 +6,7 @@ exports[`Page renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Page-root [--content-padding md:[--content-padding [--header [--content-width [--content"
+      class="flex flex-col h-full bg-gray [&>footer]:flex-[0] [&>header]:flex-[0] [&>header+*]:mt-[var(--header [--content-padding md:[--content-padding [--header [--content-width [--content"
     >
       <div>
         Test
