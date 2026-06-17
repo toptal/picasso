@@ -13,12 +13,12 @@ interface PaperProps extends HTMLAttributes<HTMLDivElement> {
 // applied for the enter (`data-starting-style`) and exit (`data-ending-style`)
 // frames so @base-ui/react drives the slide transition the legacy Slide handled.
 const anchorClassName: Record<AnchorType, string> = {
-  left: 'left-0 right-auto translate-x-0 data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full',
+  left: 'left-0 right-auto translate-x-0 data-starting-style:-translate-x-full data-ending-style:-translate-x-full',
   right:
-    'left-auto right-0 translate-x-0 data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full',
-  top: 'top-0 bottom-auto left-0 right-0 h-auto max-h-full translate-y-0 data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full',
+    'left-auto right-0 translate-x-0 data-starting-style:translate-x-full data-ending-style:translate-x-full',
+  top: 'top-0 bottom-auto left-0 right-0 h-auto max-h-full translate-y-0 data-starting-style:-translate-y-full data-ending-style:-translate-y-full',
   bottom:
-    'bottom-0 top-auto left-0 right-0 h-auto max-h-full translate-y-0 data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full',
+    'bottom-0 top-auto left-0 right-0 h-auto max-h-full translate-y-0 data-starting-style:translate-y-full data-ending-style:translate-y-full',
 }
 
 const DrawerPaper = forwardRef(

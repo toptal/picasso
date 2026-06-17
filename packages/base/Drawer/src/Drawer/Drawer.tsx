@@ -119,7 +119,7 @@ export const Drawer = ({
         <BaseUIDialog.Backdrop
           className={twMerge(
             'z-drawer fixed inset-0 bg-black transition-opacity duration-300',
-            'data-[starting-style]:opacity-0 data-[ending-style]:opacity-0',
+            'data-starting-style:opacity-0 data-ending-style:opacity-0',
             transparentBackdrop ? 'bg-black/0' : 'bg-black/50'
           )}
         />
