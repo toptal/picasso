@@ -65,15 +65,7 @@ const classesByVariant = {
   },
 } as const
 
-// Sliding active-tab indicator — horizontal only. @base-ui/react's
-// Tabs.Indicator exposes the active tab's geometry as CSS vars
-// (--active-tab-left/width); the transition restores MUI v4's
-// sliding-underline animation that the per-tab box-shadow lost. Vertical tabs
-// use a static per-tab `before:` bar instead (see Tab.tsx) — no slide.
 const horizontalIndicatorClasses = [
-  // z-10 matches the tabs' stacking level so the indicator paints above the
-  // gray baseline (after:z-0); without it the 1px border overpaints the
-  // indicator's bottom edge (the old box-shadow sat on a z-10 tab).
   'absolute bottom-0 left-0 h-[2px] bg-blue-500 z-10',
   'w-[var(--active-tab-width)]',
   'translate-x-[var(--active-tab-left)]',
@@ -82,9 +74,6 @@ const horizontalIndicatorClasses = [
   'transition-[translate,width] duration-300 ease-in-out',
 ]
 
-// @base-ui/react's Tab needs an explicit `value`; @mui/base auto-assigned each
-// Tab its 0-based position index when no `value` was given. Preserve that
-// fallback so consumers can keep selecting tabs by numeric index.
 const withFallbackValue = (children: ReactNode): ReactNode => {
   let index = -1
 

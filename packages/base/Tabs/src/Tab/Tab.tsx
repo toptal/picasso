@@ -107,9 +107,6 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
     label,
     icon,
     /* eslint-disable @typescript-eslint/no-unused-vars */
-    // @base-ui/react drives selection through Tabs.Root's value, so these
-    // @mui/base-era managed props have no Tab-level equivalent — omit them
-    // from the spread to keep them off the DOM.
     onChange,
     selected,
     /* eslint-enable */
