@@ -1,10 +1,7 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React from 'react'
-import cx from 'classnames'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps } from '@toptal/picasso-shared'
-
-import { detailsClasses } from './styles'
 
 export interface Props
   extends Omit<StandardProps, 'classes'>,
@@ -24,7 +21,7 @@ const AccordionDetails = (props: Props) => {
   } = props as Props & { classes?: unknown }
 
   return (
-    <div {...rest} className={twMerge(cx(...detailsClasses), className)}>
+    <div {...rest} className={twMerge('flex p-0', className)}>
       {children}
     </div>
   )

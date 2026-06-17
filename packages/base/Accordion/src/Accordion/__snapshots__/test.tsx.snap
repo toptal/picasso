@@ -73,7 +73,7 @@ exports[`Accordion renders collapsed by default 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:r2:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-[starting-style]:h-0 data-[ending-style]:h-0"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-index="0"
           data-orientation="vertical"
@@ -163,7 +163,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:rh:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-[starting-style]:h-0 data-[ending-style]:h-0"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-index="0"
           data-orientation="vertical"
@@ -267,7 +267,7 @@ exports[`Accordion renders disabled 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:rb:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-[starting-style]:h-0 data-[ending-style]:h-0"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-disabled=""
           data-index="0"

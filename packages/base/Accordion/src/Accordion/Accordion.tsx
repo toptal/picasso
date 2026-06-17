@@ -113,7 +113,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     const newExpanded = value.length > 0
 
     setSummaryExpanded(newExpanded)
-    onChange(toReactEvent<ChangeEvent<Element>>(eventDetails.event), newExpanded)
+    onChange(
+      toReactEvent<ChangeEvent<Element>>(eventDetails.event),
+      newExpanded
+    )
   }
 
   const handlePanelTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
@@ -138,7 +141,12 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   // BaseUI-evented handlers), so widen once at the boundary.
   const rootRest = rest as Omit<
     BaseUIAccordion.Root.Props,
-    'value' | 'defaultValue' | 'onValueChange' | 'className' | 'style' | 'disabled'
+    | 'value'
+    | 'defaultValue'
+    | 'onValueChange'
+    | 'className'
+    | 'style'
+    | 'disabled'
   >
 
   return (
@@ -146,7 +154,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       {...rootRest}
       ref={rootRef}
       data-component-type='accordion'
-      className={twMerge(cx(...createRootClassNames(appliedBorders)), className)}
+      className={twMerge(
+        cx(...createRootClassNames(appliedBorders)),
+        className
+      )}
       style={style}
       disabled={disabled}
       value={summaryExpanded ? EXPANDED_VALUE : COLLAPSED_VALUE}

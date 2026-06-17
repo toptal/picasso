@@ -84,8 +84,19 @@ export const panelClasses = [
   'transition-[height]',
   'duration-200',
   'ease-in-out',
-  'data-[starting-style]:h-0',
-  'data-[ending-style]:h-0',
+  'data-starting-style:h-0',
+  'data-ending-style:h-0',
+  // When collapsed, Base UI sets the native `hidden` attribute (display:none)
+  // on the panel, dropping its wider content out of layout — which lets a
+  // flex-item Accordion shrink to its summary width. Keep the panel in the
+  // layout flow so it still contributes width, while staying hidden:
+  //   block      — undo display:none so the box participates in sizing again
+  //   h-0        — Base UI's --accordion-panel-height resolves to `auto` once
+  //                hidden, so re-displaying needs an explicit 0 to stay collapsed
+  //   invisible  — drop the re-displayed content from the a11y tree / tab order
+  '[&[hidden]]:block',
+  '[&[hidden]]:h-0',
+  '[&[hidden]]:invisible',
 ]
 
 export const summaryWrapperClasses = ['text-black']
