@@ -1,12 +1,6 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import { Modal as Dialog } from '@mui/base/Modal'
-import React, {
-  forwardRef,
-  useEffect,
-  useRef,
-  useCallback,
-  useContext,
-} from 'react'
+import { Dialog } from '@base-ui/react/dialog'
+import React, { forwardRef, useEffect, useRef, useContext } from 'react'
 import type {
   BaseProps,
   SizeType,
@@ -20,8 +14,6 @@ import {
   usePageScrollLock,
 } from '@toptal/picasso-utils'
 import { ButtonCircular } from '@toptal/picasso-button'
-import { Fade } from '@toptal/picasso-fade'
-import { Backdrop } from '@toptal/picasso-backdrop'
 import ModalContext from '@toptal/picasso-modal-context'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -136,6 +128,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     onBackdropClick,
     onClose,
     onOpen,
+    onClick,
     className,
     style,
     container,
@@ -151,6 +144,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     useRef<HTMLDivElement>(null)
   )
   const modalId = useRef(generateKey())
+  const wasOpen = useRef(false)
   const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
@@ -205,76 +199,89 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
 
   usePageScrollLock(open)
 
-  const handleClose = useCallback(
-    (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
-      if (reason === 'escapeKeyDown' && onClose) {
-        onClose()
-      } else if (reason === 'backdropClick' && !disableBackdropClick) {
-        if (onBackdropClick) {
-          onBackdropClick()
-        }
-
-        if (onClose) {
-          onClose()
-        }
-      }
-    },
-    [disableBackdropClick, onBackdropClick, onClose]
-  )
+  useEffect(() => {
+    if (open && !wasOpen.current) {
+      onOpen?.()
+    }
+    wasOpen.current = open
+  }, [open, onOpen])
 
   const duration = transitionProps?.timeout || transitionDuration
-  const backdropProps = { transitionDuration: duration }
+  const durationStyle = { transitionDuration: `${duration}ms` }
+
+  const resolvedContainer =
+    (typeof container === 'function' ? container() : container) ||
+    picassoRootContainer
+
+  const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget && !disableBackdropClick) {
+      onBackdropClick?.()
+      onClose?.()
+    }
+
+    onClick?.(event)
+  }
 
   return (
-    <Dialog
-      {...rest}
-      ref={modalRef}
-      className={twMerge(
-        className,
-        'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center'
-      )}
-      style={style}
-      slots={{
-        backdrop: Backdrop,
-      }}
-      closeAfterTransition
-      slotProps={{
-        backdrop: backdropProps,
-      }}
-      container={container || picassoRootContainer}
-      hideBackdrop={hideBackdrop}
-      onClose={handleClose}
+    <Dialog.Root
       open={open}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      disableScrollLock
+      modal={false}
+      disablePointerDismissal
+      onOpenChange={isOpen => {
+        if (!isOpen) {
+          onClose?.()
+        }
+      }}
+      onOpenChangeComplete={isOpen => {
+        if (!isOpen && modalRef.current) {
+          transitionProps?.onExited?.(modalRef.current)
+        }
+      }}
     >
-      <Fade
-        in={open}
-        onEnter={onOpen}
-        onExited={transitionProps?.onExited}
-        timeout={transitionDuration}
-      >
-        <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
-          <ModalContext.Provider value>
-            {children}
-            {onClose && (
-              <ButtonCircular
-                aria-label='Close'
-                variant='flat'
-                className={twMerge(
-                  'absolute top-8 right-8',
-                  classes?.closeButton
-                )}
-                onClick={onClose}
-                data-testid={testIds?.closeButton}
-              >
-                <CloseMinor16 />
-              </ButtonCircular>
-            )}
-          </ModalContext.Provider>
-        </ModalPaper>
-      </Fade>
-    </Dialog>
+      <Dialog.Portal container={resolvedContainer}>
+        {!hideBackdrop && (
+          <Dialog.Backdrop
+            className='fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
+            style={durationStyle}
+          />
+        )}
+        <Dialog.Popup
+          {...rest}
+          ref={modalRef}
+          initialFocus={() =>
+            modalRef.current?.contains(document.activeElement)
+              ? undefined
+              : modalRef.current
+          }
+          className={twMerge(
+            className,
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
+          )}
+          style={{ ...style, ...durationStyle }}
+          onClick={handlePopupClick}
+        >
+          <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
+            <ModalContext.Provider value>
+              {children}
+              {onClose && (
+                <ButtonCircular
+                  aria-label='Close'
+                  variant='flat'
+                  className={twMerge(
+                    'absolute top-8 right-8',
+                    classes?.closeButton
+                  )}
+                  onClick={onClose}
+                  data-testid={testIds?.closeButton}
+                >
+                  <CloseMinor16 />
+                </ButtonCircular>
+              )}
+            </ModalContext.Provider>
+          </ModalPaper>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 })
 
