@@ -116,7 +116,7 @@ export async function readSessionUsage(
   sessionLogPath: string
 ): Promise<InvocationUsage> {
   const body = await fs.readFile(sessionLogPath, 'utf8')
-  const lines = body.split('\n').filter((l) => l.trim().length > 0)
+  const lines = body.split('\n').filter(l => l.trim().length > 0)
   const seenMessageIds = new Set<string>()
   let inputTokens = 0
   let outputTokens = 0
@@ -132,20 +132,30 @@ export async function readSessionUsage(
     } catch {
       continue
     }
-    if (entry.type !== 'assistant') {continue}
+    if (entry.type !== 'assistant') {
+      continue
+    }
     const usage = entry.message?.usage
 
-    if (!usage) {continue}
+    if (!usage) {
+      continue
+    }
     const msgId = entry.message?.id
 
-    if (msgId && seenMessageIds.has(msgId)) {continue}
-    if (msgId) {seenMessageIds.add(msgId)}
+    if (msgId && seenMessageIds.has(msgId)) {
+      continue
+    }
+    if (msgId) {
+      seenMessageIds.add(msgId)
+    }
 
     inputTokens += usage.input_tokens ?? 0
     outputTokens += usage.output_tokens ?? 0
     cacheReadTokens += usage.cache_read_input_tokens ?? 0
-    cacheCreation5mTokens += usage.cache_creation?.ephemeral_5m_input_tokens ?? 0
-    cacheCreation1hTokens += usage.cache_creation?.ephemeral_1h_input_tokens ?? 0
+    cacheCreation5mTokens +=
+      usage.cache_creation?.ephemeral_5m_input_tokens ?? 0
+    cacheCreation1hTokens +=
+      usage.cache_creation?.ephemeral_1h_input_tokens ?? 0
   }
 
   const costUsd =
@@ -205,7 +215,9 @@ export async function appendCostSnapshot(args: {
 }): Promise<InvocationUsage | null> {
   const sessionLog = findSessionLog(args.cwd, args.sessionId)
 
-  if (!sessionLog) {return null}
+  if (!sessionLog) {
+    return null
+  }
   const usage = await readSessionUsage(sessionLog)
   const costPath = path.join(args.runDir, 'cost.json')
   let report: CostReport
@@ -225,7 +237,7 @@ export async function appendCostSnapshot(args: {
   // Replace the snapshot for this iteration if already present (rerun
   // safety), else append.
   const existingIdx = report.snapshots.findIndex(
-    (s) => s.iteration === args.iteration
+    s => s.iteration === args.iteration
   )
   const snapshot = {
     iteration: args.iteration,
@@ -259,4 +271,142 @@ function freshReport(
     total: usage,
     snapshots: [],
   }
+}
+
+// ---------------------------------------------------------------------------
+// Codex (`--agent=codex`) cost telemetry
+// ---------------------------------------------------------------------------
+
+/**
+ * Codex token usage for one `agent.invoke`, summed across the run's turns by
+ * orchestrator-core's invoke loop (each `codex exec --json` `turn.completed`
+ * bills the full input with a cache discount on the cached subset, so per-turn
+ * sums equal total billed tokens). Codex has no `~/.claude/projects` session
+ * jsonl, so usage is parsed live from the `--json` stream instead.
+ */
+export interface CodexUsageTokens {
+  inputTokens: number
+  cachedInputTokens: number
+  outputTokens: number
+  reasoningOutputTokens: number
+}
+
+/**
+ * Codex (gpt-5.5) pricing, USD per 1M tokens. ESTIMATE — confirm against
+ * https://openai.com/api/pricing and update when gpt-5.5 rates are published.
+ * Advisory for two reasons: (1) these are gpt-5-class placeholder rates;
+ * (2) codex on this program authenticates via a ChatGPT subscription
+ * (auth_mode=chatgpt), so real consumption is plan quota, not per-token API
+ * billing — treat the codex cost.json as an API-equivalent estimate. The
+ * Anthropic-side cost repricing does NOT apply to codex (OpenAI-billed).
+ * `reasoning_output_tokens` are a subset of `output_tokens` (Responses API),
+ * so they are NOT billed separately here.
+ */
+const PRICING_USD_PER_M_CODEX = {
+  input: 1.25,
+  cached_input: 0.125,
+  output: 10,
+}
+
+/**
+ * USD cost for a codex invocation: (input − cached) at the input rate + cached
+ * at the discounted rate + output (already inclusive of reasoning) at the
+ * output rate.
+ */
+export function codexCostUsd(usage: CodexUsageTokens): number {
+  const uncachedInput = Math.max(0, usage.inputTokens - usage.cachedInputTokens)
+
+  return (
+    (uncachedInput / 1_000_000) * PRICING_USD_PER_M_CODEX.input +
+    (usage.cachedInputTokens / 1_000_000) *
+      PRICING_USD_PER_M_CODEX.cached_input +
+    (usage.outputTokens / 1_000_000) * PRICING_USD_PER_M_CODEX.output
+  )
+}
+
+/**
+ * Codex analogue of appendCostSnapshot. Usage is supplied directly (parsed
+ * from `codex exec --json`), not read from a session log. Writes the same
+ * `cost.json` shape so downstream readers are provider-agnostic. NOTE: unlike
+ * the claude path (one resumed session → cumulative snapshots), each codex
+ * invoke is an independent `codex exec`, so snapshots here are PER-INVOCATION
+ * and `total` is their sum. Idempotent on iteration re-run. Returns null when
+ * no usage was captured (e.g. the run died before any `turn.completed`).
+ */
+export async function appendCodexCostSnapshot(args: {
+  runDir: string
+  itemId: string
+  iteration: number
+  usage: CodexUsageTokens | undefined
+}): Promise<InvocationUsage | null> {
+  if (!args.usage) {
+    return null
+  }
+  const costUsd = codexCostUsd(args.usage)
+  const costPath = path.join(args.runDir, 'cost.json')
+  const seed: InvocationUsage = {
+    inputTokens: args.usage.inputTokens,
+    outputTokens: args.usage.outputTokens,
+    cacheCreation5mTokens: 0,
+    cacheCreation1hTokens: 0,
+    cacheReadTokens: args.usage.cachedInputTokens,
+    costUsd,
+    messageCount: 0,
+    sessionLogPath: 'codex:--json-stream',
+  }
+  let report: CostReport
+
+  if (existsSync(costPath)) {
+    try {
+      report = JSON.parse(await fs.readFile(costPath, 'utf8')) as CostReport
+    } catch {
+      report = freshReport(args.itemId, 'codex', seed)
+    }
+  } else {
+    report = freshReport(args.itemId, 'codex', seed)
+  }
+
+  const snapshot = {
+    iteration: args.iteration,
+    at: new Date().toISOString(),
+    inputTokens: args.usage.inputTokens,
+    outputTokens: args.usage.outputTokens,
+    cacheReadTokens: args.usage.cachedInputTokens,
+    costUsd: Number(costUsd.toFixed(4)),
+  }
+  const existingIdx = report.snapshots.findIndex(
+    s => s.iteration === args.iteration
+  )
+
+  if (existingIdx >= 0) {
+    report.snapshots[existingIdx] = snapshot
+  } else {
+    report.snapshots.push(snapshot)
+  }
+
+  // total = sum across per-invocation snapshots (codex invokes are independent
+  // exec sessions, so there is no single cumulative session log to read).
+  const total: InvocationUsage = {
+    inputTokens: report.snapshots.reduce((a, s) => a + s.inputTokens, 0),
+    outputTokens: report.snapshots.reduce((a, s) => a + s.outputTokens, 0),
+    cacheCreation5mTokens: 0,
+    cacheCreation1hTokens: 0,
+    cacheReadTokens: report.snapshots.reduce(
+      (a, s) => a + s.cacheReadTokens,
+      0
+    ),
+    costUsd: Number(
+      report.snapshots.reduce((a, s) => a + s.costUsd, 0).toFixed(4)
+    ),
+    messageCount: 0,
+    sessionLogPath: 'codex:--json-stream',
+  }
+
+  report.total = total
+  report.sessionId = 'codex'
+  report.updatedAt = new Date().toISOString()
+
+  await fs.writeFile(costPath, JSON.stringify(report, null, 2), 'utf8')
+
+  return total
 }

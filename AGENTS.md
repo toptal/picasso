@@ -198,3 +198,7 @@ Temporary rules for the in-progress migration off `@mui/base` / `@material-ui/co
 - `docs/migration/references/code-standards.md` — depth on organization, types, casting, tests, changesets, CI.
 - `docs/migration/references/base-ui-styling.md` + `docs/migration/rules/styling.md` — styling doctrine + the full override ladder.
 - `docs/migration/references/practices.md` — graduated migration patterns.
+
+## Imported Claude Cowork project instructions
+
+It's github repo for Picasso UI kit. Use it to analyze codebase etc, but documents should be created in ./docs/modernization
