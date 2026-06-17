@@ -40,6 +40,9 @@ overrides:
   js-yaml: ^3.13.1
 
 patchedDependencies:
+  '@base-ui/utils@0.2.8':
+    hash: 9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835
+    path: packages/base/Modal/patches/@base-ui__utils@0.2.8.patch
   webpack@5.98.0:
     hash: e2c4e4364d7f63ce4220ac564a0eb0a6789525608c04a20b13e962e3eccec20c
     path: patches/webpack@5.98.0.patch
@@ -1904,18 +1907,12 @@ importers:
 
   packages/base/Modal:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-backdrop':
-        specifier: 2.0.0
-        version: link:../Backdrop
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: 5.0.0
         version: link:../Button
-      '@toptal/picasso-fade':
-        specifier: 1.0.9
-        version: link:../Fade
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
@@ -19204,7 +19201,7 @@ snapshots:
   '@base-ui/react@1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@base-ui/utils': 0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/utils': 0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/react-dom': 2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/utils': 0.2.11
       react: 18.2.0
@@ -19214,7 +19211,7 @@ snapshots:
       '@types/react': 17.0.39
       date-fns: 2.30.0
 
-  '@base-ui/utils@0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@base-ui/utils@0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@floating-ui/utils': 0.2.11

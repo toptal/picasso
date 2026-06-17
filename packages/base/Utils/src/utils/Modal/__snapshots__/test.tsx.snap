@@ -3,6 +3,7 @@
 exports[`Modal useModal opens and closes modal 1`] = `
 <body>
   <div
+    data-base-ui-inert=""
     id="modal-root"
   />
   <div>
@@ -11,8 +12,8 @@ exports[`Modal useModal opens and closes modal 1`] = `
     >
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        data-base-ui-inert=""
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -25,47 +26,89 @@ exports[`Modal useModal opens and closes modal 1`] = `
         </span>
       </button>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        data-base-ui-portal=""
+        id=":r2:"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
+          data-base-ui-inert=""
+          data-open=""
+          data-starting-style=""
+          role="presentation"
+          style="user-select: none; transition-duration: 300ms;"
         />
-        <div
-          data-testid="sentinelStart"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity data-ending-style:opacity"
+          data-base-ui-focusable=""
+          data-open=""
+          data-starting-style=""
+          id=":r0:"
           role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
+          style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
         >
-          <p>
-            Modal content
-          </p>
-          <button
-            aria-disabled="false"
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
-            data-component-type="button"
-            role="button"
-            tabindex="0"
-            type="button"
+          <div
+            class="bg-white shadow-2 transition-shadow duration-300 delay-0 outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            tabindex="-1"
           >
-            <span
-              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+            <p>
+              Modal content
+            </p>
+            <button
+              aria-disabled="false"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+              data-component-type="button"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              Hide
-            </span>
-          </button>
+              <span
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+              >
+                Hide
+              </span>
+            </button>
+          </div>
         </div>
-        <div
-          data-testid="sentinelEnd"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
+      <span
+        aria-owns=":r2:"
+        data-base-ui-inert=""
+        style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+      />
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
     </div>
   </div>
 </body>
@@ -102,6 +145,7 @@ exports[`Modal useModal opens and closes modal 2`] = `
 exports[`Modal useModal shows multiple modals at the same time 1`] = `
 <body>
   <div
+    data-base-ui-inert=""
     id="modal-root"
   />
   <div>
@@ -110,8 +154,8 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
     >
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        data-base-ui-inert=""
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -123,10 +167,31 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           Show first
         </span>
       </button>
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
+      <span
+        aria-owns=":r7:"
+        data-base-ui-inert=""
+        style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+      />
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        data-base-ui-inert=""
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -139,62 +204,125 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         </span>
       </button>
       <div
-        aria-hidden="true"
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        data-base-ui-inert=""
+        data-base-ui-portal=""
+        id=":r7:"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
+          data-base-ui-inert=""
+          data-open=""
+          data-starting-style=""
+          role="presentation"
+          style="user-select: none; transition-duration: 300ms;"
         />
-        <div
-          data-testid="sentinelStart"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity data-ending-style:opacity"
+          data-base-ui-focusable=""
+          data-open=""
+          data-starting-style=""
+          id=":r3:"
           role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
+          style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
         >
-          <p>
-            First modal content
-          </p>
+          <div
+            class="bg-white shadow-2 transition-shadow duration-300 delay-0 outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            tabindex="-1"
+          >
+            <p>
+              First modal content
+            </p>
+          </div>
         </div>
-        <div
-          data-testid="sentinelEnd"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        data-base-ui-portal=""
+        id=":r8:"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50 base-Modal"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
+          data-base-ui-inert=""
+          data-open=""
+          data-starting-style=""
+          role="presentation"
+          style="user-select: none; transition-duration: 300ms;"
         />
-        <div
-          data-testid="sentinelStart"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity data-ending-style:opacity"
+          data-base-ui-focusable=""
+          data-open=""
+          data-starting-style=""
+          id=":r5:"
           role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
+          style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
         >
-          <p>
-            Second modal content
-          </p>
+          <div
+            class="bg-white shadow-2 transition-shadow duration-300 delay-0 outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            tabindex="-1"
+          >
+            <p>
+              Second modal content
+            </p>
+          </div>
         </div>
-        <div
-          data-testid="sentinelEnd"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
+      <span
+        aria-owns=":r8:"
+        data-base-ui-inert=""
+        style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+      />
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
     </div>
   </div>
 </body>
