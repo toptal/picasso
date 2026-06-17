@@ -8016,6 +8016,35 @@ export async function runCleanup(
     )
   }
 
+  // Forward-sync the worktree to origin's PR head before reading the diff and
+  // engaging the agent. origin/<branch> may have advanced since this worktree
+  // last ran — the open PR branch gets rebased onto the moving base as other
+  // migrations merge, or a prior --review-sweep tick pushed — so without this
+  // the agent strips comments against stale source AND the end-of-tick push
+  // bounces non-fast-forward. Guarded reset (never `git pull`), same helper and
+  // posture as the review-sweep; see worktree.syncToOrigin for the cherry-guard
+  // that hands genuine unpushed local work to a human instead of destroying it.
+  const sync = await worktree.syncToOrigin(branch, wtPath)
+
+  if (sync.kind === 'diverged') {
+    return {
+      status: 'escalated',
+      reason: `worktree sync blocked: ${sync.reason}`,
+    }
+  }
+
+  if (sync.kind === 'skipped') {
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: worktree sync skipped (${sync.reason}); proceeding on current state`
+    )
+  } else {
+    log(
+      'cleanup',
+      `${item.id}:${variantId}: worktree synced to origin/${branch} @ ${sync.head}`
+    )
+  }
+
   const updateForVariant = (patch: Partial<VariantState>): Manifest =>
     manifest.updateVariant(manifestAbs, item.id, variantId, patch)
 
