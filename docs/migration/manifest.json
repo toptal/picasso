@@ -346,10 +346,12 @@
           "session_id": "32c58007-a5d3-4177-a896-64c6835198f4",
           "awaiting_ci_since": null,
           "review_iterations": 4,
-          "review_iter_failures": 0
+          "review_iter_failures": 0,
+          "cleanup_done_at": "2026-06-17T10:46:44.647Z"
         }
       },
-      "review_iterations": 4
+      "review_iterations": 4,
+      "cleanup_done_at": "2026-06-17T10:46:44.647Z"
     },
     "Form": {
       "tier": 1,
