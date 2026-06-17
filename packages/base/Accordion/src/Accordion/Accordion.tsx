@@ -69,7 +69,10 @@ const decorateWithExpandIconClasses = (
   classes: string
 ) =>
   React.cloneElement(expandIcon, {
-    className: cx(expandIcon.props.className, classes),
+    // Some components overwrite the icon color when disabled
+    // That's why we need to apply the disabled state to the icon itself,
+    // instead of the ButtonAction wrapper
+    className: cx(classes, expandIcon.props.className),
   })
 
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(

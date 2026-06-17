@@ -99,7 +99,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                           class="items-center inline-flex font-semibold text-blue text-md"
                         >
                           <svg
-                            class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-[0.7em] text-graphite transition-transform duration-150 ease-in rotate-180"
+                            class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 transition-transform duration-150 ease-in rotate-180 text-base text-graphite"
                             style="min-width: 16px; min-height: 16px;"
                             viewBox="0 0 16 16"
                           >
@@ -275,7 +275,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                           class="items-center inline-flex font-semibold text-blue text-md"
                         >
                           <svg
-                            class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-[0.7em] text-graphite transition-transform duration-150 ease-in rotate-180"
+                            class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 transition-transform duration-150 ease-in rotate-180 text-base text-graphite"
                             style="min-width: 16px; min-height: 16px;"
                             viewBox="0 0 16 16"
                           >
@@ -622,7 +622,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                   class="items-center inline-flex font-semibold text-blue text-md"
                 >
                   <svg
-                    class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-[0.7em] text-graphite transition-transform duration-150 ease-in"
+                    class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 transition-transform duration-150 ease-in text-base text-graphite"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
