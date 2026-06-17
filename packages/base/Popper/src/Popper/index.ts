@@ -4,3 +4,4 @@ import type { Props } from './Popper'
 
 export { default as Popper } from './Popper'
 export type PopperProps = OmitInternalProps<Props>
+export type { PopperPlacementType } from './Popper'

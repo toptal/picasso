@@ -7,26 +7,13 @@ import type {
   SpacingType,
 } from '@toptal/picasso-provider'
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
+import type { PopperPlacementType } from '@toptal/picasso-popper'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
 import { ClickAwayListener, noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { contentClass } from './styles'
-
-type PopperPlacementType =
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'bottom'
-  | 'left-end'
-  | 'left-start'
-  | 'left'
-  | 'right-end'
-  | 'right-start'
-  | 'right'
-  | 'top-end'
-  | 'top-start'
-  | 'top'
 
 type ContentOverflowType = 'scroll' | 'visible'
 
