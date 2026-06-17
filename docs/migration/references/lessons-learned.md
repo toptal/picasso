@@ -620,3 +620,59 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - base-ui popups unmount when closed (vs MUI's mounted-but-hidden), so any Cypress/test assertion of a closed tooltip must be `should('not.exist')` not `should('not.be.visible')` — convert these proactively during the migration instead of letting them fail CI or surface in review.
 - When a primitive swap changes observable behavior (DOM lifecycle, narrowed prop unions like `PlacementType`), enumerate each as an explicit **Breaking** bullet in the changeset up-front — reviewers expect the migration PR to call out consumer-visible deltas, not just claim "parity preserved."
 - Reference: https://github.com/toptal/picasso/pull/5005
+
+## Drawer — 2026-06-16 (review iter 10)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 10
+- Justify any non-obvious primitive selection (e.g. `Dialog` instead of `@base-ui/react/drawer`) inline at the import site AND in the changeset, since reviewers will challenge the swap if the rationale isn't explicit — swipe-less Drawer → Dialog is the canonical example.
+- When picking which `@base-ui/react` primitive backs a Picasso component, audit the primitive's mandatory behaviors (swipe-to-dismiss, focus-trap modes, viewport requirements) against the existing Picasso API before committing — if the primitive forces a behavior the public API doesn't expose, fall back to a more neutral primitive (Dialog) rather than fighting the idiomatic usage.
+- Update JSDoc on props whose backing implementation changes (e.g. `transitionProps` no longer points to `react-transition-group`) — reviewers flag stale doc links that misdirect consumers about what the prop actually drives.
+- Reference: https://github.com/toptal/picasso/pull/4994
+
+## Checkbox — 2026-06-16 (review iter 2)
+
+- Tier 2 · target_path: `@base-ui/react/checkbox + @base-ui/react/checkbox-group` · iterations: 2
+- Replace `[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]` arbitrary values with token-based hover utilities; reviewers consistently flag inline `color-mix`/raw rgb literals — see AGENTS.md §Styling "Tokens over arbitrary values" (and `references/code-standards.md §Tailwind class composition`).
+- Audit Base UI's visually-hidden input geometry whenever the control is composed with siblings (Tooltip, label wrappers): its inline `position:absolute; margin:-1px` grows the wrapper's bounding box and breaks visual parity in adjacent components — neutralize at the wrapper (`relative` + `[&_input]:appearance-none` + translate pair) per `references/base-ui-styling.md §7.1`.
+- When the rewrite changes user-observable DOM (role, hidden input, ref target), spell the change out in the changeset body so consumer test selectors are flagged up front, per `docs/contribution/changeset-guidelines.md` major-bump rule.
+- Reference: https://github.com/toptal/picasso/pull/4998
+
+## Accordion — 2026-06-16 (review iter 1)
+
+- Tier 3 · target_path: `@base-ui/react/accordion` · iterations: 1
+- When bridging Base UI events to React via `toReactEvent`/`toReactChangeEvent`, ensure forwarded native methods (`preventDefault`, `stopPropagation`) are bound to the underlying event — unbound Proxy `this` throws "Illegal invocation" in real browsers and the bug only surfaces when a consumer handler invokes them.
+- Map MUI's JS-driven `TransitionProps` (timeout/onExited) to Base UI's CSS-driven panel by listening for `onTransitionEnd` on the collapse property — and explicitly call out in the changeset + prop JSDoc which lifecycle callbacks still fire vs. which are ignored, since silent behavioral drops are what reviewers catch.
+- Every BREAKING removal (e.g. dropping `classes` per `CLAUDE.md §"classes prop handling per tier"`) needs a changeset entry naming the removed surface and the supported replacement (`className` / `style`), plus a JSDoc line on any public child prop (`DetailsProps.children`, `SummaryProps.children`) per `AGENTS.md §Props & type contract`.
+- Reference: https://github.com/toptal/picasso/pull/5002
+
+## Dropdown — 2026-06-16 (review iter 1)
+
+- Tier 3 · target_path: `@base-ui/react/menu + @base-ui/react/popover` · iterations: 1
+- When replacing MUI transition wrappers (`Grow`/`Fade`/`Collapse`), preserve their mount-collapsed-then-expand geometry via a `useIsomorphicLayoutEffect` flip — nested Popper-positioned children (e.g. tooltips inside the dropdown) anchor against the *pre*-transition layout, so a naive opacity-only fade silently shifts them and lights up Happo.
+- Triage Happo diffs before assuming regression: cross-component diffs in specs whose files aren't in the PR (here `Slider/range/when-tooltip-intersect` on a Dropdown-only PR) are collision-timing flakes, and entrance-transition diffs need the settled DOM compared (box/padding/margin) before chasing them as real visual breakage.
+- Inline the type when dropping the dep that exported it: replace `import type { PopperPlacementType } from '@material-ui/core/Popper'` with a local string-literal union that enumerates the *same* members so the public prop type stays byte-identical — never narrow during a library-swap PR (`AGENTS.md §"Migration in flight" → Preserve existing violations`).
+- Reference: https://github.com/toptal/picasso/pull/5008
+
+## OutlinedInput — 2026-06-16 (review iter 1)
+
+- Tier 3 · target_path: `@base-ui/react/input + @base-ui/react/field` · iterations: 1
+- Name the migration's changeset file `<component>-migration.md` from iter 1 (with the standard `### <Component>` + behavioral-parity bullets body) rather than committing `pnpm changeset`'s random slug — reviewers expect the descriptive path and the random file has to be renamed (or zero-bumped as superseded) afterwards.
+- A migration that touches a primitive must `jest -u` every consuming component's snapshot in the same PR — leftover legacy classNames (here `base-Input` across Autocomplete / DatePicker / DateSelect / Form / Input / NumberInput) signal an incomplete sweep and reviewers will flag them; treat downstream snapshot drift as part of the migration, not a follow-up.
+- Replace `@mui/base`'s `TextareaAutosize` with `react-textarea-autosize` (single textarea) instead of carrying over the twin-textarea ghost-element pattern — the hidden measuring textarea is `@mui/base` plumbing, not Picasso API, and surfacing it in snapshots/DOM is what reviewers asked to drop.
+- Reference: https://github.com/toptal/picasso/pull/5009
+
+## Drawer — 2026-06-16 (review iter 11)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 11
+- When migrating dialog/drawer/modal-like components, treat `disablePortal` as a verifiable behavior: add a dedicated story (e.g. `DisablePortal.example.tsx`) and emulate it via an inline-container ref since `@base-ui/react`'s `Dialog.Portal` has no inline mode — reviewers manually check this in-browser.
+- Preserve initial focus parity with the legacy implementation by passing an `initialFocus` ref to `Dialog.Popup` (or equivalent Base UI part) — reviewers screenshot focus rings and flag even subtle drifts from the `@mui/base` behavior.
+- When the migration drops `@toptal/picasso-slide`/`Backdrop` for `data-[starting-style]`/`data-[ending-style]` transitions, update Cypress Happo specs to wait for the resting state (`.should('not.have.attr', 'data-starting-style')`) instead of `getByRole('presentation')` — stale selectors and pre-animation snapshots are a recurring review snag.
+- Reference: https://github.com/toptal/picasso/pull/4994
+
+## Modal — 2026-06-16 (review iter 9)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 9
+- Base UI's data-attribute Tailwind variants are bare (`data-starting-style:opacity-0`), not bracketed (`data-[starting-style]:...`) — see https://base-ui.com/react/handbook/styling#tailwind-css and rules/styling on `data-[…]:` syntax for non-Base-UI state.
+- When introducing a new portal layer that stacks above existing `z-modal` peers (tooltips), bump the token instead of reusing the colliding value — `z-modal` and `z-tooltip` are both 1300, so a Modal sitting under Tooltip needs the token raised in the Tailwind scale, not a one-off `z-[…]`.
+- Snapshot churn from Base UI's focus-guards / `data-base-ui-portal` / `data-starting-style` is expected and load-bearing — accept it in the regenerated snapshot rather than masking, since reviewers grep the structural diff to verify behavioral parity (focus order, transition state).
+- Reference: https://github.com/toptal/picasso/pull/4993

@@ -458,25 +458,40 @@ export interface Workflow {
 }
 
 /**
- * Reasoning-effort level for the spawned agent. Maps directly to Claude
- * Code's `CLAUDE_EFFORT` env var. Higher = more compute spent per turn.
+ * Reasoning-effort level for the spawned agent. For Claude it maps to the
+ * `CLAUDE_EFFORT` env var; for Codex (`--agent=codex`) it maps to the
+ * `model_reasoning_effort` config (`-c model_reasoning_effort=<value>`).
+ * Higher = more compute spent per turn. Codex has no `max` level — the codex
+ * command builder folds `max` down to `xhigh`.
  */
 export type Effort = 'low' | 'medium' | 'high' | 'xhigh' | 'max'
 
 /**
- * Model + reasoning configuration for a spawned `claude -p` subagent.
- * Applied by `agent.invoke` (orchestrator-core) to `--model` + spawn env
- * (`CLAUDE_EFFORT`, `MAX_THINKING_TOKENS`). Default value lives in
- * `orchestrator-core.ts` as `DEFAULT_MODEL_CONFIG`; CLI flags
- * (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) merge over
- * the default in `parseOptions`.
+ * Model + reasoning configuration for a spawned agent subprocess.
+ *
+ * Claude (`--agent=claude`): applied by `agent.invoke` (orchestrator-core) to
+ * `--model` + spawn env (`CLAUDE_EFFORT`, `MAX_THINKING_TOKENS`).
+ *
+ * Codex (`--agent=codex`): `model` → `codex exec -m <model>` (an OpenAI id like
+ * `gpt-5.5`), `effort` → `-c model_reasoning_effort=<value>`, `thinkingTokens`
+ * is ignored (extended thinking is Claude-only).
+ *
+ * Default value lives in `orchestrator-core.ts` as `DEFAULT_MODEL_CONFIG`; CLI
+ * flags (`--model`, `--effort`, `--no-thinking`, `--thinking-tokens`) merge
+ * over the agent-aware default preset in `parseOptions` / `resolveModelConfig`.
  */
 export interface ModelConfig {
-  /** Full model ID or CLI alias (e.g. `claude-opus-4-7`, `opus`, `sonnet`). */
+  /**
+   * Model ID or CLI alias. Claude: e.g. `claude-opus-4-8[1m]`, `opus`.
+   * Codex: an OpenAI model id, e.g. `gpt-5.5`.
+   */
   model: string
-  /** Sets `CLAUDE_EFFORT` env. */
+  /** Claude: sets `CLAUDE_EFFORT`. Codex: sets `model_reasoning_effort`. */
   effort: Effort
-  /** Sets `MAX_THINKING_TOKENS` env. 0 disables extended thinking entirely. */
+  /**
+   * Claude: sets `MAX_THINKING_TOKENS` (0 disables extended thinking).
+   * Codex: ignored.
+   */
   thinkingTokens: number
 }
 

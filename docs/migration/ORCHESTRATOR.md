@@ -194,7 +194,7 @@ The gate now **verifies** the Cypress-Happo comparison, not just uploads it. Aft
 ## Output paths
 
 ```
-migration-runs/<YYYY-MM-DD>/<id>/
+migration-runs/<YYYY-MM-DD>/<id>-<variant>/   # <variant> defaults to v1 (see gap §9)
 ├── worktree/                 # git worktree (removed on success, kept on escalation)
 ├── pre/                      # snapshot before migration (.d.ts, imports, package.json)
 ├── post/                     # snapshot after migration
@@ -333,6 +333,15 @@ The MCP config (`bin/lib/agent-mcp-config.json`) points at `@playwright/mcp@late
 ### 8. Working vs full acceptance criteria — FIXED (prompt-only)
 
 `PROMPT-light.md` and `PROMPT-heavy.md` now split acceptance into "working" (build + unit + visual) for iteration feedback and "full" (working + typecheck + lint + cypress + happo) for declaring done. Mirrors the Codex prompt structure from PR #4906. Tells the agent that lint/typecheck warnings during iteration are normal — clean them up at the end rather than panic-editing public types into `any`. Direct response to canary 12's `any` regression.
+
+### 9. Per-variant locking + worktree isolation — FIXED (2026-06-16)
+
+Multi-variant runs (`--variant=vN`, default `v1`) isolate through the **worktree**, not through the gate/diff output dirnames. Each (component, variant) gets its own branch (`migrate-<C>-<variant>`), worktree, and run dir (`migration-runs/<date>/<C>-<variant>/`). `migration-gate.sh` / `migration-diff.sh` still write to a *bare* `migration-runs/<date>/<C>/`, but relative to `cwd` — which the orchestrator sets to the variant's worktree — so v1's and v2's artifacts land in different trees. This is the deliberate design behind gap §5; the bare dirname is not a collision as long as `cwd` is the variant worktree. Two bugs broke that invariant:
+
+- **Migrate lock was per-component.** `acquireLock` used a bare `item.id`, so a second variant's migration of the same component was rejected (`"locked by another orchestrator run; skipping"`) and it failed to interlock with the sweep (already keyed `<component>:<variant>`). Both paths now key on `${item.id}:${opts.variant}`. Effect: different variants of one component run concurrently; the *same* variant's migrate + sweep correctly exclude each other. An escalated run leaves a `<C>:<variant>` stale lock (PID-reclaimed) instead of a bare `<C>` that blocked every variant.
+- **Sweep with a missing worktree ran against the main checkout.** The auto-recreate guard tested the already-`rootDir`-defaulted `wtPath` (always exists) instead of the declared path, so it never fired; the sweep then ran the agent + gate + diff with `cwd = repo root`, editing the operator's checkout and colliding variants on the shared bare `migration-runs/<date>/<C>/`. The guard now tests `declaredWtPath`, so a pruned/cleaned variant worktree is recreated from `origin/<branch>` before the agent engages. Stored worktree paths resolve via `worktree.resolve()` (honors absolute paths; shared with `runCleanup`).
+
+Operator takeaway: run two variants of one component in parallel (two terminals, `--variant=v1` and `--variant=v2`), and `--review-sweep` survives a `git worktree prune` between ticks.
 
 ### Validation summary (post-fix)
 

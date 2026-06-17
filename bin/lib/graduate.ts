@@ -43,7 +43,13 @@ import { promises as fs, existsSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import * as path from 'node:path'
 
-import type { GraduationRequest, Manifest, ModelConfig } from './workflow'
+import type {
+  GraduationRequest,
+  Manifest,
+  ModelConfig,
+  OrchestratorOptions,
+} from './workflow'
+import { buildDirectAgentCommand, writeAgentStdin } from './orchestrator-core'
 
 /**
  * Collect reviewer-confirmed graduation requests still in `queued` status,
@@ -137,7 +143,10 @@ export interface GraduateResult {
 
 export const runGraduate = async (
   rootDir: string,
-  modelConfig: ModelConfig
+  modelConfig: ModelConfig,
+  // Agent backend. Defaults to claude; the `--graduate` entry passes opts.agent
+  // so `--agent=codex` graduates with codex (read-write sandbox).
+  agent: OrchestratorOptions['agent'] = 'claude'
 ): Promise<GraduateResult> => {
   const lessonsPath = path.join(
     rootDir,
@@ -210,44 +219,37 @@ export const runGraduate = async (
   // - Grep: for pattern-frequency analysis inside lessons-learned.md.
   //
   // No Glob — graduation should not be wandering the codebase. No mcp tools
-  // — graduation is a doc-curation task, not a runtime check.
-  const allowedTools = ['Read', 'Edit', 'Write', 'Bash', 'Grep'].join(' ')
+  // — graduation is a doc-curation task, not a runtime check. The exact tool
+  // surface (claude: Read/Edit/Write/Bash/Grep; codex: workspace-write sandbox)
+  // lives in buildDirectAgentCommand(mode: 'read-write').
 
   console.log(
-    `[graduate] model=${modelConfig.model} effort=${modelConfig.effort} thinkingTokens=${modelConfig.thinkingTokens}`
+    `[graduate] agent=${agent} model=${modelConfig.model} effort=${modelConfig.effort} thinkingTokens=${modelConfig.thinkingTokens}`
   )
 
-  // `--model` pins the reasoning tier explicitly (otherwise inherits whatever
-  // the claude CLI defaults to that week). Effort + thinking travel via env.
-  // See plan `~/.claude/plans/question-what-model-and-reflective-pie.md`.
-  const child = spawn(
-    'claude',
-    [
-      '-p',
-      '--model',
-      modelConfig.model,
-      '--fallback-model',
-      'claude-opus-4-8[1m]',
-      '--allowed-tools',
-      allowedTools,
-      '--max-turns',
-      '60',
-    ],
-    {
-      cwd: rootDir,
-      stdio: ['pipe', 'pipe', 'inherit'],
-      env: {
-        ...process.env,
-        CLAUDE_EFFORT: modelConfig.effort,
-        MAX_THINKING_TOKENS: String(modelConfig.thinkingTokens),
-      },
-    }
-  )
+  // buildDirectAgentCommand pins the model explicitly (claude: --model +
+  // --fallback-model; codex: -m + reasoning effort) so the child doesn't drift
+  // to whatever the CLI defaults to. Claude effort/thinking travel via env
+  // below; codex ignores those and reads model_reasoning_effort from the flag.
+  const gradCmd = buildDirectAgentCommand({
+    agent,
+    modelConfig,
+    mode: 'read-write',
+    cwd: rootDir,
+  })
+  const child = spawn(gradCmd.bin, gradCmd.args, {
+    cwd: rootDir,
+    stdio: ['pipe', 'pipe', 'inherit'],
+    env: {
+      ...process.env,
+      CLAUDE_EFFORT: modelConfig.effort,
+      MAX_THINKING_TOKENS: String(modelConfig.thinkingTokens),
+    },
+  })
 
   let agentSummary = ''
 
-  child.stdin?.write(prompt)
-  child.stdin?.end()
+  writeAgentStdin(child, prompt)
   child.stdout?.on('data', chunk => {
     const text = chunk.toString()
 

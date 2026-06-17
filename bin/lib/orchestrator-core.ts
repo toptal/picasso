@@ -35,7 +35,12 @@
  *   - loop:     the 14 steps; calls workflow hooks at each branching point
  */
 
-import { spawn, spawnSync, type SpawnOptions } from 'node:child_process'
+import {
+  spawn,
+  spawnSync,
+  type ChildProcess,
+  type SpawnOptions,
+} from 'node:child_process'
 import { createHash, randomUUID } from 'node:crypto'
 import {
   promises as fs,
@@ -49,7 +54,11 @@ import * as os from 'node:os'
 
 import { classifyCIFailure } from './failure-classifier'
 import { classifyReview, type Review as RawReview } from './review-classifier'
-import { appendCostSnapshot } from './token-telemetry'
+import {
+  appendCostSnapshot,
+  appendCodexCostSnapshot,
+  type CodexUsageTokens,
+} from './token-telemetry'
 import { syncToConfluence } from './confluence-sync'
 import {
   fetchHappoDiffsForCheck,
@@ -58,6 +67,7 @@ import {
 } from './happo-fetch'
 import { renderAnalysisForPrompt, readPngDimensions } from './happo-pixel-diff'
 import type {
+  Effort,
   EscalationDecision,
   GateReport,
   GraduationRequest,
@@ -1999,13 +2009,29 @@ function buildPrereqChecks(
       fix: 'gh auth login   (scopes: repo + read:org)',
     },
     {
-      label: `agent CLI on PATH (${agentBin})`,
+      label: `agent CLI available (${agentBin})`,
       severity: dryRun ? 'warn' : 'required',
       applies: true,
-      probe: async () => (await shell('which', [agentBin])).exitCode === 0,
+      probe: async () => {
+        // Codex may be installed without being on PATH (the macOS desktop app
+        // bundles the CLI). resolveCodexBin() returns the bundle path or the
+        // MIGRATION_CODEX_BIN override; an absolute path is checked directly,
+        // a bare name is resolved on PATH.
+        if (agentBin === 'codex') {
+          const bin = resolveCodexBin()
+
+          return bin.includes('/')
+            ? existsSync(bin)
+            : (await shell('which', [bin])).exitCode === 0
+        }
+
+        return (await shell('which', [agentBin])).exitCode === 0
+      },
       fix:
         agentBin === 'claude'
           ? 'install the Claude Code CLI, then: claude login'
+          : agentBin === 'codex'
+          ? 'install OpenAI Codex (e.g. `npm i -g @openai/codex` or the Codex.app), run `codex login`, or set MIGRATION_CODEX_BIN to the binary path. Auth is read from ~/.codex/auth.json — no env key needed.'
           : `install the ${agentBin} CLI`,
     },
     {
@@ -2109,16 +2135,28 @@ async function recordTokenSnapshot(
   itemId: string,
   sessionId: string,
   iteration: number,
-  cwd: string
+  cwd: string,
+  agent: OrchestratorOptions['agent'],
+  codexUsage?: CodexUsageTokens
 ): Promise<void> {
   try {
-    const usage = await appendCostSnapshot({
-      runDir,
-      itemId,
-      sessionId,
-      iteration,
-      cwd,
-    })
+    // Codex has no `~/.claude/projects` session jsonl; its usage was parsed
+    // live from `codex exec --json` and handed back via agentResult.codexUsage.
+    const usage =
+      agent === 'codex'
+        ? await appendCodexCostSnapshot({
+            runDir,
+            itemId,
+            iteration,
+            usage: codexUsage,
+          })
+        : await appendCostSnapshot({
+            runDir,
+            itemId,
+            sessionId,
+            iteration,
+            cwd,
+          })
 
     if (usage) {
       log(
@@ -2502,6 +2540,18 @@ const worktree = {
    */
   pathFor(itemId: string, runDate: string): string {
     return path.join('migration-runs', runDate, itemId, 'worktree')
+  },
+
+  /**
+   * Resolve a manifest-stored worktree path to an absolute path. Stored paths
+   * are normally repo-relative (the `run` manifest write uses
+   * `path.relative(rootDir, wtPath)`), but treat an already-absolute value as
+   * authoritative — `path.join(rootDir, <abs>)` would mangle it into a
+   * non-existent path, which then trips the missing-worktree fallback. Mirrors
+   * the guard in `runCleanup`.
+   */
+  resolve(rootDir: string, stored: string): string {
+    return path.isAbsolute(stored) ? stored : path.join(rootDir, stored)
   },
 
   /**
@@ -4555,16 +4605,35 @@ export const MODEL_PRESETS = {
     effort: 'xhigh',
     thinkingTokens: 64000,
   },
+  // Codex backend (`--agent=codex`). `model` is an OpenAI model id (not a
+  // Claude one), `effort` maps to codex's `model_reasoning_effort` (verified
+  // present for gpt-5.5: low|medium|high|xhigh, default xhigh — `codex debug
+  // models`). `thinkingTokens` is unused by codex (extended-thinking is a
+  // Claude concept) and stays 0. Auto-selected as the default when
+  // `--agent=codex` is passed without an explicit `--preset`/`--model`, so
+  // `pnpm orchestrate --agent=codex` runs gpt-5.5 at xhigh out of the box.
+  codex: {
+    model: 'gpt-5.5',
+    effort: 'xhigh',
+    thinkingTokens: 0,
+  },
 } as const
 
 export type ModelPreset = keyof typeof MODEL_PRESETS
 
-/** Preset used when neither `--preset` nor `MIGRATION_MODEL_PRESET` is set. */
-export const DEFAULT_PRESET: ModelPreset = 'fable'
+/**
+ * Preset used when neither `--preset` nor `MIGRATION_MODEL_PRESET` is set.
+ * Reverted fable→opus (2026-06-14): `claude-fable-5[1m]` returns 404
+ * model_not_found org-wide (org_level_disabled), which hard-failed every
+ * orchestrator run at invocation (Drawer review-iter 8, agent exit 1, 0
+ * tokens). Opus is also the cheaper tier (~half Fable 5's per-MTok rate, see
+ * MODEL_PRESETS above), so the revert both unblocks and cuts cost.
+ */
+export const DEFAULT_PRESET: ModelPreset = 'opus'
 
 /**
  * Default config for all flows (migration, review-sweep, graduation) — the
- * `fable` preset. Kept as a named export because the option parser,
+ * `opus` preset. Kept as a named export because the option parser,
  * `migration-orchestrator.ts`, and the graduate flow reference it directly.
  */
 export const DEFAULT_MODEL_CONFIG: ModelConfig = MODEL_PRESETS[DEFAULT_PRESET]
@@ -4583,10 +4652,18 @@ export function presetLabelForModel(model: string): string {
 
 /**
  * Resolve the run's `ModelConfig`: start from the selected preset (`--preset`
- * flag > `MIGRATION_MODEL_PRESET` env > `fable`), then overlay any explicit
- * `--model` / `--effort` / `--thinking-tokens` flags. `--no-thinking` forces a
- * 0 budget regardless of `--thinking-tokens` (least-surprise). Throws on an
- * unknown preset so a typo fails fast instead of silently using the default.
+ * flag > `MIGRATION_MODEL_PRESET` env > agent-aware default), then overlay any
+ * explicit `--model` / `--effort` / `--thinking-tokens` flags. `--no-thinking`
+ * forces a 0 budget regardless of `--thinking-tokens` (least-surprise). Throws
+ * on an unknown preset so a typo fails fast instead of silently using the
+ * default.
+ *
+ * The default preset is agent-aware: `--agent=codex` defaults to the `codex`
+ * preset (gpt-5.5 / xhigh), every other agent defaults to `opus`. An explicit
+ * `--preset`/`--model` or `MIGRATION_MODEL_PRESET` still wins — so a mismatched
+ * combo (e.g. `--agent=codex --preset=opus`) is honored here and the codex
+ * command builder defensively substitutes a real OpenAI model if it sees a
+ * Claude model id.
  */
 export function resolveModelConfig(flags: {
   preset?: string
@@ -4594,9 +4671,12 @@ export function resolveModelConfig(flags: {
   effort?: string
   thinkingTokens?: string
   noThinking: boolean
+  agent?: OrchestratorOptions['agent']
 }): ModelConfig {
+  const defaultPreset: ModelPreset =
+    flags.agent === 'codex' ? 'codex' : DEFAULT_PRESET
   const presetName =
-    flags.preset ?? process.env.MIGRATION_MODEL_PRESET ?? DEFAULT_PRESET
+    flags.preset ?? process.env.MIGRATION_MODEL_PRESET ?? defaultPreset
 
   if (!(presetName in MODEL_PRESETS)) {
     throw new Error(
@@ -4622,6 +4702,285 @@ export function resolveModelConfig(flags: {
     : base.thinkingTokens
 
   return { model: flags.model ?? base.model, effort, thinkingTokens }
+}
+
+/**
+ * Resolve the `codex` executable. Precedence:
+ *   1. `MIGRATION_CODEX_BIN` env (absolute path or PATH-resolvable name).
+ *   2. The macOS desktop app's bundled CLI, if present — the desktop install
+ *      ships `codex` here but does NOT put it on the shell PATH, so a plain
+ *      `spawn('codex')` ENOENTs even when codex is installed and logged in.
+ *   3. Bare `codex` (assumes a standalone CLI on PATH).
+ * Preflight (`assertCodexAvailable`) probes this and fails fast with guidance.
+ */
+export function resolveCodexBin(): string {
+  const override = process.env.MIGRATION_CODEX_BIN
+
+  if (override) {
+    return override
+  }
+  const appBundled = '/Applications/Codex.app/Contents/Resources/codex'
+
+  if (existsSync(appBundled)) {
+    return appBundled
+  }
+
+  return 'codex'
+}
+
+/**
+ * Map the orchestrator's `Effort` to codex's `model_reasoning_effort`. Codex
+ * (gpt-5.5) supports low|medium|high|xhigh (verified via `codex debug models`;
+ * xhigh = "Extra high reasoning depth"). Claude's `max` has no codex analogue,
+ * so it folds down to `xhigh`.
+ */
+export function codexReasoningEffort(effort: Effort): string {
+  return effort === 'max' ? 'xhigh' : effort
+}
+
+/**
+ * Translate the Claude MCP config (`bin/lib/agent-mcp-config.json`) into codex
+ * `-c mcp_servers.<name>.command` / `.args` overrides, so a `--with-mcp` codex
+ * run gets the same Playwright + Context7 servers without a separate codex
+ * config. Read from the MAIN repo (`repoRoot()`) — matching the claude case's
+ * rationale: worktrees forked before a config change still pick up the latest
+ * servers. `_`-prefixed keys in the JSON are doc comments and are skipped.
+ * Values are JSON-encoded, which is valid TOML for codex's `-c` parser
+ * (string → quoted scalar, args → array literal). Returns [] on any read/parse
+ * failure (MCP is best-effort; the gate still verifies visuals in CI).
+ */
+export function buildCodexMcpArgs(): string[] {
+  const cfgPath = path.join(repoRoot(), 'bin/lib/agent-mcp-config.json')
+
+  if (!existsSync(cfgPath)) {
+    return []
+  }
+  let servers: Record<string, { command?: string; args?: string[] }> = {}
+
+  try {
+    const parsed = JSON.parse(readFileSync(cfgPath, 'utf8')) as {
+      mcpServers?: Record<string, { command?: string; args?: string[] }>
+    }
+
+    servers = parsed.mcpServers ?? {}
+  } catch {
+    return []
+  }
+  const out: string[] = []
+
+  for (const [name, def] of Object.entries(servers)) {
+    if (name.startsWith('_') || !def || typeof def !== 'object') {
+      continue
+    }
+    if (def.command) {
+      out.push(
+        '-c',
+        `mcp_servers.${name}.command=${JSON.stringify(def.command)}`
+      )
+    }
+    if (Array.isArray(def.args)) {
+      out.push('-c', `mcp_servers.${name}.args=${JSON.stringify(def.args)}`)
+    }
+  }
+
+  return out
+}
+
+/**
+ * Map a codex `item.type` to the heartbeat tool-count bucket (parity with the
+ * claude `detectTool` buckets). Item types not in the map (`agent_message`,
+ * `reasoning`, `todo_list`, …) are not tool calls and don't bump counts.
+ * Verified shapes via `codex exec --json` (codex-cli 0.140.0-alpha.2).
+ */
+const CODEX_ITEM_BUCKET: Record<
+  string,
+  'edit' | 'bash' | 'read' | 'playwright' | 'other'
+> = {
+  command_execution: 'bash',
+  file_change: 'edit',
+  patch_apply: 'edit',
+  mcp_tool_call: 'other',
+  web_search: 'other',
+  file_read: 'read',
+}
+
+interface CodexRawEvent {
+  type?: string
+  usage?: {
+    input_tokens?: number
+    cached_input_tokens?: number
+    output_tokens?: number
+    reasoning_output_tokens?: number
+  }
+  item?: {
+    id?: string
+    type?: string
+    command?: string
+    query?: string
+    server?: string
+    tool?: string
+    changes?: { path?: string }[]
+  }
+}
+
+export interface CodexParsedEvent {
+  /** Set on `turn.completed` — per-turn token usage (sums to billed total). */
+  usage?: { input: number; cached: number; output: number; reasoning: number }
+  /** Set on a tool-bearing `item.*` event — drives the heartbeat counts. */
+  tool?: {
+    id?: string
+    bucket: 'edit' | 'bash' | 'read' | 'playwright' | 'other'
+    label: string
+  }
+}
+
+/**
+ * Parse one line of codex `--json` (JSONL) output into a normalized event for
+ * the invoke loop. Returns null for blank lines, parse failures, and non-tool
+ * informational events (agent_message / reasoning / turn.started / …). Pure +
+ * exported so it can be unit-tested without spawning codex.
+ */
+export function parseCodexEventLine(line: string): CodexParsedEvent | null {
+  const trimmed = line.trim()
+
+  if (!trimmed) {
+    return null
+  }
+  let evt: CodexRawEvent
+
+  try {
+    evt = JSON.parse(trimmed) as CodexRawEvent
+  } catch {
+    return null
+  }
+  if (evt.type === 'turn.completed' && evt.usage) {
+    const u = evt.usage
+
+    return {
+      usage: {
+        input: u.input_tokens ?? 0,
+        cached: u.cached_input_tokens ?? 0,
+        output: u.output_tokens ?? 0,
+        reasoning: u.reasoning_output_tokens ?? 0,
+      },
+    }
+  }
+  const item =
+    evt.type === 'item.started' || evt.type === 'item.completed'
+      ? evt.item
+      : undefined
+
+  if (!item || typeof item.type !== 'string') {
+    return null
+  }
+  const bucket = CODEX_ITEM_BUCKET[item.type]
+
+  if (!bucket) {
+    return null
+  }
+  const changePaths = Array.isArray(item.changes)
+    ? item.changes
+        .map(c => c.path)
+        .filter(Boolean)
+        .join(', ')
+    : ''
+  const mcpLabel = item.tool ? `${item.server ?? ''}/${item.tool}` : ''
+  const detail = item.command || changePaths || item.query || mcpLabel || ''
+  const raw = detail ? `${item.type} ${detail}` : item.type
+  const label = raw.length > 80 ? `${raw.slice(0, 77)}...` : raw
+
+  return { tool: { id: item.id, bucket, label } }
+}
+
+/**
+ * Build the `{ bin, args }` for a DIRECT agent spawn (the orchestrator-internal
+ * passes that don't go through `agent.invoke`: lessons-extraction + standards
+ * audit, both read-only; graduation, read-write). Prompt is delivered on stdin
+ * by the caller, so no positional arg here.
+ *
+ * claude shapes are preserved verbatim from the original call sites
+ * (read-only: `-p --allowedTools Read`; read-write: `-p --model … --fallback-
+ * model … --allowed-tools 'Read Edit Write Bash Grep' --max-turns 60`). codex
+ * maps to `codex exec --json` with a read-only or workspace-write sandbox,
+ * approval disabled, and model/effort flags (see the codex case in
+ * agent.invoke for the rationale on each flag).
+ */
+export function buildDirectAgentCommand(opts: {
+  agent: OrchestratorOptions['agent']
+  modelConfig: ModelConfig
+  mode: 'read-only' | 'read-write'
+  cwd?: string
+}): { bin: string; args: string[] } {
+  if (opts.agent === 'codex') {
+    const model = opts.modelConfig.model.startsWith('claude')
+      ? MODEL_PRESETS.codex.model
+      : opts.modelConfig.model
+    const args = ['exec', '--json']
+
+    if (opts.mode === 'read-write') {
+      args.push(
+        '--sandbox',
+        'workspace-write',
+        '-c',
+        'approval_policy=never',
+        '-c',
+        'sandbox_workspace_write.network_access=true'
+      )
+    } else {
+      args.push('--sandbox', 'read-only', '-c', 'approval_policy=never')
+    }
+    args.push(
+      '-m',
+      model,
+      '-c',
+      `model_reasoning_effort=${codexReasoningEffort(opts.modelConfig.effort)}`
+    )
+    if (opts.cwd) {
+      args.push('-C', path.resolve(opts.cwd))
+    }
+
+    return { bin: resolveCodexBin(), args }
+  }
+  if (opts.mode === 'read-write') {
+    return {
+      bin: 'claude',
+      args: [
+        '-p',
+        '--model',
+        opts.modelConfig.model,
+        '--fallback-model',
+        'claude-opus-4-8[1m]',
+        '--allowed-tools',
+        ['Read', 'Edit', 'Write', 'Bash', 'Grep'].join(' '),
+        '--max-turns',
+        '60',
+      ],
+    }
+  }
+
+  return { bin: 'claude', args: ['-p', '--allowedTools', 'Read'] }
+}
+
+/**
+ * Write a prompt to a spawned agent's stdin, guarding against EPIPE.
+ *
+ * The prompt (system prompt + contextPack docs) routinely exceeds the OS pipe
+ * buffer (~64KB on macOS), so `write()` flushes a chunk and buffers the tail
+ * for async drain. If the child exits before draining — e.g. codex aborting at
+ * startup when it can't load its config bundle (`Failed to load cloud config
+ * bundle`) — the buffered write lands on a closed pipe and Node emits 'error'
+ * (EPIPE) on the stdin stream. With no listener, that throws as an unhandled
+ * 'error' event and crashes the WHOLE orchestrator, taking down every remaining
+ * sweep target. Swallowing it lets the caller's existing `child.on('close')`
+ * handler resolve normally with the child's real (non-zero) exit code, so a
+ * dead subprocess degrades to a logged failure instead of a process crash.
+ */
+export function writeAgentStdin(child: ChildProcess, prompt: string): void {
+  child.stdin?.on('error', () => {
+    /* EPIPE: child exited before prompt drained; close handler resolves */
+  })
+  child.stdin?.write(prompt)
+  child.stdin?.end()
 }
 
 /**
@@ -4940,7 +5299,7 @@ const agent = {
   async invoke(
     inv: AgentInvocation,
     logPath: string
-  ): Promise<{ exitCode: number }> {
+  ): Promise<{ exitCode: number; codexUsage?: CodexUsageTokens }> {
     // System prompt (2026-05-23): stable Picasso conventions cached
     // separately from the user prompt. Cache hits across every iter +
     // session resume + sweep tick because the file content rarely changes.
@@ -5264,8 +5623,67 @@ const agent = {
         case 'cursor':
           // Placeholder — Cursor's CLI shape differs; document and stub.
           return { bin: 'cursor', args: ['agent'] }
-        case 'codex':
-          return { bin: 'codex', args: ['--non-interactive'] }
+        case 'codex': {
+          // OpenAI Codex backend (`--agent=codex`). codex's autonomy model is
+          // sandbox + approval-policy, NOT a per-tool allowlist like claude's
+          // `--allowedTools`. For an unattended orchestrator run we therefore:
+          //   --sandbox workspace-write : edit files + run commands, scoped to
+          //     the workspace. The per-PR git worktree stays the blast-radius
+          //     boundary — same isolation contract as the claude path, which
+          //     also deliberately avoids `--dangerously-skip-permissions`.
+          //   -c approval_policy=never  : never pause for human approval. There
+          //     is no TTY in orchestrator runs, so a prompt would hang until
+          //     the 600s hard-timeout kills the child.
+          //   -c sandbox_workspace_write.network_access=true : the agent needs
+          //     network for `pnpm install` (lockfile refresh), `gh`, and web
+          //     lookups — workspace-write blocks network by default.
+          //   --json : emit JSONL events so the heartbeat tool-detector and the
+          //     codex cost reader get machine-readable input (parity with
+          //     claude's `--output-format stream-json`).
+          // Model + reasoning travel as flags (codex ignores the CLAUDE_EFFORT /
+          // MAX_THINKING_TOKENS childEnv). The stable system prompt is prepended
+          // to the stdin prompt below (codex has no `--append-system-prompt`).
+          // Session continuity (`--session-id`/`--resume`) is claude-only —
+          // codex iters re-inject full context instead (see runOne).
+          // Flags verified against codex-cli 0.140.0-alpha.2 (`codex exec
+          // --help`); model/effort verified via `codex debug models`.
+          const codexBin = resolveCodexBin()
+          // Defensive: if a mismatched preset left a Claude model id on a codex
+          // run (e.g. `--agent=codex --preset=opus`), substitute the codex
+          // default rather than handing `claude-*` to `codex -m`.
+          const codexModel = inv.modelConfig.model.startsWith('claude')
+            ? MODEL_PRESETS.codex.model
+            : inv.modelConfig.model
+          const args = [
+            'exec',
+            '--json',
+            '--sandbox',
+            'workspace-write',
+            '-c',
+            'approval_policy=never',
+            '-c',
+            'sandbox_workspace_write.network_access=true',
+            '-m',
+            codexModel,
+            '-c',
+            `model_reasoning_effort=${codexReasoningEffort(
+              inv.modelConfig.effort
+            )}`,
+          ]
+
+          // Pin the working root explicitly (redundant with spawn `cwd`, but
+          // codex resolves project trust + git-repo checks against it).
+          if (inv.cwd) {
+            args.push('-C', path.resolve(inv.cwd))
+          }
+          // Prompt arrives on stdin (no positional arg). `--with-mcp` maps the
+          // Playwright + Context7 servers via `-c mcp_servers.*` overrides.
+          if (inv.withMcp) {
+            args.push(...buildCodexMcpArgs())
+          }
+
+          return { bin: codexBin, args }
+        }
       }
     })()
 
@@ -5280,9 +5698,17 @@ const agent = {
       ? `${worktreeAnchorPreamble(path.resolve(inv.cwd))}\n---\n\n${inv.prompt}`
       : inv.prompt
 
+    // Codex has no `--append-system-prompt`; fold the stable Picasso-convention
+    // system prompt into the stdin prompt. Claude receives it via the flag in
+    // its command builder, so claude's stdin prompt stays unchanged.
+    const stdinPrompt =
+      inv.agent === 'codex' && systemPrompt
+        ? `${systemPrompt}\n\n---\n\n${anchoredPrompt}`
+        : anchoredPrompt
+
     await fs.writeFile(
       logPath,
-      `# prompt\n${anchoredPrompt}\n\n# stdout\n`,
+      `# prompt\n${stdinPrompt}\n\n# stdout\n`,
       'utf8'
     )
 
@@ -5345,8 +5771,7 @@ const agent = {
         env: childEnv,
       })
 
-      child.stdin?.write(anchoredPrompt)
-      child.stdin?.end()
+      writeAgentStdin(child, stdinPrompt)
 
       // Visibility: track per-tool-call activity so the orchestrator can
       // surface "agent is doing X right now" in heartbeat ticks. We parse
@@ -5377,6 +5802,45 @@ const agent = {
         other: 0,
       }
       let lastEditAt = 0
+      // Codex (`--agent=codex`) emits `--json` JSONL, not claude stream-json.
+      // Line-buffer stdout and parse complete lines via parseCodexEventLine to
+      // drive the SAME heartbeat counts and to sum per-turn token usage for
+      // cost.json. claude keeps the regex `detectTool` path below.
+      let codexLineBuf = ''
+      let codexSawUsage = false
+      const codexTokens = { input: 0, cached: 0, output: 0, reasoning: 0 }
+      const seenCodexItemIds = new Set<string>()
+      const handleCodexLine = (line: string): void => {
+        const parsed = parseCodexEventLine(line)
+
+        if (!parsed) {
+          return
+        }
+        if (parsed.usage) {
+          codexSawUsage = true
+          codexTokens.input += parsed.usage.input
+          codexTokens.cached += parsed.usage.cached
+          codexTokens.output += parsed.usage.output
+          codexTokens.reasoning += parsed.usage.reasoning
+
+          return
+        }
+        const tool = parsed.tool
+
+        if (!tool || (tool.id && seenCodexItemIds.has(tool.id))) {
+          return
+        }
+        if (tool.id) {
+          seenCodexItemIds.add(tool.id)
+        }
+        toolCounts[tool.bucket] += 1
+        if (tool.bucket === 'edit') {
+          lastEditAt = Date.now()
+        }
+        toolCallCount += 1
+        lastTool = tool.label
+        log(tag, `item[${toolCallCount}]: ${tool.label}`)
+      }
       const detectTool = (chunk: string): void => {
         // claude stream-json emits multiple events per tool call (partial
         // chunks during streaming + a final tool_use block). Each tool_use
@@ -5434,7 +5898,19 @@ const agent = {
         require('node:fs').appendFileSync(logPath, d)
         bytesWritten += d.length
         lastActivityAt = Date.now()
-        detectTool(d.toString('utf8'))
+        const text = d.toString('utf8')
+
+        if (inv.agent === 'codex') {
+          codexLineBuf += text
+          const parts = codexLineBuf.split('\n')
+
+          codexLineBuf = parts.pop() ?? ''
+          for (const line of parts) {
+            handleCodexLine(line)
+          }
+        } else {
+          detectTool(text)
+        }
       })
       child.stderr?.on('data', (d: Buffer) => {
         require('node:fs').appendFileSync(logPath, `[stderr] ${d}`)
@@ -5511,10 +5987,24 @@ const agent = {
 
       child.on('close', code => {
         cleanup()
+        // Flush any trailing partial JSONL line (codex may not end on \n).
+        if (inv.agent === 'codex' && codexLineBuf.trim()) {
+          handleCodexLine(codexLineBuf)
+          codexLineBuf = ''
+        }
+        const codexUsage: CodexUsageTokens | undefined = codexSawUsage
+          ? {
+              inputTokens: codexTokens.input,
+              cachedInputTokens: codexTokens.cached,
+              outputTokens: codexTokens.output,
+              reasoningOutputTokens: codexTokens.reasoning,
+            }
+          : undefined
+
         if (killed) {
-          resolve({ exitCode: 124 }) // standard "timeout" exit code
+          resolve({ exitCode: 124, codexUsage }) // 124 = standard "timeout"
         } else {
-          resolve({ exitCode: code ?? 1 })
+          resolve({ exitCode: code ?? 1, codexUsage })
         }
       })
       child.on('error', err => {
@@ -5580,7 +6070,13 @@ const lessons = {
       author?: string
       authorAssociation?: string
       at?: string
-    }[]
+    }[],
+    // Agent backend for this read-only extraction pass. Defaults to claude so
+    // existing callers are unaffected; the migrate/sweep callers pass
+    // opts.agent + opts.modelConfig so a `--agent=codex` run extracts with
+    // codex too (full-parity).
+    agent: OrchestratorOptions['agent'] = 'claude',
+    modelConfig: ModelConfig = DEFAULT_MODEL_CONFIG
   ): Promise<void> {
     const lessonsAbs = path.join(
       rootDir,
@@ -5691,7 +6187,13 @@ const lessons = {
         `No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
         `\`\`\`diff\n${diffBody}\n\`\`\``
 
-    const child = spawn('claude', ['-p', '--allowedTools', 'Read'], {
+    const lessonsCmd = buildDirectAgentCommand({
+      agent,
+      modelConfig,
+      mode: 'read-only',
+      cwd: rootDir,
+    })
+    const child = spawn(lessonsCmd.bin, lessonsCmd.args, {
       cwd: rootDir,
       stdio: ['pipe', 'pipe', 'pipe'],
       env: process.env,
@@ -5699,8 +6201,7 @@ const lessons = {
 
     let bullets = ''
 
-    child.stdin?.write(extractPrompt)
-    child.stdin?.end()
+    writeAgentStdin(child, extractPrompt)
     child.stdout?.on('data', chunk => {
       bullets += chunk
     })
@@ -6730,7 +7231,13 @@ const checklist = {
       `\`\`\`diff\n${diffBody}\n\`\`\``
 
     // 4. Spawn claude -p with prompt on stdin. Same pattern as lessons.append.
-    const child = spawn('claude', ['-p', '--allowedTools', 'Read'], {
+    const auditCmd = buildDirectAgentCommand({
+      agent: args.opts.agent,
+      modelConfig: args.opts.modelConfig,
+      mode: 'read-only',
+      cwd: args.rootDir,
+    })
+    const child = spawn(auditCmd.bin, auditCmd.args, {
       cwd: args.rootDir,
       stdio: ['pipe', 'pipe', 'pipe'],
       env: process.env,
@@ -6738,8 +7245,7 @@ const checklist = {
 
     let rawOutput = ''
 
-    child.stdin?.write(prompt)
-    child.stdin?.end()
+    writeAgentStdin(child, prompt)
     child.stdout?.on('data', chunk => {
       rawOutput += chunk
     })
@@ -7477,9 +7983,7 @@ export async function runCleanup(
   const prUrl = state.pr
   const branch = state.branch
   const wtPath = state.worktree
-    ? path.isAbsolute(state.worktree)
-      ? state.worktree
-      : path.join(rootDir, state.worktree)
+    ? worktree.resolve(rootDir, state.worktree)
     : null
 
   if (!prUrl || !branch || !wtPath) {
@@ -7575,7 +8079,15 @@ export async function runCleanup(
     cleanupLogPath
   )
 
-  await recordTokenSnapshot(runDir, item.id, sessionId, 2000, wtPath)
+  await recordTokenSnapshot(
+    runDir,
+    item.id,
+    sessionId,
+    2000,
+    wtPath,
+    opts.agent,
+    agentResult.codexUsage
+  )
 
   if (agentResult.exitCode !== 0) {
     log(
@@ -7731,7 +8243,7 @@ async function sweepOne(
   // URL — so fall back to rootDir as cwd when the declared worktree is gone.
   // git-driven operations later in the flow will still fail cleanly if they
   // really need the worktree.
-  const declaredWtPath = path.join(rootDir, item.worktree as string)
+  const declaredWtPath = worktree.resolve(rootDir, item.worktree as string)
   // `wtPath` starts pointing at declared path if it exists, else rootDir
   // fallback. May be reassigned below if we auto-recreate the worktree.
   let wtPath = existsSync(declaredWtPath) ? declaredWtPath : rootDir
@@ -7940,7 +8452,15 @@ async function sweepOne(
   // origin/<branch>, recreate worktree, bootstrap node_modules, continue.
   // Falls back to escalate only if recreate fails (branch deleted on
   // remote, fetch error, etc.).
-  if (!existsSync(wtPath)) {
+  // 2026-06-16: guard on `declaredWtPath`, NOT `wtPath`. `wtPath` was already
+  // defaulted to `rootDir` above when the declared worktree was missing, and
+  // `rootDir` always exists — so `!existsSync(wtPath)` was permanently false
+  // and this auto-recreate never fired. The sweep then ran the agent + gate +
+  // diff with cwd=rootDir: editing the operator's main checkout and writing
+  // gate/diff output to the shared, bare `migration-runs/<date>/<Component>/`
+  // path (no variant), where parallel variants collide. Checking the declared
+  // path restores the intended recreate so cwd is always the variant worktree.
+  if (!existsSync(declaredWtPath)) {
     const declaredBranch = item.branch as string
 
     log(
@@ -8789,16 +9309,24 @@ async function sweepOne(
       // Prompt: iter 1 uses the full reviewPrompt (review + Happo + CI
       // sections). Iter 2+ uses a delta with the prior gate report —
       // claude --resume keeps the iter-1 context.
-      const iterPrompt =
-        iter === 1
-          ? storyManifestSection
-            ? `${reviewPrompt}\n\n---\n\n${storyManifestSection}`
-            : reviewPrompt
-          : await agent.assembleDeltaPrompt(
-              reviewIters * 100 + iter - 1,
-              iterFeedback ?? '(no prior gate report)',
-              wtPath
-            )
+      let iterPrompt: string
+
+      if (iter === 1) {
+        iterPrompt = storyManifestSection
+          ? `${reviewPrompt}\n\n---\n\n${storyManifestSection}`
+          : reviewPrompt
+      } else {
+        const delta = await agent.assembleDeltaPrompt(
+          reviewIters * 100 + iter - 1,
+          iterFeedback ?? '(no prior gate report)',
+          wtPath
+        )
+
+        // Codex has no session resume — re-send the full reviewPrompt (it
+        // already carries the contextPack via injectContext) plus the delta.
+        iterPrompt =
+          opts.agent === 'codex' ? `${reviewPrompt}\n\n---\n\n${delta}` : delta
+      }
       const iterPromptPath = path.join(
         runDir,
         `prompt.review-${reviewIters}.iter${iter}.txt`
@@ -8843,7 +9371,9 @@ async function sweepOne(
         item.id,
         sessionId,
         1000 + reviewIters * 100 + iter,
-        wtPath
+        wtPath,
+        opts.agent,
+        agentResult.codexUsage
       )
 
       if (agentResult.exitCode !== 0) {
@@ -9731,7 +10261,9 @@ async function sweepOne(
         wtPath,
         rootDir,
         `review iter ${reviewIters}`,
-        newReviews
+        newReviews,
+        opts.agent,
+        opts.modelConfig
       )
     } catch (err) {
       log(
@@ -9814,11 +10346,18 @@ export async function run(
     `selected: ${item.id} (tier=${item.tier}, status=${item.status}, package=${item.package})`
   )
 
-  // Phase 3.5 — per-item lock against concurrent --review-sweep / batch.
-  // Skipped on dry-run since dry-run doesn't mutate state.
+  // Phase 3.5 — per-(component, variant) lock against concurrent
+  // --review-sweep / batch / parallel-variant runs. 2026-06-16: the key MUST
+  // include the variant. The sweep locks on `${id}:${variantId}` (see
+  // sweepOne), but this migrate lock used a bare `item.id`, which (a) blocked a
+  // second variant's migration of the same component ("locked by another
+  // orchestrator run; skipping") and (b) failed to interlock with the
+  // variant-keyed sweep. Skipped on dry-run since dry-run doesn't mutate state.
+  const lockKey = `${item.id}:${opts.variant}`
+
   if (!opts.dryRun) {
-    if (!(await acquireLock(rootDir, item.id))) {
-      log('loop', `${item.id} locked by another orchestrator run; skipping`)
+    if (!(await acquireLock(rootDir, lockKey))) {
+      log('loop', `${lockKey} locked by another orchestrator run; skipping`)
 
       return { status: 'no-work' }
     }
@@ -10174,32 +10713,48 @@ export async function run(
 
       // Assemble prompt.
       // Iter 1: full canonical prompt + rules + per-item-plan + tier extras.
-      // Iter 2+: delta only (gate feedback + accumulated diff). Claude keeps
-      //         the iter-1 context via --resume.
-      const prompt =
-        state.iterations === 1
-          ? runStoryManifestSection
-            ? `${await agent.assemblePrompt(
-                workflow,
-                item,
-                0,
-                null,
-                rootDir,
-                wtPath
-              )}\n\n---\n\n${runStoryManifestSection}`
-            : await agent.assemblePrompt(
-                workflow,
-                item,
-                0,
-                null,
-                rootDir,
-                wtPath
-              )
-          : await agent.assembleDeltaPrompt(
-              state.iterations - 1,
-              lastFeedback,
-              wtPath
-            )
+      // Iter 2+ (claude): delta only (gate feedback + accumulated diff) —
+      //   `--resume` keeps the iter-1 context in conversation memory.
+      // Iter 2+ (codex): codex gets no session resume (see agent.invoke's codex
+      //   case), so re-send the FULL canonical prompt + the delta. Costs more
+      //   tokens but hands the fresh `codex exec` a self-contained prompt.
+      let prompt: string
+
+      if (state.iterations === 1) {
+        const full = await agent.assemblePrompt(
+          workflow,
+          item,
+          0,
+          null,
+          rootDir,
+          wtPath
+        )
+
+        prompt = runStoryManifestSection
+          ? `${full}\n\n---\n\n${runStoryManifestSection}`
+          : full
+      } else {
+        const delta = await agent.assembleDeltaPrompt(
+          state.iterations - 1,
+          lastFeedback,
+          wtPath
+        )
+
+        if (opts.agent === 'codex') {
+          const full = await agent.assemblePrompt(
+            workflow,
+            item,
+            0,
+            null,
+            rootDir,
+            wtPath
+          )
+
+          prompt = `${full}\n\n---\n\n${delta}`
+        } else {
+          prompt = delta
+        }
+      }
       // runDir is already `<repo>/migration-runs/<date>/<itemId>/` (since
       // dirname(wtPath) strips the trailing `worktree`); don't append item.id again.
       const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
@@ -10237,7 +10792,9 @@ export async function run(
         item.id,
         sessionId,
         state.iterations,
-        wtPath
+        wtPath,
+        opts.agent,
+        agentResult.codexUsage
       )
 
       if (agentResult.exitCode !== 0) {
@@ -11479,7 +12036,11 @@ export async function run(
         const ciPrompt = await agent.assembleDeltaPrompt(
           state.iterations - 1,
           ciFeedback,
-          wtPath
+          wtPath,
+          // Codex has no session resume; re-inject the contextPack so the fresh
+          // `codex exec` fixes CI with the standards in hand (the delta already
+          // carries the accumulated diff + failing-check feedback).
+          opts.agent === 'codex' ? { workflow, item, rootDir } : undefined
         )
         const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
 
@@ -11511,7 +12072,9 @@ export async function run(
           item.id,
           sessionId,
           state.iterations,
-          wtPath
+          wtPath,
+          opts.agent,
+          agentResult.codexUsage
         )
 
         if (agentResult.exitCode !== 0) {
@@ -11761,7 +12324,11 @@ export async function run(
         prUrl,
         state.iterations,
         wtPath,
-        rootDir
+        rootDir,
+        undefined,
+        undefined,
+        opts.agent,
+        opts.modelConfig
       )
     } catch (err) {
       log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
@@ -11770,7 +12337,7 @@ export async function run(
     // Part 4 (2026-05-14): Confluence status sync — non-fatal.
     await syncConfluence(manifestAbs)
 
-    await releaseLock(rootDir, item.id)
+    await releaseLock(rootDir, lockKey)
 
     return { status: 'pr-opened', prUrl }
   } finally {
@@ -11831,8 +12398,9 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
 
   // Resolve reasoning config: pick the preset (`--preset` flag >
-  // MIGRATION_MODEL_PRESET env > `fable`), then overlay any explicit `--model`
-  // / `--effort` / `--thinking-tokens`. `--no-thinking` forces budget=0
+  // MIGRATION_MODEL_PRESET env > agent-aware default: `codex` for
+  // `--agent=codex`, else `opus`), then overlay any explicit `--model` /
+  // `--effort` / `--thinking-tokens`. `--no-thinking` forces budget=0
   // regardless of `--thinking-tokens` (least-surprise). See resolveModelConfig.
   const modelConfig: ModelConfig = resolveModelConfig({
     preset: get('--preset'),
@@ -11840,6 +12408,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     effort: effortRaw,
     thinkingTokens: thinkingTokensStr,
     noThinking: has('--no-thinking'),
+    agent,
   })
 
   return {

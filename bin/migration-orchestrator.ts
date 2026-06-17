@@ -380,7 +380,7 @@ async function main(): Promise<void> {
 
   if (opts.graduate) {
     const rootDir = path.resolve(__dirname, '..')
-    const gradResult = await runGraduate(rootDir, opts.modelConfig)
+    const gradResult = await runGraduate(rootDir, opts.modelConfig, opts.agent)
 
     // eslint-disable-next-line no-console
     console.log(
