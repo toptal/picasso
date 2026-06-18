@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { Accordion } from '@toptal/picasso-accordion'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 
@@ -47,7 +47,7 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
           onChange={handleAccordionChange}
           // Slot styling routed through the root className until Page's own
           // migration rewrites this component on @base-ui/react parts
-          className={cx(
+          className={twMerge(
             '[&_[data-component-type="accordion-summary"]]:p-0',
             '[&_[data-component-type="accordion-summary"]]:pl-4',
             '[&_[data-component-type="accordion-summary"]]:mx-4',
