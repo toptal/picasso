@@ -243,7 +243,7 @@ export const Dropdown: DropdownProps = forwardRef<
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: React.MouseEvent<unknown, unknown>) => {
+  const handleClickAway = (event: React.MouseEvent) => {
     const target = event.target
 
     const isAnchorTapEvent =
