@@ -676,3 +676,26 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - When introducing a new portal layer that stacks above existing `z-modal` peers (tooltips), bump the token instead of reusing the colliding value — `z-modal` and `z-tooltip` are both 1300, so a Modal sitting under Tooltip needs the token raised in the Tailwind scale, not a one-off `z-[…]`.
 - Snapshot churn from Base UI's focus-guards / `data-base-ui-portal` / `data-starting-style` is expected and load-bearing — accept it in the regenerated snapshot rather than masking, since reviewers grep the structural diff to verify behavioral parity (focus order, transition state).
 - Reference: https://github.com/toptal/picasso/pull/4993
+
+## Modal — 2026-06-17 (review iter 14)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 14
+- Changeset bodies for library-swap migrations need to explicitly enumerate the preserved public props + behavioral guarantees (focus, scroll lock, multi-instance coexistence, dismissal reasons) to justify the `patch` bump — a bare "re-implement on @base-ui/react" reads as ambiguous to reviewers even when the swap is API-preserving.
+- Any `@base-ui/react` migration with enter/exit transitions needs a Cypress `happoScreenshot` override that waits for `[data-starting-style]` to disappear before happo-cypress serializes — without it the static cloud render pins the captured frame at `opacity-0`, manifesting as bogus visual diffs that the agent will chase as styling bugs.
+- `Dialog.Popup`/`Popover.Popup`/etc. default `initialFocus` to the first tabbable descendant, which silently changes auto-focus behavior vs. legacy `@mui/base` FocusTrap (which focused the root unless focus was already inside) — preserve parity by passing an `initialFocus` callback that returns the root ref when `document.activeElement` isn't already contained, per `base-ui-react-api-crib`.
+- Reference: https://github.com/toptal/picasso/pull/4993
+
+## Drawer — 2026-06-17 (review iter 14)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 14
+- Map a string-union variant prop to classes with a `Record<Variant, string>` lookup indexed by the prop, not a chain of `prop === 'x' && 'classes'` fragments inside `twMerge` — reviewers flag the inline form as a practice violation even when called a style nit (DrawerPaper.tsx:22 comment; aligns with `references/code-standards.md §Tailwind class composition`).
+- Sweep public-prop JSDoc that points at the old backing library's internals (e.g. `react-transition-group/Transition` for `transitionProps`) and rewrite it to describe the semantics directly — carrying `@mui/base`/RTG links into a migrated component is reviewer-visible drift and contradicts the "no @mui/base" migration rule in `AGENTS.md §"Migration in flight"`.
+- For internal `forwardRef` sub-components, destructure only the props the wrapper actually transforms, spread `...rest` to the underlying primitive, and set an explicit `displayName` — enumerating every pass-through (`style={style}`, `tabIndex={-1}`) with its own JSX brace is the kind of boilerplate reviewers ask to remove (per `AGENTS.md §"Migration in flight"` prop-by-prop boundary).
+- Reference: https://github.com/toptal/picasso/pull/4994
+
+## Page — 2026-06-17 (review iter 4)
+
+- Tier 3 · target_path: `none` · iterations: 4
+- Library-swap migration changesets bump `patch`, not minor — peer-dep tidying and styling-internals are mechanical consequences of the swap, not consumer-visible API news (per `docs/contribution/changeset-guidelines.md` / `code-standards.md §Changeset conventions`).
+- Use "Replace" as the canonical migration verb in the changeset body and keep it to one line summarizing the swap; don't pad with bullets enumerating peer-dep removals or "behavioral parity" rationale — that's implied by `patch`.
+- Reference: https://github.com/toptal/picasso/pull/5003
