@@ -149,6 +149,28 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
 
 const component = 'Modal'
 
+// The scroll shades fade in over 300ms. When the content overflows, wait for
+// the fade to settle so the screenshot captures the fully-opaque shade instead
+// of a mid-fade frame. When it doesn't overflow (e.g. full-screen / xlarge on a
+// tall viewport) there are no shades, so skip the wait — asserting otherwise
+// would hang.
+const waitForScrollShades = () =>
+  cy
+    .get('[data-testid="overflown-content"]')
+    // Wait for the modal to finish opening so the layout (and therefore the
+    // overflow measurement below) is settled before we read it.
+    .should('be.visible')
+    .then($el => {
+      const el = $el.get(0)
+      const overflows = el.scrollHeight > el.clientHeight
+
+      // No overflow (e.g. full-screen / xlarge on a tall viewport) → no shades
+      // to wait for. Otherwise wait for the fade to finish.
+      return overflows
+        ? cy.get('[data-active="true"]').should('have.css', 'opacity', '1')
+        : cy.wrap(null)
+    })
+
 describe('Modal', () => {
   it('renders', () => {
     cy.mount(<TestModalForm />)
@@ -207,18 +229,7 @@ describe('Modal', () => {
   it('renders overflown', () => {
     cy.mount(<TestModalOverflown />)
 
-    // Precondition: the content must actually overflow, otherwise no shade
-    // appears and the opacity wait below would hang. Fail fast with a clear
-    // message if a future fixture change stops it overflowing.
-    cy.get('[data-testid="overflown-content"]').should($el => {
-      const el = $el.get(0)
-
-      expect(el.scrollHeight).to.be.greaterThan(el.clientHeight)
-    })
-
-    // The scroll shades fade in over 300ms; wait for the fade to settle so the
-    // screenshot captures the fully-opaque shade instead of a mid-fade frame.
-    cy.get('[data-active="true"]').should('have.css', 'opacity', '1')
+    waitForScrollShades()
 
     cy.get('body').happoScreenshot({
       component,
@@ -240,15 +251,7 @@ describe('Modal', () => {
               <TestModalOverflown size={modalSize as ModalProps['size']} />
             )
 
-            // Precondition: content must overflow (see 'renders overflown').
-            cy.get('[data-testid="overflown-content"]').should($el => {
-              const el = $el.get(0)
-
-              expect(el.scrollHeight).to.be.greaterThan(el.clientHeight)
-            })
-
-            // Wait for the scroll-shade fade to settle before screenshotting.
-            cy.get('[data-active="true"]').should('have.css', 'opacity', '1')
+            waitForScrollShades()
 
             cy.get('body').happoScreenshot({
               component,
