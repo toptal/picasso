@@ -1,7 +1,5 @@
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
-import Grow from '@material-ui/core/Grow'
-import type { PopperPlacementType } from '@material-ui/core/Popper'
 import type { PopperOptions } from 'popper.js'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type {
@@ -9,11 +7,11 @@ import type {
   SpacingType,
 } from '@toptal/picasso-provider'
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
+import type { PopperPlacementType } from '@toptal/picasso-popper'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
-import { noop } from '@toptal/picasso-utils'
+import { ClickAwayListener, noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
-import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { contentClass } from './styles'
 
@@ -245,7 +243,7 @@ export const Dropdown: DropdownProps = forwardRef<
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: MouseEvent | TouchEvent) => {
+  const handleClickAway = (event: React.MouseEvent) => {
     const target = event.target
 
     const isAnchorTapEvent =
@@ -304,27 +302,33 @@ export const Dropdown: DropdownProps = forwardRef<
           {...popperProps}
         >
           <ClickAwayListener onClickAway={handleClickAway}>
-            {/* TODO: Remove this extra markup and put the onClick handler on `Paper` element */}
-            {/* as soon as https://github.com/mui-org/material-ui/issues/22156 gets fixed */}
-            <div onClick={close}>
-              <Grow in={isOpen} appear>
-                <Paper
-                  style={contentStyle}
-                  className={twMerge(
-                    contentOverflow === 'visible'
-                      ? contentClass.contentVisible
-                      : contentClass.content,
-                    externalClasses?.content
-                  )}
-                  onKeyDown={handleContentKeyDown}
-                  elevation={0}
-                >
-                  <DropdownContext.Provider value={context}>
-                    <div ref={contentRef}>{content}</div>
-                  </DropdownContext.Provider>
-                </Paper>
-              </Grow>
-            </div>
+            <Paper
+              onClick={close}
+              style={contentStyle}
+              // `scale` (not `transform`) is the property Tailwind v4 sets, so it
+              // must be in the transition list.
+              // TODO: [PF-1994] When Popper moves to @floating-ui/react it
+              // positions a frame after mount, so the Paper must only be inserted
+              // (or revealed) once positioned, otherwise @starting-style fires
+              // while unpositioned and the grow plays from the wrong spot. Gate on
+              // floating-ui's isPositioned, or switch to base-ui's
+              // data-[starting-style] hook.
+              className={twMerge(
+                'origin-center transition-[opacity,scale] duration-200 ease-out',
+                'scale-100 opacity-100 starting:scale-75 starting:opacity-0',
+                isOpen ? '' : 'invisible',
+                contentOverflow === 'visible'
+                  ? contentClass.contentVisible
+                  : contentClass.content,
+                externalClasses?.content
+              )}
+              onKeyDown={handleContentKeyDown}
+              elevation={0}
+            >
+              <DropdownContext.Provider value={context}>
+                <div ref={contentRef}>{content}</div>
+              </DropdownContext.Provider>
+            </Paper>
           </ClickAwayListener>
         </Popper>
       )}
