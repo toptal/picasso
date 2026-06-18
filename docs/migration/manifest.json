@@ -133,17 +133,17 @@
       "awaiting_ci_since": null,
       "variants": {
         "v2": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4994",
           "branch": "migrate-Drawer-v2",
           "worktree": "migration-runs/2026-06-03/Drawer-v2/worktree",
           "iterations": 4,
-          "merged_at": null,
+          "merged_at": "2026-06-17T21:48:31Z",
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-16T21:47:32.092Z",
-          "review_iterations": 11,
-          "session_id": "354b27f7-860b-4f62-988c-23e81abba6f5",
+          "last_review_seen_at": "2026-06-17T21:17:27.350Z",
+          "review_iterations": 14,
+          "session_id": "ec0ee002-5731-44e1-9b01-b8bf6e5b806b",
           "awaiting_ci_since": null,
           "review_iter_failures": 0,
           "operator_overrides": [
@@ -153,6 +153,13 @@
               "evidence": "https://github.com/toptal/picasso/pull/4994#issuecomment-4679826620",
               "confirmed_by": "vedrani",
               "at": "2026-06-14T12:23:18.960Z"
+            },
+            {
+              "rule": "practices.md §\"Tailwind & class composition\" (bracketed boolean data-variant, checklist 14b)",
+              "sanctioned": "Drawer.tsx + DrawerPaper.tsx keep bracketed data-[starting-style]:/data-[ending-style]: boolean variants",
+              "evidence": "https://github.com/toptal/picasso/pull/4994#discussion_r3428270479",
+              "confirmed_by": "vedrani",
+              "at": "2026-06-17T21:17:27.341Z"
             },
             {
               "rule": "rules/styling.md §\"Composition\"",
@@ -181,7 +188,7 @@
     "Modal": {
       "tier": 0,
       "package": "packages/base/Modal",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [
         "Backdrop"
       ],
@@ -191,27 +198,27 @@
       "branch": "migrate-Modal-v1",
       "worktree": "migration-runs/2026-06-04/Modal-v1/worktree",
       "iterations": 3,
-      "merged_at": null,
+      "merged_at": "2026-06-17T14:45:15Z",
       "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-      "last_review_seen_at": "2026-06-17T11:59:20.240Z",
-      "session_id": "242a00f7-1a15-45ad-a269-0e4850930004",
+      "last_review_seen_at": "2026-06-17T14:11:43.901Z",
+      "session_id": "a5c3b480-c0d1-455f-97f6-9a5ccbf1b2f2",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4993",
           "branch": "migrate-Modal-v1",
           "worktree": "migration-runs/2026-06-04/Modal-v1/worktree",
           "iterations": 3,
-          "merged_at": null,
+          "merged_at": "2026-06-17T14:45:15Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-04T07:51:04.997Z",
-          "last_review_seen_at": "2026-06-17T11:59:20.240Z",
-          "session_id": "242a00f7-1a15-45ad-a269-0e4850930004",
+          "last_review_seen_at": "2026-06-17T14:11:43.901Z",
+          "session_id": "a5c3b480-c0d1-455f-97f6-9a5ccbf1b2f2",
           "awaiting_ci_since": null,
-          "review_iterations": 11,
+          "review_iterations": 14,
           "review_iter_failures": 0,
           "operator_overrides": [
             {
@@ -233,10 +240,11 @@
               "at": "2026-06-17T11:59:20.238Z",
               "status": "graduated"
             }
-          ]
+          ],
+          "cleanup_done_at": "2026-06-17T14:19:47.670Z"
         }
       },
-      "review_iterations": 11,
+      "review_iterations": 14,
       "operator_overrides": [
         {
           "rule": "rules/styling.md §\"Composition\" (consumer className always LAST)",
@@ -257,7 +265,8 @@
           "at": "2026-06-17T11:59:20.238Z",
           "status": "graduated"
         }
-      ]
+      ],
+      "cleanup_done_at": "2026-06-17T14:19:47.670Z"
     },
     "Slider": {
       "tier": 0,
@@ -1092,10 +1101,10 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-06-10T18:51:29.057Z",
-          "last_review_seen_at": "2026-06-16T14:19:33.310Z",
-          "session_id": "47baf59d-5eca-4e72-a3be-84bf4648ba06",
+          "last_review_seen_at": "2026-06-17T21:27:30.309Z",
+          "session_id": "85593a40-b913-464d-9782-d277b532ef2f",
           "awaiting_ci_since": null,
-          "review_iterations": 3,
+          "review_iterations": 4,
           "review_iter_failures": 0,
           "operator_overrides": [
             {
@@ -1110,10 +1119,10 @@
       },
       "escalation_reason": null,
       "last_ci_green_at": "2026-06-10T18:51:29.057Z",
-      "last_review_seen_at": "2026-06-16T14:19:33.310Z",
-      "session_id": "47baf59d-5eca-4e72-a3be-84bf4648ba06",
+      "last_review_seen_at": "2026-06-17T21:27:30.309Z",
+      "session_id": "85593a40-b913-464d-9782-d277b532ef2f",
       "awaiting_ci_since": null,
-      "review_iterations": 3,
+      "review_iterations": 4,
       "operator_overrides": [
         {
           "rule": "code-standards.md §\"Tailwind class composition\"",
