@@ -305,11 +305,8 @@ export const Dropdown: DropdownProps = forwardRef<
             <Paper
               onClick={close}
               style={contentStyle}
-              // Open (grow) animation, replacing MUI <Grow>. CSS @starting-style
-              // animates from the collapsed state on first paint — no JS timing,
-              // and the resting state is scale-100 so static captures are stable.
-              // scale (not transform) is the property Tailwind v4 sets, so it must
-              // be in the transition list.
+              // `scale` (not `transform`) is the property Tailwind v4 sets, so it
+              // must be in the transition list.
               // TODO: [PF-1994] When Popper moves to @floating-ui/react it
               // positions a frame after mount, so the Paper must only be inserted
               // (or revealed) once positioned, otherwise @starting-style fires
