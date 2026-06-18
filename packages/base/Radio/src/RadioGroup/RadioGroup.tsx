@@ -61,7 +61,7 @@ const RadioGroup = ({ horizontal = false, ...props }: Props) => {
   }
 
   const direction = horizontal ? 'row' : 'column'
-  const gridSpacing = spacing ?? horizontal ? HORIZONTAL_SPACING : 0
+  const gridSpacing = spacing ?? (horizontal ? HORIZONTAL_SPACING : 0)
 
   const items = React.Children.toArray(children)
 
