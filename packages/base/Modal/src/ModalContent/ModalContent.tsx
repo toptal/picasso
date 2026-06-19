@@ -24,7 +24,7 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
     const { top, bottom } = useScrollableShades(modalContentRef)
 
     const shadeClasses =
-      'z-[1] absolute pointer-events-none right-8 left-8 h-[112px]'
+      'z-[1] absolute pointer-events-none right-8 left-8 h-[112px] opacity-0 transition-opacity duration-300 data-[active=true]:opacity-100'
     const gradientClasses =
       'from-white to-transparent to-100% from-0% via-[2rem] via-white'
 
@@ -35,26 +35,26 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
           classes?.root
         )}
       >
-        {top && (
-          <div
-            className={twMerge(
-              shadeClasses,
-              gradientClasses,
-              classes?.topShade,
-              'top-0 bg-gradient-to-b'
-            )}
-          />
-        )}
-        {bottom && (
-          <div
-            className={twMerge(
-              shadeClasses,
-              gradientClasses,
-              classes?.bottomShade,
-              'bottom-0 bg-gradient-to-t'
-            )}
-          />
-        )}
+        <div
+          data-active={top}
+          className={twMerge(
+            shadeClasses,
+            gradientClasses,
+            classes?.topShade,
+            'top-0 bg-linear-to-b'
+          )}
+        />
+
+        <div
+          data-active={bottom}
+          className={twMerge(
+            shadeClasses,
+            gradientClasses,
+            classes?.bottomShade,
+            'bottom-0 bg-linear-to-t'
+          )}
+        />
+
         <div
           {...rest}
           style={style}

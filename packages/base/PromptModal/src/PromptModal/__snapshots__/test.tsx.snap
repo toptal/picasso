@@ -104,6 +104,14 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
               class="flex relative flex-auto overflow-y"
             >
               <div
+                class="z-[1] absolute pointer-events right-8 left-8 h-[112px] opacity-0 transition-opacity duration-300 data-[active=true]:opacity-100 from-white to-transparent to-100% from-0% via-[2rem] via-white top-0 bg-linear-to"
+                data-active="false"
+              />
+              <div
+                class="z-[1] absolute pointer-events right-8 left-8 h-[112px] opacity-0 transition-opacity duration-300 data-[active=true]:opacity-100 from-white to-transparent to-100% from-0% via-[2rem] via-white bottom-0 bg-linear-to"
+                data-active="false"
+              />
+              <div
                 class="pt-6 px-8 pb-8 overflow-auto flex-auto"
               >
                 <p
