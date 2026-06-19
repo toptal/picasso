@@ -49,7 +49,10 @@ const editorContainer = [
 const styles: Record<string, string> = {
   editorContainer,
 
-  contentEditable: 'outline-none h-full px-2 py-4 [tab-size:4] overflow-y-auto',
+  // Padding is em-relative (legacy JSS `1em 0.5em`) so it scales with the 14px
+  // editor font — `px-2 py-4` (8px/16px fixed) shifted the text vs master.
+  contentEditable:
+    'outline-none h-full px-[0.5em] py-[1em] [tab-size:4] overflow-y-auto',
 
   placeholder:
     'overflow-hidden absolute text-ellipsis top-0 left-0 select-none whitespace-normal inline-block pointer-events-none',

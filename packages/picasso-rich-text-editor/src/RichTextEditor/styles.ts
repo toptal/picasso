@@ -9,15 +9,13 @@ type WrapperState = {
   autofill: boolean
 }
 
-// Focus-ring box shadows: 0 0 0 3px <palette color @ 0.48 alpha>. No canonical
-// token exists for the alpha-blended palette colors.
-// TODO(tokens): palette.red.main @ 0.48 alpha
-// TODO(tokens): palette.yellow.main @ 0.48 alpha
-// TODO(tokens): palette.primary.main @ 0.48 alpha
+// Focus-ring box shadows: 0 0 0 3px <token @ 48% alpha>. Only the 3px spread is
+// arbitrary (no spread token); the color is the matching palette token with an
+// alpha modifier — same pattern as OutlinedInput's focus ring.
 const FOCUS_OUTLINE: Record<Status, string> = {
-  error: 'shadow-[0_0_0_3px_rgba(212,37,81,0.48)]',
-  warning: 'shadow-[0_0_0_3px_rgba(229,156,1,0.48)]',
-  default: 'shadow-[0_0_0_3px_rgba(32,78,207,0.48)]',
+  error: 'shadow-[0_0_0_3px] shadow-red-500/[.48]',
+  warning: 'shadow-[0_0_0_3px] shadow-yellow-500/[.48]',
+  default: 'shadow-[0_0_0_3px] shadow-blue-500/[.48]',
 }
 
 const STATUS_BORDER: Record<Status, string> = {
@@ -45,7 +43,6 @@ export const getEditorWrapperClassName = ({
     // Hover border, suppressed when disabled or in error (matches legacy :not()).
     !disabled && status !== 'error' && 'hover:border-gray-600',
     disabled && 'pointer-events-none',
-    // TODO(tokens): palette.yellow.lighter @ 0.6 alpha — no canonical token.
-    autofill ? 'bg-[rgba(255,245,227,0.6)]' : disabled && 'bg-gray-200'
+    autofill ? 'bg-yellow-100/60' : disabled && 'bg-gray-200'
   )
 }
