@@ -60,7 +60,7 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
   return (
     <Modal {...props} open={isOpen}>
       <Modal.Title>A lot of data</Modal.Title>
-      <Modal.Content>
+      <Modal.Content data-testid='overflown-content'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -149,9 +149,46 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
 
 const component = 'Modal'
 
+// Wait for the modal's open fade (data-starting-style:opacity-0 → 1) to settle
+// before taking the screenshot. Capturing mid-fade composites the bordered
+// secondary (Cancel) button at partial opacity, producing edge artifacts on its
+// border.
+const waitForModalOpen = () =>
+  cy
+    .get('[role="dialog"]')
+    .should('be.visible')
+    .and('not.have.attr', 'data-starting-style')
+
+// The scroll shades fade in over 300ms. When the content overflows, wait for
+// the fade to settle so the screenshot captures the fully-opaque shade instead
+// of a mid-fade frame. When it doesn't overflow (e.g. full-screen / xlarge on a
+// tall viewport) there are no shades, so skip the wait — asserting otherwise
+// would hang.
+const waitForScrollShades = () => {
+  // Settle the modal open fade first (same reason as waitForModalOpen), then
+  // gate on the shade fade so the overflown screenshots are fully stable.
+  waitForModalOpen()
+
+  return cy
+    .get('[data-testid="overflown-content"]')
+    .should('be.visible')
+    .then($el => {
+      const el = $el.get(0)
+      const overflows = el.scrollHeight > el.clientHeight
+
+      // No overflow (e.g. full-screen / xlarge on a tall viewport) → no shades
+      // to wait for. Otherwise wait for the fade to finish.
+      return overflows
+        ? cy.get('[data-active="true"]').should('have.css', 'opacity', '1')
+        : cy.wrap(null)
+    })
+}
+
 describe('Modal', () => {
   it('renders', () => {
     cy.mount(<TestModalForm />)
+
+    waitForModalOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -162,6 +199,8 @@ describe('Modal', () => {
   it('renders aligned to top', () => {
     cy.mount(<TestModalForm align='top' />)
 
+    waitForModalOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'align-top',
@@ -170,6 +209,8 @@ describe('Modal', () => {
 
   it('renders without backdrop', () => {
     cy.mount(<TestModalForm hideBackdrop />)
+
+    waitForModalOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -180,6 +221,8 @@ describe('Modal', () => {
   it('renders small', () => {
     cy.mount(<TestModalForm size='small' />)
 
+    waitForModalOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'size/small',
@@ -188,6 +231,8 @@ describe('Modal', () => {
 
   it('renders large', () => {
     cy.mount(<TestModalForm size='large' />)
+
+    waitForModalOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -198,6 +243,8 @@ describe('Modal', () => {
   it('renders full-screen', () => {
     cy.mount(<TestModalForm size='full-screen' />)
 
+    waitForModalOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'size/full-screen',
@@ -206,6 +253,8 @@ describe('Modal', () => {
 
   it('renders overflown', () => {
     cy.mount(<TestModalOverflown />)
+
+    waitForScrollShades()
 
     cy.get('body').happoScreenshot({
       component,
@@ -226,6 +275,8 @@ describe('Modal', () => {
             cy.mount(
               <TestModalOverflown size={modalSize as ModalProps['size']} />
             )
+
+            waitForScrollShades()
 
             cy.get('body').happoScreenshot({
               component,
