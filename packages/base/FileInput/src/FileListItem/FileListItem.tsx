@@ -9,7 +9,6 @@ import { TypographyOverflow } from '@toptal/picasso-typography-overflow'
 
 import { ProgressBar } from '../ProgressBar'
 import type { FileUpload } from '../FileInput'
-import { rootClasses, labelClasses, fileNodeContentClasses } from './styles'
 
 export interface Props {
   file: FileUpload
@@ -36,7 +35,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
   const uploadingNode = (
     <>
       <Typography
-        className={labelClasses}
+        className='leading-[1.375rem]'
         variant='body'
         color='black'
         size='medium'
@@ -53,7 +52,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
 
   const fileNode = (
     <>
-      <Container flex direction='column' className={fileNodeContentClasses}>
+      <Container flex direction='column' className='min-w-0'>
         <Container flex direction='row'>
           {!error && (
             <Container right='xsmall'>
@@ -61,7 +60,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
             </Container>
           )}
           <TypographyOverflow
-            className={labelClasses}
+            className='leading-[1.375rem]'
             variant='body'
             size='medium'
             color={error ? 'red' : 'black'}
@@ -103,7 +102,8 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
       direction='row'
       alignItems='center'
       justifyContent='space-between'
-      className={rootClasses}
+      // TODO(tokens): [PF-1994] 5px vertical padding is off the 4px Picasso spacing scale
+      className='border-b border-gray-200 py-[0.3125rem]'
     >
       {uploading && error === undefined ? uploadingNode : fileNode}
     </Container>

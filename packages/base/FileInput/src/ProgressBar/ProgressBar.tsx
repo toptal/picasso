@@ -3,12 +3,6 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 
-import {
-  progressBarClasses,
-  progressIndicatorClasses,
-  percentageValueClasses,
-} from './styles'
-
 const MIN_VALUE = 0
 const MAX_VALUE = 100
 
@@ -38,9 +32,10 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         {...restProps}
         ref={ref}
       >
-        <div className={progressBarClasses}>
+        {/* TODO(tokens): [PF-1994] 80px / 29px min-widths and 18px line-height are off the Picasso scales */}
+        <div className='w-full min-w-[5rem] h-2 bg-gray-300 rounded-sm'>
           <div
-            className={progressIndicatorClasses}
+            className='h-2 rounded-sm bg-blue-400 transition-[width] duration-300 ease-in-out'
             style={{
               width: `${props.value}%`,
             }}
@@ -53,7 +48,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
               variant='body'
               size='xsmall'
               weight='semibold'
-              className={percentageValueClasses}
+              className='min-w-[1.8125rem] leading-[1.125rem]'
             >
               {percentage}%
             </Typography>

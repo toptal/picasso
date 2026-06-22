@@ -5,7 +5,6 @@ import { Container } from '@toptal/picasso-container'
 
 import { FileListItem } from '../FileListItem'
 import type { FileUpload } from '../FileInput'
-import { rootClasses } from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   files: FileUpload[]
@@ -25,7 +24,7 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList(
       ref={ref}
       flex
       direction='column'
-      className={rootClasses}
+      className='border-t border-gray-200'
     >
       {files.map((fileUpload, index) => {
         const {
