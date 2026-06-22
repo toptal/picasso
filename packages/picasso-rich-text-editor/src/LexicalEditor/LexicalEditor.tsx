@@ -29,7 +29,12 @@ import {
 import type { ASTType } from '../RichText'
 import { useOnFocus, useTypographyClasses } from './hooks'
 import { useComponentPlugins } from './hooks/useComponentPlugins/useComponentPlugins'
-import styles from './styles'
+import styles, {
+  BULLET_VAR,
+  OUTLINED_BULLET_VAR,
+  bullet,
+  outlinedBullet,
+} from './styles'
 import type {
   ChangeHandler,
   EditorPlugin,
@@ -222,7 +227,20 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
           {componentPlugins}
 
-          <div className={classes.editorContainer} id={id} ref={ref}>
+          <div
+            className={classes.editorContainer}
+            id={id}
+            ref={ref}
+            // List-bullet data URIs flow to the `<ul>::before` rules via CSS
+            // vars; they can't live in a Tailwind class (JIT can't see an
+            // interpolated arbitrary value). See styles.ts.
+            style={
+              {
+                [BULLET_VAR]: bullet,
+                [OUTLINED_BULLET_VAR]: outlinedBullet,
+              } as React.CSSProperties
+            }
+          >
             <RichTextPlugin
               contentEditable={
                 <ContentEditable

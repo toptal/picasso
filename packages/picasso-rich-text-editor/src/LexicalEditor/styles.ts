@@ -1,11 +1,22 @@
 import { codeBlockStyles, codeStyles } from '../RichText/components/styles'
 
-// SVG list-bullet backgrounds. Whitespace is %20-encoded so the data URI is a
-// single token usable inside a Tailwind arbitrary value.
-const outlinedBullet =
-  "url(\"data:image/svg+xml,%3Csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8%209c.55228%200%201-.44772%201-1s-.44772-1-1-1-1%20.44772-1%201%20.44772%201%201%201Zm0%201c1.10457%200%202-.89543%202-2s-.89543-2-2-2-2%20.89543-2%202%20.89543%202%202%202Z'%20fill='%23455065'/%3E%3C/svg%3E\")"
-const bullet =
+// SVG list-bullet backgrounds, exposed as CSS custom properties on the editor
+// container (see LexicalEditor.tsx) and referenced below via `var(...)`.
+//
+// They CANNOT be inlined into a Tailwind arbitrary value (e.g.
+// `before:[background-image:${bullet}]`): Tailwind's JIT only generates classes
+// it finds as complete static strings while scanning source, and a template
+// literal with an interpolated variable never appears literally — so the class
+// is silently dropped and the bullet disappears. Routing the data URI through a
+// CSS variable keeps the Tailwind class static (`var(--rte-bullet)`) while the
+// value is supplied at runtime.
+export const BULLET_VAR = '--rte-bullet'
+export const OUTLINED_BULLET_VAR = '--rte-outlined-bullet'
+
+export const bullet =
   "url(\"data:image/svg+xml,%3Csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ccircle%20cx='8'%20cy='8'%20r='2'%20fill='%23455065'/%3E%3C/svg%3E\")"
+export const outlinedBullet =
+  "url(\"data:image/svg+xml,%3Csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8%209c.55228%200%201-.44772%201-1s-.44772-1-1-1-1%20.44772-1%201%20.44772%201%201%201Zm0%201c1.10457%200%202-.89543%202-2s-.89543-2-2-2-2%20.89543-2%202%20.89543%202%202%202Z'%20fill='%23455065'/%3E%3C/svg%3E\")"
 
 // `counter-reset: list-0` on every non-li descendant. The legacy JSS also reset
 // list-1..list-9 on block elements, but that rule was emitted first and fully
@@ -16,14 +27,14 @@ const indentStyles = [
   // level 2 — lower-alpha + outlined bullet (even level)
   '[&_ol.indent-level-2>li:not(.nested-list-item)]:[counter-increment:list-2]',
   "[&_ol.indent-level-2>li:not(.nested-list-item)]:before:content-[counter(list-2,lower-alpha)_'.']",
-  `[&_ul.indent-level-2>li:not(.nested-list-item)]:before:[background-image:${outlinedBullet}]`,
+  '[&_ul.indent-level-2>li:not(.nested-list-item)]:before:[background-image:var(--rte-outlined-bullet)]',
   // level 3 — lower-roman
   '[&_ol.indent-level-3>li:not(.nested-list-item)]:[counter-increment:list-3]',
   "[&_ol.indent-level-3>li:not(.nested-list-item)]:before:content-[counter(list-3,lower-roman)_'.']",
   // level 4 — decimal + outlined bullet (even level)
   '[&_ol.indent-level-4>li:not(.nested-list-item)]:[counter-increment:list-4]',
   "[&_ol.indent-level-4>li:not(.nested-list-item)]:before:content-[counter(list-4,decimal)_'.']",
-  `[&_ul.indent-level-4>li:not(.nested-list-item)]:before:[background-image:${outlinedBullet}]`,
+  '[&_ul.indent-level-4>li:not(.nested-list-item)]:before:[background-image:var(--rte-outlined-bullet)]',
   // level 5 — lower-alpha
   '[&_ol.indent-level-5>li:not(.nested-list-item)]:[counter-increment:list-5]',
   "[&_ol.indent-level-5>li:not(.nested-list-item)]:before:content-[counter(list-5,lower-alpha)_'.']",
@@ -64,7 +75,7 @@ const styles: Record<string, string> = {
 
   ol: "[&>li:not(.nested-list-item)]:[counter-increment:list-0] [&>li:not(.nested-list-item)]:before:content-[counter(list-0,decimal)_'.']",
 
-  ul: `[&>li:not(.nested-list-item)]:before:content-[''] [&>li:not(.nested-list-item)]:before:[background-image:${bullet}] [&>li:not(.nested-list-item)]:before:bg-no-repeat [&>li:not(.nested-list-item)]:before:bg-center [&>li:not(.nested-list-item)]:before:h-[22px] [&>li:not(.nested-list-item)]:before:w-4`,
+  ul: "[&>li:not(.nested-list-item)]:before:content-[''] [&>li:not(.nested-list-item)]:before:[background-image:var(--rte-bullet)] [&>li:not(.nested-list-item)]:before:bg-no-repeat [&>li:not(.nested-list-item)]:before:bg-center [&>li:not(.nested-list-item)]:before:h-[22px] [&>li:not(.nested-list-item)]:before:w-4",
 
   bold: 'font-semibold',
   italic: 'italic',

@@ -18,6 +18,20 @@ MUI's `theme.spacing(N)` returns `N * 8px`. **Always verify the px value** befor
 | `marginLeft: '1rem'`         | 16px  | `ml-4` |
 | `marginRight: '0.5rem'`      | 8px   | `mr-2` |
 
+### `em` units are font-relative — keep them `em`, never convert to a fixed token
+
+A JSS value in **`em`** scales with the element's own `font-size`; a Tailwind spacing token (`p-2`, `m-4`) is **fixed rem/px** and does NOT scale. Converting `em` → a fixed token silently shifts layout wherever the font-size differs from the assumed base, and reads as a text/position diff in Happo.
+
+Preserve `em` as a Tailwind **arbitrary value**, do the math by hand only to sanity-check:
+
+| JSS                       | Keep as            | NOT (wrong) |
+|---|---|---|
+| `padding: '1em 0.5em'`    | `py-[1em] px-[0.5em]` | ~~`py-4 px-2`~~ |
+| `padding: '0.5em'`        | `p-[0.5em]`           | ~~`p-2`~~ |
+| `height: '1.5em'`         | `h-[1.5em]`           | ~~`h-6`~~ |
+
+Rule of thumb: if the JSS unit is `em`, the Tailwind class is `[…em]`. Only `rem`/`px`/`spacing()` map to numeric tokens. (Regression seen in `picasso-rich-text-editor` `contentEditable`: `1em 0.5em` → `py-4 px-2` shifted the editor text 2px/1px — only caught in Cypress Happo.)
+
 ## Color
 
 **Color tokens are Picasso-dependent and live in [`docs/migration/tokens/picasso-tailwind-tokens.md`](../tokens/picasso-tailwind-tokens.md)** — the canonical source for MUI palette → Picasso Tailwind token mappings. Do NOT duplicate the mapping here; the tokens doc is the single source of truth (avoids drift when designers update the palette).
