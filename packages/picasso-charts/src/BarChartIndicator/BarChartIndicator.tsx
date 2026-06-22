@@ -24,7 +24,7 @@ const BarChartIndicator = ({ color, label }: Props) => (
       textAnchor='middle'
       alignmentBaseline='middle'
       fill='#fff'
-      style={{ fontSize: 11, fontWeight: 600 }}
+      className='text-[11px] font-semibold'
     >
       {label}
     </text>

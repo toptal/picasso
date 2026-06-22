@@ -1,20 +1,10 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+export const createRootClassNames = (): string[] => [
+  'flex flex-col h-full bg-gray-50',
+  '[&>footer]:flex-[0] [&>header]:flex-[0]',
+  '[&>header+*]:mt-[var(--header-height)]',
+]
 
-export default ({ layout, palette }: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      background: palette.grey.lightest,
-      ...(layout.contentMinWidth && { minWidth: layout.contentMinWidth }),
-
-      '& > footer, & > header': {
-        flex: 0,
-      },
-      '& > header + *': {
-        marginTop: 'var(--header-height)',
-      },
-    },
-  })
+export const createRootVariableClassNames = (): string[] => [
+  '[--content-padding-horizontal:1em] md:[--content-padding-horizontal:2em]',
+  '[--header-height:3.5rem] [--content-width-wide:90em] [--content-width:75em]',
+]

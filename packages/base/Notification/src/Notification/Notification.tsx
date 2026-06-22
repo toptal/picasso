@@ -17,7 +17,7 @@ import { capitalize } from '@toptal/picasso-utils'
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
 export interface PrivateProps
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
@@ -115,8 +115,11 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
       elevated = false,
       testIds,
       'data-testid': dataTestId,
+      // Strip the vestigial `classes` prop so it never leaks onto the DOM via {...rest}
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      classes: _classes,
       ...rest
-    },
+    }: PrivateProps & { classes?: Classes },
     ref
   ) {
     const props = {

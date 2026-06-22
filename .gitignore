@@ -65,10 +65,10 @@ migration-runs
 # here when it strips a novel scratch file.
 /.scratch/
 /.scratch-*
+/.run-modal-test.sh
 /computed-styles-*.json
 /.tmp-payload.json
 /docs/migration/Button-diff.json
-/patches/@base-ui__utils@0.2.8.patch
 /computed-styles-local.json
 /docs/migration/Switch-diff.json
 /baseline--components-slider--slider--full-1280.png

@@ -15,15 +15,12 @@ import {
   Tooltip,
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
 import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
-import styles from './styles'
 import type {
   CoordinatePayload,
   BaseLineChartProps,
@@ -44,6 +41,8 @@ const {
   Y_AXIS_WIDTH,
   NUMBER_OF_TICKS,
 } = CHART_CONSTANTS
+
+const HIDE_BOTTOM_Y_AXIS_LABEL_CLASS = 'picasso-charts-hide-bottom-y-axis-label'
 
 type RechartsOnMouseMove = CoordinatePayload | null
 
@@ -80,6 +79,9 @@ const StyleOverrides = () => (
           tspan {
             font-size: 11px;
             fill: ${palette.grey.dark};
+          }
+          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
+            display: none;
           }
       `,
     }}
@@ -151,10 +153,6 @@ const generateLineGraphs = (
 
 const positionOverride = { x: 0, y: 0 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'LineChart',
-})
-
 const defaultGetYAxisTicks = (domain: Domain) =>
   getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS)
 
@@ -170,7 +168,6 @@ export const LineChart = ({
   getYAxisTicks = defaultGetYAxisTicks,
   ...props
 }: Props) => {
-  const classes = useStyles()
   const {
     data,
     lineConfig: lines,
@@ -230,7 +227,7 @@ export const LineChart = ({
           data={orderedData}
           onMouseMove={onMouseMovement}
           className={cx({
-            [classes.hideBottomYAxisLabel]: !showBottomYAxisLabel,
+            [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
           })}
           overflow='visible'
         >

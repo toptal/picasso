@@ -3,11 +3,15 @@ import React, { forwardRef, useMemo, useCallback } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { OptionsObject } from 'notistack'
 import { useSnackbar } from 'notistack'
-import type { SnackbarOrigin } from '@material-ui/core/Snackbar'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import type { VariantType } from '../Notification'
 import { Notification as PicassoNotification } from '../Notification'
+
+type SnackbarOrigin = {
+  vertical: 'top' | 'bottom'
+  horizontal: 'left' | 'center' | 'right'
+}
 
 const defaultPosition: SnackbarOrigin = {
   vertical: 'top',
