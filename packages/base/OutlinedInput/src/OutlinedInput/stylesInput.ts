@@ -61,7 +61,6 @@ export const inputClasses = [
   'p-0',
   'peer',
   'resize-none',
-  'resize-none',
   'w-full',
 ]
 

@@ -1,6 +1,6 @@
 import type {
   ChangeEventHandler,
-  ReactType,
+  ElementType,
   ReactNode,
   InputHTMLAttributes,
   HTMLAttributes,
@@ -44,10 +44,6 @@ export interface InputProps
 }
 
 export interface Props
-  // Tier 3.b: drop the open-ended inherited `Classes` map via
-  // `Omit<StandardProps, 'classes'>`, but keep the locally narrowed
-  // `classes?: { input?, root? }` below — external consumers depend on those
-  // two slots (decisions/classes-audit.md §5).
   extends Omit<StandardProps, 'classes'>,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
@@ -57,7 +53,7 @@ export interface Props
   classes?: { input?: string; root?: string }
   /** Width of the component */
   width?: WidthType
-  inputComponent?: ReactType<InputBaseComponentProps>
+  inputComponent?: ElementType<InputBaseComponentProps>
   inputProps?: BaseInputProps
   defaultValue?: ValueType
   value?: ValueType
