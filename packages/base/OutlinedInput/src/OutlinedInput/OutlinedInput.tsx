@@ -221,7 +221,11 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     if (controlRef.current && event.currentTarget === event.target) {
       controlRef.current.focus()
     }
-    ;(onClick as React.MouseEventHandler<HTMLDivElement> | undefined)?.(event)
+    const onDivClick = onClick as
+      | React.MouseEventHandler<HTMLDivElement>
+      | undefined
+
+    onDivClick?.(event)
   }
 
   return (
