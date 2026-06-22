@@ -1,5 +1,3 @@
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import {
   Bold16,
   Italic16,
@@ -14,7 +12,7 @@ import React, { forwardRef } from 'react'
 
 import { useRTEPluginContext, useToolbarPortalRegister } from '../plugins/api'
 import TextEditorButton from '../RichTextEditorButton'
-import styles from './styles'
+import styles, { selectStyle } from './styles'
 import type {
   ButtonHandlerType,
   FormatType,
@@ -39,10 +37,6 @@ type Props = {
   onUnorderedClick?: ButtonHandlerType
   onOrderedClick?: ButtonHandlerType
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'RichTextEditorToolbar',
-})
 
 export const ALLOWED_HEADER_TYPE = '3'
 
@@ -70,16 +64,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 
     const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
 
-    const classes = useStyles({
-      format,
-      onBoldClick,
-      onItalicClick,
-      onHeaderChange,
-      onUnorderedClick,
-      onOrderedClick,
-      testIds,
-      id,
-    })
+    const classes = styles
 
     const isInlineFormattingDisabled =
       disabled || disabledFormatting || !focused
@@ -105,7 +90,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             ]}
             size='small'
             menuWidth='auto'
-            className={classes.select}
+            style={selectStyle}
             disabled={isBlockFormattingDisabled}
             data-testid={testIds?.headerSelect}
           />
