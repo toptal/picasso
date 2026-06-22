@@ -1,5 +1,3 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
 import { InputMultilineAdornment } from '@toptal/picasso-input-adornment'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -16,7 +14,7 @@ import type {
 import LexicalEditor from '../LexicalEditor'
 import type { ASTType } from '../RichText'
 import { useCounter } from './hooks'
-import styles from './styles'
+import { getEditorWrapperClassName } from './styles'
 import type { CounterMessageSetter } from './types'
 
 export interface Props extends BaseProps {
@@ -84,10 +82,6 @@ export interface Props extends BaseProps {
   customEmojis?: LexicalEditorProps['customEmojis']
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'RichTextEditor',
-})
-
 export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
   function RichTextEditor(
     {
@@ -121,7 +115,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       customEmojis,
     } = props
 
-    const classes = useStyles()
     const wrapperRef = useRef<HTMLDivElement | null>(null)
 
     // Possibly use useRef for synchronous updates but no re-rendering effect
@@ -150,14 +143,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       <>
         <div
           className={cx(
-            classes.editorWrapper,
-            {
-              [classes.disabled]: disabled,
-              [classes.focused]: hasFocus,
-              [classes.error]: status === 'error',
-              [classes.warning]: status === 'warning',
-              [classes.highlightAutofill]: highlight === 'autofill',
-            },
+            getEditorWrapperClassName({
+              disabled,
+              focused: hasFocus,
+              status,
+              autofill: highlight === 'autofill',
+            }),
             className
           )}
           style={style}

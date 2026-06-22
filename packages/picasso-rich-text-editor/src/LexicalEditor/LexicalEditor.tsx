@@ -10,8 +10,6 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode } from '@lexical/rich-text'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -31,7 +29,12 @@ import {
 import type { ASTType } from '../RichText'
 import { useOnFocus, useTypographyClasses } from './hooks'
 import { useComponentPlugins } from './hooks/useComponentPlugins/useComponentPlugins'
-import styles from './styles'
+import styles, {
+  BULLET_VAR,
+  OUTLINED_BULLET_VAR,
+  bullet,
+  outlinedBullet,
+} from './styles'
 import type {
   ChangeHandler,
   EditorPlugin,
@@ -39,10 +42,6 @@ import type {
 } from './types'
 import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
 import type { CustomEmojiGroup } from '../plugins/EmojiPlugin'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'LexicalEditor',
-})
 
 const removeAttributesFromString = (htmlString: string) => {
   return htmlString.replace(/\s(class|dir|value)="[^"]*"/g, '')
@@ -140,7 +139,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     hiddenInputId,
   } = props
 
-  const classes = useStyles()
+  const classes = styles
 
   const toolbarRef = useRef<HTMLDivElement | null>(null)
 
@@ -228,7 +227,20 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
           {componentPlugins}
 
-          <div className={classes.editorContainer} id={id} ref={ref}>
+          <div
+            className={classes.editorContainer}
+            id={id}
+            ref={ref}
+            // List-bullet data URIs flow to the `<ul>::before` rules via CSS
+            // vars; they can't live in a Tailwind class (JIT can't see an
+            // interpolated arbitrary value). See styles.ts.
+            style={
+              {
+                [BULLET_VAR]: bullet,
+                [OUTLINED_BULLET_VAR]: outlinedBullet,
+              } as React.CSSProperties
+            }
+          >
             <RichTextPlugin
               contentEditable={
                 <ContentEditable
