@@ -1,8 +1,8 @@
 import type { ReactNode, ForwardedRef } from 'react'
 import React, { forwardRef, useMemo } from 'react'
-import { Tabs as MUITabs } from '@mui/base/Tabs'
-import { TabsList } from '@mui/base/TabsList'
+import { Tabs as BaseUITabs } from '@base-ui/react/tabs'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { toReactEvent } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 export type TabsValueType = string | number | null
@@ -65,6 +65,33 @@ const classesByVariant = {
   },
 } as const
 
+const horizontalIndicatorClasses = [
+  'absolute bottom-0 left-0 h-[2px] bg-blue-500 z-10',
+  'w-[var(--active-tab-width)]',
+  'translate-x-[var(--active-tab-left)]',
+  // Tailwind v4 drives translate-x via the `translate` property (not
+  // `transform`), so the slide transition must target `translate`.
+  'transition-[translate,width] duration-300 ease-in-out',
+]
+
+const withFallbackValue = (children: ReactNode): ReactNode => {
+  let index = -1
+
+  return React.Children.map(children, child => {
+    if (!React.isValidElement<{ value?: TabsValueType }>(child)) {
+      return child
+    }
+
+    index += 1
+
+    if (child.props.value === undefined) {
+      return React.cloneElement(child, { value: index })
+    }
+
+    return child
+  })
+}
+
 const Tabs = forwardRef(
   <V extends TabsValueType = TabsValueType>(
     {
@@ -90,20 +117,21 @@ const Tabs = forwardRef(
 
     return (
       <TabsContext.Provider value={contextValue}>
-        <MUITabs
+        <BaseUITabs.Root
           {...rest}
-          slotProps={{
-            root: {
-              ref,
-              className: twMerge(
-                'relative min-h-0 flex overflow-hidden',
-                classesByOrientation[orientation].root,
-                classesByVariant[variant].root,
-                className
-              ),
-            },
-          }}
-          onChange={(event, val) => onChange?.(event, val as V)}
+          ref={ref}
+          className={twMerge(
+            'relative min-h-0 flex overflow-hidden',
+            classesByOrientation[orientation].root,
+            classesByVariant[variant].root,
+            className
+          )}
+          onValueChange={(val, { event }) =>
+            onChange?.(
+              toReactEvent<React.ChangeEvent<HTMLButtonElement>>(event),
+              val as V
+            )
+          }
           value={value}
           orientation={orientation}
         >
@@ -114,16 +142,23 @@ const Tabs = forwardRef(
               'flex-auto inline-block relative whitespace-nowrap'
             )}
           >
-            <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
-              {children}
-            </TabsList>
+            <BaseUITabs.List
+              className={twJoin('relative flex', isVertical && 'flex-col')}
+            >
+              {withFallbackValue(children)}
+              {!isVertical && (
+                <BaseUITabs.Indicator
+                  className={twJoin(horizontalIndicatorClasses)}
+                />
+              )}
+            </BaseUITabs.List>
           </div>
-        </MUITabs>
+        </BaseUITabs.Root>
       </TabsContext.Provider>
     )
   }
 ) as <V extends TabsValueType = TabsValueType>(
   props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
-) => ReturnType<typeof MUITabs>
+) => JSX.Element
 
 export default Tabs

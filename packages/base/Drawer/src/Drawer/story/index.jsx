@@ -81,3 +81,11 @@ page
     },
     'base/Drawer'
   )
+  .addExample(
+    'Drawer/story/DisablePortal.example.tsx',
+    {
+      title: 'With disabled portal',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
