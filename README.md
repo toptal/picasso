@@ -15,6 +15,13 @@ This repository is the home for all of Toptal's reusable UI, split up into disti
 - [@toptal/picasso-codemod](./packages/picasso-codemod/README.md) - scripts that help developers migrate to the latest version
 - [@toptal/picasso-shared](./packages/picasso-shared/README.md) - shared utilities between the packages
 
+## Using Picasso with AI coding agents
+
+Picasso ships LLM-optimized docs so AI tools (Cursor, Claude Code, …) generate correct Picasso code. Point your agent at the hosted index and have it fetch component docs on demand:
+
+- Index of all components: <https://toptal.github.io/picasso/llm-docs/llms.txt>
+- Agent rules + the one-time setup snippet: [`.picasso/rules.md`](./.picasso/rules.md) and the [`@toptal/picasso` README](./packages/picasso/README.md#using-picasso-with-ai-coding-agents)
+
 ## Contributing
 
 Please read our documentation [here](./CONTRIBUTING.md)
