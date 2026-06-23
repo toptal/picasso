@@ -1,6 +1,7 @@
 import figma from '@figma/code-connect'
 import React from 'react'
-import { Alert, AlertInline } from '@toptal/picasso-alert'
+import { Alert } from '@toptal/picasso'
+import { AlertInline } from '@toptal/picasso-alert'
 
 const ALERT_URL =
   'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=13667-16196'

@@ -1,12 +1,6 @@
-import React from 'react'
 import figma from '@figma/code-connect'
-
-import { Button } from './Button'
-
-// Node 16828:7595 — "Button" component set in Product-Library-v2.0.
-// Figma "Type" maps to React "variant" (Danger → 'negative').
-// Figma "State=Loader" maps to loading=true; "State=Disabled" maps to disabled=true.
-// Other states (Enabled, Focus, Hover, Active, Success) are visual only — no React prop.
+import React from 'react'
+import { Button } from '@toptal/picasso'
 
 figma.connect(
   Button,

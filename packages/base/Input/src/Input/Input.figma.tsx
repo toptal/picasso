@@ -1,23 +1,18 @@
 import figma from '@figma/code-connect'
 import React from 'react'
-import { Input } from '@toptal/picasso-input'
-import { FormCompound as Form } from '@toptal/picasso-form'
+import { Input, Form } from '@toptal/picasso'
 
-const VERTICAL_URL =
-  'https://www.figma.com/design/5SCTOPrCDcHuk5We091GBn/Product-Library?node-id=12157-43689'
+const INPUT_FIELD_URL =
+  'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=18377-1525'
 
-const HORIZONTAL_URL =
-  'https://www.figma.com/design/5SCTOPrCDcHuk5We091GBn/Product-Library?node-id=12159-43888'
-
-// Figma "State: Filled" and "State: Focus" produce the same code as "State: Default"
+// Figma "State: Filled", "State: Focus", "State: Hover" produce the same code as "State: Default"
 // and are therefore not listed as separate connections.
 // Figma "State: Error Focus" produces the same code as "State: Error".
-// Figma "Show Label" (vertical only) has no direct React equivalent — label is always rendered.
 
 // ─── Vertical ───────────────────────────────────────────────────────────────
 
-figma.connect(Input, VERTICAL_URL, {
-  variant: { State: 'Default' },
+figma.connect(Input, INPUT_FIELD_URL, {
+  variant: { Orientation: 'Vertical', State: 'Default' },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
   },
@@ -31,8 +26,8 @@ figma.connect(Input, VERTICAL_URL, {
   ),
 })
 
-figma.connect(Input, VERTICAL_URL, {
-  variant: { State: 'Disabled' },
+figma.connect(Input, INPUT_FIELD_URL, {
+  variant: { Orientation: 'Vertical', State: 'Disabled' },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
   },
@@ -46,18 +41,14 @@ figma.connect(Input, VERTICAL_URL, {
   ),
 })
 
-figma.connect(Input, VERTICAL_URL, {
-  variant: { State: 'Error' },
+figma.connect(Input, INPUT_FIELD_URL, {
+  variant: { Orientation: 'Vertical', State: 'Error' },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
-    error: figma.boolean('Show Error', {
-      true: 'Error message',
-      false: undefined,
-    }),
   },
-  example: ({ hint, error }) => (
+  example: ({ hint }) => (
     <Form>
-      <Form.Field hint={hint} error={error}>
+      <Form.Field hint={hint} error='Error message'>
         <Form.Label>Label</Form.Label>
         <Input multiline rows={4} status='error' placeholder='Placeholder' />
       </Form.Field>
@@ -67,8 +58,8 @@ figma.connect(Input, VERTICAL_URL, {
 
 // ─── Horizontal ─────────────────────────────────────────────────────────────
 
-figma.connect(Input, HORIZONTAL_URL, {
-  variant: { State: 'Default' },
+figma.connect(Input, INPUT_FIELD_URL, {
+  variant: { Orientation: 'Horizontal', State: 'Default' },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
   },
@@ -82,8 +73,8 @@ figma.connect(Input, HORIZONTAL_URL, {
   ),
 })
 
-figma.connect(Input, HORIZONTAL_URL, {
-  variant: { State: 'Disabled' },
+figma.connect(Input, INPUT_FIELD_URL, {
+  variant: { Orientation: 'Horizontal', State: 'Disabled' },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
   },
@@ -97,18 +88,14 @@ figma.connect(Input, HORIZONTAL_URL, {
   ),
 })
 
-figma.connect(Input, HORIZONTAL_URL, {
-  variant: { State: 'Error' },
+figma.connect(Input, INPUT_FIELD_URL, {
+  variant: { Orientation: 'Horizontal', State: 'Error' },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
-    error: figma.boolean('Show Error', {
-      true: 'Error message',
-      false: undefined,
-    }),
   },
-  example: ({ hint, error }) => (
+  example: ({ hint }) => (
     <Form layout='horizontal'>
-      <Form.Field hint={hint} error={error}>
+      <Form.Field hint={hint} error='Error message'>
         <Form.Label>Label</Form.Label>
         <Input multiline rows={4} status='error' placeholder='Placeholder' />
       </Form.Field>
