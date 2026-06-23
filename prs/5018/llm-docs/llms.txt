@@ -1,0 +1,154 @@
+# Picasso Design System
+
+> Picasso is Toptal's React component library implementing the BASE design system.
+> This documentation is optimized for LLM consumption.
+> Fetch the linked Markdown files on demand — do not vendor the full docs tree.
+
+## Docs
+
+- [Initial Setup](https://toptal.github.io/picasso/llm-docs/initial-setup.md): Installation, setup, and getting started
+- [Component Index](https://toptal.github.io/picasso/llm-docs/components/index.md): Full list of all UI components
+- [Tutorial Index](https://toptal.github.io/picasso/llm-docs/tutorials/index.md): Step-by-step usage guides
+
+## Components
+
+- [Accordion](https://toptal.github.io/picasso/llm-docs/components/accordion.md): Accordions store information behind collapsible sections,
+- [Alert](https://toptal.github.io/picasso/llm-docs/components/alert.md): Use to alert user about important information
+- [Amount](https://toptal.github.io/picasso/llm-docs/components/amount.md): Use "Amount" to render formatted amount with a currency, in desired locale.
+- [Avatar](https://toptal.github.io/picasso/llm-docs/components/avatar.md): Profile photo.
+- [Backdrop](https://toptal.github.io/picasso/llm-docs/components/backdrop.md)
+- [Badge](https://toptal.github.io/picasso/llm-docs/components/badge.md): Renders a small badge.
+- [Breadcrumbs](https://toptal.github.io/picasso/llm-docs/components/breadcrumbs.md): Breadcrumbs component indicates the current page’s location within a navigational hierarchy.
+- [Button](https://toptal.github.io/picasso/llm-docs/components/button.md): A Button indicates a possible user action.
+- [Carousel](https://toptal.github.io/picasso/llm-docs/components/carousel.md)
+- [Drawer](https://toptal.github.io/picasso/llm-docs/components/drawer.md): Allows rendering a sidebar with custom content
+- [Dropdown](https://toptal.github.io/picasso/llm-docs/components/dropdown.md): Allows rendering of menus and custom content triggered by custom anchors
+- [EmptyState](https://toptal.github.io/picasso/llm-docs/components/emptystate.md)
+- [EnvironmentBanner](https://toptal.github.io/picasso/llm-docs/components/environmentbanner.md): Banner on page top to highlight current environment
+- [Helpbox](https://toptal.github.io/picasso/llm-docs/components/helpbox.md): Container specialized for rendering suggestions
+- [Icons](https://toptal.github.io/picasso/llm-docs/components/icons.md)
+- [Image](https://toptal.github.io/picasso/llm-docs/components/image.md): Display any types of images.
+- [Indicator](https://toptal.github.io/picasso/llm-docs/components/indicator.md)
+- [Link](https://toptal.github.io/picasso/llm-docs/components/link.md): The Link component allows you to easily customize anchor elements with your theme colors and typography styles.
+- [List](https://toptal.github.io/picasso/llm-docs/components/list.md)
+- [Loader](https://toptal.github.io/picasso/llm-docs/components/loader.md): Loaders indicate that an action is underway and that the user must wait to proceed until it is finished.
+- [Logo](https://toptal.github.io/picasso/llm-docs/components/logo.md): The Toptal logo is the visual representation of the products we create.
+- [Menu](https://toptal.github.io/picasso/llm-docs/components/menu.md): Menu list.
+- [Note](https://toptal.github.io/picasso/llm-docs/components/note.md)
+- [Notification](https://toptal.github.io/picasso/llm-docs/components/notification.md): Notification standard way to notify user about important information
+- [OverviewBlock](https://toptal.github.io/picasso/llm-docs/components/overviewblock.md): Allows displaying counters.
+- [PageHead](https://toptal.github.io/picasso/llm-docs/components/pagehead.md)
+- [PageHeadBase](https://toptal.github.io/picasso/llm-docs/components/pageheadbase.md)
+- [PageSidebar](https://toptal.github.io/picasso/llm-docs/components/pagesidebar.md): Navigation items provide access to parts in your app
+- [PageTopBar](https://toptal.github.io/picasso/llm-docs/components/pagetopbar.md): A PageTopBar component
+- [Pagination](https://toptal.github.io/picasso/llm-docs/components/pagination.md): Component which allows navigating long data lists.
+- [Picasso](https://toptal.github.io/picasso/llm-docs/components/picasso.md): The wrapper and the root component.
+- [ProgressBar](https://toptal.github.io/picasso/llm-docs/components/progressbar.md)
+- [Quote](https://toptal.github.io/picasso/llm-docs/components/quote.md): Use quotes to highlight quoted content.
+- [RichText](https://toptal.github.io/picasso/llm-docs/components/richtext.md): RichText showcases the output of RichTextEditor.
+- [Section](https://toptal.github.io/picasso/llm-docs/components/section.md): Use sections to organize content on the page
+- [ShowMore](https://toptal.github.io/picasso/llm-docs/components/showmore.md): Strips provided content.
+- [SkeletonLoader](https://toptal.github.io/picasso/llm-docs/components/skeletonloader.md)
+- [Slide](https://toptal.github.io/picasso/llm-docs/components/slide.md)
+- [Slider](https://toptal.github.io/picasso/llm-docs/components/slider.md): Slider is used to pick a numeric value from the predefined range
+- [StaticTreeView](https://toptal.github.io/picasso/llm-docs/components/statictreeview.md): Allows rendering a static variant of tree view
+- [Stepper](https://toptal.github.io/picasso/llm-docs/components/stepper.md): Stepper component display progress through a sequence of steps.
+- [Table](https://toptal.github.io/picasso/llm-docs/components/table.md): Display sets of data
+- [Tag](https://toptal.github.io/picasso/llm-docs/components/tag.md): Tags are used to describe other topics, including textareas,
+- [Timeline](https://toptal.github.io/picasso/llm-docs/components/timeline.md)
+- [TreeView](https://toptal.github.io/picasso/llm-docs/components/treeview.md): Allows rendering a tree view
+- [Typography](https://toptal.github.io/picasso/llm-docs/components/typography.md): Our primary typeface is Proxima Nova, a contemporary font that combines humanist proportions with a geometric appeara...
+- [TypographyOverflow](https://toptal.github.io/picasso/llm-docs/components/typographyoverflow.md): Show tooltip when typography overflows
+- [UserBadge](https://toptal.github.io/picasso/llm-docs/components/userbadge.md): Show user avatar and name along with addition content
+
+## Widgets
+
+- [AccountSelect](https://toptal.github.io/picasso/llm-docs/components/accountselect.md)
+- [ApplicationUpdateNotification](https://toptal.github.io/picasso/llm-docs/components/applicationupdatenotification.md)
+
+## Forms
+
+- [Autocomplete](https://toptal.github.io/picasso/llm-docs/components/autocomplete.md)
+- [AvatarUpload](https://toptal.github.io/picasso/llm-docs/components/avatarupload.md): Gets the image from file input and displays it in the Avatar component.
+- [Checkbox](https://toptal.github.io/picasso/llm-docs/components/checkbox.md)
+- [DatePicker](https://toptal.github.io/picasso/llm-docs/components/datepicker.md): Date Picker component
+- [Dropzone](https://toptal.github.io/picasso/llm-docs/components/dropzone.md)
+- [FieldRequirements](https://toptal.github.io/picasso/llm-docs/components/fieldrequirements.md): Component to list field requirements to be valid
+- [FileInput](https://toptal.github.io/picasso/llm-docs/components/fileinput.md): Input file control
+- [Form](https://toptal.github.io/picasso/llm-docs/components/form.md): Helper components for building forms.
+- [FormActionsContainer](https://toptal.github.io/picasso/llm-docs/components/formactionscontainer.md): Aligns form actions according to chosen form layout (vertical or horizontal).
+- [Input](https://toptal.github.io/picasso/llm-docs/components/input.md): Input fields are UI elements through which users submit information to the system.
+- [MonthSelect](https://toptal.github.io/picasso/llm-docs/components/monthselect.md): Month selector
+- [NumberInput](https://toptal.github.io/picasso/llm-docs/components/numberinput.md): Input component for numbers
+- [PasswordInput](https://toptal.github.io/picasso/llm-docs/components/passwordinput.md): Input component for passwords
+- [Radio](https://toptal.github.io/picasso/llm-docs/components/radio.md): Radio buttons are best used when users need to select a single option from a set of unfamiliar choices.
+- [Rating](https://toptal.github.io/picasso/llm-docs/components/rating.md): Ratings provide a way for users to express their opinion
+- [RichTextEditor](https://toptal.github.io/picasso/llm-docs/components/richtexteditor.md)
+- [Select](https://toptal.github.io/picasso/llm-docs/components/select.md): Selects are interactive elements that prompt users to make selections
+- [Switch](https://toptal.github.io/picasso/llm-docs/components/switch.md): Switches are used to toggle the state of an element on or off.
+- [TagSelector](https://toptal.github.io/picasso/llm-docs/components/tagselector.md): Input that allows multiselection from a list of available options with autocomplete.
+- [TimePicker](https://toptal.github.io/picasso/llm-docs/components/timepicker.md): Time Picker component
+- [YearSelect](https://toptal.github.io/picasso/llm-docs/components/yearselect.md): Year select
+
+## Transitions
+
+- [Collapse](https://toptal.github.io/picasso/llm-docs/components/collapse.md)
+- [Fade](https://toptal.github.io/picasso/llm-docs/components/fade.md)
+
+## Layout
+
+- [Container](https://toptal.github.io/picasso/llm-docs/components/container.md): Use Container to add space between 2 elements.
+- [Grid](https://toptal.github.io/picasso/llm-docs/components/grid.md): The layout element which is providing grid container functionality.
+- [Page](https://toptal.github.io/picasso/llm-docs/components/page.md): A Page component
+- [Paper](https://toptal.github.io/picasso/llm-docs/components/paper.md): Elevated container with shadow
+- [Tabs](https://toptal.github.io/picasso/llm-docs/components/tabs.md): Tabs allow to switch between content sections
+
+## Overlays
+
+- [Modal](https://toptal.github.io/picasso/llm-docs/components/modal.md): A modal displays content that temporarily blocks interactions with the main view of a site.
+- [PromptModal](https://toptal.github.io/picasso/llm-docs/components/promptmodal.md): Predefined modal for short prompts that asks user for input.
+- [Tooltip](https://toptal.github.io/picasso/llm-docs/components/tooltip.md): Tooltips display informative text when users hover over, focus on, or tap an element
+
+## Utils
+
+- [Breakpoints](https://toptal.github.io/picasso/llm-docs/components/breakpoints.md): For optimal user experience, we need to be able to adapt layout
+- [Colors](https://toptal.github.io/picasso/llm-docs/components/colors.md): The Toptal color palette comprises the core brand colors
+- [Formatters](https://toptal.github.io/picasso/llm-docs/components/formatters.md): For consistent user experience, we need to standardize formatters.
+- [Gradients](https://toptal.github.io/picasso/llm-docs/components/gradients.md): Gradients are important visual elements.
+- [Shadows](https://toptal.github.io/picasso/llm-docs/components/shadows.md)
+- [Transitions](https://toptal.github.io/picasso/llm-docs/components/transitions.md)
+
+## Picasso Charts
+
+- [AnalyticsChart](https://toptal.github.io/picasso/llm-docs/components/analyticschart.md): Use LineChart with analytics data
+- [BarChart](https://toptal.github.io/picasso/llm-docs/components/barchart.md): Responsive bar charts
+- [CategoriesChart](https://toptal.github.io/picasso/llm-docs/components/categorieschart.md): Use BarChart with analytics data
+- [LineChart](https://toptal.github.io/picasso/llm-docs/components/linechart.md): Responsive line charts
+
+## Picasso Forms
+
+- [Form](https://toptal.github.io/picasso/llm-docs/components/form.md): Form
+- [SubmitButton](https://toptal.github.io/picasso/llm-docs/components/submitbutton.md): SubmitButton reacts to the submission state of the form.
+
+## Other
+
+- [Final Form](https://toptal.github.io/picasso/llm-docs/components/final-form.md): Final Form
+
+## Picasso Pictograms
+
+- [Pictograms](https://toptal.github.io/picasso/llm-docs/components/pictograms.md)
+
+## Picasso Query Builder
+
+- [QueryBuilder](https://toptal.github.io/picasso/llm-docs/components/querybuilder.md)
+
+## Tutorials
+
+- [Difference between Picasso Forms and base form components](https://toptal.github.io/picasso/llm-docs/tutorials/difference-between-picasso-forms-and-base-form-components.md): Learn how to pick the right abstraction for working with inputs and forms in different scenarios.
+- [How to layout a page](https://toptal.github.io/picasso/llm-docs/tutorials/how-to-layout-a-page.md): Learn how to create page layouts using Picasso Grid component along with Page and Container components.
+- [How to layout forms](https://toptal.github.io/picasso/llm-docs/tutorials/how-to-layout-forms.md): Learn how to create form layouts using Picasso Form components.
+- [How to optimize for bundle size](https://toptal.github.io/picasso/llm-docs/tutorials/how-to-optimize-for-bundle-size.md): Learn how to optimize Picasso usage for bundle size
+- [How to use server side rendering](https://toptal.github.io/picasso/llm-docs/tutorials/how-to-use-server-side-rendering.md)
+- [How to use spacings](https://toptal.github.io/picasso/llm-docs/tutorials/how-to-use-spacings.md)
+- [Merging classes](https://toptal.github.io/picasso/llm-docs/tutorials/merging-classes.md): How to merge classes with respect of Picasso TailwindCSS theme
+- [Styled Components](https://toptal.github.io/picasso/llm-docs/tutorials/styled-components.md): Tips and tricks for using Picasso components with styled-components
