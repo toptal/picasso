@@ -6,6 +6,28 @@
 
 Picasso is Toptal's component library, based on Toptal's design system - BASE. UI designs and documentation can be found for most components at [picasso.toptal.net](https://picasso.toptal.net/).
 
+## Using Picasso with AI coding agents
+
+Picasso ships machine-readable docs optimized for LLMs so AI tools (Cursor, Claude Code, …) generate correct Picasso code. Wire your agent to them once per repo.
+
+**Add a reference to your AI tool config** — `CLAUDE.md`, `AGENTS.md`, or a `.cursor/rules/` file:
+
+```md
+This project uses Toptal's Picasso design system (`@toptal/picasso`).
+
+Before writing UI, consult the Picasso LLM docs (fetch on demand — do not vendor):
+
+1. Index of all components: https://toptal.github.io/picasso/llm-docs/llms.txt
+2. Then fetch the specific component page you need, e.g.
+   https://toptal.github.io/picasso/llm-docs/components/button.md
+
+Rules: use Picasso components (never raw HTML for UI), import from
+`@toptal/picasso` and `@toptal/picasso-forms`, and merge classes with `twMerge`
+from `@toptal/picasso-tailwind-merge` (put the consumer `className` last).
+```
+
+The full, current ruleset lives in [`.picasso/rules.md`](https://github.com/toptal/picasso/blob/master/.picasso/rules.md).
+
 ## Installation instructions
 
 ```js
