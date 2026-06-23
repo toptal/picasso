@@ -9,10 +9,10 @@ exports[`ProgressBar renders 1`] = `
       class="items-center flex"
     >
       <div
-        class="PicassoProgressBar-progressBar"
+        class="w-full min-w h-2 bg-gray rounded-sm"
       >
         <div
-          class="PicassoProgressBar-progressIndicator"
+          class="h-2 rounded-sm bg-blue transition-[width] duration-300 ease-in"
           style="width: 50%;"
         />
       </div>
@@ -30,10 +30,10 @@ exports[`ProgressBar renders with percentage 1`] = `
       class="items-center flex"
     >
       <div
-        class="PicassoProgressBar-progressBar"
+        class="w-full min-w h-2 bg-gray rounded-sm"
       >
         <div
-          class="PicassoProgressBar-progressIndicator"
+          class="h-2 rounded-sm bg-blue transition-[width] duration-300 ease-in"
           style="width: 50%;"
         />
       </div>
@@ -41,7 +41,7 @@ exports[`ProgressBar renders with percentage 1`] = `
         class="ml-2"
       >
         <p
-          class="m-0 text-xxs text-graphite font-semibold PicassoProgressBar-percentageValue"
+          class="m-0 text-xxs text-graphite font-semibold min-w leading-[1.125rem]"
         >
           50
           %

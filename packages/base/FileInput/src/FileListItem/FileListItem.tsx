@@ -1,7 +1,4 @@
 import React from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { Tooltip } from '@toptal/picasso-tooltip'
@@ -12,7 +9,6 @@ import { TypographyOverflow } from '@toptal/picasso-typography-overflow'
 
 import { ProgressBar } from '../ProgressBar'
 import type { FileUpload } from '../FileInput'
-import styles from './styles'
 
 export interface Props {
   file: FileUpload
@@ -24,10 +20,6 @@ export interface Props {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'FileListItem',
-})
-
 const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
   const {
     uploading,
@@ -36,8 +28,6 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
     file: { name },
   } = file
 
-  const classes = useStyles()
-
   const handleRemove = () => {
     onRemove?.(name, index)
   }
@@ -45,7 +35,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
   const uploadingNode = (
     <>
       <Typography
-        className={classes.label}
+        className='leading-[1.375rem]'
         variant='body'
         color='black'
         size='medium'
@@ -55,18 +45,14 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
       {progress !== undefined ? (
         <ProgressBar data-testid={testIds?.progressBar} value={progress} />
       ) : (
-        <Loader className={classes.loader} size='small' />
+        <Loader size='small' />
       )}
     </>
   )
 
   const fileNode = (
     <>
-      <Container
-        flex
-        direction='column'
-        className={cx(classes.fileNodeContent)}
-      >
+      <Container flex direction='column' className='min-w-0'>
         <Container flex direction='row'>
           {!error && (
             <Container right='xsmall'>
@@ -74,7 +60,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
             </Container>
           )}
           <TypographyOverflow
-            className={classes.label}
+            className='leading-[1.375rem]'
             variant='body'
             size='medium'
             color={error ? 'red' : 'black'}
@@ -116,7 +102,8 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
       direction='row'
       alignItems='center'
       justifyContent='space-between'
-      className={cx(classes.root)}
+      // TODO(tokens): [PF-1994] 5px vertical padding is off the 4px Picasso spacing scale
+      className='border-b border-gray-200 py-[0.3125rem]'
     >
       {uploading && error === undefined ? uploadingNode : fileNode}
     </Container>

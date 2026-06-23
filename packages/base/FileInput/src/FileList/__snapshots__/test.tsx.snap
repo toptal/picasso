@@ -6,13 +6,13 @@ exports[`FileList renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex flex-col FileList-root"
+      class="flex flex-col border-t border-gray"
     >
       <div
-        class="items-center justify-between flex FileListItem-root"
+        class="items-center justify-between flex border-b border-gray py-[0.3125rem]"
       >
         <div
-          class="flex flex-col FileListItem-fileNodeContent"
+          class="flex flex-col min-w"
         >
           <div
             class="flex"
@@ -32,7 +32,7 @@ exports[`FileList renders 1`] = `
               </svg>
             </div>
             <p
-              class="m-0 text-md text-black font-regular whitespace-nowrap [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block FileListItem-label"
+              class="m-0 text-md text-black font-regular whitespace-nowrap [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block leading-[1.375rem]"
             >
               user-profile-picture.png
             </p>
