@@ -1,6 +1,6 @@
 import figma from '@figma/code-connect'
 import React from 'react'
-import { Accordion } from '@toptal/picasso-accordion'
+import { Accordion } from '@toptal/picasso'
 
 const ACCORDION_URL =
   'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=82-100'
@@ -19,8 +19,12 @@ figma.connect(Accordion, ACCORDION_URL, {
     }),
   },
   example: ({ expanded, borders }) => (
-    <Accordion expanded={expanded} borders={borders} content={<p>Content</p>}>
-      Summary
+    <Accordion
+      expanded={expanded}
+      borders={borders}
+      content={<Accordion.Details>Content goes here.</Accordion.Details>}
+    >
+      <Accordion.Summary>Summary</Accordion.Summary>
     </Accordion>
   ),
 })
