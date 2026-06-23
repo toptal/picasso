@@ -4,10 +4,6 @@ import type { TypographyOptions } from '../../../utils'
 import { getTypographyClassName } from '../../../utils'
 import useTypographyClasses from './use-typography-classes'
 
-jest.mock('@material-ui/core/styles', () => ({
-  makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' })),
-}))
-
 jest.mock('../../../utils', () => ({
   __esModule: true,
   typographyStyles: { root: 'TEST_CLASS_NAME' },
@@ -33,7 +29,7 @@ describe('useTypographyClasses', () => {
       renderHook(() => useTypographyClasses(options))
 
       expect(getTypographyClassName).toHaveBeenCalledWith(
-        { root: 'TEST_CLASS_NAME+1' },
+        { root: 'TEST_CLASS_NAME' },
         options
       )
     })

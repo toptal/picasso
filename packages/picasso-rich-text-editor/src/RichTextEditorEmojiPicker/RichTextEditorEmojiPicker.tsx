@@ -2,8 +2,6 @@
 import React, { useEffect } from 'react'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 
@@ -18,22 +16,11 @@ interface Props {
 
 const TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker'
 
-interface StyleProps {
-  showEmojiPicker: boolean
+const classes = {
+  emojiPicker: 'absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none',
+  activeOpacity: 'opacity-100',
+  activePointers: '[pointer-events:all]',
 }
-
-const useStyles = makeStyles<Theme, StyleProps>({
-  emojiPicker: {
-    position: 'absolute',
-    top: 34,
-    left: 0,
-    zIndex: 10,
-    opacity: 0,
-    pointerEvents: 'none',
-  },
-  activeOpacity: { opacity: 1 },
-  activePointers: { pointerEvents: 'all' },
-})
 
 const handleEmojiPickerEscBehaviour = (
   event: KeyboardEvent,
@@ -50,8 +37,6 @@ export const RichTextEditorEmojiPicker = ({
   disabled,
 }: Props) => {
   const [showEmojiPicker, setShowEmojiPicker] = React.useState(false)
-
-  const classes = useStyles({ showEmojiPicker })
 
   const handleEmojiPickerClick = () => {
     setShowEmojiPicker(!showEmojiPicker)

@@ -1,52 +1,48 @@
-import { alpha, outline } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
-export default (theme: Theme) => {
-  const { palette, sizes } = theme
+type Status = 'error' | 'warning' | 'default'
 
-  return createStyles({
-    editorWrapper: {
-      position: 'relative',
-      borderRadius: sizes.borderRadius.small,
-      border: `1px solid ${palette.grey.light2}`,
-      padding: '0.5em',
+type WrapperState = {
+  disabled: boolean
+  focused: boolean
+  status: Status
+  autofill: boolean
+}
 
-      '&:hover:not($disabled):not($error)': {
-        borderColor: palette.grey.main2,
-      },
-    },
+// Focus-ring box shadows: 0 0 0 3px <token @ 48% alpha>. Only the 3px spread is
+// arbitrary (no spread token); the color is the matching palette token with an
+// alpha modifier — same pattern as OutlinedInput's focus ring.
+const FOCUS_OUTLINE: Record<Status, string> = {
+  error: 'shadow-[0_0_0_3px] shadow-red-500/[.48]',
+  warning: 'shadow-[0_0_0_3px] shadow-yellow-500/[.48]',
+  default: 'shadow-[0_0_0_3px] shadow-blue-500/[.48]',
+}
 
-    disabled: {
-      pointerEvents: 'none',
-      background: palette.grey.lighter2,
-      border: `1px solid ${palette.grey.light2}`,
-    },
+const STATUS_BORDER: Record<Status, string> = {
+  error: 'border-red-500',
+  warning: 'border-yellow-500',
+  default: '',
+}
 
-    error: {
-      borderColor: palette.red.main,
-      '&$focused': {
-        borderColor: palette.red.main,
-        ...outline(palette.red.main),
-      },
-    },
+// Resolves the legacy JSS cascade (border color + focus outline by state) into a
+// single deterministic class set so we don't rely on Tailwind utility ordering.
+export const getEditorWrapperClassName = ({
+  disabled,
+  focused,
+  status,
+  autofill,
+}: WrapperState): string => {
+  const focusedBorder = focused ? 'border-gray-600' : 'border-gray-400'
+  const borderColor = STATUS_BORDER[status] || focusedBorder
+  const outline = focused ? FOCUS_OUTLINE[status] : ''
 
-    warning: {
-      borderColor: palette.yellow.main,
-      '&$focused': {
-        borderColor: palette.yellow.main,
-        ...outline(palette.yellow.main),
-      },
-    },
-
-    focused: {
-      borderColor: palette.grey.main2,
-      ...outline(palette.primary.main),
-    },
-
-    highlightAutofill: {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      backgroundColor: alpha(palette.yellow.lighter!, 0.6),
-    },
-  })
+  return cx(
+    'relative rounded-sm border p-[0.5em]',
+    borderColor,
+    outline,
+    // Hover border, suppressed when disabled or in error (matches legacy :not()).
+    !disabled && status !== 'error' && 'hover:border-gray-600',
+    disabled && 'pointer-events-none',
+    autofill ? 'bg-yellow-100/60' : disabled && 'bg-gray-200'
+  )
 }
