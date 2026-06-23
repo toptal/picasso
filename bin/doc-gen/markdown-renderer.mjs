@@ -5,6 +5,18 @@
 
 /* eslint-disable import/no-extraneous-dependencies */
 
+const DEFAULT_LLM_DOCS_BASE_URL = 'https://toptal.github.io/picasso/llm-docs/'
+
+/**
+ * Base URL prepended to the links in llms.txt so an AI agent can resolve every
+ * component/tutorial doc on demand from the hosted docs — without vendoring the
+ * full tree into the consumer repo. Override via the LLM_DOCS_BASE_URL env var
+ * (e.g. to point a PR-preview deployment at its own path). Always ends in "/".
+ */
+// eslint-disable-next-line no-process-env
+const rawLlmDocsBaseUrl = process.env.LLM_DOCS_BASE_URL || DEFAULT_LLM_DOCS_BASE_URL
+const LLM_DOCS_BASE_URL = rawLlmDocsBaseUrl.replace(/\/?$/, '/')
+
 const escapePipe = (str) => str.replace(/\\/g, '\\\\').replace(/\|/g, '\\|')
 
 const renderPropsTable = (props) => {
@@ -336,12 +348,13 @@ const renderLlmsHeader = () => [
   '',
   '> Picasso is Toptal\'s React component library implementing the BASE design system.',
   '> This documentation is optimized for LLM consumption.',
+  '> Fetch the linked Markdown files on demand — do not vendor the full docs tree.',
   '',
   '## Docs',
   '',
-  '- [Initial Setup](./initial-setup.md): Installation, setup, and getting started',
-  '- [Component Index](./components/index.md): Full list of all UI components',
-  '- [Tutorial Index](./tutorials/index.md): Step-by-step usage guides',
+  `- [Initial Setup](${LLM_DOCS_BASE_URL}initial-setup.md): Installation, setup, and getting started`,
+  `- [Component Index](${LLM_DOCS_BASE_URL}components/index.md): Full list of all UI components`,
+  `- [Tutorial Index](${LLM_DOCS_BASE_URL}tutorials/index.md): Step-by-step usage guides`,
   '',
 ]
 
@@ -370,14 +383,14 @@ export const renderLlmsTxt = (componentPages, tutorialPages) => {
 
   const sections = groupBySection(componentPages)
 
-  lines.push(...renderSectionLinks(sections, './components/'))
+  lines.push(...renderSectionLinks(sections, `${LLM_DOCS_BASE_URL}components/`))
 
   if (tutorialPages.length > 0) {
     lines.push('## Tutorials')
     lines.push('')
 
     for (const page of tutorialPages.sort((aa, bb) => aa.name.localeCompare(bb.name))) {
-      lines.push(renderPageLink(page, './tutorials/'))
+      lines.push(renderPageLink(page, `${LLM_DOCS_BASE_URL}tutorials/`))
     }
 
     lines.push('')
