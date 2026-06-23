@@ -16,9 +16,18 @@ figma.connect(
         'Ordered (Letter)': 'ordered',
         'Ordered (Roman)': 'ordered',
       }),
+      styleType: figma.enum('Style', {
+        'Unordered (Bullet)': 'disc',
+        'Unordered (Circle)': 'circle',
+        'Unordered (Checkmark)': 'checkmark',
+        'Unordered (Arrow)': 'arrow',
+        'Ordered (Cardinal)': 'numeral',
+        'Ordered (Letter)': 'alpha',
+        'Ordered (Roman)': 'roman',
+      }),
     },
-    example: ({ variant }) => (
-      <List variant={variant}>
+    example: ({ variant, styleType }) => (
+      <List variant={variant} styleType={styleType}>
         <List.Item>List item one</List.Item>
         <List.Item>List item two</List.Item>
         <List.Item>List item three</List.Item>
