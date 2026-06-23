@@ -1,5 +1,10 @@
 import type { MouseEvent } from 'react'
-import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+} from 'react'
 import {
   InputAdornment,
   InputValidIconAdornment,
@@ -8,11 +13,7 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { noop } from '@toptal/picasso-utils'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
-import { Input, type InputOwnerState } from '@mui/base/Input'
-import {
-  TextareaAutosize,
-  type TextareaAutosizeProps,
-} from '@mui/base/TextareaAutosize'
+import TextareaAutosize from 'react-textarea-autosize'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { getRootClassName } from './stylesRoot'
@@ -43,30 +44,10 @@ const ResetButton = ({
       variant='flat'
       role='reset'
       onClick={onClick}
-      onMouseDown={(
-        event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
-      ) => event.preventDefault()}
-      onFocus={(
-        event: React.FocusEvent<HTMLButtonElement | HTMLAnchorElement>
-      ) => event.stopPropagation()}
+      onMouseDown={event => event.preventDefault()}
+      onFocus={event => event.stopPropagation()}
     />
   </InputAdornment>
-)
-
-const Textarea = forwardRef<
-  HTMLTextAreaElement,
-  { ownerState: InputOwnerState } & TextareaAutosizeProps
->(
-  (
-    {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ownerState,
-      ...rest
-    },
-    ref
-  ) => {
-    return <TextareaAutosize ref={ref} {...rest} />
-  }
 )
 
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
@@ -83,6 +64,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const {
     className,
     style,
+    'data-testid': dataTestId,
     multiline,
     multilineResizable,
     autoFocus,
@@ -101,8 +83,26 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     testIds,
     highlight,
     classes,
-    ...rest
+    onClick,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    children: _children,
+    'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    autoComplete,
+    id,
+    name,
+    onKeyDown,
+    onKeyUp,
+    onFocus,
+    onBlur,
+    placeholder,
+    readOnly,
+    required,
+    ...rootAttrs
   } = props
+
+  const rootElementAttrs = rootAttrs as React.HTMLAttributes<HTMLDivElement>
 
   const { layout } = useFieldsLayoutContext()
   const isDark = inputProps?.variant === 'dark'
@@ -127,11 +127,28 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   )
 
   const divRef = useRef<HTMLDivElement | null>(null)
+  const controlRef = useRef<HTMLElement | null>(null)
 
   useImperativeHandle(ref, () => divRef.current as HTMLElement, [])
 
-  const isError = Boolean(status === 'error')
-  const isWarning = Boolean(status === 'warning')
+  const setControlRef = useCallback(
+    (node: HTMLElement | null) => {
+      controlRef.current = node
+
+      if (typeof inputRef === 'function') {
+        inputRef(node as HTMLInputElement)
+      } else if (inputRef) {
+        const objectRef =
+          inputRef as React.MutableRefObject<HTMLInputElement | null>
+
+        objectRef.current = node as HTMLInputElement
+      }
+    },
+    [inputRef]
+  )
+
+  const isError = status === 'error'
+  const isWarning = status === 'warning'
 
   const inputClassName = getInputClassName({
     size,
@@ -158,48 +175,72 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     isWarning,
   })
 
-  const multilineProps = multiline
-    ? ({
-        multiline: true,
-        // to keep the same behavior as in MUI@4
-        // rows: getRows(rows),
-        minRows: getRows(rows),
-        maxRows: getRows(rowsMax),
-      } as const)
-    : {}
+  const computedInputClassName = twMerge(
+    inputClassName,
+    classes?.input,
+    inputProps?.className
+  )
 
-  return (
-    <Input
-      {...rest}
-      slots={{ input: inputComponent, textarea: Textarea }}
-      slotProps={{
-        root: {
-          ref: divRef,
-          className: twMerge(rootClassName, classes?.root, className),
-        },
-        input: {
-          ...inputProps,
-          ref: inputRef,
-          className: twMerge(
-            inputClassName,
-            classes?.input,
-            inputProps?.className
-          ),
-          type,
-          'aria-invalid': isError,
-        },
-      }}
-      style={style}
-      error={isError}
+  const ControlComponent: React.ElementType = multiline
+    ? TextareaAutosize
+    : inputComponent ?? 'input'
+
+  const control = (
+    <ControlComponent
+      aria-describedby={ariaDescribedby}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      autoComplete={autoComplete}
+      id={id}
+      name={name}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      placeholder={placeholder}
+      readOnly={readOnly}
+      required={required}
+      {...inputProps}
+      ref={setControlRef}
+      className={computedInputClassName}
+      type={type}
+      aria-invalid={isError}
+      disabled={disabled}
+      autoFocus={autoFocus}
       defaultValue={defaultValue}
       value={value}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-      autoFocus={autoFocus}
       onChange={onChange}
-      disabled={disabled}
-      {...multilineProps}
+      {...(multiline && {
+        minRows: getRows(rows),
+        maxRows: getRows(rowsMax),
+      })}
     />
+  )
+
+  const handleRootClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (controlRef.current && event.currentTarget === event.target) {
+      controlRef.current.focus()
+    }
+    const onDivClick = onClick as
+      | React.MouseEventHandler<HTMLDivElement>
+      | undefined
+
+    onDivClick?.(event)
+  }
+
+  return (
+    <div
+      {...rootElementAttrs}
+      ref={divRef}
+      className={twMerge(rootClassName, classes?.root, className)}
+      style={style}
+      data-testid={dataTestId}
+      onClick={handleRootClick}
+    >
+      {startAdornment}
+      {control}
+      {endAdornment}
+    </div>
   )
 })
 
