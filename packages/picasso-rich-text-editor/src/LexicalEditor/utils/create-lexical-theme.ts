@@ -1,4 +1,3 @@
-import type { makeStyles } from '@material-ui/core/styles'
 import type { EditorThemeClasses } from 'lexical'
 
 type Props = {
@@ -6,8 +5,7 @@ type Props = {
     root: string
     heading: string
   }
-  // ClassNameMap is not exported from @material-ui/core
-  classes: ReturnType<ReturnType<typeof makeStyles>>
+  classes: Record<string, string>
 }
 
 export const createLexicalTheme = ({

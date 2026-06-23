@@ -1,5 +1,3 @@
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import { Container } from '@toptal/picasso-container'
 import type { ReactNode } from 'react'
 import React, { createContext, useContext, useState } from 'react'
@@ -39,15 +37,11 @@ export type Props = {
   keyName: string
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'RichTextEditorToolbar',
-})
-
 export const Toolbar = (props: Props) => {
   const { children, keyName } = props
   const { portalEl } = useContext(Context)
 
-  const classes = useStyles(props)
+  const classes = styles
 
   if (!portalEl) {
     return null
