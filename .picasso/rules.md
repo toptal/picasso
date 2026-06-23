@@ -73,5 +73,10 @@ and for any component's API.
 ---
 
 Version-agnostic: the hosted docs always reflect the latest published Picasso.
-Fetch them at edit/build time for current APIs. See `CHANGELOG.md` for what
-changed between rule versions.
+Fetch them at edit/build time for current APIs.
+
+**Changed from v1:** docs are now fetched on demand from the hosted index rather
+than vendored as a ~1 MB tree into each consumer repo; `llms.txt` links are
+absolute; v1's stale `patterns/` / `tokens/` / "96 docs" pointers are dropped in
+favour of the authoritative hosted index; these rules now live canonically here
+in the Picasso repo instead of as drifting per-tool copies.
