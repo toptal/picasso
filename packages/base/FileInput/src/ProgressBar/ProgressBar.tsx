@@ -1,12 +1,7 @@
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from './styles'
 
 const MIN_VALUE = 0
 const MAX_VALUE = 100
@@ -19,17 +14,12 @@ export interface Props extends BaseProps {
   'data-testid'?: string
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoProgressBar',
-})
-
 const normalizeValue = (value: number) =>
   Math.min(Math.max(value, MIN_VALUE), MAX_VALUE)
 
 export const ProgressBar = forwardRef<HTMLDivElement, Props>(
   function ProgressBar({ showPercentage = false, ...props }, ref) {
     const { value, 'data-testid': dataTestId, ...restProps } = props
-    const classes = useStyles(props)
 
     const percentage = normalizeValue(value)
 
@@ -42,9 +32,10 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         {...restProps}
         ref={ref}
       >
-        <div className={cx(classes.progressBar)}>
+        {/* TODO(tokens): [PF-1994] 80px / 29px min-widths and 18px line-height are off the Picasso scales */}
+        <div className='w-full min-w-[5rem] h-2 bg-gray-300 rounded-sm'>
           <div
-            className={cx(classes.progressIndicator)}
+            className='h-2 rounded-sm bg-blue-400 transition-[width] duration-300 ease-in-out'
             style={{
               width: `${props.value}%`,
             }}
@@ -57,7 +48,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
               variant='body'
               size='xsmall'
               weight='semibold'
-              className={cx(classes.percentageValue)}
+              className='min-w-[1.8125rem] leading-[1.125rem]'
             >
               {percentage}%
             </Typography>
