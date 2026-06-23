@@ -1,6 +1,6 @@
-import figma from '@figma/code-connect'
 import React from 'react'
-import { Container } from '@toptal/picasso-container'
+import figma from '@figma/code-connect'
+import { Container } from '@toptal/picasso'
 
 figma.connect(
   Container,

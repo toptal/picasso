@@ -1,6 +1,6 @@
 import figma from '@figma/code-connect'
 import React from 'react'
-import { Badge } from '@toptal/picasso-badge'
+import { Badge } from '@toptal/picasso'
 
 const BADGE_URL =
   'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=60-45'

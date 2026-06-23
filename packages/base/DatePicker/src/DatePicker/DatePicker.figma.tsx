@@ -2,12 +2,9 @@ import figma from '@figma/code-connect'
 import React from 'react'
 import { DatePicker } from '@toptal/picasso'
 
-const FILE_KEY = '5SCTOPrCDcHuk5We091GBn'
-
-// Date Picker Day — single-date input (closed and open states, 1- and 2-month calendar)
 figma.connect(
   DatePicker,
-  `https://www.figma.com/design/${FILE_KEY}/Product-Library?node-id=16058-7027`,
+  'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=16058-7027',
   {
     props: {
       numberOfMonths: figma.enum('Variant', {
@@ -24,15 +21,14 @@ figma.connect(
   }
 )
 
-// Date Picker / X / Type — calendar popup navigation style:
-// Default = separate month/year dropdowns (dropdownNavigation); Variant2 = arrow navigation (default)
+// Variant=Date Selection maps to dropdownNavigation=true (separate month/year dropdowns)
 figma.connect(
   DatePicker,
-  `https://www.figma.com/design/${FILE_KEY}/Product-Library?node-id=18781-1934`,
+  'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=18781-1934',
   {
     props: {
       dropdownNavigation: figma.enum('Variant', {
-        Default: true,
+        'Date Selection': true,
       }),
     },
     example: ({ dropdownNavigation }) => (
@@ -45,10 +41,9 @@ figma.connect(
   }
 )
 
-// Date Picker Range — range selection
 figma.connect(
   DatePicker,
-  `https://www.figma.com/design/${FILE_KEY}/Product-Library?node-id=16059-11495`,
+  'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=16059-11495',
   {
     example: () => <DatePicker range value={undefined} onChange={() => {}} />,
   }
