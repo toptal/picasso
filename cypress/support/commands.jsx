@@ -70,10 +70,14 @@ Cypress.Commands.overwrite(
       .then(
         () =>
           new Cypress.Promise(resolve => {
+            // Wait 2 RAF frames (covers @base-ui/react starting-style removal and
+            // floating-ui's initial position commit), then an additional 150 ms to
+            // let autoUpdate's scroll-triggered re-position settle. Sequential, not
+            // racing — the prior implementation raced RAF vs setTimeout and could
+            // resolve before floating-ui's second cycle completed.
             nativeRequestAnimationFrame(() =>
-              nativeRequestAnimationFrame(resolve)
+              nativeRequestAnimationFrame(() => nativeSetTimeout(resolve, 150))
             )
-            nativeSetTimeout(resolve, 150)
           })
       )
       .then(() => originalFn(subject, options))
