@@ -390,7 +390,7 @@ describe('Tooltip', () => {
       component,
       variant: 'inside-checkbox',
     })
-    cy.get('@trigger').click()
+    cy.get('@trigger').realClick()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
@@ -407,7 +407,7 @@ describe('Tooltip', () => {
       component,
       variant: 'inside-radio',
     })
-    cy.getByTestId(testIds.radioTrigger).click()
+    cy.getByTestId(testIds.radioTrigger).realClick()
     cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
   })
 
@@ -444,7 +444,7 @@ describe('Tooltip', () => {
     cy.url().should('include', '#link')
     cy.get('@Content').should('be.visible')
 
-    cy.get('@Trigger').click()
+    cy.get('@Trigger').realClick()
     cy.get('@Content').should('not.be.visible')
   })
 
