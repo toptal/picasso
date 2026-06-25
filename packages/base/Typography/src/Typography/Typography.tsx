@@ -145,7 +145,7 @@ export interface Props
   /** Enable ellipsis for overflowing text */
   noWrap?: boolean
   /** Rendered HTML markup */
-  as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+  as?: React.ElementType
   /** Controls when the Typography should have an underline */
   underline?: 'solid' | 'dashed'
   /** Controls when the Typography should have line through */
