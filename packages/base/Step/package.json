@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-step",
-  "version": "4.0.20",
+  "version": "4.0.21",
   "description": "Toptal UI components library - Step",
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-radio",
-  "version": "5.0.23",
+  "version": "5.0.24",
   "description": "Toptal UI components library - Radio",
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,24 @@
 # @toptal/picasso-link
 
+## 4.1.0
+
+### Minor Changes
+
+- [#5021](https://github.com/toptal/picasso/pull/5021) [`c40f4aa`](https://github.com/toptal/picasso/commit/c40f4aa6b465a22b54a316c1088b59cd63724b9d) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### Link
+
+- widen the `as` prop type from `ElementType<HTMLAttributes<HTMLElement>>` to `ElementType`, so components that require extra props (e.g. react-router's `Link`, which needs `to`) can be passed to `as` without an `as unknown as ElementType<…>` cast. Matches the other polymorphic components.
+
+### Typography
+
+- widen the `as` prop type to `ElementType` to match `Link` and the other polymorphic components.
+
+### Patch Changes
+
+- Updated dependencies [[`c40f4aa`](https://github.com/toptal/picasso/commit/c40f4aa6b465a22b54a316c1088b59cd63724b9d)]:
+  - @toptal/picasso-typography@5.1.0
+
 ## 4.0.1
 
 ### Patch Changes
