@@ -47,34 +47,16 @@ Cypress.Commands.add(
   }
 )
 
-// eslint-disable-next-line ssr-friendly/no-dom-globals-in-module-scope -- Cypress browser-only support file
-const nativeRequestAnimationFrame = window.requestAnimationFrame.bind(window)
-
 // happo-cypress serializes the live DOM and re-renders it statically in the
-// cloud (no JS runs there). Two issues must be resolved before serializing:
-// 1. @base-ui/react removes `data-starting-style` one frame after mount; if
-//    captured before removal, the attribute pins the element at its starting
-//    style (e.g. opacity-0), producing a blank capture.
-// 2. @floating-ui/react applies computed position one frame after mount;
-//    capturing before that frame records the pre-position state (popper at 0,0).
-// Native RAF is captured at module scope before any cy.clock() stubbing —
-// Calendar.spec stubs window timers, so a wait built on them hangs.
+// cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
+// frame after mount; if captured before removal, the attribute pins the element
+// at its starting style (e.g. opacity-0), producing a blank capture.
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {
     return cy
       .get('[data-starting-style]', { timeout: 4000 })
       .should('not.exist')
-      .then(
-        () =>
-          new Cypress.Promise(resolve => {
-            // Wait 2 RAF frames: covers @base-ui/react starting-style removal
-            // (first frame) and floating-ui's initial position commit (second).
-            nativeRequestAnimationFrame(() =>
-              nativeRequestAnimationFrame(resolve)
-            )
-          })
-      )
       .then(() => originalFn(subject, options))
   }
 )
