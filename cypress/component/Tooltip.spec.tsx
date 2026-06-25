@@ -445,7 +445,7 @@ describe('Tooltip', () => {
     cy.get('@Content').should('be.visible')
 
     cy.get('@Trigger').realClick()
-    cy.get('@Content').should('not.be.visible')
+    cy.get('@Content').should('not.exist')
   })
 
   it('renders inside an autocomplete', () => {
