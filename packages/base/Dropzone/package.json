@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-dropzone",
-  "version": "5.0.35",
+  "version": "5.0.36",
   "description": "Toptal UI components library - Dropzone",
   "publishConfig": {
     "access": "public"

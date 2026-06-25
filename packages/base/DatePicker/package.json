@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-date-picker",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Toptal UI components library - DatePicker",
   "publishConfig": {
     "access": "public"

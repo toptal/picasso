@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-avatar",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "Toptal UI components library - Avatar",
   "publishConfig": {
     "access": "public"
