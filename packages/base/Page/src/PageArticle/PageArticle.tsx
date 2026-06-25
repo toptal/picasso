@@ -1,6 +1,6 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { forwardRef } from 'react'
-import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import React from 'react'
+import { overridableForwardRef, type BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -9,23 +9,22 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export const PageArticle: OverridableComponent<Props> = forwardRef<
-  HTMLDivElement,
-  Props
->(function PageArticle(props, ref) {
-  const { children, className, style, ...rest } = props
+export const PageArticle = overridableForwardRef<HTMLDivElement, Props>(
+  function PageArticle(props, ref) {
+    const { children, className, style, ...rest } = props
 
-  return (
-    <Container
-      {...rest}
-      ref={ref}
-      className={twMerge('flex-1 my-0 mx-4 md:mx-8', className)}
-      style={style}
-    >
-      {children}
-    </Container>
-  )
-})
+    return (
+      <Container
+        {...rest}
+        ref={ref}
+        className={twMerge('flex-1 my-0 mx-4 md:mx-8', className)}
+        style={style}
+      >
+        {children}
+      </Container>
+    )
+  }
+)
 
 PageArticle.displayName = 'PageArticle'
 

@@ -1,12 +1,11 @@
 import type { ElementType, HTMLAttributes, MouseEvent, ReactNode } from 'react'
-import React, { forwardRef } from 'react'
+import React from 'react'
 import type {
-  OverridableComponent,
   ColorType,
   BaseProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import { overridableForwardRef, useTitleCase } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { toTitleCase, isString } from '@toptal/picasso-utils'
@@ -60,73 +59,72 @@ const getBlockWidthClassnames = (blockWidth: BlockWidth) => {
   }
 }
 
-export const OverviewBlock: OverridableComponent<Props> = forwardRef<
-  HTMLButtonElement,
-  Props
->(function OverviewBlock({ as = 'button', ...props }, ref) {
-  const {
-    value,
-    label,
-    variant,
-    className,
-    onClick,
-    titleCase: propsTitleCase,
-    ...rest
-  } = props
+export const OverviewBlock = overridableForwardRef<HTMLButtonElement, Props>(
+  function OverviewBlock({ as = 'button', ...props }, ref) {
+    const {
+      value,
+      label,
+      variant,
+      className,
+      onClick,
+      titleCase: propsTitleCase,
+      ...rest
+    } = props
 
-  const { align, blockWidth } = useOverviewBlockGroupContext()
+    const { align, blockWidth } = useOverviewBlockGroupContext()
 
-  const color: ColorSchema = {
-    value: 'black',
-    label: 'dark-grey',
-  }
+    const color: ColorSchema = {
+      value: 'black',
+      label: 'dark-grey',
+    }
 
-  if (variant) {
-    const [partName, colorName] = variant.split('-') as [
-      keyof ColorSchema,
-      ColorType
-    ]
+    if (variant) {
+      const [partName, colorName] = variant.split('-') as [
+        keyof ColorSchema,
+        ColorType
+      ]
 
-    color[partName] = colorName
-  }
+      color[partName] = colorName
+    }
 
-  const isClickable = Boolean(onClick) || typeof as !== 'string'
+    const isClickable = Boolean(onClick) || typeof as !== 'string'
 
-  const Component = isClickable && as ? as : 'div'
+    const Component = isClickable && as ? as : 'div'
 
-  const titleCase = useTitleCase(propsTitleCase)
+    const titleCase = useTitleCase(propsTitleCase)
 
-  return (
-    <Component
-      {...rest}
-      ref={ref}
-      className={twMerge(
-        isClickable
-          ? 'cursor-pointer outline-hidden hover:bg-blue-100'
-          : 'outline-hidden',
-        getAlignmentClassnames(align),
-        getBlockWidthClassnames(blockWidth),
-        'flex flex-col bg-white m-0 min-w-[9.375rem] border-none no-underline',
-        '[&:not(:first-child)]:border-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-solid [&:not(:first-child)]:border-gray-400',
-        className
-      )}
-      onClick={onClick}
-    >
-      <Container align='left'>
-        {isString(label) ? (
-          <Typography size='xxsmall' weight='semibold' color={color.label}>
-            {titleCase ? toTitleCase(label) : label}
-          </Typography>
-        ) : (
-          label
+    return (
+      <Component
+        {...rest}
+        ref={ref}
+        className={twMerge(
+          isClickable
+            ? 'cursor-pointer outline-hidden hover:bg-blue-100'
+            : 'outline-hidden',
+          getAlignmentClassnames(align),
+          getBlockWidthClassnames(blockWidth),
+          'flex flex-col bg-white m-0 min-w-[9.375rem] border-none no-underline',
+          '[&:not(:first-child)]:border-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-solid [&:not(:first-child)]:border-gray-400',
+          className
         )}
-        <Typography size='large' weight='semibold' color={color.value}>
-          {value}
-        </Typography>
-      </Container>
-    </Component>
-  )
-})
+        onClick={onClick}
+      >
+        <Container align='left'>
+          {isString(label) ? (
+            <Typography size='xxsmall' weight='semibold' color={color.label}>
+              {titleCase ? toTitleCase(label) : label}
+            </Typography>
+          ) : (
+            label
+          )}
+          <Typography size='large' weight='semibold' color={color.value}>
+            {value}
+          </Typography>
+        </Container>
+      </Component>
+    )
+  }
+)
 
 OverviewBlock.displayName = 'OverviewBlock'
 

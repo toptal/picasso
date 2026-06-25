@@ -1,11 +1,7 @@
 import type { ElementType, HTMLAttributes, ReactNode } from 'react'
-import React, { forwardRef } from 'react'
-import type {
-  BaseProps,
-  TextLabelProps,
-  OverridableComponent,
-} from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import React from 'react'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { overridableForwardRef, useTitleCase } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { toTitleCase } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
@@ -24,31 +20,30 @@ const Active = (props: { children: ReactNode }) => {
   return <Typography weight='semibold' color='black' {...props} />
 }
 
-export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
-  HTMLElement,
-  Props
->(function BreadcrumbsItem({ as = 'span', ...props }, ref) {
-  const {
-    active,
-    children,
-    className,
-    titleCase: propsTitleCase,
-    ...rest
-  } = props
-  const Component = active ? Active : as || 'span'
+export const BreadcrumbsItem = overridableForwardRef<HTMLElement, Props>(
+  function BreadcrumbsItem({ as = 'span', ...props }, ref) {
+    const {
+      active,
+      children,
+      className,
+      titleCase: propsTitleCase,
+      ...rest
+    } = props
+    const Component = active ? Active : as || 'span'
 
-  const titleCase = useTitleCase(propsTitleCase)
+    const titleCase = useTitleCase(propsTitleCase)
 
-  return (
-    <Component
-      ref={ref}
-      className={twMerge('text-[14px] font-semibold', className)}
-      {...rest}
-    >
-      {titleCase ? toTitleCase(children) : children}
-    </Component>
-  )
-})
+    return (
+      <Component
+        ref={ref}
+        className={twMerge('text-[14px] font-semibold', className)}
+        {...rest}
+      >
+        {titleCase ? toTitleCase(children) : children}
+      </Component>
+    )
+  }
+)
 
 BreadcrumbsItem.displayName = 'BreadcrumbsItem'
 
