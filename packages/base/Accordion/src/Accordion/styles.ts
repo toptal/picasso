@@ -82,7 +82,9 @@ export const panelClasses = [
   'overflow-hidden',
   'h-[var(--accordion-panel-height)]',
   'transition-[height]',
-  'duration-200',
+  // Duration is driven by `--accordion-duration` (set from `transitionProps.timeout`),
+  // falling back to a fixed 300ms that approximates the legacy `timeout: 'auto'`.
+  'duration-[var(--accordion-duration)]',
   'ease-in-out',
   'data-starting-style:h-0',
   'data-ending-style:h-0',

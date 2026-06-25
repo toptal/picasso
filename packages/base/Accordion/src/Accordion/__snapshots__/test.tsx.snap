@@ -73,14 +73,14 @@ exports[`Accordion renders collapsed by default 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:r2:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
           id="base-ui-:r1:"
           role="region"
-          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
         >
           <div
             class="flex p-0"
@@ -163,14 +163,14 @@ exports[`Accordion renders custom icon when passed 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:rh:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
           id="base-ui-:rg:"
           role="region"
-          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
         >
           <div
             class="flex p-0"
@@ -267,7 +267,7 @@ exports[`Accordion renders disabled 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:rb:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-disabled=""
           data-index="0"
@@ -275,7 +275,7 @@ exports[`Accordion renders disabled 1`] = `
           hidden=""
           id="base-ui-:ra:"
           role="region"
-          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
         >
           <div
             class="flex p-0"

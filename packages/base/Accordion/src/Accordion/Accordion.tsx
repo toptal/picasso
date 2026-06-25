@@ -1,6 +1,7 @@
 import type {
   ReactNode,
   ChangeEvent,
+  CSSProperties,
   HTMLAttributes,
   ReactElement,
   Ref,
@@ -30,6 +31,24 @@ export type { Borders } from './styles'
 const ITEM_VALUE = 'item'
 const EXPANDED_VALUE = [ITEM_VALUE]
 const COLLAPSED_VALUE: string[] = []
+// Default collapse/expand duration when no `transitionProps.timeout` is given.
+// The legacy MUI Accordion used `timeout: 'auto'` (a height-dependent duration
+// via getAutoHeightDuration), which a single CSS transition can't replicate; we
+// approximate it with a fixed 300ms. A consumer-supplied `timeout` still wins.
+const DEFAULT_TRANSITION_DURATION = 300
+
+// Resolve `transitionProps.timeout` (ms) to a single CSS duration for the height
+// transition. `timeout` may be a number or a per-phase object; the height
+// collapse only animates on exit/enter, so prefer those over `appear`.
+const resolveTransitionDuration = (
+  timeout: TransitionProps['timeout']
+): number => {
+  if (typeof timeout === 'number') {
+    return timeout
+  }
+
+  return timeout?.exit ?? timeout?.enter ?? DEFAULT_TRANSITION_DURATION
+}
 
 const EmptyAccordionSummary = ({
   'data-testid': dataTestId,
@@ -56,7 +75,7 @@ export interface Props
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
-  /** Animation lifecycle callbacks. `onExited` fires after the collapse transition completes; `timeout` is ignored — the transition is CSS-driven */
+  /** Animation lifecycle props. `timeout` (ms) sets the CSS height-transition duration (defaults to ~300ms); `onExited` fires after the collapse transition completes */
   transitionProps?: TransitionProps
   testIds?: {
     emptyAccordionSummary?: string
@@ -198,6 +217,13 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <BaseUIAccordion.Panel
           keepMounted
           className={cx(...panelClasses)}
+          style={
+            {
+              '--accordion-duration': `${resolveTransitionDuration(
+                transitionProps?.timeout
+              )}ms`,
+            } as CSSProperties
+          }
           onTransitionEnd={handlePanelTransitionEnd}
         >
           <AccordionDetails>{content}</AccordionDetails>

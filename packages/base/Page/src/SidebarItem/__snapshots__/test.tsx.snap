@@ -114,14 +114,14 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 </div>
                 <div
                   aria-labelledby="base-ui-:r5:"
-                  class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
+                  class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
                   data-index="0"
                   data-open=""
                   data-orientation="vertical"
                   data-starting-style=""
                   id="base-ui-:r4:"
                   role="region"
-                  style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+                  style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
                 >
                   <div
                     class="flex p-0"
@@ -290,14 +290,14 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 </div>
                 <div
                   aria-labelledby="base-ui-:r8:"
-                  class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
+                  class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
                   data-index="0"
                   data-open=""
                   data-orientation="vertical"
                   data-starting-style=""
                   id="base-ui-:r7:"
                   role="region"
-                  style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+                  style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
                 >
                   <div
                     class="flex p-0"
@@ -637,14 +637,14 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         </div>
         <div
           aria-labelledby="base-ui-:r2:"
-          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-200 ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
+          class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
           id="base-ui-:r1:"
           role="region"
-          style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+          style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
         >
           <div
             class="flex p-0"
