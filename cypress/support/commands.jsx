@@ -49,8 +49,6 @@ Cypress.Commands.add(
 
 // eslint-disable-next-line ssr-friendly/no-dom-globals-in-module-scope -- Cypress browser-only support file
 const nativeRequestAnimationFrame = window.requestAnimationFrame.bind(window)
-// eslint-disable-next-line ssr-friendly/no-dom-globals-in-module-scope -- Cypress browser-only support file
-const nativeSetTimeout = window.setTimeout.bind(window)
 
 // happo-cypress serializes the live DOM and re-renders it statically in the
 // cloud (no JS runs there). Two issues must be resolved before serializing:
@@ -59,8 +57,8 @@ const nativeSetTimeout = window.setTimeout.bind(window)
 //    style (e.g. opacity-0), producing a blank capture.
 // 2. @floating-ui/react applies computed position one frame after mount;
 //    capturing before that frame records the pre-position state (popper at 0,0).
-// Native RAF/setTimeout are captured at module scope before any cy.clock()
-// stubbing — Calendar.spec stubs window timers, so a wait built on them hangs.
+// Native RAF is captured at module scope before any cy.clock() stubbing —
+// Calendar.spec stubs window timers, so a wait built on them hangs.
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {
@@ -70,13 +68,10 @@ Cypress.Commands.overwrite(
       .then(
         () =>
           new Cypress.Promise(resolve => {
-            // Wait 2 RAF frames (covers @base-ui/react starting-style removal and
-            // floating-ui's initial position commit), then an additional 150 ms to
-            // let autoUpdate's scroll-triggered re-position settle. Sequential, not
-            // racing — the prior implementation raced RAF vs setTimeout and could
-            // resolve before floating-ui's second cycle completed.
+            // Wait 2 RAF frames: covers @base-ui/react starting-style removal
+            // (first frame) and floating-ui's initial position commit (second).
             nativeRequestAnimationFrame(() =>
-              nativeRequestAnimationFrame(() => nativeSetTimeout(resolve, 150))
+              nativeRequestAnimationFrame(resolve)
             )
           })
       )
