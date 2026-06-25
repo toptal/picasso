@@ -17,7 +17,7 @@ Our primary typeface is Proxima Nova, a contemporary font that combines humanist
 | invert | `boolean` | - | Invert color |
 | color | `"inherit" \| "green" \| "red" \| "yellow" \| "light-grey" \| "grey" \| "grey-main-2" \| "dark-grey" \| "black" \| "light-blue"` | - | Text color |
 | noWrap | `boolean` | `false` | Enable ellipsis for overflowing text |
-| as | `ElementType<HTMLAttributes<HTMLElement>>` | - | Rendered HTML markup |
+| as | `ElementType<any>` | - | Rendered HTML markup |
 | underline | `"solid" \| "dashed"` | - | Controls when the Typography should have an underline |
 | lineThrough | `boolean` | - | Controls when the Typography should have line through |
 | className | `string` | - | Classnames applied to root element |

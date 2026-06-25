@@ -22,7 +22,7 @@ Use "Amount" to render formatted amount with a currency, in desired locale.
 | invert | `boolean` | - | Invert color |
 | color | `"inherit" \| "green" \| "red" \| "yellow" \| "light-grey" \| "grey" \| "grey-main-2" \| "dark-grey" \| "black" \| "light-blue"` | - | Text color |
 | noWrap | `boolean` | - | Enable ellipsis for overflowing text |
-| as | `ElementType<HTMLAttributes<HTMLElement>>` | `span` | Rendered HTML markup |
+| as | `ElementType<any>` | `span` | Rendered HTML markup |
 | underline | `"solid" \| "dashed"` | - | Controls when the Typography should have an underline |
 | lineThrough | `boolean` | - | Controls when the Typography should have line through |
 | className | `string` | - | Classnames applied to root element |
