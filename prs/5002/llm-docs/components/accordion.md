@@ -17,7 +17,7 @@ Accordions store information behind collapsible sections,
 | expandIcon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Customize icon indicating expanded status |
 | borders | `"all" \| "middle" \| "none"` | `all` | Defines where the horizontal borders show |
 | onChange | `((event: ChangeEvent<{}>, expanded: boolean) => void)` | `() => {}` | Callback invoked when `Accordion` item is toggled |
-| transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. `onExited` fires after the collapse transition completes; `timeout` is ignored — the transition is CSS-driven |
+| transitionProps | `TransitionProps` | - | Animation lifecycle props. `timeout` (ms) sets the CSS height-transition duration (defaults to ~300ms); `onExited` fires after the collapse transition completes |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 
