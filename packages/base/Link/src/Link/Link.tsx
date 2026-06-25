@@ -62,7 +62,7 @@ export type Props = BaseProps &
      * The component used for the root node.
      * Either a string to use a DOM element or a component.
      */
-    as?: ElementType<React.HTMLAttributes<HTMLElement>>
+    as?: ElementType
     /** Either it's a regular hyperlink or an _action_ */
     variant?: VariantType
     /** Controls color of the link */
