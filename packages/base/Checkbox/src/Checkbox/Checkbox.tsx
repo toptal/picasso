@@ -14,6 +14,18 @@ import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { checkboxClassNames } from './styles'
 
+type CheckboxRootProps = Omit<
+  BaseCheckbox.Root.Props,
+  | 'checked'
+  | 'disabled'
+  | 'id'
+  | 'value'
+  | 'indeterminate'
+  | 'onCheckedChange'
+  | 'className'
+  | 'style'
+>
+
 export interface Props
   extends BaseProps,
     TextLabelProps,
@@ -66,21 +78,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     // but BaseCheckbox.Root renders a <span>. The event-handler element types
     // are runtime-compatible, so we resolve the variance once here instead of
     // narrowing the public API.
-    const rootRest = checkboxAttributes as Omit<
-      BaseCheckbox.Root.Props,
-      | 'checked'
-      | 'disabled'
-      | 'id'
-      | 'value'
-      | 'indeterminate'
-      | 'onCheckedChange'
-      | 'className'
-      | 'style'
-    >
-
-    const rootRef: React.Ref<HTMLElement> | undefined = label
-      ? undefined
-      : (ref as React.Ref<HTMLElement>)
+    const rootRest = checkboxAttributes as CheckboxRootProps
 
     const checkboxElement = (
       <Container
@@ -97,7 +95,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       >
         <BaseCheckbox.Root
           {...rootRest}
-          ref={rootRef}
+          ref={label ? undefined : (ref as React.Ref<HTMLElement>)}
           checked={checked}
           disabled={disabled}
           id={id}
