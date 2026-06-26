@@ -45,9 +45,6 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
       <ParentItemContextProvider isOpened={isExpanded || false}>
         <Accordion
           onChange={handleAccordionChange}
-          // Accordion dropped its public `classes` prop in the @base-ui/react
-          // migration, so slot styling now routes through the root `className`
-          // via the data-component-type hooks the migrated parts emit
           className={twMerge(
             '[&_[data-component-type="accordion-summary"]]:p-0',
             '[&_[data-component-type="accordion-summary"]]:pl-4',

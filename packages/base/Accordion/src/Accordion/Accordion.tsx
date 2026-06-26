@@ -31,15 +31,8 @@ export type { Borders } from './styles'
 const ITEM_VALUE = 'item'
 const EXPANDED_VALUE = [ITEM_VALUE]
 const COLLAPSED_VALUE: string[] = []
-// Default collapse/expand duration when no `transitionProps.timeout` is given.
-// The legacy MUI Accordion used `timeout: 'auto'` (a height-dependent duration
-// via getAutoHeightDuration), which a single CSS transition can't replicate; we
-// approximate it with a fixed 300ms. A consumer-supplied `timeout` still wins.
 const DEFAULT_TRANSITION_DURATION = 300
 
-// Resolve `transitionProps.timeout` (ms) to a single CSS duration for the height
-// transition. `timeout` may be a number or a per-phase object; the height
-// collapse only animates on exit/enter, so prefer those over `appear`.
 const resolveTransitionDuration = (
   timeout: TransitionProps['timeout'],
   expanded: boolean
@@ -161,9 +154,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   // The public ref stays HTMLElement for API compatibility; the root part renders a <div>
   const rootRef = ref as Ref<HTMLDivElement>
 
-  // `rest` and Root.Props overlap on the div attribute surface; they differ
-  // only on the props overridden below (array-typed value/defaultValue and the
-  // BaseUI-evented handlers), so widen once at the boundary.
   const rootRest = rest as Omit<
     BaseUIAccordion.Root.Props,
     | 'value'
