@@ -41,13 +41,16 @@ const DEFAULT_TRANSITION_DURATION = 300
 // transition. `timeout` may be a number or a per-phase object; the height
 // collapse only animates on exit/enter, so prefer those over `appear`.
 const resolveTransitionDuration = (
-  timeout: TransitionProps['timeout']
+  timeout: TransitionProps['timeout'],
+  expanded: boolean
 ): number => {
   if (typeof timeout === 'number') {
     return timeout
   }
 
-  return timeout?.exit ?? timeout?.enter ?? DEFAULT_TRANSITION_DURATION
+  return (
+    (expanded ? timeout?.enter : timeout?.exit) ?? DEFAULT_TRANSITION_DURATION
+  )
 }
 
 const EmptyAccordionSummary = ({
@@ -220,7 +223,8 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           style={
             {
               '--accordion-duration': `${resolveTransitionDuration(
-                transitionProps?.timeout
+                transitionProps?.timeout,
+                Boolean(summaryExpanded)
               )}ms`,
             } as CSSProperties
           }
