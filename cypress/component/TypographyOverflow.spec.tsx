@@ -102,7 +102,7 @@ describe('TypographyOverflow', () => {
   it('renders with Checkbox label', () => {
     cy.mount(<CheckboxLabelExample />)
 
-    cy.getByTestId('ellipsed-text').click()
+    cy.getByTestId('ellipsed-text').realClick()
     cy.get('body').happoScreenshot({
       component,
       variant: 'checkbox-label/after-hovered',
