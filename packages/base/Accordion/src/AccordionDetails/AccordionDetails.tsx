@@ -1,22 +1,26 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React from 'react'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps } from '@toptal/picasso-shared'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends Omit<StandardProps, 'classes'>,
+    HTMLAttributes<HTMLDivElement> {
+  /** Content of the expanded accordion */
   children?: ReactNode
 }
 
 const AccordionDetails = (props: Props) => {
   const {
     children,
-    // Avoid passing external classes inside the rest props
+    className,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    classes: externalClasses,
+    classes: _classes,
     ...rest
-  } = props
+  } = props as Props & { classes?: unknown }
 
   return (
-    <div {...rest} className='flex p-0'>
+    <div {...rest} className={twMerge('flex p-0', className)}>
       {children}
     </div>
   )
