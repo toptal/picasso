@@ -9,7 +9,7 @@ export const summaryRootClasses = [
   'px-0',
   'font-semibold',
   'text-black',
-  'data-[disabled]:pointer-events-none',
+  'data-disabled:pointer-events-none',
 ]
 
 export const summaryContentClasses = [

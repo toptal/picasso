@@ -73,6 +73,7 @@ export interface Props
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
   /** Animation lifecycle props. `timeout` (ms) sets the CSS height-transition duration (defaults to ~300ms); `onExited` fires after the collapse transition completes */
   transitionProps?: TransitionProps
+  /** Test ids for accordion's inner elements */
   testIds?: {
     emptyAccordionSummary?: string
     accordionSummary?: string

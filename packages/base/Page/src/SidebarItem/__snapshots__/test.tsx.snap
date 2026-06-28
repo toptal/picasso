@@ -42,7 +42,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   <div
                     aria-controls="base-ui-:r4:"
                     aria-expanded="true"
-                    class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+                    class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
                     data-component-type="accordion-summary"
                     data-orientation="vertical"
                     data-panel-open=""
@@ -218,7 +218,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   <div
                     aria-controls="base-ui-:r7:"
                     aria-expanded="true"
-                    class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+                    class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
                     data-component-type="accordion-summary"
                     data-orientation="vertical"
                     data-panel-open=""
@@ -557,7 +557,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         >
           <div
             aria-expanded="false"
-            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
             data-orientation="vertical"
             data-value=""

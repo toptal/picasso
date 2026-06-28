@@ -6,7 +6,7 @@ exports[`AccordionSummary renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+      class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
       data-component-type="accordion-summary"
     >
       <div

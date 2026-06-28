@@ -24,7 +24,7 @@ exports[`Accordion renders collapsed by default 1`] = `
         >
           <div
             aria-expanded="false"
-            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
             data-orientation="vertical"
             data-value=""
@@ -123,7 +123,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
         >
           <div
             aria-expanded="false"
-            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
             data-orientation="vertical"
             data-value=""
@@ -217,7 +217,7 @@ exports[`Accordion renders disabled 1`] = `
           <div
             aria-disabled="true"
             aria-expanded="false"
-            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-[disabled]:pointer-events"
+            class="relative flex items-center select-none cursor-pointer outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
             data-disabled=""
             data-orientation="vertical"
