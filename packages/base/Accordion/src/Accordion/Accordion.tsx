@@ -110,7 +110,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     style,
     testIds,
     transitionProps,
-    // Drop a legacy `classes` prop at runtime so it doesn't leak into the DOM
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: _classes,
     ...rest
@@ -152,7 +151,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   const appliedBorders = children || expanded ? (borders as Borders) : 'none'
 
-  // The public ref stays HTMLElement for API compatibility; the root part renders a <div>
   const rootRef = ref as Ref<HTMLDivElement>
 
   const rootRest = rest as Omit<

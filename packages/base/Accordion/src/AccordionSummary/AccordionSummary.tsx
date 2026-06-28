@@ -23,7 +23,6 @@ export const AccordionSummary = forwardRef<HTMLDivElement, Props>(
       children,
       expandIcon,
       className,
-      // Drop a legacy `classes` prop at runtime so it doesn't leak into the DOM
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       classes: _classes,
       ...rest
