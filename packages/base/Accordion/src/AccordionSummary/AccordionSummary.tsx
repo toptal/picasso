@@ -1,20 +1,58 @@
-import type { ReactNode, FunctionComponent } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import { AccordionSummary as MUIAccordionSummary } from '@material-ui/core'
+import type { HTMLAttributes, ReactNode } from 'react'
+import React, { forwardRef } from 'react'
+import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 
-import styles from './styles'
+import { summaryRootClasses, summaryContentClasses } from './styles'
 
-export interface Props extends StandardProps, ButtonOrAnchorProps {
+export interface Props
+  extends Omit<StandardProps, 'classes'>,
+    ButtonOrAnchorProps {
+  /** Icon rendered after the summary content */
   expandIcon?: ReactNode
+  /** Content of the summary row */
   children?: ReactNode
+  /** Callback invoked when the summary is clicked */
   onClick?: () => void
 }
 
-// We can't create here intermediate object for AccordionSummary
-// because MUI ExpansionPanel use type check to set Summary in the
-// correct place of the markdown
-// https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js#L144
-export default withStyles(styles)(
-  MUIAccordionSummary
-) as FunctionComponent<Props>
+export const AccordionSummary = forwardRef<HTMLDivElement, Props>(
+  function AccordionSummary(props, ref) {
+    const {
+      children,
+      expandIcon,
+      className,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      classes: _classes,
+      ...rest
+    } = props as Props & { classes?: unknown }
+
+    // ButtonOrAnchorProps handlers are anchor/button-element-typed; the root
+    // renders a <div>. React event handlers fire identically regardless of the
+    // currentTarget element type, so widen once at the boundary instead of
+    // narrowing the public Props.
+    const divRest = rest as HTMLAttributes<HTMLDivElement>
+
+    return (
+      <div
+        {...divRest}
+        ref={ref}
+        data-component-type='accordion-summary'
+        className={twMerge(cx(...summaryRootClasses), className)}
+      >
+        <div
+          data-component-type='accordion-summary-content'
+          className={cx(...summaryContentClasses)}
+        >
+          {children}
+        </div>
+        {expandIcon}
+      </div>
+    )
+  }
+)
+
+AccordionSummary.displayName = 'AccordionSummary'
+
+export default AccordionSummary
