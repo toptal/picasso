@@ -46,8 +46,14 @@ const toReactEvent = <R extends React.SyntheticEvent>(event: Event): R =>
           // Native events don't track propagation-stop state after dispatch;
           // returning false is safe for consumers checking "did I already stop?".
           return () => false
-        default:
-          return Reflect.get(target, key, target)
+        default: {
+          const value = Reflect.get(target, key, target)
+
+          // Native event methods (preventDefault, stopPropagation, …) must keep
+          // the native event as `this`; invoked through the Proxy they'd receive
+          // the Proxy as `this` and throw "Illegal invocation" in real browsers.
+          return typeof value === 'function' ? value.bind(target) : value
+        }
       }
     },
   }) as unknown as R

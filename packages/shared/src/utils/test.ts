@@ -89,6 +89,24 @@ describe('toReactEvent', () => {
     expect(preventDefaultSpy).toHaveBeenCalled()
     expect(stopPropagationSpy).toHaveBeenCalled()
   })
+
+  it('binds native methods to the native event (avoids "Illegal invocation")', () => {
+    let probeBoundToNativeEvent = false
+
+    // A method that records whether its `this` is the native event. Native DOM
+    // methods (stopPropagation, …) throw "Illegal invocation" in real browsers
+    // when invoked with the Proxy as `this` instead of the native event.
+    ;(nativeEvent as unknown as { probe: () => void }).probe = function probe() {
+      probeBoundToNativeEvent = this === nativeEvent
+    }
+
+    const result =
+      toReactEvent<React.ChangeEvent<HTMLInputElement>>(nativeEvent)
+
+    ;(result as unknown as { probe: () => void }).probe()
+
+    expect(probeBoundToNativeEvent).toBe(true)
+  })
 })
 
 describe('toReactChangeEvent', () => {
