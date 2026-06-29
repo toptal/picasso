@@ -1003,7 +1003,7 @@
         "Utils"
       ],
       "target_path": "@base-ui/react/accordion",
-      "versionBump": "major",
+      "versionBump": "patch",
       "pr": "https://github.com/toptal/picasso/pull/5002",
       "branch": "migrate-Accordion-v1",
       "worktree": "migration-runs/2026-06-10/Accordion-v1/worktree",
@@ -1020,19 +1020,39 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-19T07:27:31.217Z",
+          "last_review_seen_at": "2026-06-28T18:58:08.297Z",
           "review_iterations": 1,
           "session_id": "3d6496d2-e39d-4201-9398-bfdf65380cc8",
           "awaiting_ci_since": null,
-          "review_iter_failures": 0
+          "review_iter_failures": 0,
+          "cleanup_done_at": "2026-06-28T19:40:25.454Z",
+          "operator_overrides": [
+            {
+              "rule": "references/practices.md §\"Changesets\"",
+              "sanctioned": "@toptal/picasso-accordion changeset bump = patch (behavioral-parity swap; classes was a vestigial no-op, transitionProps/content/borders/expanded preserved)",
+              "evidence": "https://github.com/toptal/picasso/pull/5002#discussion_r3480813082",
+              "confirmed_by": "azebich",
+              "at": "2026-06-28T18:58:07.635Z"
+            }
+          ]
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-06-19T07:27:31.217Z",
+      "last_review_seen_at": "2026-06-28T18:58:08.297Z",
       "review_iterations": 1,
       "session_id": "3d6496d2-e39d-4201-9398-bfdf65380cc8",
-      "awaiting_ci_since": null
+      "awaiting_ci_since": null,
+      "cleanup_done_at": "2026-06-28T19:40:25.454Z",
+      "operator_overrides": [
+        {
+          "rule": "references/practices.md §\"Changesets\"",
+          "sanctioned": "@toptal/picasso-accordion changeset bump = patch (behavioral-parity swap; classes was a vestigial no-op, transitionProps/content/borders/expanded preserved)",
+          "evidence": "https://github.com/toptal/picasso/pull/5002#discussion_r3480813082",
+          "confirmed_by": "azebich",
+          "at": "2026-06-28T18:58:07.635Z"
+        }
+      ]
     },
     "Dropdown": {
       "tier": 3,
