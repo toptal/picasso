@@ -50,9 +50,9 @@ const ICON_BASE = [
   'after:rounded-full after:border-2 after:border-solid',
   'after:border-current after:bg-current',
   'after:transition-all after:duration-350 after:ease-in-out',
-  // keyboard focus ring, mirrors shared `outline()` helper
-  // TODO(tokens): focus ring `0 0 0 3px alpha(blue-500, 0.48)` has no canonical shadow token
-  'group-data-[focused]:before:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]',
+  // keyboard focus ring, mirrors shared `outline()` helper:
+  // blue-500 at 48% alpha, derived via color-mix (no frozen rgba)
+  'group-data-[focused]:before:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
 ]
 
 // When `checked` is controlled (boolean), visibility is driven by React so
@@ -74,6 +74,7 @@ export const createCheckedIconClassNames = (checked?: boolean): string[] => [
   'text-white',
   'before:border-blue-500 before:bg-blue-500',
   'after:opacity-100',
-  // TODO(tokens): mix(blue-500, white, 0.16) hover tint has no canonical token
-  'group-hover:before:border-[#446AD7] group-hover:before:bg-[#446AD7]',
+  // hover tint: 16% white mixed into blue-500 (= #446AD7), token-derived
+  'group-hover:before:border-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]',
+  'group-hover:before:bg-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]',
 ]
