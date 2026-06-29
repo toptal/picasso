@@ -309,7 +309,15 @@ export type { UserBadgeProps } from '@toptal/picasso-user-badge'
 export { Carousel } from '@toptal/picasso-carousel'
 export type { CarouselProps } from '@toptal/picasso-carousel'
 export { Popper } from '@toptal/picasso-popper'
-export type { PopperProps } from '@toptal/picasso-popper'
+export type {
+  PopperHandle,
+  PopperModifierOptions,
+  PopperModifiers,
+  PopperOptions,
+  PopperPadding,
+  PopperProps,
+  PopperReferenceObject,
+} from '@toptal/picasso-popper'
 
 // hygen code generator inserts export statements above this comment.
 export * from '@toptal/picasso-icons'
