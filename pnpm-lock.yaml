@@ -40,6 +40,9 @@ overrides:
   js-yaml: ^3.13.1
 
 patchedDependencies:
+  '@base-ui/utils@0.2.8':
+    hash: 9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835
+    path: packages/base/Modal/patches/@base-ui__utils@0.2.8.patch
   '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0':
     hash: 3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a
     path: patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch
@@ -609,15 +612,18 @@ importers:
 
   packages/base/Accordion:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
       '@toptal/picasso-icons':
         specifier: workspace:*
         version: link:../Icons
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.6.0'
         version: link:../../picasso-tailwind
@@ -631,9 +637,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-provider':
+      '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
-        version: link:../../picasso-provider
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
@@ -1246,15 +1252,9 @@ importers:
 
   packages/base/Drawer:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-backdrop':
-        specifier: workspace:*
-        version: link:../Backdrop
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -1267,9 +1267,6 @@ importers:
       '@toptal/picasso-paper':
         specifier: workspace:*
         version: link:../Paper
-      '@toptal/picasso-slide':
-        specifier: workspace:*
-        version: link:../Slide
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -1299,7 +1296,7 @@ importers:
         specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1895,18 +1892,12 @@ importers:
 
   packages/base/Modal:
     dependencies:
-      '@mui/base':
-        specifier: 5.0.0-beta.58
-        version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-backdrop':
-        specifier: workspace:*
-        version: link:../Backdrop
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
-      '@toptal/picasso-fade':
-        specifier: workspace:*
-        version: link:../Fade
       '@toptal/picasso-icons':
         specifier: workspace:*
         version: link:../Icons
@@ -2688,7 +2679,7 @@ importers:
         specifier: workspace:*
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: workspace:*
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
@@ -5328,23 +5319,11 @@ packages:
     resolution: {integrity: sha512-JUFJad5lv7jxj926GPgymrWQxxjPYuJNiNjNMzqT+HiuP6Vl3dk5xzG+8sTX96np0ZAluvaMzPsjhHZ5rNuNQQ==}
     engines: {node: '>=14'}
 
-  '@floating-ui/core@1.6.8':
-    resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
-
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
 
-  '@floating-ui/dom@1.6.11':
-    resolution: {integrity: sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==}
-
   '@floating-ui/dom@1.7.6':
     resolution: {integrity: sha512-9gZSAI5XM36880PPMm//9dfiEngYoC6Am2izES1FF406YFsjvyBMmeJ2g4SAju3xWwtuynNRFL2s9hgxpLI5SQ==}
-
-  '@floating-ui/react-dom@2.1.2':
-    resolution: {integrity: sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
 
   '@floating-ui/react-dom@2.1.8':
     resolution: {integrity: sha512-cC52bHwM/n/CxS87FH0yWdngEZrjdtLW/qVruo68qg+prK7ZQ4YGdut2GyDVpoGeAYe/h899rVeOVm6Oi40k2A==}
@@ -5354,9 +5333,6 @@ packages:
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
-
-  '@floating-ui/utils@0.2.8':
-    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@gar/promise-retry@1.0.3':
     resolution: {integrity: sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA==}
@@ -5884,36 +5860,6 @@ packages:
   '@mrmlnc/readdir-enhanced@2.2.1':
     resolution: {integrity: sha512-bPHp6Ji8b41szTOcaP63VlnbbO5Ny6dwAATtY6JTjh5N2OLrb5Qk/Th5cRkRQhkWCt+EJsYrNB0MiL+Gpn6e3g==}
     engines: {node: '>=4'}
-
-  '@mui/base@5.0.0-beta.58':
-    resolution: {integrity: sha512-P0E7ZrxOuyYqBvVv9w8k7wm+Xzx/KRu+BGgFcR2htTsGCpJNQJCSUXNUZ50MUmSU9hzqhwbQWNXhV1MBTl6F7A==}
-    engines: {node: '>=14.0.0'}
-    deprecated: This package has been replaced by @base-ui/react
-    peerDependencies:
-      '@types/react': '17'
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@mui/types@7.2.16':
-    resolution: {integrity: sha512-qI8TV3M7ShITEEc8Ih15A2vLzZGLhD+/UPNwck/hcls2gwg7dyRjNGXcQYHKLB5Q7PuTRfrTkAoPa2VV1s67Ag==}
-    peerDependencies:
-      '@types/react': '17'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@mui/utils@6.0.0-rc.0':
-    resolution: {integrity: sha512-tBp0ILEXDL0bbDDT8PnZOjCqSm5Dfk2N0Z45uzRw+wVl6fVvloC9zw8avl+OdX1Bg3ubs/ttKn8nRNv17bpM5A==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      '@types/react': '17'
-      react: ^18.2.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@napi-rs/wasm-runtime@0.2.4':
     resolution: {integrity: sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ==}
@@ -6447,9 +6393,6 @@ packages:
 
   '@polka/url@1.0.0-next.23':
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
-
-  '@popperjs/core@2.11.8':
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
   '@reach/router@1.3.4':
     resolution: {integrity: sha512-+mtn9wjlB9NN2CNnnC/BRYtwdKBfSyyasPYraNAyvaV1occr/5NnB4CVzjEZipNHwYebQwcndGUmpFzxAUoqSA==}
@@ -19330,7 +19273,7 @@ snapshots:
   '@base-ui/react@1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@base-ui/utils': 0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/utils': 0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/react-dom': 2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/utils': 0.2.11
       react: 18.2.0
@@ -19340,7 +19283,7 @@ snapshots:
       '@types/react': 17.0.39
       date-fns: 2.30.0
 
-  '@base-ui/utils@0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@base-ui/utils@0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@floating-ui/utils': 0.2.11
@@ -19899,29 +19842,14 @@ snapshots:
 
   '@fastify/busboy@2.0.0': {}
 
-  '@floating-ui/core@1.6.8':
-    dependencies:
-      '@floating-ui/utils': 0.2.8
-
   '@floating-ui/core@1.7.5':
     dependencies:
       '@floating-ui/utils': 0.2.11
-
-  '@floating-ui/dom@1.6.11':
-    dependencies:
-      '@floating-ui/core': 1.6.8
-      '@floating-ui/utils': 0.2.8
 
   '@floating-ui/dom@1.7.6':
     dependencies:
       '@floating-ui/core': 1.7.5
       '@floating-ui/utils': 0.2.11
-
-  '@floating-ui/react-dom@2.1.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@floating-ui/dom': 1.6.11
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
 
   '@floating-ui/react-dom@2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -19930,8 +19858,6 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
 
   '@floating-ui/utils@0.2.11': {}
-
-  '@floating-ui/utils@0.2.8': {}
 
   '@gar/promise-retry@1.0.3': {}
 
@@ -20729,36 +20655,6 @@ snapshots:
       call-me-maybe: 1.0.1
       glob-to-regexp: 0.3.0
 
-  '@mui/base@5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@floating-ui/react-dom': 2.1.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@mui/types': 7.2.16(@types/react@17.0.39)
-      '@mui/utils': 6.0.0-rc.0(@types/react@17.0.39)(react@18.2.0)
-      '@popperjs/core': 2.11.8
-      clsx: 2.1.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    optionalDependencies:
-      '@types/react': 17.0.39
-
-  '@mui/types@7.2.16(@types/react@17.0.39)':
-    optionalDependencies:
-      '@types/react': 17.0.39
-
-  '@mui/utils@6.0.0-rc.0(@types/react@17.0.39)(react@18.2.0)':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@mui/types': 7.2.16(@types/react@17.0.39)
-      '@types/prop-types': 15.7.13
-      clsx: 2.1.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-is: 18.3.1
-    optionalDependencies:
-      '@types/react': 17.0.39
-
   '@napi-rs/wasm-runtime@0.2.4':
     dependencies:
       '@emnapi/core': 1.8.1
@@ -21555,8 +21451,6 @@ snapshots:
       config-chain: 1.1.13
 
   '@polka/url@1.0.0-next.23': {}
-
-  '@popperjs/core@2.11.8': {}
 
   '@reach/router@1.3.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
