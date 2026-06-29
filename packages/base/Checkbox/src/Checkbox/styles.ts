@@ -11,9 +11,9 @@ export const checkboxClassNames: string[] = [
   'cursor-pointer transition-all duration-350 ease-in-out',
 
   // Resting state colours
-  'data-[unchecked]:bg-white data-[unchecked]:border-gray-500',
-  'data-[checked]:bg-blue-500 data-[checked]:border-blue-500 data-[checked]:text-white',
-  'data-[indeterminate]:bg-blue-500 data-[indeterminate]:border-blue-500 data-[indeterminate]:text-white',
+  'data-unchecked:bg-white data-unchecked:border-gray-500',
+  'data-checked:bg-blue-500 data-checked:border-blue-500 data-checked:text-white',
+  'data-indeterminate:bg-blue-500 data-indeterminate:border-blue-500 data-indeterminate:text-white',
 
   // Hover (enabled only — a disabled checkbox keeps its resting border).
   // color-mix replicates the legacy JSS `mix(blue.main, white, 0.16)` from the
@@ -37,16 +37,16 @@ export const checkboxClassNames: string[] = [
   'data-[happo-focus]:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
 
   // Disabled
-  'data-[disabled]:opacity-[0.48] data-[disabled]:cursor-default',
+  'data-disabled:opacity-[0.48] data-disabled:cursor-default',
 
   // Checkmark (checked) — two rotated white bars. The legacy coordinates were
   // measured from the icon's OUTER (border-box) edge: the pseudo-elements lived
   // on a borderless inner div and resolved against the MuiButtonBase root. Here
   // they live on the bordered Root itself, where `absolute` resolves against
   // the padding box (1px inside the border) — hence the `- 1px` compensation.
-  "data-[checked]:before:absolute data-[checked]:before:content-[''] data-[checked]:before:top-[calc(0.5em_-_1px)] data-[checked]:before:left-[calc(0.1875em_-_1px)] data-[checked]:before:h-[0.125em] data-[checked]:before:w-[0.1875em] data-[checked]:before:bg-white data-[checked]:before:[transform:rotate(45deg)]",
-  "data-[checked]:after:absolute data-[checked]:after:content-[''] data-[checked]:after:top-[calc(0.4375em_-_1px)] data-[checked]:after:left-[calc(0.25em_-_1px)] data-[checked]:after:h-[0.125em] data-[checked]:after:w-[0.5625em] data-[checked]:after:bg-white data-[checked]:after:[transform:rotate(-45deg)]",
+  "data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5em_-_1px)] data-checked:before:left-[calc(0.1875em_-_1px)] data-checked:before:h-[0.125em] data-checked:before:w-[0.1875em] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)]",
+  "data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375em_-_1px)] data-checked:after:left-[calc(0.25em_-_1px)] data-checked:after:h-[0.125em] data-checked:after:w-[0.5625em] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)]",
 
   // Indeterminate dash — one centred white bar
-  "data-[indeterminate]:before:absolute data-[indeterminate]:before:content-[''] data-[indeterminate]:before:top-1/2 data-[indeterminate]:before:left-1/2 data-[indeterminate]:before:h-[0.125em] data-[indeterminate]:before:w-[0.625em] data-[indeterminate]:before:bg-white data-[indeterminate]:before:[transform:translate(-50%,-50%)]",
+  "data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125em] data-indeterminate:before:w-[0.625em] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]",
 ]

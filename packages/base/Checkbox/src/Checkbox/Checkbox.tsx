@@ -7,7 +7,6 @@ import type {
 import { toReactChangeEvent } from '@toptal/picasso-shared'
 import type { ComponentProps, CSSProperties, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { Container } from '@toptal/picasso-container'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import type { RequiredDecoration } from '@toptal/picasso-form-label'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -81,18 +80,13 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     const rootRest = checkboxAttributes as CheckboxRootProps
 
     const checkboxElement = (
-      <Container
-        as='span'
-        flex
-        inline
-        // Tame Base UI's visually-hidden <input>, which ships
-        // `position:absolute; top:0; left:0; margin:-1px` (inline). `relative` +
-        // the `translate-[1px]` pair anchor it inside the 16px box so its bounds
-        // don't grow the rendered box past the legacy size (fixes the Happo
-        // dimension_mismatch). `appearance-none` keeps the native control from
-        // ever painting now that the input sits over the box.
-        className='relative self-start align-middle [&_input]:appearance-none [&_input]:translate-x-[1px] [&_input]:translate-y-[1px]'
-      >
+      // Tame Base UI's visually-hidden <input>, which ships
+      // `position:absolute; top:0; left:0; margin:-1px` (inline). `relative` +
+      // the `translate-px` pair anchor it inside the 16px box so its bounds
+      // don't grow the rendered box past the legacy size (fixes the Happo
+      // dimension_mismatch). `appearance-none` keeps the native control from
+      // ever painting now that the input sits over the box.
+      <span className='relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x-px [&_input]:translate-y-px'>
         <BaseCheckbox.Root
           {...rootRest}
           ref={label ? undefined : (ref as React.Ref<HTMLElement>)}
@@ -107,7 +101,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
           className={twMerge(checkboxClassNames, className)}
           style={style}
         />
-      </Container>
+      </span>
     )
 
     if (!label) {
