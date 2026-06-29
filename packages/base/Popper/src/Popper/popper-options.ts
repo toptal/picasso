@@ -85,6 +85,9 @@ export const getPopperOptions = (
     ...popperOptions.modifiers,
     flip: {
       enabled: true,
+      // flip must share the same boundary as preventOverflow so it can detect
+      // when the scroll container edge is closer than the viewport edge
+      ...getPreventOverflowOptions(isInsideModal),
       ...popperOptions.modifiers?.flip,
     },
     preventOverflow: {
@@ -139,10 +142,7 @@ export const createMiddleware = (options: PopperOptions): Middleware[] => {
   const { modifiers = {} } = options
   const middleware: Middleware[] = []
 
-  if (
-    modifiers.offset?.enabled !== false &&
-    modifiers.offset?.offset != null
-  ) {
+  if (modifiers.offset?.enabled !== false && modifiers.offset?.offset != null) {
     middleware.push(offset(parsePopperOffset(modifiers.offset.offset)))
   }
 
