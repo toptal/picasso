@@ -1109,12 +1109,9 @@ importers:
 
   packages/base/Checkbox:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-container':
-        specifier: workspace:*
-        version: link:../Container
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -3905,9 +3902,6 @@ importers:
 
   packages/picasso-tailwind-merge:
     dependencies:
-      '@toptal/picasso-utils':
-        specifier: workspace:*
-        version: link:../base/Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
