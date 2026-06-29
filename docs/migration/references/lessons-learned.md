@@ -5,12 +5,13 @@
 > **SUPERSEDED ENTRIES (2026-05-22).** Several entries on this log (notably lines 236, 285, 310, 318) recommend using imperative `inputRef={node => { node.style.X = ... }}` callbacks to override `@base-ui/react`'s inline styles on hidden inputs. These are **superseded and must NOT be graduated into practices.md** — the canonical rule (see `practices.md §API preservation` and `code-standards.md §CSS specificity ladder`) defines that pattern as a forbidden anti-pattern with no exceptions. Earlier Switch migration code (iter 2) that used it was a migration defect, not a sanctioned compromise. Future graduation passes must skip or invert these entries; do not let the precedent language leak back into prescriptive docs.
 
 Auto-accumulated by the orchestrator after each successful component migration. Each entry captures the 2–3 patterns that the agent applied. Use this log to:
+
 - **Audit**: review what patterns actually emerged from past migrations.
 - **Graduate**: periodically (every 5–10 successful migrations, or when this log crosses ~50 new entries past the last graduation marker), promote recurring patterns into `references/practices.md`. Graduation criteria: a pattern appears in ≥ 3 entries OR is cited explicitly by ≥ 1 reviewer as a load-bearing rule.
 
 **How this file is updated.** When the orchestrator successfully opens a PR for a component, a small post-success step (in `bin/lib/orchestrator-core.ts`) extracts the 2–3 most useful patterns from the agent's commit + asks Claude to summarize them. The summary is appended to this file. **The contextPack does NOT include this file** — patterns reach the agent via the next graduation pass into `practices.md`.
 
-**How to read this.** For graduation, cluster entries by theme (build precondition, classification, idioms, changeset format, etc.) and add to `practices.md` if not already covered there. For audit, skim by component or by date. Patterns here are *evidence of what worked*, not prescriptive — `practices.md` is the prescriptive form.
+**How to read this.** For graduation, cluster entries by theme (build precondition, classification, idioms, changeset format, etc.) and add to `practices.md` if not already covered there. For audit, skim by component or by date. Patterns here are _evidence of what worked_, not prescriptive — `practices.md` is the prescriptive form.
 
 **How to add manual entries.** If you discover a pattern outside an orchestrator run (e.g. while doing a manual migration takeover after escalation), append it manually using the same shape:
 
@@ -32,7 +33,7 @@ Auto-accumulated by the orchestrator after each successful component migration. 
 
 - Tier 0 · target_path: `@base-ui/react/button` · iterations: 1
 - Pin `@base-ui/react` to `^1.4.1` and widen the React peer to `>=16.12.0` (drop the `<19.0.0` upper bound) when swapping out `@mui/base`, since Base UI's peer range and the migration's React-19 readiness were both required for CI to resolve installs.
-- Expect snapshot churn in *consumer* packages too (e.g. `Pagination`) from Base UI's added `data-disabled=""` attribute and the dropped trailing `base-` token — regenerate snapshots across every package that renders Button, not just Button's own.
+- Expect snapshot churn in _consumer_ packages too (e.g. `Pagination`) from Base UI's added `data-disabled=""` attribute and the dropped trailing `base-` token — regenerate snapshots across every package that renders Button, not just Button's own.
 - Replace MUI's `slots`/`slotProps`/`rootElementName` polymorphism with Base UI's `nativeButton` + `render={React.createElement(as)}` pattern (see `rules/base-ui-react-api-crib.md`).
 - Reference: https://github.com/toptal/picasso/pull/4947
 
@@ -68,6 +69,7 @@ Tooling that catches these from iter-1 onward (added 2026-05-14/15):
 - **Strict classification matrix**: REGRESSION-on-migrated-component is the DEFAULT; UNRELATED FLAKE only for diffs whose `component` field doesn't match the migration target; INTENTIONAL requires plan-file authorization. Constraint baked into `buildHappoFailureSection` in `bin/lib/orchestrator-core.ts` and into the migration prompts.
 
 Common Tailwind/CSS compensations for `@base-ui/react` parity:
+
 - New `data-*` attribute on slot → add `[data-attr]:<style>` selector replicating prior visual.
 - Inline `style="transform: ..."` from `Positioner` → either match via utilities or override with explicit `style={{ transform: ... }}`.
 - Dropped/added wrapper element shifts margins → adjust `gap`/`p-*`/`m-*` so geometry stays the same.
@@ -143,7 +145,7 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 
 - Tier 0 · target_path: `none` · iterations: 5
 - Forward consumer `className` into the rendered element via `cx(..., className)` rather than dropping it — silently discarding `className` is a reviewer red flag and breaks the consumer styling contract (see `rules/api-preservation`).
-- When stripping injected slot props like `ownerState` from upstream `@mui/base` consumers, leave a brief comment explaining *why* the field is kept in the type but discarded at runtime, so reviewers don't read it as dead code.
+- When stripping injected slot props like `ownerState` from upstream `@mui/base` consumers, leave a brief comment explaining _why_ the field is kept in the type but discarded at runtime, so reviewers don't read it as dead code.
 - Tests must assert something (`expect(container).toBeInTheDocument()`), not just render — "renders without crashing" with no assertion gets flagged every time.
 - Reference: https://github.com/toptal/picasso/pull/4954
 
@@ -178,7 +180,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - **`pnpm happo run <sha> --only <Component>` uploads the report at the identifier `<sha>-<Component>`**, not bare `<sha>`. See `node_modules/happo.io/build/executeCli.js:34-36`:
   ```js
   if (commander.default.only) {
-    usedSha = `${usedSha}-${commander.default.only}`;
+    usedSha = `${usedSha}-${commander.default.only}`
   }
   ```
 - **The verifier was querying the compare endpoint with BARE head SHA** (`comparisons/<base-bare>/<head-bare>/compare-results`). For Drawer this happened to return 200 because Happo had lazily created the bare-SHA-to-bare-SHA compare record on a prior request. For Modal, no such lazy record existed → consistent 404 → verifier emitted ERROR → migrate-loop wasted hours retrying with no possible resolution.
@@ -186,7 +188,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
   - `comparisons/<base>/<head>/compare-results` → 404 (what verifier queried)
   - `comparisons/<base>/<head>-Modal/compare-results` → 200 with `"summary":"No differences found.","unchangedCount":489` (what Happo actually has)
 - **Probe endpoint was also wrong**: verifier hit `/api/reports/<sha>` plain; Happo CLI uses `/api/reports/<id>?project=<projectLabel>` (see `node_modules/happo.io/build/fetchReport.js`). Without the `project` query param the probe 404'd on perfectly-good reports.
-- **Fix**: `bin/lib/happo-verify.ts` now constructs `headIdentifier = args.migratedComponent ? \`\${headSha}-\${args.migratedComponent}\` : headSha` and uses it in BOTH the compare URL and the probe URL, with the probe also passing `?project=<projectLabel>`. Base SHA stays bare (integration branch CI uploads with no `--only`).
+- **Fix**: `bin/lib/happo-verify.ts` now constructs `headIdentifier = args.migratedComponent ? \`\${headSha}-\${args.migratedComponent}\` : headSha`and uses it in BOTH the compare URL and the probe URL, with the probe also passing`?project=<projectLabel>`. Base SHA stays bare (integration branch CI uploads with no `--only`).
 - **Lesson for the verifier-style tooling**: when reverse-engineering a vendor API, always trace what the vendor's own CLI does (their `fetchReport.js`, `runCommand.js`, etc.) rather than guessing from URL shapes seen in dashboard links. Two `git blame`-traceable bugs (`/api/reports/<sha>` and `/comparisons/<base>/<head>/`) survived through Slider, Backdrop, Drawer migrations because Happo's lazy compare-record creation made them work most of the time.
 - Reference: Modal v3 run 2026-05-19, agent commit `f946fb9e1`.
 
@@ -316,7 +318,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 
 - Tier 0 · target_path: `@base-ui/react/switch` · iterations: 8
 - When adapting base-ui's `on<State>Change(value, { event })` callbacks to a `(event, value)` public signature, build the synthetic ChangeEvent adapter in iter 1 — reviewers consistently flag missing event-object fidelity (target/currentTarget/preventDefault). Codify in `rules/api-preservation`.
-- Do NOT `{...rest}` onto base-ui `<Root>`: explicitly forward only consumer-defined props (name/form/tabIndex/aria-*) using conditional spread, otherwise `undefined` values clobber base-ui's hook-derived defaults (tabIndex from useButton, aria-labelledby from useAriaLabelledBy). Add to `rules/base-ui-react-api-crib`.
+- Do NOT `{...rest}` onto base-ui `<Root>`: explicitly forward only consumer-defined props (name/form/tabIndex/aria-\*) using conditional spread, otherwise `undefined` values clobber base-ui's hook-derived defaults (tabIndex from useButton, aria-labelledby from useAriaLabelledBy). Add to `rules/base-ui-react-api-crib`.
 - base-ui ships inline styles on its visually-hidden `<input>` (e.g. `margin: -1px`) that shift Happo bounding boxes by 1px; neutralize via an `inputRef` callback that sets `node.style.margin = '0'` rather than fighting with `!important`. Note in `rules/styling` under visual-parity gotchas.
 - Reference: https://github.com/toptal/picasso/pull/4965
 
@@ -348,7 +350,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 
 - Tier 1 · target_path: `none` · iterations: 3
 - Bump the migrating package's `react` peerDependency floor to `>=16.12.0` in `package.json` so consumer compatibility checks under React 19 don't fail post-swap.
-- After the runtime library swap, grep the package's `src/` for residual `@material-ui/core` *type-only* imports (e.g. `PropTypes.Alignment`) and replace each with an explicit literal union — type imports survive runtime swaps and the changeset must note them.
+- After the runtime library swap, grep the package's `src/` for residual `@material-ui/core` _type-only_ imports (e.g. `PropTypes.Alignment`) and replace each with an explicit literal union — type imports survive runtime swaps and the changeset must note them.
 - For Tier 1 vestigial `classes` drops, follow the `Omit<StandardProps, 'classes'>` + runtime destructure backstop recipe per `docs/migration/decisions/classes-audit.md` / `classes-shim.md` rather than re-deriving the shape per component.
 - Reference: https://github.com/toptal/picasso/pull/4980
 
@@ -381,7 +383,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 6
 - New @base-ui/react gestures/behaviors absent from the old API (e.g. swipe-to-dismiss) must default to OFF behind an opt-in prop to preserve pre-migration UX, with the default and rationale called out in the changeset.
 - @base-ui/react animates via CSS transitions on the popup (no inline resting transform like react-transition-group), so Happo specs must wait for the transition to settle (`should('be.visible')` + explicit `cy.wait`) before snapshotting or panels freeze mid-slide.
-- Migrations must ship a unit test file from iter 1 covering open/close, onClose, title, and disable-* prop branches — reviewers flag its absence even when Cypress visual coverage exists.
+- Migrations must ship a unit test file from iter 1 covering open/close, onClose, title, and disable-\* prop branches — reviewers flag its absence even when Cypress visual coverage exists.
 - Reference: https://github.com/toptal/picasso/pull/4966
 
 ## FormLabel — 2026-05-29 (review iter 1)
@@ -541,7 +543,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 ## Page — 2026-06-10
 
 - Tier 3 · target_path: `none` · iterations: 2
-- When the JSS theme exposed a *runtime-configurable* field (e.g. `layout.contentMinWidth`, set via `PicassoProvider.disableResponsiveStyle()` / `extendTheme`), read it via `PicassoProvider.theme.X` and emit it as inline `style`/CSS-var — static Tailwind classes can't replace values that are mutated at runtime.
+- When the JSS theme exposed a _runtime-configurable_ field (e.g. `layout.contentMinWidth`, set via `PicassoProvider.disableResponsiveStyle()` / `extendTheme`), read it via `PicassoProvider.theme.X` and emit it as inline `style`/CSS-var — static Tailwind classes can't replace values that are mutated at runtime.
 - Peer-dependency cleanup on a JSS→Tailwind swap drops `@material-ui/core` AND lifts the inherited `<19.0.0` React cap (widen `"react"` to `">=16.12.0"`); also prune now-unused runtime deps like `classnames` from both `dependencies` and `pnpm-lock.yaml` in the same PR.
 - Removing the JSS `name: '<Component>'` option drops the auto-generated `<Component>-root` class from the rendered output, so the component's own Jest snapshot needs regenerating — and any downstream consumer/integration snapshots or CSS/test selectors targeting that legacy class need to be called out as breaking in the changeset.
 - Reference: https://github.com/toptal/picasso/pull/5003
@@ -584,7 +586,7 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 
 - Tier 0 · target_path: `@base-ui/react/tabs` · iterations: 3
 - Restore-lost-behavior fixes must be scoped to the exact original conditions: when reintroducing a feature (here, MUI v4's sliding underline via `Tabs.Indicator`), check master's per-orientation/per-variant paths first — the vertical branch used a static `:before` bar, not a slide, and blanket-applying the indicator regresses parity reviewers spot immediately.
-- For multi-orientation/multi-variant components, the agent should diff master per-branch (horizontal vs vertical, default vs full-width) before picking a single Base UI primitive — `practices.md §"visual classification"` already calls this out, but Tabs shows it applies to *restoring* behavior, not just preserving it.
+- For multi-orientation/multi-variant components, the agent should diff master per-branch (horizontal vs vertical, default vs full-width) before picking a single Base UI primitive — `practices.md §"visual classification"` already calls this out, but Tabs shows it applies to _restoring_ behavior, not just preserving it.
 - When a Base UI primitive offers a centralized slot (e.g. `Tabs.Indicator`) that replaces what was previously per-child styling, default to gating it behind the orientation/variant where master actually drew the affordance — don't assume the primitive's default placement matches every layout the component supports.
 - Reference: https://github.com/toptal/picasso/pull/4996
 
@@ -595,7 +597,6 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Pixel-parity is a first-iteration gate, not a Happo-loop fix-up — port `line-height` and font metrics from the JSS source on the first pass and resolve Base UI's visually-hidden `<input>` geometry via the override ladder in `references/base-ui-styling.md §7.1` rather than reaching for wrapper-level `[&_input]:translate-x-[1px]` compensation hacks that reviewers will reject as unmaintainable.
 - Bridge the element-variance boundary with explicit prop-by-prop destructuring + `toReactChangeEvent` as `references/code-standards.md §"prop-by-prop boundary"` and `AGENTS.md §"Migration in flight"` prescribe — a single broad `as Omit<BaseCheckbox.Root.Props, ...>` cast invites "how do we support this?" pushback because it hides which props actually cross.
 - Reference: https://github.com/toptal/picasso/pull/4998
-
 
 ## Tooltip — 2026-06-11
 
@@ -648,9 +649,9 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 ## Dropdown — 2026-06-16 (review iter 1)
 
 - Tier 3 · target_path: `@base-ui/react/menu + @base-ui/react/popover` · iterations: 1
-- When replacing MUI transition wrappers (`Grow`/`Fade`/`Collapse`), preserve their mount-collapsed-then-expand geometry via a `useIsomorphicLayoutEffect` flip — nested Popper-positioned children (e.g. tooltips inside the dropdown) anchor against the *pre*-transition layout, so a naive opacity-only fade silently shifts them and lights up Happo.
+- When replacing MUI transition wrappers (`Grow`/`Fade`/`Collapse`), preserve their mount-collapsed-then-expand geometry via a `useIsomorphicLayoutEffect` flip — nested Popper-positioned children (e.g. tooltips inside the dropdown) anchor against the _pre_-transition layout, so a naive opacity-only fade silently shifts them and lights up Happo.
 - Triage Happo diffs before assuming regression: cross-component diffs in specs whose files aren't in the PR (here `Slider/range/when-tooltip-intersect` on a Dropdown-only PR) are collision-timing flakes, and entrance-transition diffs need the settled DOM compared (box/padding/margin) before chasing them as real visual breakage.
-- Inline the type when dropping the dep that exported it: replace `import type { PopperPlacementType } from '@material-ui/core/Popper'` with a local string-literal union that enumerates the *same* members so the public prop type stays byte-identical — never narrow during a library-swap PR (`AGENTS.md §"Migration in flight" → Preserve existing violations`).
+- Inline the type when dropping the dep that exported it: replace `import type { PopperPlacementType } from '@material-ui/core/Popper'` with a local string-literal union that enumerates the _same_ members so the public prop type stays byte-identical — never narrow during a library-swap PR (`AGENTS.md §"Migration in flight" → Preserve existing violations`).
 - Reference: https://github.com/toptal/picasso/pull/5008
 
 ## OutlinedInput — 2026-06-16 (review iter 1)
@@ -706,3 +707,11 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - **`em` padding must stay `em`, not a fixed token.** The orchestrator converted the editor `contentEditable` (`role="textbox"`) `padding: '1em 0.5em'` to `py-4 px-2` (fixed 16px/8px). Because the editor font is 14px, master's `1em/0.5em` = 14px/7px — so the fixed conversion shifted the text 2px vertically / 1px horizontally and enlarged the box. tsc/lint/jest all pass; only Cypress Happo catches it (font/text-position diff). Fixed to `py-[1em] px-[0.5em]`. Rule promoted to `rules/jss-to-tailwind-crib.md §"em units are font-relative"`.
 - A full styles audit of the package (12 files / ~182 declarations) found this was the ONLY value regression — every other `em` value (`p-[0.5em]`, `h-[12.5em]`, `after:h-[1em]`, `after:mx-[0.5em]`) was correctly preserved, and all font-size/line-height/color/spacing conversions are pixel-faithful. The trap is specifically `em`→numeric-token; rem/px/spacing() conversions were all correct.
 - Cypress Happo waits: modal-style components in this program fade in (`data-starting-style:opacity-0`) and have CSS-driven shades/transitions — screenshot specs must settle the transition (assert `[role="dialog"]` lost `data-starting-style`, or wait for the relevant `opacity:1`) before `happoScreenshot`, else mid-fade frames diff (esp. bordered elements). See Modal/PromptModal specs.
+
+## Radio — 2026-06-18 (review iter 2)
+
+- Tier 2 · target_path: `@base-ui/react/radio + @base-ui/react/field` · iterations: 2
+- Verify the planned Base UI primitive against the component's full public contract (standalone `checked`, uncontrolled click, external `<label htmlFor>`) by reading the primitive's source before committing — Radio's plan dead-ended because `@base-ui/react/radio` has no standalone `checked` prop, an upstream gap discoverable up-front in `RadioRoot.js`.
+- When the plan's `target_path` proves infeasible, mark the component file with an explicit operator-review checkpoint (preserving the original plan text + dated deviation rationale + evidence) rather than silently rewriting to a custom path — see the "no analog → stay custom" precedent track in `rules/base-ui-react-api-crib.md`.
+- Changesets for library swaps must enumerate every removed prop/slot by name (per-slot `classes` keys, dropped `RadioGroupProps` fields) and drop matching `peerDependencies` _and_ `devDependencies` in lockstep — `rules/api-preservation.md §changeset` is the canonical shape, and an empty/placeholder changeset is never acceptable.
+- Reference: https://github.com/toptal/picasso/pull/4999

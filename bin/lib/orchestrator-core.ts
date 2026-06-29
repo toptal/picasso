@@ -344,7 +344,12 @@ function renderOverrideCarveout(
 // pre-qualified, reviewer-cited additions to practices.md (operator reviews
 // the doc diff before committing). Reuses the override marker-attr parser.
 //
-//   <!-- graduation-request rule="code-standards.md §\"TS variance\"" gist="Allow element-type narrowing (button→span) when the base-ui part renders a different element; the boundary cast is no longer mandatory." target="practices.md" trigger="reviewer-request" evidence="https://github.com/.../pull/4965#discussion_r..." -->
+// An optional `enforcement="lint|checklist|advisory"` attr lets the reviewer
+// HINT the enforcement tier. It is only a hint — the --graduate pass is the
+// authority and (re)classifies every pattern, including recurrence-only ones
+// that never carried a marker.
+//
+//   <!-- graduation-request rule="code-standards.md §\"TS variance\"" gist="Allow element-type narrowing (button→span) when the base-ui part renders a different element; the boundary cast is no longer mandatory." target="practices.md" trigger="reviewer-request" enforcement="checklist" evidence="https://github.com/.../pull/4965#discussion_r..." -->
 const GRADUATION_REQUEST_RE = /<!--\s*graduation-request\s+([\s\S]*?)-->/gi
 
 function parseGraduationRequests(
@@ -365,6 +370,13 @@ function parseGraduationRequests(
         attrs.trigger === 'recurring-override'
           ? attrs.trigger
           : 'reviewer-request'
+      // Optional reviewer hint only; --graduate is the authority and may
+      // re-classify. Lower-cased so `Checklist`/`CHECKLIST` still match.
+      const enfHint = attrs.enforcement?.trim().toLowerCase()
+      const enforcement =
+        enfHint === 'lint' || enfHint === 'checklist' || enfHint === 'advisory'
+          ? enfHint
+          : undefined
 
       out.push({
         rule: attrs.rule.trim(),
@@ -375,6 +387,7 @@ function parseGraduationRequests(
         confirmed_by: (attrs.confirmed_by ?? reply.author ?? 'operator').trim(),
         at,
         status: 'queued',
+        ...(enforcement ? { enforcement } : {}),
       })
     }
   }
@@ -401,8 +414,14 @@ function mergeGraduationRequests(
   for (const req of parsed) {
     const prev = byRule.get(req.rule)
 
-    // Unchanged gist+target → keep the stored record (preserve status + at).
-    if (prev && prev.gist === req.gist && prev.target === req.target) {
+    // Unchanged gist+target+enforcement → keep the stored record (preserve
+    // status + at). A revised enforcement hint re-queues like a gist change.
+    if (
+      prev &&
+      prev.gist === req.gist &&
+      prev.target === req.target &&
+      prev.enforcement === req.enforcement
+    ) {
       continue
     }
     // Changed (reviewer refined the gist) → re-queue with the new wording.
@@ -6671,7 +6690,10 @@ interface ChecklistArgs {
 
 interface AuditViolation {
   severity: 'high' | 'medium' | 'low'
-  category: 'rule' | 'decision' | 'lesson'
+  // 'practice' added 2026-06-17: the audit prompt's own example emits
+  // category=practice for practices.md violations; without it here (and in the
+  // parser regex below) those lines fail the match and are silently dropped.
+  category: 'rule' | 'decision' | 'lesson' | 'practice'
   what: string
   citation: string
 }
@@ -6688,6 +6710,329 @@ interface ChecklistResult {
   stuckSignal: string | null
   /** Concatenated key for stuck-detection across iters. */
   auditKey: string
+}
+
+const AUDIT_CHECKLIST_FILE = 'docs/migration/references/audit-checklist.md'
+const AUDIT_CHECKLIST_BODY_MARKER = '<!-- AUDIT-CHECKLIST-BODY -->'
+// Floor: the file ships with 21 numbered items (1–19 + 2b + 14b). A file that
+// parses to fewer is truncated/garbled — fail loud rather than run a degraded
+// audit. Graduation only ADDS items, so this floor never needs raising in lockstep.
+const MIN_AUDIT_CHECKLIST_ITEMS = 18
+
+let auditChecklistCache: { rootDir: string; text: string } | null = null
+
+/**
+ * Read + validate the externalized standards-audit checklist and return the
+ * exact text spliced into the audit prompt (byte-for-byte identical to the
+ * former inline literal). Lives in a data file (`audit-checklist.md`) so the
+ * graduation pass and operators can append tier-`checklist` items without
+ * editing this module.
+ *
+ * THROWS (fail-loud) on a missing file, a missing body marker, or an item
+ * count below the floor: a checklist-less or truncated audit is worse than
+ * none — it reads as "audit clean" while enforcing nothing. Called from
+ * `verify` BEFORE its swallowing try/catch so the throw stays fatal. Memoized
+ * per rootDir (the file is stable within a process; graduation appends in a
+ * separate `--graduate` run).
+ */
+export function loadAuditChecklist(rootDir: string): string {
+  if (auditChecklistCache?.rootDir === rootDir) {
+    return auditChecklistCache.text
+  }
+  const abs = path.join(rootDir, AUDIT_CHECKLIST_FILE)
+
+  if (!existsSync(abs)) {
+    throw new Error(
+      `[audit] checklist missing at ${AUDIT_CHECKLIST_FILE} — refusing to run a checklist-less audit (it would read as "clean" while enforcing nothing). Restore it from git.`
+    )
+  }
+  const raw = readFileSync(abs, 'utf8')
+  const markerIdx = raw.indexOf(AUDIT_CHECKLIST_BODY_MARKER)
+
+  if (markerIdx === -1) {
+    throw new Error(
+      `[audit] checklist ${AUDIT_CHECKLIST_FILE} is missing its "${AUDIT_CHECKLIST_BODY_MARKER}" marker — cannot locate the prompt body.`
+    )
+  }
+  // Body = everything after the marker, boundary normalized to match the former
+  // inline literal exactly: drop the leading newline(s) after the marker, strip
+  // trailing whitespace, re-add the literal's trailing blank line ("\n\n").
+  const text =
+    raw
+      .slice(markerIdx + AUDIT_CHECKLIST_BODY_MARKER.length)
+      .replace(/^\n+/, '')
+      .replace(/\s+$/, '') + '\n\n'
+  const itemCount = (text.match(/^\d+[a-z]?\.\s/gm) ?? []).length
+
+  if (itemCount < MIN_AUDIT_CHECKLIST_ITEMS) {
+    throw new Error(
+      `[audit] checklist ${AUDIT_CHECKLIST_FILE} parsed ${itemCount} items (< floor ${MIN_AUDIT_CHECKLIST_ITEMS}) — looks truncated/garbled; refusing to run a degraded audit.`
+    )
+  }
+
+  auditChecklistCache = { rootDir, text }
+
+  return text
+}
+
+interface StandardsAuditInput {
+  /**
+   * Component identity — drives tier-aware doc loading + the per-item plan
+   * path. A loose shape (not `Pick<ManifestItem>`) on purpose: `--audit-pr`
+   * resolves an unmapped PR to a synthetic target whose `tier` is a plain
+   * `number` and whose `target_path` may be `null`, neither of which fits
+   * `ManifestItem`'s narrowed `tier: 1|2|3|4|5` / `target_path?: string`. A
+   * full `ManifestItem` (from the migrate-loop critic) still satisfies it.
+   */
+  item: {
+    id: string
+    tier: number
+    target_path?: string | null
+    depends_on?: readonly string[]
+  }
+  /** Unified diff to audit (already path-filtered + size-capped by the caller). */
+  diffBody: string
+  /** Human-readable label for the diff's provenance (a git range, or "PR #123 vs base"). */
+  diffRange: string
+  rootDir: string
+  workflow: Workflow
+  agent: OrchestratorOptions['agent']
+  modelConfig: ModelConfig
+  /** Audit checklist body (loaded once via `loadAuditChecklist`). */
+  checklistText: string
+  /** Provenance line for the prompt header (e.g. `iteration 3` or `merged PR #123`). */
+  provenance: string
+  /** Operator-sanctioned rule exceptions to inject as the top carve-out. */
+  operatorOverrides?: readonly OperatorOverride[]
+}
+
+/**
+ * Layer B standards audit over a pre-computed diff. The single source of truth
+ * for the audit prompt — shared by the migrate-loop critic
+ * (`checklist.judgeAudit`, which diffs the agent's worktree) and the standalone
+ * `--audit-pr` mode (`runAuditPr`, which diffs a merged PR via `gh pr diff`).
+ * Both feed an identical prompt (same checklist, same tier-aware doc context,
+ * same parse), so a merged PR is judged by exactly the rules the loop enforces.
+ *
+ * Returns `{ violations, stuckSignal, rawOutput }`; empty `violations` means
+ * "audit clean". Never throws on subprocess failure — a non-zero `claude -p`
+ * exit degrades to "inconclusive" (empty violations + raw exit note), matching
+ * the loop's non-fatal posture.
+ */
+async function runStandardsAudit(input: StandardsAuditInput): Promise<{
+  violations: AuditViolation[]
+  stuckSignal: string | null
+  rawOutput: string
+}> {
+  const {
+    item,
+    diffBody,
+    diffRange,
+    rootDir,
+    workflow,
+    agent,
+    modelConfig,
+    checklistText,
+    provenance,
+    operatorOverrides,
+  } = input
+
+  if (!diffBody.trim() || !/^[-+]/m.test(diffBody)) {
+    return {
+      violations: [],
+      stuckSignal: null,
+      rawOutput: '(no diff to audit)',
+    }
+  }
+
+  // 1. Gather audit context files. Tier-aware to keep prompt within
+  //    ~80-90 KB ceiling. Always-loaded: api-preservation, practices
+  //    (graduated patterns, not raw lessons log), design-patterns-addendum,
+  //    code-standards, classes-shim, per-component plan. Tier 0/2/3 add
+  //    base-ui-react-api-crib + styling. Tier 2/3 add jss-to-tailwind +
+  //    tokens. Modal/Drawer add backdrop-replacement.
+  // Note: decisions/classes-audit.md (26 KB) is intentionally OMITTED —
+  // it's empirical evidence behind classes-shim.md's decision matrix.
+  // The matrix in classes-shim.md is the authoritative rule the agent
+  // must follow; the audit's per-component data is operator-facing.
+  // Skipping it keeps the audit prompt under ~80 KB total.
+  // Note (2026-05-21): lessons-learned.md was demoted to audit-only and
+  // is NO LONGER loaded by the critic either — graduated patterns flow
+  // into practices.md (which IS loaded).
+  const candidateFiles: (string | null)[] = [
+    'docs/migration/rules/api-preservation.md',
+    'docs/migration/references/practices.md',
+    'docs/migration/references/design-patterns-addendum.md',
+    'docs/migration/references/code-standards.md',
+    'docs/migration/decisions/classes-shim.md',
+    workflow.perItemPlan ? workflow.perItemPlan(item.id) : null,
+  ]
+
+  if (item.tier === 0 || item.tier >= 2) {
+    candidateFiles.push(
+      'docs/migration/rules/base-ui-react-api-crib.md',
+      'docs/migration/rules/styling.md'
+    )
+  }
+
+  if (item.tier >= 2) {
+    candidateFiles.push(
+      'docs/migration/rules/jss-to-tailwind-crib.md',
+      'docs/migration/tokens/picasso-tailwind-tokens.md'
+    )
+  }
+
+  if ((item.depends_on ?? []).includes('Backdrop')) {
+    candidateFiles.push('docs/migration/decisions/backdrop-replacement.md')
+  }
+  const docSections: string[] = []
+
+  for (const file of candidateFiles) {
+    if (!file) {
+      continue
+    }
+    const abs = path.join(rootDir, file)
+
+    if (existsSync(abs)) {
+      const body = await fs.readFile(abs, 'utf8')
+
+      docSections.push(`### ${file}\n\n${body}`)
+    }
+  }
+
+  // 2. Build the audit prompt.
+  const prompt =
+    `You are auditing a migration diff for compliance with documented rules, decisions, and lessons.\n\n` +
+    `Component: ${item.id} (tier ${item.tier}, target_path: ${
+      item.target_path ?? 'none'
+    }).\n` +
+    `Provenance: ${provenance}.\n\n` +
+    `Goal: find CONCRETE violations of rules / decisions / lessons in the agent's diff.\n\n` +
+    `**STRICT RULES for what counts as a "violation"** (avoid false positives — these waste agent iters):\n` +
+    `1. A violation is something the diff DOES (or FAILS to do) that DIRECTLY CONTRADICTS a documented pattern. The contradiction must be unambiguous.\n` +
+    `2. "Could be better", "consider X", "may want to" are NOT violations. Skip those entirely.\n` +
+    `3. If after second reading you decide the diff is actually compliant, DO NOT add it to <violations>. Leave it out.\n` +
+    `4. The pattern must be cited from a specific doc + section that's IN THE AUDIT DOCUMENTS BELOW. Don't cite docs you can't see.\n` +
+    `5. Be CONCRETE: cite the file + line range in the diff. "packages/base/Modal/src/Modal.tsx line 42" is acceptable; "in some file" is not.\n` +
+    `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n` +
+    `7. Honor the migration carve-out (design-patterns-addendum.md §"Existing-violations carve-out"): pre-existing rule violations in already-shipped components REMAIN. Do NOT flag a violation if the diff PRESERVES an existing rule-violating shape (e.g., the component already had \`isOpen\` before the diff — preserving it is correct, NOT a violation of rule 14). Only flag violations that the DIFF INTRODUCES or that the agent had a clear opportunity to fix in the migration scope.\n\n` +
+    (operatorOverrides && operatorOverrides.length > 0
+      ? `8. **OPERATOR OVERRIDES — highest authority, overrides every rule in the checklist below.** The operator has explicitly EXCEPTED these rules on this PR (recorded from the PR thread, which you cannot see). If the diff matches a sanctioned shape below, it is NOT a violation — do NOT add it to <violations>, even when a doc uses NEVER / MUST NOT / forbidden wording for it. This is the #1 false positive to avoid; the operator already decided:\n` +
+        operatorOverrides
+          .map(
+            o =>
+              `   - Rule **${o.rule}** EXCEPTED → sanctioned shape: ${
+                o.sanctioned
+              } (confirmed by ${o.confirmed_by}${
+                o.evidence ? `, ${o.evidence}` : ''
+              }).\n`
+          )
+          .join('') +
+        `\n`
+      : '') +
+    checklistText +
+    `Severity levels:\n` +
+    `- **high**: hard rule violations (e.g. fallback to \`any\` to silence lint, dropped public API surface from \`Omit<>\` decision, withClasses applied where decision matrix says drop) — these get appended to next-iter feedback as MUST-FIX.\n` +
+    `- **medium**: documented best-practice missed (e.g. missing data-* CSS compensation when @base-ui/react primitive emits one and practices.md flags this; styling.md violation; missed graduated pattern from prior similar migration) — advisory.\n` +
+    `- **low**: minor doc-pointer suggestions (e.g. comment could cite the rule it implements). Use sparingly — most things at this severity should be skipped entirely.\n\n` +
+    `OUTPUT FORMAT (strict — orchestrator parses this with regex; deviations break parsing):\n\n` +
+    `<violations>\n` +
+    `- severity=high, category=rule, citation="rules/api-preservation.md §Type alignment", what="Agent dropped public type narrowing — diff at packages/.../Modal.tsx line 42 falls back to 'classes?: any'"\n` +
+    `- severity=medium, category=practice, citation="practices.md §Pixel-perfect visual parity", what="Diff omits data-orientation compensation; @base-ui/react/slider emits this attr and master had matching CSS"\n` +
+    `</violations>\n\n` +
+    `<stuck-signal>\n` +
+    `If the same violation has been flagged 2+ iters in a row and the agent can't resolve it, the underlying doc may need updating. ` +
+    `Output a one-line suggestion like \`<doc-path>: <what should be changed>\` OR exactly \`none\` if no doc-update signal.\n` +
+    `</stuck-signal>\n\n` +
+    `If no violations, output:\n\n` +
+    `<violations>\n</violations>\n` +
+    `<stuck-signal>\nnone\n</stuck-signal>\n\n` +
+    `**DO NOT** include a "Summary" or prose explanation after the structured blocks — the orchestrator only reads the blocks, prose is wasted tokens. End your response with </stuck-signal>.\n\n` +
+    `=== Audit Documents ===\n\n` +
+    docSections.join('\n\n---\n\n') +
+    `\n\n=== Agent Diff (range: ${diffRange}) ===\n\n` +
+    `\`\`\`diff\n${diffBody}\n\`\`\``
+
+  // 3. Spawn claude -p with prompt on stdin. Same pattern as lessons.append.
+  const auditCmd = buildDirectAgentCommand({
+    agent,
+    modelConfig,
+    mode: 'read-only',
+    cwd: rootDir,
+  })
+  const child = spawn(auditCmd.bin, auditCmd.args, {
+    cwd: rootDir,
+    stdio: ['pipe', 'pipe', 'pipe'],
+    env: process.env,
+  })
+
+  let rawOutput = ''
+
+  writeAgentStdin(child, prompt)
+  child.stdout?.on('data', chunk => {
+    rawOutput += chunk
+  })
+
+  const exitCode: number = await new Promise(resolve => {
+    child.on('close', code => resolve(code ?? 1))
+    child.on('error', () => resolve(127))
+  })
+
+  if (exitCode !== 0) {
+    log(
+      'checklist',
+      `audit subprocess exited ${exitCode}; treating as inconclusive (no violations recorded)`
+    )
+
+    return {
+      violations: [],
+      stuckSignal: null,
+      rawOutput: rawOutput || `(claude -p exit ${exitCode})`,
+    }
+  }
+
+  // 4. Parse output. Drop entries whose `what` text contains compliance-
+  // acknowledgement markers ("compliant", "complies", "no violation",
+  // "actually correct"). The LLM occasionally writes a "I was going to
+  // flag X but realized it's compliant" entry inside <violations>;
+  // those waste agent iters chasing non-issues. Smoke test 2026-05-20:
+  // Drawer audit returned 3 such entries despite being fully compliant.
+  const COMPLIANCE_MARKERS =
+    /\b(compliant|complies|no violation|actually correct|on second read|not actually|this is fine|false positive)\b/i
+  const violations: AuditViolation[] = []
+  const vMatch = rawOutput.match(/<violations>([\s\S]*?)<\/violations>/)
+
+  if (vMatch) {
+    const lines = vMatch[1].split('\n')
+
+    for (const line of lines) {
+      const m = line.match(
+        /^[-*]\s*severity=(high|medium|low),\s*category=(rule|decision|lesson|practice),\s*citation="([^"]+)",\s*what="([^"]+)"/
+      )
+
+      if (m && !COMPLIANCE_MARKERS.test(m[4])) {
+        violations.push({
+          severity: m[1] as 'high' | 'medium' | 'low',
+          category: m[2] as 'rule' | 'decision' | 'lesson' | 'practice',
+          citation: m[3],
+          what: m[4],
+        })
+      } else if (m) {
+        log(
+          'checklist',
+          `audit: dropped compliance-marker entry ("${m[4].slice(0, 80)}")`
+        )
+      }
+    }
+  }
+  const sMatch = rawOutput.match(/<stuck-signal>([\s\S]*?)<\/stuck-signal>/)
+  const stuckSignalRaw = sMatch ? sMatch[1].trim() : 'none'
+  const stuckSignal =
+    stuckSignalRaw && stuckSignalRaw.toLowerCase() !== 'none'
+      ? stuckSignalRaw
+      : null
+
+  return { violations, stuckSignal, rawOutput }
 }
 
 const checklist = {
@@ -6963,8 +7308,14 @@ const checklist = {
     let stuckSignal: string | null = null
     const auditViolations: AuditViolation[] = []
 
+    // Fail loud BEFORE the swallowing try below: a missing/garbled checklist
+    // must abort, never silently degrade to a checklist-less pass (Layer A
+    // only) that reads as "audit clean". Read once here and threaded into
+    // judgeAudit so the file is loaded a single time per audit.
+    const checklistText = loadAuditChecklist(args.rootDir)
+
     try {
-      const audit = await this.judgeAudit(args)
+      const audit = await this.judgeAudit(args, checklistText)
 
       stuckSignal = audit.stuckSignal
       auditViolations.push(...audit.violations)
@@ -7035,7 +7386,10 @@ const checklist = {
    * with full context pack ~70 KB input. Skip when the diff is empty
    * (iter ran but agent made no edits — nothing to audit).
    */
-  async judgeAudit(args: ChecklistArgs): Promise<{
+  async judgeAudit(
+    args: ChecklistArgs,
+    checklistText: string
+  ): Promise<{
     violations: AuditViolation[]
     stuckSignal: string | null
     rawOutput: string
@@ -7097,220 +7451,22 @@ const checklist = {
       }
     }
 
-    // 2. Gather audit context files. Tier-aware to keep prompt within
-    //    ~80-90 KB ceiling. Always-loaded: api-preservation, practices
-    //    (graduated patterns, not raw lessons log), design-patterns-addendum,
-    //    code-standards, classes-shim, per-component plan. Tier 0/2/3 add
-    //    base-ui-react-api-crib + styling. Tier 2/3 add jss-to-tailwind +
-    //    tokens. Modal/Drawer add backdrop-replacement.
-    // Note: decisions/classes-audit.md (26 KB) is intentionally OMITTED —
-    // it's empirical evidence behind classes-shim.md's decision matrix.
-    // The matrix in classes-shim.md is the authoritative rule the agent
-    // must follow; the audit's per-component data is operator-facing.
-    // Skipping it keeps the audit prompt under ~80 KB total.
-    // Note (2026-05-21): lessons-learned.md was demoted to audit-only and
-    // is NO LONGER loaded by the critic either — graduated patterns flow
-    // into practices.md (which IS loaded).
-    const candidateFiles: (string | null)[] = [
-      'docs/migration/rules/api-preservation.md',
-      'docs/migration/references/practices.md',
-      'docs/migration/references/design-patterns-addendum.md',
-      'docs/migration/references/code-standards.md',
-      'docs/migration/decisions/classes-shim.md',
-      args.workflow.perItemPlan
-        ? args.workflow.perItemPlan(args.item.id)
-        : null,
-    ]
-
-    if (args.item.tier === 0 || args.item.tier >= 2) {
-      candidateFiles.push(
-        'docs/migration/rules/base-ui-react-api-crib.md',
-        'docs/migration/rules/styling.md'
-      )
-    }
-
-    if (args.item.tier >= 2) {
-      candidateFiles.push(
-        'docs/migration/rules/jss-to-tailwind-crib.md',
-        'docs/migration/tokens/picasso-tailwind-tokens.md'
-      )
-    }
-
-    if ((args.item.depends_on ?? []).includes('Backdrop')) {
-      candidateFiles.push('docs/migration/decisions/backdrop-replacement.md')
-    }
-    const docSections: string[] = []
-
-    for (const file of candidateFiles) {
-      if (!file) {
-        continue
-      }
-      const abs = path.join(args.rootDir, file)
-
-      if (existsSync(abs)) {
-        const body = await fs.readFile(abs, 'utf8')
-
-        docSections.push(`### ${file}\n\n${body}`)
-      }
-    }
-
-    // 3. Build the audit prompt.
-    const prompt =
-      `You are auditing a migration diff for compliance with documented rules, decisions, and lessons.\n\n` +
-      `Component: ${args.item.id} (tier ${args.item.tier}, target_path: ${
-        args.item.target_path ?? 'none'
-      }).\n` +
-      `Iteration: ${args.iteration}.\n\n` +
-      `Goal: find CONCRETE violations of rules / decisions / lessons in the agent's diff.\n\n` +
-      `**STRICT RULES for what counts as a "violation"** (avoid false positives — these waste agent iters):\n` +
-      `1. A violation is something the diff DOES (or FAILS to do) that DIRECTLY CONTRADICTS a documented pattern. The contradiction must be unambiguous.\n` +
-      `2. "Could be better", "consider X", "may want to" are NOT violations. Skip those entirely.\n` +
-      `3. If after second reading you decide the diff is actually compliant, DO NOT add it to <violations>. Leave it out.\n` +
-      `4. The pattern must be cited from a specific doc + section that's IN THE AUDIT DOCUMENTS BELOW. Don't cite docs you can't see.\n` +
-      `5. Be CONCRETE: cite the file + line range in the diff. "packages/base/Modal/src/Modal.tsx line 42" is acceptable; "in some file" is not.\n` +
-      `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n` +
-      `7. Honor the migration carve-out (design-patterns-addendum.md §"Existing-violations carve-out"): pre-existing rule violations in already-shipped components REMAIN. Do NOT flag a violation if the diff PRESERVES an existing rule-violating shape (e.g., the component already had \`isOpen\` before the diff — preserving it is correct, NOT a violation of rule 14). Only flag violations that the DIFF INTRODUCES or that the agent had a clear opportunity to fix in the migration scope.\n\n` +
-      (args.operatorOverrides && args.operatorOverrides.length > 0
-        ? `8. **OPERATOR OVERRIDES — highest authority, overrides every rule in the checklist below.** The operator has explicitly EXCEPTED these rules on this PR (recorded from the PR thread, which you cannot see). If the diff matches a sanctioned shape below, it is NOT a violation — do NOT add it to <violations>, even when a doc uses NEVER / MUST NOT / forbidden wording for it. This is the #1 false positive to avoid; the operator already decided:\n` +
-          args.operatorOverrides
-            .map(
-              o =>
-                `   - Rule **${o.rule}** EXCEPTED → sanctioned shape: ${
-                  o.sanctioned
-                } (confirmed by ${o.confirmed_by}${
-                  o.evidence ? `, ${o.evidence}` : ''
-                }).\n`
-            )
-            .join('') +
-          `\n`
-        : '') +
-      `**Standards compliance checklist — walk this in order on every audit.** Cite the matching §section for each violation. Skip items that don't apply to this diff:\n\n` +
-      `### A. Hard rules (severity=high if violated)\n` +
-      `1. **\`classes\` prop decision** (decisions/classes-audit.md + design-patterns-addendum.md §2): is the component Dropdown or OutlinedInput? If yes, the narrowed \`classes?: { ... }\` MUST be retained. For other Tier-0 components, audit-aligned drop via \`extends Omit<StandardProps, 'classes'>\` + runtime backstop. Flag any deviation.\n` +
-      `2. **Casts** (code-standards.md §"Type-narrowing & casting"): any \`any\` / \`as unknown as T\` / bare \`// @ts-ignore\` in component source files (NOT in *.test.tsx)? When you flag a cast, the CANONICAL alternative to recommend is the "prop-by-prop boundary" pattern documented in \`code-standards.md §"The 'prop-by-prop boundary' — canonical resolution for root-element-type mismatches"\` and \`practices.md §"API preservation"\` — destructure SPECIFIC incompatible props out of \`...rest\`, spread the rest unchanged. Do NOT recommend an exhaustive allowlist (\`{ name, form, tabIndex, ...one_by_one }\`) — that's a SEPARATE anti-pattern ("typed but no-op" per item 2b below) that drops every public-API prop the allowlist doesn't enumerate. If the agent has already tried the allowlist path in a prior iter and you flagged it, do NOT flip your recommendation back to "keep the allowlist" — that produces the oscillation observed on Switch review-iter 7 (allowlist → cast → allowlist). Both are wrong; the third option is destructure-incompatibles-then-spread-rest.\n` +
-      `2b. **"Typed but no-op" passthrough allowlist** (practices.md §"API preservation"): does the diff replace \`{...rest}\` with an exhaustive enumeration like \`<BaseUISwitch.Root name={name} form={form} tabIndex={tabIndex} ... />\` while the public \`Props\` interface still extends \`ButtonHTMLAttributes<HTMLButtonElement>\` (or similar)? That's a regression — all the unenumerated props (\`onClick\`/\`onFocus\`/\`onBlur\`/arbitrary \`data-*\`/\`aria-*\`) are claimed in types but silently dropped at runtime. Recommend the prop-by-prop boundary pattern (destructure ONLY incompatible props, spread rest unchanged). If the agent is oscillating between this and a blanket cast, name both as anti-patterns AND cite the canonical pattern explicitly.\n` +
-      `3. **\`useLayoutEffect\` from React** (code-standards.md §"SSR safety"): forbidden — must be \`useIsomorphicLayoutEffect\` from \`@toptal/picasso-shared\` (ESLint error in source).\n` +
-      `4. **Aggregate self-imports** (code-standards.md §"ESLint custom rules"): any sub-package importing from aggregate \`@toptal/picasso\`? ESLint error.\n` +
-      `5. **Build-before-snapshot precondition** (practices.md §"Build & snapshot precondition"): if diff regenerates snapshots, was \`pnpm -F @toptal/picasso-<NAME> build:package\` verified clean first? Look for 1-line empty-\`<div>\` snapshots — those are the precondition-failed signature.\n` +
-      `6. **Imperative ref for visual override** (code-standards.md §"CSS specificity ladder" + practices.md §"@base-ui/react idioms"): any \`ref={(node) => { ... .style.X = ... }}\` or \`useRef\` callback that mutates \`.style\` for visual/theme purposes? The Switch iter-2 pattern is NOT canonical; use slot \`className\` / Tailwind selectors / \`!important\` ladder instead.\n` +
-      `7. **\`!important\` without ladder justification** (code-standards.md §"CSS specificity ladder"): any new \`!important\` that doesn't sit AFTER rungs 1-3 were demonstrated insufficient? Look for adjacent comments explaining WHY lower rungs failed.\n\n` +
-      `### B. Reviewer-blocking practices (severity=medium-high)\n` +
-      `8. **API preservation** (practices.md §"API preservation"): consumer-facing handler signatures preserved (e.g., \`onChange(event, checked)\` not bare \`onCheckedChange\`)? Portal/behavior props preserved or deprecated-not-deleted with \`@deprecated\` JSDoc + ticket ref?\n` +
-      `9. **JSDoc on public props** (code-standards.md §"JSDoc rules"): every NEW or MODIFIED public Props field has \`/** description */\`? Internal passthrough props (\`ownerState\`, \`data-private\`) MUST NOT have JSDoc — they'd leak as public API.\n` +
-      `10. **\`@deprecated\` ticket ref** (code-standards.md §"JSDoc rules"): any \`@deprecated\` JSDoc that lacks a \`[ABC-1234]\` or URL? ESLint is warn-level only; reviewers consistently block.\n` +
-      `11. **Boolean prop prefix on NEW props** (PICASSO_COMPONENT_DESIGN_PATTERNS rule 14): any NEW boolean prop using \`is\`/\`has\`/\`should\` prefix? (Existing props on already-shipped components are carve-out-protected per rule 7 above.)\n` +
-      `12. **Changeset content + bump tier** (code-standards.md §"Changeset conventions" + practices.md §"Changesets"): does \`.changeset/<name>.md\` pick the correct bump per the standard taxonomy? \`patch\` is the default for a clean library swap (public API + types unchanged, behavioral parity verified by CI). \`minor\` only if a new prop / value / opt-in behavior was added. \`major\` ONLY if a concrete consumer-visible break is named (removed/renamed prop, narrowed type, default flipped, layout-shifting CSS). Migration is NOT auto-major; \`@mui/base\` / \`@material-ui/core\` are Picasso \`dependencies\` not consumer peer-deps, and widening the \`react\` peer cap is not breaking. Body uses present-simple tense and behavioral-parity framing.\n` +
-      `13. **PR description completeness** (PROMPT-light/heavy.md §8): is \`migration-runs/<run-date>/<Component>/pr-description.md\` present and does it have Summary + Decisions + Limitations + Verification sections (each ≤4 sentences)?\n` +
-      `14. **Tailwind class ordering** (code-standards.md §"Tailwind class composition"): user-supplied \`className\` MUST be LAST in \`twMerge(structural, ..., className)\` so consumer overrides win. Look for reversed-order \`twMerge(className, structural)\` — silently breaks consumer customization.\n` +
-      `14b. **Bare boolean data-variants** (practices.md §"Tailwind & class composition"): any bracketed boolean data-variant in a className — \`data-[starting-style]:\`, \`data-[ending-style]:\`, \`data-[open]:\`, \`data-[closed]:\`, \`data-[focused]:\`, \`data-[disabled]:\`, \`data-[checked]:\` — that should be the bare form? Tailwind v4 matches bare boolean data-attributes natively (identical compiled CSS), so these MUST be written bare (\`data-starting-style:\` etc.). Brackets are correct ONLY for value-matching variants (\`data-[side=top]:\`, \`data-[orientation=vertical]:\`). Flag each bracketed boolean form for conversion — review-response will NOT catch these on its own (Drawer #4994 iter 12 shipped 10 in DrawerPaper.tsx unflagged).\n` +
-      `15. **Debug artifacts in working tree** (practices.md §"Verify before commit"): any \`*-thumbs.json\`, \`baseline-*.json\`, \`local-*.json\`, \`fetch-happo-diffs.mjs\` at repo root in the diff? Should be in a gitignored scratch dir.\n` +
-      `16. **tsconfig hygiene** (practices.md §"tsconfig & build hygiene"): when \`package.json\` drops a workspace dep, does \`tsconfig.json\` drop the matching \`references\` entry in the SAME commit? Mismatched configs fail \`tsc -b\` in CI's Build job.\n\n` +
-      `### C. @base-ui/react idioms (severity=medium)\n` +
-      `17. **Slot-based styling** (practices.md §"@base-ui/react idioms"): if the diff wraps an \`@base-ui/react\` component with multi-part slots, does it use \`slots={{ partName: Component }}\` + \`slotProps={{ partName: { className, ... } }}\` instead of a class dictionary? (OutlinedInput canonical.)\n` +
-      `18. **Polymorphic Button pattern** (rules/base-ui-react-api-crib.md §"Polymorphic Button"): \`nativeButton + render={React.createElement(as)}\` — NOT runtime \`typeof\`/\`isValidAs\` guards on the \`as\` prop.\n` +
-      `19. **\`@base-ui/utils@0.2.8\` patch** (practices.md §"@base-ui/react idioms"): Tier 0 components need it applied via \`pnpm.patchedDependencies\` + lockfile \`patch_hash\`; do NOT re-derive.\n\n` +
-      `Severity levels:\n` +
-      `- **high**: hard rule violations (e.g. fallback to \`any\` to silence lint, dropped public API surface from \`Omit<>\` decision, withClasses applied where decision matrix says drop) — these get appended to next-iter feedback as MUST-FIX.\n` +
-      `- **medium**: documented best-practice missed (e.g. missing data-* CSS compensation when @base-ui/react primitive emits one and practices.md flags this; styling.md violation; missed graduated pattern from prior similar migration) — advisory.\n` +
-      `- **low**: minor doc-pointer suggestions (e.g. comment could cite the rule it implements). Use sparingly — most things at this severity should be skipped entirely.\n\n` +
-      `OUTPUT FORMAT (strict — orchestrator parses this with regex; deviations break parsing):\n\n` +
-      `<violations>\n` +
-      `- severity=high, category=rule, citation="rules/api-preservation.md §Type alignment", what="Agent dropped public type narrowing — diff at packages/.../Modal.tsx line 42 falls back to 'classes?: any'"\n` +
-      `- severity=medium, category=practice, citation="practices.md §Pixel-perfect visual parity", what="Diff omits data-orientation compensation; @base-ui/react/slider emits this attr and master had matching CSS"\n` +
-      `</violations>\n\n` +
-      `<stuck-signal>\n` +
-      `If the same violation has been flagged 2+ iters in a row and the agent can't resolve it, the underlying doc may need updating. ` +
-      `Output a one-line suggestion like \`<doc-path>: <what should be changed>\` OR exactly \`none\` if no doc-update signal.\n` +
-      `</stuck-signal>\n\n` +
-      `If no violations, output:\n\n` +
-      `<violations>\n</violations>\n` +
-      `<stuck-signal>\nnone\n</stuck-signal>\n\n` +
-      `**DO NOT** include a "Summary" or prose explanation after the structured blocks — the orchestrator only reads the blocks, prose is wasted tokens. End your response with </stuck-signal>.\n\n` +
-      `=== Audit Documents ===\n\n` +
-      docSections.join('\n\n---\n\n') +
-      `\n\n=== Agent Diff (range: ${diffRange}) ===\n\n` +
-      `\`\`\`diff\n${diffBody}\n\`\`\``
-
-    // 4. Spawn claude -p with prompt on stdin. Same pattern as lessons.append.
-    const auditCmd = buildDirectAgentCommand({
+    // Doc-context gathering, prompt build, subprocess + parse are shared with
+    // the standalone `--audit-pr` mode via `runStandardsAudit` — single source
+    // of truth for the audit prompt. judgeAudit's only unique job is producing
+    // the worktree diff (above); from here the two paths are identical.
+    return runStandardsAudit({
+      item: args.item,
+      diffBody,
+      diffRange,
+      rootDir: args.rootDir,
+      workflow: args.workflow,
       agent: args.opts.agent,
       modelConfig: args.opts.modelConfig,
-      mode: 'read-only',
-      cwd: args.rootDir,
+      checklistText,
+      provenance: `iteration ${args.iteration}`,
+      operatorOverrides: args.operatorOverrides,
     })
-    const child = spawn(auditCmd.bin, auditCmd.args, {
-      cwd: args.rootDir,
-      stdio: ['pipe', 'pipe', 'pipe'],
-      env: process.env,
-    })
-
-    let rawOutput = ''
-
-    writeAgentStdin(child, prompt)
-    child.stdout?.on('data', chunk => {
-      rawOutput += chunk
-    })
-
-    const exitCode: number = await new Promise(resolve => {
-      child.on('close', code => resolve(code ?? 1))
-      child.on('error', () => resolve(127))
-    })
-
-    if (exitCode !== 0) {
-      log(
-        'checklist',
-        `audit subprocess exited ${exitCode}; treating as inconclusive (no violations recorded)`
-      )
-
-      return {
-        violations: [],
-        stuckSignal: null,
-        rawOutput: rawOutput || `(claude -p exit ${exitCode})`,
-      }
-    }
-
-    // 5. Parse output. Drop entries whose `what` text contains compliance-
-    // acknowledgement markers ("compliant", "complies", "no violation",
-    // "actually correct"). The LLM occasionally writes a "I was going to
-    // flag X but realized it's compliant" entry inside <violations>;
-    // those waste agent iters chasing non-issues. Smoke test 2026-05-20:
-    // Drawer audit returned 3 such entries despite being fully compliant.
-    const COMPLIANCE_MARKERS =
-      /\b(compliant|complies|no violation|actually correct|on second read|not actually|this is fine|false positive)\b/i
-    const violations: AuditViolation[] = []
-    const vMatch = rawOutput.match(/<violations>([\s\S]*?)<\/violations>/)
-
-    if (vMatch) {
-      const lines = vMatch[1].split('\n')
-
-      for (const line of lines) {
-        const m = line.match(
-          /^[-*]\s*severity=(high|medium|low),\s*category=(rule|decision|lesson),\s*citation="([^"]+)",\s*what="([^"]+)"/
-        )
-
-        if (m && !COMPLIANCE_MARKERS.test(m[4])) {
-          violations.push({
-            severity: m[1] as 'high' | 'medium' | 'low',
-            category: m[2] as 'rule' | 'decision' | 'lesson',
-            citation: m[3],
-            what: m[4],
-          })
-        } else if (m) {
-          log(
-            'checklist',
-            `audit: dropped compliance-marker entry ("${m[4].slice(0, 80)}")`
-          )
-        }
-      }
-    }
-    const sMatch = rawOutput.match(/<stuck-signal>([\s\S]*?)<\/stuck-signal>/)
-    const stuckSignalRaw = sMatch ? sMatch[1].trim() : 'none'
-    const stuckSignal =
-      stuckSignalRaw && stuckSignalRaw.toLowerCase() !== 'none'
-        ? stuckSignalRaw
-        : null
-
-    return { violations, stuckSignal, rawOutput }
   },
 }
 
@@ -7327,6 +7483,10 @@ interface RunResult {
     | 'no-work'
     // --cleanup pushed a review-aid comment-strip commit to the PR branch.
     | 'cleaned'
+    // --audit-pr: every audited PR was clean (no HIGH-severity violations).
+    | 'audit-clean'
+    // --audit-pr: at least one audited PR has ≥1 HIGH-severity violation.
+    | 'audit-findings'
   prUrl?: string
   reason?: string
 }
@@ -7929,6 +8089,388 @@ export async function runReviewSweep(
   log('sweep', `done — processed ${processed}/${candidates.length}`)
 
   return { status: 'no-work' }
+}
+
+/** Component identity + audit context resolved for an existing PR. */
+interface AuditTarget {
+  id: string
+  tier: number
+  target_path: string | null
+  depends_on: readonly string[]
+  operatorOverrides: readonly OperatorOverride[]
+  /** Where id/tier came from — surfaced in the report header for transparency. */
+  resolvedFrom: string
+}
+
+/**
+ * Resolve a PR to a (component, tier, operator-overrides) triple for the audit.
+ *
+ *  1. Authoritative: a manifest variant whose PR url or branch matches — gives
+ *     the real tier + any operator overrides recorded on that PR (so a
+ *     sanctioned shape isn't re-flagged as a violation).
+ *  2. Best-effort: parse the component id from the branch (`migrate-<id>`) or
+ *     the PR title (`Migrate <id> …`); if it's a manifest key, borrow its tier.
+ *  3. Unknown: treat as tier 2 so the audit still loads the full doc context
+ *     (base-ui + jss + tokens) rather than starving an unmapped PR.
+ */
+function resolveAuditTarget(
+  m: Manifest | null,
+  meta: { number: number; title: string; headRefName?: string; url?: string }
+): AuditTarget {
+  if (m) {
+    for (const item of Object.values(m.components)) {
+      for (const variantId of manifest.listVariantIds(item)) {
+        const st = manifest.getVariantState(item, variantId)
+        const prMatch =
+          typeof st.pr === 'string' &&
+          (st.pr === meta.url || st.pr.endsWith(`/pull/${meta.number}`))
+        const branchMatch =
+          Boolean(st.branch) &&
+          Boolean(meta.headRefName) &&
+          st.branch === meta.headRefName
+
+        if (prMatch || branchMatch) {
+          return {
+            id: item.id,
+            tier: item.tier,
+            target_path: item.target_path ?? null,
+            depends_on: item.depends_on ?? [],
+            operatorOverrides: [
+              ...(item.operator_overrides ?? []),
+              ...(st.operator_overrides ?? []),
+            ],
+            resolvedFrom: 'manifest',
+          }
+        }
+      }
+    }
+  }
+  // Branch convention is `migrate-<Component>-vN` (workflow.branchName +
+  // variant suffix). Strip the variant suffix so the derived id matches a
+  // manifest key (`OutlinedInput`, not `OutlinedInput-v1`) for the tier lookup.
+  const idFromBranch = meta.headRefName?.startsWith('migrate-')
+    ? meta.headRefName.slice('migrate-'.length).replace(/-v\d+$/i, '')
+    : null
+  const titleMatch = meta.title.match(/\bMigrate\s+(\S+)/i)
+  const idGuess = idFromBranch ?? (titleMatch ? titleMatch[1] : null)
+
+  if (m && idGuess && m.components[idGuess]) {
+    const item = m.components[idGuess]
+
+    return {
+      id: idGuess,
+      tier: item.tier,
+      target_path: item.target_path ?? null,
+      depends_on: item.depends_on ?? [],
+      operatorOverrides: item.operator_overrides ?? [],
+      resolvedFrom: 'manifest (by id)',
+    }
+  }
+
+  return {
+    id: idGuess ?? `pr-${meta.number}`,
+    tier: 2,
+    target_path: null,
+    depends_on: [],
+    operatorOverrides: [],
+    resolvedFrom: idGuess
+      ? 'PR title/branch (tier unknown → full context)'
+      : 'unresolved (full context)',
+  }
+}
+
+/**
+ * Split a unified diff into per-file sections and keep only files under
+ * migration-relevant paths (mirrors the critic's pathspec filter:
+ * `packages/`, `.changeset/`, the component plan doc). Lockfile +
+ * orchestrator-infra changes are dropped as noise, matching `judgeAudit`.
+ */
+function filterDiffToMigrationPaths(diff: string, id: string): string {
+  const filters = migrationPathFilters(id)
+  const keep = (p: string): boolean =>
+    filters.some(f => (f.endsWith('/') ? p.startsWith(f) : p === f))
+
+  return diff
+    .split(/(?=^diff --git )/m)
+    .filter(section => {
+      const head = section.match(/^diff --git a\/(.+?) b\/(.+)$/m)
+
+      if (!head) {
+        return false
+      }
+
+      return keep(head[2]) || keep(head[1])
+    })
+    .join('')
+}
+
+/** Fetch a PR's diff via `gh pr diff`, path-filter it, and size-cap it. */
+async function fetchAuditDiff(
+  prNumber: number,
+  id: string,
+  rootDir: string
+): Promise<string> {
+  const res = await shell('gh', ['pr', 'diff', String(prNumber)], {
+    cwd: rootDir,
+  })
+
+  if (res.exitCode !== 0) {
+    throw new Error(
+      `gh pr diff ${prNumber} failed: ${res.stderr || res.stdout}`
+    )
+  }
+  const filtered = filterDiffToMigrationPaths(res.stdout, id)
+  const MAX_DIFF_BYTES = 200_000
+
+  return filtered.length > MAX_DIFF_BYTES
+    ? filtered.slice(0, MAX_DIFF_BYTES) +
+        `\n\n[truncated; full filtered diff is ${filtered.length} bytes]`
+    : filtered
+}
+
+/** Render the per-PR audit report (printed to the operator + persisted). */
+function renderAuditReport(
+  header: string,
+  high: readonly AuditViolation[],
+  advisory: readonly AuditViolation[],
+  stuckSignal: string | null
+): string {
+  const lines: string[] = [header, '']
+
+  if (high.length === 0 && advisory.length === 0) {
+    lines.push('Verdict: CLEAN — no violations against the audit checklist.')
+
+    return lines.join('\n')
+  }
+
+  if (high.length > 0) {
+    lines.push(`HIGH — would block (${high.length}):`)
+
+    for (const v of high) {
+      lines.push(`  • [${v.category}] ${v.citation}`, `      ${v.what}`)
+    }
+    lines.push('')
+  }
+
+  if (advisory.length > 0) {
+    lines.push(`ADVISORY — medium/low, non-blocking (${advisory.length}):`)
+
+    for (const v of advisory) {
+      lines.push(
+        `  • [${v.severity}/${v.category}] ${v.citation}`,
+        `      ${v.what}`
+      )
+    }
+    lines.push('')
+  }
+
+  if (stuckSignal) {
+    lines.push(`Doc-update hint: ${stuckSignal}`, '')
+  }
+  lines.push(
+    high.length > 0
+      ? `Verdict: FINDINGS — ${high.length} HIGH violation(s) to review.`
+      : 'Verdict: CLEAN (advisory notes only).'
+  )
+
+  return lines.join('\n')
+}
+
+/** Persist the audit report + raw output under migration-runs/pr-audits/. */
+async function persistAuditReport(
+  rootDir: string,
+  prNumber: number,
+  report: string,
+  rawOutput: string
+): Promise<string> {
+  const dir = path.join(rootDir, 'migration-runs', 'pr-audits')
+
+  await fs.mkdir(dir, { recursive: true })
+  const reportPath = path.join(dir, `pr-${prNumber}.md`)
+  const body =
+    `# Standards audit — PR #${prNumber}\n\n` +
+    `_Generated by \`pnpm orchestrate --audit-pr=${prNumber}\` (read-only). ` +
+    `Same Layer B checklist + doc context as the migrate-loop critic._\n\n` +
+    '```\n' +
+    report +
+    '\n```\n\n' +
+    `## Raw audit output\n\n` +
+    '```\n' +
+    rawOutput +
+    '\n```\n'
+
+  await fs.writeFile(reportPath, body, 'utf8')
+
+  return reportPath
+}
+
+/** Outcome of auditing one PR — drives the run-level verdict + summary table. */
+interface AuditOutcome {
+  hasHighFindings: boolean
+  ref: string
+  label: string
+  verdict: string
+}
+
+/** Audit a single PR: fetch + filter diff, run the shared audit, report. */
+async function auditOnePr(
+  ref: string,
+  m: Manifest | null,
+  workflow: Workflow,
+  opts: OrchestratorOptions,
+  rootDir: string,
+  checklistText: string
+): Promise<AuditOutcome> {
+  const meta = (await gh.viewPR(
+    ref,
+    'number,title,state,headRefName,baseRefName,url,author,mergedAt',
+    rootDir
+  )) as {
+    number: number
+    title: string
+    state: string
+    headRefName?: string
+    baseRefName?: string
+    url?: string
+    author?: { login?: string }
+    mergedAt?: string | null
+  }
+  const target = resolveAuditTarget(m, meta)
+  const author = meta.author?.login ?? 'unknown'
+  const header =
+    `PR #${meta.number} — ${meta.title}\n` +
+    `  state=${meta.state}${
+      meta.mergedAt ? ` merged_at=${meta.mergedAt}` : ''
+    } author=${author}\n` +
+    `  component=${target.id} tier=${target.tier} (id/tier from ${target.resolvedFrom})`
+  const diffBody = await fetchAuditDiff(meta.number, target.id, rootDir)
+
+  if (!diffBody.trim()) {
+    log(
+      'audit',
+      `\n${header}\n  → no migration-relevant changes to audit; skipping`
+    )
+
+    return {
+      hasHighFindings: false,
+      ref,
+      label: target.id,
+      verdict: 'SKIPPED (no migration paths in diff)',
+    }
+  }
+  const audit = await runStandardsAudit({
+    item: {
+      id: target.id,
+      tier: target.tier,
+      target_path: target.target_path,
+      depends_on: target.depends_on,
+    },
+    diffBody,
+    diffRange: `PR #${meta.number} vs ${meta.baseRefName ?? 'base'}`,
+    rootDir,
+    workflow,
+    agent: opts.agent,
+    modelConfig: opts.modelConfig,
+    checklistText,
+    provenance: `merged PR #${meta.number} (${author})`,
+    operatorOverrides: target.operatorOverrides,
+  })
+  const high = audit.violations.filter(v => v.severity === 'high')
+  const advisory = audit.violations.filter(v => v.severity !== 'high')
+  const report = renderAuditReport(header, high, advisory, audit.stuckSignal)
+
+  log('audit', `\n${report}`)
+  const reportPath = await persistAuditReport(
+    rootDir,
+    meta.number,
+    report,
+    audit.rawOutput
+  )
+
+  log('audit', `  saved → ${path.relative(rootDir, reportPath)}`)
+
+  return {
+    hasHighFindings: high.length > 0,
+    ref,
+    label: target.id,
+    verdict: high.length > 0 ? `FINDINGS (${high.length} high)` : 'CLEAN',
+  }
+}
+
+/**
+ * `--audit-pr` mode (2026-06-26). Standalone, read-only standards audit of one
+ * or more EXISTING PRs — including merged PRs and PRs authored by others. Runs
+ * the SAME Layer B audit the migrate-loop critic runs (`runStandardsAudit`:
+ * identical checklist + tier-aware doc context + parse), but sources the diff
+ * from `gh pr diff` instead of a local worktree, so it works on a PR the
+ * operator never ran through the orchestrator.
+ *
+ * Why this is NOT `--review-sweep`: the sweep is gated to OPEN items in
+ * awaiting_review / awaiting_ci / ready_to_merge that have a local worktree,
+ * and a merged PR is reconciled to `done` and dropped before any audit runs
+ * (reconcileStuckPRs / sweepOne). This mode is decoupled from manifest status
+ * and worktree entirely, and never edits / comments / merges.
+ *
+ * Accepts one or more PR numbers/URLs (comma- or space-separated). Per PR it
+ * prints a report, persists it to `migration-runs/pr-audits/pr-<n>.md`, and
+ * aggregates a run-level verdict. Returns `audit-findings` if ANY audited PR
+ * has a HIGH-severity violation, else `audit-clean`.
+ */
+export async function runAuditPr(
+  workflow: Workflow,
+  opts: OrchestratorOptions
+): Promise<RunResult> {
+  const rootDir = repoRoot()
+
+  if (!opts.auditPr) {
+    throw new Error('--audit-pr requires a PR number or URL')
+  }
+  await loadEnvrcUpwards(rootDir)
+
+  const pf = await preflight(opts, 'sweep')
+
+  if (!pf.ok) {
+    throw new Error(pf.reason)
+  }
+  const manifestAbs = path.join(rootDir, workflow.manifestPath)
+  const m = existsSync(manifestAbs) ? manifest.read(manifestAbs) : null
+  // Fail loud on a missing/garbled checklist (same posture as the loop) —
+  // a checklist-less audit reads as "clean" while enforcing nothing.
+  const checklistText = loadAuditChecklist(rootDir)
+  const prRefs = opts.auditPr.split(/[,\s]+/).filter(Boolean)
+
+  log('audit', `auditing ${prRefs.length} PR(s): ${prRefs.join(', ')}`)
+  const outcomes: AuditOutcome[] = []
+
+  for (const ref of prRefs) {
+    try {
+      outcomes.push(
+        await auditOnePr(ref, m, workflow, opts, rootDir, checklistText)
+      )
+    } catch (err) {
+      log('audit', `PR ${ref}: error — ${(err as Error).message}`)
+      outcomes.push({
+        hasHighFindings: false,
+        ref,
+        label: '(error)',
+        verdict: `ERROR: ${(err as Error).message}`,
+      })
+    }
+  }
+  const anyFindings = outcomes.some(o => o.hasHighFindings)
+
+  log('audit', `done — ${outcomes.length} PR(s) audited:`)
+
+  for (const o of outcomes) {
+    log('audit', `  ${o.verdict.padEnd(22)} ${o.ref}  ${o.label}`)
+  }
+
+  return {
+    status: anyFindings ? 'audit-findings' : 'audit-clean',
+    reason: `${outcomes.length} PR(s) audited; ${
+      outcomes.filter(o => o.hasHighFindings).length
+    } with HIGH findings`,
+  }
 }
 
 /**
@@ -12473,6 +13015,11 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     // strip on an open PR before a manual merge. Decoupled from the sweep —
     // see runCleanup. Use with --component=<X> (optional --variant, --dry-run).
     cleanup: has('--cleanup'),
+    // --audit-pr (2026-06-26): standalone, read-only standards audit of an
+    // existing (incl. merged / other-authored) PR's diff via gh pr diff.
+    // Decoupled from manifest status + worktree — see runAuditPr. Value is
+    // one or more PR numbers/URLs, comma- or space-separated.
+    auditPr: get('--audit-pr') ?? null,
     maxItems: maxItemsStr ? Number(maxItemsStr) : null,
     variant: variantRaw ?? 'v1',
     // `variantRaw` is `string | undefined` from `get()`; previously this

@@ -139,6 +139,14 @@ export interface GraduateResult {
   lessonsPath: string
   agentSummary: string
   exitCode: number
+  /**
+   * Tier-`checklist` items the pass proposed for the operator to paste into the
+   * standards-audit checklist, parsed from the `ENFORCEMENT_PROPOSALS` summary
+   * line. 0 if the line is absent (failed/legacy pass).
+   */
+  proposedChecklistItems: number
+  /** Tier-`lint` candidates the pass proposed for the operator to ticket. */
+  lintCandidates: number
 }
 
 export const runGraduate = async (
@@ -266,6 +274,14 @@ export const runGraduate = async (
     })
   })
 
+  // Parse the ENFORCEMENT_PROPOSALS sentinel (Step 7 summary). Best-effort:
+  // 0/0 when the line is absent (failed pass or legacy agent output).
+  const propMatch = agentSummary.match(
+    /ENFORCEMENT_PROPOSALS:\s*(\d+)\s*checklist,\s*(\d+)\s*lint/
+  )
+  const proposedChecklistItems = propMatch ? Number(propMatch[1]) : 0
+  const lintCandidates = propMatch ? Number(propMatch[2]) : 0
+
   if (exitCode !== 0) {
     return {
       status: 'failed',
@@ -273,6 +289,8 @@ export const runGraduate = async (
       lessonsPath,
       agentSummary,
       exitCode,
+      proposedChecklistItems,
+      lintCandidates,
     }
   }
 
@@ -297,6 +315,8 @@ export const runGraduate = async (
     lessonsPath,
     agentSummary,
     exitCode,
+    proposedChecklistItems,
+    lintCandidates,
   }
 }
 
@@ -324,7 +344,11 @@ const buildGraduationPrompt = (args: {
                 r.trigger
               }; confirmed by ${r.confirmed_by}${
                 r.evidence ? `, ${r.evidence}` : ''
-              }).\n   Gist: ${r.gist}`
+              }).\n   Gist: ${r.gist}${
+                r.enforcement
+                  ? `\n   Reviewer enforcement hint: ${r.enforcement} (hint only — confirm or override in Step 5.5).`
+                  : ''
+              }`
           )
           .join('\n') +
         `\n\nIf a request targets a doc OTHER than practices.md (e.g. code-standards.md), do NOT edit that doc — note it under "Conflicts (require operator review)" so the operator hand-applies it.\n\n`
@@ -374,6 +398,12 @@ const buildGraduationPrompt = (args: {
     `- If NOT covered → propose addition to the appropriate section.\n\n` +
     `Also check for CONFLICTS:\n` +
     `- If a new lesson contradicts an existing practices.md rule (e.g. lessons say "do X" but practices says "don't X"), flag it for operator attention. Do NOT auto-resolve — output the conflict in the summary and skip the graduation.\n\n` +
+    `### Step 5.5. Classify the enforcement tier of every qualified pattern\n\n` +
+    `practices.md is ADVISORY context — the standards-audit only reliably enforces ENUMERATED checklist items, so a rule that lives only in practices.md gets weak enforcement (this is exactly why a graduated rule can be ignored in review). For EACH pattern that qualified in Step 4 — INCLUDING ones you skipped in Step 5 because practices.md already covers them (an already-documented-but-unenforced rule is the main gap this step closes) — assign exactly one tier:\n\n` +
+    `- **lint** — mechanically decidable from source text with near-zero false positives (a regex/AST check could flag it). E.g. "use bare boolean data-variants, not bracketed", forbidden \`!important\`, banned import. → Do NOT write a lint; emit a LINT CANDIDATE in the Step 7 summary (rule + one-line detection sketch) for the operator to implement.\n` +
+    `- **checklist** — not a pure regex, but an LLM can reliably check it against a diff with bounded judgment. E.g. handler-signature preservation, changeset bump tier, JSDoc on new public props. → Emit a PROPOSED CHECKLIST ITEM in the Step 7 summary (a ready-to-paste numbered item the operator pastes into the standards-audit checklist).\n` +
+    `- **advisory** — judgment-heavy, not mechanically checkable (e.g. "audit changed interaction defaults", "property parity when porting JSS"). → practices.md prose only; no checklist/lint output.\n\n` +
+    `Pick the STRONGEST tier that genuinely fits (lint > checklist > advisory); do NOT inflate — forcing a judgment-heavy rule into a check creates false positives. If a reviewer supplied an enforcement hint above, treat it as a prior you may confirm or override. You do NOT edit the checklist or write any lint this pass — only practices.md (Step 6) and the proposals in the summary (Step 7); the operator hand-applies the proposals.\n\n` +
     `### Step 6. Edit practices.md\n\n` +
     `Apply ALL of these in one Edit (or sequence of Edits):\n\n` +
     `1. Bump the "Last graduation:" date header to **${today}**.\n` +
@@ -397,11 +427,19 @@ const buildGraduationPrompt = (args: {
     `- ...\n` +
     `\n` +
     `## Patterns graduated to practices.md\n` +
-    `1. <pattern> — added to §<section> — cited <citations>\n` +
+    `1. <pattern> — tier: <lint|checklist|advisory> — added to §<section> — cited <citations>\n` +
     `2. ...\n` +
     `\n` +
     `## Patterns skipped\n` +
-    `1. <pattern> — reason: <already covered by practices.md §X / only 2 occurrences / etc.>\n` +
+    `1. <pattern> — reason: <already covered by practices.md §X / only 2 occurrences / etc.> — tier: <lint|checklist|advisory>\n` +
+    `2. ...\n` +
+    `\n` +
+    `## Proposed checklist additions (operator: paste each into the standards-audit checklist in bin/lib/orchestrator-core.ts; "none" if empty)\n` +
+    `1. <section A|B|C> — <ready-to-paste numbered item, e.g. "**Bare boolean data-variants** (practices.md §\\"Tailwind & class composition\\"): any bracketed boolean data-variant (\`data-[open]:\` etc.) that should be the bare form? Flag for conversion.">\n` +
+    `2. ...\n` +
+    `\n` +
+    `## Proposed lint candidates (operator: file a lint ticket — do NOT auto-implement; "none" if empty)\n` +
+    `1. <rule> — detection: <one-line regex/AST sketch>\n` +
     `2. ...\n` +
     `\n` +
     `## Conflicts (require operator review)\n` +
@@ -411,8 +449,9 @@ const buildGraduationPrompt = (args: {
     `Before: <N1> lines / After: <N2> lines\n` +
     `\n` +
     `GRADUATION_COMPLETE: <X> patterns added, <Y> patterns skipped\n` +
+    `ENFORCEMENT_PROPOSALS: <C> checklist, <L> lint\n` +
     `\`\`\`\n\n` +
-    `The final \`GRADUATION_COMPLETE: ...\` line is parsed by the orchestrator script — keep it exactly in that form.\n\n` +
+    `The final \`GRADUATION_COMPLETE: ...\` and \`ENFORCEMENT_PROPOSALS: ...\` lines are parsed by the orchestrator script — keep them exactly in that form (counts may be 0).\n\n` +
     `## Constraints\n\n` +
     `- Do NOT spawn subagents.\n` +
     `- Do NOT use Glob (graduation is scoped to two files; you don't need to wander the repo).\n` +

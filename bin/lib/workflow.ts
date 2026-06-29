@@ -94,6 +94,17 @@ export interface GraduationRequest {
   at: string
   /** Lifecycle: `queued` until a --graduate pass consumes it, then `graduated`. */
   status: 'queued' | 'graduated'
+  /**
+   * Enforcement tier this rule should be routed to. Assigned by the
+   * `--graduate` pass — the only place that sees BOTH recurrence-only patterns
+   * (no marker) and reviewer-cited requests. A reviewer marker MAY supply this
+   * as a hint via `enforcement="..."`; absent means "let --graduate classify".
+   *  - `lint`: deterministic, near-zero false positives → propose a lint rule
+   *    (operator implements; graduation never auto-writes a lint).
+   *  - `checklist`: LLM-checkable against a diff → propose an audit-checklist item.
+   *  - `advisory`: judgment-heavy, not mechanically checkable → practices.md prose only.
+   */
+  enforcement?: 'lint' | 'checklist' | 'advisory'
 }
 
 export interface ManifestItem {
@@ -679,6 +690,29 @@ export interface OrchestratorOptions {
    * `--dry-run` to preview the strip without committing/pushing).
    */
   readonly cleanup: boolean
+
+  /**
+   * Audit-an-existing-PR mode (2026-06-26). Standalone, operator-invoked,
+   * read-only: run the Layer B standards audit (the same checklist +
+   * doc-context the migrate-loop critic uses, `judgeAudit`) against a PR's
+   * diff fetched via `gh pr diff` — INCLUDING merged PRs and PRs authored by
+   * others. Decoupled from manifest status + worktree (`--review-sweep` only
+   * walks open `awaiting_review` items with a local worktree; a merged PR is
+   * reconciled to `done` and dropped before any audit runs).
+   *
+   * Use case: validate migration PRs landed by someone else (or taken over
+   * while the operator was OOO) against the audit checklist — do they meet
+   * the criteria we enforce, do they pass audit. Reports HIGH violations
+   * (would-block) + MEDIUM/LOW advisory notes; never edits, comments, or
+   * merges.
+   *
+   * Value is one or more PR numbers / URLs, comma- or space-separated
+   * (`--audit-pr=5012,5013`). Component + tier are resolved from the manifest
+   * (by PR url / branch match) when present, else best-effort from the PR
+   * title / branch; unknown tier loads the full doc context. Mutually
+   * exclusive with other modes. CLI: `--audit-pr=<n>[,<n>...]`.
+   */
+  readonly auditPr: string | null
 
   /**
    * Override the branch name that the orchestrator creates for this run.

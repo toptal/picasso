@@ -41,6 +41,7 @@ import {
   runBatch,
   runReviewSweep,
   runCleanup,
+  runAuditPr,
   parseOptions,
   assertMcpConfig,
   presetLabelForModel,
@@ -338,7 +339,9 @@ async function main(): Promise<void> {
       `  maxIterations=${opts.maxIterations} maxCIIterations=${opts.maxCIIterations} ciTimeoutMinutes=${opts.ciTimeoutMinutes}\n` +
       `  batch=${opts.batch} reviewSweep=${opts.reviewSweep} cleanup=${
         opts.cleanup
-      } withStandards=${opts.withStandards} dryRun=${opts.dryRun ?? false}\n` +
+      } auditPr=${opts.auditPr ?? '(none)'} withStandards=${
+        opts.withStandards
+      } dryRun=${opts.dryRun ?? false}\n` +
       `  withMcp=${opts.withMcp} noMerge=${opts.noMerge ?? false}\n` +
       `  baseBranch=${opts.baseBranch ?? '(workflow default)'} branch=${
         opts.branch ?? '(workflow default)'
@@ -367,6 +370,10 @@ async function main(): Promise<void> {
   // Phase 3.5 redesign — modes are mutually exclusive in priority order:
   //   --graduate      → run lessons-learned → practices.md graduation pass,
   //                     no worktree/agent loop. Doc-curation only.
+  //   --audit-pr=<n>  → read-only standards audit of an existing (incl. merged
+  //                     / other-authored) PR's diff via gh pr diff. No worktree,
+  //                     no manifest-status gating, no edits/merge. One or more
+  //                     PR numbers/URLs, comma-separated.
   //   --cleanup       → strip review-aid comments from one open PR's diff
   //                     before a manual merge (single agent, no merge). Needs
   //                     --component (optional --variant, --dry-run).
@@ -389,18 +396,31 @@ async function main(): Promise<void> {
           status: gradResult.status,
           exitCode: gradResult.exitCode,
           practicesPath: path.relative(rootDir, gradResult.practicesPath),
+          proposedChecklistItems: gradResult.proposedChecklistItems,
+          lintCandidates: gradResult.lintCandidates,
         },
         null,
         2
       )}`
     )
+    if (
+      gradResult.proposedChecklistItems > 0 ||
+      gradResult.lintCandidates > 0
+    ) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `\n[graduate] ${gradResult.proposedChecklistItems} checklist item(s) + ${gradResult.lintCandidates} lint candidate(s) proposed — see the "Proposed checklist additions" / "Proposed lint candidates" sections in the summary above and hand-apply them (operator confirms placement).`
+      )
+    }
     if (gradResult.exitCode !== 0) {
       process.exit(gradResult.exitCode)
     }
 
     return
   }
-  const result = opts.cleanup
+  const result = opts.auditPr
+    ? await runAuditPr(workflow, opts)
+    : opts.cleanup
     ? await runCleanup(workflow, opts)
     : opts.reviewSweep
     ? await runReviewSweep(workflow, opts)
@@ -412,6 +432,11 @@ async function main(): Promise<void> {
   console.log(`\nResult: ${JSON.stringify(result, null, 2)}`)
   if (result.status === 'escalated') {
     process.exit(2)
+  }
+  // --audit-pr: distinct non-zero exit so a script auditing a list of PRs can
+  // detect "at least one PR has HIGH findings" without parsing stdout.
+  if (result.status === 'audit-findings') {
+    process.exit(3)
   }
 }
 
