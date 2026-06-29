@@ -48,6 +48,20 @@ imports; group context contract preserved; Storybook-Happo green as of iter 2). 
 rationale + per-fix history: PR description. If the operator prefers the Base UI composition
 despite the API gaps, escalate before merge — do not silently rework.
 
+## Approved visual deltas
+
+Intentional, designer-accepted visual change shipped with this migration. The Happo gate
+waives the snapshots listed below (per-snapshot; any *unlisted* diff still fails).
+
+**Reason.** `Radio.Group`'s `spacing` prop was silently ignored on master — the line
+`spacing ?? horizontal ? themeSpacing(2) : 0` parses (by JS precedence) as
+`(spacing ?? horizontal) ? 16 : 0`, so any non-nullish `spacing` was forced to `16px`. The
+migration corrects this to `spacing ?? (horizontal ? 16 : 0)`, so the prop is now honored.
+The picasso-forms Form Default story (`packages/picasso-forms/src/Form/story/Default.example.tsx:109`,
+`<RadioGroup horizontal spacing={8}>`) therefore renders an **8px** gap where master forced
+**16px** — a deliberate fix, confirmed intended (8px is the design-correct gap). See the
+`@toptal/picasso-radio` changeset.
+
 ## Known gotchas
 - Group context: Picasso's existing `RadioGroup` provides a context (`name`, `value`, `onChange`) consumed by child `<Radio>` items. Preserve that contract — children should continue to work as a controlled group.
 - `<FormControlLabel classes={{ root, label }}>` wrap at line 92 — same plumbing pattern as Checkbox.
