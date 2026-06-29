@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import type { Field, OptionGroup } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
+  type Field,
+  type OptionGroup,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'

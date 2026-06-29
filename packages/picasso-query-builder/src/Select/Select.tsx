@@ -3,12 +3,11 @@ import React, { useMemo } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Select as PicassoSelect } from '@toptal/picasso-select'
 import type { VersatileSelectorProps } from 'react-querybuilder'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
-import styles from './styles'
+import { rootClassName } from './styles'
 
 interface Props
   extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
@@ -16,8 +15,6 @@ interface Props
     ValueEditorValidationProps {
   valueEditorTestId?: string
 }
-
-const useStyles = makeStyles(styles)
 
 export const Select = ({
   options,
@@ -32,8 +29,6 @@ export const Select = ({
   valueEditorTestId,
   renderOption,
 }: Props) => {
-  const classes = useStyles()
-
   const formattedOptions = useMemo(
     () => generateSelectOptions(options),
     [options]
@@ -45,7 +40,7 @@ export const Select = ({
   })
 
   return (
-    <Container className={cx(className, classes.root)}>
+    <Container className={twMerge(className, rootClassName)}>
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}

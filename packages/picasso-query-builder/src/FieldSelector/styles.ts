@@ -1,8 +1,1 @@
-import { createStyles } from '@material-ui/core/styles'
-
-export default () =>
-  createStyles({
-    tooltipOptionText: {
-      width: '100%',
-    },
-  })
+export const tooltipOptionTextClassName = 'w-full'

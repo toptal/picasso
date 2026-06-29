@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import type { RuleType, ValidationResult } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
+  type RuleType,
+  type ValidationResult,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Typography } from '@toptal/picasso'

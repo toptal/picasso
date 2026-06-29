@@ -1,202 +1,166 @@
-/* eslint-disable */
-
 /**
- * we moved the styles from react query builder library css file to styled components to fix problem
- * related to cdn caching issue causing an error in production.
- * Issue URL: https://toptal-core.atlassian.net/browse/ER-28394
+ * Layout + drag-and-drop + branch-connector styling for react-querybuilder's
+ * generated DOM, ported from JSS to Tailwind arbitrary descendant variants.
+ *
+ * These styles originally lived in react-querybuilder's CSS file; they were moved
+ * into the codebase to dodge a CDN-caching production bug (ER-28394). They target
+ * react-querybuilder's standard classnames (`.ruleGroup`, `.rule`, `.betweenRules`,
+ * `.dndOver`, `.queryBuilder-branches`, …) as descendants of the QueryBuilder root.
+ *
+ * Every entry is a complete static string literal so Tailwind's content scanner
+ * picks it up — do NOT build these via interpolation.
+ *
+ * Token mapping (@toptal/picasso-provider palette → picasso-tailwind):
+ *   common.white #fff → white | grey.light2 #d8d9dc → gray-400
+ *   blue.light #25a9ef → blue-400 | purple.main #6727cf → purple-500
+ *   green.lighter #eafbf5 → green-100
+ * Spacing: SPACING_6 1.5rem (p-6) | SPACING_4 1rem (gap-4/ml-6) | SPACING_2 0.5rem (pb-2).
+ * Branch geometry literals preserved verbatim (0.75rem indent, 0.0625rem hairline).
  */
-import { SPACING_2, SPACING_4, SPACING_6, palette } from '@toptal/picasso-provider'
 
-// Basic
-const rqbSpacing = `${SPACING_6}rem`
-const rqbSmallSpacing = `${SPACING_4}rem`
-const rqbWhiteBackgroundColor = palette.common.white
-const rqbBorderColor = palette.grey.light2
-const rqbBorderStyle = 'solid'
-const rqbBorderRadius = '0.5rem'
-const rqbBorderWidth = '0.0625rem'
+const layout: string[] = [
+  '[&_.ruleGroup]:flex',
+  '[&_.ruleGroup]:flex-col',
+  '[&_.ruleGroup]:gap-4',
+  '[&_.ruleGroup]:p-6',
+  '[&_.ruleGroup]:border',
+  '[&_.ruleGroup]:border-solid',
+  '[&_.ruleGroup]:border-gray-400',
+  '[&_.ruleGroup]:rounded-md',
+  '[&_.ruleGroup]:bg-white',
+  '[&_.ruleGroup]:-m-px',
 
-// Drag-and-drop
-const rqbDndSpacing = `${SPACING_2}rem`
-const rqbDndHoverBorderBottomColor = palette.purple.main
-const rqbDndHoverCopyBorderBottomColor = palette.green.lighter
-const rqbDndHoverBorderBottomStyle = 'dashed'
-const rqbDndHoverBorderBottomWidth = '0.125rem'
+  '[&_.ruleGroup_.ruleGroup-body]:flex',
+  '[&_.ruleGroup_.ruleGroup-body]:flex-col',
+  '[&_.ruleGroup_.ruleGroup-body]:gap-4',
+  '[&_.ruleGroup_.ruleGroup-body:empty]:hidden',
 
-// Branches
-const rqbBranchIndent = '0.75rem'
-const rqbBranchRadius = '0'
-const rqbBranchColorLight = palette.blue.light
-const rqbBranchWidth = rqbBorderWidth
-const rqbBranchStyle = rqbBorderStyle
+  '[&_.ruleGroup_.ruleGroup-header]:flex',
+  '[&_.ruleGroup_.ruleGroup-header]:gap-4',
+  '[&_.ruleGroup_.ruleGroup-header]:items-center',
+  '[&_.ruleGroup_.rule]:flex',
+  '[&_.ruleGroup_.rule]:gap-4',
+  '[&_.ruleGroup_.rule]:items-center',
+  '[&_.ruleGroup_.rule]:flex-wrap',
+  // The legacy `.rule-value-list-item` rule used an invalid `margineft` property
+  // (a typo) and therefore never applied; dropped to preserve behavioral parity.
+]
 
-export const queryBuilderGlobalStyles = () => ({
-  '& .ruleGroup': {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: rqbSmallSpacing,
-    padding: rqbSpacing,
-    borderColor: rqbBorderColor,
-    borderStyle: rqbBorderStyle,
-    borderRadius: rqbBorderRadius,
-    borderWidth: rqbBorderWidth,
-    backgroundColor: rqbWhiteBackgroundColor,
-    margin: '-1px',
+const dndHover: string[] = [
+  // inline combinators disabled → purple drop line (green when copying)
+  '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:border-b-2',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:[border-bottom-style:dashed]',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:border-b-purple-500',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:pb-2',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:border-b-2',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:[border-bottom-style:dashed]',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:border-b-purple-500',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:pb-2',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.rule.dndCopy]:border-b-green-100',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header.dndCopy]:border-b-green-100',
 
-    '& .ruleGroup-body': {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: rqbSmallSpacing,
+  // inline combinators enabled → green drop line
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:[border-bottom-style:dashed]',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:border-b-green-100',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:pb-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:[border-bottom-style:dashed]',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:border-b-green-100',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:pb-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:[border-bottom-style:dashed]',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:border-b-green-100',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:pb-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:[border-bottom-style:dashed]',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:border-b-green-100',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:pb-2',
+]
 
-      '&:empty': {
-        display: 'none',
-      },
-    },
+const dndDrag: string[] = [
+  '[&_.ruleGroup.dndDragging]:opacity-50',
+  '[&_.rule.dndDragging]:opacity-50',
+  '[&_.ruleGroup_.queryBuilder-dragHandle]:cursor-move',
+  '[&_.rule_.queryBuilder-dragHandle]:cursor-move',
+  '[&_[data-dnd=disabled]_.queryBuilder-dragHandle]:hidden',
+]
 
-    '& .ruleGroup-header, .rule': {
-      display: 'flex',
-      gap: rqbSmallSpacing,
-      alignItems: 'center',
-    },
+// Branch connector lines (::before / ::after) around nested rules and groups.
+const branches: string[] = [
+  '[&_.queryBuilder-branches_.ruleGroup-body]:ml-6',
 
-    '& .rule': {
-      flexWrap: 'wrap',
-      '& .rule-value': {
-        '& .rule-value-list-item:not(:first-of-type)': {
-          margineft: rqbSmallSpacing,
-        },
-      },
-    },
-  },
+  // `.rule` connectors
+  '[&_.queryBuilder-branches_.rule]:relative',
+  "[&_.queryBuilder-branches_.rule]:before:content-['']",
+  '[&_.queryBuilder-branches_.rule]:before:absolute',
+  '[&_.queryBuilder-branches_.rule]:before:w-3',
+  '[&_.queryBuilder-branches_.rule]:before:-left-4',
+  '[&_.queryBuilder-branches_.rule]:before:border-blue-400',
+  '[&_.queryBuilder-branches_.rule]:before:border-solid',
+  '[&_.queryBuilder-branches_.rule]:before:rounded-none',
+  '[&_.queryBuilder-branches_.rule]:before:-top-4',
+  '[&_.queryBuilder-branches_.rule]:before:[height:calc(50%_+_1rem)]',
+  '[&_.queryBuilder-branches_.rule]:before:[border-width:0_0_0.0625rem_0.0625rem]',
+  "[&_.queryBuilder-branches_.rule]:after:content-['']",
+  '[&_.queryBuilder-branches_.rule]:after:absolute',
+  '[&_.queryBuilder-branches_.rule]:after:w-3',
+  '[&_.queryBuilder-branches_.rule]:after:-left-4',
+  '[&_.queryBuilder-branches_.rule]:after:border-blue-400',
+  '[&_.queryBuilder-branches_.rule]:after:border-solid',
+  '[&_.queryBuilder-branches_.rule]:after:rounded-none',
+  '[&_.queryBuilder-branches_.rule]:after:top-1/2',
+  '[&_.queryBuilder-branches_.rule]:after:h-1/2',
+  '[&_.queryBuilder-branches_.rule]:after:[border-width:0_0_0_0.0625rem]',
+  '[&_.queryBuilder-branches_.rule:last-child]:before:rounded-bl-none',
+  '[&_.queryBuilder-branches_.rule:last-child]:after:hidden',
 
-  /* Drag-and-drop */
+  // nested `.ruleGroup .ruleGroup` connectors. The legacy JSS defined a +1px
+  // (`calc(-1rem - 1px)`) override block for these, but the base connector block
+  // wins in the deployed baseline, so the connector geometry matches `.rule`
+  // (-16px offsets). Only the `p-4` padding from the override survives.
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:relative',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:p-4',
+  "[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:content-['']",
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:absolute',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:w-3',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:-left-4',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:border-blue-400',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:border-solid',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:rounded-none',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:-top-4',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[height:calc(50%_+_1rem)]',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:[border-width:0_0_0.0625rem_0.0625rem]',
+  "[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:content-['']",
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:absolute',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:w-3',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:-left-4',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:border-blue-400',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:border-solid',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:rounded-none',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:top-1/2',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:h-1/2',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:after:[border-width:0_0_0_0.0625rem]',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup:last-child]:before:rounded-bl-none',
+  '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup:last-child]:after:hidden',
 
-  /* Hover styles */
-  '& [data-inlinecombinators="disabled"]': {
-    '& .dndOver': {
-      '&.rule, &.ruleGroup-header': {
-        borderBottomWidth: rqbDndHoverBorderBottomWidth,
-        borderBottomStyle: rqbDndHoverBorderBottomStyle,
-        borderBottomColor: rqbDndHoverBorderBottomColor,
-        paddingBottom: rqbDndSpacing,
+  // `.betweenRules` connector (single ::before)
+  '[&_.queryBuilder-branches_.betweenRules]:relative',
+  "[&_.queryBuilder-branches_.betweenRules]:before:content-['']",
+  '[&_.queryBuilder-branches_.betweenRules]:before:absolute',
+  '[&_.queryBuilder-branches_.betweenRules]:before:w-3',
+  '[&_.queryBuilder-branches_.betweenRules]:before:[left:calc(-0.75rem_-_0.0625rem)]',
+  '[&_.queryBuilder-branches_.betweenRules]:before:border-gray-400',
+  '[&_.queryBuilder-branches_.betweenRules]:before:border-solid',
+  '[&_.queryBuilder-branches_.betweenRules]:before:rounded-none',
+  '[&_.queryBuilder-branches_.betweenRules]:before:top-4',
+  '[&_.queryBuilder-branches_.betweenRules]:before:[height:calc(100%_+_1rem)]',
+  '[&_.queryBuilder-branches_.betweenRules]:before:[border-width:0_0_0_0.0625rem]',
+]
 
-        '&.dndCopy': {
-          borderBottomColor: rqbDndHoverCopyBorderBottomColor,
-        },
-      },
-    },
-  },
-
-  '& [data-inlinecombinators="enabled"]': {
-    '& .dndOver': {
-      '&.rule:last-child, &.ruleGroup-header, &.rule + .betweenRules, &.betweenRules':
-        {
-          borderBottomWidth: rqbDndHoverBorderBottomWidth,
-          borderBottomStyle: rqbDndHoverBorderBottomStyle,
-          borderBottomColor: rqbDndHoverCopyBorderBottomColor,
-          paddingBottom: rqbDndSpacing,
-
-          '&.dndCopy': {
-            borderBottomColor: rqbDndHoverCopyBorderBottomColor,
-          },
-        },
-    },
-  },
-
-  /* Drag styles */
-  '& .ruleGroup, .rule': {
-    '&.dndDragging': {
-      opacity: 0.5,
-    },
-
-    '& .queryBuilder-dragHandle': {
-      cursor: 'move',
-    },
-  },
-
-  '& [data-dnd="disabled"] .queryBuilder-dragHandle': {
-    display: 'none',
-  },
-
-  /* Branches */
-  '& .queryBuilder-branches': {
-    '& .ruleGroup-body': {
-      marginLeft: `calc(2 * ${rqbBranchIndent})`,
-    },
-
-    '& .rule, .ruleGroup .ruleGroup': {
-      position: 'relative',
-
-      '&::before, &::after': {
-        content: '""',
-        width: rqbBranchIndent,
-        left: `-${rqbSmallSpacing}`,
-        borderColor: rqbBranchColorLight,
-        borderStyle: rqbBranchStyle,
-        borderRadius: rqbBranchRadius,
-        position: 'absolute',
-      },
-
-      '&::before': {
-        content: '""',
-        top: `-${rqbSmallSpacing}`,
-        height: `calc(50% + ${rqbSmallSpacing})`,
-        borderWidth: `0 0 ${rqbBranchWidth} ${rqbBranchWidth}`,
-      },
-
-      '&:last-child::before': {
-        content: '""',
-        borderBottomLeftRadius: 0,
-      },
-
-      '&::after': {
-        content: '""',
-        top: '50%',
-        height: '50%',
-        borderWidth: `0 0 0 ${rqbBranchWidth}`,
-      },
-
-      '&:last-child::after': {
-        content: '""',
-        display: 'none',
-      },
-    },
-
-    '& .ruleGroup .ruleGroup': {
-      padding: rqbSmallSpacing,
-
-      '&::before, &::after': {
-        content: '""',
-        left: `calc(-${rqbSmallSpacing} - ${rqbBranchWidth})`,
-      },
-
-      '&::before': {
-        content: '""',
-        top: `calc(-${rqbSmallSpacing} - ${rqbBorderWidth})`,
-        height: `calc(50% + ${rqbSmallSpacing} + ${rqbBorderWidth})`,
-      },
-
-      '&::after': {
-        content: '""',
-        height: `calc(50% + ${rqbBorderWidth})`,
-      },
-    },
-
-    '& .betweenRules': {
-      position: 'relative',
-
-      '&::before': {
-        content: '""',
-        width: rqbBranchIndent,
-        left: `calc(-${rqbBranchIndent} - ${rqbBranchWidth})`,
-        borderColor: rqbBorderColor,
-        borderStyle: rqbBranchStyle,
-        borderRadius: rqbBranchRadius,
-        position: 'absolute',
-        top: rqbSmallSpacing,
-        height: `calc(100% + ${rqbSmallSpacing})`,
-        borderWidth: `0 0 0 ${rqbBranchWidth}`,
-      },
-    },
-  },
-})
+export const queryBuilderGlobalStyles: string[] = [
+  ...layout,
+  ...dndHover,
+  ...dndDrag,
+  ...branches,
+]
