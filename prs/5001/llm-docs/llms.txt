@@ -105,6 +105,7 @@
 ## Overlays
 
 - [Modal](./components/modal.md): A modal displays content that temporarily blocks interactions with the main view of a site.
+- [Popper](./components/popper.md): Popper is a low-level positioning primitive.
 - [PromptModal](./components/promptmodal.md): Predefined modal for short prompts that asks user for input.
 - [Tooltip](./components/tooltip.md): Tooltips display informative text when users hover over, focus on, or tap an element
 

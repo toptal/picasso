@@ -98,6 +98,7 @@ LLM-optimized documentation generated from Picasso Storybook stories.
 ## Overlays
 
 - [Modal](./modal.md): A modal displays content that temporarily blocks interactions with the main view of a site.
+- [Popper](./popper.md): Popper is a low-level positioning primitive.
 - [PromptModal](./promptmodal.md): Predefined modal for short prompts that asks user for input.
 - [Tooltip](./tooltip.md): Tooltips display informative text when users hover over, focus on, or tap an element
 
