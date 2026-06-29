@@ -1,5 +1,22 @@
 # @toptal/picasso-typography-overflow
 
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`c40f4aa`](https://github.com/toptal/picasso/commit/c40f4aa6b465a22b54a316c1088b59cd63724b9d)]:
+  - @toptal/picasso-typography@5.1.0
+  - @toptal/picasso-tooltip@2.0.7
+
+## 4.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tooltip@2.0.6
+  - @toptal/picasso-typography@5.0.1
+  - @toptal/picasso-utils@4.0.1
+
 ## 4.0.6
 
 ### Patch Changes

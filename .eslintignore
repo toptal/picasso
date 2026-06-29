@@ -5,3 +5,7 @@ build
 node_modules
 !.changeset
 .changeset/README.md
+docs/migration
+docs/modernization
+bin
+migration-runs

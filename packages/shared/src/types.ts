@@ -2,8 +2,6 @@ import type {
   CSSProperties,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  ElementType,
-  ComponentPropsWithRef,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -48,18 +46,34 @@ export type OmitInternalProps<T, K = ''> = Pick<
   Exclude<keyof T, keyof JssProps | K>
 >
 
-type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
-  as?: T
-} & ComponentPropsWithRef<T>
-
-interface NamedComponent<P> {
+export interface NamedComponent<P> {
   defaultProps?: Partial<P>
   displayName?: string
 }
+
+// TODO: [FF-125] inherit the `as` target's props for full polymorphic
+// typing — https://toptal-core.atlassian.net/browse/FF-125
+//
+// Strict on declared props, permissive on extras. Declared `P` fields are
+// type-checked at call sites (e.g. `<Button size='wrong'>` still errors).
+// Any other prop is accepted untyped. That is what keeps the polymorphic
+// `as` usage working without a generic call signature, and what lets
+// `forwardRef<HTMLElement, Props>(...)` assign directly.
+//
+// Trade-off versus the previous shape: TypeScript no longer infers prop
+// types from the `as` target. `<Button as={Link} to={42} />` and
+// `<Button as='a' href={42} />` won't validate `to`/`href` against the
+// target's props; the extras come through as `any`.
+//
+// The proper fix is a type that inherits the `as` target's props (HTML
+// element or component) so the examples above type-check against the real
+// target, without regressing the internal `forwardRef` sites whose Props
+// have required fields (Page.Article, Breadcrumbs.Item, OverviewBlock).
+// Those sites broke the previous generic call-signature shape under the
+// TS 5.5 variance change.
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
-  <T extends ElementType = ElementType<Omit<P, 'as'>>>(
-    props: PropsWithOverridableAs<T, P>
-  ): JSX.Element | null
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (props: P & { [key: string]: any }): JSX.Element | null
 }
 
 type BaseEnvironments = 'development' | 'staging' | 'production'

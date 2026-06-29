@@ -20,22 +20,35 @@ import { getInputClassName } from './stylesInput'
 import { getRows } from './utils'
 import type { Props } from './types'
 
+const getResetButtonClassName = (
+  visibility: 'hover' | 'always',
+  hasValue: boolean
+) => {
+  if (visibility === 'always') {
+    return 'visible'
+  }
+
+  return twJoin(
+    'invisible',
+    hasValue && 'peer-focus:visible peer-active:visible group-hover:visible'
+  )
+}
+
 const ResetButton = ({
   hasValue,
+  visibility = 'hover',
   onClick,
   testIds,
 }: {
   hasValue: boolean
+  visibility?: 'hover' | 'always'
   onClick: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
   testIds?: Props['testIds']
 }) => (
   <InputAdornment
     data-testid={testIds?.resetButton}
     position='end'
-    className={twJoin(
-      'invisible',
-      hasValue && 'peer-focus:visible peer-active:visible group-hover:visible'
-    )}
+    className={getResetButtonClassName(visibility, hasValue)}
   >
     <ButtonCircular
       tabIndex={-1}
@@ -96,6 +109,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     endAdornment: userDefinedEndAdornment,
     onChange,
     enableReset,
+    resetVisibility,
     disabled,
     inputRef,
     testIds,
@@ -113,6 +127,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       {shouldShowReset && (
         <ResetButton
           hasValue={Boolean(value)}
+          visibility={resetVisibility}
           onClick={onResetClick}
           testIds={testIds}
         />

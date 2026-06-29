@@ -1,5 +1,13 @@
 # @toptal/picasso-backdrop
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-fade@1.0.10
+
 ## 2.0.0
 
 ### Major Changes

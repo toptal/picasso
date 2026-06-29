@@ -22,7 +22,7 @@ const getIcon = ({
   iconPosition?: IconPositionType
 }) => {
   if (!icon) {
-    return null
+    return undefined
   }
 
   const iconClassNames = createIconClassNames({

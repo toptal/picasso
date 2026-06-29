@@ -1,5 +1,12 @@
 # @toptal/picasso-slide
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@4.0.1
+
 ## 1.0.4
 
 ### Patch Changes
