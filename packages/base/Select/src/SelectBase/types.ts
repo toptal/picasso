@@ -4,7 +4,7 @@ import type {
   ChangeEvent,
   ReactNode,
 } from 'react'
-import type PopperJs from 'popper.js'
+import type { PopperHandle } from '@toptal/picasso-popper'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import type { OutlinedInputProps, Status } from '@toptal/picasso-outlined-input'
 
@@ -170,7 +170,7 @@ export interface UseSelectProps<
 > {
   searchInputRef?: React.Ref<HTMLInputElement>
   selectRef: React.Ref<HTMLInputElement>
-  popperRef?: React.Ref<PopperJs>
+  popperRef?: React.Ref<PopperHandle>
   selectProps: SelectProps<T, M, V>
   selectState: UseSelectStateOutput
 }

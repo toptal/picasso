@@ -48,8 +48,7 @@
   "devDependencies": {
     "@toptal/picasso-tailwind": "workspace:*",
     "@toptal/picasso-tailwind-merge": "workspace:*",
-    "@toptal/picasso-test-utils": "workspace:*",
-    "popper.js": "^1.16.1"
+    "@toptal/picasso-test-utils": "workspace:*"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

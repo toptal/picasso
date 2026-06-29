@@ -1,9 +1,22 @@
 import type { MouseEvent } from 'react'
 import { useCallback, useRef } from 'react'
-import type PopperJs from 'popper.js'
 import debounce from 'debounce'
 
 import type { TooltipState } from './use-tooltip-state'
+
+// Structural stand-in for the popper.js v1 Popper class; `never` on unused
+// fields satisfies the structural subtype check against MUI's Ref<PopperJs>
+// without importing from popper.js. Removed when Tooltip migrates from MUI v4.
+interface MUIPopperInstance {
+  options: never
+  popper: never
+  reference: never
+  destroy: () => void
+  update: () => void
+  scheduleUpdate: () => void
+  enableEventListeners: () => void
+  disableEventListeners: () => void
+}
 
 interface UseTooltipFollowCursorOptions {
   followCursor: boolean
@@ -32,7 +45,7 @@ export const useTooltipFollowCursor = ({
   const { targetHoveredRef, openTooltip, closeTooltip } = tooltipState
   const positionRef = useRef<CursorPosition>({ x: 0, y: 0 })
   const mouseMoveStartPositionRef = useRef<CursorPosition | null>(null)
-  const popperRef = useRef<PopperJs | null>(null)
+  const popperRef = useRef<MUIPopperInstance | null>(null)
 
   const handleMouseStop = useCallback(() => {
     if (targetHoveredRef.current) {
