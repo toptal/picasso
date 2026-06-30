@@ -697,7 +697,7 @@ importers:
         version: link:../Icons
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
-        version: 4.0.0(tailwindcss@4.2.1)
+        version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
         version: link:../Typography
@@ -3065,9 +3065,6 @@ importers:
       '@toptal/picasso-provider':
         specifier: workspace:*
         version: link:../../picasso-provider
-      '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
-        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
