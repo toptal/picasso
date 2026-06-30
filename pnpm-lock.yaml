@@ -3068,6 +3068,9 @@ importers:
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       ap-style-title-case:
         specifier: ^1.1.2
         version: 1.1.2
@@ -3899,9 +3902,6 @@ importers:
 
   packages/picasso-tailwind-merge:
     dependencies:
-      '@toptal/picasso-utils':
-        specifier: workspace:*
-        version: link:../base/Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
