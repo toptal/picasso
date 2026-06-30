@@ -3074,6 +3074,9 @@ importers:
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       ap-style-title-case:
         specifier: ^1.1.2
         version: 1.1.2
