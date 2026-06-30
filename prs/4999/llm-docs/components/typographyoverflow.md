@@ -24,7 +24,7 @@ Show tooltip when typography overflows
 | invert | `boolean` | - | Invert color |
 | color | `"inherit" \| "green" \| "red" \| "yellow" \| "light-grey" \| "grey" \| "grey-main-2" \| "dark-grey" \| "black" \| "light-blue"` | - | Text color |
 | noWrap | `boolean` | - | Enable ellipsis for overflowing text |
-| as | `ElementType<HTMLAttributes<HTMLElement>>` | - | Rendered HTML markup |
+| as | `ElementType<any>` | - | Rendered HTML markup |
 | underline | `"solid" \| "dashed"` | - | Controls when the Typography should have an underline |
 | lineThrough | `boolean` | - | Controls when the Typography should have line through |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |

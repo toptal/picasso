@@ -17,7 +17,7 @@ Menu list.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| as | `ElementType<any>` | `li` | Component name to render the item as |
+| as | `ElementType` | `li` | Component name to render the item as |
 | disabled | `boolean` | - | Whether to render disabled item |
 | disableGutters | `boolean` | - | Whether to render without internal padding |
 | menu | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Adds an arrow to the item |
