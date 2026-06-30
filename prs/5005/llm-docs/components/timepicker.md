@@ -19,6 +19,7 @@ Time Picker component
 | name | `string` | - | Name attribute of the input element |
 | width | `"full" \| "shrink" \| "auto"` | - | Width of the component |
 | enableReset | `boolean` | - | Whether to render reset icon when there is a value in the input |
+| resetVisibility | `"hover" \| "always"` | - | Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true. |
 | onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
 | outlineRef | `Ref<HTMLElement>` | - | Ref of the input outline |
 
