@@ -3908,9 +3908,6 @@ importers:
 
   packages/picasso-tailwind-merge:
     dependencies:
-      '@toptal/picasso-utils':
-        specifier: workspace:*
-        version: link:../base/Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
