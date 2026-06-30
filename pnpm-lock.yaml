@@ -40,9 +40,6 @@ overrides:
   js-yaml: ^3.13.1
 
 patchedDependencies:
-  '@base-ui/utils@0.2.8':
-    hash: 9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835
-    path: packages/base/Modal/patches/@base-ui__utils@0.2.8.patch
   '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0':
     hash: 3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a
     path: patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch
@@ -19273,7 +19270,7 @@ snapshots:
   '@base-ui/react@1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@base-ui/utils': 0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/utils': 0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/react-dom': 2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@floating-ui/utils': 0.2.11
       react: 18.2.0
@@ -19283,7 +19280,7 @@ snapshots:
       '@types/react': 17.0.39
       date-fns: 2.30.0
 
-  '@base-ui/utils@0.2.8(patch_hash=9a4fb583c8cbe995c99259e9fec7b0e81205a1cc2177eabd583dc867fc11f835)(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@base-ui/utils@0.2.8(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@floating-ui/utils': 0.2.11
