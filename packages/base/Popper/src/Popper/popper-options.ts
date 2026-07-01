@@ -99,10 +99,10 @@ export const getPopperOptions = (
 })
 
 // popper.js v1 offset format: "<skidding>, <distance>" (e.g. '-10px,6px') or
-// a single skidding number. Maps to floating-ui's crossAxis/mainAxis.
+// a single distance number. Maps to floating-ui's crossAxis/mainAxis.
 const parsePopperOffset = (value: number | string) => {
   if (typeof value === 'number') {
-    return { crossAxis: value, mainAxis: 0 }
+    return { crossAxis: 0, mainAxis: value }
   }
 
   const [skidding = '0', distance = '0'] = value.split(',')
