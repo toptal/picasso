@@ -816,9 +816,6 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/Avatar:
     dependencies:
@@ -1226,10 +1223,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-    devDependencies:
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/DateSelect:
     dependencies:
@@ -1314,9 +1307,6 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/Dropzone:
     dependencies:
@@ -2281,9 +2271,9 @@ importers:
 
   packages/base/Popper:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@floating-ui/react':
+        specifier: ^0.27.0
+        version: 0.27.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-modal-context':
         specifier: workspace:*
         version: link:../ModalContext
@@ -2306,9 +2296,6 @@ importers:
       '@toptal/picasso-provider':
         specifier: workspace:*
         version: link:../../picasso-provider
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/PromptModal:
     dependencies:
@@ -2513,9 +2500,6 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/ShowMore:
     dependencies:
@@ -2832,15 +2816,15 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-popper':
+        specifier: workspace:*
+        version: link:../Popper
       '@toptal/picasso-tailwind':
         specifier: workspace:*
         version: link:../../picasso-tailwind
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/Test-Utils:
     dependencies:
@@ -2950,9 +2934,6 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
 
   packages/base/TreeView:
     dependencies:
@@ -3403,9 +3384,6 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
       react-router-dom:
         specifier: ^5.3.4
         version: 5.3.4(react@18.2.0)
@@ -5324,6 +5302,12 @@ packages:
 
   '@floating-ui/react-dom@2.1.8':
     resolution: {integrity: sha512-cC52bHwM/n/CxS87FH0yWdngEZrjdtLW/qVruo68qg+prK7ZQ4YGdut2GyDVpoGeAYe/h899rVeOVm6Oi40k2A==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+
+  '@floating-ui/react@0.27.19':
+    resolution: {integrity: sha512-31B8h5mm8YxotlE7/AU/PhNAl8eWxAmjL/v2QOxroDNkTFLk3Uu82u63N3b6TXa4EGJeeZLVcd/9AlNlVqzeog==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -16647,6 +16631,9 @@ packages:
     engines: {node: '>=18.18.0'}
     hasBin: true
 
+  tabbable@6.5.0:
+    resolution: {integrity: sha512-wieBHXygIm7OyQOu5hQlkk62/WyCFYGlWg7L6/ZCUZwx0o398Zkn4pVmMyfYhfMG8kGrj/Krt8eIk6UKC6VzwA==}
+
   table@6.8.1:
     resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
     engines: {node: '>=10.0.0'}
@@ -19853,6 +19840,14 @@ snapshots:
       '@floating-ui/dom': 1.7.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+
+  '@floating-ui/react@0.27.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@floating-ui/react-dom': 2.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@floating-ui/utils': 0.2.11
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tabbable: 6.5.0
 
   '@floating-ui/utils@0.2.11': {}
 
@@ -35017,6 +35012,8 @@ snapshots:
       ts-toolbelt: 9.6.0
     transitivePeerDependencies:
       - typescript
+
+  tabbable@6.5.0: {}
 
   table@6.8.1:
     dependencies:
