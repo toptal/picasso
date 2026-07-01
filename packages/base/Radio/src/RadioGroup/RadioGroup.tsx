@@ -1,17 +1,22 @@
 /* eslint-disable react/no-array-index-key */
 import type { ChangeEvent, HTMLAttributes } from 'react'
 import React, { useState } from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
+import { type BaseProps } from '@toptal/picasso-shared'
 import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { SPACING_4 } from '@toptal/picasso-utils'
+import { spacingToPx } from '@toptal/picasso-provider'
 
 import { RadioGroupContext } from '../RadioGroupContext'
 
 type GridSpacing = GridProps['spacing']
 
 // MUI v4 `theme.spacing(2)`, preserved verbatim from the pre-migration default
-const HORIZONTAL_SPACING = 16
+const HORIZONTAL_SPACING = Number.parseInt(
+  spacingToPx(SPACING_4),
+  10
+) as GridSpacing
 
 export interface Props
   extends BaseProps,
@@ -74,11 +79,7 @@ const RadioGroup = ({ horizontal = false, ...props }: Props) => {
       <RadioGroupContext.Provider
         value={{ name, value: groupValue, onChange: handleChange }}
       >
-        <Grid
-          direction={direction}
-          spacing={gridSpacing as GridSpacing}
-          className='mt-0 mb-0'
-        >
+        <Grid direction={direction} spacing={gridSpacing} className='mt-0 mb-0'>
           {items.map((child, index) => (
             <Grid.Item
               key={index}
