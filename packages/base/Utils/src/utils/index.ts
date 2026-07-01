@@ -88,7 +88,7 @@ export { SPACING_6 } from '@toptal/picasso-provider'
 export { SPACING_8 } from '@toptal/picasso-provider'
 export { SPACING_10 } from '@toptal/picasso-provider'
 export { SPACING_12 } from '@toptal/picasso-provider'
-export { spacingToRem } from '@toptal/picasso-provider'
+export { spacingToRem, spacingToPx } from '@toptal/picasso-provider'
 
 export {
   useDeprecationWarning,
