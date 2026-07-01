@@ -4,9 +4,10 @@ import debounce from 'debounce'
 
 import type { TooltipState } from './use-tooltip-state'
 
+// TODO [PF-2203]: Remove once Tooltip migrates from MUI v4.
 // Structural stand-in for the popper.js v1 Popper class; `never` on unused
 // fields satisfies the structural subtype check against MUI's Ref<PopperJs>
-// without importing from popper.js. Removed when Tooltip migrates from MUI v4.
+// without importing from popper.js.
 interface MUIPopperInstance {
   options: never
   popper: never

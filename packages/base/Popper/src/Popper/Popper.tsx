@@ -174,6 +174,7 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     },
   })
 
+  // TODO [PF-2203]: Remove once Tooltip migrates off popper.js.
   // Transitional [PF-1994]: legacy popper.js-positioned descendants (the
   // pre-migration Tooltip) measure synchronously once and re-measure only on
   // scroll/resize. popper.js positioned synchronously, so an open Tooltip
