@@ -8,13 +8,19 @@ figma.connect(
   {
     props: {
       numberOfMonths: figma.enum('Variant', {
+        '1 Month view': 1,
         '2 Month view': 2,
       }),
+      footer: figma.boolean('Footer', {
+        true: <span>Footer content</span>,
+        false: undefined,
+      }),
     },
-    example: ({ numberOfMonths }) => (
+    example: ({ numberOfMonths, footer }) => (
       <DatePicker
         value={undefined}
         numberOfMonths={numberOfMonths}
+        footer={footer}
         onChange={() => {}}
       />
     ),
