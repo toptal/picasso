@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import type PopperJs from 'popper.js'
+import type { PopperHandle } from '@toptal/picasso-popper'
 import { Search16 } from '@toptal/picasso-icons'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { Popper } from '@toptal/picasso-popper'
@@ -92,7 +92,7 @@ export const NonNativeSelect = documentable(
         useRef<HTMLInputElement>(null)
       )
       const searchInputRef = useRef<HTMLInputElement>(null)
-      const popperRef = useRef<PopperJs>(null)
+      const popperRef = useRef<PopperHandle>(null)
       const inputWrapperRef = useRef<HTMLDivElement>(null)
 
       const selectState = useSelectState({

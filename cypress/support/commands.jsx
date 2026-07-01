@@ -48,20 +48,12 @@ Cypress.Commands.add(
 )
 
 // happo-cypress serializes the live DOM and re-renders it statically in the
-// cloud (no JS runs there). @base-ui/react drives enter transitions with a
-// transient `data-starting-style` attribute that it removes on the next
-// animation frame. If a screenshot is serialized before that frame, the
-// attribute pins the element at its starting style (e.g. opacity-0) in the
-// static render, producing a blank capture. Wait for any entering element to
-// settle so the screenshot reflects the final state. No-op for the vast
-// majority of screenshots, where no such element exists.
+// cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
+// frame after mount; if captured before removal, the attribute pins the element
+// at its starting style (e.g. opacity-0), producing a blank capture.
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {
-    // happo-cypress serializes the DOM SYNCHRONOUSLY inside its command body,
-    // so the wait must complete before originalFn is invoked. Calling
-    // originalFn outside .then() would serialize immediately — before the
-    // queued cy.get() retries — capturing the opacity-0 first frame.
     return cy
       .get('[data-starting-style]', { timeout: 4000 })
       .should('not.exist')

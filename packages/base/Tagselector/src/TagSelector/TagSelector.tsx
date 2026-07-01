@@ -7,7 +7,7 @@ import type {
 } from 'react'
 import React, { forwardRef, Fragment } from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import type { PopperOptions } from 'popper.js'
+import type { PopperOptions } from '@toptal/picasso-popper'
 import { Autocomplete } from '@toptal/picasso-autocomplete'
 import { unsafeErrorLog, noop } from '@toptal/picasso-utils'
 import type {

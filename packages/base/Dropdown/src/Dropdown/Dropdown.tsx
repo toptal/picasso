@@ -1,13 +1,12 @@
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
-import type { PopperOptions } from 'popper.js'
+import type { PopperOptions, PopperPlacementType } from '@toptal/picasso-popper'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type {
   DeprecatedSpacingType,
   SpacingType,
 } from '@toptal/picasso-provider'
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
-import type { PopperPlacementType } from '@toptal/picasso-popper'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
 import { ClickAwayListener, noop } from '@toptal/picasso-utils'
