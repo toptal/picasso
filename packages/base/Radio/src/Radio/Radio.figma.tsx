@@ -8,7 +8,7 @@ figma.connect(
   'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=245-11055',
   {
     props: {
-      checked: figma.boolean('On'),
+      checked: figma.enum('On', { True: true }),
       disabled: figma.enum('State', {
         Disabled: true,
       }),
