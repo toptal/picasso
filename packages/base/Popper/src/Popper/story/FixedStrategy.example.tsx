@@ -48,6 +48,7 @@ const Example = () => {
           anchorEl={absoluteAnchorEl}
           placement='bottom-start'
           disablePortal
+          autoWidth={false}
         >
           <PopperContent>Clipped by overflow: hidden</PopperContent>
         </Popper>
@@ -74,7 +75,7 @@ const Example = () => {
           anchorEl={fixedAnchorEl}
           placement='bottom-start'
           disablePortal
-          strategy='fixed'
+          autoWidth={false}
         >
           <PopperContent>
             Not clipped — strategy=&quot;fixed&quot;
