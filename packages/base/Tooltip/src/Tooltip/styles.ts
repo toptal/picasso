@@ -31,6 +31,18 @@ export const createPopupClassNames = (
   // so without this the text falls back to the browser default serif.
   'relative box-border rounded-sm font-sans',
   maxWidth === 'none' ? 'max-w-none' : 'max-w-[18.75rem]',
+  // Restore the legacy MUI open/close animation: the JSS Tooltip used
+  // `TransitionComponent={Grow}` (scale 0.75↔1 + fade, `duration.shorter` =
+  // 200ms), growing out of the anchor. base-ui drives the transition from the
+  // `data-starting-style`/`data-ending-style` attributes it sets on the popup
+  // and exposes the anchor-facing `--transform-origin`, so the tooltip grows
+  // from the edge nearest the anchor exactly as Grow did. Invisible to Happo:
+  // `happoScreenshot` waits for `data-starting-style` to clear (see
+  // cypress/support/commands.jsx), so every capture is the settled frame.
+  'scale-100 opacity-100 [transform-origin:var(--transform-origin)]',
+  'transition-[opacity,scale] duration-200 ease-out',
+  'data-[starting-style]:scale-75 data-[starting-style]:opacity-0',
+  'data-[ending-style]:scale-75 data-[ending-style]:opacity-0',
   // The dark surface is the base; non-compact tooltips flip to the light surface.
   //
   // BOTH surfaces use the `shadow-4` *box-shadow* (= shadows[4], the legacy

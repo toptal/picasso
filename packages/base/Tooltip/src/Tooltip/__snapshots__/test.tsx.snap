@@ -41,7 +41,7 @@ exports[`Tooltip renders with portals disabled 1`] = `
         style="position: absolute; left: 0px; top: 0px; opacity: 0; pointer-events: none; transform: translate(0px, 0px);"
       >
         <div
-          class="relative box-border rounded-sm font-sans max-w shadow-4 bg-white text-graphite p-4 data-[side=top]:my-[0.875rem] data-[side=bottom]:my-[0.875rem] data-[side=left]:mx-[0.875rem] data-[side=right]:mx-[0.875rem]"
+          class="relative box-border rounded-sm font-sans max-w scale-100 opacity-100 [transform-origin:var(--transform transition-[opacity,scale] duration-200 ease-out data-[starting-style]:scale-75 data-[starting-style]:opacity-0 data-[ending-style]:scale-75 data-[ending-style]:opacity-0 shadow-4 bg-white text-graphite p-4 data-[side=top]:my-[0.875rem] data-[side=bottom]:my-[0.875rem] data-[side=left]:mx-[0.875rem] data-[side=right]:mx-[0.875rem]"
           data-align="center"
           data-base-ui-focusable=""
           data-open=""
