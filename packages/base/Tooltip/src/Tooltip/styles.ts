@@ -64,6 +64,19 @@ export const createArrowClassNames = (): string[] => [
   // MUI built this arrow in font-relative `em` (pinned at `fontSize: 1rem`); the
   // sizes are expressed here in `rem` instead, which resolves to the identical
   // px (Rule 7 — use `rem` for all sizes).
+  //
+  // DELIBERATE exception to the whole-pixel styling rule (AGENTS.md §Styling):
+  // `0.71rem` = 11.36px is fractional, but no whole-pixel construction can
+  // exist. A 45°-rotated square clipped to a 16px-base, 90°-apex triangle
+  // requires a side of 8√2 ≈ 11.314px — irrational, so rounding to 11px or
+  // 12px moves the apex and breaks the pixel-match against the MUI baseline
+  // (which itself rasterized at 0.71em = 11.36px). The alternative triangle
+  // constructions can't replace it either: a transparent-border triangle or a
+  // `clip-path` cannot carry this box-shadow (the shadow follows the border
+  // box, not the visible triangle), and Happo grows a snapshot's bbox for
+  // box-shadow only — a `filter: drop-shadow` arrow would crop the shadow
+  // band out of every capture. The fractional height lives only on the
+  // clipped arrow edge, where the MUI baseline shows the same anti-aliasing.
   // base-ui centres the arrow on the cross axis inline (`left` for top/bottom,
   // `top` for left/right); the per-side negative margin seats it flush against
   // and protruding from the popup edge nearest the anchor, and the per-side
