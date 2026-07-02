@@ -2925,6 +2925,9 @@ importers:
       '@toptal/picasso-provider':
         specifier: workspace:*
         version: link:../../picasso-provider
+      '@toptal/picasso-tailwind':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
         version: link:../../picasso-tailwind-merge
