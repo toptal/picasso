@@ -2,6 +2,7 @@ import type { ChangeEvent, MouseEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import type { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import { toReactEvent } from '@toptal/picasso-shared'
+import { isPointerDevice } from '@toptal/picasso-utils'
 
 // followCursor: base-ui's cursor tracking only repositions the popup; it never
 // hides when the pointer roams far from where the tooltip opened. Restore the
@@ -38,7 +39,7 @@ type TooltipState = {
   handleTriggerClick: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseOver: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseMove: (event: MouseEvent<HTMLElement>) => void
-  handleTriggerMouseLeave: () => void
+  handleTriggerMouseLeave: (event: MouseEvent<HTMLElement>) => void
 }
 
 // Picasso owns the open state rather than delegating to @base-ui/react's
@@ -57,18 +58,38 @@ export const useTooltipState = ({
   onTransitionExiting,
   onTransitionExited,
 }: Props): TooltipState => {
+  // `hover: hover`/`pointer: fine` media probe, as the legacy hook used. On
+  // touch devices the tooltip opens on tap (see handleTriggerClick) and
+  // followCursor is unsupported entirely — parity with @material-ui@5.
+  const isTouchDevice = !isPointerDevice()
+  const followCursorUnsupported = Boolean(followCursor) && isTouchDevice
+
   const isControlled = open !== undefined
   const [internalOpen, setInternalOpen] = useState(false)
-  const actualOpen = isControlled ? open : internalOpen
+  // followCursor on a touch device never shows the tooltip, even when
+  // controlled — exactly the legacy getTooltipOpenState.
+  const actualOpen = followCursorUnsupported
+    ? false
+    : isControlled
+    ? open
+    : internalOpen
   const openRef = useRef(actualOpen)
 
   openRef.current = actualOpen
 
+  // Single state setter (uncontrolled only): updates the ref eagerly so
+  // duplicate requests landing in the same tick — before React re-renders —
+  // are already deduped by the `openRef` guards below.
+  const setOpen = (nextOpen: boolean) => {
+    openRef.current = nextOpen
+    setInternalOpen(nextOpen)
+  }
+
   // After a click-to-close, the pointer is still resting on the trigger, so
   // base-ui would immediately re-request open. Suppress that until the pointer
-  // leaves (legacy `ignoreOpening` behavior).
+  // leaves the trigger (legacy `ignoreOpening` behavior — see
+  // handleTriggerMouseLeave, which lifts it).
   const suppressReopenRef = useRef(false)
-  const clearSuppressTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
   // Pending hover-open timer (see handleTriggerMouseOver).
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
@@ -86,7 +107,6 @@ export const useTooltipState = ({
   useEffect(
     () => () => {
       clearTimeout(openTimerRef.current)
-      clearTimeout(clearSuppressTimerRef.current)
       clearTimeout(stopTimerRef.current)
     },
     []
@@ -96,37 +116,46 @@ export const useTooltipState = ({
     nextOpen,
     eventDetails
   ) => {
-    const reactEvent = toReactEvent<ChangeEvent<Element>>(eventDetails.event)
-
-    if (nextOpen) {
-      onOpen?.(reactEvent)
-    } else {
-      onClose?.(reactEvent)
-    }
-
-    if (isControlled) {
+    // Only report real transitions: base-ui re-requests the current state
+    // (its own hover timer races Picasso's mouseover timer, and it emits
+    // close→open churn as the pointer crosses the trigger's rounded corners),
+    // and the legacy Tooltip never fired onOpen while open or onClose while
+    // closed.
+    if (nextOpen === openRef.current) {
       return
     }
 
     if (!nextOpen) {
-      setInternalOpen(false)
-      // base-ui emits rapid close→open churn as the pointer crosses the
-      // trigger's rounded corners, so the dismiss-suppression must NOT lift on
-      // a bare `close`. Schedule lifting it, but cancel that below on any
-      // subsequent `open` request — so suppression only lifts once the pointer
-      // has genuinely settled away from the trigger (no re-open follows).
-      if (suppressReopenRef.current) {
-        clearTimeout(clearSuppressTimerRef.current)
-        clearSuppressTimerRef.current = setTimeout(() => {
-          suppressReopenRef.current = false
-        }, 600)
+      if (!isControlled) {
+        setOpen(false)
       }
-    } else {
-      clearTimeout(clearSuppressTimerRef.current)
-      if (!suppressReopenRef.current && !followCursorHiddenRef.current) {
-        setInternalOpen(true)
-      }
+
+      onClose?.(toReactEvent<ChangeEvent<Element>>(eventDetails.event))
+
+      return
     }
+
+    // Gate open requests BEFORE any callback fires (the legacy handleOpen
+    // returned before onOpen when `ignoreOpening` was set): a click-dismissed
+    // tooltip stays closed — and silent — until the pointer leaves the
+    // trigger, and followCursor holds the popup hidden while the cursor is
+    // mid-move (its settle timer reopens it and reports onOpen itself).
+    if (
+      !isControlled &&
+      (suppressReopenRef.current || followCursorHiddenRef.current)
+    ) {
+      return
+    }
+
+    if (followCursorUnsupported) {
+      return
+    }
+
+    if (!isControlled) {
+      setOpen(true)
+    }
+
+    onOpen?.(toReactEvent<ChangeEvent<Element>>(eventDetails.event))
   }
 
   const handleTriggerClick = (event: MouseEvent<HTMLElement>) => {
@@ -135,12 +164,19 @@ export const useTooltipState = ({
     }
 
     if (openRef.current) {
-      clearTimeout(clearSuppressTimerRef.current)
       suppressReopenRef.current = true
-      setInternalOpen(false)
+      clearTimeout(openTimerRef.current)
+      setOpen(false)
       onClose?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
-    } else {
-      setInternalOpen(true)
+    } else if (
+      isTouchDevice &&
+      !followCursorUnsupported &&
+      !suppressReopenRef.current
+    ) {
+      // Click-to-open is a TOUCH affordance only (a tap cannot hover): the
+      // legacy handleClick opened on click solely for touch devices, while on
+      // desktop opening stays owned by hover + openDelay.
+      setOpen(true)
       onOpen?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
     }
   }
@@ -166,6 +202,7 @@ export const useTooltipState = ({
     if (
       isControlled ||
       disableListeners ||
+      followCursorUnsupported ||
       suppressReopenRef.current ||
       openRef.current
     ) {
@@ -176,13 +213,14 @@ export const useTooltipState = ({
 
     clearTimeout(openTimerRef.current)
     openTimerRef.current = setTimeout(() => {
-      // base-ui's own hover path may have opened it first within the delay; if so
-      // it already fired `onOpen`, so don't double-fire.
-      if (openRef.current) {
+      // base-ui's own hover path may have opened it first within the delay
+      // (handleOpenChange already reported that onOpen), or a click may have
+      // dismissed it meanwhile — in either case this timer has nothing to do.
+      if (openRef.current || suppressReopenRef.current) {
         return
       }
 
-      setInternalOpen(true)
+      setOpen(true)
       onOpen?.(toReactEvent<ChangeEvent<Element>>(nativeEvent))
     }, openDelay)
   }
@@ -191,7 +229,7 @@ export const useTooltipState = ({
   // opened, and reopen once it settles — base-ui's cursor tracking repositions
   // but never hides, which leaves the popup lingering under a distant cursor.
   const handleTriggerMouseMove = (event: MouseEvent<HTMLElement>) => {
-    if (isControlled || disableListeners || !followCursor) {
+    if (isControlled || disableListeners || !followCursor || isTouchDevice) {
       return
     }
 
@@ -208,7 +246,7 @@ export const useTooltipState = ({
 
     if (movedTooFar && openRef.current) {
       followCursorHiddenRef.current = true
-      setInternalOpen(false)
+      setOpen(false)
       onClose?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
     }
 
@@ -225,18 +263,37 @@ export const useTooltipState = ({
         !openRef.current &&
         lastMoveEventRef.current
       ) {
-        setInternalOpen(true)
+        setOpen(true)
         onOpen?.(toReactEvent<ChangeEvent<Element>>(lastMoveEventRef.current))
       }
     }, FOLLOW_CURSOR_STOP_DELAY)
   }
 
-  const handleTriggerMouseLeave = () => {
+  const handleTriggerMouseLeave = (event: MouseEvent<HTMLElement>) => {
     clearTimeout(openTimerRef.current)
     clearTimeout(stopTimerRef.current)
     targetHoveredRef.current = false
     followCursorHiddenRef.current = false
     moveStartRef.current = null
+
+    // The click-dismiss suppression holds only while the pointer rests on the
+    // trigger — leaving lifts it, as the legacy handleMouseLeave cleared
+    // `ignoreOpening` (without this, dismiss → leave → re-hover stays stuck
+    // closed). One refinement over a bare clear: a rounded trigger also fires
+    // `mouseleave` while the pointer merely crosses its transparent corner
+    // pixels — visually still "on" the trigger — so the suppression lifts only
+    // once the pointer is genuinely outside the trigger's bounding box
+    // ("until the mouse leaves the trigger element boundaries").
+    const rect = event.currentTarget.getBoundingClientRect()
+    const stillWithinBounds =
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom
+
+    if (!stillWithinBounds) {
+      suppressReopenRef.current = false
+    }
   }
 
   return {

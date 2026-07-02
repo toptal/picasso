@@ -27,6 +27,15 @@ const TestTrigger = forwardRef<
   )
 })
 
+// A real click/tap is always preceded by `pointerdown` — base-ui relies on it
+// (its Trigger syncs `closeOnClick` into its store from `onPointerDown`), but
+// jsdom's `fireEvent.click` dispatches only the bare `click`, so emit the full
+// sequence ourselves.
+const clickElement = (element: Element) => {
+  fireEvent.pointerDown(element)
+  fireEvent.click(element)
+}
+
 const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
   // onClick/onMouseOver/onMouseMove/onMouseLeave belong on the wrapped trigger,
   // not on Tooltip — keep them off the {...tooltipProps} spread so they aren't
@@ -47,8 +56,22 @@ const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
   )
 }
 
+// The hook probes `matchMedia('(hover: hover) and (pointer: fine)')` to tell
+// pointer devices from touch ones (isPointerDevice). The jest polyfill always
+// reports `matches: false` (= touch), so pin the mode explicitly per suite.
+const mockPointerDevice = (isPointer: boolean) => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn(() => ({ matches: isPointer })),
+  })
+}
+
 // eslint-disable-next-line max-lines-per-function
 describe('Tooltip', () => {
+  beforeEach(() => {
+    mockPointerDevice(true)
+  })
+
   it('renders closed by default', () => {
     const { container, queryByTestId } = renderTooltip()
 
@@ -170,6 +193,101 @@ describe('Tooltip', () => {
     await waitFor(() =>
       expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
     )
+  })
+
+  it('reopens on hover after a click-dismiss once the pointer left', async () => {
+    // Click-to-dismiss suppresses re-opening only while the pointer stays on
+    // the trigger; leaving lifts the suppression (legacy `ignoreOpening`).
+    const { getByTestId, queryByTestId } = renderTooltip()
+
+    const trigger = getByTestId('tooltip-trigger')
+
+    fireEvent.mouseOver(trigger)
+    await waitFor(() =>
+      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    )
+
+    clickElement(trigger)
+    await waitFor(() =>
+      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+    )
+
+    // Still hovering: suppressed.
+    fireEvent.mouseOver(trigger)
+    await expect(() =>
+      waitFor(() => {
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      })
+    ).rejects.toThrow()
+
+    // Leave (with the pointer genuinely outside the trigger's bounding box —
+    // jsdom rects are 0-sized), then re-hover: the tooltip must open again.
+    fireEvent.mouseLeave(trigger, { clientX: 100, clientY: 100 })
+    fireEvent.mouseOver(trigger)
+    await waitFor(() =>
+      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    )
+  })
+
+  it('does not open on click on a pointer device', async () => {
+    // Desktop opening is owned by hover + delay; click only ever dismisses an
+    // open tooltip (click-to-open is a touch-only affordance).
+    const onOpenMock = jest.fn()
+
+    const { getByTestId, queryByTestId } = renderTooltip({
+      onOpen: onOpenMock,
+    })
+
+    clickElement(getByTestId('tooltip-trigger'))
+
+    await expect(() =>
+      waitFor(() => {
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      })
+    ).rejects.toThrow()
+    expect(onOpenMock).not.toHaveBeenCalled()
+  })
+
+  describe('on a touch device', () => {
+    beforeEach(() => {
+      mockPointerDevice(false)
+    })
+
+    it('opens and closes tooltip on click (tap)', async () => {
+      const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
+
+      clickElement(getByTestId('tooltip-trigger'))
+      await findByTestId('tooltip-content')
+
+      clickElement(getByTestId('tooltip-trigger'))
+      await waitFor(() => {
+        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+      })
+    })
+
+    it('does not open when followCursor is set', async () => {
+      // followCursor is unsupported on touch devices (parity with
+      // @material-ui@5) — neither tap nor hover-like events may open it.
+      const onOpenMock = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderTooltip({
+        followCursor: true,
+        onOpen: onOpenMock,
+      })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      clickElement(trigger)
+      fireEvent.mouseOver(trigger)
+      fireEvent.mouseMove(trigger, { clientX: 10, clientY: 10 })
+
+      await expect(() =>
+        waitFor(() => {
+          expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+        })
+      ).rejects.toThrow()
+      expect(onOpenMock).not.toHaveBeenCalled()
+    })
   })
 
   it('opens when hovering a descendant of the trigger', async () => {
