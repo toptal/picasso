@@ -149,6 +149,29 @@ describe('Tooltip', () => {
     )
   })
 
+  it('hides while the cursor roams far from the trigger when followCursor is set', async () => {
+    const { getByTestId, queryByTestId } = renderTooltip({
+      followCursor: true,
+    })
+
+    const trigger = getByTestId('tooltip-trigger')
+
+    fireEvent.mouseOver(trigger)
+
+    await waitFor(() =>
+      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+    )
+
+    // First move anchors the segment; a subsequent move past 50px dismisses the
+    // popup (base-ui's cursor tracking would otherwise keep it open).
+    fireEvent.mouseMove(trigger, { clientX: 10, clientY: 10 })
+    fireEvent.mouseMove(trigger, { clientX: 200, clientY: 200 })
+
+    await waitFor(() =>
+      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+    )
+  })
+
   it('opens when hovering a descendant of the trigger', async () => {
     // A disabled control wrapped in a trigger element (the documented pattern
     // for tooltips on disabled elements): the hover originates on the inner
