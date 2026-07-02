@@ -390,7 +390,11 @@ describe('RichTextEditor', () => {
 
       cy.get('label').realClick().type('foo')
       cy.contains('foo').should('be.visible')
-      cy.get('@wrapper').should('have.attr', 'class').and('include', 'focused')
+      // The focused state is signalled by the focus-ring shadow (the legacy JSS
+      // `focused` class no longer exists after the Tailwind migration).
+      cy.get('@wrapper')
+        .should('have.attr', 'class')
+        .and('include', 'shadow-blue-500/[.48]')
     })
   })
 
@@ -402,9 +406,10 @@ describe('RichTextEditor', () => {
 
       cy.get('@editor').realClick()
 
+      // A disabled editor never gains the focus-ring shadow.
       cy.get('@wrapper')
         .should('have.attr', 'class')
-        .and('not.include', 'focused')
+        .and('not.include', 'shadow-blue-500/[.48]')
     })
   })
 

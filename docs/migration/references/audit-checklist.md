@@ -42,5 +42,4 @@
 ### C. @base-ui/react idioms (severity=medium)
 17. **Slot-based styling** (practices.md §"@base-ui/react idioms"): if the diff wraps an `@base-ui/react` component with multi-part slots, does it use `slots={{ partName: Component }}` + `slotProps={{ partName: { className, ... } }}` instead of a class dictionary? (OutlinedInput canonical.)
 18. **Polymorphic Button pattern** (rules/base-ui-react-api-crib.md §"Polymorphic Button"): `nativeButton + render={React.createElement(as)}` — NOT runtime `typeof`/`isValidAs` guards on the `as` prop.
-19. **`@base-ui/utils@0.2.8` patch** (practices.md §"@base-ui/react idioms"): Tier 0 components need it applied via `pnpm.patchedDependencies` + lockfile `patch_hash`; do NOT re-derive.
 

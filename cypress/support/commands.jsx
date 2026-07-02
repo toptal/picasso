@@ -47,6 +47,20 @@ Cypress.Commands.add(
   }
 )
 
+// happo-cypress serializes the live DOM and re-renders it statically in the
+// cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
+// frame after mount; if captured before removal, the attribute pins the element
+// at its starting style (e.g. opacity-0), producing a blank capture.
+Cypress.Commands.overwrite(
+  'happoScreenshot',
+  (originalFn, subject, options) => {
+    return cy
+      .get('[data-starting-style]', { timeout: 4000 })
+      .should('not.exist')
+      .then(() => originalFn(subject, options))
+  }
+)
+
 Cypress.Commands.add('mount', (component, options, props = {}) => {
   // Wrap any parent components needed
   // ie: return mount(<MyProvider>{component}</MyProvider>, options)

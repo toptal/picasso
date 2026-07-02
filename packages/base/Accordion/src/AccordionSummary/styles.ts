@@ -1,41 +1,24 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-provider'
+export const summaryRootClasses = [
+  'relative',
+  'flex',
+  'items-center',
+  'select-none',
+  'cursor-pointer',
+  'outline-none',
+  'py-[0.5625em]',
+  'px-0',
+  'font-semibold',
+  'text-black',
+  'data-disabled:pointer-events-none',
+]
 
-PicassoProvider.override(({ typography }: Theme) => ({
-  MuiAccordionSummary: {
-    root: {
-      fontSize: '1em',
-      padding: '0.5625em 0 0.5625em',
-      fontWeight: typography.fontWeights.semibold,
-      minHeight: 'auto',
-      '&$expanded': {
-        minHeight: 'auto',
-      },
-      '&$disabled': {
-        opacity: 1,
-      },
-    },
-    expandIcon: {
-      margin: 0,
-      padding: 0,
-
-      '&$expanded': {
-        transform: 'rotate(180deg)',
-      },
-    },
-    content: {
-      fontSize: '0.875em',
-      margin: 0,
-      '&$expanded': {
-        margin: '0',
-      },
-    },
-  },
-}))
-
-export default () =>
-  createStyles({
-    root: {},
-    content: {},
-  })
+export const summaryContentClasses = [
+  'flex',
+  'grow',
+  'flex-row',
+  'items-center',
+  'justify-between',
+  'm-0',
+  'text-[0.875em]',
+  'leading-[1.5em]',
+]

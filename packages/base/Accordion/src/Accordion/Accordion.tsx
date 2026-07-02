@@ -1,27 +1,50 @@
 import type {
   ReactNode,
   ChangeEvent,
+  CSSProperties,
   HTMLAttributes,
   ReactElement,
+  Ref,
+  TransitionEvent,
 } from 'react'
 import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
-import { Accordion as MUIAccordion } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { Accordion as BaseUIAccordion } from '@base-ui/react/accordion'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps, TransitionProps } from '@toptal/picasso-shared'
+import { toReactEvent } from '@toptal/picasso-shared'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { ButtonAction } from '@toptal/picasso-button'
 
 import { AccordionSummary } from '../AccordionSummary'
 import { AccordionDetails } from '../AccordionDetails'
-import styles from './styles'
+import type { Borders } from './styles'
+import {
+  createRootClassNames,
+  createExpandIconClassNames,
+  expandIconAlignTopClasses,
+  panelClasses,
+} from './styles'
 
-export type Borders = 'all' | 'middle' | 'none'
+export type { Borders } from './styles'
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAccordion',
-})
+const ITEM_VALUE = 'item'
+const EXPANDED_VALUE = [ITEM_VALUE]
+const COLLAPSED_VALUE: string[] = []
+const DEFAULT_TRANSITION_DURATION = 300
+
+const resolveTransitionDuration = (
+  timeout: TransitionProps['timeout'],
+  expanded: boolean
+): number => {
+  if (typeof timeout === 'number') {
+    return timeout
+  }
+
+  return (
+    (expanded ? timeout?.enter : timeout?.exit) ?? DEFAULT_TRANSITION_DURATION
+  )
+}
 
 const EmptyAccordionSummary = ({
   'data-testid': dataTestId,
@@ -30,7 +53,7 @@ const EmptyAccordionSummary = ({
 }) => <div data-testid={dataTestId} />
 
 export interface Props
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Always visible part of accordion */
   children?: ReactNode
@@ -48,8 +71,9 @@ export interface Props
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
   onChange?: (event: ChangeEvent<{}>, expanded: boolean) => void
-  /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
+  /** Animation lifecycle props. `timeout` (ms) sets the CSS height-transition duration (defaults to ~300ms); `onExited` fires after the collapse transition completes */
   transitionProps?: TransitionProps
+  /** Test ids for accordion's inner elements */
   testIds?: {
     emptyAccordionSummary?: string
     accordionSummary?: string
@@ -61,10 +85,12 @@ const decorateWithExpandIconClasses = (
   classes: string
 ) =>
   React.cloneElement(expandIcon, {
-    className: cx(expandIcon.props.className, classes),
+    // Some components overwrite the icon color when disabled
+    // That's why we need to apply the disabled state to the icon itself,
+    // instead of the ButtonAction wrapper
+    className: cx(classes, expandIcon.props.className),
   })
 
-/* eslint-disable complexity */
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   {
     borders = 'all',
@@ -84,21 +110,11 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     style,
     testIds,
     transitionProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: _classes,
     ...rest
-  } = props
+  } = props as typeof props & { classes?: unknown }
 
-  const classes = useStyles({
-    ...props,
-    borders,
-    defaultExpanded,
-    disabled,
-    onChange,
-  })
-  const borderClasses: { [key in Borders]: string } = {
-    all: classes.bordersAll,
-    middle: classes.bordersMiddle,
-    none: classes.bordersNone,
-  }
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
 
@@ -108,65 +124,105 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     setPrevExpanded(expanded)
   }
 
-  const handleSummaryClick = () => {
-    setSummaryExpanded(!summaryExpanded)
+  const handleValueChange = (
+    value: unknown[],
+    eventDetails: BaseUIAccordion.Root.ChangeEventDetails
+  ) => {
+    const newExpanded = value.length > 0
+
+    setSummaryExpanded(newExpanded)
+    onChange(
+      toReactEvent<ChangeEvent<Element>>(eventDetails.event),
+      newExpanded
+    )
   }
 
-  const expandIconClass = cx(classes.expandIcon, {
-    [classes.expandIconExpanded]: summaryExpanded,
-  })
+  const handlePanelTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
+    if (
+      !summaryExpanded &&
+      event.target === event.currentTarget &&
+      event.propertyName === 'height'
+    ) {
+      transitionProps?.onExited?.(event.currentTarget)
+    }
+  }
+
+  const expandIconClass = cx(...createExpandIconClassNames(summaryExpanded))
 
   const appliedBorders = children || expanded ? (borders as Borders) : 'none'
 
+  const rootRef = ref as Ref<HTMLDivElement>
+
+  const rootRest = rest as Omit<
+    BaseUIAccordion.Root.Props,
+    | 'value'
+    | 'defaultValue'
+    | 'onValueChange'
+    | 'className'
+    | 'style'
+    | 'disabled'
+  >
+
   return (
-    <MUIAccordion
-      {...rest}
-      ref={ref}
-      classes={{
-        root: cx(classes.root, borderClasses[appliedBorders]),
-      }}
-      className={className}
-      style={style}
-      elevation={0}
-      expanded={summaryExpanded}
-      disabled={disabled}
-      onChange={onChange}
-      TransitionProps={transitionProps}
-    >
-      {children ? (
-        <AccordionSummary
-          classes={{
-            root: classes.summary,
-            content: classes.content,
-          }}
-          expandIcon={null}
-          onClick={handleSummaryClick}
-          data-testid={testIds?.accordionSummary}
-        >
-          {children}
-          {expandIcon ? (
-            <ButtonAction
-              icon={decorateWithExpandIconClasses(expandIcon, expandIconClass)}
-            />
-          ) : (
-            <div className={classes.expandIconAlignTop}>
-              <ButtonAction
-                icon={<ArrowDownMinor16 className={expandIconClass} />}
-              />
-            </div>
-          )}
-        </AccordionSummary>
-      ) : (
-        <EmptyAccordionSummary data-testid={testIds?.emptyAccordionSummary} />
+    <BaseUIAccordion.Root
+      {...rootRest}
+      ref={rootRef}
+      data-component-type='accordion'
+      className={twMerge(
+        cx(...createRootClassNames(appliedBorders)),
+        className
       )}
-      <AccordionDetails
-        classes={{
-          root: classes.details,
-        }}
-      >
-        {content}
-      </AccordionDetails>
-    </MUIAccordion>
+      style={style}
+      disabled={disabled}
+      value={summaryExpanded ? EXPANDED_VALUE : COLLAPSED_VALUE}
+      onValueChange={handleValueChange}
+    >
+      <BaseUIAccordion.Item value={ITEM_VALUE} disabled={disabled}>
+        {children ? (
+          <BaseUIAccordion.Header render={<div />}>
+            <BaseUIAccordion.Trigger
+              nativeButton={false}
+              render={
+                <AccordionSummary data-testid={testIds?.accordionSummary} />
+              }
+            >
+              {children}
+              {expandIcon ? (
+                <ButtonAction
+                  icon={decorateWithExpandIconClasses(
+                    expandIcon,
+                    expandIconClass
+                  )}
+                />
+              ) : (
+                <div className={cx(...expandIconAlignTopClasses)}>
+                  <ButtonAction
+                    icon={<ArrowDownMinor16 className={expandIconClass} />}
+                  />
+                </div>
+              )}
+            </BaseUIAccordion.Trigger>
+          </BaseUIAccordion.Header>
+        ) : (
+          <EmptyAccordionSummary data-testid={testIds?.emptyAccordionSummary} />
+        )}
+        <BaseUIAccordion.Panel
+          keepMounted
+          className={cx(...panelClasses)}
+          style={
+            {
+              '--accordion-duration': `${resolveTransitionDuration(
+                transitionProps?.timeout,
+                Boolean(summaryExpanded)
+              )}ms`,
+            } as CSSProperties
+          }
+          onTransitionEnd={handlePanelTransitionEnd}
+        >
+          <AccordionDetails>{content}</AccordionDetails>
+        </BaseUIAccordion.Panel>
+      </BaseUIAccordion.Item>
+    </BaseUIAccordion.Root>
   )
 })
 

@@ -6,12 +6,10 @@
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind" },
     { "path": "../../picasso-tailwind-merge" },
-    { "path": "../Backdrop" },
     { "path": "../Button" },
     { "path": "../Container" },
     { "path": "../Icons" },
     { "path": "../Paper" },
-    { "path": "../Slide" },
     { "path": "../Typography" },
     { "path": "../Utils" }
   ]

@@ -1,22 +1,29 @@
-import { Checkbox as MUICheckbox } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import type {
   ButtonOrAnchorProps,
   BaseProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { toReactChangeEvent } from '@toptal/picasso-shared'
 import type { ComponentProps, CSSProperties, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { Container } from '@toptal/picasso-container'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import type { RequiredDecoration } from '@toptal/picasso-form-label'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { checkboxClassNames } from './styles'
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })
+type CheckboxRootProps = Omit<
+  BaseCheckbox.Root.Props,
+  | 'checked'
+  | 'disabled'
+  | 'id'
+  | 'value'
+  | 'indeterminate'
+  | 'onCheckedChange'
+  | 'className'
+  | 'style'
+>
 
 export interface Props
   extends BaseProps,
@@ -63,42 +70,42 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles()
-    const rootClasses = {
-      root: classes.root,
-      disabled: classes.disabled,
-    }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { color, 'data-private': dataPrivate, ...checkboxAttributes } = rest
 
-    const muiCheckbox = (
-      <Container as='span' flex inline className={classes.checkboxWrapper}>
-        <MUICheckbox
-          {...checkboxAttributes}
-          ref={
-            label ? undefined : (ref as React.ForwardedRef<HTMLButtonElement>)
-          }
+    // Element-variance boundary: `Props` extends button/anchor HTML attributes,
+    // but BaseCheckbox.Root renders a <span>. The event-handler element types
+    // are runtime-compatible, so we resolve the variance once here instead of
+    // narrowing the public API.
+    const rootRest = checkboxAttributes as CheckboxRootProps
+
+    const checkboxElement = (
+      // Tame Base UI's visually-hidden <input>, which ships
+      // `position:absolute; top:0; left:0; margin:-1px` (inline). `relative` +
+      // the `translate-px` pair anchor it inside the 16px box so its bounds
+      // don't grow the rendered box past the legacy size (fixes the Happo
+      // dimension_mismatch). `appearance-none` keeps the native control from
+      // ever painting now that the input sits over the box.
+      <span className='relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x-px [&_input]:translate-y-px'>
+        <BaseCheckbox.Root
+          {...rootRest}
+          ref={label ? undefined : (ref as React.Ref<HTMLElement>)}
           checked={checked}
-          icon={<div className={classes.uncheckedIcon} />}
-          checkedIcon={<div className={classes.checkedIcon} />}
-          indeterminateIcon={<div className={classes.indeterminateIcon} />}
-          classes={rootClasses}
-          className={cx(className, {
-            [classes.withLabel]: Boolean(label),
-          })}
-          style={style}
           disabled={disabled}
           id={id}
-          indeterminate={indeterminate}
-          onChange={onChange}
           value={value}
-          focusVisibleClassName={classes.focused}
+          indeterminate={indeterminate}
+          onCheckedChange={(nextChecked, { event }) =>
+            onChange(toReactChangeEvent(event), nextChecked)
+          }
+          className={twMerge(checkboxClassNames, className)}
+          style={style}
         />
-      </Container>
+      </span>
     )
 
     if (!label) {
-      return muiCheckbox
+      return checkboxElement
     }
 
     const externalEventListeners = {
@@ -119,7 +126,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
             disabled && 'text-gray-500'
           ),
         }}
-        control={muiCheckbox}
+        control={checkboxElement}
         requiredDecoration={requiredDecoration}
         disabled={disabled}
         label={label}

@@ -1,8 +1,8 @@
-import type PopperJs from 'popper.js'
+import type { PopperHandle } from '@toptal/picasso-popper'
 
 const isRelatedTargetInsidePopper = (
   event: React.FocusEvent,
-  popperRef: React.Ref<PopperJs> | undefined
+  popperRef: React.Ref<PopperHandle> | undefined
 ) =>
   typeof popperRef === 'object' &&
   popperRef?.current &&

@@ -9,8 +9,7 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import { Button as MUIButtonBase } from '@mui/base/Button'
-import type { ButtonRootSlotProps } from '@mui/base/Button'
+import { Button as BaseUIButton } from '@base-ui/react/button'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
@@ -20,7 +19,7 @@ import { createCoreClassNames } from './styles'
 export type IconPositionType = 'left' | 'right'
 
 export interface Props
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     TextLabelProps,
     ButtonOrAnchorProps {
   as?: ElementType
@@ -46,8 +45,11 @@ export interface Props
   type?: 'button' | 'reset' | 'submit'
 }
 
-const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
-  loading ? noop : handler
+const getClickHandler = (
+  loading?: boolean,
+  handler?: Props['onClick']
+): BaseUIButton.Props['onClick'] =>
+  (loading ? noop : handler) as BaseUIButton.Props['onClick']
 
 const getIcon = ({ icon }: { icon?: ReactElement }) => {
   if (!icon) {
@@ -59,15 +61,6 @@ const getIcon = ({ icon }: { icon?: ReactElement }) => {
     key: 'button-icon',
   })
 }
-
-const RootElement = forwardRef(
-  (props: ButtonRootSlotProps & { as: ElementType }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { ownerState, as: Root, ...rest } = props
-
-    return <Root {...rest} ref={ref} />
-  }
-)
 
 export const ButtonBase: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
@@ -98,7 +91,8 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
-  const finalRootElementName = typeof as === 'string' ? as : 'a'
+  const finalAs: ElementType = as ?? 'button'
+  const isNativeButton = finalAs === 'button'
 
   if (icon) {
     const iconComponent = getIcon({ icon })
@@ -110,12 +104,18 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     }
   }
 
-  const finalClassName = twMerge(createCoreClassNames({ disabled }), className)
+  const finalClassName = twMerge(
+    'base-Button-root',
+    createCoreClassNames({ disabled }),
+    className
+  )
 
   return (
-    <MUIButtonBase
+    <BaseUIButton
       {...rest}
-      ref={ref}
+      ref={ref as React.Ref<HTMLElement>}
+      nativeButton={isNativeButton}
+      render={isNativeButton ? undefined : React.createElement(finalAs)}
       onClick={getClickHandler(loading, onClick)}
       className={finalClassName}
       style={style}
@@ -125,12 +125,8 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
       value={value}
       type={type}
       data-component-type='button'
-      tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
+      tabIndex={rest.tabIndex ?? (disabled ? -1 : 0)}
       role={rest.role ?? 'button'}
-      rootElementName={finalRootElementName as keyof HTMLElementTagNameMap}
-      slots={{ root: RootElement }}
-      // @ts-ignore
-      slotProps={{ root: { as } }}
     >
       <Container
         as='span'
@@ -151,7 +147,7 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
           size='small'
         />
       )}
-    </MUIButtonBase>
+    </BaseUIButton>
   )
 })
 
