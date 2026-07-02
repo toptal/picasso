@@ -61,23 +61,21 @@ const gapPx = (remValue: string): number => fromPx(pxFromRem(remValue))
 
 // The gap band that styles.ts reserves as the popup's own margin (the legacy
 // MUI geometry — see POPUP_MARGIN there). The positioner sits flush against
-// the anchor exactly as MUI's popper did, so every gap below is applied as
-// `gap - margin` when it resolves to a sideOffset.
+// the anchor exactly as MUI's popper did (sideOffset carries only what the
+// margin band doesn't: getPositionerOffsets), and the margin IS the standard
+// anchor↔popup gap — both the default arrow gap and the compact gap equal
+// their popup margin by construction.
 const POPUP_MARGIN_PX = gapPx(POPUP_MARGIN) // 14px
 const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
 
-// Matches the legacy MUI arrow-tooltip spacing (the arrow fills the gap): MUI
-// reserved the gap as the tooltip's `margin: '14px 0'`, so the standard arrow
-// gap IS the margin band and the sideOffset resolves to 0.
-const ARROW_GAP = POPUP_MARGIN_PX // 14px
-// Menu-item tooltips sit in a dense stack of options, where ARROW_GAP lands the
-// arrow tip in the dead strip between two rows and reads as pointing at the
-// wrong option. Per design, the tip↔anchor gap on menu items is 0-4px (not
-// ~8px), so a menu-item anchor uses a tighter gap that seats the arrow on the
-// option it describes. Scoped to menu items only — every other anchor keeps
-// ARROW_GAP. [PF-1994]
+// Menu-item tooltips sit in a dense stack of options, where the standard
+// arrow gap (= POPUP_MARGIN_PX, the margin band) lands the arrow tip in the
+// dead strip between two rows and reads as pointing at the wrong option. Per
+// design, the tip↔anchor gap on menu items is 0-4px (not ~8px), so a
+// menu-item anchor uses a tighter gap that seats the arrow on the option it
+// describes. Scoped to menu items only — every other anchor keeps the
+// standard gap. [PF-1994]
 const MENU_ITEM_ARROW_GAP = gapPx('0.5rem') // 8px
-const COMPACT_GAP = gapPx('0.25rem') // 4px
 const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 
 // Menu items are recognized by the anchor's semantic (ARIA) role rather than
@@ -116,14 +114,13 @@ const getPositionerOffsets = ({
   offset: OffsetType
   anchorRef: React.RefObject<HTMLElement | null>
 }): { sideOffset: number | (() => number); alignOffset: number } => {
-  // The popup's own margin (styles.ts) already provides this much of the gap,
-  // so each sideOffset supplies only the remainder — negative when the desired
-  // gap is tighter than the margin band (e.g. menu items).
-  const popupMargin = compact ? COMPACT_POPUP_MARGIN_PX : POPUP_MARGIN_PX
-
   // followCursor positions against the cursor with its own fixed distance;
-  // the public `offset` prop only applies to anchor-relative placement.
+  // the public `offset` prop only applies to anchor-relative placement. The
+  // popup's own margin (styles.ts) already provides that much of the gap, so
+  // the sideOffset supplies only the remainder.
   if (followCursor) {
+    const popupMargin = compact ? COMPACT_POPUP_MARGIN_PX : POPUP_MARGIN_PX
+
     return { sideOffset: FOLLOW_CURSOR_GAP - popupMargin, alignOffset: 0 }
   }
 
@@ -137,23 +134,27 @@ const getPositionerOffsets = ({
   const userSideOffset = isVertical ? offsetTop : offsetLeft
   const alignOffset = isVertical ? offsetLeft : offsetTop
 
+  // No arrow here means compact (followCursor returned above), and the
+  // compact gap IS the compact popup margin (`m-1`, the reserved gap band in
+  // styles.ts) — the positioner sits flush and only the user offset remains.
   if (!showArrow) {
-    return {
-      sideOffset: COMPACT_GAP - popupMargin + userSideOffset,
-      alignOffset,
-    }
+    return { sideOffset: userSideOffset, alignOffset }
   }
 
-  // The arrow gap depends on what the arrow points at (see
-  // MENU_ITEM_ARROW_GAP), so it resolves lazily — base-ui calls an
-  // offset function at position time, when the anchor node is already
-  // committed. This keeps the first paint correct without tracking the
-  // anchor in state (no extra render + reposition pass).
+  // Arrow tooltips: the standard arrow gap IS the popup margin band
+  // (my-/mx-[0.875rem] — MUI reserved the gap as the tooltip's own
+  // `margin: '14px 0'`), so the positioner again sits flush; only a
+  // menu-item anchor shifts, its tighter seat pulling the popup back by the
+  // difference. The gap depends on what the arrow points at (see
+  // MENU_ITEM_ARROW_GAP), so it resolves lazily — base-ui calls an offset
+  // function at position time, when the anchor node is already committed.
+  // This keeps the first paint correct without tracking the anchor in state
+  // (no extra render + reposition pass).
   return {
     sideOffset: () =>
-      (isMenuItemAnchor(anchorRef.current) ? MENU_ITEM_ARROW_GAP : ARROW_GAP) -
-      popupMargin +
-      userSideOffset,
+      (isMenuItemAnchor(anchorRef.current)
+        ? MENU_ITEM_ARROW_GAP - POPUP_MARGIN_PX
+        : 0) + userSideOffset,
     alignOffset,
   }
 }
