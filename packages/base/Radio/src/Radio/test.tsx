@@ -87,6 +87,52 @@ describe('Radio', () => {
 
       expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
     })
+
+    it('applies the narrowed classes slots to their elements', () => {
+      const { getByRole } = render(
+        <Radio
+          label='LABEL'
+          value='v'
+          classes={{
+            root: 'root-slot',
+            input: 'input-slot',
+            uncheckedIcon: 'unchecked-slot',
+            checkedIcon: 'checked-slot',
+          }}
+        />
+      )
+
+      const input = getByRole('radio')
+      const root = input.parentElement as HTMLElement
+
+      expect(root).toHaveClass('root-slot')
+      expect(input).toHaveClass('input-slot')
+      expect(root.querySelector('.unchecked-slot')).toBeInTheDocument()
+      expect(root.querySelector('.checked-slot')).toBeInTheDocument()
+    })
+
+    it('applies the disabled classes slot only when disabled', () => {
+      const { getByRole, rerender } = render(
+        <Radio
+          label='LABEL'
+          value='v'
+          classes={{ disabled: 'disabled-slot' }}
+        />
+      )
+
+      expect(getByRole('radio').parentElement).not.toHaveClass('disabled-slot')
+
+      rerender(
+        <Radio
+          disabled
+          label='LABEL'
+          value='v'
+          classes={{ disabled: 'disabled-slot' }}
+        />
+      )
+
+      expect(getByRole('radio').parentElement).toHaveClass('disabled-slot')
+    })
   })
 
   describe('Radio.Group', () => {

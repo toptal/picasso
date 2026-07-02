@@ -10,13 +10,32 @@ import {
   createUncheckedIconClassNames,
 } from './styles'
 
-export interface Props extends Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
+/**
+ * @deprecated [PF-1994] Transitional back-compat shim retained for the @base-ui/react
+ * migration; will be removed in a coordinated post-migration cleanup. Prefer `className`.
+ */
+export interface RadioClasses {
+  /** Applied to the root `<span>` wrapper */
+  root?: string
+  /** Applied to the root `<span>` while the `Radio` is disabled */
+  disabled?: string
+  /** Applied to the visually-hidden `<input type="radio">` */
+  input?: string
+  /** Applied to the unchecked-state icon `<span>` */
+  uncheckedIcon?: string
+  /** Applied to the checked-state icon `<span>` */
+  checkedIcon?: string
+}
+
+export interface Props
+  extends Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
   checked?: boolean
   disabled?: boolean
   withLabel?: boolean
   name?: string
   value?: string | number | boolean
   onChange?: ChangeEventHandler<HTMLInputElement>
+  classes?: RadioClasses
 }
 
 export const RadioControl = forwardRef<HTMLSpanElement, Props>(
@@ -31,6 +50,7 @@ export const RadioControl = forwardRef<HTMLSpanElement, Props>(
       name,
       value,
       onChange,
+      classes,
       ...rest
     } = props
 
@@ -56,13 +76,15 @@ export const RadioControl = forwardRef<HTMLSpanElement, Props>(
         data-focused={focused || undefined}
         className={twMerge(
           cx(...createRootClassNames({ disabled, withLabel })),
+          classes?.root,
+          disabled && classes?.disabled,
           className
         )}
         style={style}
       >
         <input
           type='radio'
-          className={cx(...createInputClassNames())}
+          className={twMerge(cx(...createInputClassNames()), classes?.input)}
           id={id}
           name={name}
           value={inputValue}
@@ -72,8 +94,18 @@ export const RadioControl = forwardRef<HTMLSpanElement, Props>(
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-        <span className={cx(...createUncheckedIconClassNames(checked))} />
-        <span className={cx(...createCheckedIconClassNames(checked))} />
+        <span
+          className={twMerge(
+            cx(...createUncheckedIconClassNames(checked)),
+            classes?.uncheckedIcon
+          )}
+        />
+        <span
+          className={twMerge(
+            cx(...createCheckedIconClassNames(checked)),
+            classes?.checkedIcon
+          )}
+        />
       </span>
     )
   }

@@ -219,7 +219,11 @@ export type { PromptModalProps } from '@toptal/picasso-prompt-modal'
 export { Quote } from '@toptal/picasso-quote'
 export type { QuoteProps } from '@toptal/picasso-quote'
 export { RadioCompound as Radio } from '@toptal/picasso-radio'
-export type { RadioGroupProps, RadioProps } from '@toptal/picasso-radio'
+export type {
+  RadioGroupProps,
+  RadioProps,
+  RadioClasses,
+} from '@toptal/picasso-radio'
 export { Rating } from '@toptal/picasso-rating'
 export type {
   RatingStarsProps,

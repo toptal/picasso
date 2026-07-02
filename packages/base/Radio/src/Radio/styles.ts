@@ -8,14 +8,14 @@ export const createRootClassNames = ({
   withLabel,
 }: RootStylesProps): string[] => [
   'group relative inline-flex shrink-0 items-start justify-center',
-  'box-border h-[1em] w-[1em] p-0 text-[1rem]',
-  'mx-0 my-[0.25em]',
+  'box-border h-[1rem] w-[1rem] p-0 text-[1rem]',
+  'mx-0 my-[0.25rem]',
   'select-none align-middle',
   'transition-all duration-350 ease-in-out',
   disabled
     ? 'pointer-events-none cursor-default opacity-[0.48]'
     : 'cursor-pointer',
-  ...(withLabel ? ['mr-[0.5em]'] : []),
+  ...(withLabel ? ['mr-[0.5rem]'] : []),
 ]
 
 export const createInputClassNames = (): string[] => [

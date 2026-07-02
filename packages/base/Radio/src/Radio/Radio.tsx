@@ -8,7 +8,7 @@ import type {
 import { FormControlLabel } from '@toptal/picasso-form-label'
 
 import { useRadioGroupContext } from '../RadioGroupContext'
-import type { Props as RadioControlProps } from './RadioControl'
+import type { Props as RadioControlProps, RadioClasses } from './RadioControl'
 import { RadioControl } from './RadioControl'
 
 export interface Props
@@ -23,6 +23,12 @@ export interface Props
   disabled?: boolean
   /** Defines if `Radio` is checked by default */
   checked?: boolean
+  /**
+   * Override styling of individual `Radio` slots (`root`, `disabled`, `input`, `uncheckedIcon`, `checkedIcon`).
+   * @deprecated [PF-1994] Transitional back-compat shim retained for the @base-ui/react migration; will be
+   * removed in a coordinated post-migration cleanup. Prefer `className` where a slot has a root-level equivalent.
+   */
+  classes?: RadioClasses
   /** Callback invoked when `Radio` changes its state */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -43,12 +49,9 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       'data-private': dataPrivate,
       id,
       name,
-      // runtime backstop: `classes` was dropped from the public Props; keep a
-      // stray JS-consumer value out of the DOM spread below
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      classes: _classes,
+      classes,
       ...rest
-    } = props as Props & { classes?: unknown }
+    } = props
 
     const radioGroup = useRadioGroupContext()
 
@@ -75,6 +78,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       | 'onChange'
       | 'className'
       | 'style'
+      | 'classes'
     >
 
     const radioControl = (
@@ -85,6 +89,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={label ? undefined : (ref as React.ForwardedRef<HTMLSpanElement>)}
         className={className}
         style={style}
+        classes={classes}
         checked={resolvedChecked}
         disabled={disabled}
         withLabel={Boolean(label)}
@@ -110,7 +115,10 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         control={radioControl}
         classes={{
-          label: 'mt-[0.25em] max-w-[calc(100%_-_1.5em_+_1px)]',
+          // rem values are the em equivalents against FormLabel's 14px font
+          // (`size='medium'`, the only size Radio renders): 0.25em→3.5px→0.21875rem,
+          // 1.5em→21px→1.3125rem. Do not "round" to 0.25rem/1.5rem — that shifts the label.
+          label: 'mt-[0.21875rem] max-w-[calc(100%_-_1.3125rem_+_1px)]',
           root: 'text-[1rem] items-start',
         }}
         style={style}

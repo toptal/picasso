@@ -17,7 +17,7 @@ exports[`ButtonRadio renders 1`] = `
         class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         <span
-          class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1em] w-[1em] p-0 text-[1rem] mx-0 my-[0.25em] select-none align-middle transition-all duration-350 ease-in cursor-pointer"
+          class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer"
         >
           <input
             class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"
