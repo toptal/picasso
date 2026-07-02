@@ -372,7 +372,9 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
     cy.getByTestId(testIds.tooltipTrigger).click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    // @base-ui/react unmounts the popup on close (no lingering hidden node as
+    // MUI's exit transition left behind), so assert removal, not invisibility.
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders on hover, and hides on click for Checkbox', () => {
@@ -391,7 +393,7 @@ describe('Tooltip', () => {
       variant: 'inside-checkbox',
     })
     cy.get('@trigger').realClick()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders on hover, and hides on click for Radio', () => {
@@ -408,7 +410,7 @@ describe('Tooltip', () => {
       variant: 'inside-radio',
     })
     cy.getByTestId(testIds.radioTrigger).realClick()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
@@ -428,7 +430,7 @@ describe('Tooltip', () => {
       position: 'bottomRight',
     })
 
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders interactive content', () => {
