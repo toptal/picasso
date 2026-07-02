@@ -405,7 +405,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             }}
             onMouseLeave={event => {
               triggerRest.onMouseLeave?.(event)
-              handleTriggerMouseLeave()
+              handleTriggerMouseLeave(event)
             }}
             render={children as ReactElement}
           />
