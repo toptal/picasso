@@ -25,3 +25,16 @@ class IntersectionObserverMock {
 global.IntersectionObserver = IntersectionObserverMock;
 global.TextEncoder = require('util').TextEncoder;
 global.TextDecoder = require('util').TextDecoder;
+
+// jsdom does not implement PointerEvent, which @base-ui/react dispatches when
+// activating controls (e.g. Checkbox.Root forwards clicks to its hidden input).
+// Extend MouseEvent so modifier-key params still flow through.
+if (typeof global.PointerEvent === 'undefined') {
+  global.PointerEvent = class PointerEvent extends MouseEvent {
+    constructor(type, params = {}) {
+      super(type, params);
+      this.pointerId = params.pointerId;
+      this.pointerType = params.pointerType;
+    }
+  };
+}
