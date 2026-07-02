@@ -134,4 +134,35 @@ describe('Popper', () => {
 
     expect(container).toContainElement(screen.getByRole('tooltip'))
   })
+
+  it('positions with absolute strategy by default', async () => {
+    renderPopper()
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'absolute' })
+  })
+
+  it('positions with fixed strategy when requested', async () => {
+    renderPopper({ strategy: 'fixed' })
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+  })
+
+  it('positions with fixed strategy via legacy popperOptions.positionFixed', async () => {
+    renderPopper({ popperOptions: { positionFixed: true } })
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+  })
+
+  it('lets an explicit strategy prop override legacy popperOptions.positionFixed', async () => {
+    renderPopper({
+      strategy: 'absolute',
+      popperOptions: { positionFixed: true },
+    })
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'absolute' })
+  })
 })

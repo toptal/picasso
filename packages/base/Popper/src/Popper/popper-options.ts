@@ -59,6 +59,25 @@ export interface PopperOptions {
   onCreate?: PopperLifecycleCallback
   /** Called on each position update after creation */
   onUpdate?: PopperLifecycleCallback
+  /**
+   * popper.js v1 predecessor of the `strategy` prop; `true` behaves like
+   * `strategy="fixed"`. Ignored when `strategy` is set explicitly.
+   * @deprecated [PF-1994] use the `strategy` prop instead
+   */
+  positionFixed?: boolean
+}
+
+// popper.js v1 back-compat: `popperOptions.positionFixed` predates the
+// `strategy` prop. An explicit `strategy` prop always takes precedence.
+export const resolveStrategy = (
+  strategy: 'absolute' | 'fixed' | undefined,
+  popperOptions: PopperOptions
+): 'absolute' | 'fixed' => {
+  if (strategy) {
+    return strategy
+  }
+
+  return popperOptions.positionFixed ? 'fixed' : 'absolute'
 }
 
 const getPreventOverflowOptions = (isInsideModal: boolean) => {

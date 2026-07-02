@@ -13,6 +13,7 @@ import {
   createMiddleware,
   getParityAttributes,
   getPopperOptions,
+  resolveStrategy,
 } from './popper-options'
 import type { PopperHandle } from './use-popper-handle'
 import { usePopperHandle } from './use-popper-handle'
@@ -56,6 +57,13 @@ export interface Props extends BaseProps {
   disablePortal?: boolean
   /** Popper placement */
   placement?: PopperPlacementType
+  /**
+   * CSS positioning strategy. `fixed` escapes clipping/scrolling ancestors
+   * (e.g. `overflow: hidden` containers) at the cost of not scrolling with
+   * them. Defaults to `popperOptions.positionFixed ? 'fixed' : 'absolute'`
+   * for popper.js v1 compatibility
+   */
+  strategy?: 'absolute' | 'fixed'
   /** Options provided to the popper instance */
   popperOptions?: PopperOptions
   /** Always keep Popper's children in the DOM */
@@ -107,6 +115,7 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     open = false,
     disablePortal = false,
     placement = 'bottom',
+    strategy,
     popperOptions = {},
     autoWidth = true,
     ...props
@@ -165,7 +174,7 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
   } = useFloating({
     open,
     placement,
-    strategy: 'absolute',
+    strategy: resolveStrategy(strategy, popperOptions),
     // useFloating deep-compares middleware, so the inline array is stable
     middleware: createMiddleware(resolvedOptions),
     whileElementsMounted: autoUpdate,

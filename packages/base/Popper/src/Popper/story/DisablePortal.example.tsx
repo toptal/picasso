@@ -17,7 +17,7 @@ const Example = () => {
         <code>disablePortal</code> the Popper renders inline and gets clipped.
         Without it, the Popper escapes to the document root via a portal.
       </Typography>
-      <div className='overflow-hidden h-[60px] mt-4 border-2 border-dashed border-gray-400 rounded-sm flex items-center px-4'>
+      <div className='relative overflow-hidden h-[60px] mt-4 border-2 border-dashed border-gray-400 rounded-sm flex items-center px-4'>
         <Button onClick={handleClick}>Toggle Popper</Button>
         <Popper
           open={open}
