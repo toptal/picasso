@@ -3,11 +3,22 @@ import { useEffect, useRef, useState } from 'react'
 import type { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import { toReactEvent } from '@toptal/picasso-shared'
 
+// followCursor: base-ui's cursor tracking only repositions the popup; it never
+// hides when the pointer roams far from where the tooltip opened. Restore the
+// legacy "hide while moving, reopen once the cursor settles" behavior (parity
+// with the removed use-tooltip-follow-cursor.ts) — close once the pointer moves
+// past FOLLOW_CURSOR_CLOSE_DISTANCE from where the current move began, and
+// reopen after it rests for FOLLOW_CURSOR_STOP_DELAY.
+const FOLLOW_CURSOR_CLOSE_DISTANCE = 50
+const FOLLOW_CURSOR_STOP_DELAY = 250
+
 type Props = {
   /** Programatically control tooltip's visibility */
   open?: boolean
   /** Disables all listeners */
   disableListeners?: boolean
+  /** Follow the cursor while hovering the trigger */
+  followCursor?: boolean
   /** Delay (ms) before a hover opens the tooltip */
   openDelay: number
   /** Called when tooltip is opened */
@@ -26,6 +37,7 @@ type TooltipState = {
   handleOpenChangeComplete: (nextOpen: boolean) => void
   handleTriggerClick: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseOver: (event: MouseEvent<HTMLElement>) => void
+  handleTriggerMouseMove: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseLeave: () => void
 }
 
@@ -38,6 +50,7 @@ type TooltipState = {
 export const useTooltipState = ({
   open,
   disableListeners,
+  followCursor,
   openDelay,
   onOpen,
   onClose,
@@ -60,10 +73,21 @@ export const useTooltipState = ({
   // Pending hover-open timer (see handleTriggerMouseOver).
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
+  // followCursor move tracking (see FOLLOW_CURSOR_* constants). `moveStartRef`
+  // anchors the current move segment; `followCursorHiddenRef` blocks base-ui
+  // from re-opening while we hold it hidden mid-move; `stopTimerRef` fires the
+  // settle-and-reopen; `targetHoveredRef` gates that reopen to an actual hover.
+  const moveStartRef = useRef<{ x: number; y: number } | null>(null)
+  const followCursorHiddenRef = useRef(false)
+  const stopTimerRef = useRef<ReturnType<typeof setTimeout>>()
+  const targetHoveredRef = useRef(false)
+  const lastMoveEventRef = useRef<Event | null>(null)
+
   useEffect(
     () => () => {
       clearTimeout(openTimerRef.current)
       clearTimeout(clearSuppressTimerRef.current)
+      clearTimeout(stopTimerRef.current)
     },
     []
   )
@@ -99,7 +123,7 @@ export const useTooltipState = ({
       }
     } else {
       clearTimeout(clearSuppressTimerRef.current)
-      if (!suppressReopenRef.current) {
+      if (!suppressReopenRef.current && !followCursorHiddenRef.current) {
         setInternalOpen(true)
       }
     }
@@ -137,6 +161,8 @@ export const useTooltipState = ({
   // base-ui still owns closing (it requests `onOpenChange(false)` on leave), so
   // this only adds a more robust open path and never blocks one.
   const handleTriggerMouseOver = (event: MouseEvent<HTMLElement>) => {
+    targetHoveredRef.current = true
+
     if (
       isControlled ||
       disableListeners ||
@@ -161,8 +187,56 @@ export const useTooltipState = ({
     }, openDelay)
   }
 
+  // followCursor only: hide while the pointer roams far from where the tooltip
+  // opened, and reopen once it settles — base-ui's cursor tracking repositions
+  // but never hides, which leaves the popup lingering under a distant cursor.
+  const handleTriggerMouseMove = (event: MouseEvent<HTMLElement>) => {
+    if (isControlled || disableListeners || !followCursor) {
+      return
+    }
+
+    const position = { x: event.clientX, y: event.clientY }
+
+    moveStartRef.current ??= position
+    lastMoveEventRef.current = event.nativeEvent
+
+    const movedTooFar =
+      Math.abs(position.x - moveStartRef.current.x) >
+        FOLLOW_CURSOR_CLOSE_DISTANCE ||
+      Math.abs(position.y - moveStartRef.current.y) >
+        FOLLOW_CURSOR_CLOSE_DISTANCE
+
+    if (movedTooFar && openRef.current) {
+      followCursorHiddenRef.current = true
+      setInternalOpen(false)
+      onClose?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
+    }
+
+    clearTimeout(stopTimerRef.current)
+    stopTimerRef.current = setTimeout(() => {
+      // Cursor settled: start a fresh segment and reopen near it, as long as the
+      // pointer is still over the trigger and no click-dismiss is in effect.
+      moveStartRef.current = null
+      followCursorHiddenRef.current = false
+
+      if (
+        targetHoveredRef.current &&
+        !suppressReopenRef.current &&
+        !openRef.current &&
+        lastMoveEventRef.current
+      ) {
+        setInternalOpen(true)
+        onOpen?.(toReactEvent<ChangeEvent<Element>>(lastMoveEventRef.current))
+      }
+    }, FOLLOW_CURSOR_STOP_DELAY)
+  }
+
   const handleTriggerMouseLeave = () => {
     clearTimeout(openTimerRef.current)
+    clearTimeout(stopTimerRef.current)
+    targetHoveredRef.current = false
+    followCursorHiddenRef.current = false
+    moveStartRef.current = null
   }
 
   return {
@@ -171,6 +245,7 @@ export const useTooltipState = ({
     handleOpenChangeComplete,
     handleTriggerClick,
     handleTriggerMouseOver,
+    handleTriggerMouseMove,
     handleTriggerMouseLeave,
   }
 }
