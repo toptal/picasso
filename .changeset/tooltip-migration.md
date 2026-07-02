@@ -32,3 +32,7 @@
   a closed tooltip's content is "not visible" should assert it "does not exist".
 - lift the `react` peer-dependency upper bound to `>=16.12.0` (drop the
   `< 19.0.0` cap). Drop the `@material-ui/core` peer dependency.
+- seat the arrow tighter against menu-item anchors (`role="menuitem"`): in a
+  dense list the standard arrow gap points the tip at the strip between rows,
+  so menu-item tooltips now use a 0px tip gap that lands the arrow on the
+  option it describes. Every other anchor keeps the standard gap.
