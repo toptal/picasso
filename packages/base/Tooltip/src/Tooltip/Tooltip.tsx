@@ -7,7 +7,7 @@ import type {
 import React, { forwardRef, useCallback, useRef, useState } from 'react'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { pxFromRem, spacingToRem } from '@toptal/picasso-shared'
+import { fromPx, pxFromRem, spacingToRem } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
 import { SPACING_0, usePicassoRoot } from '@toptal/picasso-provider'
 import { Typography } from '@toptal/picasso-typography'
@@ -49,18 +49,22 @@ const delayDurations: { [k in DelayType]: number } = {
   long: 500,
 }
 
-// Gap (in px) between the anchor and the popup along the side axis. The arrow
-// gap matches the legacy MUI arrow-tooltip spacing (the arrow fills the gap).
-const ARROW_GAP = 15
-// Menu-item tooltips sit in a dense stack of options, where the standard
-// ARROW_GAP lands the arrow tip in the dead strip between two rows and reads as
-// pointing at the wrong option. Per design, the tip↔anchor gap on menu items is
-// 0-4px (not ~8px), so a menu-item anchor uses a tighter gap that seats the
-// arrow on the option it describes. Scoped to menu items only — every other
-// anchor keeps ARROW_GAP. [PF-1994]
-const MENU_ITEM_ARROW_GAP = 8
-const COMPACT_GAP = 4
-const FOLLOW_CURSOR_GAP = 10
+// Anchor↔popup gaps along the side axis. base-ui's positioner works in pixels,
+// so these are expressed in `rem` (Rule 7 — sizes scale with the root font, as
+// the rem-sized arrow in styles.ts does) and resolved to the px number it needs.
+const gapPx = (remValue: string): number => fromPx(pxFromRem(remValue))
+
+// Matches the legacy MUI arrow-tooltip spacing (the arrow fills the gap).
+const ARROW_GAP = gapPx('0.9375rem') // 15px
+// Menu-item tooltips sit in a dense stack of options, where ARROW_GAP lands the
+// arrow tip in the dead strip between two rows and reads as pointing at the
+// wrong option. Per design, the tip↔anchor gap on menu items is 0-4px (not
+// ~8px), so a menu-item anchor uses a tighter gap that seats the arrow on the
+// option it describes. Scoped to menu items only — every other anchor keeps
+// ARROW_GAP. [PF-1994]
+const MENU_ITEM_ARROW_GAP = gapPx('0.5rem') // 8px
+const COMPACT_GAP = gapPx('0.25rem') // 4px
+const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 
 // Menu items are recognized by the anchor's semantic (ARIA) role rather than
 // by coupling to @toptal/picasso-menu — Menu.Item renders `role="menuitem"`,
