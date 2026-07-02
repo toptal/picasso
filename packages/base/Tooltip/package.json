@@ -33,11 +33,13 @@
   ],
   "peerDependencies": {
     "@toptal/picasso-provider": "*",
+    "@toptal/picasso-tailwind": "^4.1.0",
     "@toptal/picasso-tailwind-merge": "^2.0.0",
     "react": ">=16.12.0"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "workspace:*",
+    "@toptal/picasso-tailwind": "workspace:*",
     "@toptal/picasso-tailwind-merge": "workspace:*",
     "@toptal/picasso-test-utils": "workspace:*"
   },
