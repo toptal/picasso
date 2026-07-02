@@ -4,7 +4,7 @@ import type {
   ChangeEvent,
   HTMLAttributes,
 } from 'react'
-import React, { forwardRef, useCallback, useState } from 'react'
+import React, { forwardRef, useCallback, useRef, useState } from 'react'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { pxFromRem, spacingToRem } from '@toptal/picasso-shared'
@@ -52,8 +52,22 @@ const delayDurations: { [k in DelayType]: number } = {
 // Gap (in px) between the anchor and the popup along the side axis. The arrow
 // gap matches the legacy MUI arrow-tooltip spacing (the arrow fills the gap).
 const ARROW_GAP = 15
+// Menu-item tooltips sit in a dense stack of options, where the standard
+// ARROW_GAP lands the arrow tip in the dead strip between two rows and reads as
+// pointing at the wrong option. Per design, the tip↔anchor gap on menu items is
+// 0-4px (not ~8px), so a menu-item anchor uses a tighter gap that seats the
+// arrow on the option it describes. Scoped to menu items only — every other
+// anchor keeps ARROW_GAP. [PF-1994]
+const MENU_ITEM_ARROW_GAP = 8
 const COMPACT_GAP = 4
 const FOLLOW_CURSOR_GAP = 10
+
+// Menu items are recognized by the anchor's semantic (ARIA) role rather than
+// by coupling to @toptal/picasso-menu — Menu.Item renders `role="menuitem"`,
+// while look-alikes that must keep the standard gap don't (e.g. Autocomplete
+// options render inside a Menu but as `role="option"`).
+const isMenuItemAnchor = (anchor: Element | null): boolean =>
+  anchor?.getAttribute('role') === 'menuitem'
 
 const spacingToPx = (spacing: PicassoSpacing): number =>
   Number.parseFloat(pxFromRem(spacingToRem(spacing)))
@@ -74,12 +88,14 @@ const getPositionerOffsets = ({
   showArrow,
   followCursor,
   offset,
+  anchorRef,
 }: {
   side: Side
   showArrow: boolean
   followCursor: boolean
   offset: OffsetType
-}): { sideOffset: number; alignOffset: number } => {
+  anchorRef: React.RefObject<HTMLElement | null>
+}): { sideOffset: number | (() => number); alignOffset: number } => {
   // followCursor positions against the cursor with its own fixed distance;
   // the public `offset` prop only applies to anchor-relative placement.
   if (followCursor) {
@@ -90,14 +106,26 @@ const getPositionerOffsets = ({
   const offsetLeft = spacingToPx(offset.left ?? SPACING_0)
   const offsetTop = spacingToPx(offset.top ?? SPACING_0)
 
-  const baseSideOffset = showArrow ? ARROW_GAP : COMPACT_GAP
-
   // A single, flip-invariant gap, as MUI's Popper applied it: the `offset`
   // modifier carried only the user offset and never varied by resolved side, so
   // the anchor↔popup gap is identical whether or not floating-ui flips.
+  const userSideOffset = isVertical ? offsetTop : offsetLeft
+  const alignOffset = isVertical ? offsetLeft : offsetTop
+
+  if (!showArrow) {
+    return { sideOffset: COMPACT_GAP + userSideOffset, alignOffset }
+  }
+
+  // The arrow gap depends on what the arrow points at (see
+  // MENU_ITEM_ARROW_GAP), so it resolves lazily — base-ui calls an
+  // offset function at position time, when the anchor node is already
+  // committed. This keeps the first paint correct without tracking the
+  // anchor in state (no extra render + reposition pass).
   return {
-    sideOffset: baseSideOffset + (isVertical ? offsetTop : offsetLeft),
-    alignOffset: isVertical ? offsetLeft : offsetTop,
+    sideOffset: () =>
+      (isMenuItemAnchor(anchorRef.current) ? MENU_ITEM_ARROW_GAP : ARROW_GAP) +
+      userSideOffset,
+    alignOffset,
   }
 }
 
@@ -201,6 +229,10 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     // emulated by portaling the popup into the trigger's parent element —
     // keeping it within the same DOM subtree as before.
     const [triggerParent, setTriggerParent] = useState<HTMLElement | null>(null)
+    // The rendered trigger element — base-ui merges the trigger props onto
+    // `children`, so this is the anchor node (e.g. a Menu.Item's `<li>`).
+    // Read lazily by getPositionerOffsets to pick the arrow gap.
+    const triggerNodeRef = useRef<HTMLElement | null>(null)
 
     const trackTriggerParent = useCallback(
       (node: HTMLElement | null) => {
@@ -213,6 +245,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
 
     const setTriggerRef = useMultipleForwardRefs<HTMLElement | null>([
       ref,
+      triggerNodeRef,
       trackTriggerParent,
     ])
 
@@ -224,6 +257,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       showArrow,
       followCursor,
       offset,
+      anchorRef: triggerNodeRef,
     })
 
     const resolvedContainer = disablePortal
