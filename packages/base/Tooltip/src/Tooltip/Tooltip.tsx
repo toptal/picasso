@@ -218,10 +218,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       handleOpenChangeComplete,
       handleTriggerClick,
       handleTriggerMouseOver,
+      handleTriggerMouseMove,
       handleTriggerMouseLeave,
     } = useTooltipState({
       open,
       disableListeners,
+      followCursor,
       openDelay: delayDurations[delay],
       onOpen,
       onClose,
@@ -356,6 +358,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             onMouseOver={event => {
               triggerRest.onMouseOver?.(event)
               handleTriggerMouseOver(event)
+            }}
+            // followCursor dismiss-while-roaming (no-op otherwise; see
+            // useTooltipState). Compose with any consumer-supplied handler.
+            onMouseMove={event => {
+              triggerRest.onMouseMove?.(event)
+              handleTriggerMouseMove(event)
             }}
             onMouseLeave={event => {
               triggerRest.onMouseLeave?.(event)
