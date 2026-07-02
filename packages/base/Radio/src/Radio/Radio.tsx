@@ -1,20 +1,18 @@
 import type { ComponentProps, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { Radio as MUIRadio } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type {
   StandardProps,
   ButtonOrAnchorProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 
-import styles from './styles'
+import { useRadioGroupContext } from '../RadioGroupContext'
+import type { Props as RadioControlProps } from './RadioControl'
+import { RadioControl } from './RadioControl'
 
 export interface Props
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     TextLabelProps,
     Omit<ButtonOrAnchorProps, 'onChange' | 'value'> {
   /** Text label for the `Radio` */
@@ -32,11 +30,6 @@ export interface Props
   ) => void
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'Radio',
-})
-
-// eslint-disable-next-line react/display-name
 export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
   function Radio({ disabled = false, ...props }, ref) {
     const {
@@ -48,35 +41,62 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       onChange,
       titleCase,
       'data-private': dataPrivate,
+      id,
+      name,
+      // runtime backstop: `classes` was dropped from the public Props; keep a
+      // stray JS-consumer value out of the DOM spread below
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      classes: _classes,
       ...rest
-    } = props
-    const classes = useStyles({ disabled, ...props })
-    const rootClasses = {
-      root: classes.root,
-      disabled: classes.disabled,
+    } = props as Props & { classes?: unknown }
+
+    const radioGroup = useRadioGroupContext()
+
+    const resolvedChecked =
+      checked ?? (radioGroup ? radioGroup.value === value : undefined)
+    const resolvedName = name ?? radioGroup?.name
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      onChange?.(event, event.target.checked)
+      radioGroup?.onChange?.(event, event.target.value)
     }
-    const muiRadio = (
-      <MUIRadio
-        {...rest}
-        ref={label ? undefined : (ref as React.ForwardedRef<HTMLButtonElement>)}
-        checked={checked}
-        disabled={disabled}
-        onChange={onChange}
-        value={value}
-        icon={<div className={classes.uncheckedIcon} />}
-        checkedIcon={<div className={classes.checkedIcon} />}
-        color='default'
-        classes={rootClasses}
-        className={cx(className, {
-          [classes.withLabel]: Boolean(label),
-        })}
+
+    // public Props keep the legacy ButtonOrAnchorProps surface while the
+    // control renders a <span>; element variance on the shared event handlers
+    // is bridged once here (see code-standards §"TS variance")
+    const controlRest = rest as Omit<
+      RadioControlProps,
+      | 'checked'
+      | 'disabled'
+      | 'withLabel'
+      | 'id'
+      | 'name'
+      | 'value'
+      | 'onChange'
+      | 'className'
+      | 'style'
+    >
+
+    const radioControl = (
+      <RadioControl
+        {...controlRest}
+        // MUI v4 also rendered the control root as a <span>, so the wider
+        // public ref type is preserved and bridged here
+        ref={label ? undefined : (ref as React.ForwardedRef<HTMLSpanElement>)}
+        className={className}
         style={style}
-        focusVisibleClassName={classes.focused}
+        checked={resolvedChecked}
+        disabled={disabled}
+        withLabel={Boolean(label)}
+        id={id}
+        name={resolvedName}
+        value={value}
+        onChange={handleChange}
       />
     )
 
     if (!label) {
-      return muiRadio
+      return radioControl
     }
 
     const externalEventListeners = {
@@ -88,7 +108,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       <FormControlLabel
         {...externalEventListeners}
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
-        control={muiRadio}
+        control={radioControl}
         classes={{
           label: 'mt-[0.25em] max-w-[calc(100%_-_1.5em_+_1px)]',
           root: 'text-[1rem] items-start',
