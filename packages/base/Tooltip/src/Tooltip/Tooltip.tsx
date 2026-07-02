@@ -15,7 +15,12 @@ import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ContainerValue } from './types'
-import { createArrowClassNames, createPopupClassNames } from './styles'
+import {
+  COMPACT_POPUP_MARGIN,
+  POPUP_MARGIN,
+  createArrowClassNames,
+  createPopupClassNames,
+} from './styles'
 import { useTooltipState } from './use-tooltip-state'
 
 export type DelayType = 'short' | 'long'
@@ -54,8 +59,17 @@ const delayDurations: { [k in DelayType]: number } = {
 // the rem-sized arrow in styles.ts does) and resolved to the px number it needs.
 const gapPx = (remValue: string): number => fromPx(pxFromRem(remValue))
 
-// Matches the legacy MUI arrow-tooltip spacing (the arrow fills the gap).
-const ARROW_GAP = gapPx('0.9375rem') // 15px
+// The gap band that styles.ts reserves as the popup's own margin (the legacy
+// MUI geometry — see POPUP_MARGIN there). The positioner sits flush against
+// the anchor exactly as MUI's popper did, so every gap below is applied as
+// `gap - margin` when it resolves to a sideOffset.
+const POPUP_MARGIN_PX = gapPx(POPUP_MARGIN) // 14px
+const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
+
+// Matches the legacy MUI arrow-tooltip spacing (the arrow fills the gap): MUI
+// reserved the gap as the tooltip's `margin: '14px 0'`, so the standard arrow
+// gap IS the margin band and the sideOffset resolves to 0.
+const ARROW_GAP = POPUP_MARGIN_PX // 14px
 // Menu-item tooltips sit in a dense stack of options, where ARROW_GAP lands the
 // arrow tip in the dead strip between two rows and reads as pointing at the
 // wrong option. Per design, the tip↔anchor gap on menu items is 0-4px (not
@@ -91,19 +105,26 @@ const getPositionerOffsets = ({
   side,
   showArrow,
   followCursor,
+  compact,
   offset,
   anchorRef,
 }: {
   side: Side
   showArrow: boolean
   followCursor: boolean
+  compact: boolean
   offset: OffsetType
   anchorRef: React.RefObject<HTMLElement | null>
 }): { sideOffset: number | (() => number); alignOffset: number } => {
+  // The popup's own margin (styles.ts) already provides this much of the gap,
+  // so each sideOffset supplies only the remainder — negative when the desired
+  // gap is tighter than the margin band (e.g. menu items).
+  const popupMargin = compact ? COMPACT_POPUP_MARGIN_PX : POPUP_MARGIN_PX
+
   // followCursor positions against the cursor with its own fixed distance;
   // the public `offset` prop only applies to anchor-relative placement.
   if (followCursor) {
-    return { sideOffset: FOLLOW_CURSOR_GAP, alignOffset: 0 }
+    return { sideOffset: FOLLOW_CURSOR_GAP - popupMargin, alignOffset: 0 }
   }
 
   const isVertical = side === 'top' || side === 'bottom'
@@ -117,7 +138,10 @@ const getPositionerOffsets = ({
   const alignOffset = isVertical ? offsetLeft : offsetTop
 
   if (!showArrow) {
-    return { sideOffset: COMPACT_GAP + userSideOffset, alignOffset }
+    return {
+      sideOffset: COMPACT_GAP - popupMargin + userSideOffset,
+      alignOffset,
+    }
   }
 
   // The arrow gap depends on what the arrow points at (see
@@ -127,7 +151,8 @@ const getPositionerOffsets = ({
   // anchor in state (no extra render + reposition pass).
   return {
     sideOffset: () =>
-      (isMenuItemAnchor(anchorRef.current) ? MENU_ITEM_ARROW_GAP : ARROW_GAP) +
+      (isMenuItemAnchor(anchorRef.current) ? MENU_ITEM_ARROW_GAP : ARROW_GAP) -
+      popupMargin +
       userSideOffset,
     alignOffset,
   }
@@ -262,6 +287,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       side,
       showArrow,
       followCursor,
+      compact: Boolean(compact),
       offset,
       anchorRef: triggerNodeRef,
     })
@@ -283,6 +309,18 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     const positioner = (
       <BaseTooltip.Positioner
         ref={tooltipRef}
+        // Pin the anchor to the trigger's ref'd node. Left alone, base-ui
+        // anchors the ACTIVE trigger — the element whose hover handler
+        // reported the open. For composite children that attach the forwarded
+        // ref and the spread props to DIFFERENT nodes (Radio/Checkbox with a
+        // label: ref → the root <label>, props → the inner ButtonBase), the
+        // anchor then depends on which handler path fired (base-ui's React
+        // prop on the inner node vs its native listener on the ref'd node) —
+        // an interaction-order-dependent popup jump of the two nodes' rect
+        // difference. The legacy MUI Tooltip always anchored its Popper to
+        // the child's ref'd node; pin the same node. followCursor keeps the
+        // default so cursor tracking owns the reference point.
+        anchor={followCursor ? undefined : triggerNodeRef}
         // Restore the tooltip stacking layer (`z-tooltip` = 1300) that MUI's
         // Tooltip applied via `theme.zIndex.tooltip` (Picasso overrode MUI's
         // 1500 default to 1300 — see PicassoProvider). base-ui sets no z-index,

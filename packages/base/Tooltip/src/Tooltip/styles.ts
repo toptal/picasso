@@ -1,5 +1,27 @@
 import type { MaxWidthType } from './Tooltip'
 
+// The anchor↔popup gap, reserved as the popup's own MARGIN — exactly how the
+// legacy MUI Tooltip built it: the popper element sat flush against the anchor
+// and `.MuiTooltip-tooltipPlacementTop/Bottom { margin: '14px 0' }` (Left/
+// Right: `'0 14px'`; Picasso's `compact` override: `margin: '0.25rem'`)
+// created the visible gap. Tooltip.tsx keeps the positioner flush by
+// subtracting these values from its sideOffset.
+//
+// Reproducing the margin — rather than pushing a tightly-fitted positioner
+// away from the anchor with a plain sideOffset — matters for visual
+// regression: Happo sizes a DOM capture to the union of element BORDER boxes
+// and does NOT grow it for box-shadows (measured on the Tooltip Cypress
+// suite: the MUI capture ended exactly at the popper's border box — popup +
+// margin band — never at the shadow extent). The margin makes the positioner's
+// border box cover the gap band, so the capture keeps the strip of popup
+// shadow that the legacy snapshots show; without it every snapshot is cropped
+// flush at the popup edge, ~14px (or 4px compact) short of the baseline.
+//
+// These constants exist for Tooltip.tsx's sideOffset math — Tailwind can only
+// see literal class names, so keep them in sync with the margin classes below.
+export const POPUP_MARGIN = '0.875rem' // 14px
+export const COMPACT_POPUP_MARGIN = '0.25rem' // 4px
+
 export const createPopupClassNames = (
   compact: boolean,
   maxWidth: MaxWidthType
@@ -13,20 +35,23 @@ export const createPopupClassNames = (
   //
   // BOTH surfaces use the `shadow-4` *box-shadow* (= shadows[4], the legacy
   // tooltip shadow), exactly as the MUI Tooltip did (`boxShadow: shadows[4]` on
-  // `.tooltip`). This is deliberate on two counts:
-  //
-  // • It reproduces master pixel-for-pixel — master IS the MUI build, whose
-  //   popup carried `shadow-4` and whose arrow carried its OWN shadow (see
-  //   createArrowClassNames). The combined silhouette is the legacy one.
-  //
-  // • Happo's DOM capture grows a snapshot's bbox to include a `box-shadow` but
-  //   NOT a `filter: drop-shadow`. A drop-shadow here rendered the non-compact
-  //   snapshots ~21px short (the shadow band below the popup was cropped),
-  //   whereas the `compact` box-shadow cropped only ~4px. box-shadow keeps the
-  //   capture aligned with the legacy snapshot.
+  // `.tooltip`) — the popup and the arrow (see createArrowClassNames) each
+  // carry their own shadow, so the combined silhouette is the legacy one.
   ...(compact
-    ? ['shadow-4 bg-graphite-800 text-white leading-none px-2 py-[0.125rem]']
-    : ['shadow-4 bg-white text-graphite-800 p-4']),
+    ? [
+        'shadow-4 bg-graphite-800 text-white leading-none px-2 py-[0.125rem]',
+        // Legacy compact margin (`margin: '0.25rem'`, all sides) — the gap
+        // band, see COMPACT_POPUP_MARGIN above.
+        'm-1',
+      ]
+    : [
+        'shadow-4 bg-white text-graphite-800 p-4',
+        // Legacy placement margin — the gap band (see POPUP_MARGIN above),
+        // applied on the placement axis of the RESOLVED side so a collision
+        // flip keeps the band between the popup and the anchor.
+        'data-[side=top]:my-[0.875rem] data-[side=bottom]:my-[0.875rem]',
+        'data-[side=left]:mx-[0.875rem] data-[side=right]:mx-[0.875rem]',
+      ]),
 ]
 
 export const createArrowClassNames = (): string[] => [
