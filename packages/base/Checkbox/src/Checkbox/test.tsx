@@ -107,8 +107,8 @@ describe('Checkbox', () => {
       onChange = jest.fn()
       api = renderCheckbox({ onChange, label })
 
-      const { getByLabelText } = api
-      const checkboxLabel = getByLabelText(label)
+      const { getByText } = api
+      const checkboxLabel = getByText(label)
 
       fireEvent.click(checkboxLabel)
     })
