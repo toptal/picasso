@@ -39,7 +39,7 @@ export const Select = ({
   })
 
   return (
-    <Container className={twMerge(className, 'flex-[1_0_6.25rem]')}>
+    <Container className={twMerge('flex-[1_0_6.25rem]', className)}>
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}
