@@ -68,7 +68,7 @@ export const AutoComplete = ({
       className={
         fullWidth
           ? 'grow [background:none]'
-          : 'w-[206px] shrink-0 bg-transparent'
+          : 'w-[12.875rem] shrink-0 bg-transparent'
       }
     >
       <PicassoTagSelector
