@@ -1,21 +1,13 @@
 /**
- * Layout + drag-and-drop + branch-connector styling for react-querybuilder's
- * generated DOM, ported from JSS to Tailwind arbitrary descendant variants.
- *
- * These styles originally lived in react-querybuilder's CSS file; they were moved
- * into the codebase to dodge a CDN-caching production bug (ER-28394). They target
- * react-querybuilder's standard classnames (`.ruleGroup`, `.rule`, `.betweenRules`,
- * `.dndOver`, `.queryBuilder-branches`, …) as descendants of the QueryBuilder root.
+ * Layout, drag-and-drop, and branch-connector styling for react-querybuilder's
+ * generated DOM. These styles are inlined here rather than imported from
+ * react-querybuilder's CSS to dodge a CDN-caching production bug (ER-28394). They
+ * target react-querybuilder's standard classnames (`.ruleGroup`, `.rule`,
+ * `.betweenRules`, `.dndOver`, `.queryBuilder-branches`, …) as descendants of the
+ * QueryBuilder root.
  *
  * Every entry is a complete static string literal so Tailwind's content scanner
  * picks it up — do NOT build these via interpolation.
- *
- * Token mapping (@toptal/picasso-provider palette → picasso-tailwind):
- *   common.white #fff → white | grey.light2 #d8d9dc → gray-400
- *   blue.light #25a9ef → blue-400 | purple.main #6727cf → purple-500
- *   green.lighter #eafbf5 → green-100
- * Spacing: SPACING_6 1.5rem (p-6) | SPACING_4 1rem (gap-4/ml-6) | SPACING_2 0.5rem (pb-2).
- * Branch geometry literals preserved verbatim (0.75rem indent, 0.0625rem hairline).
  */
 
 const layout: string[] = [
@@ -42,8 +34,6 @@ const layout: string[] = [
   '[&_.ruleGroup_.rule]:gap-4',
   '[&_.ruleGroup_.rule]:items-center',
   '[&_.ruleGroup_.rule]:flex-wrap',
-  // The legacy `.rule-value-list-item` rule used an invalid `margineft` property
-  // (a typo) and therefore never applied; dropped to preserve behavioral parity.
 ]
 
 const dndHover: string[] = [
@@ -115,10 +105,7 @@ const branches: string[] = [
   '[&_.queryBuilder-branches_.rule:last-child]:before:rounded-bl-none',
   '[&_.queryBuilder-branches_.rule:last-child]:after:hidden',
 
-  // nested `.ruleGroup .ruleGroup` connectors. The legacy JSS defined a +1px
-  // (`calc(-1rem - 1px)`) override block for these, but the base connector block
-  // wins in the deployed baseline, so the connector geometry matches `.rule`
-  // (-16px offsets). Only the `p-4` padding from the override survives.
+  // nested `.ruleGroup .ruleGroup` connectors
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:relative',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:p-4',
   "[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:content-['']",
