@@ -37,3 +37,7 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react` newly ships a Dra
 ## Reviewer notes
 - Drawer is the more complex Tier 0 component (after Modal). It ships swipe-to-dismiss new — flag that to the design + product reviewers before approval.
 - Sibling: Modal (Tier 0) shares the dialog-primitive backing. Migrate Drawer + Modal in close succession after Backdrop lands.
+
+## Slot keys
+
+**Not applicable.** Per the May 2026 audit, Drawer does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.

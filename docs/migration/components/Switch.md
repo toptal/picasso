@@ -36,3 +36,9 @@ Per migration plan v3 §3.1: direct match. Replace `@mui/base/Switch` with `@bas
 ## Reviewer notes
 - If PR #4906 lands the Switch portion before this entry runs, the orchestrator should detect the `pr` URL pre-filled in the manifest and either fast-forward or run a verification pass. Coordinate to avoid double-migration.
 - Light-path multipliers feed PF-2024 / PF-2025 estimates per migration plan §10 R12 — calibrate carefully here.
+
+## Slot keys
+
+**Not applicable.** Per the May 2026 audit, Switch does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
+
+Sequencing note: Switch depends on FormLabel (Tier 1) — sequence after FormLabel cleanup ships.

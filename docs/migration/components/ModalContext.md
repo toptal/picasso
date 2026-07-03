@@ -23,3 +23,13 @@ Migration must be applied AFTER:
 ## Acceptance criteria (component-specific)
 - [ ] `packages/base/ModalContext/package.json` has no `@material-ui/core` entry.
 - [ ] Build + types green (this is the entire test surface for a 4-LOC context provider).
+
+## Slot keys
+
+ModalContext is a React context provider, not a DOM-rendering component. The `withClasses` shim does not apply: there are no slots to route classes to.
+
+```ts
+// Not applicable — ModalContext is context-only.
+```
+
+Tier 1 already-clean: the cleanup is package.json delta (drop `@material-ui/core` peer-dep + lift React 19 cap). Public API is the context provider's value shape, not classes.
