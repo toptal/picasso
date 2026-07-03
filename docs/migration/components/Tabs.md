@@ -37,3 +37,7 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react/tabs` exists with 
 ## Reviewer notes
 - Tabs is one of the more API-rich Tier 0 components (active state, indicator, keyboard nav). Budget an extra iteration if the indicator logic needs custom work.
 - After Tabs ships, query-builder (Tier 4) can start consuming the migrated Tabs primitive transitively — though that's not a hard dep.
+
+## Slot keys
+
+**Not applicable.** Per the May 2026 audit, Tabs does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.

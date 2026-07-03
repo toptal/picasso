@@ -83,3 +83,14 @@ The MUI `<Theme>` type import goes; rotation timing pulls from `tokens/picasso-t
 
 - **Utils is the agent's first real exercise of the JSS-to-Tailwind crib** in PF-1994. If the agent stumbles on `Rotate180`, that's a signal to sharpen `rules/jss-to-tailwind-crib.md` before Tier 2.
 - ClickAwayListener replacement strategy is small custom hook by default (per migration plan §3.2 + R17). Consumers that are themselves migrated `@base-ui/react` components (Dropdown via `Menu` + `Popover`, future Dialog usages) should swap to the built-in dismiss instead of depending on Utils' export — coordinate that consumer audit alongside this migration.
+
+## Slot keys
+
+Utils is a utility module, not a DOM-rendering component. The `withClasses` shim does not apply at the package boundary; instead, **Utils EXPORTS the shim itself** (`withClasses` from `packages/base/Utils/src/utils/with-classes.ts`).
+
+```ts
+// Not applicable — Utils is a utility module.
+// Utils exports `withClasses` for OTHER components to use.
+```
+
+Tier 1 cleanup with utility-replacement work: reimplement `capitalize` (1-line) and `ClickAwayListener` (small custom hook), replace `Rotate180` JSS with Tailwind. The shim implementation itself is the headline new utility.
