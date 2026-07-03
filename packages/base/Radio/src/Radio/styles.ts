@@ -43,7 +43,7 @@ const ICON_BASE = [
   "after:content-[''] after:pointer-events-none after:absolute",
   'after:left-1/2 after:top-1/2',
   'after:[transform:translate(-50%,-50%)]',
-  'after:rounded-full after:border-2 after:border-solid',
+  'after:rounded-full after:border-[0.125rem] after:border-solid',
   'after:border-current after:bg-current',
   'after:transition-all after:duration-350 after:ease-in-out',
   // keyboard focus ring, mirrors shared `outline()` helper:

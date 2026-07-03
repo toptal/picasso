@@ -8,7 +8,7 @@ import type {
 import { FormControlLabel } from '@toptal/picasso-form-label'
 
 import { useRadioGroupContext } from '../RadioGroupContext'
-import type { Props as RadioControlProps, RadioClasses } from './RadioControl'
+import type { Props as RadioControlProps } from './RadioControl'
 import { RadioControl } from './RadioControl'
 
 export interface Props
@@ -23,11 +23,6 @@ export interface Props
   disabled?: boolean
   /** Defines if `Radio` is checked by default */
   checked?: boolean
-  /**
-   * Override styling of individual `Radio` slots (`root`, `disabled`, `input`, `uncheckedIcon`, `checkedIcon`).
-   * @deprecated [PF-1994] Prefer `className` where a slot has a root-level equivalent.
-   */
-  classes?: RadioClasses
   /** Callback invoked when `Radio` changes its state */
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -48,9 +43,12 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       'data-private': dataPrivate,
       id,
       name,
-      classes,
+      // runtime backstop: `classes` was dropped from the public Props; keep a
+      // stray JS-consumer value out of the DOM spread below
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      classes: _classes,
       ...rest
-    } = props
+    } = props as Props & { classes?: unknown }
 
     const radioGroup = useRadioGroupContext()
 
@@ -74,7 +72,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       | 'onChange'
       | 'className'
       | 'style'
-      | 'classes'
     >
 
     const radioControl = (
@@ -83,7 +80,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={label ? undefined : (ref as React.ForwardedRef<HTMLSpanElement>)}
         className={className}
         style={style}
-        classes={classes}
         checked={resolvedChecked}
         disabled={disabled}
         withLabel={Boolean(label)}
