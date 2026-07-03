@@ -13,6 +13,7 @@ Radio buttons are best used when users need to select a single option from a set
 | value | `string \| number \| boolean` | - | Value of the `Radio` component used with conjunction of `Radio.Group` |
 | disabled | `boolean` | `false` | Defines if `Radio` is disabled |
 | checked | `boolean` | - | Defines if `Radio` is checked by default |
+| classes | `RadioClasses` | - | Override styling of individual `Radio` slots (`root`, `disabled`, `input`, `uncheckedIcon`, `checkedIcon`). @deprecated [PF-1994] Prefer `className` where a slot has a root-level equivalent. |
 | onChange | `undefined: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void` | - | Callback invoked when `Radio` changes its state |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
