@@ -1,24 +1,18 @@
 /**
- * QueryBuilder root styling, ported from JSS to Tailwind arbitrary descendant
- * variants applied on the wrapping Container. Combined with the react-querybuilder
- * layout/branch styles from `query-builder-global-styles.ts`.
+ * QueryBuilder root styling applied as Tailwind arbitrary descendant variants on
+ * the wrapping Container, combined with the layout/branch styles from
+ * `query-builder-global-styles.ts`.
  *
  * Every entry is a complete static string literal so Tailwind's content scanner
  * picks it up — do NOT build these via interpolation.
- *
- * Token mapping (@toptal/picasso-provider palette → picasso-tailwind):
- *   grey.lightest #fcfcfc → gray-50 | grey.lighter #f3f4f6 → gray-100
- *   blue.main #204ecf → blue-500.
  */
 import { queryBuilderGlobalStyles } from './query-builder-global-styles'
 
 // Root element of the query builder (the wrapping Container).
-// Original JSS used `borderRadius: '0.5em'`; the root carries no font-size, so at
-// the 16px base `0.5em` === `0.5rem` (8px) → `rounded-md`.
 const root: string[] = ['rounded-md', 'bg-gray-100']
 
-// Higher-specificity branch recoloring for the two shallowest nesting levels
-// (blue.main → blue-500). Numeric attribute values MUST be quoted —
+// Higher-specificity branch recoloring for the two shallowest nesting levels.
+// Numeric attribute values MUST be quoted —
 // `[data-level=1]` is invalid CSS (an unquoted value cannot start with a digit),
 // which Tailwind compiles to an empty rule.
 //
@@ -47,9 +41,8 @@ const branchLevelColor: string[] = [
 ]
 
 // Alternating rule-group backgrounds by nesting depth (odd → white, even → gray-50).
-// maxGroupDepth is hard-coded to 10 — matching the original JSS, which avoided
-// reading the prop because dynamic keys broke under JSS. Numeric attribute values
-// MUST be quoted (see branchLevelColor note).
+// maxGroupDepth is hard-coded to 10, a cap unlikely to be exceeded. Numeric
+// attribute values MUST be quoted (see branchLevelColor note).
 const ruleGroupDepthBackground: string[] = [
   "[&_.rule-group[data-level='1']]:bg-white",
   "[&_.rule-group[data-level='2']]:bg-gray-50",
