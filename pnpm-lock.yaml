@@ -2343,9 +2343,6 @@ importers:
 
   packages/base/Radio:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -25356,7 +25353,7 @@ snapshots:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.3
+      fsevents: 2.3.2
 
   chownr@2.0.0: {}
 
@@ -29529,7 +29526,7 @@ snapshots:
       micromatch: 4.0.8
       walker: 1.0.8
     optionalDependencies:
-      fsevents: 2.3.3
+      fsevents: 2.3.2
 
   jest-haste-map@29.7.0:
     dependencies:
@@ -29545,7 +29542,7 @@ snapshots:
       micromatch: 4.0.8
       walker: 1.0.8
     optionalDependencies:
-      fsevents: 2.3.3
+      fsevents: 2.3.2
 
   jest-html-reporters@3.1.7:
     dependencies:
@@ -34011,7 +34008,7 @@ snapshots:
 
   rollup@2.79.2:
     optionalDependencies:
-      fsevents: 2.3.3
+      fsevents: 2.3.2
 
   rrweb-cssom@0.7.1: {}
 

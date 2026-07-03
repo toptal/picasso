@@ -17,21 +17,19 @@ exports[`ButtonRadio renders 1`] = `
         class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         <span
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+          class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer"
         >
+          <input
+            class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"
+            type="radio"
+            value=""
+          />
           <span
-            class="MuiIconButton-label"
-          >
-            <input
-              class="PrivateSwitchBase-input"
-              type="radio"
-              value=""
-            />
-            <div
-              class="Radio-uncheckedIcon"
-            />
-          </span>
+            class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color peer-checked:hidden text-gray before:border-gray before:bg-white after:opacity-0 group-hover:before:border-gray"
+          />
+          <span
+            class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color hidden peer-checked:block text-white before:border-blue before:bg-blue after:opacity-100 group-hover:before:border-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))] group-hover:before:bg-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]"
+          />
         </span>
         <div
           class="min-w"
