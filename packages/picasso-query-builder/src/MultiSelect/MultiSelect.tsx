@@ -7,7 +7,6 @@ import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
 } from '../types/query-builder'
-import { rootClassName } from './styles'
 
 type Props = BaseVersatileSelectorProps &
   ValueEditorValidationProps & {
@@ -40,7 +39,7 @@ export const MultiSelect = ({
   }, [value])
 
   return (
-    <Container className={rootClassName}>
+    <Container className='flex-[1_0_12.5rem]'>
       <Select
         disabled={disabled}
         className={className}

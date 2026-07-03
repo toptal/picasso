@@ -3,14 +3,12 @@ import { Container } from '@toptal/picasso-container'
 import { TagSelector as PicassoTagSelector } from '@toptal/picasso-tagselector'
 import { useDebouncedCallback } from 'use-debounce'
 import type { Item } from '@toptal/picasso-tagselector'
-import cx from 'classnames'
 
 import { validateValueEditor } from '../utils'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
 } from '../types/query-builder'
-import { rootClassName, fullWidthClassName } from './styles'
 
 interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
   fullWidth?: boolean
@@ -67,11 +65,11 @@ export const AutoComplete = ({
 
   return (
     <Container
-      className={cx({
-        [fullWidthClassName]: fullWidth,
-        [rootClassName]: !fullWidth,
-      })}
-      style={{ background: fullWidth ? 'none' : 'transparent' }}
+      className={
+        fullWidth
+          ? 'grow [background:none]'
+          : 'w-[206px] shrink-0 bg-transparent'
+      }
     >
       <PicassoTagSelector
         width='full'

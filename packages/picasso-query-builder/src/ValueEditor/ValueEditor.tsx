@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ValueEditorType } from 'react-querybuilder'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { Select } from '../Select'
 import { MultiSelect } from '../MultiSelect'
@@ -10,7 +10,8 @@ import { TextInput } from '../TextInput'
 import { useHandleTouched } from '../utils'
 import { BooleanInput } from '../BooleanInput'
 import type { BaseValueEditorProps } from '../types/query-builder'
-import { rootClassName } from './styles'
+
+export const rootClassName = 'flex-[1_0_9.25rem]'
 
 type CustomValueEditorType =
   | 'autocomplete'
@@ -48,7 +49,7 @@ export const ValueEditor = ({
     case 'multiselect':
       return (
         <MultiSelect
-          className={cx(className, rootClassName)}
+          className={twMerge(rootClassName, className)}
           disabled={disabled}
           options={values}
           value={value}
@@ -65,7 +66,7 @@ export const ValueEditor = ({
     case 'select':
       return (
         <Select
-          className={cx(className, rootClassName)}
+          className={twMerge(rootClassName, className)}
           disabled={disabled}
           options={values}
           value={value}
@@ -80,7 +81,7 @@ export const ValueEditor = ({
     case 'autocomplete':
       return (
         <AutoComplete
-          className={cx(className, rootClassName)}
+          className={twMerge(rootClassName, className)}
           fullWidth
           disabled={disabled}
           options={values}
@@ -128,7 +129,7 @@ export const ValueEditor = ({
     default:
       return (
         <TextInput
-          className={cx(className, rootClassName)}
+          className={twMerge(rootClassName, className)}
           value={value}
           handleOnChange={handleOnChange}
           inputType={inputType || undefined}

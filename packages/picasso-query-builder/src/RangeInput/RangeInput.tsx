@@ -12,7 +12,8 @@ import type {
   RangeValue,
   ValueEditorValidationProps,
 } from '../types/query-builder'
-import { inputClassName } from './styles'
+
+export const inputClassName = 'flex-[1_0_3rem]'
 
 type Props = RangeFieldOptions & {
   /**
@@ -80,6 +81,7 @@ export const RangeInput = ({
           data-testid={valueEditorTestId}
         />
       </Container>
+
       <Typography variant='body' className='self-center'>
         To
       </Typography>

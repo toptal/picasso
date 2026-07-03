@@ -3,7 +3,6 @@ import type { OperatorSelectorProps } from 'react-querybuilder'
 
 import { Select } from '../Select'
 import type { Field } from '../types/query-builder'
-import { rootClassName } from './styles'
 
 export const OperatorSelector = ({
   fieldData,
@@ -16,5 +15,5 @@ export const OperatorSelector = ({
     return null
   }
 
-  return <Select {...rest} className={rootClassName} />
+  return <Select {...rest} className='basis-[6.25rem]' />
 }

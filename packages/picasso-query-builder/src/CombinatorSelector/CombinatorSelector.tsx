@@ -3,10 +3,9 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { RadioGroup as PicassoRadioGroup } from '@toptal/picasso-radio'
 import type { CombinatorSelectorProps } from 'react-querybuilder'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { RadioOptions } from './RadioOptions'
-import { rootClassName } from './styles'
 
 export const CombinatorSelector = ({
   value,
@@ -21,7 +20,7 @@ export const CombinatorSelector = ({
       flex
       alignItems='center'
       gap='small'
-      className={cx(className, rootClassName)}
+      className={twMerge('mr-auto', className)}
     >
       {level === 0 && <Typography weight='semibold'>Query</Typography>}
       <PicassoRadioGroup
