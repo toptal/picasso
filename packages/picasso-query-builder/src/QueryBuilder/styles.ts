@@ -13,7 +13,9 @@
 import { queryBuilderGlobalStyles } from './query-builder-global-styles'
 
 // Root element of the query builder (the wrapping Container).
-const root: string[] = ['rounded-[0.5em]', 'bg-gray-100']
+// Original JSS used `borderRadius: '0.5em'`; the root carries no font-size, so at
+// the 16px base `0.5em` === `0.5rem` (8px) → `rounded-md`.
+const root: string[] = ['rounded-md', 'bg-gray-100']
 
 // Higher-specificity branch recoloring for the two shallowest nesting levels
 // (blue.main → blue-500). Numeric attribute values MUST be quoted —
