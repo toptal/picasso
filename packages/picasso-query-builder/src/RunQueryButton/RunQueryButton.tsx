@@ -3,7 +3,6 @@ import React from 'react'
 import { Button } from '@toptal/picasso-button'
 
 import type { TestId } from '../types/query-builder'
-import { rootClassName } from './styles'
 
 type Props = {
   loading?: boolean
@@ -20,7 +19,7 @@ export const RunQueryButton = ({
 }: Props) => {
   return (
     <Button
-      className={rootClassName}
+      className='self-end'
       variant='positive'
       loading={loading}
       onClick={onClick}

@@ -5,7 +5,6 @@ import { Typography } from '@toptal/picasso-typography'
 import { SPACING_4 } from '@toptal/picasso-provider'
 
 import { Select } from '../Select'
-import { tooltipOptionTextClassName } from './styles'
 
 export const FieldSelector = ({
   context: { resetSubmitButtonClicked, getDisabledFields, testIds },
@@ -40,7 +39,7 @@ export const FieldSelector = ({
               }}
             >
               <Typography
-                className={tooltipOptionTextClassName}
+                className='w-full'
                 variant='body'
                 size='medium'
                 color='inherit'

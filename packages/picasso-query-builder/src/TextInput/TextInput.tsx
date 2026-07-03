@@ -5,7 +5,7 @@ import type { CommonSubComponentProps } from 'react-querybuilder'
 
 import { validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
-import { rootClassName } from '../ValueEditor/styles'
+import { rootClassName } from '../ValueEditor'
 
 type Props = {
   value: string

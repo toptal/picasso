@@ -7,7 +7,6 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
-import { rootClassName } from './styles'
 
 interface Props
   extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
@@ -40,7 +39,7 @@ export const Select = ({
   })
 
   return (
-    <Container className={twMerge(className, rootClassName)}>
+    <Container className={twMerge('flex-[1_0_6.25rem]', className)}>
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}
