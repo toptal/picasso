@@ -26,6 +26,12 @@ Radio group component
 |------|------|---------|-------------|
 | horizontal | `boolean` | `false` | Align radios horizontally |
 | spacing | `0 \| 8 \| 16 \| 24 \| 32 \| 64 \| 72 \| 80` | - | Defines amount of space between radio buttons components (in px) |
+| name | `string` | - | Name used to identify the `Radio` components in the group |
+| value | `string \| number \| boolean` | - | Value of the currently selected `Radio` in the group |
+| defaultValue | `string \| number \| boolean` | - | Value of the initially selected `Radio` for an uncontrolled group |
+| onChange | `((event: ChangeEvent<HTMLInputElement>, value: string) => void)` | - | Callback invoked when a `Radio` in the group is selected |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | xs | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
 | sm | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
 | md | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |
