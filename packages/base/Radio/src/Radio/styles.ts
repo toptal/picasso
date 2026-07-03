@@ -30,14 +30,10 @@ export const createInputClassNames = (): string[] => [
 // The focus ring is driven by the root's `data-focused` attribute (set from
 // React on :focus-visible) instead of a CSS pseudo-class: Cypress-Happo
 // re-renders a serialized DOM where live pseudo-class state is lost, so the
-// ring must survive as a DOM attribute (the MUI focus-visible class did).
+// ring must survive as a DOM attribute.
 const ICON_BASE = [
   'pointer-events-none',
   'transition-all duration-350 ease-in-out',
-  // centering uses the legacy `transform` property (not Tailwind's separate
-  // `translate:` property) — the two rasterize through different compositing
-  // paths and the pre-migration Happo baselines were rendered with `transform`
-  // outer circle
   "before:content-[''] before:pointer-events-none before:absolute",
   'before:left-1/2 before:top-1/2 before:h-full before:w-full',
   'before:[transform:translate(-50%,-50%)]',

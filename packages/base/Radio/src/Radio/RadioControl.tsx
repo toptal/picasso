@@ -11,8 +11,7 @@ import {
 } from './styles'
 
 /**
- * @deprecated [PF-1994] Transitional back-compat shim retained for the @base-ui/react
- * migration; will be removed in a coordinated post-migration cleanup. Prefer `className`.
+ * @deprecated [PF-1994] Prefer `className`.
  */
 export interface RadioClasses {
   /** Applied to the root `<span>` wrapper */
@@ -54,9 +53,6 @@ export const RadioControl = forwardRef<HTMLSpanElement, Props>(
       ...rest
     } = props
 
-    // mirrors the focus-visible state as a DOM attribute (`data-focused`) the
-    // same way the previous MUI polyfill applied a class — pseudo-class state
-    // alone does not survive Cypress-Happo's serialized re-render
     const [focused, setFocused] = useState(false)
 
     const handleFocus = (event: FocusEvent<HTMLInputElement>) => {

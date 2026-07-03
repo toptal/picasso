@@ -25,8 +25,7 @@ export interface Props
   checked?: boolean
   /**
    * Override styling of individual `Radio` slots (`root`, `disabled`, `input`, `uncheckedIcon`, `checkedIcon`).
-   * @deprecated [PF-1994] Transitional back-compat shim retained for the @base-ui/react migration; will be
-   * removed in a coordinated post-migration cleanup. Prefer `className` where a slot has a root-level equivalent.
+   * @deprecated [PF-1994] Prefer `className` where a slot has a root-level equivalent.
    */
   classes?: RadioClasses
   /** Callback invoked when `Radio` changes its state */
@@ -64,9 +63,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       radioGroup?.onChange?.(event, event.target.value)
     }
 
-    // public Props keep the legacy ButtonOrAnchorProps surface while the
-    // control renders a <span>; element variance on the shared event handlers
-    // is bridged once here (see code-standards §"TS variance")
     const controlRest = rest as Omit<
       RadioControlProps,
       | 'checked'
@@ -84,8 +80,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     const radioControl = (
       <RadioControl
         {...controlRest}
-        // MUI v4 also rendered the control root as a <span>, so the wider
-        // public ref type is preserved and bridged here
         ref={label ? undefined : (ref as React.ForwardedRef<HTMLSpanElement>)}
         className={className}
         style={style}

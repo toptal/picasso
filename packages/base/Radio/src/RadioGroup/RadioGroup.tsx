@@ -12,7 +12,6 @@ import { RadioGroupContext } from '../RadioGroupContext'
 
 type GridSpacing = GridProps['spacing']
 
-// MUI v4 `theme.spacing(2)`, preserved verbatim from the pre-migration default
 const HORIZONTAL_SPACING = fromPx(spacingToPx(SPACING_4)) as GridSpacing
 
 export interface Props
