@@ -44,6 +44,7 @@
     "@toptal/picasso-number-input": "workspace:*",
     "@toptal/picasso-prompt-modal": "workspace:*",
     "@toptal/picasso-notification": "workspace:*",
+    "@toptal/picasso-tailwind-merge": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",
     "classnames": "^2.5.1",
     "react-dnd": "^16.0.1",
