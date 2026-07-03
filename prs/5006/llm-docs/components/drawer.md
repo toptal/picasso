@@ -15,7 +15,7 @@ Allows rendering a sidebar with custom content
 | title | `ReactNode` | - | Specify the drawer title |
 | onClose | `(() => void)` | `() => {}` | Callback fired when the component requests to be closed. |
 | width | `"narrow" \| "regular" \| "medium" \| "wide" \| "ultra-wide"` | `regular` | Width of Drawer |
-| transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) |
+| transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. `onExited` fires after the close animation completes; `timeout` (in ms) overrides the slide duration. |
 | maintainBodyScrollLock | `boolean` | - | enable Drawer to maintain body scroll lock |
 | transparentBackdrop | `boolean` | - | Specify the backdrop transparency |
 | disableBackdrop | `boolean` | - | Remove the backdrop and leave elements behind interactive |
@@ -316,6 +316,41 @@ const Example = () => {
           <Typography>
             The backdrop does not block the interaction with page content.
           </Typography>
+        </Container>
+      </Drawer>
+    </div>
+  )
+}
+
+export default Example
+```
+
+### With disabled portal
+
+```tsx
+import { Button, Container, List, Drawer } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso-utils'
+import React, { useState } from 'react'
+
+const Example = () => {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div>
+      <Button data-testid='trigger' onClick={() => setOpen(!open)}>
+        Show drawer
+      </Button>
+      <Drawer
+        title='My Operational Issues'
+        open={open}
+        onClose={() => setOpen(false)}
+        disablePortal
+      >
+        <Container data-testid='content' padded={SPACING_6}>
+          <List variant='ordered'>
+            <List.Item>Add at least 10 skills</List.Item>
+            <List.Item>Set your age</List.Item>
+          </List>
         </Container>
       </Drawer>
     </div>
