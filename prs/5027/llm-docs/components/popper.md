@@ -13,13 +13,12 @@ Popper is a low-level positioning primitive. It anchors floating content to a re
 | **anchorEl** | `null \| PopperReferenceObject \| (() => PopperReferenceObject)` | - | HTML Element instance or a referenceObject used to position the popper |
 | placement | `bottom-end \| bottom-start \| bottom \| left-end \| left-start \| left \| right-end \| right-start \| right \| top-end \| top-start \| top` | `bottom` | Popper placement relative to the anchor element |
 | disablePortal | `boolean` | `false` | Disable portal rendering — children stay within the parent DOM hierarchy |
-| strategy | `absolute \| fixed` | `absolute` |  CSS positioning strategy for the underlying `useFloating` call.  - `absolute` (default) — the popper is positioned relative to its nearest positioned ancestor. If the popper is a real DOM descendant of a scrolling or `overflow: hidden` container (i.e. `disablePortal`, or a custom `container` nested inside one), it gets clipped by that container's edge and scrolls with it. - `fixed` — the popper is positioned relative to the viewport instead, escaping that clipping/scrolling ancestor. Positioning still recomputes on scroll/resize either way (`autoUpdate`); `strategy` only changes what the coordinates are measured against, not whether they update.  Not needed for the default portaled case — portaling already moves the popper out of the clipping container's DOM subtree regardless of strategy. See the "Fixed Strategy" example below.  Defaults to `popperOptions.positionFixed ? 'fixed' : 'absolute'` for popper.js v1 compatibility; an explicit `strategy` prop always overrides `popperOptions.positionFixed`.        |
 | keepMounted | `boolean` | `false` | Always keep the popper children in the DOM |
 | autoWidth | `boolean` | `true` | Automatically resize the popper to match the anchor element width |
 | width | `string` | - | Explicit popper width (overrides autoWidth) |
 | enableCompactMode | `boolean` | `false` | Take full window width on small and medium screens |
 | container | `HTMLElement \| (() => HTMLElement)` | - | Container node for the portal. Defaults to the Picasso root node |
-| popperOptions | `object` | - |  Options forwarded to the popper instance, including `onCreate` and `onUpdate` lifecycle callbacks and popper.js v1-shaped `modifiers` (`flip`, `offset`, `preventOverflow`, `hide`).  `positionFixed` is also accepted here for popper.js v1 compatibility — `positionFixed: true` behaves like `strategy="fixed"`. It's deprecated; prefer the `strategy` prop in new code.        |
+| popperOptions | `object` | - |  Options forwarded to the popper instance, including `onCreate` and `onUpdate` lifecycle callbacks and popper.js v1-shaped `modifiers` (`flip`, `offset`, `preventOverflow`, `hide`).  `positionFixed: true` positions the popper relative to the viewport (`fixed` strategy) instead of its nearest positioned ancestor, escaping a clipping/scrolling ancestor (e.g. an `overflow: hidden` container). Not needed for the default portaled case — portaling already moves the popper out of the clipping container's DOM subtree. See the "Fixed Strategy" example below.        |
 
 ### Default
 
@@ -353,13 +352,14 @@ const Example = () => {
         Both boxes below have <code>overflow: hidden</code> and the Popper uses{' '}
         <code>disablePortal</code>, so it renders in place as a real descendant
         of the clipping box (a portaled Popper would already escape the clip
-        regardless of strategy). The default <code>absolute</code> strategy is
-        clipped by the box&apos;s edge. <code>strategy=&quot;fixed&quot;</code>{' '}
-        positions relative to the viewport instead, escaping the clip.
+        regardless of strategy). By default the Popper is positioned{' '}
+        <code>absolute</code> and clipped by the box&apos;s edge.{' '}
+        <code>popperOptions=&#123;&#123; positionFixed: true &#125;&#125;</code>{' '}
+        positions it relative to the viewport instead, escaping the clip.
       </Typography>
 
       <Typography variant='heading' size='small' weight='semibold'>
-        strategy=&quot;absolute&quot; (default) — clipped
+        default (absolute) — clipped
       </Typography>
       <div className='relative overflow-hidden h-[80px] mt-2 border-2 border-dashed border-gray-400 rounded-sm flex items-center px-4'>
         <Button
@@ -374,6 +374,7 @@ const Example = () => {
           anchorEl={absoluteAnchorEl}
           placement='bottom-start'
           disablePortal
+          autoWidth={false}
         >
           <PopperContent>Clipped by overflow: hidden</PopperContent>
         </Popper>
@@ -385,7 +386,7 @@ const Example = () => {
         weight='semibold'
         className='mt-6'
       >
-        strategy=&quot;fixed&quot; — escapes the clip
+        positionFixed: true — escapes the clip
       </Typography>
       <div className='overflow-hidden h-[80px] mt-2 border-2 border-dashed border-gray-400 rounded-sm flex items-center px-4'>
         <Button
@@ -400,11 +401,10 @@ const Example = () => {
           anchorEl={fixedAnchorEl}
           placement='bottom-start'
           disablePortal
-          strategy='fixed'
+          popperOptions={{ positionFixed: true }}
+          autoWidth={false}
         >
-          <PopperContent>
-            Not clipped — strategy=&quot;fixed&quot;
-          </PopperContent>
+          <PopperContent>Not clipped — positionFixed: true</PopperContent>
         </Popper>
       </div>
     </Container>

@@ -11,7 +11,6 @@ Allows rendering of menus and custom content triggered by custom anchors
 | **children** | `ReactNode` | - | Anchor element that opens content on click |
 | **content** | `ReactNode` | - | Content element that opens when anchor is clicked |
 | placement | `"bottom-end" \| "bottom-start" \| "bottom" \| "left-end" \| "left-start" \| "left" \| "right-end" \| "right-start" \| "right" \| "top-end" \| "top-start" \| "top"` | - | The placement of the content element relative to anchor element. |
-| strategy | `"absolute" \| "fixed"` | - | CSS positioning strategy. `fixed` escapes clipping/scrolling ancestors (e.g. `overflow: hidden` containers) at the cost of not scrolling with them. Defaults to `popperOptions.positionFixed ? 'fixed' : 'absolute'` for popper.js v1 compatibility |
 | disabled | `boolean` | - | Disabled |
 | disableAutoFocus | `boolean` | - | Disable auto focus of first item in list or item |
 | disableAutoClose | `boolean` | - | Disable close on generic close events |
