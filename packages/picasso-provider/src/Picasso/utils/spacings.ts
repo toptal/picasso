@@ -11,4 +11,13 @@ const spacingToRem = (
   return `${SpacingEnum[spacing]}rem`
 }
 
-export { spacingToRem }
+const spacingToPx = (
+  spacing: Exclude<SpacingType, ResponsiveSpacingType>,
+  baseFontSize = 16
+): string => {
+  const rem = Number.parseFloat(spacingToRem(spacing))
+
+  return `${rem * baseFontSize}px`
+}
+
+export { spacingToRem, spacingToPx }
