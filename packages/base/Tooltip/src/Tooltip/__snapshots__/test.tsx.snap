@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tooltip renders closed by default 1`] = `
+exports[`Tooltip when closed does not render the content 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -16,7 +16,7 @@ exports[`Tooltip renders closed by default 1`] = `
 </div>
 `;
 
-exports[`Tooltip renders with portals disabled 1`] = `
+exports[`Tooltip when portals are disabled renders the content within the parent 1`] = `
 <div>
   <div
     class="Picasso-root"

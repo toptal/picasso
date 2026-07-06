@@ -72,233 +72,233 @@ describe('Tooltip', () => {
     mockPointerDevice(true)
   })
 
-  it('renders closed by default', () => {
-    const { container, queryByTestId } = renderTooltip()
+  describe('when closed', () => {
+    it('does not render the content', () => {
+      const { container, queryByTestId } = renderTooltip()
 
-    expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders initially opened', async () => {
-    const { getByTestId } = renderTooltip({ open: true })
-
-    await waitFor(() => {
-      expect(getByTestId('tooltip-content')).toBeInTheDocument()
-    })
-  })
-
-  it('renders with portals disabled', () => {
-    const { container, queryByTestId } = renderTooltip({
-      open: true,
-      disablePortal: true,
-    })
-
-    expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    expect(container).toMatchSnapshot()
-  })
-
-  it('routes the consumer id to the popup, not the trigger', async () => {
-    // Legacy MUI put `id` on the popper, not the trigger. Restore that: the id
-    // addresses the popup (role="tooltip"), while the trigger keeps base-ui's
-    // own generated id.
-    const { getByTestId, getByRole } = renderTooltip({
-      id: 'tooltip-id',
-      open: true,
-      disablePortal: true,
-    })
-
-    await waitFor(() => {
-      expect(getByRole('tooltip')).toHaveAttribute('id', 'tooltip-id')
-    })
-    expect(getByTestId('tooltip-trigger')).not.toHaveAttribute(
-      'id',
-      'tooltip-id'
-    )
-  })
-
-  it('renders the arrow for a non-compact tooltip', async () => {
-    const { container } = renderTooltip({ open: true, disablePortal: true })
-
-    await waitFor(() => {
-      expect(container.querySelector('[data-side]')).toBeInTheDocument()
-    })
-  })
-
-  it('opens and closes tooltip on focus and blur', async () => {
-    const { getByTestId, queryByTestId } = renderTooltip()
-
-    fireEvent.focus(getByTestId('tooltip-trigger'))
-    await waitFor(() => {
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    })
-
-    fireEvent.blur(getByTestId('tooltip-trigger'))
-    await waitFor(() => {
       expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+      expect(container).toMatchSnapshot()
     })
   })
 
-  it('does not open tooltip with disabled listeners', async () => {
-    const onClickMock = jest.fn()
-    const onMouseOverMock = jest.fn()
-    const onMouseMoveMock = jest.fn()
+  describe('when the open prop is set', () => {
+    it('renders the content', async () => {
+      const { getByTestId } = renderTooltip({ open: true })
 
-    const { getByTestId, findByTestId } = renderTooltip({
-      disableListeners: true,
-      onClick: onClickMock,
-      onMouseOver: onMouseOverMock,
-      onMouseMove: onMouseMoveMock,
+      await waitFor(() => {
+        expect(getByTestId('tooltip-content')).toBeInTheDocument()
+      })
     })
-
-    fireEvent.focus(getByTestId('tooltip-trigger'))
-    fireEvent.click(getByTestId('tooltip-trigger'))
-    fireEvent.mouseOver(getByTestId('tooltip-trigger'))
-    fireEvent.mouseMove(getByTestId('tooltip-trigger'))
-
-    await expect(() => findByTestId('tooltip-content')).rejects.toThrow()
-
-    // The wrapped element keeps its own listeners even when the tooltip's are disabled
-    expect(onClickMock).toHaveBeenCalledTimes(1)
-    expect(onMouseOverMock).toHaveBeenCalledTimes(1)
-    expect(onMouseMoveMock).toHaveBeenCalledTimes(1)
   })
 
-  it('calls onOpen and onClose when toggled', async () => {
-    const onOpenMock = jest.fn()
-    const onCloseMock = jest.fn()
+  describe('when portals are disabled', () => {
+    it('renders the content within the parent', () => {
+      const { container, queryByTestId } = renderTooltip({
+        open: true,
+        disablePortal: true,
+      })
 
-    const { getByTestId } = renderTooltip({
-      onOpen: onOpenMock,
-      onClose: onCloseMock,
-    })
-
-    fireEvent.focus(getByTestId('tooltip-trigger'))
-    await waitFor(() => expect(onOpenMock).toHaveBeenCalled())
-
-    fireEvent.blur(getByTestId('tooltip-trigger'))
-    await waitFor(() => expect(onCloseMock).toHaveBeenCalled())
-  })
-
-  it('opens when followCursor is set', async () => {
-    const { getByTestId, queryByTestId } = renderTooltip({
-      followCursor: true,
-    })
-
-    fireEvent.focus(getByTestId('tooltip-trigger'))
-
-    await waitFor(() =>
       expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    )
-  })
-
-  it('hides while the cursor roams far from the trigger when followCursor is set', async () => {
-    const { getByTestId, queryByTestId } = renderTooltip({
-      followCursor: true,
+      expect(container).toMatchSnapshot()
     })
 
-    const trigger = getByTestId('tooltip-trigger')
+    it('renders the arrow for a non-compact tooltip', async () => {
+      const { container } = renderTooltip({ open: true, disablePortal: true })
 
-    fireEvent.mouseOver(trigger)
-
-    await waitFor(() =>
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    )
-
-    // First move anchors the segment; a subsequent move past 50px dismisses the
-    // popup (base-ui's cursor tracking would otherwise keep it open).
-    fireEvent.mouseMove(trigger, { clientX: 10, clientY: 10 })
-    fireEvent.mouseMove(trigger, { clientX: 200, clientY: 200 })
-
-    await waitFor(() =>
-      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
-    )
+      await waitFor(() => {
+        expect(container.querySelector('[data-side]')).toBeInTheDocument()
+      })
+    })
   })
 
-  it('reopens on hover after a click-dismiss once the pointer left', async () => {
-    // Click-to-dismiss suppresses re-opening only while the pointer stays on
-    // the trigger; leaving lifts the suppression (legacy `ignoreOpening`).
-    const { getByTestId, queryByTestId } = renderTooltip()
+  describe('when an id is provided', () => {
+    it('routes it to the popup, not the trigger', async () => {
+      // Legacy MUI put `id` on the popper, not the trigger. Restore that: the
+      // id addresses the popup (role="tooltip"), while the trigger keeps
+      // base-ui's own generated id.
+      const { getByTestId, getByRole } = renderTooltip({
+        id: 'tooltip-id',
+        open: true,
+        disablePortal: true,
+      })
 
-    const trigger = getByTestId('tooltip-trigger')
+      await waitFor(() => {
+        expect(getByRole('tooltip')).toHaveAttribute('id', 'tooltip-id')
+      })
+      expect(getByTestId('tooltip-trigger')).not.toHaveAttribute(
+        'id',
+        'tooltip-id'
+      )
+    })
+  })
 
-    fireEvent.mouseOver(trigger)
-    await waitFor(() =>
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    )
+  describe('when the trigger is focused', () => {
+    it('opens the tooltip and closes it on blur', async () => {
+      const { getByTestId, queryByTestId } = renderTooltip()
 
-    clickElement(trigger)
-    await waitFor(() =>
-      expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
-    )
-
-    // Still hovering: suppressed.
-    fireEvent.mouseOver(trigger)
-    await expect(() =>
-      waitFor(() => {
+      fireEvent.focus(getByTestId('tooltip-trigger'))
+      await waitFor(() => {
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       })
-    ).rejects.toThrow()
 
-    // Leave (with the pointer genuinely outside the trigger's bounding box —
-    // jsdom rects are 0-sized), then re-hover: the tooltip must open again.
-    fireEvent.mouseLeave(trigger, { clientX: 100, clientY: 100 })
-    fireEvent.mouseOver(trigger)
-    await waitFor(() =>
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    )
-  })
-
-  it('does not open on click on a pointer device', async () => {
-    // Desktop opening is owned by hover + delay; click only ever dismisses an
-    // open tooltip (click-to-open is a touch-only affordance).
-    const onOpenMock = jest.fn()
-
-    const { getByTestId, queryByTestId } = renderTooltip({
-      onOpen: onOpenMock,
-    })
-
-    clickElement(getByTestId('tooltip-trigger'))
-
-    await expect(() =>
-      waitFor(() => {
-        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-      })
-    ).rejects.toThrow()
-    expect(onOpenMock).not.toHaveBeenCalled()
-  })
-
-  describe('on a touch device', () => {
-    beforeEach(() => {
-      mockPointerDevice(false)
-    })
-
-    it('opens and closes tooltip on click (tap)', async () => {
-      const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
-
-      clickElement(getByTestId('tooltip-trigger'))
-      await findByTestId('tooltip-content')
-
-      clickElement(getByTestId('tooltip-trigger'))
+      fireEvent.blur(getByTestId('tooltip-trigger'))
       await waitFor(() => {
         expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
       })
     })
 
-    it('does not open when followCursor is set', async () => {
-      // followCursor is unsupported on touch devices (parity with
-      // @material-ui@5) — neither tap nor hover-like events may open it.
+    it('calls onOpen on focus and onClose on blur', async () => {
       const onOpenMock = jest.fn()
+      const onCloseMock = jest.fn()
 
+      const { getByTestId } = renderTooltip({
+        onOpen: onOpenMock,
+        onClose: onCloseMock,
+      })
+
+      fireEvent.focus(getByTestId('tooltip-trigger'))
+      await waitFor(() => expect(onOpenMock).toHaveBeenCalled())
+
+      fireEvent.blur(getByTestId('tooltip-trigger'))
+      await waitFor(() => expect(onCloseMock).toHaveBeenCalled())
+    })
+  })
+
+  describe('when listeners are disabled', () => {
+    it('does not open but keeps the wrapped element listeners', async () => {
+      const onClickMock = jest.fn()
+      const onMouseOverMock = jest.fn()
+      const onMouseMoveMock = jest.fn()
+
+      const { getByTestId, findByTestId } = renderTooltip({
+        disableListeners: true,
+        onClick: onClickMock,
+        onMouseOver: onMouseOverMock,
+        onMouseMove: onMouseMoveMock,
+      })
+
+      fireEvent.focus(getByTestId('tooltip-trigger'))
+      fireEvent.click(getByTestId('tooltip-trigger'))
+      fireEvent.mouseOver(getByTestId('tooltip-trigger'))
+      fireEvent.mouseMove(getByTestId('tooltip-trigger'))
+
+      await expect(() => findByTestId('tooltip-content')).rejects.toThrow()
+
+      // The wrapped element keeps its own listeners even when the tooltip's are disabled
+      expect(onClickMock).toHaveBeenCalledTimes(1)
+      expect(onMouseOverMock).toHaveBeenCalledTimes(1)
+      expect(onMouseMoveMock).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('when hovering a descendant of the trigger', () => {
+    it('opens the tooltip', async () => {
+      // A disabled control wrapped in a trigger element (the documented pattern
+      // for tooltips on disabled elements): the hover originates on the inner
+      // disabled control, so the open must come from `mouseover` bubbling up to
+      // the trigger — base-ui's movement-based hover does not fire here.
+      const { getByTestId, queryByTestId } = render(
+        <Tooltip id='tooltip-id' content={<TestContent />}>
+          <span data-testid='tooltip-trigger'>
+            <button type='button' disabled data-testid='inner-disabled'>
+              Disabled
+            </button>
+          </span>
+        </Tooltip>
+      )
+
+      fireEvent.mouseOver(getByTestId('inner-disabled'))
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+    })
+  })
+
+  describe('when following the cursor', () => {
+    it('opens on hover', async () => {
       const { getByTestId, queryByTestId } = renderTooltip({
         followCursor: true,
-        onOpen: onOpenMock,
+      })
+
+      fireEvent.focus(getByTestId('tooltip-trigger'))
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+    })
+
+    it('hides while the cursor roams far from the trigger', async () => {
+      const { getByTestId, queryByTestId } = renderTooltip({
+        followCursor: true,
       })
 
       const trigger = getByTestId('tooltip-trigger')
 
-      clickElement(trigger)
       fireEvent.mouseOver(trigger)
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+
+      // First move anchors the segment; a subsequent move past 50px dismisses the
+      // popup (base-ui's cursor tracking would otherwise keep it open).
       fireEvent.mouseMove(trigger, { clientX: 10, clientY: 10 })
+      fireEvent.mouseMove(trigger, { clientX: 200, clientY: 200 })
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+      )
+    })
+  })
+
+  describe('when an open tooltip is clicked', () => {
+    it('reopens on hover once the pointer has left', async () => {
+      // Click-to-dismiss suppresses re-opening only while the pointer stays on
+      // the trigger; leaving lifts the suppression (legacy `ignoreOpening`).
+      const { getByTestId, queryByTestId } = renderTooltip()
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.mouseOver(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+
+      clickElement(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+      )
+
+      // Still hovering: suppressed.
+      fireEvent.mouseOver(trigger)
+      await expect(() =>
+        waitFor(() => {
+          expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+        })
+      ).rejects.toThrow()
+
+      // Leave (with the pointer genuinely outside the trigger's bounding box —
+      // jsdom rects are 0-sized), then re-hover: the tooltip must open again.
+      fireEvent.mouseLeave(trigger, { clientX: 100, clientY: 100 })
+      fireEvent.mouseOver(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+    })
+  })
+
+  describe('when clicking on a pointer device', () => {
+    it('does not open the tooltip', async () => {
+      // Desktop opening is owned by hover + delay; click only ever dismisses an
+      // open tooltip (click-to-open is a touch-only affordance).
+      const onOpenMock = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderTooltip({
+        onOpen: onOpenMock,
+      })
+
+      clickElement(getByTestId('tooltip-trigger'))
 
       await expect(() =>
         waitFor(() => {
@@ -309,25 +309,49 @@ describe('Tooltip', () => {
     })
   })
 
-  it('opens when hovering a descendant of the trigger', async () => {
-    // A disabled control wrapped in a trigger element (the documented pattern
-    // for tooltips on disabled elements): the hover originates on the inner
-    // disabled control, so the open must come from `mouseover` bubbling up to
-    // the trigger — base-ui's movement-based hover does not fire here.
-    const { getByTestId, queryByTestId } = render(
-      <Tooltip id='tooltip-id' content={<TestContent />}>
-        <span data-testid='tooltip-trigger'>
-          <button type='button' disabled data-testid='inner-disabled'>
-            Disabled
-          </button>
-        </span>
-      </Tooltip>
-    )
+  describe('on a touch device', () => {
+    beforeEach(() => {
+      mockPointerDevice(false)
+    })
 
-    fireEvent.mouseOver(getByTestId('inner-disabled'))
+    describe('when tapping the trigger', () => {
+      it('opens and closes the tooltip', async () => {
+        const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
 
-    await waitFor(() =>
-      expect(queryByTestId('tooltip-content')).toBeInTheDocument()
-    )
+        clickElement(getByTestId('tooltip-trigger'))
+        await findByTestId('tooltip-content')
+
+        clickElement(getByTestId('tooltip-trigger'))
+        await waitFor(() => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        })
+      })
+    })
+
+    describe('when following the cursor', () => {
+      it('does not open the tooltip', async () => {
+        // followCursor is unsupported on touch devices (parity with
+        // @material-ui@5) — neither tap nor hover-like events may open it.
+        const onOpenMock = jest.fn()
+
+        const { getByTestId, queryByTestId } = renderTooltip({
+          followCursor: true,
+          onOpen: onOpenMock,
+        })
+
+        const trigger = getByTestId('tooltip-trigger')
+
+        clickElement(trigger)
+        fireEvent.mouseOver(trigger)
+        fireEvent.mouseMove(trigger, { clientX: 10, clientY: 10 })
+
+        await expect(() =>
+          waitFor(() => {
+            expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+          })
+        ).rejects.toThrow()
+        expect(onOpenMock).not.toHaveBeenCalled()
+      })
+    })
   })
 })
