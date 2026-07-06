@@ -7,7 +7,7 @@ exports[`Tooltip renders closed by default 1`] = `
   >
     <button
       data-testid="tooltip-trigger"
-      id="tooltip-id"
+      id="base-ui-:r1:"
       type="button"
     >
       Trigger
@@ -23,7 +23,7 @@ exports[`Tooltip renders with portals disabled 1`] = `
   >
     <button
       data-testid="tooltip-trigger"
-      id="tooltip-id"
+      id="base-ui-:r7:"
       type="button"
     >
       Trigger
@@ -46,6 +46,7 @@ exports[`Tooltip renders with portals disabled 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-side="top"
+          id="tooltip-id"
           role="tooltip"
           tabindex="-1"
         >
