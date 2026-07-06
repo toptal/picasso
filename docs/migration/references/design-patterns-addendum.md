@@ -54,6 +54,13 @@ These are deliberate, audit-backed exceptions to the canonical rules — **TEMPO
 - **What we do**: preserve their existing `classes?: { ... }` shape. Don't drop the prop in the migration PR even though rule 5 forbids it.
 - **End-state — REMOVED in a future major bump**: a separate API-cleanup sweep removes these `classes` props in the next major version of each affected package.
 
+### Styling doctrine (Tailwind-only) vs CssBaseline runtime `<style>` · **TEMPORARY**
+
+- **Tension scope**: 1 file (`packages/picasso-provider/src/CssBaseline/`). The styling doctrine is Tailwind-only (`AGENTS.md §Styling` "No CSS/JSS"; rule 5 "style hooks are `className`/`style` only"). A global CSS reset is the one place raw global CSS legitimately lives.
+- **What we do**: `CssBaseline` injects the pre-migration global reset (the former JSS `@global` block, verbatim — including the `box-sizing: initial` content-box cascade) as a **runtime `<style>` element** instead of MUI v4 JSS. Kept **unlayered** (deliberately NOT wrapped in `@layer base`) to preserve the pre-migration cascade precedence, and still gated by the provider's `reset` prop so `reset={false}` fully opts out. Output is byte-identical (0 Happo diff) and consumers need no CSS-entrypoint changes. Removes all MUI/JSS from the file.
+- **Why not `@layer base` now**: Picasso ships no CSS bundle (consumers run Tailwind via the `@toptal/picasso-tailwind` preset), so a build-time `@layer base` reset would only reach consumers who update their Tailwind entry, would demote the reset below unlayered consumer CSS, and would lose the `reset` opt-out. The React 19 hoistable `<style href precedence>` form is also not typeable yet (`@types/react` is v17 in the workspace).
+- **End-state — promoted post-migration**: move to a true Tailwind `@layer base` preflight (and the React 19 hoistable `<style>` form) once consumer Tailwind entrypoints are coordinated. Tracked in **PF-2221**; consumer coordination via PF-2210. Do NOT "correct" the runtime `<style>` to `@layer base` in a review sweep before that coordination lands.
+
 ## 3. How the agent applies design patterns during a migration
 
 - **Apply canonical rules to NEW code paths** introduced as part of the swap (adapter helpers, wrappers around `@base-ui/react`, new internal types, new hooks).
