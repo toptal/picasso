@@ -13,6 +13,7 @@ declare global {
       hoverAndTakeHappoScreenshot(
         options?: HappoScreenshotOptions
       ): Chainable<Subject>
+      waitForOverlayOpen(selector?: string): Chainable<JQuery<HTMLElement>>
       mount: typeof mount
     }
   }

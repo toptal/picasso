@@ -75,6 +75,57 @@ const waitForHoverToSettle = selector => {
   })
 }
 
+// A popper positioned by `@floating-ui/react` (Dropdown/Menu/Popper) commits
+// its coordinates a frame or two after open, driven by `autoUpdate` — so its
+// `getBoundingClientRect()` keeps changing across animation frames right after
+// it appears. happo-cypress serializes the live DOM at a single instant; if
+// that instant lands mid-settle, the whole popup (and anything measured from
+// it) is captured a fraction of a pixel off, diffing against the baseline.
+// Picasso stamps `x-placement` on the positioned floating node, so its presence
+// marks a popper that must be geometrically at rest before we serialize.
+//
+// Waited on via `.should()`, whose callback Cypress retries on its own
+// animation-frame loop (bounded by defaultCommandTimeout) until it passes — no
+// hardcoded durations. The assertion passes once two consecutive reads of every
+// visible popper's box are identical, i.e. positioning has come to rest. Closed
+// `keepMounted` poppers (rendered but `display:none`) are skipped as they carry
+// no meaningful geometry. When no popper is open the set is empty and the
+// assertion passes immediately, so this is a no-op for non-popper snapshots.
+const readPopperBoxes = $body => {
+  const boxes = []
+
+  $body.find('[x-placement]').each((_index, el) => {
+    const rect = el.getBoundingClientRect()
+
+    // skip non-rendered nodes (display:none keepMounted poppers report 0×0)
+    if (rect.width === 0 && rect.height === 0) {
+      return
+    }
+
+    boxes.push(
+      [rect.top, rect.left, rect.width, rect.height]
+        .map(value => Math.round(value * 100) / 100)
+        .join(',')
+    )
+  })
+
+  return boxes.join('|')
+}
+
+const waitForPoppersToSettle = () => {
+  let previous = null
+
+  return cy.get('body').should($body => {
+    const current = readPopperBoxes($body)
+    const wasPrevious = previous
+
+    previous = current
+    // passes only once two consecutive reads match — i.e. every open popper has
+    // finished positioning. Cypress retries this callback until it passes.
+    expect(current, 'popper positioning settled').to.equal(wasPrevious)
+  })
+}
+
 Cypress.Commands.add(
   'hoverAndTakeHappoScreenshot',
   { prevSubject: true },
@@ -94,6 +145,21 @@ Cypress.Commands.add(
   }
 )
 
+// Gate on an overlay (Modal/Drawer/PromptModal `[role="dialog"]`, …) being open
+// AND past its @base-ui/react enter transition before proceeding. Base UI fades
+// the overlay in (data-starting-style: opacity-0 → 1) and removes
+// `data-starting-style` once the transition starts; capturing mid-fade
+// composites bordered content (e.g. a secondary button) at partial opacity,
+// producing edge artifacts. Retried on Cypress's own loop via `.should()` — no
+// hardcoded durations. Shared so Modal/PromptModal/Drawer specs stop each
+// hand-rolling the same assertion.
+Cypress.Commands.add('waitForOverlayOpen', (selector = '[role="dialog"]') =>
+  cy
+    .get(selector)
+    .should('be.visible')
+    .and('not.have.attr', 'data-starting-style')
+)
+
 // happo-cypress serializes the live DOM and re-renders it statically in the
 // cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
 // frame after mount; if captured before removal, the attribute pins the element
@@ -101,10 +167,15 @@ Cypress.Commands.add(
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {
-    return cy
-      .get('[data-starting-style]', { timeout: 4000 })
-      .should('not.exist')
-      .then(() => originalFn(subject, options))
+    return (
+      cy
+        .get('[data-starting-style]', { timeout: 4000 })
+        .should('not.exist')
+        // then let any open @floating-ui popper finish positioning, so the static
+        // capture reflects its settled geometry (see waitForPoppersToSettle above)
+        .then(() => waitForPoppersToSettle())
+        .then(() => originalFn(subject, options))
+    )
   }
 )
 

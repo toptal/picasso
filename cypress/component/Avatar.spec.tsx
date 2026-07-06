@@ -38,7 +38,7 @@ describe('Avatar', () => {
     })
   })
 
-  describe('when emblem prop is true', () => {
+  describe('when showEmblem prop is true', () => {
     let src = ''
     const handleEdit = () => {}
 
@@ -60,7 +60,7 @@ describe('Avatar', () => {
             name='Jacqueline Roque'
             size='medium'
             onEdit={handleEdit}
-            emblem={true}
+            showEmblem={true}
             testIds={{ wrapper: 'avatar-wrapper' }}
           />
         </Container>
