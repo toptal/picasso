@@ -97,6 +97,25 @@ describe('Tooltip', () => {
     expect(container).toMatchSnapshot()
   })
 
+  it('routes the consumer id to the popup, not the trigger', async () => {
+    // Legacy MUI put `id` on the popper, not the trigger. Restore that: the id
+    // addresses the popup (role="tooltip"), while the trigger keeps base-ui's
+    // own generated id.
+    const { getByTestId, getByRole } = renderTooltip({
+      id: 'tooltip-id',
+      open: true,
+      disablePortal: true,
+    })
+
+    await waitFor(() => {
+      expect(getByRole('tooltip')).toHaveAttribute('id', 'tooltip-id')
+    })
+    expect(getByTestId('tooltip-trigger')).not.toHaveAttribute(
+      'id',
+      'tooltip-id'
+    )
+  })
+
   it('renders the arrow for a non-compact tooltip', async () => {
     const { container } = renderTooltip({ open: true, disablePortal: true })
 

@@ -223,6 +223,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       interactive,
       className,
       style,
+      id,
       open,
       onOpen,
       onClose,
@@ -346,6 +347,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         }
       >
         <BaseTooltip.Popup
+          // The consumer `id` addresses the popup, as the legacy MUI Tooltip
+          // put it on the popper (not the trigger). base-ui reads the popup's
+          // own DOM id for its aria wiring (`useRole` floatingId = the popup
+          // element's id), so setting it here also points the trigger's
+          // auto `aria-describedby` at this id — restoring the full legacy link.
+          id={id}
           // Expose `role="tooltip"` on the popup as the legacy MUI Tooltip did.
           // base-ui marks the positioner `role="presentation"` and links the
           // trigger via `aria-describedby` instead, so without this there is no
