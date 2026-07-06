@@ -169,6 +169,7 @@ module.exports = {
         drawer: 1200,
         modal: 1300,
         snackbar: 1400,
+        tooltip: 1300,
       },
       width: {
         input: '18.75rem',
