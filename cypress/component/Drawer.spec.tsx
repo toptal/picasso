@@ -106,9 +106,7 @@ describe('Drawer', () => {
     )
 
     cy.getByTestId('trigger').click()
-    cy.get('[role="dialog"]')
-      .should('be.visible')
-      .and('not.have.attr', 'data-starting-style')
+    cy.waitForOverlayOpen()
     cy.get('body').happoScreenshot({
       component,
       variant: 'narrow-width/with-custom-title',
@@ -119,9 +117,7 @@ describe('Drawer', () => {
     cy.mount(<TestDrawer width='regular' title='This is a regular Drawer' />)
 
     cy.getByTestId('trigger').click()
-    cy.get('[role="dialog"]')
-      .should('be.visible')
-      .and('not.have.attr', 'data-starting-style')
+    cy.waitForOverlayOpen()
     cy.get('body').happoScreenshot({
       component,
       variant: 'regular-width/with-title',
@@ -132,9 +128,7 @@ describe('Drawer', () => {
     cy.mount(<TestDrawerWithNotification width='medium' />)
 
     cy.getByTestId('trigger').click()
-    cy.get('[role="dialog"]')
-      .should('be.visible')
-      .and('not.have.attr', 'data-starting-style')
+    cy.waitForOverlayOpen()
     cy.get('body').happoScreenshot({
       component,
       variant: 'medium-width/with-notification',
@@ -145,9 +139,7 @@ describe('Drawer', () => {
     cy.mount(<TestDrawer width='wide' />)
 
     cy.getByTestId('trigger').click()
-    cy.get('[role="dialog"]')
-      .should('be.visible')
-      .and('not.have.attr', 'data-starting-style')
+    cy.waitForOverlayOpen()
     cy.get('body').happoScreenshot({
       component,
       variant: 'wide-width/without-title',
@@ -188,9 +180,7 @@ describe('Drawer', () => {
           )
 
           cy.getByTestId('trigger').click()
-          cy.get('[role="dialog"]')
-            .should('be.visible')
-            .and('not.have.attr', 'data-starting-style')
+          cy.waitForOverlayOpen()
           cy.get('body').happoScreenshot({
             component,
             variant: `drawer-${variant}-width/${width}-default`,
