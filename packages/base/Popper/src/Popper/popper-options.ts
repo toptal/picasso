@@ -60,25 +60,19 @@ export interface PopperOptions {
   /** Called on each position update after creation */
   onUpdate?: PopperLifecycleCallback
   /**
-   * popper.js v1 predecessor of the `strategy` prop; `true` behaves like
-   * `strategy="fixed"`. Ignored when `strategy` is set explicitly.
-   * @deprecated [PF-1994] use the `strategy` prop instead
+   * Position the popper relative to the viewport (`fixed`) instead of its
+   * nearest positioned ancestor (`absolute`). `true` escapes a clipping or
+   * scrolling ancestor (e.g. an `overflow: hidden` container) that `absolute`
+   * positioning cannot. popper.js v1 shape.
    */
   positionFixed?: boolean
 }
 
-// popper.js v1 back-compat: `popperOptions.positionFixed` predates the
-// `strategy` prop. An explicit `strategy` prop always takes precedence.
+// popper.js v1 back-compat: `popperOptions.positionFixed` maps to
+// `@floating-ui/react`'s `fixed` positioning strategy.
 export const resolveStrategy = (
-  strategy: 'absolute' | 'fixed' | undefined,
   popperOptions: PopperOptions
-): 'absolute' | 'fixed' => {
-  if (strategy) {
-    return strategy
-  }
-
-  return popperOptions.positionFixed ? 'fixed' : 'absolute'
-}
+): 'absolute' | 'fixed' => (popperOptions.positionFixed ? 'fixed' : 'absolute')
 
 const getPreventOverflowOptions = (isInsideModal: boolean) => {
   if (isInsideModal) {

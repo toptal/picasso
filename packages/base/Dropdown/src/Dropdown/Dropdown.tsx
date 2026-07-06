@@ -34,13 +34,6 @@ interface InternalProps
   content: ReactNode
   /** The placement of the content element relative to anchor element. */
   placement?: PopperPlacementType
-  /**
-   * CSS positioning strategy. `fixed` escapes clipping/scrolling ancestors
-   * (e.g. `overflow: hidden` containers) at the cost of not scrolling with
-   * them. Defaults to `popperOptions.positionFixed ? 'fixed' : 'absolute'`
-   * for popper.js v1 compatibility
-   */
-  strategy?: 'absolute' | 'fixed'
   /** Disabled */
   disabled?: boolean
   /** Disable auto focus of first item in list or item */
@@ -138,7 +131,6 @@ export const Dropdown: DropdownProps = forwardRef<
     onClose = noop,
     onOpen = noop,
     placement = 'bottom-end',
-    strategy,
     popperOptions = {},
     contentOverflow = 'scroll',
     ...props
@@ -299,7 +291,6 @@ export const Dropdown: DropdownProps = forwardRef<
             ...popperOptions,
           }}
           placement={placement}
-          strategy={strategy}
           style={{ ...responsiveStyle }}
           disablePortal={disablePortal}
           keepMounted={keepMounted}

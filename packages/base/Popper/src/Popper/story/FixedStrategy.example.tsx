@@ -27,13 +27,14 @@ const Example = () => {
         Both boxes below have <code>overflow: hidden</code> and the Popper uses{' '}
         <code>disablePortal</code>, so it renders in place as a real descendant
         of the clipping box (a portaled Popper would already escape the clip
-        regardless of strategy). The default <code>absolute</code> strategy is
-        clipped by the box&apos;s edge. <code>strategy=&quot;fixed&quot;</code>{' '}
-        positions relative to the viewport instead, escaping the clip.
+        regardless of strategy). By default the Popper is positioned{' '}
+        <code>absolute</code> and clipped by the box&apos;s edge.{' '}
+        <code>popperOptions=&#123;&#123; positionFixed: true &#125;&#125;</code>{' '}
+        positions it relative to the viewport instead, escaping the clip.
       </Typography>
 
       <Typography variant='heading' size='small' weight='semibold'>
-        strategy=&quot;absolute&quot; (default) — clipped
+        default (absolute) — clipped
       </Typography>
       <div className='relative overflow-hidden h-[80px] mt-2 border-2 border-dashed border-gray-400 rounded-sm flex items-center px-4'>
         <Button
@@ -60,7 +61,7 @@ const Example = () => {
         weight='semibold'
         className='mt-6'
       >
-        strategy=&quot;fixed&quot; — escapes the clip
+        positionFixed: true — escapes the clip
       </Typography>
       <div className='overflow-hidden h-[80px] mt-2 border-2 border-dashed border-gray-400 rounded-sm flex items-center px-4'>
         <Button
@@ -75,11 +76,10 @@ const Example = () => {
           anchorEl={fixedAnchorEl}
           placement='bottom-start'
           disablePortal
+          popperOptions={{ positionFixed: true }}
           autoWidth={false}
         >
-          <PopperContent>
-            Not clipped — strategy=&quot;fixed&quot;
-          </PopperContent>
+          <PopperContent>Not clipped — positionFixed: true</PopperContent>
         </Popper>
       </div>
     </Container>

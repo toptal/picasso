@@ -61,24 +61,6 @@ page.createTabChapter('Props').addComponentDocs({
         'Disable portal rendering — children stay within the parent DOM hierarchy',
       defaultValue: 'false',
     },
-    strategy: {
-      name: 'strategy',
-      type: {
-        name: 'enum',
-        enums: ['absolute', 'fixed'],
-      },
-      description: `
-CSS positioning strategy for the underlying \`useFloating\` call.
-
-- \`absolute\` (default) — the popper is positioned relative to its nearest positioned ancestor. If the popper is a real DOM descendant of a scrolling or \`overflow: hidden\` container (i.e. \`disablePortal\`, or a custom \`container\` nested inside one), it gets clipped by that container's edge and scrolls with it.
-- \`fixed\` — the popper is positioned relative to the viewport instead, escaping that clipping/scrolling ancestor. Positioning still recomputes on scroll/resize either way (\`autoUpdate\`); \`strategy\` only changes what the coordinates are measured against, not whether they update.
-
-Not needed for the default portaled case — portaling already moves the popper out of the clipping container's DOM subtree regardless of strategy. See the "Fixed Strategy" example below.
-
-Defaults to \`popperOptions.positionFixed ? 'fixed' : 'absolute'\` for popper.js v1 compatibility; an explicit \`strategy\` prop always overrides \`popperOptions.positionFixed\`.
-      `,
-      defaultValue: 'absolute',
-    },
     keepMounted: {
       name: 'keepMounted',
       type: 'boolean',
@@ -115,7 +97,7 @@ Defaults to \`popperOptions.positionFixed ? 'fixed' : 'absolute'\` for popper.js
       description: `
 Options forwarded to the popper instance, including \`onCreate\` and \`onUpdate\` lifecycle callbacks and popper.js v1-shaped \`modifiers\` (\`flip\`, \`offset\`, \`preventOverflow\`, \`hide\`).
 
-\`positionFixed\` is also accepted here for popper.js v1 compatibility — \`positionFixed: true\` behaves like \`strategy="fixed"\`. It's deprecated; prefer the \`strategy\` prop in new code.
+\`positionFixed: true\` positions the popper relative to the viewport (\`fixed\` strategy) instead of its nearest positioned ancestor, escaping a clipping/scrolling ancestor (e.g. an \`overflow: hidden\` container). Not needed for the default portaled case — portaling already moves the popper out of the clipping container's DOM subtree. See the "Fixed Strategy" example below.
       `,
     },
   },
