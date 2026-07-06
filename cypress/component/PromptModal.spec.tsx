@@ -25,12 +25,9 @@ const TestProptModal = () => {
 // Wait for the modal's open fade (data-starting-style:opacity-0 → 1) to settle
 // before taking the screenshot. Capturing mid-fade composites the (only)
 // bordered button — the secondary Cancel — at partial opacity, producing edge
-// artifacts on its border.
-const waitForModalOpen = () =>
-  cy
-    .get('[role="dialog"]')
-    .should('be.visible')
-    .and('not.have.attr', 'data-starting-style')
+// artifacts on its border. Delegates to the shared `waitForOverlayOpen` command
+// (commands.jsx).
+const waitForModalOpen = () => cy.waitForOverlayOpen()
 
 describe('PromptModal', () => {
   it('renders on desktop and mobile', () => {

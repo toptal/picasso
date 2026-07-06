@@ -152,12 +152,8 @@ const component = 'Modal'
 // Wait for the modal's open fade (data-starting-style:opacity-0 → 1) to settle
 // before taking the screenshot. Capturing mid-fade composites the bordered
 // secondary (Cancel) button at partial opacity, producing edge artifacts on its
-// border.
-const waitForModalOpen = () =>
-  cy
-    .get('[role="dialog"]')
-    .should('be.visible')
-    .and('not.have.attr', 'data-starting-style')
+// border. Delegates to the shared `waitForOverlayOpen` command (commands.jsx).
+const waitForModalOpen = () => cy.waitForOverlayOpen()
 
 // The scroll shades fade in over 300ms. When the content overflows, wait for
 // the fade to settle so the screenshot captures the fully-opaque shade instead
