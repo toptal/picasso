@@ -34,5 +34,5 @@
   `< 19.0.0` cap). Drop the `@material-ui/core` peer dependency.
 - seat the arrow tighter against menu-item anchors (`role="menuitem"`): in a
   dense list the standard arrow gap points the tip at the strip between rows,
-  so menu-item tooltips now use a 0px tip gap that lands the arrow on the
-  option it describes. Every other anchor keeps the standard gap.
+  so menu-item tooltips now seat the arrow closer (a ~0–4px tip gap) so it
+  lands on the option it describes. Every other anchor keeps the standard gap.
