@@ -1,17 +1,25 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import { screens } from '../Picasso/config'
 
-export default ({ screens }: Theme) =>
-  createStyles({
-    '@global': {
-      [screens('md', 'lg', 'xl')]: {
-        html: {
-          width: '100%',
-          overflowX: 'hidden',
-        },
-        body: {
-          width: '100vw',
-        },
-      },
-    },
-  })
+/**
+ * Global CSS that fixes the page-width jump when the vertical scrollbar
+ * appears/disappears. Applied only at md/lg/xl via the runtime-resolved
+ * `screens()` media query (which honors `disableMobileBreakpoints()`); returns
+ * an empty string when no matching breakpoint is active.
+ */
+export const preventPageWidthChangeCss = (): string => {
+  const media = screens('md', 'lg', 'xl')
+
+  if (!media) {
+    return ''
+  }
+
+  return `${media} {
+  html {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    width: 100vw;
+  }
+}`
+}
