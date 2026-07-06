@@ -85,8 +85,8 @@ const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 const isMenuItemAnchor = (anchor: Element | null): boolean =>
   anchor?.getAttribute('role') === 'menuitem'
 
-const spacingToPx = (spacing: PicassoSpacing): number =>
-  Number.parseFloat(pxFromRem(spacingToRem(spacing)))
+const spacingToPxNumber = (spacing: PicassoSpacing): number =>
+  fromPx(pxFromRem(spacingToRem(spacing)))
 
 const splitPlacement = (
   placement: PlacementType
@@ -125,8 +125,8 @@ const getPositionerOffsets = ({
   }
 
   const isVertical = side === 'top' || side === 'bottom'
-  const offsetLeft = spacingToPx(offset.left ?? SPACING_0)
-  const offsetTop = spacingToPx(offset.top ?? SPACING_0)
+  const offsetLeft = spacingToPxNumber(offset.left ?? SPACING_0)
+  const offsetTop = spacingToPxNumber(offset.top ?? SPACING_0)
 
   // A single, flip-invariant gap, as MUI's Popper applied it: the `offset`
   // modifier carried only the user offset and never varied by resolved side, so
