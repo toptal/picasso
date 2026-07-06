@@ -909,10 +909,10 @@
           "worktree": "migration-runs/2026-06-11/Tooltip-v2/worktree",
           "iterations": 2,
           "merged_at": null,
-          "escalation_reason": "review-iter loop stuck on deterministic gate stages: changeset. Latest agent attempt has been pushed to the PR for visibility. Worktree left dirty for operator inspection.",
+          "escalation_reason": "review-sweep 2026-07-06: shipped confirmed id→popup change (commit 16e8a163c); posted 2 MEDIUM proposals awaiting 👍 (restore aria-describedby parity; graduate spacing/placement helpers to shared). Open human items: vedrani PF-2203 Popper cleanup, disabled-button anchor spacing.",
           "last_ci_green_at": "2026-06-11T18:59:10.304Z",
-          "last_review_seen_at": "2026-07-06T06:55:55.102Z",
-          "review_iterations": 2,
+          "last_review_seen_at": "2026-07-06T09:52:58.000Z",
+          "review_iterations": 3,
           "session_id": "744f89c6-f3a2-41af-aa92-9a677cc80a30",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
