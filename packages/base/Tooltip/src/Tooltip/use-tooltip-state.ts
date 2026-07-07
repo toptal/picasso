@@ -1,4 +1,4 @@
-import type { ChangeEvent, MouseEvent } from 'react'
+import type { ChangeEvent, MouseEvent, TouchEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import type { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import { toReactEvent } from '@toptal/picasso-shared'
@@ -37,6 +37,7 @@ type TooltipState = {
   handleOpenChange: BaseTooltip.Root.Props['onOpenChange']
   handleOpenChangeComplete: (nextOpen: boolean) => void
   handleTriggerClick: (event: MouseEvent<HTMLElement>) => void
+  handleTriggerTouchStart: (event: TouchEvent<HTMLElement>) => void
   handleTriggerMouseOver: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseMove: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseLeave: (event: MouseEvent<HTMLElement>) => void
@@ -93,6 +94,13 @@ export const useTooltipState = ({
 
   // Pending hover-open timer (see handleTriggerMouseOver).
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
+
+  // Set when a `touchstart` just opened the tooltip: the same tap synthesizes
+  // a `click` after `touchend`, which handleTriggerClick would read as
+  // click-to-dismiss and immediately close what the finger only meant to open.
+  // The flag consumes exactly that one trailing click (the analog of the
+  // legacy MUI Tooltip's `ignoreNonTouchEvents` touch/click dedupe).
+  const touchOpenedRef = useRef(false)
 
   // followCursor move tracking (see FOLLOW_CURSOR_* constants). `moveStartRef`
   // anchors the current move segment; `followCursorHiddenRef` blocks base-ui
@@ -163,6 +171,15 @@ export const useTooltipState = ({
       return
     }
 
+    // The synthetic click trailing the tap that just opened the tooltip
+    // (see handleTriggerTouchStart) — consume it so tap-to-open doesn't
+    // instantly toggle into click-to-dismiss.
+    if (touchOpenedRef.current) {
+      touchOpenedRef.current = false
+
+      return
+    }
+
     if (openRef.current) {
       suppressReopenRef.current = true
       clearTimeout(openTimerRef.current)
@@ -179,6 +196,39 @@ export const useTooltipState = ({
       setOpen(true)
       onOpen?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
     }
+  }
+
+  // Open on `touchstart` — the tap-to-open path that reaches DISABLED
+  // controls. A tap on a disabled control dispatches touch events (which
+  // bubble to the trigger) but never a `click`: the HTML spec bars disabled
+  // form controls from click events, so handleTriggerClick alone leaves
+  // "tooltip on a disabled element" (a disabled control wrapped in a `<span>`
+  // trigger) unopenable by touch. This mirrors handleTriggerMouseOver — the
+  // bubbling hover-open workaround for the same pattern — for taps. base-ui
+  // offers no touch-open of its own (its trigger hover interaction is
+  // mouse-only), so Picasso owns this path entirely.
+  const handleTriggerTouchStart = (event: TouchEvent<HTMLElement>) => {
+    // A new gesture begins: a dedupe flag left over from a previous
+    // touch-open whose synthetic click never arrived (disabled targets emit
+    // none) is stale — clear it so this tap's own click, if any, acts.
+    touchOpenedRef.current = false
+
+    if (
+      isControlled ||
+      disableListeners ||
+      // Tap-to-open is a touch-device affordance, exactly like the click
+      // branch above — on pointer devices opening stays owned by hover.
+      !isTouchDevice ||
+      followCursorUnsupported ||
+      suppressReopenRef.current ||
+      openRef.current
+    ) {
+      return
+    }
+
+    setOpen(true)
+    onOpen?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
+    touchOpenedRef.current = true
   }
 
   const handleOpenChangeComplete = (nextOpen: boolean) => {
@@ -301,6 +351,7 @@ export const useTooltipState = ({
     handleOpenChange,
     handleOpenChangeComplete,
     handleTriggerClick,
+    handleTriggerTouchStart,
     handleTriggerMouseOver,
     handleTriggerMouseMove,
     handleTriggerMouseLeave,

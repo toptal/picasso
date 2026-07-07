@@ -36,6 +36,17 @@ const clickElement = (element: Element) => {
   fireEvent.click(element)
 }
 
+// A real tap on a NON-disabled element dispatches touch events first and a
+// synthetic click after `touchend` — both reach the trigger, so this sequence
+// exercises the touch-open path AND its dedupe against the trailing click.
+const tapElement = (element: Element) => {
+  fireEvent.pointerDown(element)
+  fireEvent.touchStart(element)
+  fireEvent.pointerUp(element)
+  fireEvent.touchEnd(element)
+  fireEvent.click(element)
+}
+
 const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
   // onClick/onMouseOver/onMouseMove/onMouseLeave belong on the wrapped trigger,
   // not on Tooltip — keep them off the {...tooltipProps} spread so they aren't
@@ -325,6 +336,54 @@ describe('Tooltip', () => {
         await waitFor(() => {
           expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
         })
+      })
+
+      it('opens without flicker and closes on the next tap', async () => {
+        // A full tap fires BOTH `touchstart` (which opens) and a trailing
+        // synthetic `click` — the click must be deduped, not read as
+        // click-to-dismiss, or the tooltip open/close flickers shut.
+        const onCloseMock = jest.fn()
+
+        const { getByTestId, queryByTestId, findByTestId } = renderTooltip({
+          onClose: onCloseMock,
+        })
+
+        tapElement(getByTestId('tooltip-trigger'))
+        await findByTestId('tooltip-content')
+        expect(onCloseMock).not.toHaveBeenCalled()
+
+        // The next tap's click is NOT deduped — it dismisses, as before.
+        tapElement(getByTestId('tooltip-trigger'))
+        await waitFor(() => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        })
+      })
+    })
+
+    describe('when tapping a disabled element wrapped in the trigger', () => {
+      it('opens the tooltip', async () => {
+        // The documented "tooltip on a disabled element" pattern: a disabled
+        // control inside a `<span>` trigger. A tap on a disabled control
+        // dispatches touch events (which bubble to the span) but NEVER a
+        // synthetic click — the HTML spec bars disabled form controls from
+        // click events — so the open must come from `touchstart` bubbling up
+        // to the trigger.
+        const { getByTestId, queryByTestId } = render(
+          <Tooltip id='tooltip-id' content={<TestContent />}>
+            <span data-testid='tooltip-trigger'>
+              <button type='button' disabled data-testid='inner-disabled'>
+                Disabled
+              </button>
+            </span>
+          </Tooltip>
+        )
+
+        fireEvent.touchStart(getByTestId('inner-disabled'))
+        fireEvent.touchEnd(getByTestId('inner-disabled'))
+
+        await waitFor(() =>
+          expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+        )
       })
     })
 
