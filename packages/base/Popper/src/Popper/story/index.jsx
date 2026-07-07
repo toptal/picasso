@@ -94,8 +94,11 @@ page.createTabChapter('Props').addComponentDocs({
     popperOptions: {
       name: 'popperOptions',
       type: 'object',
-      description:
-        'Options forwarded to the popper instance, including onCreate and onUpdate lifecycle callbacks',
+      description: `
+Options forwarded to the popper instance, including \`onCreate\` and \`onUpdate\` lifecycle callbacks and popper.js v1-shaped \`modifiers\` (\`flip\`, \`offset\`, \`preventOverflow\`, \`hide\`).
+
+\`positionFixed: true\` positions the popper relative to the viewport (\`fixed\` strategy) instead of its nearest positioned ancestor, escaping a clipping/scrolling ancestor (e.g. an \`overflow: hidden\` container). Not needed for the default portaled case — portaling already moves the popper out of the clipping container's DOM subtree. See the "Fixed Strategy" example below.
+      `,
     },
   },
 })
@@ -130,6 +133,14 @@ page
     'Popper/story/InsideModal.example.tsx',
     {
       title: 'Inside Modal',
+      takeScreenshot: false,
+    },
+    'base/Popper'
+  )
+  .addExample(
+    'Popper/story/FixedStrategy.example.tsx',
+    {
+      title: 'Fixed Strategy',
       takeScreenshot: false,
     },
     'base/Popper'

@@ -13,6 +13,7 @@ import {
   createMiddleware,
   getParityAttributes,
   getPopperOptions,
+  resolveStrategy,
 } from './popper-options'
 import type { PopperHandle } from './use-popper-handle'
 import { usePopperHandle } from './use-popper-handle'
@@ -165,7 +166,7 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
   } = useFloating({
     open,
     placement,
-    strategy: 'absolute',
+    strategy: resolveStrategy(popperOptions),
     // useFloating deep-compares middleware, so the inline array is stable
     middleware: createMiddleware(resolvedOptions),
     whileElementsMounted: autoUpdate,

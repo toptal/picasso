@@ -59,7 +59,20 @@ export interface PopperOptions {
   onCreate?: PopperLifecycleCallback
   /** Called on each position update after creation */
   onUpdate?: PopperLifecycleCallback
+  /**
+   * Position the popper relative to the viewport (`fixed`) instead of its
+   * nearest positioned ancestor (`absolute`). `true` escapes a clipping or
+   * scrolling ancestor (e.g. an `overflow: hidden` container) that `absolute`
+   * positioning cannot. popper.js v1 shape.
+   */
+  positionFixed?: boolean
 }
+
+// popper.js v1 back-compat: `popperOptions.positionFixed` maps to
+// `@floating-ui/react`'s `fixed` positioning strategy.
+export const resolveStrategy = (
+  popperOptions: PopperOptions
+): 'absolute' | 'fixed' => (popperOptions.positionFixed ? 'fixed' : 'absolute')
 
 const getPreventOverflowOptions = (isInsideModal: boolean) => {
   if (isInsideModal) {
