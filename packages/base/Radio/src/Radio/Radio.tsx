@@ -105,11 +105,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         control={radioControl}
         classes={{
-          // These values sit on the outer `<FormLabel as='span'>`, which has no
-          // font-size of its own and inherits the label root's `text-[1rem]` (16px,
-          // set via `root` just below). So the original `em` values map 1:1 to `rem`
-          // (0.25em→4px→0.25rem, 1.5em→24px→1.5rem). The inner text span's
-          // `text-[0.8125rem]` only styles the glyphs, not this margin/max-width box.
           label: 'mt-[0.25rem] max-w-[calc(100%_-_1.5rem_+_1px)]',
           root: 'text-[1rem] items-start',
         }}
