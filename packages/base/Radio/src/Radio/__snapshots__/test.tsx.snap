@@ -35,7 +35,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -68,7 +68,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -101,7 +101,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -134,7 +134,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -167,7 +167,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -200,7 +200,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -251,7 +251,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -284,7 +284,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
               />
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.21875rem] max-w-[calc(100%_"
+              class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
             >
               <span
                 class="align-top text-[0.8125rem]"
