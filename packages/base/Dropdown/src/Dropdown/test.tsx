@@ -101,4 +101,21 @@ describe('Dropdown', () => {
     expect(onClose).toHaveBeenCalledTimes(1)
     expect(onClose).toHaveBeenCalledWith()
   })
+
+  it('positions the content with a fixed strategy via popperOptions.positionFixed', async () => {
+    const { getByText, getByRole } = render(
+      <Dropdown
+        content={<div>Content</div>}
+        popperOptions={{ positionFixed: true }}
+      >
+        Open Dropdown <Dropdown.Arrow />
+      </Dropdown>
+    )
+
+    await act(async () => {
+      fireEvent.click(getByText('Open Dropdown'))
+    })
+
+    expect(getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+  })
 })
