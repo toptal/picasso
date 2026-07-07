@@ -38,11 +38,11 @@ const layout: string[] = [
 
 const dndHover: string[] = [
   // inline combinators disabled → purple drop line (green when copying)
-  '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:border-b-2',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:border-b-purple-500',
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:pb-2',
-  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:border-b-2',
+  '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:border-b-purple-500',
   '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header]:pb-2',
@@ -50,19 +50,19 @@ const dndHover: string[] = [
   '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header.dndCopy]:border-b-green-100',
 
   // inline combinators enabled → green drop line
-  '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:border-b-green-100',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:pb-2',
-  '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:border-b-green-100',
   '[&_[data-inlinecombinators=enabled]_.dndOver.ruleGroup-header]:pb-2',
-  '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:border-b-green-100',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule+.betweenRules]:pb-2',
-  '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:border-b-2',
+  '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:border-b-green-100',
   '[&_[data-inlinecombinators=enabled]_.dndOver.betweenRules]:pb-2',

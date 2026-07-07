@@ -74,6 +74,10 @@ type Props = {
 
 const ValueEditor = (props: ValEditorProps) => <DefaultValEditor {...props} />
 
+// Built once at module scope — `queryBuilderClassNames` is static, so there is
+// no need to recompute the joined string on every QueryBuilder re-render.
+const queryBuilderClassName = cx(queryBuilderClassNames)
+
 const QueryBuilder = ({
   fields,
   query,
@@ -179,7 +183,7 @@ const QueryBuilder = ({
   return (
     <ControlElementsContext>
       <Container
-        className={cx(queryBuilderClassNames)}
+        className={queryBuilderClassName}
         flex
         padded={padded}
         direction='column'
