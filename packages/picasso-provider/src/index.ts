@@ -51,6 +51,7 @@ export {
   useCurrentBreakpointRange,
   usePreventPageWidthChangeOnScrollbar,
   RootContext,
+  PicassoRootNodeContext,
 } from './Picasso/RootContext'
 
 export * from './Picasso/utils'

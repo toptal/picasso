@@ -31,10 +31,20 @@ export const RootContext = React.createContext<RootContextProps>({
   currentBreakpointRange: undefined,
 })
 
+// State-backed Picasso root node. Kept in a dedicated context (instead of a
+// field on RootContext) so that only `usePicassoRoot` consumers re-render
+// when the node becomes available after the first mount.
+export const PicassoRootNodeContext =
+  React.createContext<HTMLDivElement | null>(null)
+
 export const usePicassoRoot = () => {
   const context = useContext(RootContext)
+  const rootNode = useContext(PicassoRootNodeContext)
 
-  return context && context.rootRef ? context.rootRef.current : null
+  // rootNode is state-backed, so components rendered before the root node
+  // mounts (e.g. a Modal open on first mount) re-render once it exists;
+  // rootRef stays as a fallback for providers that only populate the ref
+  return rootNode ?? context?.rootRef?.current ?? null
 }
 
 export const usePageTopBar = () => {

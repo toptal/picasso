@@ -186,8 +186,13 @@ export const Drawer = ({
       }}
     >
       {disablePortal && <span ref={setInlineContainer} />}
+      {/* An explicit `null` container makes Base UI's portal wait and render
+          nothing. For `disablePortal` that is intended (the inline mount node
+          is state-backed and arrives one commit later), but an unavailable
+          Picasso root must degrade to `undefined` = `document.body` instead
+          of never rendering */}
       <BaseUIDialog.Portal
-        container={disablePortal ? inlineContainer : container}
+        container={disablePortal ? inlineContainer : container ?? undefined}
       >
         {overlay}
       </BaseUIDialog.Portal>

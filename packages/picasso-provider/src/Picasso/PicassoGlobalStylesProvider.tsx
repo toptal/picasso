@@ -1,8 +1,8 @@
 import type { ReactNode, ForwardRefExoticComponent, RefAttributes } from 'react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import type { RootContextProps } from './RootContext'
-import { RootContext } from './RootContext'
+import { PicassoRootNodeContext, RootContext } from './RootContext'
 import type { EnvironmentType, TextLabelProps } from '../types'
 import type { PicassoRootNodeProps } from './PicassoRootNode'
 import type { BreakpointKeys } from './config/breakpoints'
@@ -39,6 +39,16 @@ const PicassoGlobalStylesProvider = (
   } = props
 
   const rootRef = useRef<HTMLDivElement | null>(null)
+  // The ref alone is not enough for consumers that read the root node during
+  // the tree's first render pass (refs populate at commit, and a ref mutation
+  // triggers no re-render) — mirror the node into state so they re-render
+  // once it exists
+  const [rootNode, setRootNode] = useState<HTMLDivElement | null>(null)
+
+  const attachRootRef = useCallback((node: HTMLDivElement | null) => {
+    rootRef.current = node
+    setRootNode(node)
+  }, [])
 
   const screens = useScreens<BreakpointKeys>()
   const currentBreakpointRange = screens(breakpointKeyByRange)
@@ -83,10 +93,12 @@ const PicassoGlobalStylesProvider = (
   }, [currentBreakpointRange])
 
   return (
-    <RootComponent ref={rootRef}>
-      <RootContext.Provider value={contextValue}>
-        {children}
-      </RootContext.Provider>
+    <RootComponent ref={attachRootRef}>
+      <PicassoRootNodeContext.Provider value={rootNode}>
+        <RootContext.Provider value={contextValue}>
+          {children}
+        </RootContext.Provider>
+      </PicassoRootNodeContext.Provider>
     </RootComponent>
   )
 }

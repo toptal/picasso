@@ -236,8 +236,13 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     return popperNode
   }
 
+  // FloatingPortal treats an explicit `null` root as "wait for the container"
+  // and renders nothing until it resolves, while `undefined` falls back to
+  // `document.body` — degrade gracefully when the Picasso root is unavailable
   return (
-    <FloatingPortal root={resolvedContainer ?? picassoRootContainer}>
+    <FloatingPortal
+      root={resolvedContainer ?? picassoRootContainer ?? undefined}
+    >
       {popperNode}
     </FloatingPortal>
   )
