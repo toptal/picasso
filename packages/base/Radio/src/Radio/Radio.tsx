@@ -105,10 +105,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         control={radioControl}
         classes={{
-          // rem values are the em equivalents against FormLabel's 14px font
-          // (`size='medium'`, the only size Radio renders): 0.25em→3.5px→0.21875rem,
-          // 1.5em→21px→1.3125rem. Do not "round" to 0.25rem/1.5rem — that shifts the label.
-          label: 'mt-[0.21875rem] max-w-[calc(100%_-_1.3125rem_+_1px)]',
+          label: 'mt-[0.25rem] max-w-[calc(100%_-_1.5rem_+_1px)]',
           root: 'text-[1rem] items-start',
         }}
         style={style}
