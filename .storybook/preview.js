@@ -63,7 +63,6 @@ const withPicasso = story => (
     fixViewport={false}
     loadFavicon={false}
     preventPageWidthChangeOnScrollbar={false}
-    injectFirst
   >
     {story()}
   </Picasso>

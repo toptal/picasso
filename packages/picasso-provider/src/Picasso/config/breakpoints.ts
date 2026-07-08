@@ -1,11 +1,11 @@
 /* eslint-disable complexity */
 import { useState, useEffect, useCallback } from 'react'
-import type { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { isBrowser } from '../../utils'
 
 export type BreakpointKeys = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+type BreakpointValues = Record<BreakpointKeys, number>
 
 type BreakpointsList = {
   [key: string]: number
@@ -118,17 +118,48 @@ export const useScreenSize = () => {
   return size
 }
 
+const useMediaQueryMatch = (query: string): boolean => {
+  // `screens()` produces an `@media …` string, but matchMedia expects the bare
+  // query. MUI's useMediaQuery stripped this prefix for us pre-migration.
+  const mediaQuery = query.replace(/^@media\s?/, '')
+
+  const getMatches = () =>
+    isBrowser() && typeof window.matchMedia === 'function' && mediaQuery
+      ? window.matchMedia(mediaQuery).matches
+      : false
+
+  const [matches, setMatches] = useState(getMatches)
+
+  useEffect(() => {
+    if (
+      !isBrowser() ||
+      typeof window.matchMedia !== 'function' ||
+      !mediaQuery
+    ) {
+      return undefined
+    }
+
+    const mediaQueryList = window.matchMedia(mediaQuery)
+    const onChange = () => setMatches(mediaQueryList.matches)
+
+    onChange()
+    mediaQueryList.addEventListener('change', onChange)
+
+    return () => mediaQueryList.removeEventListener('change', onChange)
+  }, [mediaQuery])
+
+  return matches
+}
+
 export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
   const mediaQueryString = screens(...([] as BreakpointKeys[]).concat(sizes))
-  const mediaQuery = useMediaQuery(mediaQueryString, {
-    noSsr: true,
-  })
+  const matches = useMediaQueryMatch(mediaQueryString)
 
   if (!mediaQueryString) {
     return false
   }
 
-  return mediaQuery
+  return matches
 }
 
 /**
