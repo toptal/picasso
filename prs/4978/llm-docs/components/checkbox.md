@@ -27,11 +27,11 @@ Checkbox group component
 |------|------|---------|-------------|
 | horizontal | `boolean` | `false` | Align checkboxes horizontally |
 | spacing | `0 \| 8 \| 16 \| 24 \| 32 \| 64 \| 72 \| 80` | - | Defines amount of space between checkbox components (in px) |
-| xs | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
-| sm | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
-| md | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |
-| lg | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the lg breakpoint and wider screens |
-| xl | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the xl breakpoint and wider screens |
+| xs | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
+| sm | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
+| md | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |
+| lg | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the lg breakpoint and wider screens |
+| xl | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the xl breakpoint and wider screens |
 
 ### Uncontrolled
 
