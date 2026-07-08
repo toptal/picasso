@@ -15,6 +15,7 @@ export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   >
   environment: EnvironmentType<'test' | 'temploy'>
   disableTransitions?: boolean
+  responsive?: boolean
   preventPageWidthChangeOnScrollbar?: boolean
 }
 
@@ -35,6 +36,7 @@ const PicassoGlobalStylesProvider = (
     environment,
     titleCase,
     disableTransitions,
+    responsive,
     preventPageWidthChangeOnScrollbar,
   } = props
 
@@ -80,6 +82,7 @@ const PicassoGlobalStylesProvider = (
       }))
     },
     disableTransitions,
+    responsive,
     preventPageWidthChangeOnScrollbar,
   })
 
