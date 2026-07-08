@@ -75,26 +75,18 @@ const waitForHoverToSettle = selector => {
   })
 }
 
-// A popper positioned by `@floating-ui/react` (Dropdown/Menu/Popper) commits
-// its coordinates a frame or two after open, driven by `autoUpdate` — so its
-// `getBoundingClientRect()` keeps changing across animation frames right after
-// it appears. happo-cypress serializes the live DOM at a single instant; if
-// that instant lands mid-settle, the whole popup (and anything measured from
-// it) is captured a fraction of a pixel off, diffing against the baseline.
-// Picasso stamps `x-placement` on the positioned floating node, so its presence
-// marks a popper that must be geometrically at rest before we serialize.
-//
-// Waited on via `.should()`, whose callback Cypress retries on its own
-// animation-frame loop (bounded by defaultCommandTimeout) until it passes — no
-// hardcoded durations. The assertion passes once two consecutive reads of every
-// visible popper's box are identical, i.e. positioning has come to rest. Closed
-// `keepMounted` poppers (rendered but `display:none`) are skipped as they carry
-// no meaningful geometry. When no popper is open the set is empty and the
-// assertion passes immediately, so this is a no-op for non-popper snapshots.
-const readPopperBoxes = $body => {
+// Transient floating UI must be geometrically at rest before serializing:
+// `@floating-ui/react` poppers (stamped `x-placement`) commit their coordinates
+// a frame or two after open, and notistack notifications (`role="alert"`)
+// slide in via inline-style transforms that happo-cypress captures verbatim.
+// Settled = two consecutive reads of every visible element's box match.
+// Vacuous when nothing matches — asserting PRESENCE stays the callers' job.
+const GEOMETRY_SETTLE_SELECTOR = '[x-placement], [role="alert"]'
+
+const readTransientBoxes = $body => {
   const boxes = []
 
-  $body.find('[x-placement]').each((_index, el) => {
+  $body.find(GEOMETRY_SETTLE_SELECTOR).each((_index, el) => {
     const rect = el.getBoundingClientRect()
 
     // skip non-rendered nodes (display:none keepMounted poppers report 0×0)
@@ -112,17 +104,15 @@ const readPopperBoxes = $body => {
   return boxes.join('|')
 }
 
-const waitForPoppersToSettle = () => {
+const waitForTransientGeometryToSettle = () => {
   let previous = null
 
   return cy.get('body').should($body => {
-    const current = readPopperBoxes($body)
+    const current = readTransientBoxes($body)
     const wasPrevious = previous
 
     previous = current
-    // passes only once two consecutive reads match — i.e. every open popper has
-    // finished positioning. Cypress retries this callback until it passes.
-    expect(current, 'popper positioning settled').to.equal(wasPrevious)
+    expect(current, 'transient geometry settled').to.equal(wasPrevious)
   })
 }
 
@@ -160,6 +150,22 @@ Cypress.Commands.add('waitForOverlayOpen', (selector = '[role="dialog"]') =>
     .and('not.have.attr', 'data-starting-style')
 )
 
+// Gate on the DatePicker calendar being MOUNTED — it opens via async state, and
+// the global geometry-settle passes vacuously while no popper is in the DOM.
+Cypress.Commands.add('waitForCalendarOpen', () =>
+  cy.get('.rdp-month').should('be.visible')
+)
+
+// Gate on every matched <img> having decoded — `be.visible` only asserts the
+// layout box, not that the pixels loaded. Pass a selector to scope the check.
+Cypress.Commands.add('waitForImagesDecoded', (selector = 'img') =>
+  cy.get(selector).should($imgs => {
+    $imgs.each((_index, img) => {
+      expect(img.naturalWidth, 'image decoded').to.be.greaterThan(0)
+    })
+  })
+)
+
 // happo-cypress serializes the live DOM and re-renders it statically in the
 // cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
 // frame after mount; if captured before removal, the attribute pins the element
@@ -171,9 +177,8 @@ Cypress.Commands.overwrite(
       cy
         .get('[data-starting-style]', { timeout: 4000 })
         .should('not.exist')
-        // then let any open @floating-ui popper finish positioning, so the static
-        // capture reflects its settled geometry (see waitForPoppersToSettle above)
-        .then(() => waitForPoppersToSettle())
+        // then let poppers/notifications finish moving before serializing
+        .then(() => waitForTransientGeometryToSettle())
         .then(() => originalFn(subject, options))
     )
   }

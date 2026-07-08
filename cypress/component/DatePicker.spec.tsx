@@ -23,11 +23,55 @@ const TestDatePicker = (props: Partial<DatePickerProps>) => {
   )
 }
 
+const TestAsyncExternalUpdateDatePicker = () => {
+  const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>(
+    new Date(2020, 7, 21)
+  )
+  const [disabled, setDisabled] = useState(false)
+
+  const handleChange = (value: any) => {
+    setDisabled(true)
+    setTimeout(() => {
+      setDatepickerValue(value)
+      setDisabled(false)
+    }, 100)
+  }
+
+  return (
+    <Container padded='medium' flex>
+      <Button
+        data-testid='reset-button'
+        onClick={() => {
+          setDisabled(true)
+          setTimeout(() => {
+            setDatepickerValue(null)
+            setDisabled(false)
+          }, 100)
+        }}
+      >
+        Reset
+      </Button>
+      <DatePicker
+        testIds={{
+          input: 'date-picker-input',
+        }}
+        value={datepickerValue}
+        enableReset
+        disabled={disabled}
+        onResetClick={() => setDatepickerValue(null)}
+        onChange={handleChange}
+      />
+    </Container>
+  )
+}
+
 const component = 'DatePicker'
 
 describe('DatePicker', () => {
   it('renders autofocus', () => {
     cy.mount(<TestDatePicker autoFocus />)
+
+    cy.waitForCalendarOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -67,6 +111,8 @@ describe('DatePicker', () => {
     cy.getByTestId('date-picker-input').clear()
     cy.getByTestId('date-picker-input').type('2015')
 
+    cy.waitForCalendarOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'custom-value-parser',
@@ -91,6 +137,8 @@ describe('DatePicker', () => {
 
     cy.getByTestId('date-picker-with-indicators').focus()
 
+    cy.waitForCalendarOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'indicated-intervals',
@@ -107,6 +155,8 @@ describe('DatePicker', () => {
         disableDays={{ dayOfWeek: [0, 2] }}
       />
     )
+
+    cy.waitForCalendarOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -130,53 +180,13 @@ describe('DatePicker', () => {
 
     cy.getByTestId('date-picker-with-footer').focus()
 
+    cy.waitForCalendarOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'customized-footer',
     })
   })
-
-  const TestAsyncExternalUpdateDatePicker = () => {
-    const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>(
-      new Date(2020, 7, 21)
-    )
-    const [disabled, setDisabled] = useState(false)
-
-    const handleChange = (value: any) => {
-      setDisabled(true)
-      setTimeout(() => {
-        setDatepickerValue(value)
-        setDisabled(false)
-      }, 100)
-    }
-
-    return (
-      <Container padded='medium' flex>
-        <Button
-          data-testid='reset-button'
-          onClick={() => {
-            setDisabled(true)
-            setTimeout(() => {
-              setDatepickerValue(null)
-              setDisabled(false)
-            }, 100)
-          }}
-        >
-          Reset
-        </Button>
-        <DatePicker
-          testIds={{
-            input: 'date-picker-input',
-          }}
-          value={datepickerValue}
-          enableReset
-          disabled={disabled}
-          onResetClick={() => setDatepickerValue(null)}
-          onChange={handleChange}
-        />
-      </Container>
-    )
-  }
 
   it('reacts to external value updates correctly', () => {
     cy.mount(<TestAsyncExternalUpdateDatePicker />)

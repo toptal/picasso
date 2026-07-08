@@ -24,6 +24,8 @@ describe('AvatarUpload', () => {
         </Container>
       )
 
+      cy.waitForImagesDecoded()
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'with-source-file',

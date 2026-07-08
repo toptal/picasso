@@ -68,6 +68,11 @@ describe('PageTopBarMenu', () => {
 
       cy.getByTestId(TestIds.TopBarMenu).click()
 
+      // the dropdown mounts async in a popper — gate on its content, then let
+      // the fixture avatars decode before capturing
+      cy.contains('My Account').should('be.visible')
+      cy.waitForImagesDecoded()
+
       cy.get('body').happoScreenshot({
         component: 'PageTopBarMenu',
         variant: `width-${width}`,

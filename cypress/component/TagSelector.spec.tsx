@@ -139,14 +139,15 @@ describe('TagSelector', () => {
   it('renders', () => {
     cy.mount(<TagSelectorExample />)
 
-    cy.getByRole('combobox')
-      .as('combobox-input')
-      .realClick()
-      .get('body')
-      .happoScreenshot({
-        component,
-        variant: 'default/after-clicked-combobox',
-      })
+    cy.getByRole('combobox').as('combobox-input').realClick()
+
+    // the options popper mounts async — gate on it before capturing
+    cy.getByRole('option').should('be.visible')
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-clicked-combobox',
+    })
 
     cy.get('@combobox-input').type('{downArrow}')
     cy.get('@combobox-input').type('{enter}')
@@ -175,6 +176,10 @@ describe('TagSelector', () => {
 
     cy.getByRole('combobox').as('combobox-input').realClick()
     cy.get('@combobox-input').type('not existing item text')
+
+    // typing async-filters down to the "other option" row — wait for it
+    cy.getByRole('option').should('be.visible')
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'other-option/after-forced-other-option',
@@ -202,14 +207,15 @@ describe('TagSelector', () => {
   it('renders custom label and custom option', () => {
     cy.mount(<TagSelectorCustomLabelOptionRendererExample />)
 
-    cy.getByRole('combobox')
-      .as('combobox-input')
-      .realClick()
-      .get('body')
-      .happoScreenshot({
-        component,
-        variant: 'custom-label-custom-option/after-clicked-combobox',
-      })
+    cy.getByRole('combobox').as('combobox-input').realClick()
+
+    // the options popper mounts async — gate on it before capturing
+    cy.getByRole('option').should('be.visible')
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-label-custom-option/after-clicked-combobox',
+    })
 
     cy.get('@combobox-input').type('{downArrow}')
     cy.get('@combobox-input').type('{downArrow}')

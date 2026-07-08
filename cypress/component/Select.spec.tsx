@@ -140,6 +140,10 @@ const getNativeOption = (value: string | number) =>
 
 const openSelect = () => {
   cy.getByTestId('select').click()
+
+  // the menu mounts async in a popper — gate on it so a screenshot right after
+  // opening can't capture a menu-less frame (present in every open state)
+  cy.get('[role="tooltip"]').should('be.visible')
 }
 
 const pressArrowDown = () => {

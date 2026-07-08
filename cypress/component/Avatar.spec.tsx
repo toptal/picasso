@@ -31,6 +31,10 @@ describe('Avatar', () => {
       )
 
       cy.get('button').focus()
+
+      // let the base64 fixture image decode before capturing
+      cy.waitForImagesDecoded()
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'editable/after-focus',

@@ -64,11 +64,16 @@ describe('BarChart', () => {
 
     // fix flakiness, sometimes it does not respond to hover
     cy.get('.recharts-surface').realClick()
-    hoverOverBar('Apple').get('body').happoScreenshot({
+    hoverOverBar('Apple')
+
+    // the recharts tooltip mounts via async state on mousemove — assert it
+    // before capturing so the screenshot can't freeze a tooltip-less frame
+    assertTooltipContent('Appleengineers hired : 500')
+
+    cy.get('body').happoScreenshot({
       component,
       variant: 'default-chart/default-tooltip',
     })
-    assertTooltipContent('Appleengineers hired : 500')
 
     hoverOverBar('Google')
     assertTooltipContent('Googleengineers hired : 700')
@@ -93,11 +98,15 @@ describe('BarChart', () => {
 
     // fix flakiness, sometimes it does not respond to hover
     cy.get('.recharts-surface').realClick()
-    hoverOverBar('Berlin').get('body').happoScreenshot({
+    hoverOverBar('Berlin')
+
+    // assert the custom tooltip rendered before capturing (see above)
+    assertCustomTooltipContent('Infected: 4000Recovered: 2400')
+
+    cy.get('body').happoScreenshot({
       component,
       variant: 'custom-chart/custom-tooltip',
     })
-    assertCustomTooltipContent('Infected: 4000Recovered: 2400')
 
     hoverOverBar('Milan')
     assertCustomTooltipContent('Infected: 3000Recovered: 1398')
