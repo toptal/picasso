@@ -8,7 +8,6 @@
  */
 import { queryBuilderGlobalStyles } from './query-builder-global-styles'
 
-// Root element of the query builder (the wrapping Container).
 const root: string[] = ['rounded-md', 'bg-gray-100']
 
 // Higher-specificity branch recoloring for the two shallowest nesting levels.

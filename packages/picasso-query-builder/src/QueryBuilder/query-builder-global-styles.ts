@@ -37,7 +37,6 @@ const layout: string[] = [
 ]
 
 const dndHover: string[] = [
-  // inline combinators disabled → purple drop line (green when copying)
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule]:border-b-purple-500',
@@ -49,7 +48,6 @@ const dndHover: string[] = [
   '[&_[data-inlinecombinators=disabled]_.dndOver.rule.dndCopy]:border-b-green-100',
   '[&_[data-inlinecombinators=disabled]_.dndOver.ruleGroup-header.dndCopy]:border-b-green-100',
 
-  // inline combinators enabled → green drop line
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:[border-bottom-width:0.125rem]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:[border-bottom-style:dashed]',
   '[&_[data-inlinecombinators=enabled]_.dndOver.rule:last-child]:border-b-green-100',
@@ -76,11 +74,9 @@ const dndDrag: string[] = [
   '[&_[data-dnd=disabled]_.queryBuilder-dragHandle]:hidden',
 ]
 
-// Branch connector lines (::before / ::after) around nested rules and groups.
 const branches: string[] = [
   '[&_.queryBuilder-branches_.ruleGroup-body]:ml-6',
 
-  // `.rule` connectors
   '[&_.queryBuilder-branches_.rule]:relative',
   "[&_.queryBuilder-branches_.rule]:before:content-['']",
   '[&_.queryBuilder-branches_.rule]:before:absolute',
@@ -105,7 +101,6 @@ const branches: string[] = [
   '[&_.queryBuilder-branches_.rule:last-child]:before:rounded-bl-none',
   '[&_.queryBuilder-branches_.rule:last-child]:after:hidden',
 
-  // nested `.ruleGroup .ruleGroup` connectors
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:relative',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:p-4',
   "[&_.queryBuilder-branches_.ruleGroup_.ruleGroup]:before:content-['']",
@@ -131,7 +126,6 @@ const branches: string[] = [
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup:last-child]:before:rounded-bl-none',
   '[&_.queryBuilder-branches_.ruleGroup_.ruleGroup:last-child]:after:hidden',
 
-  // `.betweenRules` connector (single ::before)
   '[&_.queryBuilder-branches_.betweenRules]:relative',
   "[&_.queryBuilder-branches_.betweenRules]:before:content-['']",
   '[&_.queryBuilder-branches_.betweenRules]:before:absolute',
