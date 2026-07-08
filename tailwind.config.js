@@ -4,6 +4,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    // PicassoBook docs-UI (Storybook infra) is styled with Tailwind too.
+    '.storybook/**/*.{ts,tsx,jsx}',
     'packages/base/*/src/**/*.{ts,tsx}',
     'packages/*/src/**/*.{ts,tsx}',
   ],
