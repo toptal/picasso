@@ -40,8 +40,6 @@ export type {
   BreakpointKeys,
 } from './Picasso/config'
 
-export { default as PicassoProvider } from './Picasso/PicassoProvider'
-
 export {
   usePicassoRoot,
   usePageTopBar,

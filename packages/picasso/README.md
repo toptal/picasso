@@ -100,7 +100,7 @@ import { Button } from '@toptal/picasso'
 
 render () {
   return (
-    <Picasso injectFirst>
+    <Picasso>
       <Button>Hello world!</Button>
     </Picasso>
   )
