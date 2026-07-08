@@ -847,19 +847,21 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-18T08:08:43.276Z",
-          "session_id": "24175aeb-cfe5-4e55-9fb9-24b4eb882745",
+          "last_review_seen_at": "2026-07-03T07:15:35.143Z",
+          "session_id": "43f075d7-a6b8-451b-897f-90ec3f5ea42b",
           "awaiting_ci_since": null,
-          "review_iterations": 2,
-          "review_iter_failures": 0
+          "review_iterations": 3,
+          "review_iter_failures": 0,
+          "cleanup_done_at": "2026-07-03T07:48:23.141Z"
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-06-18T08:08:43.276Z",
-      "session_id": "24175aeb-cfe5-4e55-9fb9-24b4eb882745",
+      "last_review_seen_at": "2026-07-03T07:15:35.143Z",
+      "session_id": "43f075d7-a6b8-451b-897f-90ec3f5ea42b",
       "awaiting_ci_since": null,
-      "review_iterations": 2
+      "review_iterations": 3,
+      "cleanup_done_at": "2026-07-03T07:48:23.141Z"
     },
     "Tooltip": {
       "tier": 2,
@@ -1253,19 +1255,23 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-06-16T14:37:13.921Z",
+          "last_review_seen_at": "2026-07-08T09:49:35.767Z",
           "review_iterations": 0,
           "session_id": null,
           "awaiting_ci_since": null,
-          "review_iter_failures": 0
+          "review_iter_failures": 0,
+          "operator_overrides": [],
+          "cleanup_done_at": "2026-07-08T11:05:52.622Z"
         }
       },
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-06-16T14:37:13.921Z",
+      "last_review_seen_at": "2026-07-08T09:49:35.767Z",
       "session_id": null,
       "awaiting_ci_since": null,
-      "review_iterations": 0
+      "review_iterations": 0,
+      "operator_overrides": [],
+      "cleanup_done_at": "2026-07-08T11:05:52.622Z"
     },
     "picasso-rich-text-editor": {
       "tier": 4,
