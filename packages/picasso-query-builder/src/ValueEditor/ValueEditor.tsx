@@ -11,7 +11,6 @@ import { useHandleTouched } from '../utils'
 import { BooleanInput } from '../BooleanInput'
 import type { BaseValueEditorProps } from '../types/query-builder'
 
-// TODO(tokens): [PF-1994] 9.25rem value-editor min-width is off the Picasso spacing scale
 export const rootClassName = 'flex-[1_0_9.25rem]'
 
 type CustomValueEditorType =
