@@ -1,7 +1,6 @@
 import React from 'react'
 import type { ValueEditorType } from 'react-querybuilder'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { Select } from '../Select'
 import { MultiSelect } from '../MultiSelect'
@@ -11,7 +10,8 @@ import { TextInput } from '../TextInput'
 import { useHandleTouched } from '../utils'
 import { BooleanInput } from '../BooleanInput'
 import type { BaseValueEditorProps } from '../types/query-builder'
-import styles from './styles'
+
+export const rootClassName = 'flex-[1_0_9.25rem]'
 
 type CustomValueEditorType =
   | 'autocomplete'
@@ -23,8 +23,6 @@ export interface QueryBuilderValueEditorProps
   extends Omit<BaseValueEditorProps, 'type'> {
   type?: CustomValueEditorType
 }
-
-const useStyles = makeStyles(styles)
 
 export const ValueEditor = ({
   value,
@@ -41,8 +39,6 @@ export const ValueEditor = ({
   validation,
   context = {},
 }: QueryBuilderValueEditorProps) => {
-  const classes = useStyles()
-
   const valueEditorTestId = context?.testIds?.valueEditor
 
   const { touched, handleTouched } = useHandleTouched({
@@ -53,7 +49,7 @@ export const ValueEditor = ({
     case 'multiselect':
       return (
         <MultiSelect
-          className={cx(className, classes.root)}
+          className={twMerge(rootClassName, className)}
           disabled={disabled}
           options={values}
           value={value}
@@ -70,7 +66,7 @@ export const ValueEditor = ({
     case 'select':
       return (
         <Select
-          className={cx(className, classes.root)}
+          className={twMerge(rootClassName, className)}
           disabled={disabled}
           options={values}
           value={value}
@@ -85,7 +81,7 @@ export const ValueEditor = ({
     case 'autocomplete':
       return (
         <AutoComplete
-          className={cx(className, classes.root)}
+          className={twMerge(rootClassName, className)}
           fullWidth
           disabled={disabled}
           options={values}
@@ -119,7 +115,7 @@ export const ValueEditor = ({
     case 'boolean':
       return (
         <BooleanInput
-          className={classes.root}
+          className={rootClassName}
           disabled={disabled}
           value={value}
           handleOnChange={handleOnChange}
@@ -133,7 +129,7 @@ export const ValueEditor = ({
     default:
       return (
         <TextInput
-          className={cx(className, classes.root)}
+          className={twMerge(rootClassName, className)}
           value={value}
           handleOnChange={handleOnChange}
           inputType={inputType || undefined}

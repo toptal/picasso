@@ -16,7 +16,6 @@ import {
 import { QueryBuilderDnD } from '@react-querybuilder/dnd'
 import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
-import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { SpacingType } from '@toptal/picasso-provider'
 import { SPACING_6 } from '@toptal/picasso-provider'
@@ -29,7 +28,7 @@ import { emptyQueryBuilderQuery } from '../utils/constants'
 import type { QueryBuilderValueEditorProps as ValEditorProps } from '../ValueEditor'
 import { ValueEditor as DefaultValEditor } from '../ValueEditor'
 import { controlClassnames, useQueryBuilderValidator } from '../utils'
-import styles from './styles'
+import { queryBuilderClassNames } from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
 
@@ -73,9 +72,9 @@ type Props = {
   testIds?: TestId
 }
 
-const useStyles = makeStyles(styles)
-
 const ValueEditor = (props: ValEditorProps) => <DefaultValEditor {...props} />
+
+const queryBuilderClassName = cx(queryBuilderClassNames)
 
 const QueryBuilder = ({
   fields,
@@ -97,8 +96,6 @@ const QueryBuilder = ({
   onQueryReset,
   testIds,
 }: Props) => {
-  const classes = useStyles()
-
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
 
   const { showError } = useNotifications()
@@ -184,7 +181,7 @@ const QueryBuilder = ({
   return (
     <ControlElementsContext>
       <Container
-        className={cx(classes.global, classes.root)}
+        className={queryBuilderClassName}
         flex
         padded={padded}
         direction='column'
