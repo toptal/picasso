@@ -1165,6 +1165,9 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
+      '@types/react-transition-group':
+        specifier: ^4.4.5
+        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/Container:
     dependencies:
@@ -1409,6 +1412,9 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
+      '@types/react-transition-group':
+        specifier: ^4.4.5
+        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/FileInput:
     dependencies:
@@ -2569,6 +2575,9 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
+      '@types/react-transition-group':
+        specifier: ^4.4.5
+        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/Slider:
     dependencies:
@@ -3055,9 +3064,6 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
-      notistack:
-        specifier: 1.0.10
-        version: 1.0.10(@material-ui/core@4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3074,9 +3080,6 @@ importers:
 
   packages/picasso:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-accordion':
         specifier: workspace:*
         version: link:../base/Accordion
@@ -3604,12 +3607,6 @@ importers:
 
   packages/picasso-provider:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@material-ui/utils':
-        specifier: 4.11.3
-        version: 4.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -5938,56 +5935,6 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
-  '@material-ui/core@4.12.4':
-    resolution: {integrity: sha512-tr7xekNlM9LjA6pagJmL8QCgZXaubWUwkJnoYcMKd4gw/t4XiyvnTkjdGrUVicyB2BsdaAv1tvow45bPM4sSwQ==}
-    engines: {node: '>=8.0.0'}
-    deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
-    peerDependencies:
-      '@types/react': '17'
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@material-ui/styles@4.11.5':
-    resolution: {integrity: sha512-o/41ot5JJiUsIETME9wVLAJrmIWL3j0R0Bj2kCOLbSfqEkKf0fmaPt+5vtblUh5eXr2S+J/8J3DaCb10+CzPGA==}
-    engines: {node: '>=8.0.0'}
-    deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
-    peerDependencies:
-      '@types/react': '17'
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@material-ui/system@4.12.2':
-    resolution: {integrity: sha512-6CSKu2MtmiJgcCGf6nBQpM8fLkuB9F55EKfbdTC80NND5wpTmKzwdhLYLH3zL4cLlK0gVaaltW7/wMuyTnN0Lw==}
-    engines: {node: '>=8.0.0'}
-    peerDependencies:
-      '@types/react': '17'
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@material-ui/types@5.1.0':
-    resolution: {integrity: sha512-7cqRjrY50b8QzRSYyhSpx4WRw2YuO0KKIGQEVk5J8uoz2BanawykgZGoWEqKm7pVIbzFDN0SpPcVV4IhOFkl8A==}
-    peerDependencies:
-      '@types/react': '17'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@material-ui/utils@4.11.3':
-    resolution: {integrity: sha512-ZuQPV4rBK/V1j2dIkSSEcH5uT6AaHuKWFfotADHsC0wVL1NLd2WkFCm4ZZbX33iO4ydl6V0GPngKm8HZQ2oujg==}
-    engines: {node: '>=8.0.0'}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-
   '@mdx-js/mdx@1.6.22':
     resolution: {integrity: sha512-AMxuLxPz2j5/6TpF/XSdKpQP1NlG0z11dFOlq+2IP/lSgl11GY8ji6S/rgsViN/L0BDvHvUMruRb7ub+24LUYA==}
 
@@ -7840,8 +7787,10 @@ packages:
   '@types/react-textarea-autosize@4.3.6':
     resolution: {integrity: sha512-cTf8tCem0c8A7CERYbTuF+bRFaqYu7N7HLCa6ZhUhDx8XnUsTpGx5udMWljt87JpciUKuUkImKPEsy6kcKhrcQ==}
 
-  '@types/react-transition-group@4.2.3':
-    resolution: {integrity: sha512-Hk8jiuT7iLOHrcjKP/ZVSyCNXK73wJAUz60xm0mVhiRujrdiI++j4duLiL282VGxwAgxetHQFfqA29LgEeSkFA==}
+  '@types/react-transition-group@4.4.12':
+    resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
+    peerDependencies:
+      '@types/react': '17'
 
   '@types/react-truncate@2.3.4':
     resolution: {integrity: sha512-+ugDlho66dRn7Sw/lPkE/wlOi0KUIRwY2KOiUiehWjFf7EmiMDjMpHqrBhiLJfH2Z9EC+qRBHC9o7iZoEmmWQw==}
@@ -9632,9 +9581,6 @@ packages:
   css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
-
-  css-vendor@2.0.8:
-    resolution: {integrity: sha512-x9Aq0XTInxrkuFeHKbYC7zWY8ai7qJ04Kxd9MnvbC1uO5DagxoHQjm4JvG+vCdXOoFtCjbL2XSZfxmoYa9uQVQ==}
 
   css-what@5.1.0:
     resolution: {integrity: sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==}
@@ -11947,9 +11893,6 @@ packages:
     resolution: {integrity: sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==}
     engines: {node: '>=4'}
 
-  hyphenate-style-name@1.0.3:
-    resolution: {integrity: sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==}
-
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -12276,9 +12219,6 @@ packages:
 
   is-hexadecimal@1.0.4:
     resolution: {integrity: sha512-gyPJuv83bHMpocVYoqof5VDiZveEoGoFL8m3BXNb2VW8Xs+rz9kqO8LOQ5DH6EsuvilT1ApazU0pyl+ytbPtlw==}
-
-  is-in-browser@1.1.3:
-    resolution: {integrity: sha512-FeXIBgG/CPGd/WUxuEyvgGTEfwiG9Z4EKGxjNMRqviiIIfsmgrpnHLffEDdwUHqNva1VEW91o3xBT/m8Elgl9g==}
 
   is-installed-globally@0.4.0:
     resolution: {integrity: sha512-iwGqO3J21aaSkC7jWnHP/difazwS7SFeIqxv6wEtLU8Y5KlzFTjyqcSIT0d8s4+dDhKytsk9PJZ2BkS5eZwQRQ==}
@@ -12940,30 +12880,6 @@ packages:
   jsprim@2.0.2:
     resolution: {integrity: sha512-gqXddjPqQ6G40VdnI6T6yObEC+pDNvyP95wdQhkWkg7crHH3km5qP1FsOXEkzEQwnz6gz5qGTn1c2Y52wP3OyQ==}
     engines: {'0': node >=0.6.0}
-
-  jss-plugin-camel-case@10.9.1:
-    resolution: {integrity: sha512-irEr3Z2ENUz71OIq6PWN0N6g3uIA6LyGEwiIfL1JBzy+HVZS17xq/vwnHda3KyvPls18cKiwNNuuVwY6TrWwWg==}
-
-  jss-plugin-default-unit@10.9.1:
-    resolution: {integrity: sha512-sqQ1nRSy07z1brABTXK8EamDDjYVp/u9b/gKL51ZB+NNzbqvQF0CR33fGKPt0IOai98mzk0aHHIpf5il7mRN7A==}
-
-  jss-plugin-global@10.9.1:
-    resolution: {integrity: sha512-wc8EQMUe9NGInmnZErA1xQsX9jfk+7MrgN0sOB7l1IqfFQyuN0ntgo93bKhIj4I5RUtzjCskcvReBEZVwAHK8w==}
-
-  jss-plugin-nested@10.9.1:
-    resolution: {integrity: sha512-5kSHhhZra1+xwitBVyKN4da00860X7DDeuzf+sF8C6L6C0DuV2VAy6MKIoWKuIrx3pknYUgS/eo/VfsRmFP5Mw==}
-
-  jss-plugin-props-sort@10.9.1:
-    resolution: {integrity: sha512-Z+KkIty+MEq8+7SDGYdpb9A0IV6NTlk5s4NGGPvgHxyB/6gr46XWvaHuPE8BagrC+k1Aq5E63nPN6uL0pKsnjw==}
-
-  jss-plugin-rule-value-function@10.9.1:
-    resolution: {integrity: sha512-4GbLHDqq+Ps6BZMRYZwjiAtxuqnscGLxwG4YnrgfuDM/yqGNJFZwK4Zfabs3XMe0cM+IbadsgJVUQgJwuNB4IA==}
-
-  jss-plugin-vendor-prefixer@10.9.1:
-    resolution: {integrity: sha512-tlaN/UdAkim7vji7EcAw5MbOUq5/Vh1hhrWMzmdlcDATwHhDp2bYiq9G21NEa5D0AzcW631VjJq7WulpE1APHQ==}
-
-  jss@10.9.1:
-    resolution: {integrity: sha512-omDBQTYyIdYuHee1mkpqDyHw2NguCrURBU1izPPHmdtDK6SkP7P3buZt4ybHWOahTZ3+xd0C+zLPBBw7Hn3eYg==}
 
   jsx-ast-utils@3.1.0:
     resolution: {integrity: sha512-d4/UOjg+mxAWxCiF0c5UTSwyqbchkbqCvK87aBovhnh8GtysTjWmgC63tY0cJx/HzGgm9qnA147jVBdpOiQ2RA==}
@@ -14134,13 +14050,6 @@ packages:
     resolution: {integrity: sha512-uVFpKhj5MheNBJRTiMZ9pE/7hD1QTeEvugSJW/OmLzAp78PB5O6adfMNTvmfKhXBkvCzC+rqifWcVYpGFwTjnw==}
     engines: {node: '>=14.16'}
 
-  notistack@1.0.10:
-    resolution: {integrity: sha512-z0y4jJaVtOoH3kc3GtNUlhNTY+5LE04QDeLVujX3VPhhzg67zw055mZjrBF+nzpv3V9aiPNph1EgRU4+t8kQTQ==}
-    peerDependencies:
-      '@material-ui/core': ^4.0.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-
   notistack@3.0.1:
     resolution: {integrity: sha512-ntVZXXgSQH5WYfyU+3HfcXuKaapzAJ8fBLQ/G618rn3yvSzEbnOB8ZSOwhX+dAORy/lw+GC2N061JA0+gYWTVA==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
@@ -14935,9 +14844,6 @@ packages:
   popper.js@1.16.1:
     resolution: {integrity: sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==}
     deprecated: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
-
-  popper.js@1.16.1-lts:
-    resolution: {integrity: sha512-Kjw8nKRl1m+VrSFCoVGPph93W/qrSO7ZkqPpTf7F4bk/sqcfWK019dWBUpE/fBOsOQY1dks/Bmcbfn1heM/IsA==}
 
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
@@ -20815,71 +20721,6 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@material-ui/core@4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@material-ui/styles': 4.11.5(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@material-ui/system': 4.12.2(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@material-ui/types': 5.1.0(@types/react@17.0.39)
-      '@material-ui/utils': 4.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@types/react-transition-group': 4.2.3
-      clsx: 1.2.1
-      hoist-non-react-statics: 3.3.2
-      popper.js: 1.16.1-lts
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 17.0.2
-      react-transition-group: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-    optionalDependencies:
-      '@types/react': 17.0.39
-
-  '@material-ui/styles@4.11.5(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@babel/runtime': 7.29.2
-      '@emotion/hash': 0.8.0
-      '@material-ui/types': 5.1.0(@types/react@17.0.39)
-      '@material-ui/utils': 4.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      clsx: 1.2.1
-      csstype: 2.6.19
-      hoist-non-react-statics: 3.3.2
-      jss: 10.9.1
-      jss-plugin-camel-case: 10.9.1
-      jss-plugin-default-unit: 10.9.1
-      jss-plugin-global: 10.9.1
-      jss-plugin-nested: 10.9.1
-      jss-plugin-props-sort: 10.9.1
-      jss-plugin-rule-value-function: 10.9.1
-      jss-plugin-vendor-prefixer: 10.9.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    optionalDependencies:
-      '@types/react': 17.0.39
-
-  '@material-ui/system@4.12.2(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@babel/runtime': 7.29.2
-      '@material-ui/utils': 4.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      csstype: 2.6.19
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    optionalDependencies:
-      '@types/react': 17.0.39
-
-  '@material-ui/types@5.1.0(@types/react@17.0.39)':
-    optionalDependencies:
-      '@types/react': 17.0.39
-
-  '@material-ui/utils@4.11.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 17.0.2
-
   '@mdx-js/mdx@1.6.22':
     dependencies:
       '@babel/core': 7.12.9
@@ -24085,7 +23926,7 @@ snapshots:
     dependencies:
       '@types/react': 17.0.39
 
-  '@types/react-transition-group@4.2.3':
+  '@types/react-transition-group@4.4.12(@types/react@17.0.39)':
     dependencies:
       '@types/react': 17.0.39
 
@@ -26221,11 +26062,6 @@ snapshots:
     dependencies:
       mdn-data: 2.0.30
       source-map-js: 1.2.1
-
-  css-vendor@2.0.8:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      is-in-browser: 1.1.3
 
   css-what@5.1.0: {}
 
@@ -29085,8 +28921,6 @@ snapshots:
 
   hyperlinker@1.0.0: {}
 
-  hyphenate-style-name@1.0.3: {}
-
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -29378,8 +29212,6 @@ snapshots:
       is-extglob: 2.1.1
 
   is-hexadecimal@1.0.4: {}
-
-  is-in-browser@1.1.3: {}
 
   is-installed-globally@0.4.0:
     dependencies:
@@ -30355,52 +30187,6 @@ snapshots:
       extsprintf: 1.3.0
       json-schema: 0.4.0
       verror: 1.10.0
-
-  jss-plugin-camel-case@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      hyphenate-style-name: 1.0.3
-      jss: 10.9.1
-
-  jss-plugin-default-unit@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      jss: 10.9.1
-
-  jss-plugin-global@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      jss: 10.9.1
-
-  jss-plugin-nested@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      jss: 10.9.1
-      tiny-warning: 1.0.3
-
-  jss-plugin-props-sort@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      jss: 10.9.1
-
-  jss-plugin-rule-value-function@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      jss: 10.9.1
-      tiny-warning: 1.0.3
-
-  jss-plugin-vendor-prefixer@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      css-vendor: 2.0.8
-      jss: 10.9.1
-
-  jss@10.9.1:
-    dependencies:
-      '@babel/runtime': 7.29.2
-      csstype: 3.1.2
-      is-in-browser: 1.1.3
-      tiny-warning: 1.0.3
 
   jsx-ast-utils@3.1.0:
     dependencies:
@@ -31994,14 +31780,6 @@ snapshots:
 
   normalize-url@8.0.0: {}
 
-  notistack@1.0.10(@material-ui/core@4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@material-ui/core': 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      clsx: 1.2.1
-      hoist-non-react-statics: 3.3.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
   notistack@3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       clsx: 1.2.1
@@ -33029,8 +32807,6 @@ snapshots:
       '@babel/runtime': 7.29.2
 
   popper.js@1.16.1: {}
-
-  popper.js@1.16.1-lts: {}
 
   possible-typed-array-names@1.1.0: {}
 
