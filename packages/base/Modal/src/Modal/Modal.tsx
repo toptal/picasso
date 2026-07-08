@@ -138,7 +138,11 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     classes,
     ...rest
   } = props
-  const picassoRootContainer = usePicassoRoot()
+  // Base UI's portal treats an explicit `null` container as "wait for the
+  // container to resolve" and renders nothing until then, while `undefined`
+  // falls back to `document.body` — degrade to the fallback when the Picasso
+  // root is unavailable instead of never rendering
+  const picassoRootContainer = usePicassoRoot() ?? undefined
   const modalRef = useCombinedRefs<HTMLDivElement>(
     ref,
     useRef<HTMLDivElement>(null)
@@ -209,14 +213,9 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   const duration = transitionProps?.timeout || transitionDuration
   const durationStyle = { transitionDuration: `${duration}ms` }
 
-  // Base UI's portal treats an explicit `null` container as "wait for the
-  // container to resolve" and renders nothing until then, while `undefined`
-  // falls back to `document.body` — degrade to the fallback when the Picasso
-  // root is unavailable instead of never rendering
   const resolvedContainer =
     (typeof container === 'function' ? container() : container) ||
-    picassoRootContainer ||
-    undefined
+    picassoRootContainer
 
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget && !disableBackdropClick) {

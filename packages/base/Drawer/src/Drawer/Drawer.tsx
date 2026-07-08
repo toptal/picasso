@@ -88,7 +88,11 @@ export const Drawer = ({
     'data-private': dataPrivate,
   } = props
   const { setHasDrawer } = useDrawer()
-  const container = usePicassoRoot()
+  // Base UI's portal treats an explicit `null` container as "wait for the
+  // container to resolve" and renders nothing until then, while `undefined`
+  // falls back to `document.body` — degrade to the fallback when the Picasso
+  // root is unavailable instead of never rendering
+  const container = usePicassoRoot() ?? undefined
   const popupRef = useRef<HTMLDivElement>(null)
   // @base-ui/react's Dialog.Popup requires a Dialog.Portal ancestor, and its
   // portal always relocates the popup (no inline mode). To emulate the legacy
@@ -186,13 +190,11 @@ export const Drawer = ({
       }}
     >
       {disablePortal && <span ref={setInlineContainer} />}
-      {/* An explicit `null` container makes Base UI's portal wait and render
-          nothing. For `disablePortal` that is intended (the inline mount node
-          is state-backed and arrives one commit later), but an unavailable
-          Picasso root must degrade to `undefined` = `document.body` instead
-          of never rendering */}
+      {/* inlineContainer stays an explicit `null` until the inline mount node
+          renders — Base UI's portal waits for it (state-backed, arrives one
+          commit later) instead of falling back to `document.body` */}
       <BaseUIDialog.Portal
-        container={disablePortal ? inlineContainer : container ?? undefined}
+        container={disablePortal ? inlineContainer : container}
       >
         {overlay}
       </BaseUIDialog.Portal>
