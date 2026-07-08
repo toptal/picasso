@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "workspace:*",
-    "@toptal/picasso-test-utils": "workspace:*"
+    "@toptal/picasso-test-utils": "workspace:*",
+    "@types/react-transition-group": "^4.4.5"
   },
   "files": [
     "dist-package/**",
