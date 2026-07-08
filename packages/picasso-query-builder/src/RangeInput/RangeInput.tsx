@@ -13,7 +13,7 @@ import type {
   ValueEditorValidationProps,
 } from '../types/query-builder'
 
-export const inputClassName = 'flex-[1_0_3rem]'
+export const inputClassName = 'grow shrink-0 basis-12'
 
 type Props = RangeFieldOptions & {
   /**

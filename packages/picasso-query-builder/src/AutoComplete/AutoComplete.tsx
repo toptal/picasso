@@ -64,6 +64,7 @@ export const AutoComplete = ({
   )
 
   return (
+    // TODO(tokens): [PF-1994] 12.875rem collapsed field width is off the Picasso spacing scale
     <Container
       className={
         fullWidth

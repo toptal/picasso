@@ -39,6 +39,7 @@ export const MultiSelect = ({
   }, [value])
 
   return (
+    // TODO(tokens): [PF-1994] 12.5rem multi-select min-width is off the Picasso spacing scale
     <Container className='flex-[1_0_12.5rem]'>
       <Select
         disabled={disabled}

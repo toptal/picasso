@@ -39,6 +39,7 @@ export const Select = ({
   })
 
   return (
+    // TODO(tokens): [PF-1994] 6.25rem select min-width is off the Picasso spacing scale
     <Container className={twMerge('flex-[1_0_6.25rem]', className)}>
       <PicassoSelect
         menuWidth='fit-content'
