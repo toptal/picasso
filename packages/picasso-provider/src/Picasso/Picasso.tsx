@@ -107,6 +107,7 @@ const Picasso = ({
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
+          responsive={responsive}
           preventPageWidthChangeOnScrollbar={preventPageWidthChangeOnScrollbar}
         >
           <HelmetProvider disabled={disableHelmet}>
