@@ -1,11 +1,5 @@
-import type { ThemeOptions } from '@material-ui/core/styles'
-import {
-  MuiThemeProvider,
-  StylesProvider,
-  createGenerateClassName,
-} from '@material-ui/core/styles'
 import type { ReactNode } from 'react'
-import React, { useMemo } from 'react'
+import React from 'react'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -13,9 +7,7 @@ import HelmetProvider from './HelmetProvider'
 import NotificationsProvider from './NotificationsProvider'
 import Favicon from '../Favicon'
 import type { EnvironmentType, TextLabelProps } from '../types'
-import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { PicassoBreakpoints } from './config'
-import PicassoProvider from './PicassoProvider'
 import FixViewport from './FixViewport'
 import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProvider'
 import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
@@ -42,19 +34,10 @@ export interface PicassoProps extends TextLabelProps {
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
   RootComponent?: PicassoGlobalStylesProviderProps['RootComponent']
-  theme?: ThemeOptions
   /** Disables usage of `<HelmetProvider>` component from `react-helmet-async` package */
   disableHelmet?: boolean
   /** Disables transitions for components like Loader, to make testing easier */
   disableTransitions?: boolean
-  /** Disables unique prefix for styles class names */
-  disableClassNamePrefix?: boolean
-  /**
-   * By default, the styles are injected last in the <head> element of the page.
-   * As a result, they gain more specificity than any other style sheet.
-   * If you want to override Picasso's styles, set this prop.
-   */
-  injectFirst?: boolean
 }
 
 const Picasso = ({
@@ -69,62 +52,35 @@ const Picasso = ({
   notificationContainer,
   RootComponent = PicassoRootNode,
   titleCase,
-  theme,
   disableHelmet,
   disableTransitions,
-  disableClassNamePrefix,
-  injectFirst,
 }: PicassoProps) => {
-  if (theme) {
-    PicassoProvider.extendTheme(theme)
-  }
-
   if (!responsive) {
-    PicassoProvider.disableResponsiveStyle()
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
-  const generateClassName = useMemo(
-    () =>
-      createGenerateClassName({
-        // if there are multiples instances of Picasso
-        // on the page we want each set of styles to be unique
-        seed: disableClassNamePrefix
-          ? ''
-          : generateRandomStringOrGetEmptyInTest(),
-      }),
-    [disableClassNamePrefix]
-  )
-
   return (
-    <StylesProvider
-      generateClassName={generateClassName}
-      injectFirst={injectFirst}
+    <PicassoGlobalStylesProvider
+      RootComponent={RootComponent}
+      environment={environment}
+      titleCase={titleCase}
+      disableTransitions={disableTransitions}
+      responsive={responsive}
+      preventPageWidthChangeOnScrollbar={preventPageWidthChangeOnScrollbar}
     >
-      <MuiThemeProvider theme={PicassoProvider.theme}>
-        <PicassoGlobalStylesProvider
-          RootComponent={RootComponent}
-          environment={environment}
-          titleCase={titleCase}
-          disableTransitions={disableTransitions}
-          responsive={responsive}
-          preventPageWidthChangeOnScrollbar={preventPageWidthChangeOnScrollbar}
-        >
-          <HelmetProvider disabled={disableHelmet}>
-            {fixViewport && <FixViewport />}
-            {loadFonts && <FontsLoader />}
-            {reset && <CssBaseline />}
-            {preventPageWidthChangeOnScrollbar && (
-              <PreventPageWidthChangeOnScrollbar />
-            )}
-            {loadFavicon && <Favicon environment={environment} />}
-            <NotificationsProvider container={notificationContainer}>
-              {children}
-            </NotificationsProvider>
-          </HelmetProvider>
-        </PicassoGlobalStylesProvider>
-      </MuiThemeProvider>
-    </StylesProvider>
+      <HelmetProvider disabled={disableHelmet}>
+        {fixViewport && <FixViewport />}
+        {loadFonts && <FontsLoader />}
+        {reset && <CssBaseline />}
+        {preventPageWidthChangeOnScrollbar && (
+          <PreventPageWidthChangeOnScrollbar />
+        )}
+        {loadFavicon && <Favicon environment={environment} />}
+        <NotificationsProvider container={notificationContainer}>
+          {children}
+        </NotificationsProvider>
+      </HelmetProvider>
+    </PicassoGlobalStylesProvider>
   )
 }
 
