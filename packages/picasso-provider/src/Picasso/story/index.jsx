@@ -66,10 +66,6 @@ page
     title: 'Responsive Disabled',
     takeScreenshot: false,
   })
-  .addExample('Picasso/story/DisableClassNamePrefix.example.tsx', {
-    title: 'ClassNames Prefix Disabled',
-    takeScreenshot: false,
-  })
   .addExample('Picasso/story/BarePicassoLight.example.tsx', {
     title: 'PicassoLight without any utilities',
     takeScreenshot: false,

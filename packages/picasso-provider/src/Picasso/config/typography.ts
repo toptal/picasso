@@ -1,5 +1,3 @@
-import type { Typography } from '@material-ui/core/styles/createTypography'
-
 export interface AdditionalTypography {
   buttons: {
     fontSizeSmall: string
@@ -24,15 +22,11 @@ export interface AdditionalTypography {
   }
 }
 
-declare module '@material-ui/core/styles/createTypography' {
-  export interface Typography extends AdditionalTypography {}
-
-  export interface FontStyle {
-    inputSize: string
-  }
-}
-
-const typography: AdditionalTypography & Partial<Typography> = {
+const typography: AdditionalTypography & {
+  fontFamily: string
+  fontSize: number
+  inputSize: string
+} = {
   fontFamily: ['proxima-nova', 'Arial', 'sans-serif'].join(','),
   fontSize: 16,
   fontWeights: {
