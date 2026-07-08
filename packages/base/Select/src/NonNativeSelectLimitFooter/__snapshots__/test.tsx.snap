@@ -3,8 +3,37 @@
 exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <li
       aria-disabled="true"
       class="bg-transparent hover:bg-blue focus:bg-blue min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none py-3 px-4 border border-solid border-gray text-[0.6875rem] text-gray opacity-100 pointer-events"
@@ -36,7 +65,37 @@ exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
 exports[`NonNativeSelectLimitFooter renders null when no overflow 1`] = `
 <div>
   <div
-    class="Picasso-root"
-  />
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+  >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
+  </div>
 </div>
 `;
