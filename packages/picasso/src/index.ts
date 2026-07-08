@@ -150,6 +150,7 @@ export type {
   GridSize,
   GridItemProps,
   GridSizeProps,
+  GridItemSizeProps,
 } from '@toptal/picasso-grid'
 export { HelpboxCompound as Helpbox } from '@toptal/picasso-helpbox'
 export type { HelpboxProps } from '@toptal/picasso-helpbox'

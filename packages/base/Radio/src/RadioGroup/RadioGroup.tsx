@@ -2,11 +2,10 @@
 import type { ChangeEvent, HTMLAttributes } from 'react'
 import React, { useState } from 'react'
 import { fromPx, type BaseProps } from '@toptal/picasso-shared'
-import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
+import type { GridItemSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
-import { SPACING_4 } from '@toptal/picasso-utils'
-import { spacingToPx } from '@toptal/picasso-provider'
+import { SPACING_4, spacingToPx } from '@toptal/picasso-utils'
 
 import { RadioGroupContext } from '../RadioGroupContext'
 
@@ -16,7 +15,7 @@ const HORIZONTAL_SPACING = fromPx(spacingToPx(SPACING_4)) as GridSpacing
 
 export interface Props
   extends BaseProps,
-    GridSizeProps,
+    GridItemSizeProps,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   /** Align radios horizontally  */
   horizontal?: boolean

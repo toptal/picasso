@@ -7,7 +7,7 @@ import { GridContext } from '../GridContext'
 import type { GridSize, GridSpacing } from '../types'
 import { getSizesClassNames } from './utils/get-sizes-class-names'
 
-export interface GridSizes {
+export interface GridItemSizeProps {
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */
   xs?: boolean | GridSize
   /** Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens */
@@ -22,7 +22,7 @@ export interface GridSizes {
 
 export interface Props
   extends BaseProps,
-    GridSizes,
+    GridItemSizeProps,
     HTMLAttributes<HTMLElement> {
   /** Content of Grid.Item */
   children?: ReactNode
