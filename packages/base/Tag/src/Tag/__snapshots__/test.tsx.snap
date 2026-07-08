@@ -3,8 +3,37 @@
 exports[`Tag dismissable label should render dismissable label 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
@@ -43,8 +72,37 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
 exports[`Tag renders \`blue\` variant 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-blue border-blue"
       data-testid="tag"
@@ -66,8 +124,37 @@ exports[`Tag renders \`blue\` variant 1`] = `
 exports[`Tag renders \`light-grey\` variant 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
@@ -89,8 +176,37 @@ exports[`Tag renders \`light-grey\` variant 1`] = `
 exports[`Tag renders with adornment 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
@@ -126,8 +242,37 @@ exports[`Tag renders with adornment 1`] = `
 exports[`Tag renders with connection and icon 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"

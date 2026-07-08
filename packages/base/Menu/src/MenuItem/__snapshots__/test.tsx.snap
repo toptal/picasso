@@ -3,8 +3,37 @@
 exports[`MenuItem renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <li
       aria-disabled="false"
       class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
@@ -36,8 +65,37 @@ exports[`MenuItem renders 1`] = `
 exports[`MenuItem renders checkmarked 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <li
       aria-disabled="false"
       class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
@@ -82,11 +140,69 @@ exports[`MenuItem renders checkmarked 1`] = `
 exports[`MenuItem renders in title case with global prop 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
+      <style>
+        html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+      </style>
       <li
         aria-disabled="false"
         class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
@@ -119,8 +235,37 @@ exports[`MenuItem renders in title case with global prop 1`] = `
 exports[`MenuItem renders in title case with local prop 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <li
       aria-disabled="false"
       class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
@@ -152,8 +297,37 @@ exports[`MenuItem renders in title case with local prop 1`] = `
 exports[`MenuItem renders with a sub menu arrow 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <li
       aria-disabled="false"
       class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
@@ -198,8 +372,37 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
 exports[`MenuItem renders with description 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <li
       aria-disabled="false"
       class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"

@@ -3,8 +3,37 @@
 exports[`useNotifications error notification render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <button
       aria-disabled="false"
       class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
@@ -48,7 +77,7 @@ exports[`useNotifications error notification render 1`] = `
       </span>
     </button>
     <div
-      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 PicassoNotificationsProvider-root"
+      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 [&>div]:pointer-events [&>div>div]:px-0 [&>div>div]:py-[6px] [&>div>div]:[transition:padding_300ms_ease_0ms]"
     >
       <div
         class="go1475592160 go1671063245"
@@ -122,8 +151,37 @@ exports[`useNotifications error notification render 1`] = `
 exports[`useNotifications info notification render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <button
       aria-disabled="false"
       class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
@@ -167,7 +225,7 @@ exports[`useNotifications info notification render 1`] = `
       </span>
     </button>
     <div
-      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 PicassoNotificationsProvider-root"
+      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 [&>div]:pointer-events [&>div>div]:px-0 [&>div>div]:py-[6px] [&>div>div]:[transition:padding_300ms_ease_0ms]"
     >
       <div
         class="go1475592160 go1671063245"
@@ -244,8 +302,37 @@ exports[`useNotifications info notification render 1`] = `
 exports[`useNotifications success notification render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <button
       aria-disabled="false"
       class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
@@ -289,7 +376,7 @@ exports[`useNotifications success notification render 1`] = `
       </span>
     </button>
     <div
-      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 PicassoNotificationsProvider-root"
+      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 [&>div]:pointer-events [&>div>div]:px-0 [&>div>div]:py-[6px] [&>div>div]:[transition:padding_300ms_ease_0ms]"
     >
       <div
         class="go1475592160 go1671063245"

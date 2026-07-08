@@ -15,8 +15,37 @@ exports[`ButtonSplit closes menu on click to the item 1`] = `
 exports[`ButtonSplit default render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="flex justify-start items-start [[data-component-type="button"]+&]:ml [&>[data-component-type="button"]:hover]:z [&>[data-component-type="button"]:first-child:not(:last-child)]:rounded-r [&>[data-component-type="button"]:first-child:not(:last-child)]:ml [&>[data-component-type="button"]:not(:first-child):not(:last-child)]:rounded [&>[data-component-type="button"]:not(:first-child):not(:last-child)]:ml-[ [&>[data-component-type="button"]:last-child:not(:first-child)]:rounded-l [&>[data-component-type="button"]:last-child:not(:first-child)]:ml-[ [&_:first-child:not(:last-child)_[data-component-type="button"]]:rounded-r [&_:first-child:not(:last-child)_[data-component-type="button"]]:ml [&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:rounded [&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:ml-[ [&_:last-child:not(:first-child)_[data-component-type="button"]]:rounded-l [&_:last-child:not(:first-child)_[data-component-type="button"]]:ml-["
       data-component-type="button"

@@ -3,8 +3,37 @@
 exports[`Section renders collapsible initially collapsed 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="pt-8"
     >
@@ -49,8 +78,37 @@ exports[`Section renders collapsible initially collapsed 1`] = `
 exports[`Section renders collapsible initially expanded 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="pt-8"
     >
@@ -115,8 +173,37 @@ exports[`Section renders collapsible initially expanded 1`] = `
 exports[`Section renders with title, subtitle, actions and content 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
@@ -171,8 +258,37 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
 exports[`Section renders without header 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
