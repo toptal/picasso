@@ -3,8 +3,37 @@
 exports[`Accordion renders collapsed by default 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
       data-component-type="accordion"
@@ -106,8 +135,37 @@ exports[`Accordion renders collapsed by default 1`] = `
 exports[`Accordion renders custom icon when passed 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
       data-component-type="accordion"
@@ -203,8 +261,37 @@ exports[`Accordion renders custom icon when passed 1`] = `
 exports[`Accordion renders disabled 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
+    <style>
+      html {
+  box-sizing: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+#root {
+  display: flex;
+  flex: 1;
+}
+
+    </style>
     <div
       class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
       data-component-type="accordion"

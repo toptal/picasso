@@ -143,9 +143,18 @@ const useMediaQueryMatch = (query: string): boolean => {
     const onChange = () => setMatches(mediaQueryList.matches)
 
     onChange()
-    mediaQueryList.addEventListener('change', onChange)
 
-    return () => mediaQueryList.removeEventListener('change', onChange)
+    // Safari < 14 and the jsdom test polyfill only implement the legacy
+    // MediaQueryList.addListener API; prefer the modern event API when present.
+    if (typeof mediaQueryList.addEventListener === 'function') {
+      mediaQueryList.addEventListener('change', onChange)
+
+      return () => mediaQueryList.removeEventListener('change', onChange)
+    }
+
+    mediaQueryList.addListener(onChange)
+
+    return () => mediaQueryList.removeListener(onChange)
   }, [mediaQuery])
 
   return matches
