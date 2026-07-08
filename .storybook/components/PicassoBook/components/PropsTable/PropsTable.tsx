@@ -1,29 +1,23 @@
 import React, { Fragment, FunctionComponent } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import { Table, Typography, Tooltip } from '@toptal/picasso'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import {
   PropDocumentation,
   PropTypeDocumentation,
-  sortBy
+  sortBy,
 } from '~/.storybook/utils'
 import PropTypeTableCell from './PropTypeTableCell'
 import EnumsList from './EnumsList'
 import Description from './Description'
-import styles from './styles'
+import { classes } from './styles'
 
 interface Props extends BaseProps {
   documentation: PropDocumentation[]
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPropsTable'
-})
-
 function useRows(props: Props): JSX.Element {
   const { documentation } = props
-  const classes = useStyles()
 
   const isEnum = (type: string | PropTypeDocumentation) =>
     type === 'enum' || (type as PropTypeDocumentation).name === 'enum'
@@ -42,7 +36,7 @@ function useRows(props: Props): JSX.Element {
           description,
           enums,
           required,
-          deprecated
+          deprecated,
         }) => {
           const propNameTypography = (
             <Typography weight='semibold' inline lineThrough={deprecated}>
@@ -87,8 +81,6 @@ function useRows(props: Props): JSX.Element {
 }
 
 const PropsTable: FunctionComponent<Props> = props => {
-  const classes = useStyles()
-
   const rows = useRows(props)
 
   return (
