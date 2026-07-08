@@ -14,6 +14,7 @@ export interface RootContextProps extends TextLabelProps {
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
   disableTransitions?: boolean
+  responsive?: boolean
   currentBreakpointRange?: BreakpointKeys
   preventPageWidthChangeOnScrollbar?: boolean
 }
@@ -28,6 +29,7 @@ export const RootContext = React.createContext<RootContextProps>({
   hasDrawer: false,
   setHasDrawer: () => {},
   disableTransitions: false,
+  responsive: true,
   currentBreakpointRange: undefined,
 })
 
@@ -85,6 +87,7 @@ export const useAppConfig = () => {
     environment: context.environment,
     titleCase: context.titleCase,
     disableTransitions: context.disableTransitions,
+    responsive: context.responsive,
   }
 }
 
