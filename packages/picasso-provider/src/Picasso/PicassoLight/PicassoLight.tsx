@@ -62,6 +62,7 @@ const PicassoLight = ({
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
+          responsive={responsive}
         >
           {reset && <CssBaseline />}
           {children}
