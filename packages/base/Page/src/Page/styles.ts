@@ -8,3 +8,8 @@ export const createRootVariableClassNames = (): string[] => [
   '[--content-padding-horizontal:1em] md:[--content-padding-horizontal:2em]',
   '[--header-height:3.5rem] [--content-width-wide:90em] [--content-width:75em]',
 ]
+
+// 768px = the `md` breakpoint: <Picasso responsive={false} /> pins the layout
+// to tablet width instead of letting it shrink further
+export const createRootMinWidthClassNames = (responsive?: boolean): string[] =>
+  responsive === false ? ['min-w-[768px]'] : []
