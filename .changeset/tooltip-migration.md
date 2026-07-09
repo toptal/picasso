@@ -36,3 +36,8 @@
   dense list the standard arrow gap points the tip at the strip between rows,
   so menu-item tooltips now seat the arrow closer (a ~0–4px tip gap) so it
   lands on the option it describes. Every other anchor keeps the standard gap.
+- track the anchor on scroll only (not on element-resize or layout-shift),
+  matching the legacy popper.js behavior: an open tooltip repositions on
+  scroll/window-resize but no longer re-measures on anchor resize or a
+  non-scroll layout shift. This removes the ~4px position snap a tooltip made
+  ~1s after opening inside a still-opening Dropdown (PF-2224).

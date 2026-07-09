@@ -192,6 +192,19 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       <BaseTooltip.Positioner
         ref={tooltipRef}
         anchor={followCursor ? undefined : triggerNodeRef}
+        // [PF-2224] Track the anchor on SCROLL only — not on element-resize or
+        // layout-shift. base-ui defaults the Positioner to floating-ui's full
+        // autoUpdate (a ResizeObserver + a layout-shift IntersectionObserver);
+        // that IO's anti-infinite-loop throttle is what makes a tooltip opened
+        // inside a still-opening Dropdown snap ~4px exactly 1s after open (the
+        // anchor is measured before the Dropdown's Popper positions, the IO
+        // sees `intersectionRatio: 0`, and `setTimeout(refresh, 1000)` fires
+        // the late correction). Turning the extra trackers off makes the popup
+        // settle once and stay put. NOT a regression from master: the legacy
+        // popper.js Tooltip likewise repositioned only on scroll/window-resize
+        // (popper.js v1 has neither observer) — `ancestorScroll` stays on, so
+        // scroll-following is preserved; this restores that master behavior.
+        disableAnchorTracking
         // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
         // opened inside a Dropdown stacks behind the menu.
         className='z-tooltip'
