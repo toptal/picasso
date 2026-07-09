@@ -4,29 +4,37 @@ import type {
   ChangeEvent,
   HTMLAttributes,
 } from 'react'
-import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import type { TooltipProps } from '@material-ui/core'
-import { Tooltip as MUITooltip } from '@material-ui/core'
-import cx from 'classnames'
+import React, { forwardRef, useCallback, useRef, useState } from 'react'
+import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { pxFromRem, spacingToRem } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
 import { SPACING_0, usePicassoRoot } from '@toptal/picasso-provider'
 import { Typography } from '@toptal/picasso-typography'
+import { useMultipleForwardRefs } from '@toptal/picasso-utils'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
-import type { ChildrenProps, ContainerValue } from './types'
+import type { ContainerValue } from './types'
+import { createArrowClassNames, createPopupClassNames } from './styles'
+import { getPositionerOffsets, splitPlacement } from './utils'
 import { useTooltipState } from './use-tooltip-state'
-import { useTooltipHandlers } from './use-tooltip-handlers'
-import { useTooltipFollowCursor } from './use-tooltip-follow-cursor'
 
 export type DelayType = 'short' | 'long'
 
 export type MaxWidthType = 'none' | 'default'
 
-export type PlacementType = TooltipProps['placement']
+export type PlacementType =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top'
 
 export type OffsetType = {
   left?: PicassoSpacing
@@ -36,24 +44,6 @@ export type OffsetType = {
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
   long: 500,
-}
-
-const getDelayDuration = (delay: DelayType, isTouchDevice: boolean) => {
-  return isTouchDevice ? 0 : delayDurations[delay]
-}
-
-const getOffset = (
-  placement: PlacementType = 'top',
-  offset: OffsetType
-): string => {
-  const { left = SPACING_0, top = SPACING_0 } = offset
-
-  const result = [pxFromRem(spacingToRem(left)), pxFromRem(spacingToRem(top))]
-
-  const isVertical =
-    placement.startsWith('top') || placement.startsWith('bottom')
-
-  return (isVertical ? result : result.reverse()).join(',')
 }
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -85,7 +75,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   followCursor?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
+  /** Called after the tooltip close transition finishes */
   onTransitionExiting?: () => void
+  /** Called after the tooltip close transition finishes */
   onTransitionExited?: () => void
   /** Tooltip div ref */
   tooltipRef?: React.Ref<HTMLDivElement>
@@ -95,9 +87,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   offset?: OffsetType
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
-
-export const Tooltip = forwardRef<unknown, Props>(
+export const Tooltip = forwardRef<HTMLElement, Props>(
   (
     {
       preventOverflow = true,
@@ -116,10 +106,11 @@ export const Tooltip = forwardRef<unknown, Props>(
   ) => {
     const {
       content,
-      children: originalChildren,
+      children,
       interactive,
       className,
       style,
+      id,
       open,
       onOpen,
       onClose,
@@ -133,96 +124,169 @@ export const Tooltip = forwardRef<unknown, Props>(
       ...rest
     } = props
 
-    const classes = useStyles()
     const picassoRootContainer = usePicassoRoot()
 
-    const tooltipState = useTooltipState({ externalOpen: open, followCursor })
-
-    const delayDuration = getDelayDuration(delay, tooltipState.isTouchDevice)
-
-    const followCursorTooltipData = useTooltipFollowCursor({
-      followCursor,
-      tooltipState,
-    })
-
-    const { children, handleOpen, handleClose } = useTooltipHandlers({
-      children: originalChildren as ReactElement<ChildrenProps>,
-      tooltipState,
+    const {
+      open: actualOpen,
+      handleOpenChange,
+      handleOpenChangeComplete,
+      handleTriggerClick,
+      handleTriggerTouchStart,
+      handleTriggerTouchMove,
+      handleTriggerTouchEnd,
+      handleTriggerMouseOver,
+      handleTriggerMouseMove,
+      handleTriggerMouseLeave,
+    } = useTooltipState({
+      open,
       disableListeners,
+      followCursor,
+      openDelay: delayDurations[delay],
       onOpen,
       onClose,
-      onMouseOver: followCursorTooltipData?.handleMouseOver,
-      onMouseMove: followCursorTooltipData?.handleMouseMove,
-      onClick: followCursorTooltipData?.handleClick,
+      onTransitionExiting,
+      onTransitionExited,
     })
 
-    const title = (
-      <Typography
-        data-private={dataPrivate}
-        as='div'
-        size='small'
-        color='inherit'
+    const [triggerParent, setTriggerParent] = useState<HTMLElement | null>(null)
+    const triggerNodeRef = useRef<HTMLElement | null>(null)
+
+    const trackTriggerParent = useCallback(
+      (node: HTMLElement | null) => {
+        if (disablePortal) {
+          setTriggerParent(node?.parentElement ?? null)
+        }
+      },
+      [disablePortal]
+    )
+
+    const setTriggerRef = useMultipleForwardRefs<HTMLElement | null>([
+      ref,
+      triggerNodeRef,
+      trackTriggerParent,
+    ])
+
+    const { side, align } = splitPlacement(placement)
+    const showArrow = !compact && !followCursor
+
+    const { sideOffset, alignOffset } = getPositionerOffsets({
+      side,
+      showArrow,
+      followCursor,
+      compact: Boolean(compact),
+      offset,
+      anchorRef: triggerNodeRef,
+    })
+
+    const resolvedContainer = disablePortal
+      ? triggerParent
+      : (typeof container === 'function' ? container() : container) ??
+        picassoRootContainer
+
+    const triggerRest = rest as Omit<
+      BaseTooltip.Trigger.Props,
+      'className' | 'style' | 'disabled' | 'closeOnClick' | 'onClick' | 'render'
+    >
+
+    const positioner = (
+      <BaseTooltip.Positioner
+        ref={tooltipRef}
+        anchor={followCursor ? undefined : triggerNodeRef}
+        // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
+        // opened inside a Dropdown stacks behind the menu.
+        className='z-tooltip'
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        collisionAvoidance={
+          preventOverflow ? undefined : { side: 'flip', align: 'none' }
+        }
       >
-        {content}
-      </Typography>
+        <BaseTooltip.Popup
+          id={id}
+          role='tooltip'
+          className={twJoin(createPopupClassNames(Boolean(compact), maxWidth))}
+        >
+          {showArrow && (
+            <BaseTooltip.Arrow className={twJoin(createArrowClassNames())} />
+          )}
+          <Typography
+            data-private={dataPrivate}
+            as='div'
+            size='small'
+            color='inherit'
+          >
+            {content}
+          </Typography>
+        </BaseTooltip.Popup>
+      </BaseTooltip.Positioner>
     )
 
     return (
-      <MUITooltip
-        {...rest}
-        ref={ref}
-        arrow={!compact && !followCursor}
-        PopperProps={{
-          ref: tooltipRef,
-          container: container || picassoRootContainer,
-          disablePortal,
-          popperOptions: {
-            modifiers: {
-              preventOverflow: {
-                enabled: preventOverflow,
-                boundariesElement: 'window',
-              },
-              hide: {
-                enabled: preventOverflow,
-              },
-              offset: {
-                offset: getOffset(placement, offset),
-              },
-            },
-          },
-          ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
-        }}
-        TransitionProps={{
-          // passing undefined onExiting or onExited changes Tooltip behavior
-          ...(onTransitionExiting && { onExiting: onTransitionExiting }),
-          ...(onTransitionExited && { onExiting: onTransitionExited }),
-        }}
-        classes={{
-          arrow: classes.arrow,
-          tooltip: cx(classes.tooltip, {
-            [classes.light]: !compact,
-            [classes.compact]: compact,
-            [classes.noMaxWidth]: maxWidth === 'none',
-          }),
-        }}
-        className={className}
-        style={style}
-        interactive={interactive}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        open={tooltipState.isOpen}
-        placement={placement}
-        title={title}
-        disableHoverListener={disableListeners}
-        disableFocusListener={disableListeners}
-        disableTouchListener
-        enterDelay={delayDuration}
-        enterNextDelay={delayDuration}
-      >
-        {children as ReactElement}
-      </MUITooltip>
+      <BaseTooltip.Provider delay={delayDurations[delay]} closeDelay={0}>
+        <BaseTooltip.Root
+          open={actualOpen}
+          onOpenChange={handleOpenChange}
+          onOpenChangeComplete={handleOpenChangeComplete}
+          disableHoverablePopup={!interactive}
+          trackCursorAxis={followCursor ? 'both' : 'none'}
+        >
+          <BaseTooltip.Trigger
+            {...triggerRest}
+            ref={setTriggerRef}
+            className={className}
+            style={style}
+            aria-describedby={
+              actualOpen && id ? id : triggerRest['aria-describedby']
+            }
+            disabled={disableListeners}
+            closeOnClick={false}
+            onClick={handleTriggerClick}
+            // Tap-to-open (arms on touchstart, opens on touchend — a gesture
+            // that scrolls past the tap slop is disarmed by touchmove). This
+            // is also the open path for DISABLED anchors: a tap on a disabled
+            // control dispatches touch events (which bubble to the trigger)
+            // but never a synthetic click, so the onClick path above can't
+            // open there (see useTooltipState). Compose with any
+            // consumer-supplied handler rather than overriding it.
+            onTouchStart={event => {
+              triggerRest.onTouchStart?.(event)
+              handleTriggerTouchStart(event)
+            }}
+            onTouchMove={event => {
+              triggerRest.onTouchMove?.(event)
+              handleTriggerTouchMove(event)
+            }}
+            onTouchEnd={event => {
+              triggerRest.onTouchEnd?.(event)
+              handleTriggerTouchEnd(event)
+            }}
+            onMouseOver={event => {
+              triggerRest.onMouseOver?.(event)
+              handleTriggerMouseOver(event)
+            }}
+            // followCursor dismiss-while-roaming (no-op otherwise; see
+            // useTooltipState). Compose with any consumer-supplied handler.
+            onMouseMove={event => {
+              triggerRest.onMouseMove?.(event)
+              handleTriggerMouseMove(event)
+            }}
+            onMouseLeave={event => {
+              triggerRest.onMouseLeave?.(event)
+              handleTriggerMouseLeave(event)
+            }}
+            render={children as ReactElement}
+          />
+          <BaseTooltip.Portal container={resolvedContainer ?? undefined}>
+            {positioner}
+          </BaseTooltip.Portal>
+        </BaseTooltip.Root>
+      </BaseTooltip.Provider>
     )
   }
 )
+
+Tooltip.displayName = 'Tooltip'
 
 export default Tooltip

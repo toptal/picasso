@@ -2900,9 +2900,9 @@ importers:
 
   packages/base/Tooltip:
     dependencies:
-      '@material-ui/core':
-        specifier: 4.12.4
-        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@base-ui/react':
+        specifier: ^1.4.1
+        version: 1.4.1(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -2912,12 +2912,6 @@ importers:
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-      debounce:
-        specifier: ^1.2.1
-        version: 1.2.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2925,6 +2919,12 @@ importers:
       '@toptal/picasso-provider':
         specifier: workspace:*
         version: link:../../picasso-provider
+      '@toptal/picasso-tailwind':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
