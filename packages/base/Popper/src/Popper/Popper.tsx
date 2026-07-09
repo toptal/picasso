@@ -126,11 +126,7 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     ...rest
   } = props
 
-  // FloatingPortal treats an explicit `null` root as "wait for the container"
-  // and renders nothing until it resolves, while `undefined` falls back to
-  // `document.body` — degrade to the fallback when the Picasso root is
-  // unavailable instead of never rendering
-  const picassoRootContainer = usePicassoRoot() ?? undefined
+  const picassoRootContainer = usePicassoRoot()
   const isInsideModal = useContext(ModalContext)
 
   const isCompactLayout = useBreakpoint(['xs', 'sm', 'md']) && enableCompactMode

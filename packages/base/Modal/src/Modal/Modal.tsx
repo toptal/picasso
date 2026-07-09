@@ -138,11 +138,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     classes,
     ...rest
   } = props
-  // Base UI's portal treats an explicit `null` container as "wait for the
-  // container to resolve" and renders nothing until then, while `undefined`
-  // falls back to `document.body` — degrade to the fallback when the Picasso
-  // root is unavailable instead of never rendering
-  const picassoRootContainer = usePicassoRoot() ?? undefined
+  const picassoRootContainer = usePicassoRoot()
   const modalRef = useCombinedRefs<HTMLDivElement>(
     ref,
     useRef<HTMLDivElement>(null)

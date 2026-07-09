@@ -88,11 +88,7 @@ export const Drawer = ({
     'data-private': dataPrivate,
   } = props
   const { setHasDrawer } = useDrawer()
-  // Base UI's portal treats an explicit `null` container as "wait for the
-  // container to resolve" and renders nothing until then, while `undefined`
-  // falls back to `document.body` — degrade to the fallback when the Picasso
-  // root is unavailable instead of never rendering
-  const container = usePicassoRoot() ?? undefined
+  const container = usePicassoRoot()
   const popupRef = useRef<HTMLDivElement>(null)
   // @base-ui/react's Dialog.Popup requires a Dialog.Portal ancestor, and its
   // portal always relocates the popup (no inline mode). To emulate the legacy
