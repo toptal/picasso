@@ -917,7 +917,8 @@
           "review_iterations": 3,
           "session_id": "744f89c6-f3a2-41af-aa92-9a677cc80a30",
           "awaiting_ci_since": null,
-          "review_iter_failures": 0
+          "review_iter_failures": 0,
+          "cleanup_done_at": "2026-07-09T13:38:57Z"
         }
       }
     },
