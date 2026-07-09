@@ -22,6 +22,7 @@ exports[`Tooltip when portals are disabled renders the content within the parent
     class="Picasso-root"
   >
     <button
+      aria-describedby="tooltip-id"
       data-testid="tooltip-trigger"
       id="base-ui-:r7:"
       type="button"

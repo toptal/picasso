@@ -141,6 +141,31 @@ describe('Tooltip', () => {
         'tooltip-id'
       )
     })
+
+    it('describes the trigger with the popup id while open', async () => {
+      // base-ui doesn't wire aria-describedby (no useRole), so Picasso points
+      // the trigger at the popup id itself — the legacy MUI a11y link.
+      const { getByTestId } = renderTooltip({
+        id: 'tooltip-id',
+        open: true,
+        disablePortal: true,
+      })
+
+      await waitFor(() => {
+        expect(getByTestId('tooltip-trigger')).toHaveAttribute(
+          'aria-describedby',
+          'tooltip-id'
+        )
+      })
+    })
+
+    it('does not describe the trigger while closed', () => {
+      const { getByTestId } = renderTooltip({ id: 'tooltip-id' })
+
+      expect(getByTestId('tooltip-trigger')).not.toHaveAttribute(
+        'aria-describedby'
+      )
+    })
   })
 
   describe('when the trigger is focused', () => {

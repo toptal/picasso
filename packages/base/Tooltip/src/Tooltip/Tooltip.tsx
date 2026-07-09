@@ -283,6 +283,15 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             // consumer's public API stays unchanged.
             className={className}
             style={style}
+            // Describe the trigger with the popup while open, as the legacy MUI
+            // Tooltip did (it set `aria-describedby` on the child pointing at
+            // the popper's id). base-ui's Tooltip has no `useRole`, so it never
+            // wires this itself; with `id` routed to `Tooltip.Popup`, point the
+            // trigger at that id here. Falls back to any consumer-supplied
+            // value when closed or when no `id` was given.
+            aria-describedby={
+              actualOpen && id ? id : triggerRest['aria-describedby']
+            }
             disabled={disableListeners}
             // Picasso owns click handling (toggle + dismiss-suppression), so
             // disable base-ui's built-in close-on-click.
