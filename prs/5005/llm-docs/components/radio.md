@@ -32,11 +32,11 @@ Radio group component
 | onChange | `((event: ChangeEvent<HTMLInputElement>, value: string) => void)` | - | Callback invoked when a `Radio` in the group is selected |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
-| xs | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
-| sm | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
-| md | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |
-| lg | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the lg breakpoint and wider screens |
-| xl | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the xl breakpoint and wider screens |
+| xs | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
+| sm | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
+| md | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |
+| lg | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the lg breakpoint and wider screens |
+| xl | `boolean \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the xl breakpoint and wider screens |
 
 ### Default
 
