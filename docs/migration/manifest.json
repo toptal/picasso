@@ -866,7 +866,7 @@
     "Tooltip": {
       "tier": 2,
       "package": "packages/base/Tooltip",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "@base-ui/react/tooltip",
       "versionBump": "major",
@@ -874,7 +874,7 @@
       "branch": null,
       "worktree": null,
       "iterations": 0,
-      "merged_at": null,
+      "merged_at": "2026-07-09T14:09:17Z",
       "notes": "Heavy path. Direct match: Tooltip.Provider + Tooltip.Root + Tooltip.Trigger + Tooltip.Portal + Tooltip.Positioner + Tooltip.Popup. FileInput + RTE depend on this — sequence first within Tier 2.",
       "variants": {
         "vedrani": {
@@ -905,12 +905,12 @@
           "awaiting_ci_since": null
         },
         "v2": {
-          "status": "needs_human",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/5005",
           "branch": "migrate-Tooltip-v2",
           "worktree": "migration-runs/2026-06-11/Tooltip-v2/worktree",
           "iterations": 2,
-          "merged_at": null,
+          "merged_at": "2026-07-09T14:09:17Z",
           "escalation_reason": "review-sweep 2026-07-06: shipped confirmed id→popup change (commit 16e8a163c); posted 2 MEDIUM proposals awaiting 👍 (restore aria-describedby parity; graduate spacing/placement helpers to shared). Open human items: vedrani PF-2203 Popper cleanup, disabled-button anchor spacing.",
           "last_ci_green_at": "2026-06-11T18:59:10.304Z",
           "last_review_seen_at": "2026-07-06T09:52:58.000Z",
