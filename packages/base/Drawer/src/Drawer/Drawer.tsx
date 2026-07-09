@@ -44,6 +44,8 @@ export interface Props extends BaseProps {
   transparentBackdrop?: boolean
   /** Remove the backdrop and leave elements behind interactive  */
   disableBackdrop?: boolean
+  /** Disable drawer scrolling and let children manage their own scroll */
+  disableScroll?: boolean
 }
 
 const widthClassName: Record<WidthType, string> = {
@@ -67,6 +69,7 @@ const getTransitionDuration = (
 export const Drawer = ({
   anchor = 'right',
   disablePortal = false,
+  disableScroll = false,
   onClose = () => {},
   width = 'regular',
   ...props
@@ -130,6 +133,7 @@ export const Drawer = ({
         render={
           <DrawerPaper
             anchor={anchor}
+            disableScroll={disableScroll}
             className={className}
             style={popupStyle}
             data-testid={testId}
@@ -140,10 +144,17 @@ export const Drawer = ({
         <Container
           flex
           direction='column'
-          className={twMerge('max-w-full relative flex-1', widthClassName[width])}
+          className={twMerge(
+            'max-w-full relative flex-1',
+            widthClassName[width],
+            disableScroll && 'overflow-hidden'
+          )}
         >
           <DrawerTitle title={title} />
-          <Container flex className='flex-1'>
+          <Container
+            flex
+            className={twMerge('flex-1', disableScroll && 'overflow-hidden')}
+          >
             {children}
           </Container>
           <ButtonCircular
