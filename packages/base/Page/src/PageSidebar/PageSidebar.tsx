@@ -93,7 +93,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         'shadow-[inset_-1px_0_0_0]',
         'text-lg/[inherit]',
         'relative',
-        'transition-[width] ease-in-out delay-[225ms]',
+        'transition-[width] ease-in-out delay-225',
         'hidden min-[1280px]:block',
         '[&]:before:absolute',
         '[&]:before:content-[""]',
@@ -101,7 +101,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         '[&]:before:top-0',
         '[&]:before:w-[15.5rem]',
         '[&]:before:h-full',
-        className,
         classesByVariant[variant],
         classesBySize[size],
         'xs:max-md:overflow-y-scroll',
@@ -112,7 +111,8 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
             '[&_.scrollable-content]:[-ms-overflow-style:none]',
             '[&_.scrollable-content]:[scrollbar-width:none]',
           ],
-        !hasTopBar && 'block'
+        !hasTopBar && 'block',
+        className
       )}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}

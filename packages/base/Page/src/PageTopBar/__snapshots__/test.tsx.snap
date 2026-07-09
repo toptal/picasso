@@ -6,10 +6,10 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative h-[var(--header min-h-[var(--header"
+      class="relative h-(--header min-h-(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-1100 bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
@@ -78,10 +78,10 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative h-[var(--header min-h-[var(--header"
+      class="relative h-(--header min-h-(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-1100 bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
@@ -150,10 +150,10 @@ exports[`PageTopBar renders with custom logo 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative h-[var(--header min-h-[var(--header"
+      class="relative h-(--header min-h-(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-1100 bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
@@ -201,10 +201,10 @@ exports[`PageTopBar renders with link 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative h-[var(--header min-h-[var(--header"
+      class="relative h-(--header min-h-(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-1100 bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"

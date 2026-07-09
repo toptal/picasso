@@ -253,9 +253,9 @@ export const NonNativeSelect = documentable(
         <div
           className={twMerge(
             'relative inline-flex text-[1rem] cursor-pointer',
-            className,
             classesByWidth[width],
-            disabled && 'cursor-default'
+            disabled && 'cursor-default',
+            className
           )}
           style={style}
           ref={inputWrapperRef}

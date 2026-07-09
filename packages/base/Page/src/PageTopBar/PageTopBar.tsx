@@ -133,18 +133,18 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   return (
     <PageTopBarContext.Provider value={{ variant }}>
-      <div className='relative h-[var(--header-height,3.5rem)] min-h-[var(--header-height,3.5rem)]'>
+      <div className='relative h-(--header-height,3.5rem) min-h-(--header-height,3.5rem)'>
         <header
           {...rest}
           ref={ref}
           className={twMerge(
-            'mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100]',
+            'mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-1100',
             variant === 'light' ? 'bg-white' : '',
             variant === 'dark' ? 'bg-blue-700' : '',
             variant === 'grey' ? 'bg-graphite-800' : '',
             variant === 'black' ? 'bg-black' : '',
-            className,
-            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : ''
+            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : '',
+            className
           )}
           style={{
             boxShadow:

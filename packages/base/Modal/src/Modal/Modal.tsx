@@ -254,8 +254,8 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
               : modalRef.current
           }
           className={twMerge(
-            className,
-            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0',
+            className
           )}
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}

@@ -173,13 +173,13 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           getFontColor({ variant, highlighted }),
           getBackgroundAndActionStyles({ variant, highlighted, nonSelectable }),
           disableGutters ? 'p-0' : 'px-4 py-[0.375rem]',
-          'min-w-[9rem] w-auto min-h-[unset] sm:min-h-[auto] md:min-h-0 relative cursor-pointer',
+          'min-w-[9rem] w-auto min-h-[unset] sm:min-h-auto md:min-h-0 relative cursor-pointer',
           'transition-colors duration-150 ease-in-out',
           'overflow-hidden whitespace-normal text-left no-underline',
           'flex items-center justify-start',
           'outline-hidden appearance-none leading-4',
-          className,
-          disabled && 'text-gray-600 opacity-100 pointer-events-none'
+          disabled && 'text-gray-600 opacity-100 pointer-events-none',
+          className
         )}
         aria-disabled={Boolean(disabled)}
         disabled={disabled}
