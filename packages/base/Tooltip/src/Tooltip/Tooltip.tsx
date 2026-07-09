@@ -132,6 +132,8 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       handleOpenChangeComplete,
       handleTriggerClick,
       handleTriggerTouchStart,
+      handleTriggerTouchMove,
+      handleTriggerTouchEnd,
       handleTriggerMouseOver,
       handleTriggerMouseMove,
       handleTriggerMouseLeave,
@@ -286,14 +288,24 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             // disable base-ui's built-in close-on-click.
             closeOnClick={false}
             onClick={handleTriggerClick}
-            // Tap-to-open for DISABLED anchors: a tap on a disabled control
-            // dispatches touch events (which bubble to the trigger) but never
-            // a synthetic click, so the onClick path above can't open there
-            // (see useTooltipState). Compose with any consumer-supplied
-            // handler rather than overriding it.
+            // Tap-to-open (arms on touchstart, opens on touchend — a gesture
+            // that scrolls past the tap slop is disarmed by touchmove). This
+            // is also the open path for DISABLED anchors: a tap on a disabled
+            // control dispatches touch events (which bubble to the trigger)
+            // but never a synthetic click, so the onClick path above can't
+            // open there (see useTooltipState). Compose with any
+            // consumer-supplied handler rather than overriding it.
             onTouchStart={event => {
               triggerRest.onTouchStart?.(event)
               handleTriggerTouchStart(event)
+            }}
+            onTouchMove={event => {
+              triggerRest.onTouchMove?.(event)
+              handleTriggerTouchMove(event)
+            }}
+            onTouchEnd={event => {
+              triggerRest.onTouchEnd?.(event)
+              handleTriggerTouchEnd(event)
             }}
             // Open on `mouseover` as a robust, bubbling complement to base-ui's
             // movement-based hover (see useTooltipState). Compose with any

@@ -13,6 +13,12 @@ import { isPointerDevice } from '@toptal/picasso-utils'
 const FOLLOW_CURSOR_CLOSE_DISTANCE = 50
 const FOLLOW_CURSOR_STOP_DELAY = 250
 
+// Tap-vs-scroll discrimination for the touch-open path: a touch gesture that
+// travels more than this many px from where it started is a scroll/swipe, not
+// a tap, and must not open the tooltip (see handleTriggerTouchMove). 10px is
+// the conventional tap slop used by mobile toolkits to tell taps from drags.
+const TOUCH_TAP_SLOP = 10
+
 type Props = {
   /** Programatically control tooltip's visibility */
   open?: boolean
@@ -38,10 +44,26 @@ type TooltipState = {
   handleOpenChangeComplete: (nextOpen: boolean) => void
   handleTriggerClick: (event: MouseEvent<HTMLElement>) => void
   handleTriggerTouchStart: (event: TouchEvent<HTMLElement>) => void
+  handleTriggerTouchMove: (event: TouchEvent<HTMLElement>) => void
+  handleTriggerTouchEnd: (event: TouchEvent<HTMLElement>) => void
   handleTriggerMouseOver: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseMove: (event: MouseEvent<HTMLElement>) => void
   handleTriggerMouseLeave: (event: MouseEvent<HTMLElement>) => void
 }
+
+type Point = { x: number; y: number }
+
+// First contact point of a touch event. jsdom-synthesized test events may
+// carry no `touches` list at all, so read defensively.
+const getTouchPoint = (event: TouchEvent<HTMLElement>): Point | null => {
+  const touch = event.touches?.[0]
+
+  return touch ? { x: touch.clientX, y: touch.clientY } : null
+}
+
+const isPastTapSlop = (start: Point, point: Point): boolean =>
+  Math.abs(point.x - start.x) > TOUCH_TAP_SLOP ||
+  Math.abs(point.y - start.y) > TOUCH_TAP_SLOP
 
 // Picasso owns the open state rather than delegating to @base-ui/react's
 // built-in visibility tracking: base-ui requests open/close changes via
@@ -95,12 +117,16 @@ export const useTooltipState = ({
   // Pending hover-open timer (see handleTriggerMouseOver).
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
-  // Set when a `touchstart` just opened the tooltip: the same tap synthesizes
-  // a `click` after `touchend`, which handleTriggerClick would read as
-  // click-to-dismiss and immediately close what the finger only meant to open.
-  // The flag consumes exactly that one trailing click (the analog of the
-  // legacy MUI Tooltip's `ignoreNonTouchEvents` touch/click dedupe).
+  // Set when a tap's `touchend` just opened the tooltip: the same tap
+  // synthesizes a `click` after `touchend`, which handleTriggerClick would
+  // read as click-to-dismiss and immediately close what the finger only meant
+  // to open. The flag consumes exactly that one trailing click (the analog of
+  // the legacy MUI Tooltip's `ignoreNonTouchEvents` touch/click dedupe).
   const touchOpenedRef = useRef(false)
+
+  // Where the current touch gesture began; null means "no pending tap-open"
+  // (handleTriggerTouchMove nulls it once the finger scrolls past the slop).
+  const touchStartPositionRef = useRef<Point | null>(null)
 
   // followCursor move tracking (see FOLLOW_CURSOR_* constants). `moveStartRef`
   // anchors the current move segment; `followCursorHiddenRef` blocks base-ui
@@ -172,7 +198,7 @@ export const useTooltipState = ({
     }
 
     // The synthetic click trailing the tap that just opened the tooltip
-    // (see handleTriggerTouchStart) — consume it so tap-to-open doesn't
+    // (see handleTriggerTouchEnd) — consume it so tap-to-open doesn't
     // instantly toggle into click-to-dismiss.
     if (touchOpenedRef.current) {
       touchOpenedRef.current = false
@@ -198,26 +224,73 @@ export const useTooltipState = ({
     }
   }
 
-  // Open on `touchstart` — the tap-to-open path that reaches DISABLED
-  // controls. A tap on a disabled control dispatches touch events (which
-  // bubble to the trigger) but never a `click`: the HTML spec bars disabled
-  // form controls from click events, so handleTriggerClick alone leaves
-  // "tooltip on a disabled element" (a disabled control wrapped in a `<span>`
-  // trigger) unopenable by touch. This mirrors handleTriggerMouseOver — the
-  // bubbling hover-open workaround for the same pattern — for taps. base-ui
-  // offers no touch-open of its own (its trigger hover interaction is
-  // mouse-only), so Picasso owns this path entirely.
+  // Arm the tap-to-open gesture — the touch-open path that reaches DISABLED
+  // controls (touch events bubble to the trigger, while the HTML spec bars
+  // disabled form controls from `click`, so handleTriggerClick alone leaves
+  // the disabled-in-a-`<span>` pattern unopenable by touch). Mirrors
+  // handleTriggerMouseOver, the bubbling hover-open workaround for the same
+  // pattern; base-ui has no touch-open of its own. The open itself happens in
+  // handleTriggerTouchEnd, NOT here: opening on `touchstart` would also fire
+  // for a scroll/swipe that merely begins on the trigger, leaving a stuck
+  // tooltip (no mouseleave ever closes it on touch) — see
+  // handleTriggerTouchMove, which disarms the gesture past TOUCH_TAP_SLOP.
   const handleTriggerTouchStart = (event: TouchEvent<HTMLElement>) => {
     // A new gesture begins: a dedupe flag left over from a previous
     // touch-open whose synthetic click never arrived (disabled targets emit
     // none) is stale — clear it so this tap's own click, if any, acts.
     touchOpenedRef.current = false
+    touchStartPositionRef.current = null
 
     if (
       isControlled ||
       disableListeners ||
       // Tap-to-open is a touch-device affordance, exactly like the click
       // branch above — on pointer devices opening stays owned by hover.
+      !isTouchDevice ||
+      followCursorUnsupported ||
+      // Already open: this gesture's trailing click dismisses (see
+      // handleTriggerClick) — don't arm a re-open for the same tap.
+      openRef.current
+    ) {
+      return
+    }
+
+    // Touch analog of the mouseleave that lifts the click-dismiss latch on
+    // pointer devices (mouseleave never fires on touch): a fresh tap gesture
+    // beginning with the tooltip CLOSED is intent to open — the previous
+    // tap-dismiss no longer holds.
+    suppressReopenRef.current = false
+
+    // jsdom-synthesized touchstarts may omit coordinates — fall back to the
+    // origin so a coordinate-less tap (no touchmove) still opens.
+    touchStartPositionRef.current = getTouchPoint(event) ?? { x: 0, y: 0 }
+  }
+
+  // Disarm the pending tap-open once the finger travels past the tap slop:
+  // the gesture is a scroll/swipe, and a tooltip opened by it would be stuck
+  // (roam-to-close is mouse-only; nothing on a touch device closes it).
+  const handleTriggerTouchMove = (event: TouchEvent<HTMLElement>) => {
+    const start = touchStartPositionRef.current
+    const point = getTouchPoint(event)
+
+    if (start && point && isPastTapSlop(start, point)) {
+      touchStartPositionRef.current = null
+    }
+  }
+
+  // Complete the tap-to-open: the finger lifted without scrolling (see
+  // handleTriggerTouchStart, which armed the gesture). Disabled controls
+  // still reach this — touch events all fire on them; only `click` is barred
+  // — so the disabled-element pattern keeps working.
+  const handleTriggerTouchEnd = (event: TouchEvent<HTMLElement>) => {
+    const isTap = touchStartPositionRef.current !== null
+
+    touchStartPositionRef.current = null
+
+    if (
+      !isTap ||
+      isControlled ||
+      disableListeners ||
       !isTouchDevice ||
       followCursorUnsupported ||
       suppressReopenRef.current ||
@@ -352,6 +425,8 @@ export const useTooltipState = ({
     handleOpenChangeComplete,
     handleTriggerClick,
     handleTriggerTouchStart,
+    handleTriggerTouchMove,
+    handleTriggerTouchEnd,
     handleTriggerMouseOver,
     handleTriggerMouseMove,
     handleTriggerMouseLeave,

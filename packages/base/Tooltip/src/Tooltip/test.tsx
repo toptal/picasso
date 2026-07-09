@@ -339,8 +339,8 @@ describe('Tooltip', () => {
       })
 
       it('opens without flicker and closes on the next tap', async () => {
-        // A full tap fires BOTH `touchstart` (which opens) and a trailing
-        // synthetic `click` — the click must be deduped, not read as
+        // A full tap fires touch events (whose `touchend` opens) and a
+        // trailing synthetic `click` — the click must be deduped, not read as
         // click-to-dismiss, or the tooltip open/close flickers shut.
         const onCloseMock = jest.fn()
 
@@ -357,6 +357,71 @@ describe('Tooltip', () => {
         await waitFor(() => {
           expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
         })
+      })
+
+      it('re-opens on a fresh tap after a tap-dismiss', async () => {
+        // Pure-touch sequence: NO mouse events ever fire on a real touch
+        // device, so the click-dismiss latch set by the dismissing tap must
+        // be lifted by the next tap gesture itself (the touch analog of the
+        // mouseleave that lifts it on pointer devices) — otherwise the
+        // tooltip is stuck closed forever after a single tap-dismiss.
+        const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
+
+        const trigger = getByTestId('tooltip-trigger')
+
+        tapElement(trigger)
+        await findByTestId('tooltip-content')
+
+        tapElement(trigger)
+        await waitFor(() => {
+          expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+        })
+
+        tapElement(trigger)
+        await findByTestId('tooltip-content')
+      })
+    })
+
+    describe('when a touch scroll starts on the trigger', () => {
+      it('does not open the tooltip, while a stationary tap still does', async () => {
+        // A scroll/swipe gesture that merely begins on the trigger: touch
+        // movement past the tap slop, and NO trailing synthetic click
+        // (browsers suppress it after a scroll). Opening here would leave a
+        // stuck tooltip — nothing on a touch device closes it.
+        const onOpenMock = jest.fn()
+
+        const { getByTestId, queryByTestId, findByTestId } = renderTooltip({
+          onOpen: onOpenMock,
+        })
+
+        const trigger = getByTestId('tooltip-trigger')
+
+        fireEvent.touchStart(trigger, {
+          touches: [{ clientX: 10, clientY: 10 }],
+        })
+        fireEvent.touchMove(trigger, {
+          touches: [{ clientX: 10, clientY: 60 }],
+        })
+        fireEvent.touchEnd(trigger)
+
+        await expect(() =>
+          waitFor(() => {
+            expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+          })
+        ).rejects.toThrow()
+        expect(onOpenMock).not.toHaveBeenCalled()
+
+        // A stationary tap — movement within the slop — still opens.
+        fireEvent.touchStart(trigger, {
+          touches: [{ clientX: 10, clientY: 10 }],
+        })
+        fireEvent.touchMove(trigger, {
+          touches: [{ clientX: 13, clientY: 14 }],
+        })
+        fireEvent.touchEnd(trigger)
+        fireEvent.click(trigger)
+
+        await findByTestId('tooltip-content')
       })
     })
 
