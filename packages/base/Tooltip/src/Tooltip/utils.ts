@@ -9,17 +9,8 @@ import type { OffsetType, PlacementType } from './Tooltip'
 type Side = 'top' | 'bottom' | 'left' | 'right'
 type Align = 'start' | 'center' | 'end'
 
-// Anchor↔popup gaps along the side axis. base-ui's positioner works in pixels,
-// so these are expressed in `rem` (Rule 7 — sizes scale with the root font, as
-// the rem-sized arrow in styles.ts does) and resolved to the px number it needs.
 const gapPx = (remValue: string): number => fromPx(pxFromRem(remValue))
 
-// The gap band that styles.ts reserves as the popup's own margin (the legacy
-// MUI geometry — see POPUP_MARGIN there). The positioner sits flush against
-// the anchor exactly as MUI's popper did (sideOffset carries only what the
-// margin band doesn't: getPositionerOffsets), and the margin IS the standard
-// anchor↔popup gap — both the default arrow gap and the compact gap equal
-// their popup margin by construction.
 const POPUP_MARGIN_PX = gapPx(POPUP_MARGIN) // 14px
 const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
 
@@ -96,15 +87,11 @@ export const getPositionerOffsets = ({
     return { sideOffset: userSideOffset, alignOffset }
   }
 
-  // Arrow tooltips: the standard arrow gap IS the popup margin band
-  // (my-/mx-[0.875rem] — MUI reserved the gap as the tooltip's own
-  // `margin: '14px 0'`), so the positioner again sits flush; only a
-  // menu-item anchor shifts, its tighter seat pulling the popup back by the
+  // Only a menu-item anchor shifts the arrow gap, pulling the popup back by the
   // difference. The gap depends on what the arrow points at (see
-  // MENU_ITEM_ARROW_GAP), so it resolves lazily — base-ui calls an offset
-  // function at position time, when the anchor node is already committed.
-  // This keeps the first paint correct without tracking the anchor in state
-  // (no extra render + reposition pass).
+  // MENU_ITEM_ARROW_GAP), so it resolves lazily via an offset function called at
+  // position time, when the anchor node is already committed — keeping the first
+  // paint correct without tracking the anchor in state.
   return {
     sideOffset: () =>
       (isMenuItemAnchor(anchorRef.current)
