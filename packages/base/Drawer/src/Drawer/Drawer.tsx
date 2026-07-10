@@ -186,9 +186,6 @@ export const Drawer = ({
       }}
     >
       {disablePortal && <span ref={setInlineContainer} />}
-      {/* inlineContainer stays an explicit `null` until the inline mount node
-          renders — Base UI's portal waits for it (state-backed, arrives one
-          commit later) instead of falling back to `document.body` */}
       <BaseUIDialog.Portal
         container={disablePortal ? inlineContainer : container}
       >
