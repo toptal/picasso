@@ -255,8 +255,10 @@ describe('Page', () => {
         variant: 'default/sticky-sidebar-scroll-bottom',
       })
     })
-    // TODO: restore in https://toptal-core.atlassian.net/browse/FX-4358
-    it.skip('retains sticky position when Drawer is open', () => {
+    // Restored per https://toptal-core.atlassian.net/browse/FX-4358 — the
+    // skip predated the migration; the @base-ui/react-era Drawer locks page
+    // scroll via `html { overflow: clip }`, which preserves the scroll offset.
+    it('retains sticky position when Drawer is open', () => {
       cy.viewport(1280, 800)
       cy.mount(<DrawerContent />)
 
@@ -266,6 +268,9 @@ describe('Page', () => {
       cy.scrollTo('bottom')
 
       cy.getByTestId(TestIds.DRAWER_BUTTON).click()
+
+      // gate on the drawer being open and past its enter fade
+      cy.waitForOverlayOpen()
 
       cy.get('body').happoScreenshot({
         component,

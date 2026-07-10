@@ -1,41 +1,20 @@
-import React, { useState } from 'react'
-import type {
-  RichTextEditorProps,
-  UploadedImage,
-} from '@toptal/picasso-rich-text-editor'
-import { ImagePlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
-import { Container } from '@toptal/picasso'
+import React from 'react'
+import type { UploadedImage } from '@toptal/picasso-rich-text-editor'
+import { ImagePlugin } from '@toptal/picasso-rich-text-editor'
 
-const editorTestId = 'editor'
+import {
+  Editor,
+  component,
+  editorSelector,
+  makeEditorProps,
+  resultContainerTestId,
+} from './test-helpers'
+
 const imageUploadButtonTestId = 'image-upload-button'
-const resultContainerTestId = 'result-container'
 
-const defaultProps = {
-  id: 'foo',
-  onChange: () => {},
-  placeholder: 'placeholder',
-  testIds: {
-    editor: editorTestId,
-    imageUploadButton: imageUploadButtonTestId,
-  },
-}
-
-const editorSelector = `#${defaultProps.id}`
-
-const Editor = (props: RichTextEditorProps) => {
-  const [value, setValue] = useState('')
-
-  return (
-    <Container style={{ maxWidth: '600px' }} padded='small'>
-      <RichTextEditor {...props} onChange={value => setValue(value)} />
-      <Container padded='small' data-testid={resultContainerTestId}>
-        {value}
-      </Container>
-    </Container>
-  )
-}
-
-const component = 'RichTextEditor'
+const defaultProps = makeEditorProps({
+  imageUploadButton: imageUploadButtonTestId,
+})
 
 const setAliases = () => {
   cy.get(editorSelector).as('editor')
@@ -155,11 +134,15 @@ describe('ImagePlugin', () => {
 
       cy.get('p').contains(fileUploadErrorMessage).should('be.visible')
 
-      // Temporary disabling this screenshot as fonts stopped working in modals
-      // cy.get('[role="presentation"]').happoScreenshot({
-      //   component,
-      //   variant: 'image-plugin/failed-upload',
-      // })
+      // Screenshot was disabled pre-migration ("fonts stopped working in
+      // modals") and targeted MUI's role="presentation" portal wrapper; the
+      // @base-ui/react Modal emits role="dialog" instead (the passing
+      // successful-upload test above already queries it).
+      cy.waitForOverlayOpen()
+      cy.getByRole('dialog').happoScreenshot({
+        component,
+        variant: 'image-plugin/failed-upload',
+      })
     })
   })
 })

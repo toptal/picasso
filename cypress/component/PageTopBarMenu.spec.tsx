@@ -11,6 +11,8 @@ import {
 } from '@toptal/picasso'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
+import { loadAvatarFixture } from '../support/fixtures'
+
 export enum TestIds {
   TopBarMenu = 'page-top-bar-menu-dropdown',
 }
@@ -47,24 +49,15 @@ const Example = ({ src }: { src: string | null }) => (
   </Page>
 )
 
+const getAvatarSrc = loadAvatarFixture()
+
 describe('PageTopBarMenu', () => {
-  let src: string | null = null
-
-  before(() => {
-    // eslint-disable-next-line promise/catch-or-return
-    cy.fixture('pablo.jpg').then(image => {
-      src = 'data:image/jpg;base64,' + image
-
-      return image
-    })
-  })
-
   Cypress._.each(HAPPO_TARGETS, happoTarget => {
     const { width } = happoTarget
 
     it(`renders correctly on ${width}px`, () => {
       cy.viewport(width, 800)
-      cy.mount(<Example src={src} />)
+      cy.mount(<Example src={getAvatarSrc()} />)
 
       cy.getByTestId(TestIds.TopBarMenu).click()
 

@@ -1,26 +1,19 @@
 import React from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
 
+import { loadAvatarFixture } from '../support/fixtures'
+
 const component = 'AvatarUpload'
+
+const getAvatarSrc = loadAvatarFixture()
 
 describe('AvatarUpload', () => {
   describe('when source file exists', () => {
-    let src = ''
-
-    before(() => {
-      // eslint-disable-next-line max-nested-callbacks, promise/catch-or-return
-      cy.fixture('pablo.jpg').then(image => {
-        src = 'data:image/jpg;base64,' + image
-
-        return image
-      })
-    })
-
     it('renders upload icon over image avatar', () => {
       cy.mount(
         <Container padded='small' gap='small'>
-          <AvatarUpload src={src} alt='avatar' />
-          <AvatarUpload src={src} alt='avatar' size='large' />
+          <AvatarUpload src={getAvatarSrc()} alt='avatar' />
+          <AvatarUpload src={getAvatarSrc()} alt='avatar' size='large' />
         </Container>
       )
 

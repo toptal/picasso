@@ -106,7 +106,7 @@ const ModalExample = () => {
   )
 }
 
-// const component = 'TreeView'
+const component = 'TreeView'
 
 describe('TreeView', () => {
   it('render with modal', () => {
@@ -117,10 +117,13 @@ describe('TreeView', () => {
 
     cy.getByTestId('tree-dialog-content').should('be.visible')
 
-    // Temporary disabling this screenshot as fonts stopped working in modals
-    // cy.getByRole('presentation').happoScreenshot({
-    //   component,
-    //   variant: 'with-modal/after-modal-opened',
-    // })
+    // Screenshot was disabled pre-migration ("fonts stopped working in
+    // modals") and targeted MUI's role="presentation" portal wrapper; the
+    // @base-ui/react Modal emits role="dialog" instead.
+    cy.waitForOverlayOpen()
+    cy.getByRole('dialog').happoScreenshot({
+      component,
+      variant: 'with-modal/after-modal-opened',
+    })
   })
 })

@@ -359,11 +359,16 @@ describe('Tooltip', () => {
     })
   })
 
-  // The problem with this test is that even though the example is correctly being rendered
-  // The happo screenshot doesn't contain the modal itself, just the button
-  // We are skipping this test until we get a response from Happo team
-  it.skip('renders inside and outside of a modal', () => {
+  // Previously skipped: the pre-migration (MUI portal) modal never appeared in
+  // the Happo capture. Both Modal and Tooltip are on @base-ui/react now, so the
+  // old failure mode no longer applies.
+  it('renders inside and outside of a modal', () => {
     cy.mount(<ModalTooltipExample />)
+
+    // modal + both tooltips open via async state — gate on them before capturing
+    cy.waitForOverlayOpen()
+    cy.getByRole('tooltip').should('have.length', 2).and('be.visible')
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'inside-and-outside-modal',
