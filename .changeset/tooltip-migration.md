@@ -37,15 +37,12 @@
   that padding (the strip above the option); menu-item tooltips now pull the
   popup ~7px closer so the tip seats ~4px into the option's box, touching the
   option it describes. Every other anchor keeps the standard gap.
-- track the anchor on scroll only (not on element-resize or layout-shift),
-  matching the legacy popper.js behavior: an open tooltip repositions on
-  scroll/window-resize but no longer re-measures on anchor resize or a
-  non-scroll layout shift. This removes the ~4px position snap a tooltip made
-  ~1s after opening inside a still-opening Dropdown (PF-2224).
-- fix inside-Dropdown positioning on scroll (PF-2224): a tooltip open on a
-  Menu.Item no longer snaps ~4px off its anchor on the first scroll (its
-  first-paint position now settles to the true anchor geometry once the
-  Dropdown's reveal animation finishes — see the Dropdown changeset), and no
-  longer strands at the viewport corner when the Dropdown scrolls its menu out
-  of a scroll container: the popup now hides with its anchor
-  (`data-[anchor-hidden]`) instead of re-anchoring to the collapsed rect.
+- fix inside-Dropdown / inside-Autocomplete positioning (PF-2224): a tooltip
+  open on a `Menu.Item` no longer snaps ~4px off its anchor on the first scroll,
+  and no longer strands at the viewport corner when the Dropdown scrolls its
+  menu out of a scroll container — the popup now hides with its anchor
+  (`data-[anchor-hidden]`) instead of re-anchoring to the collapsed rect. The
+  tooltip keeps base-ui's full anchor tracking so it settles onto the true
+  (post-animation) geometry; the Dropdown emits a settle-nudge once its reveal
+  animation finishes (see the Dropdown changeset), which is what removes the
+  first-paint mis-measurement without freezing the popup at a pre-settle spot.

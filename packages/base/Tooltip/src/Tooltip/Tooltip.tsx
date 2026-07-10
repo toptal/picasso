@@ -192,19 +192,14 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       <BaseTooltip.Positioner
         ref={tooltipRef}
         anchor={followCursor ? undefined : triggerNodeRef}
-        // [PF-2224] Track the anchor on SCROLL only — not on element-resize or
-        // layout-shift. base-ui defaults the Positioner to floating-ui's full
-        // autoUpdate (a ResizeObserver + a layout-shift IntersectionObserver);
-        // that IO's anti-infinite-loop throttle is what makes a tooltip opened
-        // inside a still-opening Dropdown snap ~4px exactly 1s after open (the
-        // anchor is measured before the Dropdown's Popper positions, the IO
-        // sees `intersectionRatio: 0`, and `setTimeout(refresh, 1000)` fires
-        // the late correction). Turning the extra trackers off makes the popup
-        // settle once and stay put. NOT a regression from master: the legacy
-        // popper.js Tooltip likewise repositioned only on scroll/window-resize
-        // (popper.js v1 has neither observer) — `ancestorScroll` stays on, so
-        // scroll-following is preserved; this restores that master behavior.
-        disableAnchorTracking
+        // Keep base-ui's full anchor tracking (ResizeObserver + layout-shift
+        // IntersectionObserver + ancestorScroll). base-ui positions a frame
+        // after mount (popper.js was synchronous), so a tooltip opened inside a
+        // still-opening Dropdown/Autocomplete measures a pre-settle anchor; the
+        // trackers re-measure it onto the settled geometry. Dropdown also emits
+        // a settle-nudge once its scale-in animation lands (Dropdown.tsx
+        // onTransitionEnd) — the transform taints the anchor rect while it
+        // plays, and that nudge is what removes the ~4px jump. [PF-2224]
         // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
         // opened inside a Dropdown stacks behind the menu. `data-[anchor-hidden]`
         // (base-ui sets it when floating-ui's hide middleware reports the anchor
