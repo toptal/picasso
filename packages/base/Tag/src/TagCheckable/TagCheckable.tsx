@@ -46,13 +46,12 @@ const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
     <Tag
       className={twMerge(
         'focus:bg-white cursor-pointer',
-        `hover:border-graphite-700 hover:bg-white hover:transition-all hover:duration-[350ms]
-        hover:ease-in-out`,
+        className,
+        'hover:border-graphite-700 hover:bg-white hover:transition-all hover:duration-[350ms] hover:ease-in-out',
         checked && 'hover:border-red-500 hover:text-red-500',
         hovered &&
           'bg-white border-graphite-700 transition-all duration-[350ms] ease-in-out',
-        checked && hovered && 'border-red-500 text-red-500',
-        className
+        checked && hovered && 'border-red-500 text-red-500'
       )}
       icon={icon}
       onClick={handleClick}

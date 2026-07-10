@@ -143,8 +143,8 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             variant === 'dark' ? 'bg-blue-700' : '',
             variant === 'grey' ? 'bg-graphite-800' : '',
             variant === 'black' ? 'bg-black' : '',
-            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : '',
-            className
+            className,
+            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : ''
           )}
           style={{
             boxShadow:

@@ -101,6 +101,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         '[&]:before:top-0',
         '[&]:before:w-[15.5rem]',
         '[&]:before:h-full',
+        className,
         classesByVariant[variant],
         classesBySize[size],
         'xs:max-md:overflow-y-scroll',
@@ -111,8 +112,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
             '[&_.scrollable-content]:[-ms-overflow-style:none]',
             '[&_.scrollable-content]:[scrollbar-width:none]',
           ],
-        !hasTopBar && 'block',
-        className
+        !hasTopBar && 'block'
       )}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}

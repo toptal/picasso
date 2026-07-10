@@ -113,8 +113,8 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
         h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
         group align-middle leading-[inherit]`,
         classByVariant[variant],
-        disabled && 'text-gray-500 border-gray-200 pointer-events-none',
-        className
+        className,
+        disabled && 'text-gray-500 border-gray-200 pointer-events-none'
       )}
       style={style}
       onClick={onClick}

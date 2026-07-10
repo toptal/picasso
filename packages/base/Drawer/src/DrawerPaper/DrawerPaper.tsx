@@ -44,8 +44,8 @@ const DrawerPaper = forwardRef(
             ? 'overflow-hidden'
             : 'overflow-y-auto webkit-overflow-scrolling-touch',
           'transition-transform ease-out duration-300',
-          anchorClassName[anchor],
-          className
+          className,
+          anchorClassName[anchor]
         )}
         {...rest}
       >

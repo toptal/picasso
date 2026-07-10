@@ -178,8 +178,8 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           'overflow-hidden whitespace-normal text-left no-underline',
           'flex items-center justify-start',
           'outline-hidden appearance-none leading-4',
-          disabled && 'text-gray-600 opacity-100 pointer-events-none',
-          className
+          className,
+          disabled && 'text-gray-600 opacity-100 pointer-events-none'
         )}
         aria-disabled={Boolean(disabled)}
         disabled={disabled}
