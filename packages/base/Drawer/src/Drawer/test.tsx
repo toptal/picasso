@@ -41,4 +41,22 @@ describe('Drawer', () => {
 
     expect(baseElement.querySelector('.bg-black\\/50')).toBeNull()
   })
+
+  it('disables paper scrolling when disableScroll is set', () => {
+    const { getByTestId } = renderDrawer({
+      disableScroll: true,
+      'data-testid': 'drawer',
+    })
+
+    const paper = getByTestId('drawer')
+
+    expect(paper).toHaveClass('overflow-hidden')
+    expect(paper).not.toHaveClass('overflow-y-auto')
+  })
+
+  it('keeps paper scrolling by default', () => {
+    const { getByTestId } = renderDrawer({ 'data-testid': 'drawer' })
+
+    expect(getByTestId('drawer')).toHaveClass('overflow-y-auto')
+  })
 })
