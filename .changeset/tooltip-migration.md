@@ -32,10 +32,11 @@
   a closed tooltip's content is "not visible" should assert it "does not exist".
 - lift the `react` peer-dependency upper bound to `>=16.12.0` (drop the
   `< 19.0.0` cap). Drop the `@material-ui/core` peer dependency.
-- seat the arrow tighter against menu-item anchors (`role="menuitem"`): in a
-  dense list the standard arrow gap points the tip at the strip between rows,
-  so menu-item tooltips now seat the arrow closer (a ~0–4px tip gap) so it
-  lands on the option it describes. Every other anchor keeps the standard gap.
+- seat the arrow closer to menu-item anchors (`role="menuitem"`): a menu
+  item's box includes top padding, so the standard flush gap points the tip at
+  that padding (the strip above the option); menu-item tooltips now pull the
+  popup ~3px closer so the tip seats just above the option's content, touching
+  the option it describes. Every other anchor keeps the standard gap.
 - track the anchor on scroll only (not on element-resize or layout-shift),
   matching the legacy popper.js behavior: an open tooltip repositions on
   scroll/window-resize but no longer re-measures on anchor resize or a

@@ -14,14 +14,14 @@ const gapPx = (remValue: string): number => fromPx(pxFromRem(remValue))
 const POPUP_MARGIN_PX = gapPx(POPUP_MARGIN) // 14px
 const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
 
-// Menu-item tooltips sit in a dense stack of options, where the standard
-// arrow gap (= POPUP_MARGIN_PX, the margin band) lands the arrow tip in the
-// dead strip between two rows and reads as pointing at the wrong option. Per
-// design, the tip↔anchor gap on menu items is 0-4px (not ~8px), so a
-// menu-item anchor uses a tighter gap that seats the arrow on the option it
-// describes. Scoped to menu items only — every other anchor keeps the
-// standard gap. [PF-1994]
-const MENU_ITEM_ARROW_GAP = gapPx('0.5rem') // 8px
+// Menu-item tooltips sit in a dense stack of options where a menu item's box
+// includes top padding, so the standard flush gap lands the arrow tip in that
+// padding — the dead strip above the option — and reads as pointing between
+// rows. Pull the popup ~3px closer (gap 11px vs the 14px margin band) so the
+// tip seats just above the option's own content (~2px), touching the option it
+// describes without sinking into it. Scoped to menu items only — every other
+// anchor keeps the standard gap. [PF-1994]
+const MENU_ITEM_ARROW_GAP = gapPx('0.6875rem') // 11px
 const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 
 // Menu items are recognized by the anchor's semantic (ARIA) role rather than

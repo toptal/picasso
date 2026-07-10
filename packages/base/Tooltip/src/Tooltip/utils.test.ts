@@ -96,7 +96,7 @@ describe('Tooltip utils', () => {
           anchorRef: menuItemAnchorRef,
         })
 
-        expect((sideOffset as () => number)()).toBe(8 - 14)
+        expect((sideOffset as () => number)()).toBe(11 - 14)
       })
     })
   })
