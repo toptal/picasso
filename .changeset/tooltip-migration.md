@@ -39,10 +39,14 @@
   option it describes. Every other anchor keeps the standard gap.
 - fix inside-Dropdown / inside-Autocomplete positioning (PF-2224): a tooltip
   open on a `Menu.Item` no longer snaps ~4px off its anchor on the first scroll,
-  and no longer strands at the viewport corner when the Dropdown scrolls its
-  menu out of a scroll container — the popup now hides with its anchor
-  (`data-[anchor-hidden]`) instead of re-anchoring to the collapsed rect. The
-  tooltip keeps base-ui's full anchor tracking so it settles onto the true
-  (post-animation) geometry; the Dropdown emits a settle-nudge once its reveal
-  animation finishes (see the Dropdown changeset), which is what removes the
-  first-paint mis-measurement without freezing the popup at a pre-settle spot.
+  no longer chases late sub-pixel reflows (e.g. a web font settling a second
+  after paint, which nudged the option row and made the popup visibly drift — a
+  jitter the old popper.js build never had), and no longer strands at the
+  viewport corner when the Dropdown scrolls its menu out of a scroll container —
+  the popup now hides with its anchor (`data-[anchor-hidden]`) instead of
+  re-anchoring to the collapsed rect. Mechanism: menu-item tooltips disable
+  base-ui's anchor-tracking observers (ResizeObserver + layout-shift
+  IntersectionObserver) and instead settle via a deterministic nudge the
+  Dropdown emits when its reveal animation finishes (see the Dropdown
+  changeset); every other anchor (Autocomplete options, buttons) keeps full
+  tracking, so nothing that relies on it regresses.

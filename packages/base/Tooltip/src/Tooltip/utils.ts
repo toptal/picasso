@@ -32,7 +32,7 @@ const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 // by coupling to @toptal/picasso-menu — Menu.Item renders `role="menuitem"`,
 // while look-alikes that must keep the standard gap don't (e.g. Autocomplete
 // options render inside a Menu but as `role="option"`).
-const isMenuItemAnchor = (anchor: Element | null): boolean =>
+export const isMenuItemAnchor = (anchor: Element | null): boolean =>
   anchor?.getAttribute('role') === 'menuitem'
 
 export const spacingToPxNumber = (spacing: PicassoSpacing): number =>

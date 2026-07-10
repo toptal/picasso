@@ -15,7 +15,7 @@ import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ContainerValue } from './types'
 import { createArrowClassNames, createPopupClassNames } from './styles'
-import { getPositionerOffsets, splitPlacement } from './utils'
+import { getPositionerOffsets, isMenuItemAnchor, splitPlacement } from './utils'
 import { useTooltipState } from './use-tooltip-state'
 
 export type DelayType = 'short' | 'long'
@@ -149,6 +149,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     })
 
     const [triggerParent, setTriggerParent] = useState<HTMLElement | null>(null)
+    const [anchorIsMenuItem, setAnchorIsMenuItem] = useState(false)
     const triggerNodeRef = useRef<HTMLElement | null>(null)
 
     const trackTriggerParent = useCallback(
@@ -160,10 +161,20 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       [disablePortal]
     )
 
+    // Mirror the anchor's menu-item-ness into state so `disableAnchorTracking`
+    // (below) is correct on the render that matters. A `open`-from-mount tooltip
+    // (e.g. the Dropdown story) commits its Positioner before the trigger ref
+    // callback runs, so a bare `triggerNodeRef.current` read would still be null;
+    // the state update re-renders once the node is committed.
+    const trackAnchorRole = useCallback((node: HTMLElement | null) => {
+      setAnchorIsMenuItem(isMenuItemAnchor(node))
+    }, [])
+
     const setTriggerRef = useMultipleForwardRefs<HTMLElement | null>([
       ref,
       triggerNodeRef,
       trackTriggerParent,
+      trackAnchorRole,
     ])
 
     const { side, align } = splitPlacement(placement)
@@ -192,21 +203,31 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       <BaseTooltip.Positioner
         ref={tooltipRef}
         anchor={followCursor ? undefined : triggerNodeRef}
-        // Keep base-ui's full anchor tracking (ResizeObserver + layout-shift
-        // IntersectionObserver + ancestorScroll). base-ui positions a frame
-        // after mount (popper.js was synchronous), so a tooltip opened inside a
-        // still-opening Dropdown/Autocomplete measures a pre-settle anchor; the
-        // trackers re-measure it onto the settled geometry. Dropdown also emits
-        // a settle-nudge once its scale-in animation lands (Dropdown.tsx
-        // onTransitionEnd) — the transform taints the anchor rect while it
-        // plays, and that nudge is what removes the ~4px jump. [PF-2224]
+        // `disableAnchorTracking` gates ONLY base-ui's ResizeObserver
+        // (elementResize) + layout-shift IntersectionObserver (layoutShift);
+        // ancestorScroll stays on. We disable it for menu-item anchors
+        // (Dropdown) but keep full tracking everywhere else (Autocomplete
+        // options, buttons, …). Why scoped: the layout-shift IntersectionObserver
+        // re-solves the popup on ANY anchor movement, including a late sub-pixel
+        // reflow (a web font settling ~1s after paint nudges the option row a
+        // pixel), so the tooltip visibly chases it — a jump master's popper.js
+        // never had (it re-solved only on scroll/resize, not pure reflows). The
+        // Dropdown doesn't need that tracking: it emits a deterministic
+        // settle-nudge when its scale-in animation ends (Dropdown.tsx
+        // onTransitionEnd → window scroll → ancestorScroll re-solve), which lands
+        // the popup on the option's true post-animation rect and removes the ~4px
+        // taint jump. Autocomplete has no such single settle signal, so it keeps
+        // the observers. A global flag here regressed Autocomplete before; the
+        // fix belongs at the offending container (menu items). [PF-2224]
         // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
         // opened inside a Dropdown stacks behind the menu. `data-[anchor-hidden]`
         // (base-ui sets it when floating-ui's hide middleware reports the anchor
         // is clipped or detached — e.g. a Dropdown scrolls its menu out of a
         // scroll container and hides it, collapsing the anchor's rect) hides the
         // popup, so it disappears with its anchor instead of stranding at the
-        // collision corner. [PF-2224]
+        // collision corner; still driven by ancestorScroll, so it works even with
+        // anchor tracking disabled. [PF-2224]
+        disableAnchorTracking={anchorIsMenuItem}
         className='z-tooltip data-[anchor-hidden]:hidden'
         side={side}
         align={align}
