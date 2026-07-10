@@ -34,7 +34,7 @@ exports[`Tooltip when portals are disabled renders the content within the parent
       id=":r8:"
     >
       <div
-        class="z-tooltip"
+        class="z-tooltip data-[anchor-hidden]:hidden"
         data-align="center"
         data-open=""
         data-side="top"

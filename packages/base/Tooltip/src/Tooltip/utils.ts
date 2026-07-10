@@ -17,11 +17,15 @@ const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
 // Menu-item tooltips sit in a dense stack of options where a menu item's box
 // includes top padding, so the standard flush gap lands the arrow tip in that
 // padding — the dead strip above the option — and reads as pointing between
-// rows. Pull the popup ~3px closer (gap 11px vs the 14px margin band) so the
-// tip seats just above the option's own content (~2px), touching the option it
-// describes without sinking into it. Scoped to menu items only — every other
-// anchor keeps the standard gap. [PF-1994]
-const MENU_ITEM_ARROW_GAP = gapPx('0.6875rem') // 11px
+// rows. Pull the popup ~7px closer (gap 7px vs the 14px margin band) so the tip
+// seats ~4px into the option's box, touching the option it describes without
+// sinking into it. Scoped to menu items only — every other anchor keeps the
+// standard gap. Calibrated against the option's SETTLED rect: a Dropdown reveals
+// its menu with a scale-in animation, and a CSS transform taints an anchor's
+// getBoundingClientRect while it plays, so the tooltip's first measurement lands
+// ~4px off; Dropdown re-nudges the tooltip to the true position when that
+// animation finishes (Dropdown.tsx onTransitionEnd). [PF-1994][PF-2224]
+const MENU_ITEM_ARROW_GAP = gapPx('0.4375rem') // 7px
 const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 
 // Menu items are recognized by the anchor's semantic (ARIA) role rather than

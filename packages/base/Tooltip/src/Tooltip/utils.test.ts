@@ -1,6 +1,10 @@
 import { SPACING_0 } from '@toptal/picasso-provider'
 
-import { getPositionerOffsets, splitPlacement, spacingToPxNumber } from './utils'
+import {
+  getPositionerOffsets,
+  splitPlacement,
+  spacingToPxNumber,
+} from './utils'
 
 const menuItemAnchorRef = {
   current: {
@@ -74,9 +78,9 @@ describe('Tooltip utils', () => {
 
     describe('when there is no arrow', () => {
       it('sits flush, applying only the user offset', () => {
-        expect(
-          getPositionerOffsets({ ...baseArgs, showArrow: false })
-        ).toEqual({ sideOffset: 0, alignOffset: 0 })
+        expect(getPositionerOffsets({ ...baseArgs, showArrow: false })).toEqual(
+          { sideOffset: 0, alignOffset: 0 }
+        )
       })
     })
 
@@ -96,7 +100,7 @@ describe('Tooltip utils', () => {
           anchorRef: menuItemAnchorRef,
         })
 
-        expect((sideOffset as () => number)()).toBe(11 - 14)
+        expect((sideOffset as () => number)()).toBe(7 - 14)
       })
     })
   })

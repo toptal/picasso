@@ -206,8 +206,13 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         // scroll-following is preserved; this restores that master behavior.
         disableAnchorTracking
         // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
-        // opened inside a Dropdown stacks behind the menu.
-        className='z-tooltip'
+        // opened inside a Dropdown stacks behind the menu. `data-[anchor-hidden]`
+        // (base-ui sets it when floating-ui's hide middleware reports the anchor
+        // is clipped or detached — e.g. a Dropdown scrolls its menu out of a
+        // scroll container and hides it, collapsing the anchor's rect) hides the
+        // popup, so it disappears with its anchor instead of stranding at the
+        // collision corner. [PF-2224]
+        className='z-tooltip data-[anchor-hidden]:hidden'
         side={side}
         align={align}
         sideOffset={sideOffset}

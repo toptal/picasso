@@ -175,14 +175,16 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     },
   })
 
-  // TODO [PF-2203]: Remove once Tooltip migrates off popper.js.
-  // Transitional [PF-1994]: legacy popper.js-positioned descendants (the
-  // pre-migration Tooltip) measure synchronously once and re-measure only on
-  // scroll/resize. popper.js positioned synchronously, so an open Tooltip
-  // mounted together with this popper used to latch correct coordinates;
-  // floating-ui positions a frame later. Nudge legacy descendants via a
-  // synthetic scroll whenever our geometry settles or changes. Remove when
-  // Tooltip migrates off popper.js.
+  // Nudge floating descendants to re-measure whenever this popper's geometry
+  // settles or changes. A descendant that positions against a node inside this
+  // popper (e.g. an open Tooltip anchored to a Menu.Item in a Dropdown) measures
+  // its anchor a frame before floating-ui commits our coordinates; the migrated
+  // @base-ui/react Tooltip tracks the anchor on scroll only (see its
+  // Positioner), and — because it is portaled to the picasso root, not into this
+  // popper's scroll-ancestor chain — a synthetic window scroll is the ONLY
+  // signal that reaches it when we move. So this is load-bearing for both the
+  // legacy popper.js Tooltip AND the migrated one (container-scroll following),
+  // not a transitional shim. [PF-2203][PF-1994]
   useEffect(() => {
     if (open && isPositioned) {
       window.dispatchEvent(new Event('scroll'))

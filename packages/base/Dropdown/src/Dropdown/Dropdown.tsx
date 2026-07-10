@@ -322,6 +322,20 @@ export const Dropdown: DropdownProps = forwardRef<
                 externalClasses?.content
               )}
               onKeyDown={handleContentKeyDown}
+              onTransitionEnd={event => {
+                // Settle-nudge. This Paper reveals with a scale-in animation, and
+                // a CSS transform taints the getBoundingClientRect of the nodes
+                // inside it — so a floating element anchored to menu content (an
+                // open Tooltip on a Menu.Item) measures a ~4px-off rect on first
+                // paint and, with anchor-tracking disabled, freezes there. Once
+                // the animation lands, re-dispatch the same scroll pulse the
+                // Popper uses (Popper.tsx) so those descendants re-measure against
+                // the settled geometry. Idempotent; only the entrance transition
+                // fires here (the menu unmounts on close). [PF-2224]
+                if (isOpen && event.target === event.currentTarget) {
+                  window.dispatchEvent(new Event('scroll'))
+                }
+              }}
               elevation={0}
             >
               <DropdownContext.Provider value={context}>

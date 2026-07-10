@@ -35,10 +35,17 @@
 - seat the arrow closer to menu-item anchors (`role="menuitem"`): a menu
   item's box includes top padding, so the standard flush gap points the tip at
   that padding (the strip above the option); menu-item tooltips now pull the
-  popup ~3px closer so the tip seats just above the option's content, touching
-  the option it describes. Every other anchor keeps the standard gap.
+  popup ~7px closer so the tip seats ~4px into the option's box, touching the
+  option it describes. Every other anchor keeps the standard gap.
 - track the anchor on scroll only (not on element-resize or layout-shift),
   matching the legacy popper.js behavior: an open tooltip repositions on
   scroll/window-resize but no longer re-measures on anchor resize or a
   non-scroll layout shift. This removes the ~4px position snap a tooltip made
   ~1s after opening inside a still-opening Dropdown (PF-2224).
+- fix inside-Dropdown positioning on scroll (PF-2224): a tooltip open on a
+  Menu.Item no longer snaps ~4px off its anchor on the first scroll (its
+  first-paint position now settles to the true anchor geometry once the
+  Dropdown's reveal animation finishes — see the Dropdown changeset), and no
+  longer strands at the viewport corner when the Dropdown scrolls its menu out
+  of a scroll container: the popup now hides with its anchor
+  (`data-[anchor-hidden]`) instead of re-anchoring to the collapsed rect.
