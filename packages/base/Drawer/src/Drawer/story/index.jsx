@@ -89,3 +89,11 @@ page
     },
     'base/Drawer'
   )
+  .addExample(
+    'Drawer/story/DisableScroll.example.tsx',
+    {
+      title: 'With disabled scroll',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )

@@ -7,6 +7,7 @@ import type { AnchorType } from '../types'
 
 interface PaperProps extends HTMLAttributes<HTMLDivElement> {
   anchor?: AnchorType
+  disableScroll?: boolean
 }
 
 // Resting (open) position is `translate-*-0`; the off-screen position is
@@ -23,7 +24,13 @@ const anchorClassName: Record<AnchorType, string> = {
 
 const DrawerPaper = forwardRef(
   (
-    { anchor = 'right', className, children, ...rest }: PaperProps,
+    {
+      anchor = 'right',
+      disableScroll = false,
+      className,
+      children,
+      ...rest
+    }: PaperProps,
     ref: Ref<HTMLDivElement>
   ) => {
     return (
@@ -33,7 +40,10 @@ const DrawerPaper = forwardRef(
         className={twMerge(
           className,
           'fixed top-0 h-full flex flex-col outline-0 z-drawer',
-          'max-w-full overflow-y-auto webkit-overflow-scrolling-touch',
+          'max-w-full',
+          disableScroll
+            ? 'overflow-hidden'
+            : 'overflow-y-auto webkit-overflow-scrolling-touch',
           'transition-transform ease-out duration-300',
           anchorClassName[anchor]
         )}
