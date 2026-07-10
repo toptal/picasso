@@ -75,6 +75,17 @@ describe('Modal', () => {
     expect(modalRoot).toMatchSnapshot()
   })
 
+  // Regression: Base UI's portal treats an explicit `null` container as
+  // "wait for the container", and the Picasso root ref is not populated yet
+  // on the tree's first render pass — a mount-open Modal must still appear.
+  it('renders content when mounted already open', async () => {
+    render(<Modal open>Mount-open modal content</Modal>)
+
+    expect(
+      await screen.findByText('Mount-open modal content')
+    ).toBeInTheDocument()
+  })
+
   it('useModal opens and closes modal', async () => {
     const TestComponent = () => {
       const { showModal, hideModal, isOpen } = useModal()
