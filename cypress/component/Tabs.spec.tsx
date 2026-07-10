@@ -92,6 +92,9 @@ describe('Tabs', () => {
         </Tabs>
       )
 
+      // let the base64 fixture avatars decode before capturing
+      cy.waitForImagesDecoded()
+
       cy.getByTestId('to-be-hovered').hoverAndTakeHappoScreenshot({
         component,
         variant: 'vertical-with-user-badge/after-hovered',

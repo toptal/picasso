@@ -10,17 +10,18 @@ Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
   const windowInnerWidth = Cypress.config(`viewportWidth`)
   const windowInnerHeight = Cypress.config(`viewportHeight`)
 
-  const bounding = subject[0].getBoundingClientRect()
+  // retried via .should() so a mid-scroll/mid-animation read converges instead
+  // of failing (or falsely passing) a one-shot geometry check
+  return cy.wrap(subject).should($el => {
+    expect($el[0].isConnected, 'element attached').to.equal(true)
 
-  const rightBoundOfWindow = windowInnerWidth
-  const bottomBoundOfWindow = windowInnerHeight
+    const bounding = $el[0].getBoundingClientRect()
 
-  expect(bounding.top).to.be.at.least(0)
-  expect(bounding.left).to.be.at.least(0)
-  expect(bounding.right).not.to.be.greaterThan(rightBoundOfWindow)
-  expect(bounding.bottom).not.to.be.greaterThan(bottomBoundOfWindow)
-
-  return subject
+    expect(bounding.top).to.be.at.least(0)
+    expect(bounding.left).to.be.at.least(0)
+    expect(bounding.right).not.to.be.greaterThan(windowInnerWidth)
+    expect(bounding.bottom).not.to.be.greaterThan(windowInnerHeight)
+  })
 })
 
 Cypress.Commands.add('getByTestId', (testId, options) => {
@@ -64,29 +65,37 @@ const readTransitionStyles = el => {
 const waitForHoverToSettle = selector => {
   let previous = null
 
-  cy.get(selector).should($el => {
-    const current = readTransitionStyles($el[0])
+  return cy.get(selector).should($els => {
+    const current = Array.from($els, readTransitionStyles).join('|||')
     const wasPrevious = previous
 
     previous = current
     // passes only once two consecutive reads match — i.e. the transition has
     // come to rest. Cypress retries this callback until it passes or times out.
-    expect(current, 'hover transition settled').to.equal(wasPrevious)
+    expect(current, 'style transitions settled').to.equal(wasPrevious)
   })
 }
 
+// Gate on hover/focus style transitions (e.g. `transition-colors` on menu
+// items) being at rest for every matched element before capturing.
+Cypress.Commands.add('waitForTransitionsToSettle', selector =>
+  waitForHoverToSettle(selector)
+)
+
 // Transient floating UI must be geometrically at rest before serializing:
-// `@floating-ui/react` poppers (stamped `x-placement`) commit their coordinates
-// a frame or two after open, and notistack notifications (`role="alert"`)
-// slide in via inline-style transforms that happo-cypress captures verbatim.
+// `@floating-ui/react` poppers (Picasso's Popper stamps `x-placement`, base-ui's
+// Tooltip positions its `role="tooltip"` popup) commit their coordinates a frame
+// or two after open, and notistack notifications (`role="alert"`) slide in via
+// inline-style transforms that happo-cypress captures verbatim.
 // Settled = two consecutive reads of every visible element's box match.
 // Vacuous when nothing matches — asserting PRESENCE stays the callers' job.
-const GEOMETRY_SETTLE_SELECTOR = '[x-placement], [role="alert"]'
+const GEOMETRY_SETTLE_SELECTOR =
+  '[x-placement], [role="tooltip"], [role="alert"]'
 
-const readTransientBoxes = $body => {
+const readTransientBoxes = ($body, selector) => {
   const boxes = []
 
-  $body.find(GEOMETRY_SETTLE_SELECTOR).each((_index, el) => {
+  $body.find(selector).each((_index, el) => {
     const rect = el.getBoundingClientRect()
 
     // skip non-rendered nodes (display:none keepMounted poppers report 0×0)
@@ -104,17 +113,25 @@ const readTransientBoxes = $body => {
   return boxes.join('|')
 }
 
-const waitForTransientGeometryToSettle = () => {
+const waitForTransientGeometryToSettle = (
+  selector = GEOMETRY_SETTLE_SELECTOR
+) => {
   let previous = null
 
   return cy.get('body').should($body => {
-    const current = readTransientBoxes($body)
+    const current = readTransientBoxes($body, selector)
     const wasPrevious = previous
 
     previous = current
     expect(current, 'transient geometry settled').to.equal(wasPrevious)
   })
 }
+
+// Gate on the matched elements' boxes being at rest (e.g. an Accordion height
+// animation) — assert PRESENCE first; an empty match set settles vacuously.
+Cypress.Commands.add('waitForGeometryToSettle', selector =>
+  waitForTransientGeometryToSettle(selector)
+)
 
 Cypress.Commands.add(
   'hoverAndTakeHappoScreenshot',
