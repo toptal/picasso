@@ -1,5 +1,32 @@
 # @toptal/picasso-outlined-input
 
+## 5.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@5.0.2
+  - @toptal/picasso-form@7.0.2
+
+## 5.1.0
+
+### Minor Changes
+
+- [#4984](https://github.com/toptal/picasso/pull/4984) [`2138467`](https://github.com/toptal/picasso/commit/213846767c9966af17fee89c58c4fc95c36d70e1) Thanks [@DaveHellsmith](https://github.com/DaveHellsmith)!
+- add `resetVisibility?: 'hover' | 'always'` prop (default `'hover'`) to control reset-button visibility.
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-shared@16.0.0
+  - @toptal/picasso-button@5.0.1
+  - @toptal/picasso-form@7.0.1
+  - @toptal/picasso-icons@1.15.3
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-input-adornment@4.0.1
+
 ## 5.0.0
 
 ### Major Changes

@@ -26,3 +26,61 @@ reports
 gha-creds-*.json
 
 llm-docs
+
+# Per-run artifacts emitted by bin/migration-orchestrator.ts (PF-1992).
+# Worktrees, gate logs, diff reports, agent prompts/responses, escalation
+# blocks. Reproducible per run; do not commit.
+migration-runs
+
+# Playwright MCP runtime artifacts emitted into the worktree when the
+# orchestrator runs with `--with-mcp` (page snapshots, console logs, etc.).
+# Captured by the agent for inspection during iter but should not land in
+# the migration PR. Without this entry the agent's `git add -A` step
+# (orchestrator-driven) sweeps them into the commit. See PR #4949 for the
+# debris example.
+.playwright-mcp
+
+# Migration diagnostic scratch at the worktree root. The orchestrator's
+# Happo-stalemate prompt (orchestrator-core.ts) tells the agent to save
+# computed-style + thumb-position dumps under `migration-runs/<date>/
+# <Component>/...` — which is the worktree's PARENT dir, NOT the worktree
+# itself. Agents that don't expand the path correctly default to writing
+# the file in CWD (= the worktree root = the repo root from git's view),
+# which `git add -A` then sweeps into the PR. Reviewers consistently flag
+# these as committed scratch files (PR #4955 Slider, PR #4965 Switch).
+# These patterns are a defensive backstop alongside fixing the prompt.
+/*-computed.json
+/*-thumbs*.json
+/after-fix-*.json
+/baseline-*.json
+/local-*.json
+/local--*.png
+/baseline--*.png
+/scripts/diff-happo.js
+**/__tests__/pixel-diff*.test.ts
+# Flat scratch dir the Happo-stalemate prompt now points the agent at, plus the
+# prefix-named computed-style dumps the old suffix globs above missed (the exact
+# files reviewers flagged in PR #4965 Switch: `.scratch-pngdiff.py`,
+# `computed-styles-local.json`). The orchestrator stray-guard also self-appends
+# here when it strips a novel scratch file.
+/.scratch/
+/.scratch-*
+/computed-styles-*.json
+/.tmp-payload.json
+/docs/migration/Button-diff.json
+/patches/@base-ui__utils@0.2.8.patch
+/computed-styles-local.json
+/docs/migration/Switch-diff.json
+/baseline--components-slider--slider--full-1280.png
+/baseline--components-slider--slider--tooltip-section.png
+/baseline--components-slider--slider.png
+/local--components-slider--slider--default.png
+/local--components-slider--slider--full-1280.png
+/local--components-slider--slider--tooltip-section.png
+/a11y-violation-1.png
+/a11y-violation-2.png
+/zoom-checked-diff.png
+/zoom2.png
+/zoom3.png
+/zoom4.png
+.claude/worktrees/

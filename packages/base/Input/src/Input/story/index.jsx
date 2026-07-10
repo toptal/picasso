@@ -65,6 +65,14 @@ page
     'base/Input'
   )
   .addExample(
+    'Input/story/ResetButtonVisibility.example.tsx',
+    {
+      title: 'With reset button always visible',
+      takeScreenshot: false,
+    },
+    'base/Input'
+  )
+  .addExample(
     'Input/story/Refs.example.tsx',
     {
       title: 'Refs',

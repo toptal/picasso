@@ -77,7 +77,7 @@ export const PromptModal = forwardRef<HTMLDivElement, Props>(
 
         setLoading(false)
         handleOnAfterSubmit()
-      } catch (err) {
+      } catch {
         setError(true)
         setLoading(false)
       }

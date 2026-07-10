@@ -6,5 +6,18 @@
     "prod",
     "resolutions",
     "local"
+  ],
+  "versionGroups": [
+    {
+      "label": "internal packages reference each other via the workspace protocol",
+      "dependencies": [
+        "$LOCAL"
+      ],
+      "dependencyTypes": [
+        "prod",
+        "dev"
+      ],
+      "pinVersion": "workspace:*"
+    }
   ]
 }

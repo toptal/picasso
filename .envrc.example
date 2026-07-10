@@ -1,0 +1,47 @@
+# Picasso migration orchestrator — environment template.
+#
+# Copy to `.envrc` (repo root, gitignored) OR `~/Projects/.envrc`, fill in,
+# then run `direnv allow`. The orchestrator's loadEnvrcUpwards() walks up from
+# the repo and auto-loads the nearest .envrc via direnv.
+#
+# No direnv? Either `source` this file before `pnpm orchestrate`, or pass the
+# vars inline:  HAPPO_API_KEY=… HAPPO_API_SECRET=… pnpm orchestrate --component=Note
+#
+# NOTE: claude / gh / ssh auth are NOT set here — they're CLI/agent-managed.
+#   See docs/migration/ORCHESTRATOR.md §"First-time setup".
+#   Verify your whole setup at once with: pnpm orchestrate --component=<X> --dry-run
+#   (reads the prerequisite report without starting a real run).
+
+# --- Required for the Happo visual gate ---------------------------------
+# Your personal Happo API credentials, with access to the Picasso Happo org
+# (account 675). Get them from https://happo.io account settings.
+# To run WITHOUT Happo instead, leave these unset and pass
+# MIGRATION_GATE_HAPPO=skip (sandbox / smoke runs only).
+export HAPPO_API_KEY=
+export HAPPO_API_SECRET=
+
+# --- Required for correct pnpm node_modules layout ----------------------
+# Any value works (e.g. `dummy`) — only used to authenticate registry fetches,
+# not for layout. Without it pnpm falls back to the isolated linker and tsc
+# can't resolve React types.
+export NPM_TOKEN=dummy
+
+# --- Optional: model preset (fable | opus) ------------------------------
+# Default: fable (current config — claude-fable-5[1m]). opus is claude-opus-4-8[1m]
+# at the same effort, ≈half fable's per-token cost. Override per-run with
+# `--preset=opus`; `--model` / `--effort` / `--thinking-tokens` override fields.
+# export MIGRATION_MODEL_PRESET=fable
+
+# --- Optional: gate / behavior knobs (env-only) -------------------------
+# Defaults are sensible; uncomment to override per-clone (e.g. a sandbox clone
+# that always skips the visual gate). Full list + effects:
+# docs/migration/ORCHESTRATOR.md §"Environment knobs".
+# export MIGRATION_GATE_HAPPO=skip               # bypass Happo visual gate (sandbox/smoke)
+# export MIGRATION_GATE_CHANGESET=skip           # bypass changeset validation
+# export MIGRATION_GATE_DOCTRINE=skip            # bypass code-doctrine check
+# export MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1   # make Cypress visual diffs gate (default: advisory)
+# export MIGRATION_GATE_HAPPO_CYPRESS=skip       # disable the Cypress visual suite
+
+# --- Optional: Confluence status sync (silently skipped if unset) -------
+# export ATLASSIAN_EMAIL=
+# export ATLASSIAN_API_TOKEN=

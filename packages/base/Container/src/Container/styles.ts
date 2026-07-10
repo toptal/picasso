@@ -1,33 +1,26 @@
-const alignItemsVariants = [
-  'flex-start',
-  'flex-end',
-  'center',
-  'stretch',
-  'baseline',
-] as const
+export type AlignItemsType =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'stretch'
+  | 'baseline'
 
-const justifyContentVariants = [
-  'flex-start',
-  'flex-end',
-  'center',
-  'space-between',
-  'space-around',
-  'space-evenly',
-] as const
+export type JustifyContentType =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
 
-const containerVariants = [
-  'transparent',
-  'red',
-  'green',
-  'white',
-  'yellow',
-  'blue',
-  'grey',
-] as const
-
-export type VariantType = (typeof containerVariants)[number]
-export type AlignItemsType = (typeof alignItemsVariants)[number]
-export type JustifyContentType = (typeof justifyContentVariants)[number]
+export type VariantType =
+  | 'transparent'
+  | 'red'
+  | 'green'
+  | 'white'
+  | 'yellow'
+  | 'blue'
+  | 'grey'
 
 export const alignmentClasses = {
   alignItems: {
