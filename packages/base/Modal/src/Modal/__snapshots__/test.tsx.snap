@@ -179,7 +179,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
       </button>
       <div
         data-base-ui-portal=""
-        id=":r5:"
+        id=":r8:"
       >
         <div
           class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -202,7 +202,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
-          id=":r3:"
+          id=":r6:"
           role="dialog"
           style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
@@ -249,7 +249,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
         tabindex="0"
       />
       <span
-        aria-owns=":r5:"
+        aria-owns=":r8:"
         data-base-ui-inert=""
         style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
       />
@@ -330,7 +330,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       <div
         data-base-ui-inert=""
         data-base-ui-portal=""
-        id=":rg:"
+        id=":rj:"
       >
         <div
           class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -353,7 +353,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
-          id=":rc:"
+          id=":rf:"
           role="dialog"
           style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
@@ -386,7 +386,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         tabindex="0"
       />
       <span
-        aria-owns=":rg:"
+        aria-owns=":rj:"
         data-base-ui-inert=""
         style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
       />
@@ -400,7 +400,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       />
       <div
         data-base-ui-portal=""
-        id=":rh:"
+        id=":rk:"
       >
         <div
           class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -423,7 +423,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
-          id=":re:"
+          id=":rh:"
           role="dialog"
           style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
@@ -456,7 +456,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         tabindex="0"
       />
       <span
-        aria-owns=":rh:"
+        aria-owns=":rk:"
         data-base-ui-inert=""
         style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
       />

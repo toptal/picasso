@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
-import { render, fireEvent } from '@toptal/picasso-test-utils'
+import { render, fireEvent, screen } from '@toptal/picasso-test-utils'
 
 import type { Props } from './Drawer'
 import Drawer from './Drawer'
@@ -14,10 +14,35 @@ const renderDrawer = (props: Partial<Props> = {}, children: ReactNode = null) =>
   )
 
 describe('Drawer', () => {
+  // Regression: Base UI's portal treats an explicit `null` container as
+  // "wait for the container", and the Picasso root ref is not populated yet
+  // on the tree's first render pass — a mount-open Drawer must still appear
   it('renders content when open', () => {
     const { getByTestId } = renderDrawer()
 
     expect(getByTestId('drawer-content')).toHaveTextContent('Drawer body')
+  })
+
+  it('renders content when opened after mount', async () => {
+    const TestComponent = () => {
+      const [open, setOpen] = useState(false)
+
+      useEffect(() => {
+        setOpen(true)
+      }, [])
+
+      return (
+        <Drawer open={open} onClose={jest.fn()}>
+          <span data-testid='drawer-content'>Drawer body</span>
+        </Drawer>
+      )
+    }
+
+    render(<TestComponent />)
+
+    expect(await screen.findByTestId('drawer-content')).toHaveTextContent(
+      'Drawer body'
+    )
   })
 
   it('renders the title when provided', () => {

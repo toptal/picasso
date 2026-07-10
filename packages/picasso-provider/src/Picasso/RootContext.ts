@@ -31,10 +31,24 @@ export const RootContext = React.createContext<RootContextProps>({
   currentBreakpointRange: undefined,
 })
 
-export const usePicassoRoot = () => {
-  const context = useContext(RootContext)
+// State-backed Picasso root node. Kept in a dedicated context (instead of a
+// field on RootContext) so that only `usePicassoRoot` consumers re-render
+// when the node becomes available after the first mount.
+export const PicassoRootNodeContext =
+  React.createContext<HTMLDivElement | null>(null)
 
-  return context && context.rootRef ? context.rootRef.current : null
+export const usePicassoRoot = (): HTMLDivElement | undefined => {
+  const context = useContext(RootContext)
+  const rootNode = useContext(PicassoRootNodeContext)
+
+  // rootNode is state-backed, so components rendered before the root node
+  // mounts (e.g. a Modal open on first mount) re-render once it exists;
+  // rootRef stays as a fallback for providers that only populate the ref.
+  // An unresolved root is `undefined`, NOT `null`: Base UI portals treat an
+  // explicit `null` container as "wait for the container" and render nothing,
+  // while `undefined` falls back to `document.body` — so this hook's result
+  // can be passed to any portal container without per-callsite coercion.
+  return rootNode ?? context?.rootRef?.current ?? undefined
 }
 
 export const usePageTopBar = () => {
