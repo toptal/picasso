@@ -150,6 +150,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
 
     const [triggerParent, setTriggerParent] = useState<HTMLElement | null>(null)
     const [anchorIsMenuItem, setAnchorIsMenuItem] = useState(false)
+    const [triggerMounted, setTriggerMounted] = useState(false)
     const triggerNodeRef = useRef<HTMLElement | null>(null)
 
     const trackTriggerParent = useCallback(
@@ -166,8 +167,18 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     // (e.g. the Dropdown story) commits its Positioner before the trigger ref
     // callback runs, so a bare `triggerNodeRef.current` read would still be null;
     // the state update re-renders once the node is committed.
+    //
+    // `triggerMounted` additionally gates the base-ui Root `open` (below) so a
+    // tooltip that is `open` from its very first render still plays its enter
+    // fade. base-ui's useTransitionStatus initializes `mounted` to `open` and
+    // only enters the `'starting'` phase on a false→true transition, so an
+    // open-at-mount Root never gets `data-starting-style` and the popup pops in
+    // at full opacity. Master (MUI Grow, `appear: true`) faded such tooltips in.
+    // The ref callback's setState flushes before paint, so this adds no visible
+    // delay. [PF-2224]
     const trackAnchorRole = useCallback((node: HTMLElement | null) => {
       setAnchorIsMenuItem(isMenuItemAnchor(node))
+      setTriggerMounted(node !== null)
     }, [])
 
     const setTriggerRef = useMultipleForwardRefs<HTMLElement | null>([
@@ -226,9 +237,15 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         // scroll container and hides it, collapsing the anchor's rect) hides the
         // popup, so it disappears with its anchor instead of stranding at the
         // collision corner; still driven by ancestorScroll, so it works even with
-        // anchor tracking disabled. [PF-2224]
+        // anchor tracking disabled. It MUST be `invisible` (visibility:hidden),
+        // NOT `hidden` (display:none): a `display:none` popup measures 0×0, and
+        // the NEXT position solve then reads that collapsed size and slams the
+        // popup to a garbage coordinate (a visible teleport on open, since the
+        // hide middleware transiently flags anchor-hidden before the Dropdown's
+        // own popper finishes positioning). `visibility:hidden` keeps the rect
+        // measurable so the solve stays correct. [PF-2224]
         disableAnchorTracking={anchorIsMenuItem}
-        className='z-tooltip data-[anchor-hidden]:hidden'
+        className='z-tooltip data-[anchor-hidden]:invisible'
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -260,7 +277,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     return (
       <BaseTooltip.Provider delay={delayDurations[delay]} closeDelay={0}>
         <BaseTooltip.Root
-          open={actualOpen}
+          // `&& triggerMounted` defers an open-at-mount `open` by one
+          // pre-paint commit so base-ui sees a false→true transition and
+          // plays the enter fade (see trackAnchorRole above). Hover/tap opens
+          // always happen with the trigger long mounted, so they're
+          // unaffected. [PF-2224]
+          open={actualOpen && triggerMounted}
           onOpenChange={handleOpenChange}
           onOpenChangeComplete={handleOpenChangeComplete}
           disableHoverablePopup={!interactive}

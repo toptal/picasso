@@ -49,4 +49,14 @@
   IntersectionObserver) and instead settle via a deterministic nudge the
   Dropdown emits when its reveal animation finishes (see the Dropdown
   changeset); every other anchor (Autocomplete options, buttons) keeps full
-  tracking, so nothing that relies on it regresses.
+  tracking, so nothing that relies on it regresses. The clipped-anchor style is
+  `data-[anchor-hidden]:invisible` (visibility), NOT `:hidden` (display): a
+  `display:none` popup measures 0×0 and the next solve then flings it to a
+  garbage coordinate — a visible teleport on open.
+- restore the entrance fade for tooltips that are `open` from their first
+  render (e.g. a controlled `open` tooltip inside a Dropdown): base-ui only
+  plays its enter transition on a false→true open change, so an open-at-mount
+  tooltip previously popped in at full opacity. It now fades/scales in like
+  every other tooltip (and like the MUI `Grow` entrance on the previous build),
+  which also masks the sub-pixel settle of the first position. Hover/focus/tap
+  tooltips are unaffected.
