@@ -20,11 +20,9 @@ const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
 // rows. Pull the popup ~7px closer (gap 7px vs the 14px margin band) so the tip
 // seats ~4px into the option's box, touching the option it describes without
 // sinking into it. Scoped to menu items only — every other anchor keeps the
-// standard gap. Calibrated against the option's SETTLED rect: a Dropdown reveals
-// its menu with a scale-in animation, and a CSS transform taints an anchor's
-// getBoundingClientRect while it plays, so the tooltip's first measurement lands
-// ~4px off; Dropdown re-nudges the tooltip to the true position when that
-// animation finishes (Dropdown.tsx onTransitionEnd). [PF-1994][PF-2224]
+// standard gap. Calibrated against the option's SETTLED rect, which is also the
+// rect the entrance solve positions against (see getSettledAnchorRect below),
+// so the gap is correct from the first paint. [PF-1994][PF-2224]
 const MENU_ITEM_ARROW_GAP = gapPx('0.4375rem') // 7px
 const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 
@@ -34,6 +32,216 @@ const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
 // options render inside a Menu but as `role="option"`).
 export const isMenuItemAnchor = (anchor: Element | null): boolean =>
   anchor?.getAttribute('role') === 'menuitem'
+
+// `getComputedStyle().scale` serializes as 'none' | '<x>' | '<x> <y>'
+// (a '<x> <y> <z>' third component only appears for scale3d, where a
+// non-identity z still implies x/y are worth checking).
+const parseScalePair = (value: string): { x: number; y: number } | null => {
+  if (!value || value === 'none') {
+    return null
+  }
+
+  const parts = value.split(' ')
+  const scaleX = parseFloat(parts[0])
+  const scaleY = parts.length > 1 ? parseFloat(parts[1]) : scaleX
+
+  if (Number.isNaN(scaleX) || Number.isNaN(scaleY)) {
+    return null
+  }
+
+  return { x: scaleX, y: scaleY }
+}
+
+// True while the element is scaled away from identity — via the standalone
+// `scale` property (what Tailwind v4's `scale-*` sets, and what the Dropdown's
+// Paper animates) or via a `transform` whose matrix has non-1 scale components.
+// A pure translate (`matrix(1, 0, 0, 1, x, y)`, e.g. popper.js positioning)
+// is NOT a taint: it moves boxes without distorting them, and
+// getBoundingClientRect reports it faithfully.
+const hasNonIdentityScale = (element: Element): boolean => {
+  const computed = getComputedStyle(element)
+  const scale = parseScalePair(computed.scale)
+
+  if (scale && (scale.x !== 1 || scale.y !== 1)) {
+    return true
+  }
+
+  const { transform } = computed
+
+  if (!transform || transform === 'none') {
+    return false
+  }
+
+  const matrix = transform.match(/^matrix(?:3d)?\(([^)]+)\)$/)
+
+  if (!matrix) {
+    return false
+  }
+
+  const components = matrix[1].split(',').map(Number)
+  // matrix(a, b, c, d, e, f): a/d are the x/y scale components.
+  // matrix3d(m11, …, m44): m11 (index 0) and m22 (index 5) are x/y scale.
+  const [scaleX, scaleY] =
+    components.length === 16
+      ? [components[0], components[5]]
+      : [components[0], components[3]]
+
+  return scaleX !== 1 || scaleY !== 1
+}
+
+const findScaleTaintedAncestor = (element: Element): HTMLElement | null => {
+  let node = element.parentElement
+
+  while (node) {
+    if (hasNonIdentityScale(node)) {
+      return node
+    }
+
+    node = node.parentElement
+  }
+
+  return null
+}
+
+// Accumulates the element's layout offset (border-box origin) relative to
+// `root`'s border-box origin, walking the offsetParent chain.
+// offsetTop/offsetLeft are LAYOUT metrics — CSS transforms never affect them —
+// which is the whole point: the result is the element's position as if every
+// transform between it and `root` were identity. Returns null when `root` is
+// not on the element's offsetParent chain (caller falls back to live rects).
+const getLayoutOffsetWithin = (
+  element: HTMLElement,
+  root: HTMLElement
+): { left: number; top: number } | null => {
+  let left = 0
+  let top = 0
+  let node: HTMLElement = element
+
+  while (node !== root) {
+    left += node.offsetLeft
+    top += node.offsetTop
+
+    const { offsetParent } = node
+
+    if (!(offsetParent instanceof HTMLElement)) {
+      return null
+    }
+
+    // offsetTop/offsetLeft are relative to the offsetParent's padding edge;
+    // clientTop/clientLeft (its border widths) convert to border-box relative.
+    left += offsetParent.clientLeft
+    top += offsetParent.clientTop
+
+    // Scroll positions DO shift the rendered box without changing offsetTop,
+    // so subtract the scroll of every ancestor up to the offsetParent.
+    let scroller = node.parentElement
+
+    while (scroller) {
+      left -= scroller.scrollLeft
+      top -= scroller.scrollTop
+
+      if (scroller === offsetParent) {
+        break
+      }
+
+      scroller = scroller.parentElement
+    }
+
+    node = offsetParent
+  }
+
+  return { left, top }
+}
+
+// The rect shape floating-ui expects from a virtual anchor
+// (its ClientRectObject) — structurally a subset of DOMRect, so the
+// plain-getBoundingClientRect path below satisfies it too.
+export type AnchorRect = {
+  x: number
+  y: number
+  width: number
+  height: number
+  top: number
+  right: number
+  bottom: number
+  left: number
+}
+
+const makeRect = ({
+  left,
+  top,
+  width,
+  height,
+}: {
+  left: number
+  top: number
+  width: number
+  height: number
+}): AnchorRect => ({
+  x: left,
+  y: top,
+  width,
+  height,
+  top,
+  left,
+  right: left + width,
+  bottom: top + height,
+})
+
+// The anchor's viewport rect with any ancestor scale animation factored OUT —
+// i.e. the rect the anchor will occupy once the animation settles.
+//
+// Why: base-ui positions the tooltip on its very first paint, and when the
+// anchor is a Menu.Item inside a Dropdown, that happens WHILE the Dropdown's
+// Paper is still playing its ~200ms scale-in. A mid-scale ancestor taints the
+// anchor's getBoundingClientRect, so the entrance solve lands ~4px off and the
+// tooltip visibly re-positions once the settled geometry is measured. This
+// helper makes the FIRST solve land on the final position instead: it finds the
+// nearest scale-animating ancestor, takes that ancestor's offsetParent (whose
+// own rect is transform-clean — popper.js positions it with a pure translate)
+// as a trustworthy origin, and reconstructs the anchor's rect from pure layout
+// metrics (offsetTop/offsetLeft chain + offsetWidth/offsetHeight), which CSS
+// transforms cannot touch. The result is CONSTANT for the whole animation and
+// exactly equals the settled rect, so there is nothing left to jump.
+// When no ancestor is scaling (the steady state), it returns the live
+// getBoundingClientRect unchanged. [PF-2224]
+export const getSettledAnchorRect = (
+  anchor: HTMLElement | null
+): AnchorRect => {
+  if (!anchor) {
+    return makeRect({ left: 0, top: 0, width: 0, height: 0 })
+  }
+
+  const taintedAncestor = findScaleTaintedAncestor(anchor)
+
+  if (!taintedAncestor) {
+    return anchor.getBoundingClientRect()
+  }
+
+  const { offsetParent: root } = taintedAncestor
+
+  if (!(root instanceof HTMLElement)) {
+    return anchor.getBoundingClientRect()
+  }
+
+  const layoutOffset = getLayoutOffsetWithin(anchor, root)
+
+  if (!layoutOffset) {
+    return anchor.getBoundingClientRect()
+  }
+
+  // Recurse for the root's own origin so a (theoretical) outer scale animation
+  // above the root is factored out the same way; the recursion bottoms out at
+  // the first transform-clean level with a plain getBoundingClientRect.
+  const rootRect = getSettledAnchorRect(root)
+
+  return makeRect({
+    left: rootRect.left + layoutOffset.left,
+    top: rootRect.top + layoutOffset.top,
+    width: anchor.offsetWidth,
+    height: anchor.offsetHeight,
+  })
+}
 
 export const spacingToPxNumber = (spacing: PicassoSpacing): number =>
   fromPx(pxFromRem(spacingToRem(spacing)))

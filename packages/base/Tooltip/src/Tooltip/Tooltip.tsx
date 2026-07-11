@@ -4,7 +4,13 @@ import type {
   ChangeEvent,
   HTMLAttributes,
 } from 'react'
-import React, { forwardRef, useCallback, useRef, useState } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
@@ -15,7 +21,12 @@ import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ContainerValue } from './types'
 import { createArrowClassNames, createPopupClassNames } from './styles'
-import { getPositionerOffsets, isMenuItemAnchor, splitPlacement } from './utils'
+import {
+  getPositionerOffsets,
+  getSettledAnchorRect,
+  isMenuItemAnchor,
+  splitPlacement,
+} from './utils'
 import { useTooltipState } from './use-tooltip-state'
 
 export type DelayType = 'short' | 'long'
@@ -188,6 +199,30 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       trackAnchorRole,
     ])
 
+    // A menu-item anchor sits inside the Dropdown's Paper, which reveals with a
+    // ~200ms scale-in — and a mid-scale ancestor taints the anchor's
+    // getBoundingClientRect, so base-ui's entrance solve would land the popup
+    // ~4px off and it would visibly re-position once the animation settles.
+    // This virtual anchor feeds base-ui the anchor's SETTLED rect instead
+    // (reconstructed from transform-independent layout metrics, see
+    // getSettledAnchorRect), so the first solve already lands on the final
+    // position and nothing moves afterwards. `contextElement` keeps
+    // floating-ui's ancestorScroll/hide plumbing attached to the real anchor
+    // node (autoUpdate and the hide middleware unwrap it), so scroll
+    // re-solving and data-[anchor-hidden] behave exactly as with an element
+    // anchor. Outside the scale animation the virtual rect IS the live
+    // getBoundingClientRect, so steady-state behavior is unchanged. [PF-2224]
+    const settledAnchor = useMemo(
+      () => ({
+        get contextElement() {
+          return triggerNodeRef.current ?? undefined
+        },
+        getBoundingClientRect: () =>
+          getSettledAnchorRect(triggerNodeRef.current),
+      }),
+      []
+    )
+
     const { side, align } = splitPlacement(placement)
     const showArrow = !compact && !followCursor
 
@@ -213,7 +248,13 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     const positioner = (
       <BaseTooltip.Positioner
         ref={tooltipRef}
-        anchor={followCursor ? undefined : triggerNodeRef}
+        anchor={
+          followCursor
+            ? undefined
+            : anchorIsMenuItem
+            ? settledAnchor
+            : triggerNodeRef
+        }
         // `disableAnchorTracking` gates ONLY base-ui's ResizeObserver
         // (elementResize) + layout-shift IntersectionObserver (layoutShift);
         // ancestorScroll stays on. We disable it for menu-item anchors
@@ -223,13 +264,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         // reflow (a web font settling ~1s after paint nudges the option row a
         // pixel), so the tooltip visibly chases it — a jump master's popper.js
         // never had (it re-solved only on scroll/resize, not pure reflows). The
-        // Dropdown doesn't need that tracking: it emits a deterministic
-        // settle-nudge when its scale-in animation ends (Dropdown.tsx
-        // onTransitionEnd → window scroll → ancestorScroll re-solve), which lands
-        // the popup on the option's true post-animation rect and removes the ~4px
-        // taint jump. Autocomplete has no such single settle signal, so it keeps
-        // the observers. A global flag here regressed Autocomplete before; the
-        // fix belongs at the offending container (menu items). [PF-2224]
+        // Dropdown doesn't need that tracking: `settledAnchor` (above) already
+        // positions the popup on the option's true post-animation rect from the
+        // very first solve, so there is no taint drift for the observers to
+        // correct. Autocomplete has no scale-in container but does reflow, so it
+        // keeps the observers. A global flag here regressed Autocomplete before;
+        // the fix belongs at the offending container (menu items). [PF-2224]
         // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
         // opened inside a Dropdown stacks behind the menu. `data-[anchor-hidden]`
         // (base-ui sets it when floating-ui's hide middleware reports the anchor

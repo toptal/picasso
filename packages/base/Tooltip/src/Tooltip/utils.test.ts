@@ -2,6 +2,7 @@ import { SPACING_0 } from '@toptal/picasso-provider'
 
 import {
   getPositionerOffsets,
+  getSettledAnchorRect,
   splitPlacement,
   spacingToPxNumber,
 } from './utils'
@@ -51,6 +52,42 @@ describe('Tooltip utils', () => {
     describe('when given a spacing token', () => {
       it('resolves it to a plain px number', () => {
         expect(spacingToPxNumber(SPACING_0)).toBe(0)
+      })
+    })
+  })
+
+  describe('getSettledAnchorRect', () => {
+    describe('when the anchor is not committed yet', () => {
+      it('returns an empty rect', () => {
+        const rect = getSettledAnchorRect(null)
+
+        expect(rect.width).toBe(0)
+        expect(rect.height).toBe(0)
+      })
+    })
+
+    describe('when no ancestor is scale-animating', () => {
+      it('returns the live getBoundingClientRect unchanged', () => {
+        const anchor = document.createElement('div')
+
+        document.body.appendChild(anchor)
+
+        const liveRect = {
+          x: 10,
+          y: 20,
+          width: 30,
+          height: 40,
+          top: 20,
+          left: 10,
+          right: 40,
+          bottom: 60,
+        } as DOMRect
+
+        jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue(liveRect)
+
+        expect(getSettledAnchorRect(anchor)).toBe(liveRect)
+
+        anchor.remove()
       })
     })
   })

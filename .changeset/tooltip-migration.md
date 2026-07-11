@@ -44,15 +44,21 @@
   jitter the old popper.js build never had), and no longer strands at the
   viewport corner when the Dropdown scrolls its menu out of a scroll container —
   the popup now hides with its anchor (`data-[anchor-hidden]`) instead of
-  re-anchoring to the collapsed rect. Mechanism: menu-item tooltips disable
+  re-anchoring to the collapsed rect, and no longer visibly re-positions once the
+  Dropdown's reveal animation finishes. Mechanism: menu-item tooltips disable
   base-ui's anchor-tracking observers (ResizeObserver + layout-shift
-  IntersectionObserver) and instead settle via a deterministic nudge the
-  Dropdown emits when its reveal animation finishes (see the Dropdown
-  changeset); every other anchor (Autocomplete options, buttons) keeps full
-  tracking, so nothing that relies on it regresses. The clipped-anchor style is
-  `data-[anchor-hidden]:invisible` (visibility), NOT `:hidden` (display): a
-  `display:none` popup measures 0×0 and the next solve then flings it to a
-  garbage coordinate — a visible teleport on open.
+  IntersectionObserver) so they never chase a late reflow, and anchor to a
+  virtual element that reports the option's SETTLED rect (reconstructed from
+  transform-independent layout metrics) instead of its live, mid-animation
+  getBoundingClientRect — so the very first solve already lands on the final
+  position and nothing moves afterward (base-ui positions a frame after mount,
+  unlike master's synchronous popper.js, so without this the entrance solve
+  measured the still-scaling menu). Every other anchor (Autocomplete options,
+  buttons) keeps full tracking against the live rect, so nothing that relies on
+  it regresses. The clipped-anchor style is `data-[anchor-hidden]:invisible`
+  (visibility), NOT `:hidden` (display): a `display:none` popup measures 0×0 and
+  the next solve then flings it to a garbage coordinate — a visible teleport on
+  open.
 - restore the entrance fade for tooltips that are `open` from their first
   render (e.g. a controlled `open` tooltip inside a Dropdown): base-ui only
   plays its enter transition on a false→true open change, so an open-at-mount
