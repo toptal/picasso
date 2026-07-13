@@ -1,5 +1,4 @@
-// The trailing `!` beats PicassoRootNode's app-wide `[&_*]:font-sans` (which has
-// equal specificity), so the code editor keeps its monospace font — matching the
-// pre-migration cascade where JSS injection order let this win.
+// PicassoRootNode's subtree font default is zero-specificity (`:where(.root) *`),
+// so this ordinary (0,1,0) monospace rule wins naturally — no `!important` needed.
 export const root =
-  'w-full [&_*]:font-[Monaco,Menlo,Ubuntu_Mono,Consolas,source-code-pro,monospace]!'
+  'w-full [&_*]:font-[Monaco,Menlo,Ubuntu_Mono,Consolas,source-code-pro,monospace]'

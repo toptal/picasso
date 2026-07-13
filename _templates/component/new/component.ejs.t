@@ -4,22 +4,34 @@ to: packages/<%= package %>/src/<%= h.changeCase.pascalCase(name) %>/<%= h.chang
 <%
   Name = h.changeCase.pascalCase(name)
 -%>
+import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { BaseProps } from '@toptal/picasso-shared'
-import styles from './styles'
+import { createRootClassNames } from './styles'
 
 export interface Props extends BaseProps {
+  /** Content of the component */
+  children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles)
+export const <%= Name %> = forwardRef<HTMLDivElement, Props>(
+  function <%= Name %>(props, ref) {
+    const { className, style, children, ...rest } = props
 
-export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(props, ref) {
-  const classes = useStyles()
-
-  return null
-})
+    return (
+      <div
+        {...rest}
+        ref={ref}
+        className={twMerge(...createRootClassNames(), className)}
+        style={style}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 <%= Name %>.displayName = '<%= Name %>'
 
