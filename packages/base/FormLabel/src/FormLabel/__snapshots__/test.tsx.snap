@@ -3,7 +3,7 @@
 exports[`FormLabel disabled 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <form
       class=""
@@ -30,7 +30,7 @@ exports[`FormLabel disabled 1`] = `
 exports[`FormLabel renders 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <form
       class=""
@@ -57,7 +57,7 @@ exports[`FormLabel renders 1`] = `
 exports[`FormLabel required with (optional) 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <form
       class=""
@@ -85,7 +85,7 @@ exports[`FormLabel required with (optional) 1`] = `
 exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <form
       class=""
@@ -116,7 +116,7 @@ exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] =
 exports[`FormLabel required with asterisk 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <form
       class=""

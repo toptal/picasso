@@ -3,7 +3,7 @@
 exports[`Radio Radio.Group renders radio in a grid group 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="flex flex-col flex-wrap"
@@ -219,7 +219,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
 exports[`Radio Radio.Group renders radio in group 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="flex flex-col flex-wrap"
@@ -303,7 +303,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
 exports[`Radio disabled radio button renders disabled version 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in pointer-events cursor-default opacity-[0.48]"
@@ -328,7 +328,7 @@ exports[`Radio disabled radio button renders disabled version 1`] = `
 exports[`Radio radio button renders default radio button 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer"

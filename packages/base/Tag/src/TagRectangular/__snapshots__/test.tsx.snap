@@ -3,7 +3,7 @@
 exports[`TagRectangular renders rectangular Tag 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-lg transition-none rounded-sm font-semibold h-4 inline-flex content-center justify-center align-middle bg-gray"

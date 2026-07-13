@@ -3,7 +3,7 @@
 exports[`Alert renders 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="bg-yellow border border-solid border-yellow gap-4 p-4 justify-between rounded-md flex"

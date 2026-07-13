@@ -14,6 +14,7 @@ Planning docs: `docs/modernization/`
 - AI leverage spec (orchestrator design): `PI-4318-ai-leverage-tickets.md`
 
 Active migration tooling: `docs/migration/`
+
 - Orchestrator runbook: `docs/migration/ORCHESTRATOR.md`
 - Operational migration plan: `docs/migration/migration-plan.md`
 - Run: `pnpm orchestrate --component=<Name>` (or `--tier=N`, `--dry-run`, `--no-merge`, `--review-sweep`, `--cleanup`)
@@ -34,9 +35,10 @@ When reasoning about Picasso component APIs, code style, or reviewer expectation
 - `docs/contribution/pr_jobs.md` — `@toptal-bot` manual CI re-run commands. Graduated into `references/code-standards.md §"Manual CI override via @toptal-bot"`.
 - `docs/contribution/packages-architecture.md` — 4-layer tsconfig + Storybook webpack alias hierarchy. Graduated into `references/code-standards.md §"Build + Storybook tsconfig hierarchy"`.
 - `docs/contribution/accessibility.md` — Storybook a11y addon workflow (Violations / Passes / Incompletions tabs). Graduated into `references/practices.md §Accessibility validation`.
+- `docs/contribution/styling.md` — contributor-facing Tailwind styling patterns (worked examples of the `styles.ts` `string[]` + `twMerge`/`cx` + `data-[…]:` conventions). `AGENTS.md §Styling` stays canonical; this doc defers to it.
 - `docs/contribution/unit-testing.md` and `docs/contribution/creating-examples.md` — test and story conventions.
 - `docs/contribution/new-component-creation.md` — `pnpm generate:component` scaffolding tool (auto-creates folder, story, styles, test per code-standards.md structure).
-- **LEGACY — do NOT use as canonical**: `docs/contribution/css-naming.md` describes MUI v4 + JSS conventions (`root` + `rootFull`/`rootShrink` for variants, `classes` prop pattern). These predate the Tailwind migration. For migrated components, use `references/code-standards.md §Tailwind class composition` instead. The migration agent's `practices.md §"css-naming.md is LEGACY — do not follow"` enforces this.
+- **REMOVED (post-canary hygiene, 2026-07-13)**: `docs/contribution/css-naming.md` + `docs/contribution/jss-onboarding.md` — MUI v4 + JSS conventions predating the Tailwind migration, deleted with the PF-2221 cutover. Their contributor-facing replacement is `docs/contribution/styling.md`; for the rule set use `AGENTS.md §Styling` / `references/code-standards.md §Tailwind class composition`. If an older doc or memory still links the deleted files, fix the pointer (see `practices.md §"css-naming.md is REMOVED"`).
 
 `docs/migration/references/lessons-learned.md` is now **AUDIT-ONLY** — auto-appended after each successful migration, but NOT in the agent's contextPack. Promoted patterns graduate to `practices.md` (manual pass, ~every 5–10 migrations).
 
@@ -83,12 +85,13 @@ The gate's Happo stage (`bin/lib/happo-verify.ts`) is the authoritative visual c
 
 **Cypress-Happo verification (2026-06-10).** The gate now verifies the `Picasso/Cypress` project too, not just `Picasso/Storybook`. After the Cypress stage uploads (keyed to HEAD via `HAPPO_CURRENT_SHA`), the gate runs `happo-verify.ts` against `HAPPO_CYPRESS_PROJECT_ID` (848) → `happo-verify-cypress.json`; the orchestrator re-fetches Cypress diff PNGs into `happo-diffs/*-cypress/` so the agent can fix them, and folds both suites into stuck-detection (`readHappoFailureKey`) + the small-residual classifier (`classifyResidualHappoDiff`). **Advisory by default** (surfaced, non-blocking); `MIGRATION_GATE_HAPPO_CYPRESS_STRICT=1` makes Cypress diffs gate, `MIGRATION_GATE_HAPPO_CYPRESS=skip` disables. Cypress compares against **master** and runs only the migrated component's own spec, so the local diff set is clean/component-scoped — cross-spec regressions stay a CI-only signal. Detail: `docs/migration/ORCHESTRATOR.md §"Cypress visual verification"`.
 
-**Auto-PR on a small residual diff (instead of dead-ending).** When the migrate loop gets stuck ONLY on Happo (all functional gates — build/tsc/lint/jest/consumers/cypress — green) and every residual diff is *small*, the orchestrator opens a ready PR in `awaiting_review` (label `needs-visual-signoff` + a 🟡 comment) instead of hard-escalating to a dirty worktree. `--review-sweep` + a reviewer then finish it (often just a Happo **accept**). Larger visual breakage still escalates. "Small" = every diff pair is `negligible`, a `dimension_mismatch` ≤ 2px/axis, or ≤ 1% changed area (measured via `bin/lib/happo-pixel-diff.ts`). Knobs: `MIGRATION_HAPPO_AUTOPR=off` (disable), `MIGRATION_HAPPO_AUTOPR_MAX_DIM_DELTA` (default `2`), `MIGRATION_HAPPO_AUTOPR_MAX_AREA_FRACTION` (default `0.01`). Impl: the migrate-loop stuck branch in `bin/lib/orchestrator-core.ts` (`classifyResidualHappoDiff`).
+**Auto-PR on a small residual diff (instead of dead-ending).** When the migrate loop gets stuck ONLY on Happo (all functional gates — build/tsc/lint/jest/consumers/cypress — green) and every residual diff is _small_, the orchestrator opens a ready PR in `awaiting_review` (label `needs-visual-signoff` + a 🟡 comment) instead of hard-escalating to a dirty worktree. `--review-sweep` + a reviewer then finish it (often just a Happo **accept**). Larger visual breakage still escalates. "Small" = every diff pair is `negligible`, a `dimension_mismatch` ≤ 2px/axis, or ≤ 1% changed area (measured via `bin/lib/happo-pixel-diff.ts`). Knobs: `MIGRATION_HAPPO_AUTOPR=off` (disable), `MIGRATION_HAPPO_AUTOPR_MAX_DIM_DELTA` (default `2`), `MIGRATION_HAPPO_AUTOPR_MAX_AREA_FRACTION` (default `0.01`). Impl: the migrate-loop stuck branch in `bin/lib/orchestrator-core.ts` (`classifyResidualHappoDiff`).
 
-**Approved-delta override (operator-gated INTENTIONAL exit).** A *deliberate*, designer-approved visual change can clear the gate: list the exact Happo snapshot IDs under a `## Approved visual deltas` heading in `docs/migration/components/<Component>.md`, and `happo-verify.ts` waives those snapshots from the PASS/FAIL decision (per-snapshot — any *unlisted* diff still fails). This finally implements the exit the docs + prompts have long promised (`references/happo-iteration.md §"Exit criterion"`) but the verifier didn't honor.
+**Approved-delta override (operator-gated INTENTIONAL exit).** A _deliberate_, designer-approved visual change can clear the gate: list the exact Happo snapshot IDs under a `## Approved visual deltas` heading in `docs/migration/components/<Component>.md`, and `happo-verify.ts` waives those snapshots from the PASS/FAIL decision (per-snapshot — any _unlisted_ diff still fails). This finally implements the exit the docs + prompts have long promised (`references/happo-iteration.md §"Exit criterion"`) but the verifier didn't honor.
+
 - **Operator-gated by base-branch provenance:** the file is read from the **base branch** (`git show <base>:docs/migration/components/<C>.md`), NOT the worktree — so a delta the agent adds in its PR worktree is ignored. To approve, land the entry on the integration branch (`feature/picasso-modernization-temp`). Commits carry no `--author` override, so base-branch provenance is the trust anchor (matches the "plan files are orchestrator-owned, don't hand-edit from the worktree" governance in `PROMPT-review-response.md`).
 - **Format:** snapshot IDs are `<Component>/<variant>/<target>` (e.g. `Checkbox/Disabled/chrome-desktop`) — copy them from the gate's `diffSnapshots` in `happo-verify.json`. Put them under the heading in a `happo-approved` fenced code block, or as inline `backtick` IDs; entries are intersected with the actual diff set, so stale/typo'd IDs are silently ignored. Waivers are logged to `happo.log` and surfaced as `approvedDiffs` / `waivedSnapshots` in `happo-verify.json`.
-- This is the *operator* INTENTIONAL channel; **agent self-classification stays forbidden** (`happo-iteration.md §"INTENTIONAL is effectively forbidden"` — the agent has been wrong, e.g. Slider #4955). With the auto-PR path above, the agent no longer needs to self-classify to avoid a dead-end.
+- This is the _operator_ INTENTIONAL channel; **agent self-classification stays forbidden** (`happo-iteration.md §"INTENTIONAL is effectively forbidden"` — the agent has been wrong, e.g. Slider #4955). With the auto-PR path above, the agent no longer needs to self-classify to avoid a dead-end.
 
 ## `classes` prop handling per tier (locked 2026-05-11)
 
@@ -104,6 +107,7 @@ Cross-tier audit (`docs/migration/decisions/classes-audit.md`) measured each of 
 - **Tier 3.b** (Dropdown, OutlinedInput): **KEEP locally narrowed `classes?: { ... }`** (Dropdown: `{ popper, content }`; OutlinedInput: `{ input, root }`). Real external consumers depend on these slots — Dropdown 2 callsites, OutlinedInput 4 callsites.
 
 **Agents migrating any component MUST verify per-component** before applying:
+
 1. Read the source — confirm StandardProps extension / local narrowing / body reads of `classes`.
 2. Multiline rg internal callsites.
 3. Cross-reference with audit §3/§4/§5.

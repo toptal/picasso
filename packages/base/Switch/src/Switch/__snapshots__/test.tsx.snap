@@ -49,7 +49,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
 exports[`Switch renders default Switch without label 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip"
