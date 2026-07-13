@@ -210,8 +210,12 @@ Canonical scale (from `@toptal/picasso-shared`):
 
 ```ts
 export type Sizes =
-  | 'xxsmall' | 'xsmall' | 'small'
-  | 'medium' | 'large' | 'xlarge'
+  | 'xxsmall'
+  | 'xsmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge'
 
 export type SizeType<T extends Sizes> = T
 ```
@@ -419,7 +423,10 @@ Notification (`Notification.tsx:19-40`) uses an internal/public split: `PrivateP
 
 ```tsx
 // Component.tsx
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button(props, ref) {
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
+  props,
+  ref
+) {
   // ...
 })
 Button.displayName = 'Button'
@@ -445,7 +452,9 @@ export type { Props as ButtonProps } from './Button'
 forwardRef<HTMLButtonElement, Props>(function Button(
   { disabled = false, variant = 'primary', size = 'medium', ...rest },
   ref
-) { /* ... */ })
+) {
+  /* ... */
+})
 ```
 
 > Documented variance: `Dropdown.tsx` exposes `defaultProps?: Partial<PropsWithBaseSpacing>` in its Props type for overload support — that's a type-level field name, not the runtime anti-pattern. Single-component carve-out; do NOT model new code on it.
@@ -485,13 +494,13 @@ interface Props extends BaseProps {
 
 #### Where to import what
 
-| Symbol | Source |
-|---|---|
-| `StandardProps`, `BaseProps`, `TextLabelProps`, `SizeType`, `OverridableComponent`, `useIsomorphicLayoutEffect` | `@toptal/picasso-shared` |
-| `render` (test wrapper), `fireEvent`, test types | `@toptal/picasso-test-utils` |
-| `noop`, `usePageScrollLock`, ref utilities | `@toptal/picasso-utils` |
-| `twMerge`, `twJoin` | `@toptal/picasso-tailwind-merge` |
-| `cx` | `classnames` |
+| Symbol                                                                                                          | Source                           |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| `StandardProps`, `BaseProps`, `TextLabelProps`, `SizeType`, `OverridableComponent`, `useIsomorphicLayoutEffect` | `@toptal/picasso-shared`         |
+| `render` (test wrapper), `fireEvent`, test types                                                                | `@toptal/picasso-test-utils`     |
+| `noop`, `usePageScrollLock`, ref utilities                                                                      | `@toptal/picasso-utils`          |
+| `twMerge`, `twJoin`                                                                                             | `@toptal/picasso-tailwind-merge` |
+| `cx`                                                                                                            | `classnames`                     |
 
 `withClasses` from `@toptal/picasso-utils` is **deprecated** — do not introduce new usages.
 
@@ -521,8 +530,15 @@ export { default as Modal, type ModalProps } from './Modal'
 
 ```ts
 // packages/picasso/src/index.ts
-export { ButtonCompound as Button, ButtonCircular } from '@toptal/picasso-button'
-export type { ButtonProps, ButtonCheckboxProps, ButtonRadioProps } from '@toptal/picasso-button'
+export {
+  ButtonCompound as Button,
+  ButtonCircular,
+} from '@toptal/picasso-button'
+export type {
+  ButtonProps,
+  ButtonCheckboxProps,
+  ButtonRadioProps,
+} from '@toptal/picasso-button'
 ```
 
 (source: `code-standards.md §"Re-export pattern"`)
@@ -532,6 +548,7 @@ export type { ButtonProps, ButtonCheckboxProps, ButtonRadioProps } from '@toptal
 - Location: `<Component>/story/<Domain>.example.tsx`. NEVER a central `stories.ts` index.
 - One example per file. Filename in PascalCase, matches the story title kebab-cased in URLs.
 - Story registration in `story/index.jsx` via the PicassoBook API. Canonical chain — see `docs/contribution/creating-examples.md` for the full method surface:
+
   ```js
   import PicassoBook from '@toptal/picasso-book'
 
@@ -542,9 +559,10 @@ export type { ButtonProps, ButtonCheckboxProps, ButtonRadioProps } from '@toptal
     .addExample('Button/story/Primary.example.tsx', 'Primary')
     .addExample('Button/story/Ghost.example.tsx', {
       title: 'Ghost',
-      screenshotBreakpoints: true,    // responsive component → all breakpoints
+      screenshotBreakpoints: true, // responsive component → all breakpoints
     })
   ```
+
 - `.example.tsx` files exempt from SSR rules, multi-comp rule, and a number of `@typescript-eslint` rules.
 
 (source: `code-standards.md §"*.example.tsx story files"` + `docs/contribution/creating-examples.md`)
@@ -588,7 +606,9 @@ const Switch = (props: Props) => {
     <BaseUISwitch.Root
       {...rest}
       checked={checked ?? false}
-      onCheckedChange={(c, { event }) => onChange?.(toReactChangeEvent(event), c)}
+      onCheckedChange={(c, { event }) =>
+        onChange?.(toReactChangeEvent(event), c)
+      }
     />
   )
 }
@@ -608,19 +628,19 @@ const Switch = (props: Props) => {
 
 Base UI ships **behavior, accessibility, and composition** — not styles. Every primitive renders with no className, no inline style, no opinion about appearance. The kit author owns every styling decision.
 
-Every primitive is split into named **parts** (`Menu.Root`, `Menu.Trigger`, `Menu.Portal`, `Menu.Positioner`, `Menu.Popup`, `Menu.Item`). Style each part *directly*. There is no top-level `slots`/`slotProps`/`classes` indirection.
+Every primitive is split into named **parts** (`Menu.Root`, `Menu.Trigger`, `Menu.Portal`, `Menu.Positioner`, `Menu.Popup`, `Menu.Item`). Style each part _directly_. There is no top-level `slots`/`slotProps`/`classes` indirection.
 
 ### The five mechanisms · **RULE**
 
 Every styling and override decision reduces to combinations of these five. Internalize them once.
 
-| Mechanism | What it controls | Reach for it when |
-| --- | --- | --- |
-| **1. `className` prop** | Classes on the DOM node | Always — every styling decision starts here |
-| **2. `render` prop** | DOM tag and wrapper component | Replacing the element, integrating with `<Link>`, framer-motion, custom kit components |
-| **3. `data-*` state attributes** | State-driven styling without React subscriptions | Hover, open, checked, disabled, side-positioning, animation phases |
-| **4. CSS variables (`--var`)** | Values Base UI computes (positions, sizes, transform origins) | Position-anchored animation, popup sizing, geometry-driven layout |
-| **5. `style` prop (static or function-of-state)** | Inline styles | Last resort — computed values that cannot be expressed as classes |
+| Mechanism                                         | What it controls                                              | Reach for it when                                                                      |
+| ------------------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **1. `className` prop**                           | Classes on the DOM node                                       | Always — every styling decision starts here                                            |
+| **2. `render` prop**                              | DOM tag and wrapper component                                 | Replacing the element, integrating with `<Link>`, framer-motion, custom kit components |
+| **3. `data-*` state attributes**                  | State-driven styling without React subscriptions              | Hover, open, checked, disabled, side-positioning, animation phases                     |
+| **4. CSS variables (`--var`)**                    | Values Base UI computes (positions, sizes, transform origins) | Position-anchored animation, popup sizing, geometry-driven layout                      |
+| **5. `style` prop (static or function-of-state)** | Inline styles                                                 | Last resort — computed values that cannot be expressed as classes                      |
 
 Every part exposes the consistent signature:
 
@@ -643,9 +663,9 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 twMerge(
   'px-4 text-sm',
-  isLarge && 'px-6 text-base',         // conditional via && — works directly
+  isLarge && 'px-6 text-base', // conditional via && — works directly
   variant === 'primary' ? 'bg-blue-500' : 'bg-transparent',
-  className                            // consumer override LAST
+  className // consumer override LAST
 )
 ```
 
@@ -676,10 +696,10 @@ export function CheckboxRoot({ className, ...props }: Checkbox.Root.Props) {
           // state
           'data-[checked]:bg-neutral-900 data-[checked]:text-white',
           // focus
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900',
+          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900'
         ),
         // consumer override wins (rightmost in twMerge)
-        className,
+        className
       )}
       {...props}
     />
@@ -701,11 +721,11 @@ Every part exposing state accepts a function form:
 
 ```tsx
 <Switch.Thumb
-  className={(state) =>
+  className={state =>
     twMerge(
       'block size-4 rounded-full transition-transform',
       state.checked ? 'translate-x-4 bg-white' : 'translate-x-0 bg-neutral-300',
-      state.disabled && 'opacity-50',
+      state.disabled && 'opacity-50'
     )
   }
 />
@@ -719,11 +739,16 @@ Prefer the function form **only when data-attribute variants are awkward** — u
 
 ```ts
 // styles.ts
-export function createSizeClassNames(size: 'small' | 'medium' | 'large'): string[] {
+export function createSizeClassNames(
+  size: 'small' | 'medium' | 'large'
+): string[] {
   switch (size) {
-    case 'small':  return ['text-button-small',  'px-3', 'h-8']
-    case 'medium': return ['text-button-medium', 'px-4', 'h-10']
-    case 'large':  return ['text-button-large',  'px-6', 'h-12']
+    case 'small':
+      return ['text-button-small', 'px-3', 'h-8']
+    case 'medium':
+      return ['text-button-medium', 'px-4', 'h-10']
+    case 'large':
+      return ['text-button-large', 'px-6', 'h-12']
   }
 }
 ```
@@ -764,7 +789,7 @@ TypeScript exhaustiveness on the discriminated union catches missed variants at 
 ### `render` prop — compose with a custom component · **RULE**
 
 ```tsx
-<Menu.Trigger render={<MyButton size="md" />}>Open menu</Menu.Trigger>
+<Menu.Trigger render={<MyButton size='md' />}>Open menu</Menu.Trigger>
 ```
 
 `MyButton` is a normal component. Base UI calls it with `<MyButton {...injectedProps} size="md">Open menu</MyButton>` and expects `MyButton` to spread `injectedProps` onto its root DOM element. This is how you reuse the kit's `Button` as the trigger for a `Menu`, `Dialog`, or `Popover` without duplicating styling.
@@ -790,11 +815,13 @@ When your props collide with Base UI's injected ones (notably event handlers and
 ```tsx
 import { mergeProps } from '@base-ui/react/merge-props'
 
-<Switch.Thumb
+;<Switch.Thumb
   render={(props, state) => (
     <span
       {...mergeProps<'span'>(props, {
-        className: twMerge(cx('size-4 rounded-full', state.checked && 'bg-white')),
+        className: twMerge(
+          cx('size-4 rounded-full', state.checked && 'bg-white')
+        ),
         onClick: () => console.log('clicked'),
       })}
     />
@@ -826,7 +853,8 @@ interface ButtonProps extends useRender.ComponentProps<'button'> {}
 export function Button({ render, ...props }: ButtonProps) {
   const defaultProps: useRender.ElementProps<'button'> = {
     type: 'button',
-    className: 'inline-flex h-10 items-center rounded-md bg-gray-50 px-3.5 hover:bg-gray-100',
+    className:
+      'inline-flex h-10 items-center rounded-md bg-gray-50 px-3.5 hover:bg-gray-100',
   }
 
   return useRender({
@@ -852,26 +880,26 @@ Base UI exposes every meaningful piece of state as a `data-*` attribute on the D
 
 #### Vocabulary (non-exhaustive)
 
-| Attribute | Components | Meaning |
-| --- | --- | --- |
-| `data-checked` / `data-unchecked` | Checkbox, Switch, Radio, Menu.RadioItem | Toggle / selection state |
-| `data-disabled` | All interactive parts | Disabled state |
-| `data-readonly` | Field, NumberField | Read-only field |
-| `data-required` | Field | Required field |
-| `data-valid` / `data-invalid` | Field children | Validation state (inside `Field.Root`) |
-| `data-dirty` / `data-touched` / `data-filled` / `data-focused` | Field children | Form interaction state |
-| `data-open` / `data-closed` | Dialog, Popover, Menu, Select, Tooltip, Drawer, Accordion, Collapsible | Visibility |
-| `data-popup-open` | Menu.Trigger, Select.Trigger, Popover.Trigger, NavigationMenu.Trigger | Whether the associated popup is open |
-| `data-highlighted` | Menu.Item, Select.Item, Combobox.Item | Keyboard / pointer highlight |
-| `data-selected` | Select.Item, Tabs.Tab | Selection state |
-| `data-side` (`top`/`right`/`bottom`/`left`/`none`) | Popover, Menu, Tooltip popups + arrows | Computed popup side |
-| `data-align` (`start`/`center`/`end`) | Positioner, Arrow | Alignment relative to anchor |
-| `data-orientation` (`horizontal`/`vertical`) | Slider, Tabs, Toolbar, Separator, Accordion | Layout direction |
-| `data-starting-style` | Animatable popups, toasts | Present for one frame on enter |
-| `data-ending-style` | Same | Present during exit |
-| `data-instant` | Animated parts | Animation should skip |
-| `data-activation-direction` | NavigationMenu | Direction of last activation |
-| `data-dragging` | Slider.Thumb | User is dragging |
+| Attribute                                                      | Components                                                             | Meaning                                |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------- |
+| `data-checked` / `data-unchecked`                              | Checkbox, Switch, Radio, Menu.RadioItem                                | Toggle / selection state               |
+| `data-disabled`                                                | All interactive parts                                                  | Disabled state                         |
+| `data-readonly`                                                | Field, NumberField                                                     | Read-only field                        |
+| `data-required`                                                | Field                                                                  | Required field                         |
+| `data-valid` / `data-invalid`                                  | Field children                                                         | Validation state (inside `Field.Root`) |
+| `data-dirty` / `data-touched` / `data-filled` / `data-focused` | Field children                                                         | Form interaction state                 |
+| `data-open` / `data-closed`                                    | Dialog, Popover, Menu, Select, Tooltip, Drawer, Accordion, Collapsible | Visibility                             |
+| `data-popup-open`                                              | Menu.Trigger, Select.Trigger, Popover.Trigger, NavigationMenu.Trigger  | Whether the associated popup is open   |
+| `data-highlighted`                                             | Menu.Item, Select.Item, Combobox.Item                                  | Keyboard / pointer highlight           |
+| `data-selected`                                                | Select.Item, Tabs.Tab                                                  | Selection state                        |
+| `data-side` (`top`/`right`/`bottom`/`left`/`none`)             | Popover, Menu, Tooltip popups + arrows                                 | Computed popup side                    |
+| `data-align` (`start`/`center`/`end`)                          | Positioner, Arrow                                                      | Alignment relative to anchor           |
+| `data-orientation` (`horizontal`/`vertical`)                   | Slider, Tabs, Toolbar, Separator, Accordion                            | Layout direction                       |
+| `data-starting-style`                                          | Animatable popups, toasts                                              | Present for one frame on enter         |
+| `data-ending-style`                                            | Same                                                                   | Present during exit                    |
+| `data-instant`                                                 | Animated parts                                                         | Animation should skip                  |
+| `data-activation-direction`                                    | NavigationMenu                                                         | Direction of last activation           |
+| `data-dragging`                                                | Slider.Thumb                                                           | User is dragging                       |
 
 Each component's reference page (`base-ui.com/react/components/<name>`) lists the complete table — always cross-reference before assuming.
 
@@ -879,11 +907,11 @@ Each component's reference page (`base-ui.com/react/components/<name>`) lists th
 
 ```tsx
 <Menu.Item
-  className="
+  className='
     flex cursor-default items-center gap-2 px-3 py-2 text-sm
     data-[highlighted]:bg-neutral-900 data-[highlighted]:text-white
     data-[disabled]:opacity-50 data-[disabled]:pointer-events-none
-  "
+  '
 >
   Add to library
 </Menu.Item>
@@ -893,20 +921,20 @@ For attributes with values, bracketed variants:
 
 ```tsx
 <Tooltip.Arrow
-  className="
+  className='
     data-[side=top]:bottom-[-6px]    data-[side=top]:rotate-180
     data-[side=bottom]:top-[-6px]
     data-[side=left]:right-[-9px]    data-[side=left]:rotate-90
     data-[side=right]:left-[-9px]    data-[side=right]:-rotate-90
-  "
+  '
 />
 ```
 
 When the state lives on a **parent** part, use `group-data-[…]:`:
 
 ```tsx
-<Select.Popup className="group …">
-  <Select.Item className="… group-data-[side=none]:min-w-[calc(var(--anchor-width)+1rem)]" />
+<Select.Popup className='group …'>
+  <Select.Item className='… group-data-[side=none]:min-w-[calc(var(--anchor-width)+1rem)]' />
 </Select.Popup>
 ```
 
@@ -916,15 +944,15 @@ When the state lives on a **parent** part, use `group-data-[…]:`:
 
 ### CSS variables Base UI exposes · **Preferred**
 
-| Variable | On part | Use |
-| --- | --- | --- |
-| `--transform-origin` | Popover/Menu/Select/Tooltip `Popup` | `transform-origin` so scale-in/out anchors to the trigger |
-| `--available-width` / `--available-height` | Positioner / Popup | Maximum size without colliding with viewport edge |
-| `--anchor-width` / `--anchor-height` | Same | Trigger size — useful for `min-width: var(--anchor-width)` |
-| `--positioner-width` / `--positioner-height` | Positioner | Fixed positioner dimensions |
-| `--active-tab-{left,right,top,bottom,width,height}` | Tabs.Indicator | Active-tab geometry for animated indicators |
-| `--scroll-area-overflow-y-{start,end}` | ScrollArea.Viewport | Top/bottom overflow for fade masks |
-| `--drawer-swipe-progress`, `--drawer-swipe-movement-{x,y}` | Drawer | Live swipe state |
+| Variable                                                   | On part                             | Use                                                        |
+| ---------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------- |
+| `--transform-origin`                                       | Popover/Menu/Select/Tooltip `Popup` | `transform-origin` so scale-in/out anchors to the trigger  |
+| `--available-width` / `--available-height`                 | Positioner / Popup                  | Maximum size without colliding with viewport edge          |
+| `--anchor-width` / `--anchor-height`                       | Same                                | Trigger size — useful for `min-width: var(--anchor-width)` |
+| `--positioner-width` / `--positioner-height`               | Positioner                          | Fixed positioner dimensions                                |
+| `--active-tab-{left,right,top,bottom,width,height}`        | Tabs.Indicator                      | Active-tab geometry for animated indicators                |
+| `--scroll-area-overflow-y-{start,end}`                     | ScrollArea.Viewport                 | Top/bottom overflow for fade masks                         |
+| `--drawer-swipe-progress`, `--drawer-swipe-movement-{x,y}` | Drawer                              | Live swipe state                                           |
 
 Consume from Tailwind arbitrary values:
 
@@ -943,12 +971,12 @@ Base UI sets `data-starting-style` for one frame at the start of an enter transi
 
 ```tsx
 <Popover.Popup
-  className="
+  className='
     origin-[var(--transform-origin)]
     transition-[transform,opacity] duration-150
     data-[starting-style]:scale-90 data-[starting-style]:opacity-0
     data-[ending-style]:scale-90   data-[ending-style]:opacity-0
-  "
+  '
 />
 ```
 
@@ -962,12 +990,14 @@ Picasso's external polymorphic prop is `as` (per R11). Internally, wrappers tran
 
 ```tsx
 // Consumer-facing: as prop (unchanged Picasso API)
-<Button as="a" href="/dashboard">Go</Button>
+;<Button as='a' href='/dashboard'>
+  Go
+</Button>
 
 // Wrapper internally translates to Base UI's render mechanism
 export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
   { as, ...rest },
-  ref,
+  ref
 ) {
   return (
     <BaseButton.Root
@@ -1062,15 +1092,15 @@ Two ladders, both reviewer-enforced — don't conflate. **Override-preference** 
 
 Pick the lowest rung; PRs that skip rungs get blocked.
 
-| Rung | Mechanism | When |
-| --- | --- | --- |
-| **-1** | **Don't override** (check FIRST) | Restructure DOM to Base UI's native parts, OR accept Base UI's geometry as an approved sub-pixel improvement. |
-| 1 | `className` + `data-[…]:` variants | State-driven styling with a documented data attribute. |
-| 2 | `className` function-of-state | Value depends on multiple state combos (rare). |
-| 3 | `render` prop + `mergeProps` filtering | Change element type, compose, or strip/filter Base UI's injected `style`. |
-| 4 | `useRender` + `mergeProps` | Build a primitive exposing its own `render`. |
-| 5 | inline `style` on the part | Last resort: rung 3 impractical AND not class-expressible AND rung -1 doesn't apply. |
-| ⊘ | `!important` | NEVER — you skipped a rung. |
+| Rung   | Mechanism                              | When                                                                                                          |
+| ------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **-1** | **Don't override** (check FIRST)       | Restructure DOM to Base UI's native parts, OR accept Base UI's geometry as an approved sub-pixel improvement. |
+| 1      | `className` + `data-[…]:` variants     | State-driven styling with a documented data attribute.                                                        |
+| 2      | `className` function-of-state          | Value depends on multiple state combos (rare).                                                                |
+| 3      | `render` prop + `mergeProps` filtering | Change element type, compose, or strip/filter Base UI's injected `style`.                                     |
+| 4      | `useRender` + `mergeProps`             | Build a primitive exposing its own `render`.                                                                  |
+| 5      | inline `style` on the part             | Last resort: rung 3 impractical AND not class-expressible AND rung -1 doesn't apply.                          |
+| ⊘      | `!important`                           | NEVER — you skipped a rung.                                                                                   |
 
 Rung 3 beats rung 5 (cleaner, removable, composes). Full doctrine + worked Slider example: `base-ui-styling.md §7.1`.
 
@@ -1101,7 +1131,7 @@ Always check `tokens/picasso-tailwind-tokens.md` first. **Only as a last resort*
 
 ### Use Tailwind for all styling · **RULE**
 
-No `.css`/`.scss`/`.module.css`; no JSS (`makeStyles`/`createStyles`/`withStyles`/`&$selector` parent-refs); no inline `style` for static values (inline `style` only for runtime-computed numbers, e.g. `style={{ width: size * 4 }}`). Anything CSS-shaped is Tailwind classes (or `string[]` helpers). Existing JSS components (Tier 2 Radio, Tier 3 Page, charts/RTE) are migration targets, not pattern sources. (`docs/contribution/css-naming.md` is **LEGACY** — see `CLAUDE.md` / `practices.md §"css-naming.md is LEGACY"`.)
+No `.css`/`.scss`/`.module.css`; no JSS (`makeStyles`/`createStyles`/`withStyles`/`&$selector` parent-refs); no inline `style` for static values (inline `style` only for runtime-computed numbers, e.g. `style={{ width: size * 4 }}`). Anything CSS-shaped is Tailwind classes (or `string[]` helpers). Existing JSS components (Tier 2 Radio, Tier 3 Page, charts/RTE) are migration targets, not pattern sources. (The legacy `docs/contribution/css-naming.md` was **REMOVED** in the post-canary hygiene sweep — see `practices.md §"css-naming.md is REMOVED"`.)
 
 (source: `rules/styling.md §"What to avoid"`)
 
@@ -1134,15 +1164,15 @@ Pattern table for translating common JSS shapes into Picasso Tailwind. Use along
 
 MUI's `theme.spacing(N)` returns `N * 8px`. **Always verify the px value** before picking a Picasso token — Picasso tokens are 4px-based.
 
-| JSS                          | px    | Picasso Tailwind |
-|---|---|---|
-| `padding: spacing(1)`        | 8px   | `p-2`  |
-| `padding: spacing(2)`        | 16px  | `p-4`  |
-| `padding: spacing(3)`        | 24px  | `p-6`  |
-| `padding: spacing(4)`        | 32px  | `p-8`  |
-| `marginLeft: spacing(0.5)`   | 4px   | `ml-1` |
-| `marginLeft: '1rem'`         | 16px  | `ml-4` |
-| `marginRight: '0.5rem'`      | 8px   | `mr-2` |
+| JSS                        | px   | Picasso Tailwind |
+| -------------------------- | ---- | ---------------- |
+| `padding: spacing(1)`      | 8px  | `p-2`            |
+| `padding: spacing(2)`      | 16px | `p-4`            |
+| `padding: spacing(3)`      | 24px | `p-6`            |
+| `padding: spacing(4)`      | 32px | `p-8`            |
+| `marginLeft: spacing(0.5)` | 4px  | `ml-1`           |
+| `marginLeft: '1rem'`       | 16px | `ml-4`           |
+| `marginRight: '0.5rem'`    | 8px  | `mr-2`           |
 
 ### Color
 
@@ -1156,14 +1186,14 @@ When translating a JSS color expression:
 
 ### Hover / focus / disabled
 
-| JSS                                       | Picasso Tailwind |
-|---|---|
-| `'&:hover': { backgroundColor: ... }`     | `hover:bg-...` |
-| `'&:focus': { outline: ... }`             | `focus:outline-...` |
-| `'&:focus-visible': { ... }`              | `focus-visible:...` |
-| `'&:disabled': { opacity: 0.5 }`          | `disabled:opacity-50` |
-| `'&[disabled]': { ... }`                  | `disabled:...` |
-| `'&:not(:last-child)': { marginRight }`   | `[&:not(:last-child)]:mr-4` (arbitrary variant) |
+| JSS                                     | Picasso Tailwind                                |
+| --------------------------------------- | ----------------------------------------------- |
+| `'&:hover': { backgroundColor: ... }`   | `hover:bg-...`                                  |
+| `'&:focus': { outline: ... }`           | `focus:outline-...`                             |
+| `'&:focus-visible': { ... }`            | `focus-visible:...`                             |
+| `'&:disabled': { opacity: 0.5 }`        | `disabled:opacity-50`                           |
+| `'&[disabled]': { ... }`                | `disabled:...`                                  |
+| `'&:not(:last-child)': { marginRight }` | `[&:not(:last-child)]:mr-4` (arbitrary variant) |
 
 ### Parent-refs
 
@@ -1174,9 +1204,9 @@ The big one. JSS allows `&$expanded` to mean "this element when the parent has t
 const useStyles = makeStyles(() => ({
   panel: {
     marginTop: 0,
-    '&$expanded': { marginTop: 16 }
+    '&$expanded': { marginTop: 16 },
   },
-  expanded: {}
+  expanded: {},
 }))
 
 // Tailwind (do)
@@ -1189,92 +1219,92 @@ Or, when the state belongs on a parent and the styling on a child, use `data-*` 
 
 ```tsx
 <Accordion data-state={expanded ? 'open' : 'closed'}>
-  <Panel className="data-[state=open]:mt-4" />
+  <Panel className='data-[state=open]:mt-4' />
 </Accordion>
 ```
 
 ### Pseudo-elements
 
-| JSS                                     | Picasso Tailwind |
-|---|---|
-| `'&::before': { content: '""' }`        | `before:content-['']` |
-| `'&::after': { ... }`                   | `after:...` |
-| `'&::placeholder': { color: ... }`      | `placeholder:text-...` |
+| JSS                                | Picasso Tailwind       |
+| ---------------------------------- | ---------------------- |
+| `'&::before': { content: '""' }`   | `before:content-['']`  |
+| `'&::after': { ... }`              | `after:...`            |
+| `'&::placeholder': { color: ... }` | `placeholder:text-...` |
 
 ### Responsive
 
-| JSS                                                  | Picasso Tailwind |
-|---|---|
-| `[theme.breakpoints.up('md')]: { display: 'flex' }` | `md:flex` |
+| JSS                                                 | Picasso Tailwind                                    |
+| --------------------------------------------------- | --------------------------------------------------- |
+| `[theme.breakpoints.up('md')]: { display: 'flex' }` | `md:flex`                                           |
 | `[theme.breakpoints.down('sm')]: { ... }`           | `max-sm:...` (or invert: write the default for ≥sm) |
-| `[theme.breakpoints.between('md', 'lg')]: { ... }`  | `md:max-lg:...` |
+| `[theme.breakpoints.between('md', 'lg')]: { ... }`  | `md:max-lg:...`                                     |
 
 ### Transitions
 
-| JSS                                                   | Picasso Tailwind |
-|---|---|
-| `transition: 'all 150ms ease-in-out'`                 | `transition duration-150 ease-in-out` |
+| JSS                                                       | Picasso Tailwind                                                     |
+| --------------------------------------------------------- | -------------------------------------------------------------------- |
+| `transition: 'all 150ms ease-in-out'`                     | `transition duration-150 ease-in-out`                                |
 | `transition: 'transform 200ms cubic-bezier(0.4,0,0.2,1)'` | `transition-transform duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]` |
-| `transitionDuration: '350ms'`                         | `duration-350` (Picasso token) |
+| `transitionDuration: '350ms'`                             | `duration-350` (Picasso token)                                       |
 
 ### Shadows
 
-| JSS                          | Picasso Tailwind |
-|---|---|
-| `boxShadow: shadows[1]`      | `shadow-1` (notification, paper) |
-| `boxShadow: shadows[2]`      | `shadow-2` (modal) |
-| `boxShadow: shadows[4]`      | `shadow-4` (tooltip) |
-| `boxShadow: 'none'`          | `shadow-0` |
-| `boxShadow: shadows[6..24]`  | `shadow-6` … `shadow-24` (legacy MUI parity; do not introduce new uses) |
+| JSS                         | Picasso Tailwind                                                        |
+| --------------------------- | ----------------------------------------------------------------------- |
+| `boxShadow: shadows[1]`     | `shadow-1` (notification, paper)                                        |
+| `boxShadow: shadows[2]`     | `shadow-2` (modal)                                                      |
+| `boxShadow: shadows[4]`     | `shadow-4` (tooltip)                                                    |
+| `boxShadow: 'none'`         | `shadow-0`                                                              |
+| `boxShadow: shadows[6..24]` | `shadow-6` … `shadow-24` (legacy MUI parity; do not introduce new uses) |
 
 ### Z-index
 
-| JSS                              | Picasso Tailwind |
-|---|---|
-| `zIndex: zIndex.drawer`          | `z-drawer` (1200) |
-| `zIndex: zIndex.modal`           | `z-modal` (1300) |
-| `zIndex: zIndex.snackbar`        | `z-snackbar` (1400) |
+| JSS                       | Picasso Tailwind    |
+| ------------------------- | ------------------- |
+| `zIndex: zIndex.drawer`   | `z-drawer` (1200)   |
+| `zIndex: zIndex.modal`    | `z-modal` (1300)    |
+| `zIndex: zIndex.snackbar` | `z-snackbar` (1400) |
 
 ### Border radius
 
-| JSS                          | Picasso Tailwind |
-|---|---|
-| `borderRadius: 0`            | `rounded-none` |
-| `borderRadius: 4`            | `rounded-sm` |
-| `borderRadius: 8`            | `rounded-md` |
-| `borderRadius: '50%'`        | `rounded-full` |
+| JSS                   | Picasso Tailwind |
+| --------------------- | ---------------- |
+| `borderRadius: 0`     | `rounded-none`   |
+| `borderRadius: 4`     | `rounded-sm`     |
+| `borderRadius: 8`     | `rounded-md`     |
+| `borderRadius: '50%'` | `rounded-full`   |
 
 ### Font
 
-| JSS                                             | Picasso Tailwind |
-|---|---|
-| `fontFamily: '"proxima-nova", Arial, sans-serif'` | `font-sans` |
-| `fontWeight: 600`                                | `font-semibold` |
-| `fontWeight: 400`                                | `font-regular` |
-| `fontSize: '0.875rem'` + `lineHeight: '1.375rem'` | `text-md` |
-| `fontSize: '1rem'` + `lineHeight: '1.5rem'`      | `text-lg` |
+| JSS                                               | Picasso Tailwind |
+| ------------------------------------------------- | ---------------- |
+| `fontFamily: '"proxima-nova", Arial, sans-serif'` | `font-sans`      |
+| `fontWeight: 600`                                 | `font-semibold`  |
+| `fontWeight: 400`                                 | `font-regular`   |
+| `fontSize: '0.875rem'` + `lineHeight: '1.375rem'` | `text-md`        |
+| `fontSize: '1rem'` + `lineHeight: '1.5rem'`       | `text-lg`        |
 
 ### Layout
 
-| JSS                                       | Picasso Tailwind |
-|---|---|
-| `display: 'flex'`                         | `flex` |
-| `display: 'inline-flex'`                  | `inline-flex` |
-| `flexDirection: 'column'`                 | `flex-col` |
-| `alignItems: 'center'`                    | `items-center` |
-| `justifyContent: 'space-between'`         | `justify-between` |
-| `position: 'absolute'`                    | `absolute` |
-| `inset: 0`                                | `inset-0` |
-| `width: '100%'`                           | `w-full` |
-| `width: '18.75rem'`                       | `w-input` (Picasso semantic token) |
+| JSS                               | Picasso Tailwind                   |
+| --------------------------------- | ---------------------------------- |
+| `display: 'flex'`                 | `flex`                             |
+| `display: 'inline-flex'`          | `inline-flex`                      |
+| `flexDirection: 'column'`         | `flex-col`                         |
+| `alignItems: 'center'`            | `items-center`                     |
+| `justifyContent: 'space-between'` | `justify-between`                  |
+| `position: 'absolute'`            | `absolute`                         |
+| `inset: 0`                        | `inset-0`                          |
+| `width: '100%'`                   | `w-full`                           |
+| `width: '18.75rem'`               | `w-input` (Picasso semantic token) |
 
 ### Dynamic values
 
-| JSS                                          | Picasso Tailwind |
-|---|---|
-| `width: ${size * 4}px`                       | `style={{ width: size * 4 }}` (numeric runtime) |
-| `width: ${size}px` where size ∈ {120,160,200} | `w-[120px]` / `w-[160px]` / `w-[200px]` (purgeable) |
-| `transform: rotate(${angle}deg)`             | `style={{ transform: \`rotate(${angle}deg)\` }}` |
+| JSS                                             | Picasso Tailwind                                            |
+| ----------------------------------------------- | ----------------------------------------------------------- |
+| `width: ${size * 4}px`                          | `style={{ width: size * 4 }}` (numeric runtime)             |
+| `width: ${size}px` where size ∈ {120,160,200}   | `w-[120px]` / `w-[160px]` / `w-[200px]` (purgeable)         |
+| `transform: rotate(${angle}deg)`                | `style={{ transform: \`rotate(${angle}deg)\` }}`            |
 | `gridTemplateColumns: \`repeat(${cols}, 1fr)\`` | `style={{ gridTemplateColumns: \`repeat(${cols}, 1fr)\` }}` |
 
 ### Worked example 1: JSS parent-ref selector → data-attribute selector
@@ -1322,14 +1352,18 @@ export const createRootClassNames = (expanded: boolean): string[] => [
 **Before (JSS with dynamic selector)**:
 
 ```ts
-const styles = (theme) => createStyles({
-  root: ({ variant, disabled }) => ({
-    backgroundColor: variant === 'primary'
-      ? (disabled ? theme.palette.grey[400] : theme.palette.primary.main)
-      : 'transparent',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-  }),
-})
+const styles = theme =>
+  createStyles({
+    root: ({ variant, disabled }) => ({
+      backgroundColor:
+        variant === 'primary'
+          ? disabled
+            ? theme.palette.grey[400]
+            : theme.palette.primary.main
+          : 'transparent',
+      cursor: disabled ? 'not-allowed' : 'pointer',
+    }),
+  })
 ```
 
 **After (Tailwind conditional array)**:
@@ -1363,8 +1397,8 @@ export const createVariantClassNames = (
 ```ts
 const styles = createStyles({
   root: {
-    backgroundColor: '#4269D6',  // some specific Picasso brand variant
-    borderRadius: '6px',         // non-token, picked by designer
+    backgroundColor: '#4269D6', // some specific Picasso brand variant
+    borderRadius: '6px', // non-token, picked by designer
   },
 })
 ```
@@ -1374,8 +1408,8 @@ const styles = createStyles({
 ```tsx
 // styles.ts
 export const createRootClassNames = (): string[] => [
-  'bg-[#4269D6]',     // TODO(tokens): brand-blue-variant — designer can confirm canonical name
-  'rounded-[6px]',    // TODO(tokens): 6px isn't on the 4px scale; verify if intentional or rounded-md (4px) acceptable
+  'bg-[#4269D6]', // TODO(tokens): brand-blue-variant — designer can confirm canonical name
+  'rounded-[6px]', // TODO(tokens): 6px isn't on the 4px scale; verify if intentional or rounded-md (4px) acceptable
 ]
 ```
 
@@ -1386,17 +1420,18 @@ export const createRootClassNames = (): string[] => [
 **Before (JSS pseudo with state guard)**:
 
 ```ts
-const styles = (theme) => createStyles({
-  root: {
-    backgroundColor: theme.palette.primary.main,
-    '&:hover:not(:disabled)': {
-      backgroundColor: theme.palette.primary.dark,
+const styles = theme =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.primary.main,
+      '&:hover:not(:disabled)': {
+        backgroundColor: theme.palette.primary.dark,
+      },
+      '&:focus-visible': {
+        outline: `2px solid ${theme.palette.primary.main}`,
+      },
     },
-    '&:focus-visible': {
-      outline: `2px solid ${theme.palette.primary.main}`,
-    },
-  },
-})
+  })
 ```
 
 **After (Tailwind state modifiers)**:
@@ -1404,9 +1439,9 @@ const styles = (theme) => createStyles({
 ```tsx
 // styles.ts
 export const createInteractiveClassNames = (): string[] => [
-  'bg-blue-500',                            // primary.main
-  'hover:enabled:bg-blue-600',              // primary.dark on hover, but only when not disabled
-  'focus-visible:outline-2',                // 2px outline
+  'bg-blue-500', // primary.main
+  'hover:enabled:bg-blue-600', // primary.dark on hover, but only when not disabled
+  'focus-visible:outline-2', // 2px outline
   'focus-visible:outline-blue-500',
 ]
 ```
@@ -1418,19 +1453,20 @@ export const createInteractiveClassNames = (): string[] => [
 **Before (JSS spacing helpers)**:
 
 ```ts
-const styles = (theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    '& > * + *': {
-      marginTop: theme.spacing(2),  // 16px between children
+const styles = theme =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      '& > * + *': {
+        marginTop: theme.spacing(2), // 16px between children
+      },
     },
-  },
-  inline: {
-    display: 'flex',
-    gap: theme.spacing(1),  // 8px between flex items
-  },
-})
+    inline: {
+      display: 'flex',
+      gap: theme.spacing(1), // 8px between flex items
+    },
+  })
 ```
 
 **After (Tailwind space-/gap-)**:
@@ -1440,12 +1476,12 @@ const styles = (theme) => createStyles({
 export const createStackClassNames = (): string[] => [
   'flex',
   'flex-col',
-  'space-y-4',  // theme.spacing(2) = 16px → space-y-4 (4 × 4 = 16)
+  'space-y-4', // theme.spacing(2) = 16px → space-y-4 (4 × 4 = 16)
 ]
 
 export const createInlineClassNames = (): string[] => [
   'flex',
-  'gap-2',      // theme.spacing(1) = 8px → gap-2 (2 × 4 = 8)
+  'gap-2', // theme.spacing(1) = 8px → gap-2 (2 × 4 = 8)
 ]
 ```
 
@@ -1467,15 +1503,15 @@ export const createInlineClassNames = (): string[] => [
 
 All enforced repo-wide via root `.eslintrc.js`:
 
-| Rule | Severity | What it enforces |
-|---|---|---|
-| `local-rules/future-proof-deprecation-warning` | warn | Deprecation comments preceded by warnings. |
-| `todo-plz/ticket-ref` | warn | TODO/FIXME/@deprecated must reference Jira `[ABC-1234]` or URL. |
-| `@toptal/davinci/no-package-self-imports` | **error** | Sub-packages MUST NOT import from aggregate `@toptal/picasso`. |
-| `no-restricted-imports` (useLayoutEffect) | **error** | `useLayoutEffect` from React is forbidden — use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared` (SSR-safe). |
-| `ssr-friendly/no-dom-globals-in-*` | warn (source); off (examples/tests) | No `window`, `document` in module scope, constructor, or render. |
-| `@typescript-eslint/no-explicit-any` | error (source); off (tests) | No `any` in component source. |
-| `react/no-multi-comp` | off in `.example.tsx` only | Multiple components per file are allowed only in stories. |
+| Rule                                           | Severity                            | What it enforces                                                                                                      |
+| ---------------------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `local-rules/future-proof-deprecation-warning` | warn                                | Deprecation comments preceded by warnings.                                                                            |
+| `todo-plz/ticket-ref`                          | warn                                | TODO/FIXME/@deprecated must reference Jira `[ABC-1234]` or URL.                                                       |
+| `@toptal/davinci/no-package-self-imports`      | **error**                           | Sub-packages MUST NOT import from aggregate `@toptal/picasso`.                                                        |
+| `no-restricted-imports` (useLayoutEffect)      | **error**                           | `useLayoutEffect` from React is forbidden — use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared` (SSR-safe). |
+| `ssr-friendly/no-dom-globals-in-*`             | warn (source); off (examples/tests) | No `window`, `document` in module scope, constructor, or render.                                                      |
+| `@typescript-eslint/no-explicit-any`           | error (source); off (tests)         | No `any` in component source.                                                                                         |
+| `react/no-multi-comp`                          | off in `.example.tsx` only          | Multiple components per file are allowed only in stories.                                                             |
 
 When editing **orchestrator code** (`bin/lib/*.ts`), additional ESLint rules trip in CI's "Static checks" — see `CLAUDE.md` §"Code style for orchestrator". That's operator-facing, not Picasso component code.
 
@@ -1494,7 +1530,9 @@ Instead of `useLayoutEffect`. Count of `useLayoutEffect` in source: 0 — fully 
 ```ts
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
-useIsomorphicLayoutEffect(() => { /* ... */ }, [deps])
+useIsomorphicLayoutEffect(() => {
+  /* ... */
+}, [deps])
 ```
 
 (source: `code-standards.md §"SSR safety"`)
@@ -1515,8 +1553,12 @@ No `window`, `document` in module scope, constructor, or render — only inside 
 
 ```ts
 describe('Button', () => {
-  describe('when loading is true', () => { /* ... */ })
-  describe('when disabled', () => { /* ... */ })
+  describe('when loading is true', () => {
+    /* ... */
+  })
+  describe('when disabled', () => {
+    /* ... */
+  })
 })
 ```
 
@@ -1530,7 +1572,11 @@ A local function that wraps `render()` from `@toptal/picasso-test-utils`, presel
 
 ```tsx
 const renderButton = (props: Partial<OmitInternalProps<Props>> = {}) =>
-  render(<Button {...defaultProps} {...props}>Click</Button>)
+  render(
+    <Button {...defaultProps} {...props}>
+      Click
+    </Button>
+  )
 ```
 
 (source: `code-standards.md §"Test conventions"`)
@@ -1572,12 +1618,10 @@ Set `screenshotBreakpoints: true` on the example registration in `<Component>/st
 
 ```ts
 const page = PicassoBook.section('Component').createPage('FooComponent')
-page
-  .createChapter()
-  .addExample('Foo/story/Default.example.tsx', {
-    title: 'Default',
-    screenshotBreakpoints: true,
-  })
+page.createChapter().addExample('Foo/story/Default.example.tsx', {
+  title: 'Default',
+  screenshotBreakpoints: true,
+})
 ```
 
 #### Pattern 2: Cypress component test (interaction needed before screenshot)
@@ -1686,7 +1730,7 @@ grep '@base-ui/react' pnpm-lock.yaml
 
 ### peer-vs-dev split for build-time deps · **RULE**
 
-If a runtime dep is used at compile time (e.g. `withClasses` consuming `@toptal/picasso-tailwind-merge`), the package needs it as a **`devDependency`** for its own `tsc -b` resolution, not just as a `peerDependency` — peerDeps are only seen by *consumers* of the package, not by the package's own build.
+If a runtime dep is used at compile time (e.g. `withClasses` consuming `@toptal/picasso-tailwind-merge`), the package needs it as a **`devDependency`** for its own `tsc -b` resolution, not just as a `peerDependency` — peerDeps are only seen by _consumers_ of the package, not by the package's own build.
 
 (source: `rules/package-and-build.md §"peer-vs-dev split"`)
 
@@ -1714,12 +1758,12 @@ When dropping a workspace dependency from `package.json` (e.g. removing the Back
 
 Picasso has 4 build-config layers; touching one usually requires updating the others:
 
-| File | Purpose |
-|---|---|
-| `packages/<pkg>/tsconfig.build.json` | Used by `tsc -b` during package build for publishing. `paths` reference other Picasso packages. |
-| `/tsconfig.json` (root) | Dev-time IDE resolution + base config for per-package extends. `paths` are also used by Storybook to resolve cross-package imports in code examples. |
-| `/.storybook/tsconfig.json` | Storybook build inclusion (Storybook-only files). |
-| `/.storybook/webpack.config.js` `alias` | Required for cross-package import resolution at Storybook build time (works in combination with root `tsconfig.json` `paths`). |
+| File                                    | Purpose                                                                                                                                              |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/<pkg>/tsconfig.build.json`    | Used by `tsc -b` during package build for publishing. `paths` reference other Picasso packages.                                                      |
+| `/tsconfig.json` (root)                 | Dev-time IDE resolution + base config for per-package extends. `paths` are also used by Storybook to resolve cross-package imports in code examples. |
+| `/.storybook/tsconfig.json`             | Storybook build inclusion (Storybook-only files).                                                                                                    |
+| `/.storybook/webpack.config.js` `alias` | Required for cross-package import resolution at Storybook build time (works in combination with root `tsconfig.json` `paths`).                       |
 
 **Migration impact**: when you drop a workspace dep from `package.json`, ALSO remove the matching `references` entry from `packages/<pkg>/tsconfig.json` (Drawer iter 2 precedent — `tsc -b` failed Build job despite `pnpm install` succeeding).
 
@@ -1752,6 +1796,7 @@ Apply the taxonomy above to whatever the PR actually changes. No bump tier is re
 - **`patch`** is correct for a pure library swap (`@mui/base` → `@base-ui/react` or `@material-ui/core` → `@base-ui/react`) when the public Props API is identical, types match, and behavioral parity is verified by snapshot + Happo + unit tests. The CI gates (Jest, Lint, Visual Tests) are the contract that "no consumer-visible change" actually holds.
 
   **Rationale for why a library swap alone does NOT force major:**
+
   - `@mui/base`, `@material-ui/core`, `@mui/*` are Picasso `dependencies`, NOT `peerDependencies`. Consumers do not have them in their `package.json`. Swapping them is invisible at the consumer dep tree.
   - The `react: < 19.0.0` peer cap lift is not a major-trigger on its own — widening a peer range is not a breaking change for any existing consumer (they continue to resolve the React version they already use). Tightening a range is breaking; widening is not.
   - Behavioral parity is verified by CI gates; we don't preemptively `major` on the chance of a regression. If a regression slips, that's a `patch` followup fix.
@@ -1782,10 +1827,11 @@ For `@deprecated` props with `_unused` destructure: name them and the planned re
 
 ```markdown
 ---
-'@toptal/picasso-<name>': patch  # or minor / major — pick per the taxonomy above
+'@toptal/picasso-<name>': patch # or minor / major — pick per the taxonomy above
 ---
 
 ### <ComponentName>
+
 - what changed in one sentence (e.g., "Re-implement on `@base-ui/react`; public API unchanged.")
 - IF minor: the new prop / value / behavior added
 - IF major: the specific breaking surface (named prop removed, default flipped, etc.) — required
@@ -1818,13 +1864,13 @@ Authoritative source: `docs/contribution/github-workflow.md:14-20` and `docs/con
 
 Every PR push runs these jobs automatically (~4 min total):
 
-| Job | What it checks |
-|---|---|
-| **Danger** | Commit conventions (capital-letter start, imperative mood, no trailing period, ≤79 chars). Re-runs when PR title changes. |
-| **Jest Test** | Unit-test snapshots (not visual tests). |
-| **Lint** | ESLint repo-wide. |
-| **Visual Tests** | Happo visual regression (see §16). |
-| **Deploy docs** | Live Storybook preview for the PR branch. |
+| Job              | What it checks                                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Danger**       | Commit conventions (capital-letter start, imperative mood, no trailing period, ≤79 chars). Re-runs when PR title changes. |
+| **Jest Test**    | Unit-test snapshots (not visual tests).                                                                                   |
+| **Lint**         | ESLint repo-wide.                                                                                                         |
+| **Visual Tests** | Happo visual regression (see §16).                                                                                        |
+| **Deploy docs**  | Live Storybook preview for the PR branch.                                                                                 |
 
 (source: `code-standards.md §"CI job pipeline"`)
 
@@ -1864,10 +1910,10 @@ INTENTIONAL deltas are allowed **only** when an "Approved visual deltas" section
 
 ### Two complementary visual tools · **Convention**
 
-| Tool | Strength | Use it for |
-|---|---|---|
-| **Playwright MCP** | Fast feedback, interactive (hover/click/focus/keyboard), surfaces console errors + accessibility tree + runtime warnings | Live iteration during development. Catch obvious regressions FAST before the slower Happo cycle. |
-| **Happo** | Authoritative pixel-diff against persisted baselines, designer-approval workflow, parallel browser/viewport coverage, CI-gating | Final regression authority. Even if Playwright says "looks fine to me", Happo is the source of truth — must be green (or all diffs marked intentional with operator approval). |
+| Tool               | Strength                                                                                                                        | Use it for                                                                                                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Playwright MCP** | Fast feedback, interactive (hover/click/focus/keyboard), surfaces console errors + accessibility tree + runtime warnings        | Live iteration during development. Catch obvious regressions FAST before the slower Happo cycle.                                                                               |
+| **Happo**          | Authoritative pixel-diff against persisted baselines, designer-approval workflow, parallel browser/viewport coverage, CI-gating | Final regression authority. Even if Playwright says "looks fine to me", Happo is the source of truth — must be green (or all diffs marked intentional with operator approval). |
 
 Playwright is the **fast iteration tool**. Happo is the **authoritative gate**.
 
@@ -1888,11 +1934,11 @@ Verification happens on `http://localhost:9001` (worktree-local Storybook) vs `h
 
 Every Happo diff falls into one of three classes:
 
-| Class | Definition | Action |
-|---|---|---|
-| **REGRESSION** | DEFAULT for any non-zero pixel diff on a story whose `component` field matches the migration target | Fix in source. Iterate Tailwind/CSS until local matches baseline byte-for-byte. |
-| **UNRELATED FLAKE** | The diff's `component` field does NOT match the migration target | Document briefly, do not fix. Happo's flakes resolve on re-run. |
-| **INTENTIONAL** | Pre-approved design-led change with operator authorization | Allowed ONLY if `docs/migration/components/<Component>.md` has an "Approved visual deltas" section enumerating the specific delta. |
+| Class               | Definition                                                                                          | Action                                                                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **REGRESSION**      | DEFAULT for any non-zero pixel diff on a story whose `component` field matches the migration target | Fix in source. Iterate Tailwind/CSS until local matches baseline byte-for-byte.                                                    |
+| **UNRELATED FLAKE** | The diff's `component` field does NOT match the migration target                                    | Document briefly, do not fix. Happo's flakes resolve on re-run.                                                                    |
+| **INTENTIONAL**     | Pre-approved design-led change with operator authorization                                          | Allowed ONLY if `docs/migration/components/<Component>.md` has an "Approved visual deltas" section enumerating the specific delta. |
 
 (source: `happo-iteration.md §"Classification matrix"`)
 
@@ -1924,6 +1970,7 @@ For example: `slider/thumb/SliderThumb.js`, `tooltip/popup/TooltipPopup.js`. Loo
 jsdom (jest test env) does NOT serialize the `translate:` / `rotate:` / `scale:` CSS properties into the `style=""` attribute. So a Jest snapshot showing `style="position: absolute; inset-inline-start: X%; top: 50%"` (no translate) does NOT prove the library doesn't center — Chrome (Happo / Playwright) renders it differently.
 
 Use either:
+
 - (a) the library source itself, or
 - (b) the Playwright/picasso.toptal.net screenshot comparison,
 
@@ -1946,6 +1993,7 @@ When Happo shows a positional shift (~2-5 px) on a migrated component, **stop gu
 Reviewers can ask for `computed-styles-baseline.json` + `computed-styles-local.json` as evidence of diagnosis before accepting a fix. Stalemate is forbidden until ≥ 2 fix attempts have targeted properties from the computed-style diff (Slider PR #4955 burned 5 iterations skipping this).
 
 Common `@base-ui/react` compensations:
+
 - New `data-*` attribute on slot → add `[data-attr]:<style>` selector replicating prior visual.
 - Mirror old `:focus-visible` under `data-[focused]:`.
 - Adjust geometry via `gap`/`p-*`/`m-*` when wrapper elements shift.
@@ -1965,7 +2013,7 @@ Common `@base-ui/react` compensations:
 
 ```tsx
 <BaseUIButton
-  className="data-[focused]:outline-2 data-[focused]:outline-offset-2 data-[focused]:outline-blue-500"
+  className='data-[focused]:outline-2 data-[focused]:outline-offset-2 data-[focused]:outline-blue-500'
   // (was: "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500")
 />
 ```
@@ -1987,7 +2035,7 @@ Common `@base-ui/react` compensations:
 **Fix**: adjust `gap`, `p-*`, or `m-*` on the new wrapper so geometry stays identical to the old DOM:
 
 ```tsx
-<Drawer.Popup className="-m-1 p-1">{children}</Drawer.Popup>
+<Drawer.Popup className='-m-1 p-1'>{children}</Drawer.Popup>
 // Negative outer margin compensates the new wrapper's intrinsic border.
 ```
 
@@ -2010,7 +2058,7 @@ Every migration PR (and most large feature PRs) opens with this shape, each sect
 
 - <Decision 1>: <what you chose> because <why>. <cite rule/decision doc if one applies>
 - <Decision 2>: ...
-(2-4 bullets focused on choices a reviewer would otherwise ask about: classes-shim path, behavioral parity shims, patches applied to vendor deps, JSS-to-Tailwind compromises.)
+  (2-4 bullets focused on choices a reviewer would otherwise ask about: classes-shim path, behavioral parity shims, patches applied to vendor deps, JSS-to-Tailwind compromises.)
 
 ## Limitations / Out-of-scope
 
@@ -2131,16 +2179,16 @@ If the audit contradicts the source state → STOP, update the audit doc, don't 
 
 #### Decision matrix
 
-| Tier | Component(s) | Action |
-|---|---|---|
-| **Tier 0** | Button, Backdrop, Badge, Drawer, Slider, Switch, Tabs | `extends Omit<StandardProps, 'classes'>` + destructure `classes: _classes` runtime backstop. `classes` was broken since the @mui/base step; 0 internal/external real usage. Reference: PR #4947 Button.tsx + ButtonBase.tsx. |
-| **Tier 0 — Modal** | Modal | Re-verify. External consumers use `<Modal classes={{ closeButton }}>` per audit §6/§9 — may need Tier 3.b treatment (keep narrowed) instead of standard Tier 0 drop. |
-| **Tier 1 vestigial** | Container, Typography, Notification | Drop via `Omit<StandardProps, 'classes'>` + runtime backstop. Audit-verified vestigial (0 internal, 0 external). Bundle into Tier 1 cleanup PR. |
-| **Tier 1 — FormControlLabel** | FormControlLabel | KEEP locally narrowed `classes?: { root?, label? }`. Used internally by Switch/Radio/Checkbox. |
-| **Tier 1 no `classes` API** | FormLabel, Grid, Form, Note, Menu, FormLayout, ModalContext, Utils | No-op. |
-| **Tier 2** | Checkbox, Radio, Tooltip, FileInput, Popper | `Omit` drop public. Internal MUI plumbing rewrites with the `@base-ui/react` migration. Audit-verified 0 external real usage. |
-| **Tier 3.a** | Accordion, Page | `Omit` drop public. Rewrite internal slot-routing on `@base-ui/react` parts. |
-| **Tier 3.b** | Dropdown, OutlinedInput | **KEEP locally narrowed `classes?: { ... }`** (Dropdown: `{ popper, content }`; OutlinedInput: `{ input, root }`). Real external consumers depend on these slots — Dropdown 2 callsites, OutlinedInput 4 callsites. |
+| Tier                          | Component(s)                                                       | Action                                                                                                                                                                                                                       |
+| ----------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tier 0**                    | Button, Backdrop, Badge, Drawer, Slider, Switch, Tabs              | `extends Omit<StandardProps, 'classes'>` + destructure `classes: _classes` runtime backstop. `classes` was broken since the @mui/base step; 0 internal/external real usage. Reference: PR #4947 Button.tsx + ButtonBase.tsx. |
+| **Tier 0 — Modal**            | Modal                                                              | Re-verify. External consumers use `<Modal classes={{ closeButton }}>` per audit §6/§9 — may need Tier 3.b treatment (keep narrowed) instead of standard Tier 0 drop.                                                         |
+| **Tier 1 vestigial**          | Container, Typography, Notification                                | Drop via `Omit<StandardProps, 'classes'>` + runtime backstop. Audit-verified vestigial (0 internal, 0 external). Bundle into Tier 1 cleanup PR.                                                                              |
+| **Tier 1 — FormControlLabel** | FormControlLabel                                                   | KEEP locally narrowed `classes?: { root?, label? }`. Used internally by Switch/Radio/Checkbox.                                                                                                                               |
+| **Tier 1 no `classes` API**   | FormLabel, Grid, Form, Note, Menu, FormLayout, ModalContext, Utils | No-op.                                                                                                                                                                                                                       |
+| **Tier 2**                    | Checkbox, Radio, Tooltip, FileInput, Popper                        | `Omit` drop public. Internal MUI plumbing rewrites with the `@base-ui/react` migration. Audit-verified 0 external real usage.                                                                                                |
+| **Tier 3.a**                  | Accordion, Page                                                    | `Omit` drop public. Rewrite internal slot-routing on `@base-ui/react` parts.                                                                                                                                                 |
+| **Tier 3.b**                  | Dropdown, OutlinedInput                                            | **KEEP locally narrowed `classes?: { ... }`** (Dropdown: `{ popper, content }`; OutlinedInput: `{ input, root }`). Real external consumers depend on these slots — Dropdown 2 callsites, OutlinedInput 4 callsites.          |
 
 **End-state target**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` removed from `@toptal/picasso-shared`. Dropdown + OutlinedInput permanently retain their locally narrowed `classes?: { ... }`.
 
@@ -2150,24 +2198,24 @@ If the audit contradicts the source state → STOP, update the audit doc, don't 
 
 From `_survey-findings.md §H` (current per-rule compliance across 28 components):
 
-| Rule | Current compliance | Migration action |
-|---|---|---|
-| R1 Optimize defaults for common case | 28/28 ✓ | Maintain — apply to new props. |
-| R2 Reuse prop names across components | 28/28 ✓ | Maintain. |
-| R3 Keep prop names short and simple | 28/28 ✓ | Maintain. |
-| R4 Mirror native HTML prop names | 28/28 ✓ | Maintain. |
-| R5 Style overrides only via `className`/`style` | 26/28 (Modal, Typography legacy) | Preserve legacy. Apply to NEW slots. |
-| R6 Prefer `children` over content props | 28/28 ✓ | Maintain. |
-| R7 Use `rem` for sizes | 100% (Tailwind tokens enforce) | Maintain — token system handles it. |
-| R8 Align tokens with BASE design system | 100% (via `picasso-tailwind`) | Maintain — `tokens/picasso-tailwind-tokens.md`. |
-| R9 `variant` as string-literal union | 28/28 ✓ | Maintain. |
-| R10 Extends `BaseProps` | 20/28 (3 use StandardProps, 5 mixed) | Preserve existing. Apply to NEW components only. |
-| R11 `as` to change rendered element | Where applicable, ✓ | Maintain. |
-| R12 Shared `SizeType` scale | 100% where size prop exists | Maintain. |
-| R13 Shared `Palette` + `ColorSample` | 100% where color prop exists | Maintain. |
-| R14 No `is`/`has`/`should` prefix | 28/28 ✓ | Maintain. NEW boolean props use bare adjectives. |
-| R15 Compound components for multi-part | 4/28 (Modal, Accordion, Drawer, Button-family) | Optional — only for 3+ distinct sub-parts. |
-| R16 `testIds` object | 6/28 (Modal, Accordion, Slider, Tooltip, FileInput, RTE) | Optional — only for multi-part addressable test selectors. |
+| Rule                                            | Current compliance                                       | Migration action                                           |
+| ----------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------- |
+| R1 Optimize defaults for common case            | 28/28 ✓                                                  | Maintain — apply to new props.                             |
+| R2 Reuse prop names across components           | 28/28 ✓                                                  | Maintain.                                                  |
+| R3 Keep prop names short and simple             | 28/28 ✓                                                  | Maintain.                                                  |
+| R4 Mirror native HTML prop names                | 28/28 ✓                                                  | Maintain.                                                  |
+| R5 Style overrides only via `className`/`style` | 26/28 (Modal, Typography legacy)                         | Preserve legacy. Apply to NEW slots.                       |
+| R6 Prefer `children` over content props         | 28/28 ✓                                                  | Maintain.                                                  |
+| R7 Use `rem` for sizes                          | 100% (Tailwind tokens enforce)                           | Maintain — token system handles it.                        |
+| R8 Align tokens with BASE design system         | 100% (via `picasso-tailwind`)                            | Maintain — `tokens/picasso-tailwind-tokens.md`.            |
+| R9 `variant` as string-literal union            | 28/28 ✓                                                  | Maintain.                                                  |
+| R10 Extends `BaseProps`                         | 20/28 (3 use StandardProps, 5 mixed)                     | Preserve existing. Apply to NEW components only.           |
+| R11 `as` to change rendered element             | Where applicable, ✓                                      | Maintain.                                                  |
+| R12 Shared `SizeType` scale                     | 100% where size prop exists                              | Maintain.                                                  |
+| R13 Shared `Palette` + `ColorSample`            | 100% where color prop exists                             | Maintain.                                                  |
+| R14 No `is`/`has`/`should` prefix               | 28/28 ✓                                                  | Maintain. NEW boolean props use bare adjectives.           |
+| R15 Compound components for multi-part          | 4/28 (Modal, Accordion, Drawer, Button-family)           | Optional — only for 3+ distinct sub-parts.                 |
+| R16 `testIds` object                            | 6/28 (Modal, Accordion, Slider, Tooltip, FileInput, RTE) | Optional — only for multi-part addressable test selectors. |
 
 For form components (F1–F3): verify on a per-component basis. Survey did not deep-audit form-field compliance.
 
@@ -2287,18 +2335,21 @@ One-line bullets reviewers can scan a diff against, grouped by section. Cross-re
 This doc is a synthesis. For deeper dives, the authoritative sources are:
 
 ### Picasso API & code standards
+
 - [`PICASSO_COMPONENT_DESIGN_PATTERNS.md`](../../PICASSO_COMPONENT_DESIGN_PATTERNS.md) (repo root) — 16 + 3 canonical rules
 - [`docs/migration/references/code-standards.md`](../migration/references/code-standards.md) — file structure, types, JSDoc, Tailwind composition, ESLint, tests, changesets, CI
 - [`docs/migration/references/practices.md`](../migration/references/practices.md) — graduated migration patterns
 - [`docs/migration/references/design-patterns-addendum.md`](../migration/references/design-patterns-addendum.md) — migration carve-outs + architectural exceptions
 
 ### Base UI styling
+
 - [`docs/migration/references/base-ui-styling.md`](../migration/references/base-ui-styling.md) — full Base UI v1 styling doctrine
 - [`docs/modernization/base-ui-styling-strategy.md`](base-ui-styling-strategy.md) — framework-agnostic kit-author strategy (sibling)
 - [`docs/migration/rules/styling.md`](../migration/rules/styling.md) — non-negotiable Tailwind/Base UI rules
 - [`docs/migration/rules/base-ui-react-api-crib.md`](../migration/rules/base-ui-react-api-crib.md) — `@base-ui/react` component patterns
 
 ### Migration-specific
+
 - [`docs/migration/rules/package-and-build.md`](../migration/rules/package-and-build.md) — pnpm / lockfile / build policy
 - [`docs/migration/rules/jss-to-tailwind-crib.md`](../migration/rules/jss-to-tailwind-crib.md) — JSS → Tailwind pattern table + worked examples
 - [`docs/migration/rules/api-preservation.md`](../migration/rules/api-preservation.md) — prop surface rules
@@ -2308,6 +2359,7 @@ This doc is a synthesis. For deeper dives, the authoritative sources are:
 - [`docs/migration/references/_survey-findings.md`](../migration/references/_survey-findings.md) — 28-component evidence base
 
 ### Contribution baseline (predate the migration, but still authoritative on shared concepts)
+
 - [`docs/contribution/component-api.md`](../contribution/component-api.md) — compound vs facade patterns, prop-naming Q&A
 - [`docs/contribution/unit-testing.md`](../contribution/unit-testing.md) — test wiring + debugging
 - [`docs/contribution/changeset-guidelines.md`](../contribution/changeset-guidelines.md) — full version-bump rules
@@ -2319,10 +2371,12 @@ This doc is a synthesis. For deeper dives, the authoritative sources are:
 - [`docs/contribution/new-component-creation.md`](../contribution/new-component-creation.md) — `pnpm generate:component` scaffolding tool
 
 ### Operator-facing (NOT review-relevant — listed for completeness)
+
 - [`docs/migration/ORCHESTRATOR.md`](../migration/ORCHESTRATOR.md) — orchestrator runbook (CLI flags, kill switch, output paths)
 - [`docs/migration/PROMPT-light.md`](../migration/PROMPT-light.md), [`PROMPT-heavy.md`](../migration/PROMPT-heavy.md) — agent migration prompts
 - [`docs/migration/PROMPT-review-response.md`](../migration/PROMPT-review-response.md) — agent review-response protocol
 - [`CLAUDE.md`](../../CLAUDE.md) — operator working notes
 
-### Legacy (DO NOT use as canonical)
-- `docs/contribution/css-naming.md` — describes MUI v4 + JSS conventions (`root` + `rootFull`/`rootShrink` for variants, `classes` prop pattern). These predate the Tailwind migration. For migrated components, use §6 / §7 / §8 of this doc instead.
+### Legacy (removed from the repo)
+
+- `docs/contribution/css-naming.md` + `docs/contribution/jss-onboarding.md` — described MUI v4 + JSS conventions (`root` + `rootFull`/`rootShrink` for variants, `classes` prop pattern) predating the Tailwind migration. **Deleted in the post-canary hygiene sweep (2026-07-13)**; for migrated components, use §6 / §7 / §8 of this doc instead.

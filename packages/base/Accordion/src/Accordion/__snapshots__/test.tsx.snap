@@ -3,7 +3,7 @@
 exports[`Accordion renders collapsed by default 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
@@ -103,7 +103,7 @@ exports[`Accordion renders collapsed by default 1`] = `
 exports[`Accordion renders custom icon when passed 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
@@ -197,7 +197,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
 exports[`Accordion renders disabled 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative bg-transparent text-[1rem] text-graphite before:content-[""] before:absolute before:left-0 before:right-0 before:h-[1px] before:bg-gray before:-top after:content-[""] after:absolute after:left-0 after:right-0 after:-bottom after:h-[1px] after:bg-gray [[data-component"
