@@ -5,35 +5,6 @@ exports[`Button disabled button as link renders disabled version 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <a
       aria-disabled="true"
       class="font-inherit focus:outline-hidden base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-default pointer-events no-underline hover:no-underline rounded-sm shadow-none border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"
@@ -59,35 +30,6 @@ exports[`Button disabled button renders disabled version 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <button
       aria-disabled="true"
       class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-default pointer-events no-underline hover:no-underline rounded-sm shadow-none border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"

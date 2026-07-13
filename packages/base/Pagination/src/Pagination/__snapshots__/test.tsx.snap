@@ -5,35 +5,6 @@ exports[`Pagination renders 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <span
       class="items-center inline-flex"
     >
@@ -198,35 +169,6 @@ exports[`Pagination renders compact without totalPages 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <span
       class="items-center inline-flex"
     >
@@ -268,35 +210,6 @@ exports[`Pagination renders disabled 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <span
       class="items-center inline-flex"
     >
@@ -478,37 +391,7 @@ exports[`Pagination renders nothing for 0 pages 1`] = `
 <div>
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
-  >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
-  </div>
+  />
 </div>
 `;
 
@@ -516,37 +399,7 @@ exports[`Pagination renders nothing for 1 page 1`] = `
 <div>
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
-  >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
-  </div>
+  />
 </div>
 `;
 
@@ -555,35 +408,6 @@ exports[`Pagination renders with next disabled 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <span
       class="items-center inline-flex"
     >

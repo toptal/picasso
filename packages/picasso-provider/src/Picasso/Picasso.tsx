@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 
-import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
 import HelmetProvider from './HelmetProvider'
 import NotificationsProvider from './NotificationsProvider'
@@ -22,8 +21,6 @@ export interface PicassoProps extends TextLabelProps {
   loadFavicon?: boolean
   /** current environment */
   environment?: EnvironmentType<'test' | 'temploy'>
-  /** Whether to apply Picasso CSS reset */
-  reset?: boolean
   /** Sets a minimum width of the page */
   responsive?: boolean
   /** Whether to load viewport fix or not */
@@ -43,7 +40,6 @@ export interface PicassoProps extends TextLabelProps {
 const Picasso = ({
   loadFonts = true,
   loadFavicon = true,
-  reset = true,
   responsive = true,
   environment = 'development',
   children,
@@ -71,7 +67,6 @@ const Picasso = ({
       <HelmetProvider disabled={disableHelmet}>
         {fixViewport && <FixViewport />}
         {loadFonts && <FontsLoader />}
-        {reset && <CssBaseline />}
         {preventPageWidthChangeOnScrollbar && (
           <PreventPageWidthChangeOnScrollbar />
         )}
