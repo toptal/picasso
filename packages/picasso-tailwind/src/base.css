@@ -1,0 +1,49 @@
+/*
+ * Picasso global reset — the single source of truth. [PF-2221]
+ *
+ * Ships in `@layer base`, so all Tailwind utilities and any unlayered app CSS
+ * win over it by cascade-layer rules — "app CSS beats the baseline" is the
+ * documented contract, not an accident of injection order.
+ *
+ * Usage (consumer Tailwind entry, after the theme import):
+ *   @import '@toptal/picasso-tailwind/base';
+ * Opt out (the former `<Picasso reset={false}>`): don't import this file.
+ *
+ * Consumer migration notes live in the @toptal/picasso-provider major
+ * changeset (PF-2023) and the @toptal/picasso README.
+ */
+@layer base {
+  html {
+    /* content-box page model kept verbatim from the pre-migration reset
+       (existing-violations carve-out); Picasso components rely on the
+       border-box island established by PicassoRootNode */
+    box-sizing: initial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #fff;
+  }
+
+  @media print {
+    body {
+      background-color: #fff;
+    }
+  }
+
+  #root {
+    display: flex;
+    flex: 1;
+  }
+}

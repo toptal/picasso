@@ -5,35 +5,6 @@ exports[`Tooltip when closed does not render the content 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <button
       data-base-ui-tooltip-trigger=""
       data-testid="tooltip-trigger"
@@ -51,35 +22,6 @@ exports[`Tooltip when portals are disabled renders the content within the parent
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <button
       aria-describedby="tooltip-id"
       data-base-ui-tooltip-trigger=""

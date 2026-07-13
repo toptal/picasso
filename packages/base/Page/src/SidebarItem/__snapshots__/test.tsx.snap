@@ -5,35 +5,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
@@ -212,35 +183,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
@@ -419,35 +361,6 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <li
       aria-disabled="false"
       class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
@@ -538,35 +451,6 @@ exports[`SidebarItem is selected 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <li
       aria-disabled="false"
       class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
@@ -617,35 +501,6 @@ exports[`SidebarItem renders 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <li
       aria-disabled="false"
       class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
@@ -687,35 +542,6 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="relative bg-transparent text-[1rem] text-graphite [&_[data-component-type="accordion-summary"]]:p [&_[data-component-type="accordion-summary"]]:pl [&_[data-component-type="accordion-summary"]]:mx [&_[data-component-type="accordion-summary-content"]]:max-w"
       data-component-type="accordion"
@@ -885,35 +711,6 @@ exports[`SidebarItem with icon 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <li
       aria-disabled="false"
       class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
