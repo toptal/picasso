@@ -26,7 +26,7 @@ type Props = {
   onOpen?: (event: ChangeEvent<{}>) => void
   /** Called when tooltip is closed */
   onClose?: (event: ChangeEvent<{}>) => void
-  /** Called after the tooltip close transition finishes */
+  /** Called when the tooltip close transition starts */
   onTransitionExiting?: () => void
   /** Called after the tooltip close transition finishes */
   onTransitionExited?: () => void
@@ -124,6 +124,23 @@ export const useTooltipState = ({
     },
     []
   )
+
+  // Fire onTransitionExiting when the close transition BEGINS (open flips
+  // true→false), mirroring MUI's Grow `onExiting`; onTransitionExited then
+  // fires when it FINISHES (handleOpenChangeComplete below). Driving the start
+  // off `actualOpen` catches both interaction-driven and controlled closes.
+  // A consumer (e.g. TypographyOverflow) relies on the gap between the two to
+  // keep the popup rendered for the duration of the exit animation — firing
+  // both together at the end would collapse that window. [PF-2224]
+  const wasOpenRef = useRef(actualOpen)
+
+  useEffect(() => {
+    if (wasOpenRef.current && !actualOpen) {
+      onTransitionExiting?.()
+    }
+
+    wasOpenRef.current = Boolean(actualOpen)
+  }, [actualOpen, onTransitionExiting])
 
   const handleOpenChange: BaseTooltip.Root.Props['onOpenChange'] = (
     nextOpen,
@@ -286,7 +303,6 @@ export const useTooltipState = ({
 
   const handleOpenChangeComplete = (nextOpen: boolean) => {
     if (!nextOpen) {
-      onTransitionExiting?.()
       onTransitionExited?.()
     }
   }

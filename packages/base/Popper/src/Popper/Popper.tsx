@@ -178,13 +178,15 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
   // Nudge floating descendants to re-measure whenever this popper's geometry
   // settles or changes. A descendant that positions against a node inside this
   // popper (e.g. an open Tooltip anchored to a Menu.Item in a Dropdown) measures
-  // its anchor a frame before floating-ui commits our coordinates; the migrated
-  // @base-ui/react Tooltip tracks the anchor on scroll only (see its
-  // Positioner), and — because it is portaled to the picasso root, not into this
-  // popper's scroll-ancestor chain — a synthetic window scroll is the ONLY
-  // signal that reaches it when we move. So this is load-bearing for both the
-  // legacy popper.js Tooltip AND the migrated one (container-scroll following),
-  // not a transitional shim. [PF-2203][PF-1994]
+  // its anchor a frame before floating-ui commits our coordinates. The migrated
+  // @base-ui/react Tooltip re-solves on ancestorScroll (which stays on even when
+  // it disables the resize/layout-shift observers for menu-item anchors — see
+  // its Positioner), but — because it is portaled to the picasso root, not into
+  // this popper's scroll-ancestor chain — a synthetic window scroll is the ONLY
+  // signal that reaches it when we move (most load-bearing for the menu-item
+  // case, whose observers are off). So this is not a transitional shim: it
+  // serves both the legacy popper.js Tooltip AND the migrated one
+  // (container-scroll following). [PF-2203][PF-1994][PF-2224]
   useEffect(() => {
     if (open && isPositioned) {
       window.dispatchEvent(new Event('scroll'))

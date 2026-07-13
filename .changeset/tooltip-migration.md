@@ -14,7 +14,16 @@
   `preventOverflow`, `offset`, `container`, `tooltipRef`, `onOpen`, `onClose`,
   `onTransitionExiting`, `onTransitionExited`). `onOpen`/`onClose` keep the
   `(event) => void` signature, adapted over base-ui's `onOpenChange` via
-  `toReactEvent`.
+  `toReactEvent`. `onTransitionExiting` fires when the close transition BEGINS
+  and `onTransitionExited` when it FINISHES — the same split MUI's `Grow`
+  provided (base-ui exposes only a single transition-complete callback, so the
+  two are re-separated internally).
+- keep the trigger↔popup `aria-describedby` association even when no `id` is
+  supplied: MUI v4 generated a fallback id so screen readers announced the
+  tooltip as the trigger's description; base-ui wires no `aria-describedby` of
+  its own, so Picasso now generates a stable fallback id (used for both the
+  popup's `id` and the trigger's `aria-describedby`) whenever the consumer omits
+  one. A consumer-supplied `id` or `aria-describedby` still takes precedence.
 - the `PlacementType` type is now an explicit string union instead of an alias
   to MUI's `TooltipProps['placement']`. The members are byte-identical to the
   MUI v4 type (the same 12 values; `undefined` is still admitted via the

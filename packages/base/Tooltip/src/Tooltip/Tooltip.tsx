@@ -7,6 +7,7 @@ import type {
 import React, {
   forwardRef,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -57,6 +58,31 @@ const delayDurations: { [k in DelayType]: number } = {
   long: 500,
 }
 
+// A process-wide counter for fallback tooltip ids (see useFallbackId), mirroring
+// MUI v4's unstable_useId which Picasso relied on pre-migration.
+let fallbackIdCounter = 0
+
+// base-ui's Tooltip wires no `aria-describedby` of its own (it runs
+// `useInteractions([dismiss, clientPoint])` with no `useRole`), whereas MUI v4
+// generated a fallback id and linked trigger→popup so screen readers announce
+// the tooltip as the trigger's description. Re-add that association: when the
+// consumer supplies no `id`, generate a stable one after mount and use it for
+// BOTH the popup's `id` and the trigger's `aria-describedby`. Assigning it in an
+// effect keeps it SSR-safe (the server renders no id, the client fills it in —
+// no hydration mismatch), exactly as MUI's unstable_useId did. [PF-2224]
+const useFallbackId = (idProp?: string): string | undefined => {
+  const [fallbackId, setFallbackId] = useState(idProp)
+
+  useEffect(() => {
+    if (fallbackId == null) {
+      fallbackIdCounter += 1
+      setFallbackId(`picasso-tooltip-${fallbackIdCounter}`)
+    }
+  }, [fallbackId])
+
+  return idProp ?? fallbackId
+}
+
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Trigger element for tooltip */
   children: ReactNode
@@ -86,7 +112,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   followCursor?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
-  /** Called after the tooltip close transition finishes */
+  /** Called when the tooltip close transition starts */
   onTransitionExiting?: () => void
   /** Called after the tooltip close transition finishes */
   onTransitionExited?: () => void
@@ -136,6 +162,10 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     } = props
 
     const picassoRootContainer = usePicassoRoot()
+
+    // Non-empty even when the consumer omits `id` (see useFallbackId), so the
+    // popup↔trigger aria-describedby link below always holds.
+    const tooltipId = useFallbackId(id)
 
     const {
       open: actualOpen,
@@ -295,7 +325,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         }
       >
         <BaseTooltip.Popup
-          id={id}
+          id={tooltipId}
           role='tooltip'
           className={twJoin(createPopupClassNames(Boolean(compact), maxWidth))}
         >
@@ -333,8 +363,11 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             ref={setTriggerRef}
             className={className}
             style={style}
+            // Associate the popup with the trigger while open (matching MUI v4),
+            // preferring any consumer-supplied value (tooltipId is never empty).
             aria-describedby={
-              actualOpen && id ? id : triggerRest['aria-describedby']
+              triggerRest['aria-describedby'] ??
+              (actualOpen ? tooltipId : undefined)
             }
             disabled={disableListeners}
             closeOnClick={false}
