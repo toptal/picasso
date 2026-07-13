@@ -14,10 +14,10 @@
  */
 @layer base {
   html {
-    /* content-box page model kept verbatim from the pre-migration reset
-       (existing-violations carve-out); Picasso components rely on the
-       border-box island established by PicassoRootNode */
-    box-sizing: initial;
+    /* border-box page model (PF-2221) — descendants inherit it through the
+       universal selector below; the PicassoRootNode island keeps guarding
+       pages that don't import this entry */
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
