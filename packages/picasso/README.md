@@ -59,6 +59,9 @@ box model, body/root layout, font smoothing) inside `@layer base`. Because it
 is cascade-layered, all Tailwind utilities and any unlayered application CSS
 win over it — the reset is a baseline, never an override.
 
+The reset establishes a **border-box** page box model
+(`html { box-sizing: border-box }` with universal inheritance).
+
 To opt out of the reset, omit the import (this replaces the former
 `<Picasso reset={false} />` prop, which no longer exists).
 
