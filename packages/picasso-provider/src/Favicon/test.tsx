@@ -41,11 +41,7 @@ describe('Favicon', () => {
   it('renders nothing in a test environment', async () => {
     const { container } = render(<Favicon environment='test' />)
     const picassoRoot = container.firstChild as Element
-    // CssBaseline always injects a global <style>; Favicon itself should add nothing.
-    const renderedChildren = Array.from(picassoRoot.children).filter(
-      child => child.tagName !== 'STYLE'
-    )
 
-    expect(renderedChildren).toHaveLength(0)
+    expect(picassoRoot.children).toHaveLength(0)
   })
 })

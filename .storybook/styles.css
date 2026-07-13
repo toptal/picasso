@@ -1,4 +1,5 @@
 @layer theme, base, components;
 @import 'tailwindcss/theme.css' layer(theme);
+@import '@toptal/picasso-tailwind/base';
 @import 'tailwindcss/utilities.css';
 @config "../tailwind.config.js";

@@ -11,7 +11,7 @@
 
 ## 1. TL;DR
 
-`@toptal/picasso-provider` no longer runs a MUI v4 theme/JSS runtime, and `@toptal/picasso` no longer declares `@material-ui/core` as a peer dependency. **`@material-ui` is now absent from every `src`, every `package.json`, and the lockfile** — the PI's canary. Both packages now allow React 19 (`react`/`react-dom` peer widened to `>=16.12.0`). The provider is now a *services + context* layer (CSS reset, fonts, favicon, notifications, RootContext, breakpoints) rather than a theme runtime; styling is Tailwind end-to-end.
+`@toptal/picasso-provider` no longer runs a MUI v4 theme/JSS runtime, and `@toptal/picasso` no longer declares `@material-ui/core` as a peer dependency. **`@material-ui` is now absent from every `src`, every `package.json`, and the lockfile** — the PI's canary. Both packages now allow React 19 (`react`/`react-dom` peer widened to `>=16.12.0`). The provider is now a *services + context* layer (fonts, favicon, notifications, RootContext, breakpoints) rather than a theme runtime; styling is Tailwind end-to-end. The global CSS reset moved out of the provider entirely: it ships as `@toptal/picasso-tailwind/base` in `@layer base` (PF-2221, executed in this PR), and the `reset` prop is removed.
 
 The change is **behavior-preserving for the rendered UI** (byte-identical or immaterial CSS) but **API-breaking** for the theme-customization surface (`PicassoProvider`, `.override()`, the `theme`/`injectFirst`/`disableClassNamePrefix` props, `getServersideStylesheets`) — all of which were MUI-coupled and mostly inert after the component migrations. Breaking removals were chosen deliberately (see §4) after an org-wide usage audit.
 
@@ -34,7 +34,7 @@ Delivered as a sequence of logical, individually-green commits on `migrate-picas
 
 | Area | Before (MUI v4 / JSS) | After (Tailwind / plain) |
 |---|---|---|
-| **CssBaseline** | `makeStyles` `@global` reset injected at runtime | Same 12 reset rules injected via a runtime `<style>` (unlayered, `reset`-prop-gated). No MUI/JSS. |
+| **CssBaseline** | `makeStyles` `@global` reset injected at runtime | **Removed.** The 12 reset rules ship as `@toptal/picasso-tailwind/base` in `@layer base` (PF-2221 executed in-PR); the `reset` prop is gone — opt-out = omit the import. |
 | **NotificationsProvider** | `makeStyles` classes passed to notistack `classes` | Tailwind class strings on notistack's `classes`; `[&>div]`/`[&>div>div]` variants target its container DOM. notistack integration unchanged. |
 | **PicassoRootNode** (+ `Picasso/styles.tsx`) | `makeStyles` `root` (flex, border-box island, `& * { font }`) | Tailwind `className` on the root `<div>`: `flex-1 box-border`, `[&_*]:font-sans`, `[&_*]:[box-sizing:inherit]` (+ `::before`/`::after`). |
 | **PreventPageWidthChangeOnScrollbar** | `makeStyles` `@global` at `screens('md','lg','xl')` | Runtime `<style>` built from `screens()` at render (keeps the `disableMobileBreakpoints()` dynamic). |
@@ -55,12 +55,12 @@ Each decision below was made against the migration's overriding rule — **libra
 - Branch `migrate-picasso-provider` off `temp`; **merge Tooltip #5005 + query-builder #5006 in** so the whole tree is MUI-free for the canary + DoD validation, rather than waiting for them to land. One PR, ~8 logical commits. Repo merges are **squash**, so the stacked merges must be **rebased away** before the PR is review-ready (see §6).
 - *Implication:* PR diff carries #5005/#5006 until they land on `temp`; keep the PR **draft** until reconciled.
 
-### 4.2 CssBaseline → runtime `<style>` (not `@layer base`)
-- **Decision:** keep the reset as a runtime `<style>`, **unlayered**, still gated by the `reset` prop; do **not** move it to a Tailwind `@layer base` preflight yet.
-- **Why:** Picasso ships **no CSS bundle** — consumers run Tailwind via the `@toptal/picasso-tailwind` **preset**. A build-time `@layer base` reset would (a) only reach consumers who update their Tailwind entrypoint, (b) demote the reset *below* unlayered consumer CSS (cascade regression), and (c) lose the `reset={false}` opt-out. Unlayered runtime injection is byte-identical and needs zero consumer change.
-- **Not Helmet** (the house head-injection tool) because `PicassoLight` and `<Picasso disableHelmet>` have **no `HelmetProvider`** — a Helmet-based reset would break there. The reset must not be Helmet-gated.
-- **Not the React-19 hoistable `<style href precedence>`** yet — `@types/react` is v17 in the workspace, so it wouldn't typecheck.
-- *Implication / follow-up:* true `@layer base` preflight + hoistable `<style>` end-state tracked in **[PF-2221]**. Recorded as a migration-period exception in `docs/migration/references/design-patterns-addendum.md §2` so a review sweep won't "correct" it.
+### 4.2 CssBaseline → `@toptal/picasso-tailwind/base` (`@layer base`) — full cutover
+- **Decision (supersedes the interim runtime-`<style>` plan):** the reset first landed in this branch as an unlayered runtime `<style>` (library-swap parity). Before the PR merged, **PF-2221 was pulled into this major**: the reset now ships as an opt-in CSS entry of `@toptal/picasso-tailwind` inside `@layer base` (`packages/picasso-tailwind/src/base.css`, the single source of truth); `CssBaseline` and the `reset` prop are **deleted**; opt-out = omit the import.
+- **Why now:** this PR is already the provider major and PF-1995 touches every consumer anyway. The original "reach" objection died on evidence — the preset entrypoint is *mandatory* for the migrated library (all component styles are Tailwind), and Staff Portal's DOM shows the compiled Tailwind bundle (with a declared-but-empty `base` layer slot) already in `<head>`. Meanwhile the in-body runtime `<style>` occupied the *strongest* cascade position the reset ever had (it won equal-specificity ties against all consumer CSS); `@layer base` is the only placement where "app CSS beats the baseline" is guaranteed by the cascade spec instead of injection order.
+- **Cascade contract (needs design sign-off):** Tailwind utilities + unlayered app CSS beat the reset. `injectFirst` consumers (e.g. Staff Portal) regain their pre-migration tie-break semantics; default-JSS consumers flip ties they previously won by injection accident — documented intent, not a regression.
+- **Not Helmet** (`PicassoLight` / `<Picasso disableHelmet>` have no `HelmetProvider`); **React-19 hoistable `<style>` dropped** — with no runtime injection there is nothing to hoist.
+- The `design-patterns-addendum.md §2` exception entry is **RESOLVED** accordingly; `bin/verify-tailwind-base.mjs` asserts the entry compiles into `@layer base` under both consumer entry styles (v3-compat unlayered utilities and standard v4).
 
 ### 4.3 Responsive-styles engine → faithful port, bug-compatible
 - **Decision (Option 1):** port `makeResponsiveSpacingProps` off `makeStyles` to a runtime `<style>` injection with a config-sourced CSS builder; keep the generic `{className, style}` hook contract and the inline-var machinery unchanged.
@@ -99,8 +99,9 @@ Each decision below was made against the migration's overriding rule — **libra
 | `@material-ui/core` peer-dep of `@toptal/picasso` | Remove it from the consumer's deps | The canary |
 | `Layout.contentMinWidth` type field | Use the `responsive` prop (unchanged) | Was unread after the Page decouple |
 | `react`/`react-dom` peer `< 19` cap | Widened to `>=16.12.0` | Enables React 19 |
+| `reset` prop + runtime reset `<style>` | Add `@import '@toptal/picasso-tailwind/base';` to the Tailwind entry CSS (omit it = the old `reset={false}`) | Reset now lives in `@layer base`: utilities/app CSS win ties (PF-2221, §4.2) |
 
-**Non-breaking but observable:** `PicassoRootNode` and the notistack container class names change from JSS hashes to Tailwind classes (JSS hashes were random-seeded, never a contract). The `reset` prop now injects an unlayered runtime `<style>` (byte-identical output).
+**Non-breaking but observable:** `PicassoRootNode` and the notistack container class names change from JSS hashes to Tailwind classes (JSS hashes were random-seeded, never a contract). Jest snapshots rendered through `TestingPicasso` no longer contain a reset `<style>` element.
 
 **Consumers running their own MUI v4 under Picasso** (4 repos identified): Picasso's `StylesProvider injectFirst` was *also* configuring *their* JSS injection order. After this, they must add their own `<StylesProvider injectFirst>` from `@material-ui/core/styles`.
 
@@ -110,7 +111,7 @@ Each decision below was made against the migration's overriding rule — **libra
 
 | Ticket / item | What | Why deferred here |
 |---|---|---|
-| **[PF-2221]** | Promote the CssBaseline reset to a true Tailwind `@layer base` preflight + React-19 hoistable `<style>` | Needs consumer Tailwind-entry coordination + React 19 types; behavior/cascade-sensitive |
+| **[PF-2221]** | **Executed in this PR** — reset ships as `@toptal/picasso-tailwind/base` (`@layer base`); `CssBaseline` + `reset` prop removed; hoistable-`<style>` variant dropped (§4.2) | Remaining: consumer Tailwind-entry adoption rides PF-1995; cascade-contract sign-off (Vitor) |
 | **[PF-2226]** | Retire the responsive-styles engine; converge Dropdown `offset` on Container's static-Tailwind pattern; **fix the inverted mobile-first cascade** | Zero adoption; convergence is a reviewable design change, not a library swap |
 | **[PF-1995]** | Consumer migration: strip removed props, rework the 1 `.override` callsite; ship the `@toptal/picasso-codemod` transform | Cross-repo; not part of the library PR |
 | **O2** | Repo-wide `react < 19` peer-cap lift on the ~57 remaining non-MUI packages (React 19 org-wide) | Separate effort that PF-2023 *unblocks* |
