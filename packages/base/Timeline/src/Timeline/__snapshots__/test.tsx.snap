@@ -5,67 +5,9 @@ exports[`Timeline renders 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
-      <style>
-        html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-      </style>
       <div
         class="table h-fit w-fit"
       >
@@ -164,67 +106,9 @@ exports[`Timeline renders with dates 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
-      <style>
-        html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-      </style>
       <div
         class="table h-fit w-fit"
       >
@@ -362,67 +246,9 @@ exports[`Timeline renders with icons 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
-      <style>
-        html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-      </style>
       <div
         class="table h-fit w-fit"
       >
@@ -521,67 +347,9 @@ exports[`Timeline renders without a connector 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
-      <style>
-        html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-      </style>
       <div
         class="table h-fit w-fit"
       >

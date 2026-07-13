@@ -7,7 +7,9 @@
   "license": "MIT",
   "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.js",
+    "./base": "./src/base.css",
+    "./base.css": "./src/base.css"
   },
   "publishConfig": {
     "access": "public"
@@ -29,7 +31,9 @@
   "peerDependencies": {
     "tailwindcss": "^4.2.1"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
