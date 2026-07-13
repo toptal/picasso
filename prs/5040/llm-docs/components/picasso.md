@@ -18,7 +18,6 @@ The wrapper and the root component.
 | loadFonts | `boolean` | `true` | Whether to load fonts file to the page |
 | loadFavicon | `boolean` | `true` | Whether to specify favicons in the head |
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
-| reset | `boolean` | `true` | Whether to apply Picasso CSS reset |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
 | fixViewport | `boolean` | `true` | Whether to load viewport fix or not |
 | preventPageWidthChangeOnScrollbar | `boolean` | `true` | Whether to load scrollbar page jump fix or not |
@@ -50,10 +49,8 @@ utility components/providers:
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
-| reset | `boolean` | `true` | Whether to apply Picasso CSS reset |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
 | preventPageWidthChangeOnScrollbar | `boolean` | - | Whether to load scrollbar page jump fix or not |
-| notificationContainer | `HTMLElement` | - | Notification DOMNode for createPortal |
 | RootComponent | `ForwardRefExoticComponent<PicassoRootNodeProps & RefAttributes<HTMLDivElement>>` | `PicassoRootNode` | Component that is used to render root node |
 | disableHelmet | `boolean` | - | Disables usage of `<HelmetProvider>` component from `react-helmet-async` package |
 | disableTransitions | `boolean` | - | Disables transitions for components like Loader, to make testing easier |

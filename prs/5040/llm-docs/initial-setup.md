@@ -47,9 +47,23 @@ module.exports = {
 /* index.css */
 @layer theme, base, components;
 @import 'tailwindcss/theme.css' layer(theme);
+@import '@toptal/picasso-tailwind/base';
 @import 'tailwindcss/utilities.css';
 @config "./tailwind.config.js";
 ```
+
+### Global reset (`@toptal/picasso-tailwind/base`)
+
+The `@toptal/picasso-tailwind/base` import ships Picasso's global reset (page
+box model, body/root layout, font smoothing) inside `@layer base`. Because it
+is cascade-layered, all Tailwind utilities and any unlayered application CSS
+win over it — the reset is a baseline, never an override.
+
+The reset establishes a **border-box** page box model
+(`html { box-sizing: border-box }` with universal inheritance).
+
+To opt out of the reset, omit the import (this replaces the former
+`<Picasso reset={false} />` prop, which no longer exists).
 
 ## Setup webpack to use PostCSS loader with tailwindcss plugin
 
@@ -107,7 +121,7 @@ render () {
 }
 ```
 
-**_A [`Picasso`](/?path=/story/components-picasso--picasso) component rendered at root level is required for the library theme configuration and theme to work properly._**
+**_A [`Picasso`](/?path=/story/components-picasso--picasso) component rendered at root level is required for the library's global services — fonts, favicon, notifications, and the responsive breakpoint context — to work properly._**
 
 ## Merging classes
 
