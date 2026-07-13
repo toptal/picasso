@@ -264,6 +264,10 @@ describe('DatePicker', () => {
               variant: `date-picker/${width}-default`,
               targets: [happoTarget],
             })
+
+            // fail loud if the calendar closed while happo serialized the DOM
+            // (CI once captured this variant with the popper unmounted)
+            cy.get('.rdp-month').should('have.length', isNarrowScreen ? 1 : 2)
           }
         )
       })
