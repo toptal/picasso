@@ -24,6 +24,7 @@ import {
   createExpandIconClassNames,
   expandIconAlignTopClasses,
   panelClasses,
+  panelOverflowVisibleClass,
 } from './styles'
 
 export type { Borders } from './styles'
@@ -117,11 +118,14 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
+  // Releases the panel's overflow clip only after the open transition settles.
+  const [isAnimating, setIsAnimating] = useState(false)
 
   // getDerivedStateFromProps implementation to allow expanded to be controlled
   if (expanded !== undefined && expanded !== prevExpanded) {
     setSummaryExpanded(expanded)
     setPrevExpanded(expanded)
+    setIsAnimating(true)
   }
 
   const handleValueChange = (
@@ -131,6 +135,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     const newExpanded = value.length > 0
 
     setSummaryExpanded(newExpanded)
+    setIsAnimating(true)
     onChange(
       toReactEvent<ChangeEvent<Element>>(eventDetails.event),
       newExpanded
@@ -139,10 +144,15 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   const handlePanelTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
     if (
-      !summaryExpanded &&
-      event.target === event.currentTarget &&
-      event.propertyName === 'height'
+      event.target !== event.currentTarget ||
+      event.propertyName !== 'height'
     ) {
+      return
+    }
+
+    setIsAnimating(false)
+
+    if (!summaryExpanded) {
       transitionProps?.onExited?.(event.currentTarget)
     }
   }
@@ -189,15 +199,21 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
               {children}
               {expandIcon ? (
                 <ButtonAction
+                  data-component-type='accordion-summary-icon'
                   icon={decorateWithExpandIconClasses(
                     expandIcon,
                     expandIconClass
                   )}
+                  tabIndex={-1}
                 />
               ) : (
-                <div className={cx(...expandIconAlignTopClasses)}>
+                <div
+                  data-component-type='accordion-summary-icon'
+                  className={cx(...expandIconAlignTopClasses)}
+                >
                   <ButtonAction
                     icon={<ArrowDownMinor16 className={expandIconClass} />}
+                    tabIndex={-1}
                   />
                 </div>
               )}
@@ -208,7 +224,11 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         )}
         <BaseUIAccordion.Panel
           keepMounted
-          className={cx(...panelClasses)}
+          className={twMerge(
+            cx(...panelClasses, {
+              [panelOverflowVisibleClass]: summaryExpanded && !isAnimating,
+            })
+          )}
           style={
             {
               '--accordion-duration': `${resolveTransitionDuration(

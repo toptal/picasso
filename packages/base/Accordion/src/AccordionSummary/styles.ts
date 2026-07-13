@@ -4,6 +4,7 @@ export const summaryRootClasses = [
   'items-center',
   'select-none',
   'cursor-pointer',
+  'focus-visible:bg-black/12',
   'outline-none',
   'py-[0.5625em]',
   'px-0',

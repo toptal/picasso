@@ -88,6 +88,9 @@ export const panelClasses = [
   '[&[hidden]]:invisible',
 ]
 
+// Overrides `overflow-hidden` so a fully-open panel doesn't clip its content.
+export const panelOverflowVisibleClass = 'overflow-visible'
+
 export const summaryWrapperClasses = ['text-black']
 
 export const detailsWrapperClasses = [
