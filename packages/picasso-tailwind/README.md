@@ -31,7 +31,8 @@ import:
 
 Cascade contract: because the reset is cascade-layered, all Tailwind
 utilities and any unlayered application CSS win over it — the reset is a
-baseline, never an override.
+baseline, never an override. The reset establishes a **border-box** page box
+model (`html { box-sizing: border-box }` with universal inheritance).
 
 Opting out: omit the import. This replaces the former
 `<Picasso reset={false} />` provider prop, which no longer exists.
