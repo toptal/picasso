@@ -3,7 +3,7 @@
 exports[`Link renders 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
@@ -17,7 +17,7 @@ exports[`Link renders 1`] = `
 exports[`Link when disabled renders disabled link 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       aria-disabled="true"
@@ -34,7 +34,7 @@ exports[`Link when disabled renders disabled link 1`] = `
 exports[`Link when native attributes are provided renders native attributes 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] text-blue visited:text-purple no-underline cursor-pointer"
@@ -52,7 +52,7 @@ exports[`Link when native attributes are provided renders native attributes 1`] 
 exports[`Link when using react-router Link renders a Link from react-router 1`] = `
 <div>
   <div
-    class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div>
       <a
