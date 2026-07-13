@@ -54,12 +54,11 @@ These are deliberate, audit-backed exceptions to the canonical rules — **TEMPO
 - **What we do**: preserve their existing `classes?: { ... }` shape. Don't drop the prop in the migration PR even though rule 5 forbids it.
 - **End-state — REMOVED in a future major bump**: a separate API-cleanup sweep removes these `classes` props in the next major version of each affected package.
 
-### Styling doctrine (Tailwind-only) vs CssBaseline runtime `<style>` · **TEMPORARY**
+### Styling doctrine (Tailwind-only) vs global CSS reset · **RESOLVED (PF-2221)**
 
-- **Tension scope**: 1 file (`packages/picasso-provider/src/CssBaseline/`). The styling doctrine is Tailwind-only (`AGENTS.md §Styling` "No CSS/JSS"; rule 5 "style hooks are `className`/`style` only"). A global CSS reset is the one place raw global CSS legitimately lives.
-- **What we do**: `CssBaseline` injects the pre-migration global reset (the former JSS `@global` block, verbatim — including the `box-sizing: initial` content-box cascade) as a **runtime `<style>` element** instead of MUI v4 JSS. Kept **unlayered** (deliberately NOT wrapped in `@layer base`) to preserve the pre-migration cascade precedence, and still gated by the provider's `reset` prop so `reset={false}` fully opts out. Output is byte-identical (0 Happo diff) and consumers need no CSS-entrypoint changes. Removes all MUI/JSS from the file.
-- **Why not `@layer base` now**: Picasso ships no CSS bundle (consumers run Tailwind via the `@toptal/picasso-tailwind` preset), so a build-time `@layer base` reset would only reach consumers who update their Tailwind entry, would demote the reset below unlayered consumer CSS, and would lose the `reset` opt-out. The React 19 hoistable `<style href precedence>` form is also not typeable yet (`@types/react` is v17 in the workspace).
-- **End-state — promoted post-migration**: move to a true Tailwind `@layer base` preflight (and the React 19 hoistable `<style>` form) once consumer Tailwind entrypoints are coordinated. Tracked in **PF-2221**; consumer coordination via PF-2210. Do NOT "correct" the runtime `<style>` to `@layer base` in a review sweep before that coordination lands.
+- The interim CssBaseline runtime-`<style>` exception is retired: the global reset now ships as CSS in `@layer base` via the opt-in **`@toptal/picasso-tailwind/base`** entry (`packages/picasso-tailwind/src/base.css` — the single source of truth). `CssBaseline` and the provider `reset` prop are removed; omitting the import replaces `reset={false}`.
+- **Cascade contract (deliberate)**: Tailwind utilities and unlayered app CSS win over the baseline by cascade-layer rules. `injectFirst`-era consumers regain their pre-migration tie-break semantics; consumers who relied on the JSS reset winning equal-specificity ties by injection order lose them — documented intent, not a regression.
+- The React 19 hoistable `<style>` variant considered earlier is dropped (nothing left to hoist once no runtime injection exists).
 
 ## 3. How the agent applies design patterns during a migration
 

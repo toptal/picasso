@@ -5,35 +5,6 @@ exports[`PageSidebar renders 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
@@ -58,35 +29,6 @@ exports[`PageSidebar with menu 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
@@ -116,35 +58,6 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
   <div
     class="flex-1 box-border [&_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <style>
-      html {
-  box-sizing: initial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #fff;
-}
-@media print {
-  body {
-    background-color: #fff;
-  }
-}
-#root {
-  display: flex;
-  flex: 1;
-}
-
-    </style>
     <div
       class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
