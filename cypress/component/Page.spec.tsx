@@ -267,6 +267,9 @@ describe('Page', () => {
 
       cy.getByTestId(TestIds.DRAWER_BUTTON).click()
 
+      // gate on the drawer being open and past its enter fade
+      cy.waitForOverlayOpen()
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'default/sticky-sidebar-scroll-bottom-with-drawer',

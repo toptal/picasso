@@ -5,7 +5,6 @@ import { Form } from '@toptal/picasso-forms'
 import { noop } from '@toptal/picasso/utils'
 
 const RESPONSE_TIME = 1000
-const ANIMATION_TIME = 300
 
 // the emulation of the api call
 const responseWithDelay = async (response: any) =>
@@ -313,9 +312,6 @@ describe('Form', () => {
     cy.get('#inlineErrorSurname').type('surname')
 
     cy.getByTestId('submit-with-inline-error-button').click()
-
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(RESPONSE_TIME + ANIMATION_TIME)
 
     cy.getByTestId('submit-with-inline-error-first-name')
       .contains('Unknown first name')

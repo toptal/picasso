@@ -1,41 +1,22 @@
-import React, { useState } from 'react'
-import type { RichTextEditorProps } from '@toptal/picasso-rich-text-editor'
+import React from 'react'
 import {
   CodePlugin,
   CodeBlockPlugin,
-  RichTextEditor,
   htmlToHast,
 } from '@toptal/picasso-rich-text-editor'
-import { Container } from '@toptal/picasso'
 
-const editorTestId = 'editor'
+import {
+  Editor,
+  component,
+  editorSelector,
+  makeEditorProps,
+} from './test-helpers'
 
-const defaultProps = {
-  id: 'foo',
-  onChange: () => {},
-  placeholder: 'placeholder',
-  testIds: {
-    editor: editorTestId,
-  },
-}
+const defaultProps = makeEditorProps()
 
-const editorSelector = `#${defaultProps.id}`
 const defaultValue = htmlToHast(
   '<p>foo <code>bar</code> baz</p><p>qux <code>quux</code> quuz</p>'
 )
-
-const Editor = (props: RichTextEditorProps) => {
-  const [value, setValue] = useState('')
-
-  return (
-    <Container style={{ maxWidth: '600px' }} padded='small'>
-      <RichTextEditor {...props} onChange={value => setValue(value)} />
-      <Container padded='small'>{value}</Container>
-    </Container>
-  )
-}
-
-const component = 'RichTextEditor'
 
 describe('CodeBlockPlugin', () => {
   describe('when the cursor is empty line', () => {

@@ -1,42 +1,23 @@
-import React, { useState } from 'react'
-import type { RichTextEditorProps } from '@toptal/picasso-rich-text-editor'
-import { LinkPlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
-import { Container } from '@toptal/picasso'
+import React from 'react'
+import { LinkPlugin } from '@toptal/picasso-rich-text-editor'
 
-const editorTestId = 'editor'
+import {
+  Editor,
+  component,
+  editorSelector,
+  makeEditorProps,
+  resultContainerTestId,
+} from './test-helpers'
+
 const linkPluginButton = 'link-plugin-button'
-const resultContainerTestId = 'result-container'
 const boldButton = 'boldButton'
 const ulButton = 'ulButton'
 
-const defaultProps = {
-  id: 'foo',
-  onChange: () => {},
-  placeholder: 'placeholder',
-  testIds: {
-    editor: editorTestId,
-    linkPluginButton: linkPluginButton,
-    boldButton,
-    unorderedListButton: ulButton,
-  },
-}
-
-const editorSelector = `#${defaultProps.id}`
-
-const Editor = (props: RichTextEditorProps) => {
-  const [value, setValue] = useState('')
-
-  return (
-    <Container style={{ maxWidth: '600px' }} padded='small'>
-      <RichTextEditor {...props} onChange={value => setValue(value)} />
-      <Container padded='small' data-testid={resultContainerTestId}>
-        {value}
-      </Container>
-    </Container>
-  )
-}
-
-const component = 'RichTextEditor'
+const defaultProps = makeEditorProps({
+  linkPluginButton,
+  boldButton,
+  unorderedListButton: ulButton,
+})
 
 const setAliases = () => {
   cy.get(editorSelector).as('editor')

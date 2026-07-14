@@ -288,6 +288,9 @@ const component = 'Tooltip'
 describe('Tooltip', () => {
   it('renders by default', () => {
     cy.mount(<SnapshotTooltipExample />)
+    // opens via async setOpen — gate on it before capturing (the base-ui popup
+    // mounts + positions a frame later; the global override settles geometry)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'default',
@@ -296,6 +299,7 @@ describe('Tooltip', () => {
 
   it('renders with disabled portals', () => {
     cy.mount(<SnapshotTooltipExample disablePortal />)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'with-disabled-portals',
@@ -304,6 +308,7 @@ describe('Tooltip', () => {
 
   it('renders compact', () => {
     cy.mount(<SnapshotTooltipExample compact />)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'compact',
@@ -312,6 +317,7 @@ describe('Tooltip', () => {
 
   it('renders long text with max width', () => {
     cy.mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'long-text-with-max-width',
@@ -322,6 +328,7 @@ describe('Tooltip', () => {
     cy.mount(
       <SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} maxWidth='none' />
     )
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'long-text-without-max-width',
@@ -335,6 +342,7 @@ describe('Tooltip', () => {
         preventOverflow={false}
       />
     )
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'without-overflow-prevention',
@@ -343,6 +351,8 @@ describe('Tooltip', () => {
 
   it('renders with different placements', () => {
     cy.mount(<PlacementTooltipExample />)
+    // 12 tooltips, all opened via async setOpen — wait for the full set
+    cy.getByRole('tooltip').should('have.length', 12).and('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'with-different-placements',
@@ -354,6 +364,11 @@ describe('Tooltip', () => {
   // We are skipping this test until we get a response from Happo team
   it.skip('renders inside and outside of a modal', () => {
     cy.mount(<ModalTooltipExample />)
+
+    // modal + both tooltips open via async state — gate on them before capturing
+    cy.waitForOverlayOpen()
+    cy.getByRole('tooltip').should('have.length', 2).and('be.visible')
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'inside-and-outside-modal',

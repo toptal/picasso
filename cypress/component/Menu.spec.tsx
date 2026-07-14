@@ -43,6 +43,13 @@ const MenuExample = (props: MenuProps) => {
 
 const component = 'Menu'
 
+// deselect via body click, then let the blurred item's transition-colors
+// (~150ms) come to rest so the snapshot doesn't freeze a mid-transition color
+const clickBodyAndSettle = () => {
+  cy.get('body').click()
+  cy.waitForTransitionsToSettle('[role="menuitem"]')
+}
+
 describe('Menu', () => {
   it('navigates slide menu', () => {
     cy.mount(<MenuExample />)
@@ -64,7 +71,7 @@ describe('Menu', () => {
     cy.getByTestId('item-b1').click()
     cy.getByTestId('menu-b1').should('be.visible')
     cy.getByTestId('menu-b2').should('not.exist')
-    cy.get('body').click()
+    clickBodyAndSettle()
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
@@ -73,7 +80,7 @@ describe('Menu', () => {
     cy.getByTestId('menu-back').last().click()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').click()
+    clickBodyAndSettle()
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
