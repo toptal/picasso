@@ -76,4 +76,40 @@ describe('Switch', () => {
     expect(onChange).toHaveBeenCalled()
     expect(getByTestId('switch')).toMatchSnapshot()
   })
+
+  describe('single label-associated node (PF-2244)', () => {
+    it('matches getByLabelText once and resolves to the accessible control', () => {
+      const { getByLabelText, getByRole } = renderSwitch({ label: 'A Switch' })
+
+      // Regression: the base-ui control renders a role="switch" span plus a
+      // hidden native <input>. Both used to be label-associated, so
+      // getByLabelText threw "Found multiple elements". It must now match
+      // exactly the accessible control.
+      expect(getByLabelText('A Switch')).toBe(
+        getByRole('switch', { name: 'A Switch' })
+      )
+    })
+
+    it('toggles when the label text is clicked', () => {
+      const onChange = jest.fn()
+      const { getByText } = renderSwitch({ label: 'A Switch', onChange })
+
+      fireEvent.click(getByText('A Switch'))
+
+      expect(onChange).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not toggle when disabled and the label text is clicked', () => {
+      const onChange = jest.fn()
+      const { getByText } = renderSwitch({
+        label: 'A Switch',
+        disabled: true,
+        onChange,
+      })
+
+      fireEvent.click(getByText('A Switch'))
+
+      expect(onChange).not.toHaveBeenCalled()
+    })
+  })
 })
