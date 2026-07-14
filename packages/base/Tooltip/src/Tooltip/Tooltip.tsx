@@ -4,31 +4,19 @@ import type {
   ChangeEvent,
   HTMLAttributes,
 } from 'react'
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
 import { SPACING_0, usePicassoRoot } from '@toptal/picasso-provider'
 import { Typography } from '@toptal/picasso-typography'
-import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ContainerValue } from './types'
 import { createArrowClassNames, createPopupClassNames } from './styles'
-import {
-  getPositionerOffsets,
-  getSettledAnchorRect,
-  isMenuItemAnchor,
-  splitPlacement,
-} from './utils'
+import { getPositionerOffsets, splitPlacement } from './utils'
 import { useTooltipState } from './use-tooltip-state'
+import { useTooltipAnchor } from './use-tooltip-anchor'
 
 export type DelayType = 'short' | 'long'
 
@@ -70,6 +58,28 @@ let fallbackIdCounter = 0
 // BOTH the popup's `id` and the trigger's `aria-describedby`. Assigning it in an
 // effect keeps it SSR-safe (the server renders no id, the client fills it in —
 // no hydration mismatch), exactly as MUI's unstable_useId did. [PF-2224]
+// Resolves where the portal mounts: the trigger's own parent (disablePortal),
+// an explicit container (value or factory), or the picasso root as a fallback.
+const resolveContainer = ({
+  disablePortal,
+  triggerParent,
+  container,
+  fallback,
+}: {
+  disablePortal: boolean
+  triggerParent: HTMLElement | null
+  container: ContainerValue | undefined
+  fallback: HTMLElement | null
+}): HTMLElement | null => {
+  if (disablePortal) {
+    return triggerParent
+  }
+
+  const resolved = typeof container === 'function' ? container() : container
+
+  return resolved ?? fallback
+}
+
 const useFallbackId = (idProp?: string): string | undefined => {
   const [fallbackId, setFallbackId] = useState(idProp)
 
@@ -189,69 +199,14 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       onTransitionExited,
     })
 
-    const [triggerParent, setTriggerParent] = useState<HTMLElement | null>(null)
-    const [anchorIsMenuItem, setAnchorIsMenuItem] = useState(false)
-    const [triggerMounted, setTriggerMounted] = useState(false)
-    const triggerNodeRef = useRef<HTMLElement | null>(null)
-
-    const trackTriggerParent = useCallback(
-      (node: HTMLElement | null) => {
-        if (disablePortal) {
-          setTriggerParent(node?.parentElement ?? null)
-        }
-      },
-      [disablePortal]
-    )
-
-    // Mirror the anchor's menu-item-ness into state so `disableAnchorTracking`
-    // (below) is correct on the render that matters. A `open`-from-mount tooltip
-    // (e.g. the Dropdown story) commits its Positioner before the trigger ref
-    // callback runs, so a bare `triggerNodeRef.current` read would still be null;
-    // the state update re-renders once the node is committed.
-    //
-    // `triggerMounted` additionally gates the base-ui Root `open` (below) so a
-    // tooltip that is `open` from its very first render still plays its enter
-    // fade. base-ui's useTransitionStatus initializes `mounted` to `open` and
-    // only enters the `'starting'` phase on a false→true transition, so an
-    // open-at-mount Root never gets `data-starting-style` and the popup pops in
-    // at full opacity. Master (MUI Grow, `appear: true`) faded such tooltips in.
-    // The ref callback's setState flushes before paint, so this adds no visible
-    // delay. [PF-2224]
-    const trackAnchorRole = useCallback((node: HTMLElement | null) => {
-      setAnchorIsMenuItem(isMenuItemAnchor(node))
-      setTriggerMounted(node !== null)
-    }, [])
-
-    const setTriggerRef = useMultipleForwardRefs<HTMLElement | null>([
-      ref,
+    const {
+      setTriggerRef,
       triggerNodeRef,
-      trackTriggerParent,
-      trackAnchorRole,
-    ])
-
-    // A menu-item anchor sits inside the Dropdown's Paper, which reveals with a
-    // ~200ms scale-in — and a mid-scale ancestor taints the anchor's
-    // getBoundingClientRect, so base-ui's entrance solve would land the popup
-    // ~4px off and it would visibly re-position once the animation settles.
-    // This virtual anchor feeds base-ui the anchor's SETTLED rect instead
-    // (reconstructed from transform-independent layout metrics, see
-    // getSettledAnchorRect), so the first solve already lands on the final
-    // position and nothing moves afterwards. `contextElement` keeps
-    // floating-ui's ancestorScroll/hide plumbing attached to the real anchor
-    // node (autoUpdate and the hide middleware unwrap it), so scroll
-    // re-solving and data-[anchor-hidden] behave exactly as with an element
-    // anchor. Outside the scale animation the virtual rect IS the live
-    // getBoundingClientRect, so steady-state behavior is unchanged. [PF-2224]
-    const settledAnchor = useMemo(
-      () => ({
-        get contextElement() {
-          return triggerNodeRef.current ?? undefined
-        },
-        getBoundingClientRect: () =>
-          getSettledAnchorRect(triggerNodeRef.current),
-      }),
-      []
-    )
+      anchor,
+      anchorIsMenuItem,
+      triggerMounted,
+      triggerParent,
+    } = useTooltipAnchor({ ref, disablePortal, followCursor })
 
     const { side, align } = splitPlacement(placement)
     const showArrow = !compact && !followCursor
@@ -265,10 +220,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       anchorRef: triggerNodeRef,
     })
 
-    const resolvedContainer = disablePortal
-      ? triggerParent
-      : (typeof container === 'function' ? container() : container) ??
-        picassoRootContainer
+    const resolvedContainer = resolveContainer({
+      disablePortal,
+      triggerParent,
+      container,
+      fallback: picassoRootContainer,
+    })
 
     const triggerRest = rest as Omit<
       BaseTooltip.Trigger.Props,
@@ -278,13 +235,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     const positioner = (
       <BaseTooltip.Positioner
         ref={tooltipRef}
-        anchor={
-          followCursor
-            ? undefined
-            : anchorIsMenuItem
-            ? settledAnchor
-            : triggerNodeRef
-        }
+        anchor={anchor}
         // `disableAnchorTracking` gates ONLY base-ui's ResizeObserver
         // (elementResize) + layout-shift IntersectionObserver (layoutShift);
         // ancestorScroll stays on. We disable it for menu-item anchors
