@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import { Dialog } from '@base-ui/react/dialog'
+import { Dialog as BaseUIDialog } from '@base-ui/react/dialog'
 import React, { forwardRef, useEffect, useRef, useContext } from 'react'
 import type {
   BaseProps,
@@ -213,6 +213,12 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     (typeof container === 'function' ? container() : container) ||
     picassoRootContainer
 
+  // Base UI's Dialog.Popup already renders `role="dialog"`. Honor a consumer's
+  // `paperProps.role` override on the popup (the element Base UI treats as the
+  // dialog) rather than the inner Paper.
+  const { role: paperRole, ...restPaperProps } = paperProps ?? {}
+  const popupRoleProps = paperRole !== undefined ? { role: paperRole } : {}
+
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget && !disableBackdropClick) {
       onBackdropClick?.()
@@ -223,7 +229,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   }
 
   return (
-    <Dialog.Root
+    <BaseUIDialog.Root
       open={open}
       modal={false}
       disablePointerDismissal
@@ -238,15 +244,16 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         }
       }}
     >
-      <Dialog.Portal container={resolvedContainer}>
+      <BaseUIDialog.Portal container={resolvedContainer}>
         {!hideBackdrop && (
-          <Dialog.Backdrop
+          <BaseUIDialog.Backdrop
             className='fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
             style={durationStyle}
           />
         )}
-        <Dialog.Popup
+        <BaseUIDialog.Popup
           {...rest}
+          {...popupRoleProps}
           ref={modalRef}
           initialFocus={() =>
             modalRef.current?.contains(document.activeElement)
@@ -260,7 +267,12 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
         >
-          <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
+          <ModalPaper
+            size={size}
+            align={align}
+            tabIndex={-1}
+            {...restPaperProps}
+          >
             <ModalContext.Provider value>
               {children}
               {onClose && (
@@ -279,9 +291,9 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
               )}
             </ModalContext.Provider>
           </ModalPaper>
-        </Dialog.Popup>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </BaseUIDialog.Popup>
+      </BaseUIDialog.Portal>
+    </BaseUIDialog.Root>
   )
 })
 

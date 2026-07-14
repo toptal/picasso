@@ -49,7 +49,6 @@ export const ModalPaper = React.forwardRef<HTMLDivElement, Props>(
     return (
       <Paper
         ref={ref}
-        role='dialog'
         elevation={2}
         className={twMerge(
           'outline-hidden overflow-y-auto',
