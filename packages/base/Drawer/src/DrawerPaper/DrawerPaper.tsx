@@ -38,13 +38,13 @@ const DrawerPaper = forwardRef(
         ref={ref}
         elevation={16}
         className={twMerge(
-          className,
           'fixed top-0 h-full flex flex-col outline-0 z-drawer',
           'max-w-full',
           disableScroll
             ? 'overflow-hidden'
             : 'overflow-y-auto webkit-overflow-scrolling-touch',
           'transition-transform ease-out duration-300',
+          className,
           anchorClassName[anchor]
         )}
         {...rest}

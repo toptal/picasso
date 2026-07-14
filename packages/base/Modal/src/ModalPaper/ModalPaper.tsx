@@ -52,9 +52,9 @@ export const ModalPaper = React.forwardRef<HTMLDivElement, Props>(
         role='dialog'
         elevation={2}
         className={twMerge(
-          className,
           'outline-hidden overflow-y-auto',
           'flex flex-col',
+          className,
           sizeBasedClasses[size],
           alignBasedClasses[align],
           getMaxHeightClass(size, align)
