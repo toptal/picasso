@@ -17,7 +17,7 @@
     /* border-box page model (PF-2221) — descendants inherit it through the
        universal selector below; the PicassoRootNode island keeps guarding
        pages that don't import this entry */
-    box-sizing: border-box;
+    box-sizing: initial;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
