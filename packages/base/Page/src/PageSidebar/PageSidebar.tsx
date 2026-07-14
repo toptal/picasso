@@ -93,7 +93,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         'shadow-[inset_-1px_0_0_0]',
         'text-lg/[inherit]',
         'relative',
-        'transition-[width] ease-in-out delay-225',
+        'transition-[width] ease-in-out delay-[225ms]',
         'hidden min-[1280px]:block',
         '[&]:before:absolute',
         '[&]:before:content-[""]',

@@ -1,3 +1,5 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  // Short forms don't resolve against Picasso's custom token scales.
+  "tailwindCSS.lint.invalidCanonicalClasses": "ignore"
 }
