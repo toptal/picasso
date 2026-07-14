@@ -213,12 +213,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     (typeof container === 'function' ? container() : container) ||
     picassoRootContainer
 
-  // Base UI's Dialog.Popup already renders `role="dialog"`. Honor a consumer's
-  // `paperProps.role` override on the popup (the element Base UI treats as the
-  // dialog) rather than the inner Paper.
-  const { role: paperRole, ...restPaperProps } = paperProps ?? {}
-  const popupRoleProps = paperRole !== undefined ? { role: paperRole } : {}
-
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget && !disableBackdropClick) {
       onBackdropClick?.()
@@ -253,7 +247,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         )}
         <BaseUIDialog.Popup
           {...rest}
-          {...popupRoleProps}
           ref={modalRef}
           initialFocus={() =>
             modalRef.current?.contains(document.activeElement)
@@ -267,12 +260,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
         >
-          <ModalPaper
-            size={size}
-            align={align}
-            tabIndex={-1}
-            {...restPaperProps}
-          >
+          <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
             <ModalContext.Provider value>
               {children}
               {onClose && (
