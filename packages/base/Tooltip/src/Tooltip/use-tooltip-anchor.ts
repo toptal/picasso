@@ -7,8 +7,7 @@ import { getSettledAnchorRect, isMenuItemAnchor } from './utils'
 // Wires the tooltip trigger's ref and derives everything the Positioner needs
 // from the anchor node: whether it is a menu item (drives anchor-tracking),
 // whether it has mounted (gates the enter fade), its portal parent (disablePortal
-// mode), and the settled-rect virtual anchor. Extracted from the Tooltip
-// component to keep that render function readable. [PF-2224]
+// mode), and the settled-rect virtual anchor. [PF-2224]
 export const useTooltipAnchor = ({
   ref,
   disablePortal,
@@ -69,6 +68,13 @@ export const useTooltipAnchor = ({
   // re-solving and data-[anchor-hidden] behave exactly as with an element anchor.
   // Outside the scale animation the virtual rect IS the live getBoundingClientRect,
   // so steady-state behavior is unchanged. [PF-2224]
+  //
+  // Because this rect is already the settled position, menu-item anchors also let
+  // the caller disable base-ui's resize/layout-shift observers (the Positioner's
+  // `disableAnchorTracking`): those would chase late sub-pixel reflows (a web font
+  // settling after paint nudges the option row a pixel) and make the popup drift —
+  // a jitter master's popper.js never had. Scoped to menu items only; widening it
+  // regressed Autocomplete, which has no scale-in but reflows and needs tracking.
   const settledAnchor = useMemo(
     () => ({
       get contextElement() {

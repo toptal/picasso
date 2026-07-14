@@ -9,10 +9,10 @@ import type { OffsetType, PlacementType } from './Tooltip'
 type Side = 'top' | 'bottom' | 'left' | 'right'
 type Align = 'start' | 'center' | 'end'
 
-const gapPx = (remValue: string): number => fromPx(pxFromRem(remValue))
+const remToPx = (remValue: string): number => fromPx(pxFromRem(remValue))
 
-const POPUP_MARGIN_PX = gapPx(POPUP_MARGIN) // 14px
-const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
+const POPUP_MARGIN_PX = remToPx(POPUP_MARGIN) // 14px
+const COMPACT_POPUP_MARGIN_PX = remToPx(COMPACT_POPUP_MARGIN) // 4px
 
 // Menu-item tooltips sit in a dense stack of options where a menu item's box
 // includes top padding, so the standard flush gap lands the arrow tip in that
@@ -23,8 +23,8 @@ const COMPACT_POPUP_MARGIN_PX = gapPx(COMPACT_POPUP_MARGIN) // 4px
 // standard gap. Calibrated against the option's SETTLED rect, which is also the
 // rect the entrance solve positions against (see getSettledAnchorRect below),
 // so the gap is correct from the first paint. [PF-1994][PF-2224]
-const MENU_ITEM_ARROW_GAP = gapPx('0.4375rem') // 7px
-const FOLLOW_CURSOR_GAP = gapPx('0.625rem') // 10px
+const MENU_ITEM_ARROW_GAP = remToPx('0.4375rem') // 7px
+const FOLLOW_CURSOR_GAP = remToPx('0.625rem') // 10px
 
 // Menu items are recognized by the anchor's semantic (ARIA) role rather than
 // by coupling to @toptal/picasso-menu — Menu.Item renders `role="menuitem"`,
@@ -244,7 +244,7 @@ export const getSettledAnchorRect = (
 }
 
 export const spacingToPxNumber = (spacing: PicassoSpacing): number =>
-  fromPx(pxFromRem(spacingToRem(spacing)))
+  remToPx(spacingToRem(spacing))
 
 export const splitPlacement = (
   placement: PlacementType
@@ -252,7 +252,7 @@ export const splitPlacement = (
   const [side, alignPart] = placement.split('-') as [Side, string | undefined]
 
   const align: Align =
-    alignPart === 'start' ? 'start' : alignPart === 'end' ? 'end' : 'center'
+    alignPart === 'start' || alignPart === 'end' ? alignPart : 'center'
 
   return { side, align }
 }
