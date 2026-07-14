@@ -338,7 +338,11 @@ describe('Select', () => {
         <Drawer open>
           <Form>
             <Form.Field>
-              <TestSelect searchThreshold={-1} disablePortal />
+              <TestSelect
+                searchThreshold={-1}
+                disablePortal
+                testIds={{ searchInput: 'search-input' }}
+              />
             </Form.Field>
           </Form>
         </Drawer>
@@ -346,7 +350,7 @@ describe('Select', () => {
 
       openSelect()
 
-      cy.get('[role="tooltip"]').find('input').as('searchInput')
+      cy.getByTestId('search-input').find('input').as('searchInput')
 
       cy.get('@searchInput').should('be.visible')
       cy.get('@searchInput').click()

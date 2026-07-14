@@ -422,6 +422,7 @@ export const DatePicker = ({
       </Container>
       {inputWrapperRef.current && (
         <Popper
+          role='dialog'
           placement='bottom-start'
           open={calendarIsShown}
           anchorEl={inputWrapperRef.current}

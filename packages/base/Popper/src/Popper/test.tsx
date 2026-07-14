@@ -148,4 +148,33 @@ describe('Popper', () => {
 
     expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
   })
+
+  describe('role', () => {
+    it('defaults the floating element to role="tooltip"', async () => {
+      renderPopper()
+      await flushPosition()
+
+      expect(screen.getByRole('tooltip')).toHaveTextContent(children)
+    })
+
+    it('applies a custom role over the default', async () => {
+      renderPopper({ role: 'dialog' })
+      await flushPosition()
+
+      const popper = screen.getByRole('dialog')
+
+      expect(popper).toHaveTextContent(children)
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+    })
+
+    it('marks the floating element presentational with role="presentation"', async () => {
+      renderPopper({ role: 'presentation' })
+      await flushPosition()
+
+      // `presentation` removes the element from the accessibility tree, so it is
+      // queryable only by its content, not by the default tooltip role.
+      expect(screen.getByText(children)).toBeInTheDocument()
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+    })
+  })
 })

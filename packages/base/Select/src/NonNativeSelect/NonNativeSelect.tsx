@@ -207,6 +207,7 @@ export const NonNativeSelect = documentable(
           </div>
           {!disabled && isOpen && (
             <Popper
+              role='presentation'
               ref={popperRef}
               autoWidth
               width={menuWidth}
