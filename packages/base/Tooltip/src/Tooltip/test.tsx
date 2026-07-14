@@ -345,6 +345,65 @@ describe('Tooltip', () => {
     })
   })
 
+  describe('when clicked during the hover-open delay on a pointer device', () => {
+    it('opens the tooltip instead of latching it shut', async () => {
+      // Regression for PF-2245. A real `cy.click()` fires
+      // mouseover → mousedown(focus) → click. The mouseover arms Picasso's
+      // 200ms hover-open; the mousedown-focus makes base-ui open the tooltip
+      // synchronously (its `useFocus`, reason `trigger-focus` — `matchesFocus-
+      // Visible` is unconditionally true under jsdom and for the untrusted
+      // programmatic focus a `cy.click()` dispatches); the trailing click
+      // lands while that open is in flight. It must NOT dismiss-and-latch the
+      // tooltip — otherwise it stays suppressed until the pointer leaves and
+      // re-enters, which never happens (the cursor sits on the trigger), so
+      // every consumer Cypress spec that `.click()`s a tooltip trigger fails.
+      const onOpenMock = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderTooltip({
+        onOpen: onOpenMock,
+      })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.mouseOver(trigger)
+      fireEvent.focus(trigger)
+      clickElement(trigger)
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+      expect(onOpenMock).toHaveBeenCalled()
+    })
+
+    it('still dismisses a click once the hover-open has fired', async () => {
+      // The click-during-delay exemption must not disarm ordinary click-to-
+      // dismiss: once the 200ms hover-open has actually fired (pending flag
+      // retired), a click — focus and all — closes the tooltip and keeps it
+      // suppressed until the pointer leaves, then a re-hover re-opens it.
+      const { getByTestId, queryByTestId } = renderTooltip()
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.mouseOver(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+
+      fireEvent.focus(trigger)
+      clickElement(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
+      )
+
+      // Still hovering: suppressed. Leaving lifts it; a re-hover opens again.
+      fireEvent.mouseLeave(trigger, { clientX: 100, clientY: 100 })
+      fireEvent.mouseOver(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+    })
+  })
+
   describe('on a touch device', () => {
     beforeEach(() => {
       mockPointerDevice(false)
