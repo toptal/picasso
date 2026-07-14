@@ -96,6 +96,18 @@ export const useTooltipState = ({
   // Pending hover-open timer (see handleTriggerMouseOver).
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
+  // Whether the hover-open timer above is still pending. A click landing in
+  // this window belongs to the same gesture as the hover: base-ui's Trigger
+  // opens synchronously on the mousedown-focus (reason `trigger-focus`, via
+  // its `useFocus` — `matchesFocusVisible` is unconditionally true under jsdom
+  // and for the untrusted/programmatic focus a Cypress `.click()` dispatches),
+  // so the trailing click would otherwise read that transient open and
+  // dismiss-then-latch it shut. Treat an in-flight hover-open as "not a
+  // deliberately shown tooltip" so the click doesn't suppress it — hover wins,
+  // matching the pre-v2 build where the click observed lagging closure state
+  // and was a desktop no-op. [PF-2245]
+  const hoverOpenPendingRef = useRef(false)
+
   const touchOpenedRef = useRef(false)
 
   // Where the current touch gesture began; null means "no pending tap-open"
@@ -112,6 +124,7 @@ export const useTooltipState = ({
     () => () => {
       clearTimeout(openTimerRef.current)
       clearTimeout(stopTimerRef.current)
+      hoverOpenPendingRef.current = false
     },
     []
   )
@@ -167,6 +180,14 @@ export const useTooltipState = ({
     }
 
     if (openRef.current) {
+      // A hover-open is still in flight: this "open" is base-ui's transient
+      // focus-open from the same click gesture, not a deliberately shown
+      // tooltip — don't dismiss-and-latch it. Leave the pending timer to open
+      // it for real (its callback no-ops if base-ui already did). [PF-2245]
+      if (hoverOpenPendingRef.current) {
+        return
+      }
+
       suppressReopenRef.current = true
       clearTimeout(openTimerRef.current)
       setOpen(false)
@@ -278,7 +299,13 @@ export const useTooltipState = ({
     const { nativeEvent } = event
 
     clearTimeout(openTimerRef.current)
+    hoverOpenPendingRef.current = true
     openTimerRef.current = setTimeout(() => {
+      // Retire the pending flag first — the hover-open window is over, so a
+      // subsequent click must be free to dismiss again (must precede the
+      // early return below). [PF-2245]
+      hoverOpenPendingRef.current = false
+
       if (openRef.current || suppressReopenRef.current) {
         return
       }
@@ -332,6 +359,7 @@ export const useTooltipState = ({
   const handleTriggerMouseLeave = (event: MouseEvent<HTMLElement>) => {
     clearTimeout(openTimerRef.current)
     clearTimeout(stopTimerRef.current)
+    hoverOpenPendingRef.current = false
     targetHoveredRef.current = false
     followCursorHiddenRef.current = false
     moveStartRef.current = null
