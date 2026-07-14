@@ -93,20 +93,19 @@ export const useTooltipState = ({
 
   const suppressReopenRef = useRef(false)
 
-  // Pending hover-open timer (see handleTriggerMouseOver).
-  const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
-
-  // Whether the hover-open timer above is still pending. A click landing in
-  // this window belongs to the same gesture as the hover: base-ui's Trigger
-  // opens synchronously on the mousedown-focus (reason `trigger-focus`, via
-  // its `useFocus` — `matchesFocusVisible` is unconditionally true under jsdom
+  // Pending hover-open timer (see handleTriggerMouseOver). A non-undefined
+  // value doubles as "a hover-open is still pending": the callback nulls it
+  // when it fires and every cancel path (click-dismiss, mouseleave, unmount)
+  // nulls it too, so `openTimerRef.current !== undefined` reliably means the
+  // enter-delay is still counting down. handleTriggerClick relies on that — a
+  // click landing in this window belongs to the same gesture as the hover:
+  // base-ui opens synchronously on the mousedown-focus (`trigger-focus`, via
+  // its `useFocus`; `matchesFocusVisible` is unconditionally true under jsdom
   // and for the untrusted/programmatic focus a Cypress `.click()` dispatches),
-  // so the trailing click would otherwise read that transient open and
-  // dismiss-then-latch it shut. Treat an in-flight hover-open as "not a
-  // deliberately shown tooltip" so the click doesn't suppress it — hover wins,
-  // matching the pre-v2 build where the click observed lagging closure state
-  // and was a desktop no-op. [PF-2245]
-  const hoverOpenPendingRef = useRef(false)
+  // so the trailing click must not read that transient open and dismiss-then-
+  // latch it shut. Let hover win, as the pre-v2 build did (its click read
+  // lagging closure state and was a desktop no-op). [PF-2245]
+  const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
   const touchOpenedRef = useRef(false)
 
@@ -117,14 +116,11 @@ export const useTooltipState = ({
   const moveStartRef = useRef<{ x: number; y: number } | null>(null)
   const followCursorHiddenRef = useRef(false)
   const stopTimerRef = useRef<ReturnType<typeof setTimeout>>()
-  const targetHoveredRef = useRef(false)
-  const lastMoveEventRef = useRef<Event | null>(null)
 
   useEffect(
     () => () => {
       clearTimeout(openTimerRef.current)
       clearTimeout(stopTimerRef.current)
-      hoverOpenPendingRef.current = false
     },
     []
   )
@@ -147,9 +143,20 @@ export const useTooltipState = ({
       return
     }
 
+    // In uncontrolled mode Picasso decides which of base-ui's open requests to
+    // honor. Veto three: a click-dismiss latch (suppressReopenRef) or a
+    // follow-cursor roam-hide (followCursorHiddenRef) that must stay closed,
+    // and base-ui's `trigger-hover` open — Picasso owns hover-open via its own
+    // enter-delay timer (handleTriggerMouseOver), whereas base-ui's hover is
+    // REST-based (opens only once the cursor stops, not the enter-based delay
+    // MUI/legacy Picasso used), so honoring it would race a second, differently
+    // timed hover-open machine. base-ui still owns focus-open (`trigger-focus`,
+    // relied on for keyboard/focus) and every close/dismiss above.
     if (
       !isControlled &&
-      (suppressReopenRef.current || followCursorHiddenRef.current)
+      (suppressReopenRef.current ||
+        followCursorHiddenRef.current ||
+        eventDetails.reason === 'trigger-hover')
     ) {
       return
     }
@@ -184,12 +191,13 @@ export const useTooltipState = ({
       // focus-open from the same click gesture, not a deliberately shown
       // tooltip — don't dismiss-and-latch it. Leave the pending timer to open
       // it for real (its callback no-ops if base-ui already did). [PF-2245]
-      if (hoverOpenPendingRef.current) {
+      if (openTimerRef.current !== undefined) {
         return
       }
 
       suppressReopenRef.current = true
       clearTimeout(openTimerRef.current)
+      openTimerRef.current = undefined
       setOpen(false)
       onClose?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
     } else if (
@@ -284,8 +292,6 @@ export const useTooltipState = ({
   }
 
   const handleTriggerMouseOver = (event: MouseEvent<HTMLElement>) => {
-    targetHoveredRef.current = true
-
     if (
       isControlled ||
       disableListeners ||
@@ -299,12 +305,11 @@ export const useTooltipState = ({
     const { nativeEvent } = event
 
     clearTimeout(openTimerRef.current)
-    hoverOpenPendingRef.current = true
     openTimerRef.current = setTimeout(() => {
-      // Retire the pending flag first — the hover-open window is over, so a
-      // subsequent click must be free to dismiss again (must precede the
-      // early return below). [PF-2245]
-      hoverOpenPendingRef.current = false
+      // Retire the pending marker first — the hover-open window is over, so a
+      // subsequent click must be free to dismiss again (must precede the early
+      // return below). [PF-2245]
+      openTimerRef.current = undefined
 
       if (openRef.current || suppressReopenRef.current) {
         return
@@ -321,9 +326,9 @@ export const useTooltipState = ({
     }
 
     const position = { x: event.clientX, y: event.clientY }
+    const { nativeEvent } = event
 
     moveStartRef.current ??= position
-    lastMoveEventRef.current = event.nativeEvent
 
     const movedTooFar =
       Math.abs(position.x - moveStartRef.current.x) >
@@ -334,24 +339,21 @@ export const useTooltipState = ({
     if (movedTooFar && openRef.current) {
       followCursorHiddenRef.current = true
       setOpen(false)
-      onClose?.(toReactEvent<ChangeEvent<Element>>(event.nativeEvent))
+      onClose?.(toReactEvent<ChangeEvent<Element>>(nativeEvent))
     }
 
     clearTimeout(stopTimerRef.current)
     stopTimerRef.current = setTimeout(() => {
-      // Cursor settled: start a fresh segment and reopen near it, as long as the
-      // pointer is still over the trigger and no click-dismiss is in effect.
+      // Cursor settled: start a fresh segment and reopen near it, as long as no
+      // click-dismiss is in effect. The stop timer is re-armed on every move
+      // and cleared on mouseleave, so this only fires while the pointer is
+      // still over the trigger, and `nativeEvent` is that last move's event.
       moveStartRef.current = null
       followCursorHiddenRef.current = false
 
-      if (
-        targetHoveredRef.current &&
-        !suppressReopenRef.current &&
-        !openRef.current &&
-        lastMoveEventRef.current
-      ) {
+      if (!suppressReopenRef.current && !openRef.current) {
         setOpen(true)
-        onOpen?.(toReactEvent<ChangeEvent<Element>>(lastMoveEventRef.current))
+        onOpen?.(toReactEvent<ChangeEvent<Element>>(nativeEvent))
       }
     }, FOLLOW_CURSOR_STOP_DELAY)
   }
@@ -359,8 +361,7 @@ export const useTooltipState = ({
   const handleTriggerMouseLeave = (event: MouseEvent<HTMLElement>) => {
     clearTimeout(openTimerRef.current)
     clearTimeout(stopTimerRef.current)
-    hoverOpenPendingRef.current = false
-    targetHoveredRef.current = false
+    openTimerRef.current = undefined
     followCursorHiddenRef.current = false
     moveStartRef.current = null
 
