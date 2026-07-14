@@ -31,7 +31,9 @@ describe('CategoriesChart', () => {
     })
 
     cy.get('text').contains('421').realHover({ position: 'center' })
-    cy.get('.recharts-tooltip-wrapper').should('be.visible')
+    // recharts renders the wrapper as an empty positioned div before the
+    // tooltip content paints — gate on content, not just the wrapper box
+    cy.get('.recharts-tooltip-wrapper').should('be.visible').and('not.be.empty')
 
     cy.get('body').happoScreenshot({
       component,

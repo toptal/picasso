@@ -22,18 +22,11 @@ const TestProptModal = () => {
   )
 }
 
-// Wait for the modal's open fade (data-starting-style:opacity-0 → 1) to settle
-// before taking the screenshot. Capturing mid-fade composites the (only)
-// bordered button — the secondary Cancel — at partial opacity, producing edge
-// artifacts on its border. Delegates to the shared `waitForOverlayOpen` command
-// (commands.jsx).
-const waitForModalOpen = () => cy.waitForOverlayOpen()
-
 describe('PromptModal', () => {
   it('renders on desktop and mobile', () => {
     cy.mount(<TestProptModal />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,

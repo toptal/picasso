@@ -149,21 +149,15 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
 
 const component = 'Modal'
 
-// Wait for the modal's open fade (data-starting-style:opacity-0 → 1) to settle
-// before taking the screenshot. Capturing mid-fade composites the bordered
-// secondary (Cancel) button at partial opacity, producing edge artifacts on its
-// border. Delegates to the shared `waitForOverlayOpen` command (commands.jsx).
-const waitForModalOpen = () => cy.waitForOverlayOpen()
-
 // The scroll shades fade in over 300ms. When the content overflows, wait for
 // the fade to settle so the screenshot captures the fully-opaque shade instead
 // of a mid-fade frame. When it doesn't overflow (e.g. full-screen / xlarge on a
 // tall viewport) there are no shades, so skip the wait — asserting otherwise
 // would hang.
 const waitForScrollShades = () => {
-  // Settle the modal open fade first (same reason as waitForModalOpen), then
-  // gate on the shade fade so the overflown screenshots are fully stable.
-  waitForModalOpen()
+  // settle the modal open fade first, then gate on the shade fade so the
+  // overflown screenshots are fully stable
+  cy.waitForOverlayOpen()
 
   return cy
     .get('[data-testid="overflown-content"]')
@@ -184,7 +178,7 @@ describe('Modal', () => {
   it('renders', () => {
     cy.mount(<TestModalForm />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -195,7 +189,7 @@ describe('Modal', () => {
   it('renders aligned to top', () => {
     cy.mount(<TestModalForm align='top' />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -206,7 +200,7 @@ describe('Modal', () => {
   it('renders without backdrop', () => {
     cy.mount(<TestModalForm hideBackdrop />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -217,7 +211,7 @@ describe('Modal', () => {
   it('renders small', () => {
     cy.mount(<TestModalForm size='small' />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -228,7 +222,7 @@ describe('Modal', () => {
   it('renders large', () => {
     cy.mount(<TestModalForm size='large' />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,
@@ -239,7 +233,7 @@ describe('Modal', () => {
   it('renders full-screen', () => {
     cy.mount(<TestModalForm size='full-screen' />)
 
-    waitForModalOpen()
+    cy.waitForOverlayOpen()
 
     cy.get('body').happoScreenshot({
       component,

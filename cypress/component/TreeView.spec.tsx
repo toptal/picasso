@@ -117,6 +117,7 @@ describe('TreeView', () => {
 
     cy.getByTestId('tree-dialog-content').should('be.visible')
 
+    cy.waitForOverlayOpen()
     // Temporary disabling this screenshot as fonts stopped working in modals
     // cy.getByRole('presentation').happoScreenshot({
     //   component,

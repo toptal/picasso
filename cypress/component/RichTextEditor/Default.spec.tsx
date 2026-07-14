@@ -10,33 +10,32 @@ import { Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 import { isOn } from '@cypress/skip-test'
 
+import {
+  buttonShouldBeActive,
+  buttonShouldNotBeActive,
+  component,
+  editorSelector,
+  makeEditorProps,
+} from './test-helpers'
+
 const headerSelect = 'headerSelect'
 const boldButton = 'boldButton'
 const italicButton = 'italicButton'
 const ulButton = 'ulButton'
 const olButton = 'olButton'
 const wrapper = 'wrapper'
-const editor = 'editor'
 
-const defaultProps = {
-  id: 'foo',
-  onChange: () => {},
-  placeholder: 'placeholder',
-  testIds: {
-    headerSelect,
-    boldButton,
-    italicButton,
-    unorderedListButton: ulButton,
-    orderedListButton: olButton,
-    wrapper,
-    editor,
-  },
-}
-
-const editorSelector = `#${defaultProps.id}`
+const defaultProps = makeEditorProps({
+  headerSelect,
+  boldButton,
+  italicButton,
+  unorderedListButton: ulButton,
+  orderedListButton: olButton,
+  wrapper,
+})
 
 const renderEditor = (props: RichTextEditorProps) => (
-  <Container data-testid='bla' style={{ maxWidth: '600px' }} padded='small'>
+  <Container style={{ maxWidth: '600px' }} padded='small'>
     <RichTextEditor {...props} />
   </Container>
 )
@@ -46,18 +45,6 @@ const renderEditorInForm = () => (
     <Form.RichTextEditor label='label' name='editor' {...defaultProps} />
   </Form>
 )
-
-const buttonShouldBeActive = (
-  button: Cypress.Chainable<JQuery<HTMLButtonElement>>
-) => {
-  button.should('have.attr', 'class').and('include', 'bg-graphite-700')
-}
-
-const buttonShouldNotBeActive = (
-  button: Cypress.Chainable<JQuery<HTMLButtonElement>>
-) => {
-  button.should('have.attr', 'class').and('not.include', 'bg-graphite-700')
-}
 
 const selectShouldHaveValue = (
   select: Cypress.Chainable<JQuery<HTMLButtonElement>>,
@@ -73,8 +60,6 @@ const setSelectValue = (
   select.realClick({ scrollBehavior: false })
   cy.get('span').contains(value).realClick({ scrollBehavior: false })
 }
-
-const component = 'RichTextEditor'
 
 const setAliases = () => {
   cy.get(editorSelector).as('editor')

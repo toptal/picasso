@@ -1,28 +1,21 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
 
+import { loadAvatarFixture } from '../support/fixtures'
+
 const component = 'Avatar'
+
+const getAvatarSrc = loadAvatarFixture()
+const handleEdit = () => {}
 
 describe('Avatar', () => {
   describe('when avatar is editable and focused', () => {
-    let src = ''
-    const handleEdit = () => {}
-
-    before(() => {
-      // eslint-disable-next-line max-nested-callbacks, promise/catch-or-return
-      cy.fixture('pablo.jpg').then(image => {
-        src = 'data:image/jpg;base64,' + image
-
-        return image
-      })
-    })
-
     it('renders outline around avatar', () => {
       cy.mount(
         <Container padded='small' gap='small'>
           <Avatar
             alt='Jacqueline Roque. Pablo Picasso, 1954'
-            src={src}
+            src={getAvatarSrc()}
             name='Jacqueline Roque'
             size='medium'
             onEdit={handleEdit}
@@ -31,6 +24,10 @@ describe('Avatar', () => {
       )
 
       cy.get('button').focus()
+
+      // let the base64 fixture image decode before capturing
+      cy.waitForImagesDecoded()
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'editable/after-focus',
@@ -39,24 +36,12 @@ describe('Avatar', () => {
   })
 
   describe('when showEmblem prop is true', () => {
-    let src = ''
-    const handleEdit = () => {}
-
-    before(() => {
-      // eslint-disable-next-line max-nested-callbacks, promise/catch-or-return
-      cy.fixture('pablo.jpg').then(image => {
-        src = 'data:image/jpg;base64,' + image
-
-        return image
-      })
-    })
-
     it('shows emblem', () => {
       cy.mount(
         <Container padded='small' gap='small'>
           <Avatar
             alt='Jacqueline Roque. Pablo Picasso, 1954'
-            src={src}
+            src={getAvatarSrc()}
             name='Jacqueline Roque'
             size='medium'
             onEdit={handleEdit}

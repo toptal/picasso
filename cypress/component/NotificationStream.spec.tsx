@@ -119,6 +119,9 @@ describe('NotificationStream', () => {
     cy.getByTestId('trigger-error').click()
     cy.getByTestId('trigger-general').click()
 
+    // notifications mount async — wait for all three before capturing
+    cy.getByRole('alert').should('have.length', 3).and('be.visible')
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'variants',
@@ -130,6 +133,9 @@ describe('NotificationStream', () => {
 
     cy.getByTestId('trigger-custom-content').click()
     cy.getByTestId('trigger-with-icon').click()
+
+    // notifications mount async — wait for both before capturing
+    cy.getByRole('alert').should('have.length', 2).and('be.visible')
 
     cy.get('body').happoScreenshot({
       component,
@@ -150,6 +156,10 @@ describe('NotificationStream', () => {
         cy.mount(<DefaultExample />)
 
         cy.getByTestId('trigger-default').realClick()
+
+        // the notification mounts async — wait for it before capturing
+        cy.getByRole('alert').should('be.visible')
+
         cy.get('body').happoScreenshot({
           component,
           variant: `notification/${width}-default`,

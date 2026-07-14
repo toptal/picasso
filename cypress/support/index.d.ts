@@ -14,6 +14,12 @@ declare global {
         options?: HappoScreenshotOptions
       ): Chainable<Subject>
       waitForOverlayOpen(selector?: string): Chainable<JQuery<HTMLElement>>
+      waitForCalendarOpen(): Chainable<JQuery<HTMLElement>>
+      waitForImagesDecoded(selector?: string): Chainable<JQuery<HTMLElement>>
+      waitForGeometryToSettle(selector: string): Chainable<JQuery<HTMLElement>>
+      waitForTransitionsToSettle(
+        selector: string
+      ): Chainable<JQuery<HTMLElement>>
       mount: typeof mount
     }
   }
