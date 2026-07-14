@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import { Dialog } from '@base-ui/react/dialog'
+import { Dialog as BaseUIDialog } from '@base-ui/react/dialog'
 import React, { forwardRef, useEffect, useRef, useContext } from 'react'
 import type {
   BaseProps,
@@ -223,7 +223,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   }
 
   return (
-    <Dialog.Root
+    <BaseUIDialog.Root
       open={open}
       modal={false}
       disablePointerDismissal
@@ -238,14 +238,14 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         }
       }}
     >
-      <Dialog.Portal container={resolvedContainer}>
+      <BaseUIDialog.Portal container={resolvedContainer}>
         {!hideBackdrop && (
-          <Dialog.Backdrop
+          <BaseUIDialog.Backdrop
             className='fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
             style={durationStyle}
           />
         )}
-        <Dialog.Popup
+        <BaseUIDialog.Popup
           {...rest}
           ref={modalRef}
           initialFocus={() =>
@@ -279,9 +279,9 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
               )}
             </ModalContext.Provider>
           </ModalPaper>
-        </Dialog.Popup>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </BaseUIDialog.Popup>
+      </BaseUIDialog.Portal>
+    </BaseUIDialog.Root>
   )
 })
 

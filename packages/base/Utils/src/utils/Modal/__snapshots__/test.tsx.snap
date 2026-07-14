@@ -57,7 +57,6 @@ exports[`Modal useModal opens and closes modal 1`] = `
         >
           <div
             class="bg-white shadow-2 transition-shadow duration-300 delay-0 outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-            role="dialog"
             tabindex="-1"
           >
             <p>
@@ -236,7 +235,6 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         >
           <div
             class="bg-white shadow-2 transition-shadow duration-300 delay-0 outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-            role="dialog"
             tabindex="-1"
           >
             <p>
@@ -285,7 +283,6 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         >
           <div
             class="bg-white shadow-2 transition-shadow duration-300 delay-0 outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-            role="dialog"
             tabindex="-1"
           >
             <p>
