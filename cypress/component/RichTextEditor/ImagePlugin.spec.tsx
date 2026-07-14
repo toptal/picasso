@@ -134,12 +134,11 @@ describe('ImagePlugin', () => {
 
       cy.get('p').contains(fileUploadErrorMessage).should('be.visible')
 
-      // Screenshot was disabled pre-migration ("fonts stopped working in
-      // modals") and targeted MUI's role="presentation" portal wrapper; the
-      // @base-ui/react Modal emits role="dialog" instead (the passing
-      // successful-upload test above already queries it).
+      // capture body, not the dialog subtree — the modal's font-family is
+      // inherited from outside the portal, so a subtree capture renders in a
+      // serif fallback (the old "fonts stopped working in modals" issue)
       cy.waitForOverlayOpen()
-      cy.getByRole('dialog').happoScreenshot({
+      cy.get('body').happoScreenshot({
         component,
         variant: 'image-plugin/failed-upload',
       })
