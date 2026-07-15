@@ -7,12 +7,12 @@ import type {
   Ref,
   TransitionEvent,
 } from 'react'
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 import cx from 'classnames'
 import { Accordion as BaseUIAccordion } from '@base-ui/react/accordion'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps, TransitionProps } from '@toptal/picasso-shared'
-import { toReactEvent } from '@toptal/picasso-shared'
+import { toReactEvent, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { ButtonAction } from '@toptal/picasso-button'
 
@@ -33,6 +33,9 @@ const ITEM_VALUE = 'item'
 const EXPANDED_VALUE = [ITEM_VALUE]
 const COLLAPSED_VALUE: string[] = []
 const DEFAULT_TRANSITION_DURATION = 300
+// Base UI caches whether the panel animates from a one-time read of its
+// duration, so a literal `0s` would disable it permanently. 1ms is imperceptible.
+const MIN_CSS_TRANSITION_DURATION = 1
 
 const resolveTransitionDuration = (
   timeout: TransitionProps['timeout'],
@@ -118,15 +121,29 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   const [summaryExpanded, setSummaryExpanded] = useState(defaultExpanded)
   const [prevExpanded, setPrevExpanded] = useState(defaultExpanded)
-  // Releases the panel's overflow clip only after the open transition settles.
-  const [isAnimating, setIsAnimating] = useState(false)
+  // Releases the panel's overflow clip once the open transition settles.
+  const [panelSettled, setPanelSettled] = useState(false)
 
   // getDerivedStateFromProps implementation to allow expanded to be controlled
   if (expanded !== undefined && expanded !== prevExpanded) {
     setSummaryExpanded(expanded)
     setPrevExpanded(expanded)
-    setIsAnimating(true)
   }
+
+  const isInitialMountRef = useRef(true)
+
+  // Reset from an effect, never during render — a render-phase write is lost.
+  useIsomorphicLayoutEffect(() => {
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false
+      // A panel that mounts open runs no transition — settle it at once.
+      setPanelSettled(summaryExpanded)
+
+      return
+    }
+
+    setPanelSettled(false)
+  }, [summaryExpanded])
 
   const handleValueChange = (
     value: unknown[],
@@ -135,7 +152,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     const newExpanded = value.length > 0
 
     setSummaryExpanded(newExpanded)
-    setIsAnimating(true)
     onChange(
       toReactEvent<ChangeEvent<Element>>(eventDetails.event),
       newExpanded
@@ -150,9 +166,9 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
       return
     }
 
-    setIsAnimating(false)
-
-    if (!summaryExpanded) {
+    if (summaryExpanded) {
+      setPanelSettled(true)
+    } else {
       transitionProps?.onExited?.(event.currentTarget)
     }
   }
@@ -198,14 +214,15 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
             >
               {children}
               {expandIcon ? (
-                <ButtonAction
-                  data-component-type='accordion-summary-icon'
-                  icon={decorateWithExpandIconClasses(
-                    expandIcon,
-                    expandIconClass
-                  )}
-                  tabIndex={-1}
-                />
+                <div data-component-type='accordion-summary-icon'>
+                  <ButtonAction
+                    icon={decorateWithExpandIconClasses(
+                      expandIcon,
+                      expandIconClass
+                    )}
+                    tabIndex={-1}
+                  />
+                </div>
               ) : (
                 <div
                   data-component-type='accordion-summary-icon'
@@ -226,14 +243,17 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
           keepMounted
           className={twMerge(
             cx(...panelClasses, {
-              [panelOverflowVisibleClass]: summaryExpanded && !isAnimating,
+              [panelOverflowVisibleClass]: summaryExpanded && panelSettled,
             })
           )}
           style={
             {
-              '--accordion-duration': `${resolveTransitionDuration(
-                transitionProps?.timeout,
-                Boolean(summaryExpanded)
+              '--accordion-duration': `${Math.max(
+                resolveTransitionDuration(
+                  transitionProps?.timeout,
+                  Boolean(summaryExpanded)
+                ),
+                MIN_CSS_TRANSITION_DURATION
               )}ms`,
             } as CSSProperties
           }
