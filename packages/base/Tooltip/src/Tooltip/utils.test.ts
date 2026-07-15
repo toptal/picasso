@@ -26,6 +26,78 @@ const baseArgs = {
   anchorRef: plainAnchorRef,
 }
 
+// jsdom does no layout, so build the geometry for getSettledAnchorRect by hand:
+// root is the transform-clean origin (its getBoundingClientRect is trustworthy),
+// a scaled `tainted` ancestor sits between it and the anchor, and the anchor's
+// layout metrics (offsetLeft/Top/Width/Height, which transforms never touch)
+// describe where it will land once the scale settles. The anchor's OWN
+// getBoundingClientRect is deliberately garbage to prove it is ignored.
+const buildScaledFixture = (taintStyle: {
+  scale?: string
+  transform?: string
+}) => {
+  const root = document.createElement('div')
+  const tainted = document.createElement('div')
+  const anchor = document.createElement('div')
+
+  root.appendChild(tainted)
+  tainted.appendChild(anchor)
+  document.body.appendChild(root)
+
+  const define = (el: HTMLElement, props: Record<string, unknown>) => {
+    Object.entries(props).forEach(([key, value]) => {
+      Object.defineProperty(el, key, { get: () => value, configurable: true })
+    })
+  }
+
+  // anchor sits 20/200 inside `tainted`; `tainted` sits 5/10 inside root.
+  define(anchor, {
+    offsetParent: tainted,
+    offsetLeft: 20,
+    offsetTop: 200,
+    offsetWidth: 120,
+    offsetHeight: 30,
+  })
+  define(tainted, { offsetParent: root, offsetLeft: 5, offsetTop: 10 })
+
+  jest.spyOn(root, 'getBoundingClientRect').mockReturnValue({
+    x: 100,
+    y: 50,
+    left: 100,
+    top: 50,
+    right: 400,
+    bottom: 300,
+    width: 300,
+    height: 250,
+  } as DOMRect)
+
+  // Tainted, mid-animation live rect — must NOT influence the result.
+  jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
+    left: 999,
+    top: 999,
+  } as DOMRect)
+
+  jest
+    .spyOn(window, 'getComputedStyle')
+    .mockImplementation(
+      (el: Element) =>
+        (el === tainted
+          ? { scale: taintStyle.scale ?? 'none', transform: taintStyle.transform ?? 'none' }
+          : { scale: 'none', transform: 'none' }) as CSSStyleDeclaration
+    )
+
+  return { root, tainted, anchor }
+}
+
+// Simulate a browser (jsdom has no Web Animations API): `getAnimations` returns
+// a non-empty list while animating, an empty one when static.
+const setAnimating = (
+  target: { getAnimations?: () => unknown[] },
+  animating: boolean
+) => {
+  target.getAnimations = () => (animating ? [{}] : [])
+}
+
 describe('Tooltip utils', () => {
   describe('splitPlacement', () => {
     describe('when the placement is a bare side', () => {
@@ -57,78 +129,6 @@ describe('Tooltip utils', () => {
   })
 
   describe('getSettledAnchorRect', () => {
-    // jsdom does no layout, so build the geometry by hand: root is the
-    // transform-clean origin (its getBoundingClientRect is trustworthy), a
-    // scaled `tainted` ancestor sits between it and the anchor, and the anchor's
-    // layout metrics (offsetLeft/Top/Width/Height, which transforms never touch)
-    // describe where it will land once the scale settles. The anchor's OWN
-    // getBoundingClientRect is deliberately garbage to prove it is ignored.
-    const buildScaledFixture = (taintStyle: {
-      scale?: string
-      transform?: string
-    }) => {
-      const root = document.createElement('div')
-      const tainted = document.createElement('div')
-      const anchor = document.createElement('div')
-
-      root.appendChild(tainted)
-      tainted.appendChild(anchor)
-      document.body.appendChild(root)
-
-      const define = (el: HTMLElement, props: Record<string, unknown>) => {
-        Object.entries(props).forEach(([key, value]) => {
-          Object.defineProperty(el, key, { get: () => value, configurable: true })
-        })
-      }
-
-      // anchor sits 20/200 inside `tainted`; `tainted` sits 5/10 inside root.
-      define(anchor, {
-        offsetParent: tainted,
-        offsetLeft: 20,
-        offsetTop: 200,
-        offsetWidth: 120,
-        offsetHeight: 30,
-      })
-      define(tainted, { offsetParent: root, offsetLeft: 5, offsetTop: 10 })
-
-      jest.spyOn(root, 'getBoundingClientRect').mockReturnValue({
-        x: 100,
-        y: 50,
-        left: 100,
-        top: 50,
-        right: 400,
-        bottom: 300,
-        width: 300,
-        height: 250,
-      } as DOMRect)
-
-      // Tainted, mid-animation live rect — must NOT influence the result.
-      jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
-        left: 999,
-        top: 999,
-      } as DOMRect)
-
-      jest
-        .spyOn(window, 'getComputedStyle')
-        .mockImplementation(
-          (el: Element) =>
-            (el === tainted
-              ? { scale: taintStyle.scale ?? 'none', transform: taintStyle.transform ?? 'none' }
-              : { scale: 'none', transform: 'none' }) as CSSStyleDeclaration
-        )
-
-      return { root, tainted, anchor }
-    }
-
-    // Simulate a browser (jsdom has no Web Animations API): `getAnimations`
-    // returns a non-empty list while animating, an empty one when static.
-    const setAnimating = (
-      target: { getAnimations?: () => unknown[] },
-      animating: boolean
-    ) => {
-      target.getAnimations = () => (animating ? [{}] : [])
-    }
-
     afterEach(() => {
       jest.restoreAllMocks()
       document.body.innerHTML = ''
