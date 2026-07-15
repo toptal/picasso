@@ -20,7 +20,6 @@ The wrapper and the root component.
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
 | fixViewport | `boolean` | `true` | Whether to load viewport fix or not |
-| preventPageWidthChangeOnScrollbar | `boolean` | `true` | Whether to load scrollbar page jump fix or not |
 | notificationContainer | `HTMLElement` | - | Notification DOMNode for createPortal |
 | RootComponent | `ForwardRefExoticComponent<PicassoRootNodeProps & RefAttributes<HTMLDivElement>>` | `PicassoRootNode` | Component that is used to render root node |
 | disableHelmet | `boolean` | - | Disables usage of `<HelmetProvider>` component from `react-helmet-async` package |
@@ -50,7 +49,6 @@ utility components/providers:
 |------|------|---------|-------------|
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
-| preventPageWidthChangeOnScrollbar | `boolean` | - | Whether to load scrollbar page jump fix or not |
 | RootComponent | `ForwardRefExoticComponent<PicassoRootNodeProps & RefAttributes<HTMLDivElement>>` | `PicassoRootNode` | Component that is used to render root node |
 | disableHelmet | `boolean` | - | Disables usage of `<HelmetProvider>` component from `react-helmet-async` package |
 | disableTransitions | `boolean` | - | Disables transitions for components like Loader, to make testing easier |
@@ -66,11 +64,7 @@ import { default as Picasso, SPACING_12 } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
 
 const App = () => (
-  <Picasso
-    loadFavicon={false}
-    fixViewport={false}
-    preventPageWidthChangeOnScrollbar={false}
-  >
+  <Picasso loadFavicon={false} fixViewport={false}>
     <Page>
       <Page.TopBar title='App Page' />
       <Page.Content>
@@ -186,12 +180,7 @@ const Content = () => (
 
 const Index = () => (
   <div id='root'>
-    <Picasso
-      responsive={false}
-      loadFavicon={false}
-      fixViewport={false}
-      preventPageWidthChangeOnScrollbar={false}
-    >
+    <Picasso responsive={false} loadFavicon={false} fixViewport={false}>
       <Example />
     </Picasso>
   </div>
