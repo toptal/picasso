@@ -57,6 +57,84 @@ describe('Tooltip utils', () => {
   })
 
   describe('getSettledAnchorRect', () => {
+    // jsdom does no layout, so build the geometry by hand: root is the
+    // transform-clean origin (its getBoundingClientRect is trustworthy), a
+    // scaled `tainted` ancestor sits between it and the anchor, and the anchor's
+    // layout metrics (offsetLeft/Top/Width/Height, which transforms never touch)
+    // describe where it will land once the scale settles. The anchor's OWN
+    // getBoundingClientRect is deliberately garbage to prove it is ignored.
+    const buildScaledFixture = (taintStyle: {
+      scale?: string
+      transform?: string
+    }) => {
+      const root = document.createElement('div')
+      const tainted = document.createElement('div')
+      const anchor = document.createElement('div')
+
+      root.appendChild(tainted)
+      tainted.appendChild(anchor)
+      document.body.appendChild(root)
+
+      const define = (el: HTMLElement, props: Record<string, unknown>) => {
+        Object.entries(props).forEach(([key, value]) => {
+          Object.defineProperty(el, key, { get: () => value, configurable: true })
+        })
+      }
+
+      // anchor sits 20/200 inside `tainted`; `tainted` sits 5/10 inside root.
+      define(anchor, {
+        offsetParent: tainted,
+        offsetLeft: 20,
+        offsetTop: 200,
+        offsetWidth: 120,
+        offsetHeight: 30,
+      })
+      define(tainted, { offsetParent: root, offsetLeft: 5, offsetTop: 10 })
+
+      jest.spyOn(root, 'getBoundingClientRect').mockReturnValue({
+        x: 100,
+        y: 50,
+        left: 100,
+        top: 50,
+        right: 400,
+        bottom: 300,
+        width: 300,
+        height: 250,
+      } as DOMRect)
+
+      // Tainted, mid-animation live rect — must NOT influence the result.
+      jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
+        left: 999,
+        top: 999,
+      } as DOMRect)
+
+      jest
+        .spyOn(window, 'getComputedStyle')
+        .mockImplementation(
+          (el: Element) =>
+            (el === tainted
+              ? { scale: taintStyle.scale ?? 'none', transform: taintStyle.transform ?? 'none' }
+              : { scale: 'none', transform: 'none' }) as CSSStyleDeclaration
+        )
+
+      return { root, tainted, anchor }
+    }
+
+    // Simulate a browser (jsdom has no Web Animations API): `getAnimations`
+    // returns a non-empty list while animating, an empty one when static.
+    const setAnimating = (
+      target: { getAnimations?: () => unknown[] },
+      animating: boolean
+    ) => {
+      target.getAnimations = () => (animating ? [{}] : [])
+    }
+
+    afterEach(() => {
+      jest.restoreAllMocks()
+      document.body.innerHTML = ''
+      delete (document as unknown as { getAnimations?: unknown }).getAnimations
+    })
+
     describe('when the anchor is not committed yet', () => {
       it('returns an empty rect', () => {
         const rect = getSettledAnchorRect(null)
@@ -86,90 +164,10 @@ describe('Tooltip utils', () => {
         jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue(liveRect)
 
         expect(getSettledAnchorRect(anchor)).toBe(liveRect)
-
-        anchor.remove()
       })
     })
 
-    // jsdom does no layout, so build the geometry by hand: root is the
-    // transform-clean origin (its getBoundingClientRect is trustworthy), a
-    // scaled `tainted` ancestor sits between it and the anchor, and the anchor's
-    // layout metrics (offsetLeft/Top/Width/Height, which transforms never touch)
-    // describe where it will land once the scale settles. The anchor's OWN
-    // getBoundingClientRect is deliberately garbage to prove it is ignored.
-    describe('when a scaled ancestor taints the anchor rect', () => {
-      const buildScaledFixture = (taintStyle: {
-        scale?: string
-        transform?: string
-      }) => {
-        const root = document.createElement('div')
-        const tainted = document.createElement('div')
-        const anchor = document.createElement('div')
-
-        root.appendChild(tainted)
-        tainted.appendChild(anchor)
-        document.body.appendChild(root)
-
-        const define = (el: HTMLElement, props: Record<string, unknown>) => {
-          Object.entries(props).forEach(([key, value]) => {
-            Object.defineProperty(el, key, { get: () => value, configurable: true })
-          })
-        }
-
-        // anchor sits 20/200 inside `tainted`; `tainted` sits 5/10 inside root.
-        define(anchor, {
-          offsetParent: tainted,
-          offsetLeft: 20,
-          offsetTop: 200,
-          offsetWidth: 120,
-          offsetHeight: 30,
-        })
-        define(tainted, { offsetParent: root, offsetLeft: 5, offsetTop: 10 })
-
-        jest.spyOn(root, 'getBoundingClientRect').mockReturnValue({
-          x: 100,
-          y: 50,
-          left: 100,
-          top: 50,
-          right: 400,
-          bottom: 300,
-          width: 300,
-          height: 250,
-        } as DOMRect)
-
-        // Tainted, mid-animation live rect — must NOT influence the result.
-        jest.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
-          left: 999,
-          top: 999,
-        } as DOMRect)
-
-        jest
-          .spyOn(window, 'getComputedStyle')
-          .mockImplementation(
-            (el: Element) =>
-              (el === tainted
-                ? { scale: taintStyle.scale ?? 'none', transform: taintStyle.transform ?? 'none' }
-                : { scale: 'none', transform: 'none' }) as CSSStyleDeclaration
-          )
-
-        return { root, tainted, anchor }
-      }
-
-      afterEach(() => {
-        jest.restoreAllMocks()
-        document.body.innerHTML = ''
-        delete (document as unknown as { getAnimations?: unknown }).getAnimations
-      })
-
-      // Simulate a browser (jsdom has no Web Animations API): `getAnimations`
-      // returns a non-empty list while animating, an empty one when static.
-      const setAnimating = (
-        target: { getAnimations?: () => unknown[] },
-        animating: boolean
-      ) => {
-        target.getAnimations = () => (animating ? [{}] : [])
-      }
-
+    describe('when a scaled ancestor is mid-animation', () => {
       it('reconstructs the settled rect from transform-independent layout metrics', () => {
         const { anchor } = buildScaledFixture({ scale: '0.75' })
 
@@ -184,15 +182,17 @@ describe('Tooltip utils', () => {
         })
       })
 
-      it('detects a scale carried by a transform matrix, not just the scale property', () => {
+      it('reconstructs when the scale comes from a transform matrix, not the scale property', () => {
         const { anchor } = buildScaledFixture({
           transform: 'matrix(0.5, 0, 0, 0.5, 0, 0)',
         })
 
         expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 125, top: 260 })
       })
+    })
 
-      it('treats a pure-translate transform as untainted and keeps the live rect', () => {
+    describe('when the ancestor carries only a pure-translate transform', () => {
+      it('treats it as untainted and keeps the live rect', () => {
         const { anchor } = buildScaledFixture({
           transform: 'matrix(1, 0, 0, 1, 40, 40)',
         })
@@ -200,8 +200,10 @@ describe('Tooltip utils', () => {
         // No scale component → not a taint → the live (translate-faithful) rect.
         expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
       })
+    })
 
-      it('keeps the live rect when the scaled ancestor is NOT animating (a static, persistent transform, not a mid-reveal taint)', () => {
+    describe('when the scaled ancestor is static (not animating)', () => {
+      it('keeps the live rect, treating it as deliberate geometry not a taint', () => {
         const { tainted, anchor } = buildScaledFixture({ scale: '0.75' })
 
         setAnimating(document, true) // something is animating, so the walk runs
@@ -209,8 +211,10 @@ describe('Tooltip utils', () => {
 
         expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
       })
+    })
 
-      it('skips the ancestor walk and keeps the live rect when nothing in the document is animating', () => {
+    describe('when nothing in the document is animating', () => {
+      it('skips the ancestor walk and keeps the live rect', () => {
         const { anchor } = buildScaledFixture({ scale: '0.75' })
         const computedStyleSpy = jest.spyOn(window, 'getComputedStyle')
 
