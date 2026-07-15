@@ -64,7 +64,9 @@ const defaultManager = new ModalManager()
 // found in https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
 const focusableElementsString =
   'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'
-const tooltipContainerString = '[role=tooltip]'
+// Popups portaled outside the modal that must keep focus: tooltips and any
+// Picasso Popper popup (marked `data-picasso-popper` — roles vary per consumer).
+const exemptPopupContainerString = '[role=tooltip], [data-picasso-popper]'
 
 const focusFirstFocusableElement = (node: Element) => {
   const elements = node.querySelectorAll(focusableElementsString)
@@ -86,18 +88,18 @@ const isFocusInsideModal = (modalNode: Element) => {
   return false
 }
 
-const isFocusInsideTooltip = () => {
-  const tooltipContainers = document.querySelectorAll(tooltipContainerString)
+const isFocusInsideExemptPopup = () => {
+  const popupContainers = document.querySelectorAll(exemptPopupContainerString)
 
-  if (tooltipContainers.length === 0) {
+  if (popupContainers.length === 0) {
     return false
   }
 
-  const tooltipContainsFocusedElement = Array.from(tooltipContainers).some(
+  const popupContainsFocusedElement = Array.from(popupContainers).some(
     container => container.contains(document.activeElement)
   )
 
-  if (tooltipContainsFocusedElement) {
+  if (popupContainsFocusedElement) {
     return true
   }
 
@@ -167,7 +169,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         return
       }
 
-      if (isFocusInsideTooltip()) {
+      if (isFocusInsideExemptPopup()) {
         return
       }
 

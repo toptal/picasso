@@ -171,10 +171,19 @@ describe('Popper', () => {
       renderPopper({ role: 'presentation' })
       await flushPosition()
 
-      // `presentation` removes the element from the accessibility tree, so it is
-      // queryable only by its content, not by the default tooltip role.
+      // `presentation` removes it from the a11y tree — query by content
       expect(screen.getByText(children)).toBeInTheDocument()
       expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+    })
+
+    it('always marks the floating element with data-picasso-popper regardless of role', async () => {
+      renderPopper({ role: 'presentation' })
+      await flushPosition()
+
+      // Modal's focus trap keys on this marker (roles vary per consumer)
+      expect(
+        screen.getByText(children).closest('[data-picasso-popper]')
+      ).toBeInTheDocument()
     })
   })
 })
