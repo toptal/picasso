@@ -4,19 +4,19 @@ import type {
   ChangeEvent,
   HTMLAttributes,
 } from 'react'
-import React, { forwardRef, useCallback, useRef, useState } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
 import { SPACING_0, usePicassoRoot } from '@toptal/picasso-provider'
 import { Typography } from '@toptal/picasso-typography'
-import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ContainerValue } from './types'
 import { createArrowClassNames, createPopupClassNames } from './styles'
 import { getPositionerOffsets, splitPlacement } from './utils'
 import { useTooltipState } from './use-tooltip-state'
+import { useTooltipAnchor } from './use-tooltip-anchor'
 
 export type DelayType = 'short' | 'long'
 
@@ -44,6 +44,59 @@ export type OffsetType = {
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
   long: 500,
+}
+
+// Resolves where the portal mounts: the trigger's own parent (disablePortal),
+// an explicit container (value or factory), or the picasso root as a fallback.
+const resolveContainer = ({
+  disablePortal,
+  triggerParent,
+  container,
+  fallback,
+}: {
+  disablePortal: boolean
+  triggerParent: HTMLElement | null
+  container: ContainerValue | undefined
+  fallback: HTMLElement | null | undefined
+}): HTMLElement | null | undefined => {
+  if (disablePortal) {
+    return triggerParent
+  }
+
+  const resolved = typeof container === 'function' ? container() : container
+
+  return resolved ?? fallback
+}
+
+// Runs the consumer's handler first, then Picasso's own — so the tooltip's
+// behavior layers on top of a consumer handler instead of replacing it.
+const composeHandlers =
+  <E,>(theirs: ((event: E) => void) | undefined, ours: (event: E) => void) =>
+  (event: E): void => {
+    theirs?.(event)
+    ours(event)
+  }
+
+let fallbackIdCounter = 0
+
+// base-ui's Tooltip wires no `aria-describedby` of its own (it runs
+// `useInteractions([dismiss, clientPoint])` with no `useRole`), so a tooltip
+// with no explicit `id` would leave its trigger unlinked to the popup and screen
+// readers would not announce it as the trigger's description. Generate a stable
+// fallback id when the consumer supplies none, and use it for BOTH the popup's
+// `id` and the trigger's `aria-describedby`. It is assigned in an effect so the
+// server renders no id and the client fills it in — no hydration mismatch.
+const useFallbackId = (idProp?: string): string | undefined => {
+  const [fallbackId, setFallbackId] = useState(idProp)
+
+  useEffect(() => {
+    if (fallbackId == null) {
+      fallbackIdCounter += 1
+      setFallbackId(`picasso-tooltip-${fallbackIdCounter}`)
+    }
+  }, [fallbackId])
+
+  return idProp ?? fallbackId
 }
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -75,7 +128,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   followCursor?: boolean
   /** Max width of a tooltip */
   maxWidth?: MaxWidthType
-  /** Called after the tooltip close transition finishes */
+  /** Called when the tooltip close transition starts */
   onTransitionExiting?: () => void
   /** Called after the tooltip close transition finishes */
   onTransitionExited?: () => void
@@ -126,6 +179,10 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
 
     const picassoRootContainer = usePicassoRoot()
 
+    // Non-empty even when the consumer omits `id` (see useFallbackId), so the
+    // popup↔trigger aria-describedby link below always holds.
+    const tooltipId = useFallbackId(id)
+
     const {
       open: actualOpen,
       handleOpenChange,
@@ -148,23 +205,14 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       onTransitionExited,
     })
 
-    const [triggerParent, setTriggerParent] = useState<HTMLElement | null>(null)
-    const triggerNodeRef = useRef<HTMLElement | null>(null)
-
-    const trackTriggerParent = useCallback(
-      (node: HTMLElement | null) => {
-        if (disablePortal) {
-          setTriggerParent(node?.parentElement ?? null)
-        }
-      },
-      [disablePortal]
-    )
-
-    const setTriggerRef = useMultipleForwardRefs<HTMLElement | null>([
-      ref,
+    const {
+      setTriggerRef,
       triggerNodeRef,
-      trackTriggerParent,
-    ])
+      anchor,
+      anchorIsMenuItem,
+      triggerMounted,
+      triggerParent,
+    } = useTooltipAnchor({ ref, disablePortal, followCursor })
 
     const { side, align } = splitPlacement(placement)
     const showArrow = !compact && !followCursor
@@ -178,10 +226,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       anchorRef: triggerNodeRef,
     })
 
-    const resolvedContainer = disablePortal
-      ? triggerParent
-      : (typeof container === 'function' ? container() : container) ??
-        picassoRootContainer
+    const resolvedContainer = resolveContainer({
+      disablePortal,
+      triggerParent,
+      container,
+      fallback: picassoRootContainer,
+    })
 
     const triggerRest = rest as Omit<
       BaseTooltip.Trigger.Props,
@@ -191,10 +241,17 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     const positioner = (
       <BaseTooltip.Positioner
         ref={tooltipRef}
-        anchor={followCursor ? undefined : triggerNodeRef}
-        // `z-tooltip` (1300) is required — without an explicit z-index a tooltip
-        // opened inside a Dropdown stacks behind the menu.
-        className='z-tooltip'
+        anchor={anchor}
+        // Menu-item anchors disable base-ui's resize + layout-shift observers
+        // (ancestorScroll stays on); see useTooltipAnchor for why it is scoped
+        // to them and no wider.
+        disableAnchorTracking={anchorIsMenuItem}
+        // `z-tooltip` (1300): a tooltip opened inside a Dropdown must stack above
+        // the menu. `data-[anchor-hidden]:invisible` hides the popup with its
+        // anchor when clipped — `invisible` (visibility:hidden), NOT `hidden`
+        // (display:none), because a display:none popup measures 0×0 and the next
+        // solve would then teleport it to a garbage coordinate.
+        className='z-tooltip data-[anchor-hidden]:invisible'
         side={side}
         align={align}
         sideOffset={sideOffset}
@@ -204,7 +261,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         }
       >
         <BaseTooltip.Popup
-          id={id}
+          id={tooltipId}
           role='tooltip'
           className={twJoin(createPopupClassNames(Boolean(compact), maxWidth))}
         >
@@ -226,7 +283,12 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     return (
       <BaseTooltip.Provider delay={delayDurations[delay]} closeDelay={0}>
         <BaseTooltip.Root
-          open={actualOpen}
+          // `&& triggerMounted` defers an open-at-mount `open` by one
+          // pre-paint commit so base-ui sees a false→true transition and
+          // plays the enter fade (see trackAnchorRole above). Hover/tap opens
+          // always happen with the trigger long mounted, so they're
+          // unaffected. [PF-2224]
+          open={actualOpen && triggerMounted}
           onOpenChange={handleOpenChange}
           onOpenChangeComplete={handleOpenChangeComplete}
           disableHoverablePopup={!interactive}
@@ -237,45 +299,44 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             ref={setTriggerRef}
             className={className}
             style={style}
+            // Associate the popup with the trigger while open (matching MUI v4),
+            // preferring any consumer-supplied value (tooltipId is never empty).
             aria-describedby={
-              actualOpen && id ? id : triggerRest['aria-describedby']
+              triggerRest['aria-describedby'] ??
+              (actualOpen ? tooltipId : undefined)
             }
             disabled={disableListeners}
             closeOnClick={false}
             onClick={handleTriggerClick}
-            // Tap-to-open (arms on touchstart, opens on touchend — a gesture
-            // that scrolls past the tap slop is disarmed by touchmove). This
-            // is also the open path for DISABLED anchors: a tap on a disabled
-            // control dispatches touch events (which bubble to the trigger)
-            // but never a synthetic click, so the onClick path above can't
-            // open there (see useTooltipState). Compose with any
-            // consumer-supplied handler rather than overriding it.
-            onTouchStart={event => {
-              triggerRest.onTouchStart?.(event)
-              handleTriggerTouchStart(event)
-            }}
-            onTouchMove={event => {
-              triggerRest.onTouchMove?.(event)
-              handleTriggerTouchMove(event)
-            }}
-            onTouchEnd={event => {
-              triggerRest.onTouchEnd?.(event)
-              handleTriggerTouchEnd(event)
-            }}
-            onMouseOver={event => {
-              triggerRest.onMouseOver?.(event)
-              handleTriggerMouseOver(event)
-            }}
-            // followCursor dismiss-while-roaming (no-op otherwise; see
-            // useTooltipState). Compose with any consumer-supplied handler.
-            onMouseMove={event => {
-              triggerRest.onMouseMove?.(event)
-              handleTriggerMouseMove(event)
-            }}
-            onMouseLeave={event => {
-              triggerRest.onMouseLeave?.(event)
-              handleTriggerMouseLeave(event)
-            }}
+            // Tap-to-open (arms on touchstart, opens on touchend; a gesture that
+            // scrolls past the tap slop is disarmed by touchmove). Also the open
+            // path for DISABLED anchors, which dispatch touch events but never a
+            // synthetic click, so onClick above can't open there (useTooltipState).
+            onTouchStart={composeHandlers(
+              triggerRest.onTouchStart,
+              handleTriggerTouchStart
+            )}
+            onTouchMove={composeHandlers(
+              triggerRest.onTouchMove,
+              handleTriggerTouchMove
+            )}
+            onTouchEnd={composeHandlers(
+              triggerRest.onTouchEnd,
+              handleTriggerTouchEnd
+            )}
+            onMouseOver={composeHandlers(
+              triggerRest.onMouseOver,
+              handleTriggerMouseOver
+            )}
+            // followCursor dismiss-while-roaming (no-op otherwise; useTooltipState).
+            onMouseMove={composeHandlers(
+              triggerRest.onMouseMove,
+              handleTriggerMouseMove
+            )}
+            onMouseLeave={composeHandlers(
+              triggerRest.onMouseLeave,
+              handleTriggerMouseLeave
+            )}
             render={children as ReactElement}
           />
           <BaseTooltip.Portal container={resolvedContainer ?? undefined}>

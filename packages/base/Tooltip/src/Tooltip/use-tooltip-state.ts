@@ -13,22 +13,16 @@ const FOLLOW_CURSOR_STOP_DELAY = 250
 // the conventional tap slop used by mobile toolkits to tell taps from drags.
 const TOUCH_TAP_SLOP = 10
 
-type Props = {
-  /** Programatically control tooltip's visibility */
+interface UseTooltipStateOptions {
   open?: boolean
-  /** Disables all listeners */
   disableListeners?: boolean
-  /** Follow the cursor while hovering the trigger */
   followCursor?: boolean
-  /** Delay (ms) before a hover opens the tooltip */
+  // Delay (ms) before a hover opens the tooltip.
   openDelay: number
-  /** Called when tooltip is opened */
   onOpen?: (event: ChangeEvent<{}>) => void
-  /** Called when tooltip is closed */
   onClose?: (event: ChangeEvent<{}>) => void
-  /** Called after the tooltip close transition finishes */
+  // Fires as the close transition starts / finishes respectively.
   onTransitionExiting?: () => void
-  /** Called after the tooltip close transition finishes */
   onTransitionExited?: () => void
 }
 
@@ -68,7 +62,7 @@ export const useTooltipState = ({
   onClose,
   onTransitionExiting,
   onTransitionExited,
-}: Props): TooltipState => {
+}: UseTooltipStateOptions): TooltipState => {
   const isTouchDevice = !isPointerDevice()
   const followCursorUnsupported = Boolean(followCursor) && isTouchDevice
 
@@ -124,6 +118,23 @@ export const useTooltipState = ({
     },
     []
   )
+
+  // Fire onTransitionExiting when the close transition BEGINS (open flips
+  // true→false), mirroring MUI's Grow `onExiting`; onTransitionExited then
+  // fires when it FINISHES (handleOpenChangeComplete below). Driving the start
+  // off `actualOpen` catches both interaction-driven and controlled closes.
+  // A consumer (e.g. TypographyOverflow) relies on the gap between the two to
+  // keep the popup rendered for the duration of the exit animation — firing
+  // both together at the end would collapse that window. [PF-2224]
+  const wasOpenRef = useRef(actualOpen)
+
+  useEffect(() => {
+    if (wasOpenRef.current && !actualOpen) {
+      onTransitionExiting?.()
+    }
+
+    wasOpenRef.current = Boolean(actualOpen)
+  }, [actualOpen, onTransitionExiting])
 
   const handleOpenChange: BaseTooltip.Root.Props['onOpenChange'] = (
     nextOpen,
@@ -286,7 +297,6 @@ export const useTooltipState = ({
 
   const handleOpenChangeComplete = (nextOpen: boolean) => {
     if (!nextOpen) {
-      onTransitionExiting?.()
       onTransitionExited?.()
     }
   }

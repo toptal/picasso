@@ -16,6 +16,9 @@ export const createPopupClassNames = (
   'transition-[opacity,scale] duration-200 ease-out',
   'data-[starting-style]:scale-75 data-[starting-style]:opacity-0',
   'data-[ending-style]:scale-75 data-[ending-style]:opacity-0',
+  // The margin literals below MUST match COMPACT_POPUP_MARGIN (`m-1` = 0.25rem)
+  // and POPUP_MARGIN (`0.875rem`) — Tailwind can't interpolate the constants, and
+  // utils.ts derives the positioner offsets from them, so drift breaks geometry.
   ...(compact
     ? [
         'shadow-4 bg-graphite-800 text-white leading-none px-2 py-[0.125rem]',

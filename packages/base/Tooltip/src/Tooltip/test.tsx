@@ -168,6 +168,61 @@ describe('Tooltip', () => {
     })
   })
 
+  describe('when a controlled tooltip closes', () => {
+    it('calls onTransitionExiting as the close begins, not at the end', () => {
+      const onTransitionExiting = jest.fn()
+
+      const { rerender } = render(
+        <Tooltip
+          id='tooltip-id'
+          content={<TestContent />}
+          open
+          onTransitionExiting={onTransitionExiting}
+        >
+          <TestTrigger />
+        </Tooltip>
+      )
+
+      expect(onTransitionExiting).not.toHaveBeenCalled()
+
+      rerender(
+        <Tooltip
+          id='tooltip-id'
+          content={<TestContent />}
+          open={false}
+          onTransitionExiting={onTransitionExiting}
+        >
+          <TestTrigger />
+        </Tooltip>
+      )
+
+      expect(onTransitionExiting).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('when no id is provided', () => {
+    it('still associates the trigger with the popup while open', async () => {
+      // MUI v4 generated a fallback id so screen readers announced the tooltip
+      // even without a consumer id; base-ui wires nothing, so Picasso must keep
+      // that association alive with a generated id. Regression guard for the
+      // common (no-id) case.
+      const { getByTestId, getByRole } = renderTooltip({
+        id: undefined,
+        open: true,
+        disablePortal: true,
+      })
+
+      await waitFor(() => {
+        const describedby = getByTestId('tooltip-trigger').getAttribute(
+          'aria-describedby'
+        )
+
+        expect(describedby).toBeTruthy()
+        expect(getByRole('tooltip')).toHaveAttribute('id', describedby)
+      })
+    })
+  })
+
   describe('when the trigger is focused', () => {
     it('opens the tooltip and closes it on blur', async () => {
       const { getByTestId, queryByTestId } = renderTooltip()
