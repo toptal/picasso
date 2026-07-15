@@ -33,7 +33,6 @@ describe('Page', () => {
         loadFavicon={false}
         loadFonts={false}
         fixViewport={false}
-        preventPageWidthChangeOnScrollbar={false}
         disableHelmet
         responsive={false}
       >

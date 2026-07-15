@@ -5,7 +5,6 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import {
   usePageTopBar,
   useSidebar,
-  usePreventPageWidthChangeOnScrollbar,
   useScreenSize,
 } from '@toptal/picasso-provider'
 import { Logo } from '@toptal/picasso-logo'
@@ -71,8 +70,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   } = props
 
   const { setHasTopBar } = usePageTopBar()
-  const { preventPageWidthChangeOnScrollbar } =
-    usePreventPageWidthChangeOnScrollbar()
 
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
@@ -138,13 +135,12 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
           {...rest}
           ref={ref}
           className={twMerge(
-            'mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100]',
+            'mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] md:w-screen',
             variant === 'light' ? 'bg-white' : '',
             variant === 'dark' ? 'bg-blue-700' : '',
             variant === 'grey' ? 'bg-graphite-800' : '',
             variant === 'black' ? 'bg-black' : '',
-            className,
-            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : ''
+            className
           )}
           style={{
             boxShadow:

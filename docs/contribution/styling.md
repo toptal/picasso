@@ -68,8 +68,9 @@ configs silently mis-merge in consumer apps).
 ## Global reset & box model
 
 The page-level reset ships as **`@toptal/picasso-tailwind/base`**, imported in the
-Tailwind entry CSS and emitted in `@layer base`: border-box page box model,
-body/root layout, font smoothing. Being cascade-layered, **all utilities and any
+Tailwind entry CSS and emitted in `@layer base`: content-box page box model (the
+legacy CssBaseline carve-out — Picasso components stay border-box via their
+island), body/root layout, font smoothing. Being cascade-layered, **all utilities and any
 unlayered app CSS win over it** — it's a baseline, never an override. Opting out =
 omitting the import. Tailwind's full preflight stays off; don't write styles that
 depend on preflight normalizations (heading margins, form resets).

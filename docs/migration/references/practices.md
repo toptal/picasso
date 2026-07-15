@@ -161,7 +161,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   />
   ```
   End-state: Tier 3.b consolidates onto v1 per-part styling once consumers migrate.
-- **Responsive spacing utilities**: components accepting breakpoint-aware spacing (e.g., Dropdown's `offset?.top` / `offset?.bottom`) should use `makeResponsiveSpacingProps()` from `@toptal/picasso-provider` to generate responsive Tailwind classes dynamically. See `Dropdown.tsx:106-109,236-242` for the canonical usage. Do NOT hand-roll responsive class strings for spacing values that should match the breakpoint API.
+- **Responsive spacing = the static class table in `@toptal/picasso-utils`.** Components accepting breakpoint-aware spacing (Container spacing props, Dropdown `offset`) resolve it through `getSpacingClasses`/`getSpacingStyles` — a pure resolver over a literal class table (`packages/base/Utils/src/utils/spacing-classes/`; every class is a literal string so the Tailwind extractor sees it; variants are mobile-first). Deprecated raw numbers stay inline rem styles via `getSpacingStyles`. The runtime engine (`makeResponsiveSpacingProps` + `<style>` injection) was **deleted** in PF-2226 — do NOT reintroduce runtime class generation/injection or hand-roll responsive class strings; extend the shared table instead.
 
 ## Tailwind & class composition
 
