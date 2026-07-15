@@ -6,10 +6,14 @@ import type {
   DeprecatedSpacingType,
   SpacingType,
 } from '@toptal/picasso-provider'
-import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
-import { ClickAwayListener, noop } from '@toptal/picasso-utils'
+import {
+  ClickAwayListener,
+  getSpacingClasses,
+  getSpacingStyles,
+  noop,
+} from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { contentClass } from './styles'
@@ -99,11 +103,6 @@ export const useDropdownContext = () => {
 
   return context
 }
-
-const useResponsiveProps = makeResponsiveSpacingProps(
-  ['margin-top', 'margin-bottom', 'margin-left', 'margin-right'] as const,
-  'PicassoDropdown-Responsive'
-)
 
 export type DropdownProps = {
   (
@@ -230,13 +229,12 @@ export const Dropdown: DropdownProps = forwardRef<
     }
   }
 
-  const { className: responsiveClasses, style: responsiveStyle } =
-    useResponsiveProps({
-      'margin-top': offset?.top,
-      'margin-right': offset?.right,
-      'margin-bottom': offset?.bottom,
-      'margin-left': offset?.left,
-    })
+  const offsetSpacing = {
+    top: offset?.top,
+    right: offset?.right,
+    bottom: offset?.bottom,
+    left: offset?.left,
+  }
 
   const context = {
     close: () => forceClose(),
@@ -277,7 +275,7 @@ export const Dropdown: DropdownProps = forwardRef<
           className={twJoin(
             'shadow-2',
             externalClasses?.popper,
-            responsiveClasses
+            getSpacingClasses(offsetSpacing)
           )}
           anchorEl={anchorEl ?? null}
           popperOptions={{
@@ -291,7 +289,7 @@ export const Dropdown: DropdownProps = forwardRef<
             ...popperOptions,
           }}
           placement={placement}
-          style={{ ...responsiveStyle }}
+          style={{ ...getSpacingStyles(offsetSpacing) }}
           disablePortal={disablePortal}
           keepMounted={keepMounted}
           autoWidth={false}

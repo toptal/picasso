@@ -12,7 +12,6 @@ export const TestingPicasso = ({ children, titleCase }: Props) => {
       loadFavicon={false}
       loadFonts={false}
       fixViewport={false}
-      preventPageWidthChangeOnScrollbar={false}
       titleCase={titleCase}
       disableTransitions
     >

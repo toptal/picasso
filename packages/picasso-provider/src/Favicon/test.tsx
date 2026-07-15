@@ -10,7 +10,6 @@ const render: typeof baseRender = ui =>
       loadFavicon={false}
       loadFonts={false}
       fixViewport={false}
-      preventPageWidthChangeOnScrollbar={false}
       disableTransitions
     >
       {ui}
