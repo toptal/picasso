@@ -158,7 +158,17 @@ describe('Tooltip utils', () => {
       afterEach(() => {
         jest.restoreAllMocks()
         document.body.innerHTML = ''
+        delete (document as unknown as { getAnimations?: unknown }).getAnimations
       })
+
+      // Simulate a browser (jsdom has no Web Animations API): `getAnimations`
+      // returns a non-empty list while animating, an empty one when static.
+      const setAnimating = (
+        target: { getAnimations?: () => unknown[] },
+        animating: boolean
+      ) => {
+        target.getAnimations = () => (animating ? [{}] : [])
+      }
 
       it('reconstructs the settled rect from transform-independent layout metrics', () => {
         const { anchor } = buildScaledFixture({ scale: '0.75' })
@@ -189,6 +199,28 @@ describe('Tooltip utils', () => {
 
         // No scale component → not a taint → the live (translate-faithful) rect.
         expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
+      })
+
+      it('keeps the live rect when the scaled ancestor is NOT animating (a static, persistent transform, not a mid-reveal taint)', () => {
+        const { tainted, anchor } = buildScaledFixture({ scale: '0.75' })
+
+        setAnimating(document, true) // something is animating, so the walk runs
+        setAnimating(tainted, false) // …but the scaled ancestor itself is static
+
+        expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
+      })
+
+      it('skips the ancestor walk and keeps the live rect when nothing in the document is animating', () => {
+        const { anchor } = buildScaledFixture({ scale: '0.75' })
+        const computedStyleSpy = jest.spyOn(window, 'getComputedStyle')
+
+        computedStyleSpy.mockClear()
+        setAnimating(document, false)
+
+        expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
+        // The document-level gate returned before findScaleTaintedAncestor walked
+        // (which would have read getComputedStyle on each ancestor).
+        expect(computedStyleSpy).not.toHaveBeenCalled()
       })
     })
   })

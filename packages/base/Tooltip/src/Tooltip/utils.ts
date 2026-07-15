@@ -103,6 +103,17 @@ const findScaleTaintedAncestor = (element: Element): HTMLElement | null => {
   return null
 }
 
+// Distinguishes a mid-reveal transform (the Dropdown's scale-in — its rect is
+// transient) from a STATIC, deliberate one (an app-level `zoom`/`scale` wrapper,
+// an embedded preview — a stable rect master positioned against directly). Only
+// a running transition/animation warrants reconstructing the settled rect;
+// otherwise the live rect is already correct. `getAnimations` is absent under
+// SSR/jsdom, where we assume "animating" so the reconstruction path still runs.
+type Animatable = { getAnimations?: () => unknown[] }
+
+const isAnimating = (target: Animatable): boolean =>
+  typeof target.getAnimations !== 'function' || target.getAnimations().length > 0
+
 // Accumulates the element's layout offset (border-box origin) relative to
 // `root`'s border-box origin, walking the offsetParent chain.
 // offsetTop/offsetLeft are LAYOUT metrics — CSS transforms never affect them —
@@ -203,8 +214,13 @@ const makeRect = ({
 // metrics (offsetTop/offsetLeft chain + offsetWidth/offsetHeight), which CSS
 // transforms cannot touch. The result is CONSTANT for the whole animation and
 // exactly equals the settled rect, so there is nothing left to jump.
-// When no ancestor is scaling (the steady state), it returns the live
-// getBoundingClientRect unchanged. [PF-2224]
+//
+// Reconstruction is gated on a transform being ANIMATING (getAnimations): a
+// scaled ancestor that is not animating is deliberate, persistent geometry (an
+// app-level zoom, an embedded preview), whose live rect is already correct —
+// master positioned against it directly. So this returns the live
+// getBoundingClientRect unchanged both in the steady state (no scaled ancestor)
+// and against a static transform. [PF-2224]
 export const getSettledAnchorRect = (
   anchor: HTMLElement | null
 ): AnchorRect => {
@@ -212,9 +228,23 @@ export const getSettledAnchorRect = (
     return makeRect({ left: 0, top: 0, width: 0, height: 0 })
   }
 
+  // Steady-state fast path: this runs on every scroll re-solve while the tooltip
+  // is open, so when nothing in the document is animating — the common case — no
+  // ancestor can be mid-reveal and we skip the ancestor walk entirely. [PF-2224]
+  if (!isAnimating(document)) {
+    return anchor.getBoundingClientRect()
+  }
+
   const taintedAncestor = findScaleTaintedAncestor(anchor)
 
   if (!taintedAncestor) {
+    return anchor.getBoundingClientRect()
+  }
+
+  // A scaled ancestor that is NOT animating carries a deliberate, persistent
+  // transform (not the Dropdown's scale-in), so its live rect is the real one —
+  // reconstruct only while it is actually mid-animation. [PF-2224]
+  if (!isAnimating(taintedAncestor)) {
     return anchor.getBoundingClientRect()
   }
 
