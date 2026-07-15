@@ -14,9 +14,12 @@
  */
 @layer base {
   html {
-    /* border-box page model (PF-2221) — descendants inherit it through the
-       universal selector below; the PicassoRootNode island keeps guarding
-       pages that don't import this entry */
+    /* content-box page model — the deliberate carve-out inherited from the
+       legacy CssBaseline reset. A border-box flip was attempted (PF-2221)
+       and reverted (#5046); any future re-flip is its own change with its
+       own Happo sign-off. Descendants inherit through the universal
+       selector below; Picasso components stay border-box regardless via
+       the PicassoRootNode island. */
     box-sizing: initial;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -45,5 +48,23 @@
   #root {
     display: flex;
     flex: 1;
+  }
+
+  /* Prevent the page-width jump when the vertical scrollbar appears or
+     disappears (the former <PreventPageWidthChangeOnScrollbar>, retired
+     with PF-2226): html hides horizontal overflow while body spans the
+     full viewport width, so content width is independent of scrollbar
+     presence. Desktop-only (≥768px). Opt out (the former
+     preventPageWidthChangeOnScrollbar={false}) with unlayered app CSS:
+     html { overflow-x: visible; } body { width: 100%; } */
+  @media (min-width: 768px) {
+    html {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      width: 100vw;
+    }
   }
 }

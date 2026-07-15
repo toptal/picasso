@@ -16,7 +16,6 @@ export interface RootContextProps extends TextLabelProps {
   disableTransitions?: boolean
   responsive?: boolean
   currentBreakpointRange?: BreakpointKeys
-  preventPageWidthChangeOnScrollbar?: boolean
 }
 
 export const RootContext = React.createContext<RootContextProps>({
@@ -96,14 +95,5 @@ export const useCurrentBreakpointRange = () => {
 
   return {
     currentBreakpointRange: context.currentBreakpointRange,
-  }
-}
-
-export const usePreventPageWidthChangeOnScrollbar = () => {
-  const context = useContext(RootContext)
-
-  return {
-    preventPageWidthChangeOnScrollbar:
-      context.preventPageWidthChangeOnScrollbar,
   }
 }
