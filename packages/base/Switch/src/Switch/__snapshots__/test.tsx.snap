@@ -1,20 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch behaves correctly when interacting 1`] = `
-<label
+<div
   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer items-start text-lg"
   data-testid="switch"
-  id="base-ui-:rg:-label"
 >
   <span
     class="relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip"
   >
     <span
       aria-checked="true"
-      aria-labelledby="base-ui-:rg:-label"
+      aria-labelledby="base-ui-:rk:"
       class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
       data-checked=""
-      id="base-ui-:rf:"
+      id="base-ui-:rl:"
       role="switch"
       tabindex="0"
     >
@@ -28,7 +27,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
     </span>
     <input
       aria-hidden="true"
-      id="base-ui-:rg:"
+      id="base-ui-:rm:"
       style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
       tabindex="-1"
       type="checkbox"
@@ -36,6 +35,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
   </span>
   <span
     class="inline-block leading-[1em] mb-0 text-graphite ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
+    id="base-ui-:rk:"
   >
     <span
       class="align-top text-[0.8125rem]"
@@ -43,7 +43,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
       Switch
     </span>
   </span>
-</label>
+</div>
 `;
 
 exports[`Switch renders default Switch without label 1`] = `
@@ -59,7 +59,7 @@ exports[`Switch renders default Switch without label 1`] = `
         class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
         data-testid="switch"
         data-unchecked=""
-        id="base-ui-:r0:"
+        id="base-ui-:r1:"
         role="switch"
         tabindex="0"
       >
@@ -73,7 +73,7 @@ exports[`Switch renders default Switch without label 1`] = `
       </span>
       <input
         aria-hidden="true"
-        id="base-ui-:r1:"
+        id="base-ui-:r2:"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="-1"
         type="checkbox"
@@ -84,10 +84,9 @@ exports[`Switch renders default Switch without label 1`] = `
 `;
 
 exports[`Switch renders disabled state 1`] = `
-<label
+<div
   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-default items-start text-lg"
   data-testid="switch"
-  id="base-ui-:r7:-label"
 >
   <span
     class="relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip"
@@ -96,11 +95,11 @@ exports[`Switch renders disabled state 1`] = `
     <span
       aria-checked="false"
       aria-disabled="true"
-      aria-labelledby="base-ui-:r7:-label"
+      aria-labelledby="base-ui-:r8:"
       class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
       data-disabled=""
       data-unchecked=""
-      id="base-ui-:r6:"
+      id="base-ui-:r9:"
       role="switch"
       tabindex="-1"
     >
@@ -116,7 +115,7 @@ exports[`Switch renders disabled state 1`] = `
     <input
       aria-hidden="true"
       disabled=""
-      id="base-ui-:r7:"
+      id="base-ui-:ra:"
       style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
       tabindex="-1"
       type="checkbox"
@@ -124,6 +123,7 @@ exports[`Switch renders disabled state 1`] = `
   </span>
   <span
     class="inline-block leading-[1em] mb-0 text-graphite pointer-events ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
+    id="base-ui-:r8:"
   >
     <span
       class="align-top text-[0.8125rem]"
@@ -131,5 +131,5 @@ exports[`Switch renders disabled state 1`] = `
       Disabled
     </span>
   </span>
-</label>
+</div>
 `;
