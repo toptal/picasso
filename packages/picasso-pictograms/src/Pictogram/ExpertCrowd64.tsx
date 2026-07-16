@@ -1,0 +1,88 @@
+import type { Ref } from 'react'
+import React, { forwardRef } from 'react'
+import type { StandardProps } from '@toptal/picasso-shared'
+
+const SIZE = 64
+
+type ScaleType = 1 | 2
+export interface Props extends StandardProps {
+  scale?: ScaleType
+  base?: number
+}
+const SvgExpertCrowd64 = forwardRef(function SvgExpertCrowd64(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
+  const { className, style = {}, scale, base, 'data-testid': testId } = props
+  const scaledSize = base || SIZE * Math.ceil(scale || 1)
+
+  const svgStyle = {
+    minWidth: `${scaledSize}px`,
+    minHeight: `${scaledSize}px`,
+    ...style,
+  }
+
+  return (
+    <svg
+      fill='none'
+      viewBox='0 0 64 64'
+      className={className}
+      style={svgStyle}
+      ref={ref}
+      data-testid={testId}
+    >
+      <circle cx={18.5} cy={46.76} r={2.27} fill='#7281B5' />
+      <circle cx={23.75} cy={46.76} r={2.27} fill='#7281B5' />
+      <circle cx={21.14} cy={42.22} r={2.27} fill='#7281B5' />
+      <circle cx={21.14} cy={51.3} r={2.27} fill='#7281B5' />
+      <circle cx={26.36} cy={51.3} r={2.27} fill='#7281B5' />
+      <circle cx={26.36} cy={42.22} r={2.27} fill='#7281B5' />
+      <circle cx={29.15} cy={46.76} r={2.27} fill='#7281B5' />
+      <circle cx={34.83} cy={46.76} r={2.27} fill='#53B49A' />
+      <circle cx={40.09} cy={46.76} r={2.27} fill='#53B49A' />
+      <circle cx={37.49} cy={42.22} r={2.27} fill='#53B49A' />
+      <circle cx={37.49} cy={51.3} r={2.27} fill='#53B49A' />
+      <circle cx={42.7} cy={51.3} r={2.27} fill='#53B49A' />
+      <circle cx={42.7} cy={42.22} r={2.27} fill='#53B49A' />
+      <circle cx={45.49} cy={46.76} r={2.27} fill='#53B49A' />
+      <circle cx={18.5} cy={17.24} r={2.27} fill='#57B0F9' />
+      <circle cx={23.75} cy={17.24} r={2.27} fill='#57B0F9' />
+      <circle cx={21.14} cy={12.68} r={2.27} fill='#57B0F9' />
+      <circle cx={21.14} cy={21.78} r={2.27} fill='#57B0F9' />
+      <circle cx={26.36} cy={21.78} r={2.27} fill='#57B0F9' />
+      <circle cx={26.36} cy={12.68} r={2.27} fill='#57B0F9' />
+      <circle cx={29.15} cy={17.24} r={2.27} fill='#57B0F9' />
+      <circle cx={34.83} cy={17.24} r={2.27} fill='#3860F6' />
+      <circle cx={40.09} cy={17.24} r={2.27} fill='#3860F6' />
+      <circle cx={37.49} cy={12.68} r={2.27} fill='#3860F6' />
+      <circle cx={37.49} cy={21.78} r={2.27} fill='#3860F6' />
+      <circle cx={42.7} cy={21.78} r={2.27} fill='#3860F6' />
+      <circle cx={42.7} cy={12.68} r={2.27} fill='#3860F6' />
+      <circle cx={45.49} cy={17.24} r={2.27} fill='#3860F6' />
+      <circle cx={10.33} cy={32} r={2.27} fill='#DA9F37' />
+      <circle cx={15.59} cy={32} r={2.27} fill='#DA9F37' />
+      <circle cx={12.98} cy={27.46} r={2.27} fill='#DA9F37' />
+      <circle cx={12.98} cy={36.54} r={2.27} fill='#DA9F37' />
+      <circle cx={18.2} cy={36.54} r={2.27} fill='#DA9F37' />
+      <circle cx={18.2} cy={27.46} r={2.27} fill='#DA9F37' />
+      <circle cx={20.99} cy={32} r={2.27} fill='#DA9F37' />
+      <circle cx={26.67} cy={32} r={2.27} fill='#72F6A8' />
+      <circle cx={31.93} cy={32} r={2.27} fill='#72F6A8' />
+      <circle cx={29.31} cy={27.46} r={2.27} fill='#72F6A8' />
+      <circle cx={29.31} cy={36.54} r={2.27} fill='#72F6A8' />
+      <circle cx={34.54} cy={36.54} r={2.27} fill='#72F6A8' />
+      <circle cx={34.54} cy={27.46} r={2.27} fill='#72F6A8' />
+      <circle cx={37.33} cy={32} r={2.27} fill='#72F6A8' />
+      <circle cx={43.01} cy={32} r={2.27} fill='#8A5EE3' />
+      <circle cx={48.26} cy={32} r={2.27} fill='#8A5EE3' />
+      <circle cx={45.65} cy={27.46} r={2.27} fill='#8A5EE3' />
+      <circle cx={45.65} cy={36.54} r={2.27} fill='#8A5EE3' />
+      <circle cx={50.88} cy={36.54} r={2.27} fill='#8A5EE3' />
+      <circle cx={50.88} cy={27.46} r={2.27} fill='#8A5EE3' />
+      <circle cx={53.67} cy={32} r={2.27} fill='#8A5EE3' />
+    </svg>
+  )
+})
+
+SvgExpertCrowd64.displayName = 'SvgExpertCrowd64'
+export default SvgExpertCrowd64
