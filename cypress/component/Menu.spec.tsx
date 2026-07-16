@@ -30,7 +30,8 @@ const MenuExample = (props: MenuProps) => {
 
   return (
     <Container style={{ width: '240px' }}>
-      <div data-testid='spacer' style={{ height: 1 }} />
+      {/* in-flow filler — removing it shifts every baseline by 1px */}
+      <div style={{ height: 1 }} />
       <Menu {...props} data-testid='menu'>
         <Menu.Item data-testid='item-a'>Item A</Menu.Item>
         <Menu.Item menu={menuForItemB} data-testid='item-b'>
@@ -97,8 +98,15 @@ describe('Menu', () => {
 
   it('navigates drilldown menu', () => {
     cy.mount(<MenuExample variant='drilldown' />)
-    cy.getByTestId('spacer').realHover()
+    // park the pointer off the menu — drilldown hover is state-driven and
+    // would serialize into the capture
+    cy.get('body').realHover({ position: 'bottomRight' })
     cy.getByTestId('menu-b').should('not.exist')
+    cy.getByTestId('item-a').should(
+      'have.css',
+      'background-color',
+      'rgba(0, 0, 0, 0)'
+    )
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/before-mouseover-item',

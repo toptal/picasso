@@ -234,6 +234,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
       </Component>
       {menu && isOpened && (
         <Popper
+          role='presentation'
           anchorEl={anchorRef.current}
           placement='right-start'
           open

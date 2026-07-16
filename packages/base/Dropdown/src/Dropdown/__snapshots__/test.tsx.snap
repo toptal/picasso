@@ -63,7 +63,8 @@ exports[`Dropdown should render menu 1`] = `
       >
         <div
           class="z-modal xs:max-md:w-screen xs:max-md:max-w xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of shadow-2"
-          role="tooltip"
+          data-picasso-popper=""
+          role="presentation"
           style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
           x-placement="bottom-end"
         >
@@ -195,7 +196,8 @@ exports[`Dropdown should render menu with focus 1`] = `
       >
         <div
           class="z-modal xs:max-md:w-screen xs:max-md:max-w xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of shadow-2"
-          role="tooltip"
+          data-picasso-popper=""
+          role="presentation"
           style="position: absolute; left: 0px; top: 0px; transform: translate(5px, 5px);"
           x-out-of-boundaries=""
           x-placement="bottom-end"

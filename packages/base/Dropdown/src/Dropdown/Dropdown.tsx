@@ -274,6 +274,7 @@ export const Dropdown: DropdownProps = forwardRef<
 
       {(isOpen || keepMounted) && (
         <Popper
+          role='presentation'
           className={twJoin(
             'shadow-2',
             externalClasses?.popper,

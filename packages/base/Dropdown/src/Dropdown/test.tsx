@@ -116,6 +116,6 @@ describe('Dropdown', () => {
       fireEvent.click(getByText('Open Dropdown'))
     })
 
-    expect(getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+    expect(getByRole('presentation')).toHaveStyle({ position: 'fixed' })
   })
 })
