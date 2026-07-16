@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@base-ui/react": "^1.4.1",
+    "@base-ui/react": "^1.6.0",
     "@toptal/picasso-paper": "workspace:*",
     "@toptal/picasso-button": "workspace:*",
     "@toptal/picasso-container": "workspace:*",

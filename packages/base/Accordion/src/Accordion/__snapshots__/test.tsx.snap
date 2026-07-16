@@ -10,15 +10,16 @@ exports[`Accordion renders collapsed by default 1`] = `
       data-component-type="accordion"
       data-orientation="vertical"
       dir="ltr"
-      role="region"
     >
       <div
         data-closed=""
+        data-hidden=""
         data-index="0"
         data-orientation="vertical"
       >
         <div
           data-closed=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
         >
@@ -26,6 +27,7 @@ exports[`Accordion renders collapsed by default 1`] = `
             aria-expanded="false"
             class="relative flex items-center select-none cursor-pointer focus-visible:bg-black/12 outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
+            data-hidden=""
             data-orientation="vertical"
             data-value=""
             id="base-ui-:r2:"
@@ -76,6 +78,7 @@ exports[`Accordion renders collapsed by default 1`] = `
           aria-labelledby="base-ui-:r2:"
           class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
@@ -110,15 +113,16 @@ exports[`Accordion renders custom icon when passed 1`] = `
       data-component-type="accordion"
       data-orientation="vertical"
       dir="ltr"
-      role="region"
     >
       <div
         data-closed=""
+        data-hidden=""
         data-index="0"
         data-orientation="vertical"
       >
         <div
           data-closed=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
         >
@@ -126,6 +130,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
             aria-expanded="false"
             class="relative flex items-center select-none cursor-pointer focus-visible:bg-black/12 outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
+            data-hidden=""
             data-orientation="vertical"
             data-value=""
             id="base-ui-:rh:"
@@ -170,6 +175,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
           aria-labelledby="base-ui-:rh:"
           class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
@@ -205,17 +211,18 @@ exports[`Accordion renders disabled 1`] = `
       data-disabled=""
       data-orientation="vertical"
       dir="ltr"
-      role="region"
     >
       <div
         data-closed=""
         data-disabled=""
+        data-hidden=""
         data-index="0"
         data-orientation="vertical"
       >
         <div
           data-closed=""
           data-disabled=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
         >
@@ -225,6 +232,7 @@ exports[`Accordion renders disabled 1`] = `
             class="relative flex items-center select-none cursor-pointer focus-visible:bg-black/12 outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
             data-disabled=""
+            data-hidden=""
             data-orientation="vertical"
             data-value=""
             id="base-ui-:rb:"
@@ -276,6 +284,7 @@ exports[`Accordion renders disabled 1`] = `
           class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
           data-disabled=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
