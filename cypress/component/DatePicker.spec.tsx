@@ -225,6 +225,14 @@ describe('DatePicker', () => {
     cy.mount(<DrawerExample />)
 
     cy.getByTestId(DATEPICKER_INPUT_TESTID).as('input').click()
+
+    // the visually risky state — the calendar popper layering above the drawer
+    cy.waitForCalendarOpen()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'inside-drawer-calendar-open',
+    })
+
     cy.getByTestId('day-button-15').click()
 
     cy.get('@input')
