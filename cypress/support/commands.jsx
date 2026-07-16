@@ -187,12 +187,13 @@ Cypress.Commands.add('waitForImagesDecoded', (selector = 'img') =>
 // cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
 // frame after mount; if captured before removal, the attribute pins the element
 // at its starting style (e.g. opacity-0), producing a blank capture.
+// `data-ending-style` marks an exit in flight — wait it out too.
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {
     return (
       cy
-        .get('[data-starting-style]', { timeout: 4000 })
+        .get('[data-starting-style], [data-ending-style]', { timeout: 4000 })
         .should('not.exist')
         // then let poppers/notifications finish moving before serializing
         .then(() => waitForTransientGeometryToSettle())

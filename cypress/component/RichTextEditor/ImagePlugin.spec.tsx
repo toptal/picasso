@@ -86,8 +86,10 @@ describe('ImagePlugin', () => {
         `<p><img src="${uploadedFileContent}" alt="${uploadedFileAltText}"></p>`
       )
 
-      // the assertion above only checks the serialized HTML string — also let
-      // the <img> rendered in the editor decode before capturing
+      // let the dialog fully unmount — capturing mid-exit serializes it
+      cy.getByRole('dialog').should('not.exist')
+
+      // also let the <img> rendered in the editor decode before capturing
       cy.waitForImagesDecoded(`${editorSelector} img`)
 
       cy.get('body').happoScreenshot({
