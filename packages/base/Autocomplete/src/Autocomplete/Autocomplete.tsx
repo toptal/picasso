@@ -287,6 +287,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         <div role='listbox'>
           {isOpen && inputWrapperRef.current && optionsMenu && (
             <Popper
+              role='presentation'
               autoWidth
               width={menuWidth}
               placement='bottom-start'

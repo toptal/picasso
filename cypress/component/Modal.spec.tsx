@@ -147,6 +147,38 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
   )
 }
 
+const TestModalWithSearchableSelect = () => {
+  const [isOpen, setOpen] = React.useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
+  return (
+    <Modal open={isOpen}>
+      <Modal.Title>Edit address details</Modal.Title>
+      <Modal.Content>
+        <Form.Field>
+          <Input width='full' placeholder='City' value='Alabaster' />
+        </Form.Field>
+        <Form.Field>
+          <Select
+            data-testid='state-select'
+            placeholder='State'
+            searchThreshold={-1}
+            testIds={{ searchInput: 'state-search' }}
+            options={[
+              { text: 'Alabama', value: 'Alabama' },
+              { text: 'Utah', value: 'Utah' },
+            ]}
+            value='Alabama'
+          />
+        </Form.Field>
+      </Modal.Content>
+    </Modal>
+  )
+}
+
 const component = 'Modal'
 
 // The scroll shades fade in over 300ms. When the content overflows, wait for
@@ -250,6 +282,22 @@ describe('Modal', () => {
       component,
       variant: 'overflown',
     })
+  })
+
+  // the options popup portals outside the modal — the focus trap must exempt
+  // it or it steals focus back to the modal's first input
+  it('keeps focus inside a Popper-based popup opened from the modal', () => {
+    cy.mount(<TestModalWithSearchableSelect />)
+
+    cy.waitForOverlayOpen()
+    cy.getByTestId('state-select').click()
+
+    cy.getByTestId('state-search').find('input').click()
+    cy.getByTestId('state-search').find('input').type('Ut')
+    cy.getByTestId('state-search')
+      .find('input')
+      .should('have.focus')
+      .and('have.value', 'Ut')
   })
 
   Cypress._.each(HAPPO_TARGETS, happoTarget => {

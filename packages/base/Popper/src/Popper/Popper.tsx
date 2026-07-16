@@ -78,6 +78,8 @@ export interface Props extends BaseProps {
   width?: string
   /** Take full window width on small and medium screens */
   enableCompactMode?: boolean
+  /** ARIA role of the floating element, matching the popup's content (defaults to `tooltip`) */
+  role?: React.AriaRole
 }
 
 const getAnchorEl = (
@@ -110,11 +112,6 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     placement = 'bottom',
     popperOptions = {},
     autoWidth = true,
-    ...props
-  },
-  ref
-) {
-  const {
     children,
     anchorEl,
     className,
@@ -123,9 +120,11 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
     width,
     enableCompactMode,
     style,
+    role = 'tooltip',
     ...rest
-  } = props
-
+  },
+  ref
+) {
   const picassoRootContainer = usePicassoRoot()
   const isInsideModal = useContext(ModalContext)
 
@@ -216,7 +215,10 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
   const popperNode = (
     <div
       ref={setFloatingRef}
-      role='tooltip'
+      role={role}
+      // Modal's focus trap exempts `[data-picasso-popper]` popups from focus
+      // stealing; roles vary per consumer, so `role` can't be the marker.
+      data-picasso-popper=''
       className={twMerge(
         'z-modal',
         'xs:max-md:w-screen xs:max-md:max-w-screen xs:max-md:p-0 xs:max-md:m-0',
