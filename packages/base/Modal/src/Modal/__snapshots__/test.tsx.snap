@@ -9,27 +9,27 @@ exports[`Modal renders 1`] = `
     data-base-ui-inert=""
   >
     <span
+      aria-hidden="true"
       data-base-ui-focus-guard=""
       data-type="outside"
-      role="button"
       style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
       tabindex="0"
     />
     <span
-      aria-owns=":r2:"
+      aria-owns=":r1:"
       style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
     />
     <span
+      aria-hidden="true"
       data-base-ui-focus-guard=""
       data-type="outside"
-      role="button"
       style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
       tabindex="0"
     />
   </div>
   <div
     data-base-ui-portal=""
-    id=":r2:"
+    id=":r1:"
   >
     <div
       class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -39,10 +39,10 @@ exports[`Modal renders 1`] = `
       style="user-select: none; transition-duration: 300ms;"
     />
     <span
+      aria-hidden="true"
       data-base-ui-focus-guard=""
       data-base-ui-inert=""
       data-type="inside"
-      role="button"
       style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
       tabindex="0"
     />
@@ -144,10 +144,10 @@ exports[`Modal renders 1`] = `
       </div>
     </div>
     <span
+      aria-hidden="true"
       data-base-ui-focus-guard=""
       data-base-ui-inert=""
       data-type="inside"
-      role="button"
       style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
       tabindex="0"
     />
@@ -178,7 +178,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
       </button>
       <div
         data-base-ui-portal=""
-        id=":r8:"
+        id=":r5:"
       >
         <div
           class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -189,10 +189,10 @@ exports[`Modal useModal opens and closes modal 1`] = `
           style="user-select: none; transition-duration: 300ms;"
         />
         <span
+          aria-hidden="true"
           data-base-ui-focus-guard=""
           data-base-ui-inert=""
           data-type="inside"
-          role="button"
           style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
@@ -201,7 +201,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
-          id=":r6:"
+          id=":r4:"
           role="dialog"
           style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
@@ -230,32 +230,32 @@ exports[`Modal useModal opens and closes modal 1`] = `
           </div>
         </div>
         <span
+          aria-hidden="true"
           data-base-ui-focus-guard=""
           data-base-ui-inert=""
           data-type="inside"
-          role="button"
           style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
       <span
+        aria-hidden="true"
         data-base-ui-focus-guard=""
         data-base-ui-inert=""
         data-type="outside"
-        role="button"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="0"
       />
       <span
-        aria-owns=":r8:"
+        aria-owns=":r5:"
         data-base-ui-inert=""
         style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
       />
       <span
+        aria-hidden="true"
         data-base-ui-focus-guard=""
         data-base-ui-inert=""
         data-type="outside"
-        role="button"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="0"
       />
@@ -328,7 +328,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       <div
         data-base-ui-inert=""
         data-base-ui-portal=""
-        id=":rj:"
+        id=":rc:"
       >
         <div
           class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -339,10 +339,10 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           style="user-select: none; transition-duration: 300ms;"
         />
         <span
+          aria-hidden="true"
           data-base-ui-focus-guard=""
           data-base-ui-inert=""
           data-type="inside"
-          role="button"
           style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
@@ -351,7 +351,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
-          id=":rf:"
+          id=":ra:"
           role="dialog"
           style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
@@ -366,38 +366,38 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           </div>
         </div>
         <span
+          aria-hidden="true"
           data-base-ui-focus-guard=""
           data-base-ui-inert=""
           data-type="inside"
-          role="button"
           style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
       <span
+        aria-hidden="true"
         data-base-ui-focus-guard=""
         data-base-ui-inert=""
         data-type="outside"
-        role="button"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="0"
       />
       <span
-        aria-owns=":rj:"
+        aria-owns=":rc:"
         data-base-ui-inert=""
         style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
       />
       <span
+        aria-hidden="true"
         data-base-ui-focus-guard=""
         data-base-ui-inert=""
         data-type="outside"
-        role="button"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="0"
       />
       <div
         data-base-ui-portal=""
-        id=":rk:"
+        id=":rd:"
       >
         <div
           class="fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity data-ending-style:opacity"
@@ -408,10 +408,10 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           style="user-select: none; transition-duration: 300ms;"
         />
         <span
+          aria-hidden="true"
           data-base-ui-focus-guard=""
           data-base-ui-inert=""
           data-type="inside"
-          role="button"
           style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
@@ -420,7 +420,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           data-base-ui-focusable=""
           data-open=""
           data-starting-style=""
-          id=":rh:"
+          id=":rb:"
           role="dialog"
           style="--nested-dialogs: 0; transition-duration: 300ms;"
           tabindex="-1"
@@ -435,32 +435,32 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           </div>
         </div>
         <span
+          aria-hidden="true"
           data-base-ui-focus-guard=""
           data-base-ui-inert=""
           data-type="inside"
-          role="button"
           style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
       <span
+        aria-hidden="true"
         data-base-ui-focus-guard=""
         data-base-ui-inert=""
         data-type="outside"
-        role="button"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="0"
       />
       <span
-        aria-owns=":rk:"
+        aria-owns=":rd:"
         data-base-ui-inert=""
         style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
       />
       <span
+        aria-hidden="true"
         data-base-ui-focus-guard=""
         data-base-ui-inert=""
         data-type="outside"
-        role="button"
         style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
         tabindex="0"
       />
