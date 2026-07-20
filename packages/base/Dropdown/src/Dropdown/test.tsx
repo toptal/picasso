@@ -132,7 +132,7 @@ describe('Dropdown', () => {
         fireEvent.click(getByText('Open Dropdown'))
       })
 
-      expect(getByRole('tooltip')).toHaveClass('mt-8')
+      expect(getByRole('presentation')).toHaveClass('mt-8')
     })
 
     it('applies a responsive offset as mobile-first breakpoint classes', async () => {
@@ -149,7 +149,7 @@ describe('Dropdown', () => {
         fireEvent.click(getByText('Open Dropdown'))
       })
 
-      const popper = getByRole('tooltip')
+      const popper = getByRole('presentation')
 
       expect(popper).toHaveClass('sm:mt-2')
       expect(popper).toHaveClass('lg:mt-8')
@@ -166,7 +166,7 @@ describe('Dropdown', () => {
         fireEvent.click(getByText('Open Dropdown'))
       })
 
-      const popper = getByRole('tooltip')
+      const popper = getByRole('presentation')
 
       expect(popper).toHaveStyle({ marginTop: '11.75rem' })
       expect(popper.className).not.toMatch(/\bmt-/)
@@ -183,7 +183,7 @@ describe('Dropdown', () => {
         fireEvent.click(getByText('Open Dropdown'))
       })
 
-      expect(getByRole('tooltip')).toHaveClass('mt-4')
+      expect(getByRole('presentation')).toHaveClass('mt-4')
     })
   })
 })

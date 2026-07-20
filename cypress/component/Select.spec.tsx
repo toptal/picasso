@@ -110,6 +110,21 @@ const MANY_OPTIONS = [
   { value: '10', text: 'Option 10' },
 ]
 const OPTIONS = MANY_OPTIONS.slice(0, 5)
+
+const TestSelectWithLabel = () => (
+  <Container padded='medium'>
+    <label htmlFor='label-activation-select'>State</label>
+    <Select
+      id='label-activation-select'
+      data-testid='select'
+      options={OPTIONS}
+      placeholder='Choose an option...'
+      onChange={noop}
+      width='auto'
+    />
+  </Container>
+)
+
 const OPTION_GROUPS = {
   'Group 1': [
     { value: '1', text: 'Option 1' },
@@ -436,5 +451,22 @@ describe('Select', () => {
         })
       })
     })
+  })
+})
+
+describe('Select with an associated label', () => {
+  it('does not open the options from a label-activation click', () => {
+    cy.mount(<TestSelectWithLabel />)
+
+    // the browser forwards a label click to the associated select input as a
+    // synthesized activation click — it must focus the input without toggling
+    // the options popup, matching native <select> behavior [PF-2256]
+    cy.contains('label', 'State').click()
+
+    cy.focused().should('have.id', 'label-activation-select')
+    cy.get('[data-picasso-popper]').should('not.exist')
+
+    // a real pointer click on the select still opens it
+    openSelect()
   })
 })
