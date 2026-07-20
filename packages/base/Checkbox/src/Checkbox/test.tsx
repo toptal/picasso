@@ -209,5 +209,20 @@ describe('Checkbox', () => {
 
       expect(onChange).not.toHaveBeenCalled()
     })
+
+    describe('when nested inside a role="menuitem"', () => {
+      it('toggles on label-text click', () => {
+        const onChange = jest.fn()
+        const { getByText } = render(
+          <div role='menuitem'>
+            <Checkbox onChange={onChange} label='Select item' />
+          </div>
+        )
+
+        fireEvent.click(getByText('Select item'))
+
+        expect(onChange).toHaveBeenCalledTimes(1)
+      })
+    })
   })
 })
