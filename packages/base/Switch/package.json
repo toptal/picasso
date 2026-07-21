@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-form-label": "workspace:*",
     "@toptal/picasso-shared": "workspace:*",
-    "@base-ui/react": "^1.4.1"
+    "@base-ui/react": "^1.6.0"
   },
   "sideEffects": [
     "**/styles.ts",

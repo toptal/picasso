@@ -27,7 +27,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               data-component-type="accordion"
               data-orientation="vertical"
               dir="ltr"
-              role="region"
             >
               <div
                 data-index="0"
@@ -122,7 +121,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   data-index="0"
                   data-open=""
                   data-orientation="vertical"
-                  data-starting-style=""
                   id="base-ui-:r4:"
                   role="region"
                   style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
@@ -207,7 +205,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               data-component-type="accordion"
               data-orientation="vertical"
               dir="ltr"
-              role="region"
             >
               <div
                 data-index="0"
@@ -302,7 +299,6 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                   data-index="0"
                   data-open=""
                   data-orientation="vertical"
-                  data-starting-style=""
                   id="base-ui-:r7:"
                   role="region"
                   style="--accordion-panel-height: auto; --accordion-panel-width: auto; --accordion-duration: 300ms;"
@@ -551,15 +547,16 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
       data-component-type="accordion"
       data-orientation="vertical"
       dir="ltr"
-      role="region"
     >
       <div
         data-closed=""
+        data-hidden=""
         data-index="0"
         data-orientation="vertical"
       >
         <div
           data-closed=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
         >
@@ -567,6 +564,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             aria-expanded="false"
             class="relative flex items-center select-none cursor-pointer focus-visible:bg-black/12 outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
             data-component-type="accordion-summary"
+            data-hidden=""
             data-orientation="vertical"
             data-value=""
             id="base-ui-:r2:"
@@ -651,6 +649,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
           aria-labelledby="base-ui-:r2:"
           class="overflow-hidden h-[var(--accordion-panel transition-[height] duration-[var(--accordion ease-in data-starting-style:h data-ending-style:h [&[hidden]]:block [&[hidden]]:h-0 [&[hidden]]:invisible"
           data-closed=""
+          data-hidden=""
           data-index="0"
           data-orientation="vertical"
           hidden=""
