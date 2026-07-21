@@ -47,6 +47,11 @@ export { default as isString } from './is-string'
 export { default as isSubstring } from './is-substring'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'
 export { default as noop } from './noop'
+export {
+  isPointerModality,
+  subscribePointerModality,
+  unsubscribePointerModality,
+} from './pointer-modality'
 export { default as toTitleCase } from './to-title-case'
 export { default as useCombinedRefs } from './use-combined-refs'
 export { default as useSafeState } from './use-safe-state'
