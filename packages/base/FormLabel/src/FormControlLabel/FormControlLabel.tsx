@@ -106,20 +106,19 @@ const FormControlLabel = forwardRef<HTMLLabelElement | HTMLDivElement, Props>(
         }
 
         const target = event.target as HTMLElement
+        const wrapper = event.currentTarget
 
-        // Only forward clicks that land on the label text. Clicks on the
-        // control itself, its hidden input, or any interactive content inside
-        // the label are handled by those elements — this mirrors a native
-        // `<label>`, whose activation behavior excludes interactive descendants.
-        if (
-          target.closest(
-            'a[href],button,input,select,textarea,[role="checkbox"],[role="switch"],[role="radio"],[role="button"],[role="link"],[role="menuitem"],[role="tab"],[role="option"]'
-          )
-        ) {
+        // Mirror a native `<label>`: don't forward when the click lands on
+        // interactive content, but only *inside* the label subtree. `closest()`
+        // also matches interactive ancestors (e.g. a wrapping `role="menuitem"`
+        // in a dropdown filter), which must not suppress forwarding.
+        const interactive = target.closest(
+          'a[href],button,input,select,textarea,[role="checkbox"],[role="switch"],[role="radio"],[role="button"],[role="link"],[role="menuitem"],[role="tab"],[role="option"]'
+        )
+
+        if (interactive && wrapper.contains(interactive)) {
           return
         }
-
-        const wrapper = event.currentTarget
 
         wrapper
           .querySelector<HTMLInputElement>('input[aria-hidden="true"]')
