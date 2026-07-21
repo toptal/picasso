@@ -10,4 +10,4 @@
 
 ### FormControlLabel
 
-- add an optional `labelId` prop. When provided, the wrapper renders as a non-`<label>` element (so a control's hidden native input is not a second label-associated node) and forwards label-text clicks to the control (skipping interactive descendants). The default `<label>` path is unchanged, so `Radio` and other consumers are unaffected
+- add an optional `labelId` prop. When it's provided, the wrapper renders as a non-`<label>` element (so a control's hidden native input is not a second label-associated node) and forwards label-text clicks to the control (skipping interactive descendants). The default `<label>` path is unchanged, so `Radio` and other consumers are unaffected
