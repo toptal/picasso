@@ -6,6 +6,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 
 import SliderMark from '../SliderMark'
 import SliderValueLabel from '../SliderValueLabel'
+import { getTrackStyles } from '../utils'
 import { useLabelOverlap } from './hooks'
 
 export interface Props extends BaseProps {
@@ -156,7 +157,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[19px] h-[19px]',
-    'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
+    'rounded-[50%] bg-blue-500 border-[2px] border-solid border-transparent bg-clip-padding',
     'outline-0 transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
@@ -214,36 +215,54 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       >
         <BaseUISlider.Control className='block absolute inset-0 h-[15px]'>
           <BaseUISlider.Track
-            className='block w-full h-[1px] top-[7px] rounded-none bg-gray-500'
-            render={(trackProps, { values }) => (
-              <div {...trackProps}>
-                <BaseUISlider.Indicator
-                  className={twJoin(
-                    'block h-[1px]',
-                    disableTrackHighlight ? 'bg-gray-500' : 'bg-blue-500'
+            className='block w-full h-[1px] top-[7px] rounded-none'
+            render={(trackProps, { values }) => {
+              const { railStart, railEnd, indicator } = getTrackStyles({
+                values,
+                min,
+                max,
+                hasThumbGap: !isThumbHidden,
+              })
+
+              return (
+                <div {...trackProps}>
+                  <span
+                    className='absolute inset-y-0 bg-gray-500'
+                    style={railStart}
+                  />
+                  <span
+                    className='absolute inset-y-0 bg-gray-500'
+                    style={railEnd}
+                  />
+                  <BaseUISlider.Indicator
+                    className={twJoin(
+                      'block h-[1px]',
+                      disableTrackHighlight ? 'bg-gray-500' : 'bg-blue-500'
+                    )}
+                    style={indicator}
+                  />
+
+                  {marksList.map((markValue, idx) => {
+                    const percent = ((markValue - min) / (max - min)) * 100
+
+                    return (
+                      <SliderMark
+                        key={markValue}
+                        markActive={isMarkActive(markValue, values)}
+                        value={values[0]}
+                        style={{ left: `${percent}%` }}
+                        forceInactive={Boolean(disableTrackHighlight)}
+                        data-index={idx}
+                      />
+                    )
+                  })}
+
+                  {values.map((thumbValue, index) =>
+                    renderThumb(thumbValue, index)
                   )}
-                />
-
-                {marksList.map((markValue, idx) => {
-                  const percent = ((markValue - min) / (max - min)) * 100
-
-                  return (
-                    <SliderMark
-                      key={markValue}
-                      markActive={isMarkActive(markValue, values)}
-                      value={values[0]}
-                      style={{ left: `${percent}%` }}
-                      forceInactive={Boolean(disableTrackHighlight)}
-                      data-index={idx}
-                    />
-                  )
-                })}
-
-                {values.map((thumbValue, index) =>
-                  renderThumb(thumbValue, index)
-                )}
-              </div>
-            )}
+                </div>
+              )
+            }}
           />
         </BaseUISlider.Control>
       </BaseUISlider.Root>

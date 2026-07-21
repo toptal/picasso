@@ -16,17 +16,25 @@ exports[`Slider renders 1`] = `
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] top-[7px] rounded-none bg-gray"
+          class="block w-full h-[1px] top-[7px] rounded-none"
           data-orientation="horizontal"
           style="position: relative;"
         >
+          <span
+            class="absolute inset-y bg-gray"
+            style="inset-inline-start: 0; width: calc(0% - 9.5px);"
+          />
+          <span
+            class="absolute inset-y bg-gray"
+            style="inset-inline-start: calc(0% + 9.5px); inset-inline-end: 0;"
+          />
           <div
             class="block h-[1px] bg-blue"
             data-orientation="horizontal"
-            style="position: relative; height: inherit; inset-inline-start: 0; width: 0%;"
+            style="position: relative; height: inherit; inset-inline-start: 0; width: calc(0% - 9.5px);"
           />
           <div
-            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 transition-shadow cursor-pointer"
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-transparent bg-clip outline-0 transition-shadow cursor-pointer"
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r1:"
@@ -77,17 +85,25 @@ exports[`Slider with initial value 1`] = `
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] top-[7px] rounded-none bg-gray"
+          class="block w-full h-[1px] top-[7px] rounded-none"
           data-orientation="horizontal"
           style="position: relative;"
         >
+          <span
+            class="absolute inset-y bg-gray"
+            style="inset-inline-start: 0; width: calc(4% - 9.5px);"
+          />
+          <span
+            class="absolute inset-y bg-gray"
+            style="inset-inline-start: calc(4% + 9.5px); inset-inline-end: 0;"
+          />
           <div
             class="block h-[1px] bg-blue"
             data-orientation="horizontal"
-            style="position: relative; height: inherit; inset-inline-start: 0; width: 4%;"
+            style="position: relative; height: inherit; inset-inline-start: 0; width: calc(4% - 9.5px);"
           />
           <div
-            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 transition-shadow cursor-pointer"
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-transparent bg-clip outline-0 transition-shadow cursor-pointer"
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r9:"
