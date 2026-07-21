@@ -111,5 +111,20 @@ describe('Switch', () => {
 
       expect(onChange).not.toHaveBeenCalled()
     })
+
+    describe('when nested inside a role="menuitem"', () => {
+      it('toggles on label-text click', () => {
+        const onChange = jest.fn()
+        const { getByText } = render(
+          <div role='menuitem'>
+            <Switch onChange={onChange} label='A Switch' />
+          </div>
+        )
+
+        fireEvent.click(getByText('A Switch'))
+
+        expect(onChange).toHaveBeenCalledTimes(1)
+      })
+    })
   })
 })
