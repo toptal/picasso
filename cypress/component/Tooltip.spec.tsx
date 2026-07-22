@@ -288,8 +288,7 @@ const component = 'Tooltip'
 describe('Tooltip', () => {
   it('renders by default', () => {
     cy.mount(<SnapshotTooltipExample />)
-    // opens via async setOpen — gate on it before capturing (the base-ui popup
-    // mounts + positions a frame later; the global override settles geometry)
+    // opens via async setOpen — gate on it before capturing
     cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
@@ -387,8 +386,6 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
     cy.getByTestId(testIds.tooltipTrigger).click()
-    // @base-ui/react unmounts the popup on close (no lingering hidden node as
-    // MUI's exit transition left behind), so assert removal, not invisibility.
     cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 

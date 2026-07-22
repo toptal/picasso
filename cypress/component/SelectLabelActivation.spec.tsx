@@ -5,8 +5,7 @@ import { noop } from '@toptal/picasso/utils'
 
 // Reproduces the full consumer shape that surfaced the label-activation bug —
 // picasso-forms field wiring, an OnChange listener opening a Modal, and a `key`
-// remount of the Select. The guard lives in use-click-handler (unit-tested in
-// Select.spec.tsx and its jest tests).
+// remount of the Select.
 const CATEGORY_OPTIONS = [
   { text: 'Talent rate', value: 'talent-rate' },
   { text: 'Engagement closed', value: 'engagement-closed' },

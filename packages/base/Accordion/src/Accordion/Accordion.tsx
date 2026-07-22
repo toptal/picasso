@@ -33,8 +33,8 @@ const ITEM_VALUE = 'item'
 const EXPANDED_VALUE = [ITEM_VALUE]
 const COLLAPSED_VALUE: string[] = []
 const DEFAULT_TRANSITION_DURATION = 300
-// Base UI caches whether the panel animates from a one-time read of its
-// duration, so a literal `0s` would disable it permanently. 1ms is imperceptible.
+// A literal `0s` disables the panel animation permanently (the transition
+// duration is read only once), so clamp to 1ms — imperceptible but non-zero.
 const MIN_CSS_TRANSITION_DURATION = 1
 
 const resolveTransitionDuration = (

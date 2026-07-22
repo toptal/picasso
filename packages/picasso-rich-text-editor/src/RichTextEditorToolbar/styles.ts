@@ -4,7 +4,7 @@ const group =
 // Width can't be set via className: NonNativeSelect appends its own width class
 // (w-full by default) after the consumer className in twMerge, so any width
 // utility loses. The wrapper `style` prop is applied directly (not merged), so
-// it wins over the class without !important — preserving the legacy 7.125em.
+// it wins over the class without !important.
 export const selectStyle = { width: '7.125em' } as const
 
 const styles: Record<string, string> = {

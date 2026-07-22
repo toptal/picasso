@@ -3,12 +3,11 @@ import { useCallback } from 'react'
 import type { ValueType, UseSelectProps } from '../../../types'
 import { EMPTY_INPUT_VALUE } from '../../../utils'
 
-// A click the browser synthesizes from an associated `<label>` activation
-// (e.g. picasso-forms wires the field label to the select input via `htmlFor`)
-// carries `detail === 0` and the label's coordinates, which lie outside the
-// select root. A native `<select>` only receives focus from a label click —
-// the options popup must not toggle. Real pointer clicks (`detail >= 1`) and
-// assistive-technology clicks (element-centered coordinates) keep toggling.
+// A label-forwarded click (e.g. picasso-forms links the field label to the
+// select via `htmlFor`) carries `detail === 0` and coordinates outside the
+// select root; like a native `<select>`, it must only focus — not toggle the
+// options popup. Real pointer clicks (`detail >= 1`) and assistive-tech clicks
+// (element-centered coordinates) keep toggling.
 const isLabelActivationClick = (event?: React.MouseEvent) => {
   if (!event || event.detail !== 0) {
     return false

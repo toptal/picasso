@@ -305,12 +305,6 @@ export const Dropdown: DropdownProps = forwardRef<
               style={contentStyle}
               // `scale` (not `transform`) is the property Tailwind v4 sets, so it
               // must be in the transition list.
-              // TODO: [PF-1994] When Popper moves to @floating-ui/react it
-              // positions a frame after mount, so the Paper must only be inserted
-              // (or revealed) once positioned, otherwise @starting-style fires
-              // while unpositioned and the grow plays from the wrong spot. Gate on
-              // floating-ui's isPositioned, or switch to base-ui's
-              // data-[starting-style] hook.
               className={twMerge(
                 'origin-center transition-[opacity,scale] duration-200 ease-out',
                 'scale-100 opacity-100 starting:scale-75 starting:opacity-0',

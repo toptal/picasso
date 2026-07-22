@@ -76,9 +76,9 @@ export const Checkbox = forwardRef<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, 'data-private': dataPrivate, ...checkboxAttributes } = rest
 
-  // `Props` extends button/anchor HTML attributes but BaseCheckbox.Root renders
-  // a <span>; the event-handler element types are runtime-compatible, so resolve
-  // the variance once here rather than narrowing the public API.
+  // Public Props extend button/anchor HTML attributes, but the rendered control
+  // is a <span>; the event-handler element types are runtime-compatible, so
+  // resolve the variance once here rather than narrowing the public API.
   const rootRest = checkboxAttributes as CheckboxRootProps
 
   // Name the control via `aria-labelledby` so it is the single label-associated
@@ -87,10 +87,10 @@ export const Checkbox = forwardRef<
   const labelId = label ? generatedLabelId : undefined
 
   const checkboxElement = (
-    // Base UI's visually-hidden <input> ships inline `position:absolute` with a
-    // negative margin; `relative` + `translate-px` anchor it inside the 16px box
-    // so it doesn't grow the rendered box (fixes the Happo dimension_mismatch),
-    // and `appearance-none` stops the native control painting over it.
+    // The visually-hidden <input> ships inline `position:absolute` with a
+    // negative margin; `relative` + `translate-px` anchor it inside the 16px
+    // box so it doesn't grow the rendered box, and `appearance-none` stops the
+    // native control painting over it.
     <span className='relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x-px [&_input]:translate-y-px'>
       <BaseCheckbox.Root
         {...rootRest}

@@ -24,8 +24,8 @@ const STATUS_BORDER: Record<Status, string> = {
   default: '',
 }
 
-// Resolves the legacy JSS cascade (border color + focus outline by state) into a
-// single deterministic class set so we don't rely on Tailwind utility ordering.
+// Resolves border color + focus outline (by state) into a single deterministic
+// class set so we don't rely on Tailwind utility ordering.
 export const getEditorWrapperClassName = ({
   disabled,
   focused,
@@ -40,7 +40,6 @@ export const getEditorWrapperClassName = ({
     'relative rounded-sm border p-[0.5em]',
     borderColor,
     outline,
-    // Hover border, suppressed when disabled or in error (matches legacy :not()).
     !disabled && status !== 'error' && 'hover:border-gray-600',
     disabled && 'pointer-events-none',
     autofill ? 'bg-yellow-100/60' : disabled && 'bg-gray-200'

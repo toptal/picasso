@@ -147,9 +147,6 @@ describe('Checkbox', () => {
         label: 'No Rate Limit',
       })
 
-      // Regression: both the role="checkbox" span and the hidden native <input>
-      // used to be label-associated, so getByLabelText threw "Found multiple
-      // elements". It must now match only the accessible control.
       expect(getByLabelText('No Rate Limit')).toBe(
         getByRole('checkbox', { name: 'No Rate Limit' })
       )

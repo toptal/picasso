@@ -233,7 +233,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
             ref={ref}
             // List-bullet data URIs flow to the `<ul>::before` rules via CSS
             // vars; they can't live in a Tailwind class (JIT can't see an
-            // interpolated arbitrary value). See styles.ts.
+            // interpolated arbitrary value).
             style={
               {
                 [BULLET_VAR]: bullet,

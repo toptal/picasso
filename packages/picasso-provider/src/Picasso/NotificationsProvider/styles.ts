@@ -12,7 +12,7 @@ export const containerRoot = [
   '[&>div]:pointer-events-auto',
   '[&>div>div]:px-0',
   '[&>div>div]:py-[6px]',
-  // Arbitrary property preserves the original `ease` timing: the
+  // Arbitrary property keeps the explicit `ease` timing: the
   // `transition-[padding]` utility would inject Tailwind's own easing curve.
   '[&>div>div]:[transition:padding_300ms_ease_0ms]',
 ].join(' ')

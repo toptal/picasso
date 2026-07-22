@@ -207,7 +207,7 @@ describe('Sidebar', () => {
 
       // the sub-menu popper is keepMounted (in the DOM at 0×0 while closed),
       // so the global geometry-settle passes vacuously — gate on exactly one
-      // dropdown actually being open. `:visible` excludes the closed twin.
+      // dropdown actually being open.
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)
         .filter(':visible')
         .should('have.length', 1)

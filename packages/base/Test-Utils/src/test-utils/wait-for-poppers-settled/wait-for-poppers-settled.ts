@@ -1,23 +1,13 @@
-// A popper positioned by `@floating-ui/react` (Dropdown/Menu/Popper) commits
-// its coordinates a frame or two after open, driven by `autoUpdate` — so its
-// `getBoundingClientRect()` keeps changing across animation frames right after
-// it appears. happo captures a single serialized DOM snapshot; if that instant
-// lands mid-settle, the popup (and anything measured from it) is captured a
-// fraction of a pixel off, diffing against the baseline. Picasso stamps
-// `x-placement` on the positioned floating node, so its presence marks a popper
-// whose geometry must be at rest before happo snapshots.
+// A popper positioned by `@floating-ui/react` (Dropdown/Menu/Popper) commits its
+// coordinates a frame or two after open, driven by `autoUpdate` — so its
+// `getBoundingClientRect()` keeps changing across animation frames right after it
+// appears. A DOM snapshot taken mid-settle captures the popup (and anything
+// measured from it) a fraction of a pixel off. Picasso stamps `x-placement` on
+// the positioned floating node, so its presence marks a popper whose geometry
+// must be at rest before it is snapshotted.
 //
-// This mirrors the Cypress-Happo capture guard (`waitForPoppersToSettle` in
-// `cypress/support/commands.jsx`) for the Storybook pipeline, where it plugs
-// into `happo-plugin-storybook`'s per-story `waitFor` predicate — the plugin
-// polls it (bounded by its own `renderTimeoutMs`) until it returns `true`, so
-// there are no hardcoded durations. Intended usage from a story that renders an
-// open floating-ui popper in its screenshotted state:
-//
-//   Story.parameters = { happo: { waitFor: createPoppersSettledWaitFor() } }
-//
-// Each call returns a fresh predicate with its own closure, so per-story /
-// per-target runs never share settle state.
+// Each call returns a fresh predicate with its own closure, so separate runs
+// never share settle state.
 
 const readPopperBoxes = (): string => {
   const boxes: string[] = []

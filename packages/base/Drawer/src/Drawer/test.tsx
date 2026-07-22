@@ -14,9 +14,6 @@ const renderDrawer = (props: Partial<Props> = {}, children: ReactNode = null) =>
   )
 
 describe('Drawer', () => {
-  // Regression: Base UI's portal treats an explicit `null` container as
-  // "wait for the container", and the Picasso root ref is not populated yet
-  // on the tree's first render pass — a mount-open Drawer must still appear
   it('renders content when open', () => {
     const { getByTestId } = renderDrawer()
 

@@ -1,7 +1,7 @@
 // Root-node classes for PicassoRootNode. Establishes a border-box island: the
 // root is border-box and every descendant (plus their ::before/::after) inherits
-// box-sizing from it — kept as the last line of defense for pages that don't
-// import the `@toptal/picasso-tailwind/base` reset (the former `reset` opt-out).
+// box-sizing from it — the last line of defense for pages that don't import the
+// `@toptal/picasso-tailwind/base` reset.
 // The Picasso font is applied to the whole subtree as a ZERO-SPECIFICITY default
 // (`:where(&) *` = 0,0,0): it still beats user-agent fonts (author origin wins),
 // but ANY authored font class beats it. A plain `[&_*]` font-sans utility

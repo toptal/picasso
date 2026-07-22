@@ -30,10 +30,9 @@ describe('Checkbox', () => {
       variant: 'default-checked/after-hovered',
     })
 
-    // Stamp `data-focused` on the Root span before each snapshot — Base UI's
-    // own state attribute, which also drives the focus-ring styles. Doing it
-    // manually mirrors the `hoverAndTakeHappoScreenshot` pattern: `:focus-visible`
-    // is a live pseudo-class that doesn't survive Happo's DOM serialization.
+    // Stamp `data-focused` (the state attribute that drives the focus-ring
+    // styles) manually before each snapshot: `:focus-visible` is a live
+    // pseudo-class that doesn't survive Happo's DOM serialization.
     cy.get('[role="checkbox"]').first().invoke('attr', 'data-focused', '')
     cy.get('body').happoScreenshot({
       component,

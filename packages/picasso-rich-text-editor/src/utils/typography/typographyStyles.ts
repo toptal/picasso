@@ -1,6 +1,5 @@
-// Static Tailwind class map keyed identically to the legacy JSS class names so
-// `getTypographyClassName` can keep looking entries up by computed key.
-// All body variants share the same look as the legacy MUI body1 variant.
+// Class map keyed by the value `getTypographyClassName` computes for each
+// variant/color/weight, so entries must stay keyed to match its lookup.
 export const typographyStyles: Record<string, string> = {
   // text-* tokens bundle the matching font-size + line-height pairs.
   bodyXxsmall: 'text-graphite-700 font-regular text-2xs',

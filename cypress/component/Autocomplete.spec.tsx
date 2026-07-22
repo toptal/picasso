@@ -119,7 +119,6 @@ const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
 
 const component = 'Autocomplete'
 
-// open the options menu (gated on it being visible) and capture it
 const openMenuAndTakeScreenshot = (variant: string) => {
   cy.getByTestId(testIds.input).click()
   cy.getByRole('menu').should('be.visible')
