@@ -44,7 +44,7 @@
     "@toptal/picasso-provider": "*",
     "@toptal/picasso-tailwind": ">=2.7",
     "@toptal/picasso-tailwind-merge": "^2.0.0",
-    "react": ">=16.12.0"
+    "react": ">=17.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
