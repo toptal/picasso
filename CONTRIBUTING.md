@@ -25,8 +25,7 @@ The following is a set of guidelines for contributing to Picasso and its package
 ## Technical guides
 
 - [GitHub workflow](docs/contribution/github-workflow.md)
-- [CSS naming](docs/contribution/css-naming.md)
-- [JSS onboarding](docs/contribution/jss-onboarding.md)
+- [Styling (Tailwind)](docs/contribution/styling.md)
 - [New components](docs/contribution/new-component-creation.md)
 - [Creating examples](docs/contribution/creating-examples.md)
 - [Visual snapshots](docs/contribution/visual-testing.md)

@@ -3,7 +3,7 @@
 exports[`TagSelector disabled render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       aria-expanded="false"
@@ -71,7 +71,7 @@ exports[`TagSelector preselected value 1`] = `
 <body>
   <div>
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <div
         aria-expanded="false"
@@ -137,7 +137,7 @@ exports[`TagSelector preselected value 1`] = `
 exports[`TagSelector renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       aria-expanded="false"

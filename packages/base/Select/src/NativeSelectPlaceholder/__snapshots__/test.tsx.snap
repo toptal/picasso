@@ -3,7 +3,7 @@
 exports[`NativeSelectPlaceholder renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <option
       value=""
@@ -17,7 +17,7 @@ exports[`NativeSelectPlaceholder renders 1`] = `
 exports[`NativeSelectPlaceholder renders disabled 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <option
       disabled=""
@@ -32,7 +32,7 @@ exports[`NativeSelectPlaceholder renders disabled 1`] = `
 exports[`NativeSelectPlaceholder renders with emptySelectValue 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <option
       value="foo"

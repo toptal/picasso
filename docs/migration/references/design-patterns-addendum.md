@@ -54,6 +54,12 @@ These are deliberate, audit-backed exceptions to the canonical rules — **TEMPO
 - **What we do**: preserve their existing `classes?: { ... }` shape. Don't drop the prop in the migration PR even though rule 5 forbids it.
 - **End-state — REMOVED in a future major bump**: a separate API-cleanup sweep removes these `classes` props in the next major version of each affected package.
 
+### Styling doctrine (Tailwind-only) vs global CSS reset · **RESOLVED (PF-2221)**
+
+- The interim CssBaseline runtime-`<style>` exception is retired: the global reset now ships as CSS in `@layer base` via the opt-in **`@toptal/picasso-tailwind/base`** entry (`packages/picasso-tailwind/src/base.css` — the single source of truth). `CssBaseline` and the provider `reset` prop are removed; omitting the import replaces `reset={false}`.
+- **Cascade contract (deliberate)**: Tailwind utilities and unlayered app CSS win over the baseline by cascade-layer rules. `injectFirst`-era consumers regain their pre-migration tie-break semantics; consumers who relied on the JSS reset winning equal-specificity ties by injection order lose them — documented intent, not a regression.
+- The React 19 hoistable `<style>` variant considered earlier is dropped (nothing left to hoist once no runtime injection exists).
+
 ## 3. How the agent applies design patterns during a migration
 
 - **Apply canonical rules to NEW code paths** introduced as part of the swap (adapter helpers, wrappers around `@base-ui/react`, new internal types, new hooks).

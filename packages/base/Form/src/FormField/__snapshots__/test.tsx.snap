@@ -3,7 +3,7 @@
 exports[`FormField when layout is horizontal renders FormField with appropriate for horizontal layout styles and classNames 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-[1rem] [&+&]:mt-4 grid w-full gap-x gap-y grid-rows grid-cols-[calc(4.25rem*var(--form-label [grid-template xs:[--form-label-width:var(--form-label-width- sm:[--form-label-width:var(--form-label-width- md:[--form-label-width:var(--form-label-width- lg:[--form-label-width:var(--form-label-width- xl:[--form-label-width:var(--form-label-width-"
@@ -19,7 +19,7 @@ exports[`FormField when layout is horizontal renders FormField with appropriate 
 exports[`FormField when layout is horizontal when labelWidth is 4 renders FormField with appropriate for horizontal layout styles and classNames 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-[1rem] [&+&]:mt-4 grid w-full gap-x gap-y grid-rows grid-cols-[calc(4.25rem*var(--form-label [grid-template xs:[--form-label-width:var(--form-label-width- sm:[--form-label-width:var(--form-label-width- md:[--form-label-width:var(--form-label-width- lg:[--form-label-width:var(--form-label-width- xl:[--form-label-width:var(--form-label-width-"
@@ -35,7 +35,7 @@ exports[`FormField when layout is horizontal when labelWidth is 4 renders FormFi
 exports[`FormField when layout is vertical renders FormField with appropriate for vertical layout styles and classNames 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-[1rem] [&+&]:mt-4"

@@ -1,38 +1,3 @@
-interface ColorSample {
-  lightest?: string
-  lighter?: string
-  lighter2?: string
-  light?: string
-  light2?: string
-  main?: string
-  main2?: string
-  dark?: string
-  darker?: string
-}
-
-declare module '@material-ui/core/styles/createPalette' {
-  export interface SimplePaletteColorOptions extends ColorSample {}
-
-  interface Palette {
-    blue: SimplePaletteColorOptions
-    green: SimplePaletteColorOptions
-    yellow: SimplePaletteColorOptions
-    red: SimplePaletteColorOptions
-    purple: SimplePaletteColorOptions
-    gradients: {
-      blue: string
-      darkerBlue: string
-      lightGrey: string
-      grey: string
-      darkerGrey: string
-    }
-  }
-}
-
-declare module '@material-ui/core' {
-  export interface Color extends ColorSample {}
-}
-
 export const colors = {
   grey: {
     lightest: '#fcfcfc',

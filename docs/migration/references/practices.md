@@ -16,7 +16,7 @@ Categorized by problem domain. The agent applies the relevant category as each m
 
 The migration target is zero Happo diff vs the @mui/base baseline. But the baseline encodes the OLD design and the OLD primitive's geometry. When Base UI v1 provides a geometrically correct version of what the legacy approximated (Slider thumb centering via `translate: -50% -50%` vs legacy half-element margin offsets, Popup `transform-origin` vs legacy hand-rolled origins, etc.), defending the legacy with override-laden code is a doctrine violation, NOT a parity preservation. The escape valve is the **approved-delta channel**.
 
-- **Default classification for any non-zero pixel diff on a migrated-component story is REGRESSION.** A Happo `dimension_mismatch` (the crop changed size) is *always* REGRESSION — a size change traces to a box-model/line-height property in YOUR diff, never to the environment and never to an approved-delta. Property-diff old-vs-new source before anything else.
+- **Default classification for any non-zero pixel diff on a migrated-component story is REGRESSION.** A Happo `dimension_mismatch` (the crop changed size) is _always_ REGRESSION — a size change traces to a box-model/line-height property in YOUR diff, never to the environment and never to an approved-delta. Property-diff old-vs-new source before anything else.
 - **INTENTIONAL** classifications come in three flavors:
   - **Approved visual delta** (operator pre-authorized): listed in `docs/migration/components/<X>.md` §"Approved visual deltas" before the iter runs. Self-classification is not allowed. (Slider's Figma-driven thumb/rail/mark deltas are the reference example — see `components/Slider.md`.)
   - **Intentional improvement** (agent-proposed, operator-approved in PR): when the diff is sub-pixel and traces to Base UI's geometry being more correct than the legacy. Agent posts a MEDIUM PR comment naming the diff, citing `references/base-ui-styling.md §7.1 rung -1`, and explaining the geometric reasoning. Operator approves via 👍 reaction. Then the diff becomes INTENTIONAL.
@@ -35,7 +35,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   - `onChange(event, checked)` from `@mui/base` → `@base-ui/react` emits `onCheckedChange(checked, eventDetails)`. The `eventDetails.event` IS the native DOM event — bridge to Picasso's `React.ChangeEvent<T>` shape via the `toReactChangeEvent` helper from `@toptal/picasso-shared`: `onCheckedChange={(c, { event }) => onChange?.(toReactChangeEvent(event), c)}`. (Switch iter 2, iter 3 + Slider iter 12 review precedents; PR #4965 r3302165743 superseded the prior `syntheticEvent` fabrication pattern.)
   - `onValueChange(value, activeThumbIndex)` from `@base-ui/react/slider` → wrap to re-expose `(event, value, activeThumbIndex)`. Use the generic `toReactEvent<R>(event)` from `@toptal/picasso-shared` for non-change-event cases.
 - **Preserve portal/behavior props.** Audit the new library's compound API first. Example: `disablePortal` on Drawer has no direct prop equivalent in `@base-ui/react/drawer`, but you can emulate it by conditionally omitting `<Drawer.Portal>`. Do NOT silently remove the prop (Drawer iter 2 precedent).
-- **Audit changed interaction DEFAULTS, not just props.** `@base-ui/react` can change a default *behavior* that `@mui/base` had, with no prop rename to flag it. Example: `@base-ui/react/slider` defaults `thumbCollisionBehavior` to `'push'` (range thumbs shove each other and stay merged as one dot); `@mui/base` swapped/crossed them. Set `thumbCollisionBehavior='swap'` to preserve the prior behavior (Slider PR #4976). When migrating an interactive component, exercise the *interaction* (drag through, keyboard past-the-end, etc.), not just the static render — a silent default change won't show in a snapshot.
+- **Audit changed interaction DEFAULTS, not just props.** `@base-ui/react` can change a default _behavior_ that `@mui/base` had, with no prop rename to flag it. Example: `@base-ui/react/slider` defaults `thumbCollisionBehavior` to `'push'` (range thumbs shove each other and stay merged as one dot); `@mui/base` swapped/crossed them. Set `thumbCollisionBehavior='swap'` to preserve the prior behavior (Slider PR #4976). When migrating an interactive component, exercise the _interaction_ (drag through, keyboard past-the-end, etc.), not just the static render — a silent default change won't show in a snapshot.
 - **Gate new base-ui behaviors absent from the legacy component behind an explicit opt-in prop** (default = legacy behavior), with tests and a changeset note — a like-for-like swap must NOT silently add an interaction surface (Drawer swipe-to-dismiss / `Drawer.Viewport`). (Drawer iters 4/6/8 + PR #4994 iter 3 precedents.)
 - **`toReactEvent`/`toReactChangeEvent` adapters must bind forwarded native methods** (`preventDefault`/`stopPropagation`) to the underlying event — an unbound Proxy `this` throws "Illegal invocation" in real browsers, surfacing only when a consumer handler invokes them (Accordion precedent).
 - **Deprecate-don't-delete**: keep removed-in-new-lib props with `@deprecated` JSDoc + Jira ticket ref, route to `_unused` destructure:
@@ -54,9 +54,9 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   // unchanged. Public API parity preserved, no allowlist.
   const Switch = (props: Props) => {
     const {
-      onChange,     // signature differs — adapt to onCheckedChange below
-      checked,      // base-ui uses checked: boolean directly, but we want to clamp
-      ...rest       // ← all other ButtonHTMLAttributes flow through
+      onChange, // signature differs — adapt to onCheckedChange below
+      checked, // base-ui uses checked: boolean directly, but we want to clamp
+      ...rest // ← all other ButtonHTMLAttributes flow through
     } = props
     return (
       <BaseUISwitch.Root
@@ -77,7 +77,13 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   ```ts
   const rootRest = rest as Omit<
     BaseUISwitch.Root.Props,
-    'checked' | 'disabled' | 'id' | 'value' | 'className' | 'style' | 'onCheckedChange'
+    | 'checked'
+    | 'disabled'
+    | 'id'
+    | 'value'
+    | 'className'
+    | 'style'
+    | 'onCheckedChange'
   >
   // …then: <BaseUISwitch.Root {...rootRest} … />
   ```
@@ -85,10 +91,12 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   Full doctrinal treatment + concrete error shape: `code-standards.md §"TS variance: when tsc --strict rejects ...rest"`.
 
 - **Anti-patterns to avoid** (both forbidden):
+
   - **Blanket cast** `as unknown as BaseUISwitch.Root.Props` — silences the type checker without addressing the mismatch.
   - **Exhaustive allowlist** (manually picking 4–6 props to forward) — drops every other prop at runtime; reviewers call this the "typed but no-op" anti-pattern.
 
   If you find yourself destructuring 6+ props, you're sliding into the exhaustive-allowlist anti-pattern — re-read the library's `.d.ts` and confirm those props are actually incompatible.
+
 - **No `any`** in component source (ESLint `@typescript-eslint/no-explicit-any` is **error** in source, off in tests).
 - **Override pathways for `@base-ui/react`** — pick the lowest-cost mechanism that solves the problem; reviewers block PRs that reach for higher-cost ones prematurely. Two related but separate ladders:
   - **Override-preference ladder** (when to reach for which mechanism in general): `references/base-ui-styling.md §7.1`. Rungs: -1 (don't override) → 1 (`data-[…]:`) → 2 (`className` fn) → 3 (`render` prop, optionally filtering style) → 4 (`useRender`) → 5 (inline `style`). `!important` is forbidden.
@@ -120,14 +128,14 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 - **Polymorphic components**: use `nativeButton={false} + render={React.createElement(as)}` (Button precedent). The `nativeButton={false}` pair is **mandatory** when swapping a button-default Base UI part (Button, Menu.Trigger, Tabs.Tab, NumberField.Increment/Decrement, Toolbar.Button) to a non-button element — without it Base UI keeps emitting `<button>`-keyboard handling and accessibility silently breaks. Do NOT add runtime `typeof`/`isValidAs` guards for the `as` prop — TypeScript constrains it; reviewers ask for removal.
 - **Custom polymorphic primitives**: when a kit component needs its OWN `render` prop (so consumers can keep composing — `<MyButton render={<a />}>`), use the `useRender` hook from `@base-ui/react/use-render`. See `references/base-ui-styling.md` §4.5 for the recipe + React 18 vs 19 ref handling.
 - **Overriding `@base-ui/react`'s internal inline styles** (e.g., `translate: -50% -50%` on `Slider.Thumb`, `position: relative` on `Slider.Track`): walk the doctrine §7.1 preference ladder first.
-   - **Rung -1 — don't override**: if the override defends a legacy approximation of what Base UI does geometrically exactly (e.g., legacy `-mt-[7px] -ml-[6px]` was approximating half-of-15px-thumb; Base UI's `translate: -50% -50%` does this exactly), remove the legacy offsets entirely and propose the sub-pixel diff as "intentional improvement". Slider commit `4f5951f` did this for v2 #4975 — both rung-0 inline style overrides became unnecessary.
-   - **Rung 3 — `render` prop with `mergeProps` filtering**: strip the offending Base UI inline style via render-prop filter (`const { translate, ...keepStyle } = props.style || {}`). Cleaner than consumer-added inline `style` because the element ends up with only Base UI's positioning, not a consumer override layered on top.
-   - **Rung 5 — inline `style` on the part**: `<Slider.Thumb style={{ translate: 'none' }}>` works because `mergeProps` rightmost-wins on consumer `style`. Use this when rung -1 doesn't apply and rung 3 filtering is impractical. NOT a first reach.
-   - **Never `!important`** (forbidden per `rules/styling.md`). Lesson from Slider v2 PR #4975: agent reached for `'![translate:none]'` + `'!absolute'` thinking "kit's inline style needs a CSS specificity weapon" — wrong; the kit's design contract is "consumer's `style` wins per merge semantics" AND the cleaner path was rung -1 (remove the legacy that was being defended). PR #4976 demonstrated this by removing both overrides and the legacy margins together.
-   - Imperative `ref` callbacks that mutate `.style` are a forbidden anti-pattern. There is no "Switch iter 2 precedent" sanctioning it; that earlier code was a migration defect.
+  - **Rung -1 — don't override**: if the override defends a legacy approximation of what Base UI does geometrically exactly (e.g., legacy `-mt-[7px] -ml-[6px]` was approximating half-of-15px-thumb; Base UI's `translate: -50% -50%` does this exactly), remove the legacy offsets entirely and propose the sub-pixel diff as "intentional improvement". Slider commit `4f5951f` did this for v2 #4975 — both rung-0 inline style overrides became unnecessary.
+  - **Rung 3 — `render` prop with `mergeProps` filtering**: strip the offending Base UI inline style via render-prop filter (`const { translate, ...keepStyle } = props.style || {}`). Cleaner than consumer-added inline `style` because the element ends up with only Base UI's positioning, not a consumer override layered on top.
+  - **Rung 5 — inline `style` on the part**: `<Slider.Thumb style={{ translate: 'none' }}>` works because `mergeProps` rightmost-wins on consumer `style`. Use this when rung -1 doesn't apply and rung 3 filtering is impractical. NOT a first reach.
+  - **Never `!important`** (forbidden per `rules/styling.md`). Lesson from Slider v2 PR #4975: agent reached for `'![translate:none]'` + `'!absolute'` thinking "kit's inline style needs a CSS specificity weapon" — wrong; the kit's design contract is "consumer's `style` wins per merge semantics" AND the cleaner path was rung -1 (remove the legacy that was being defended). PR #4976 demonstrated this by removing both overrides and the legacy margins together.
+  - Imperative `ref` callbacks that mutate `.style` are a forbidden anti-pattern. There is no "Switch iter 2 precedent" sanctioning it; that earlier code was a migration defect.
 - **Assemble per Base UI's documented part anatomy.** Nest parts the way the kit's docs show — for Slider that's `Indicator` + `Thumb` (+ any custom marks) **inside `Slider.Track`**, which sits inside `Slider.Control`. Don't hoist parts to arbitrary wrapper levels. The native hierarchy keeps positioning correct AND preserves the rung -1 containing-block behavior for free: Base UI's `translate: -50% -50%` on the thumb establishes the containing block that sizes the nested `position: fixed` range `<input>` to the thumb — so no `transform-gpu` / `contain-layout` band-aid is needed (Slider PR #4976; v2 PR #4975 added `transform-gpu` only because it had killed the translate).
 - **Derive UI from the kit's LIVE value via function-of-state — never a React mirror or a static prop derivation.** When marks / value labels / etc. need the current value, read it from the part's `render`-of-state (`<Slider.Track render={(props, { values }) => …}>`) and compute from `values`. Do NOT mirror the value into `useState` (doubled source of truth) and do NOT derive it as `value ?? defaultValue` (freezes the derived UI in uncontrolled mode — marks/labels stop tracking as the user drags). See `references/base-ui-styling.md §10` + §11 checklist. Slider PR #4976. (Component-level hooks that genuinely can't reach part state — e.g. Slider's `useLabelOverlap` — necessarily stay on the controlled `value`; that's a known limit, not a license to mirror.)
-- **Translucent containers with nested parts**: prefer `bg-color/alpha` (alpha-blended fill) over `opacity: X`. `opacity` on a parent creates a stacking context that propagates into descendants — fatal when Base UI nests parts. Example: `Slider.Track` with `opacity-[0.24]` would fade the nested `Slider.Indicator` to 24% blue. `bg-gray-500/24` paints only Track's background pixels at alpha, leaves descendants at 100%. Slider PR #4959 used this; v2 PR #4975 burned 2 iters on opacity-cascade debugging before extracting a sibling rail span instead — fully preventable with this rule. **Caveat — design-of-record wins:** the `bg-color/alpha` technique exists to *preserve a translucent legacy fill*. If the current Figma spec defines a **solid** colour for that element (as Slider's rail now does — `bg-gray-500` with no alpha, per `components/Slider.md`), use the solid token directly; do NOT layer the alpha trick to "restore" the old translucency.
+- **Translucent containers with nested parts**: prefer `bg-color/alpha` (alpha-blended fill) over `opacity: X`. `opacity` on a parent creates a stacking context that propagates into descendants — fatal when Base UI nests parts. Example: `Slider.Track` with `opacity-[0.24]` would fade the nested `Slider.Indicator` to 24% blue. `bg-gray-500/24` paints only Track's background pixels at alpha, leaves descendants at 100%. Slider PR #4959 used this; v2 PR #4975 burned 2 iters on opacity-cascade debugging before extracting a sibling rail span instead — fully preventable with this rule. **Caveat — design-of-record wins:** the `bg-color/alpha` technique exists to _preserve a translucent legacy fill_. If the current Figma spec defines a **solid** colour for that element (as Slider's rail now does — `bg-gray-500` with no alpha, per `components/Slider.md`), use the solid token directly; do NOT layer the alpha trick to "restore" the old translucency.
 - **Input-bearing slots** (`Slider.Thumb`, `Switch.Input`): hide visible native `<input>` via:
   ```
   [&_input]:!top-auto [&_input]:!left-auto
@@ -153,7 +161,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
   />
   ```
   End-state: Tier 3.b consolidates onto v1 per-part styling once consumers migrate.
-- **Responsive spacing utilities**: components accepting breakpoint-aware spacing (e.g., Dropdown's `offset?.top` / `offset?.bottom`) should use `makeResponsiveSpacingProps()` from `@toptal/picasso-provider` to generate responsive Tailwind classes dynamically. See `Dropdown.tsx:106-109,236-242` for the canonical usage. Do NOT hand-roll responsive class strings for spacing values that should match the breakpoint API.
+- **Responsive spacing = the static class table in `@toptal/picasso-utils`.** Components accepting breakpoint-aware spacing (Container spacing props, Dropdown `offset`) resolve it through `getSpacingClasses`/`getSpacingStyles` — a pure resolver over a literal class table (`packages/base/Utils/src/utils/spacing-classes/`; every class is a literal string so the Tailwind extractor sees it; variants are mobile-first). Deprecated raw numbers stay inline rem styles via `getSpacingStyles`. The runtime engine (`makeResponsiveSpacingProps` + `<style>` injection) was **deleted** in PF-2226 — do NOT reintroduce runtime class generation/injection or hand-roll responsive class strings; extend the shared table instead.
 
 ## Tailwind & class composition
 
@@ -167,7 +175,7 @@ The migration target is zero Happo diff vs the @mui/base baseline. But the basel
 ## Tier 1 peer-dep-only fast path
 
 - **Grep `src/` for `@mui/` / `@material-ui/` imports first.** Zero hits ⇒ the migration collapses to a `package.json` change: drop `@material-ui/core` from peers, widen the `react` peer (drop the `< 19.0.0` cap → `>=16.12.0`), prune now-unused runtime deps (`classnames`) from `package.json` + lockfile, and ship a `patch` changeset framed "Source already MUI-clean; public API unchanged". No source edits. (Note/Form/FormLabel/FormLayout/Menu/Utils precedents.)
-- **Residual type-only MUI imports survive the runtime swap** — replace each (`PropTypes.Alignment`, `SnackbarOrigin`, `PopperPlacementType`) with a local literal union enumerating the *same* members, byte-identical (never narrow during a library swap — see `AGENTS.md §"Preserve existing violations"`). Mirror the file's existing local-alias naming/placement. (Container/Notification/Dropdown/FormLabel precedents.)
+- **Residual type-only MUI imports survive the runtime swap** — replace each (`PropTypes.Alignment`, `SnackbarOrigin`, `PopperPlacementType`) with a local literal union enumerating the _same_ members, byte-identical (never narrow during a library swap — see `AGENTS.md §"Preserve existing violations"`). Mirror the file's existing local-alias naming/placement. (Container/Notification/Dropdown/FormLabel precedents.)
 
 ## tsconfig & build hygiene
 
@@ -209,12 +217,10 @@ Set `screenshotBreakpoints: true` on the example registration in `<Component>/st
 
 ```ts
 const page = PicassoBook.section('Component').createPage('FooComponent')
-page
-  .createChapter()
-  .addExample('Foo/story/Default.example.tsx', {
-    title: 'Default',
-    screenshotBreakpoints: true,
-  })
+page.createChapter().addExample('Foo/story/Default.example.tsx', {
+  title: 'Default',
+  screenshotBreakpoints: true,
+})
 ```
 
 ### Pattern 2: Cypress component test (interaction needed before screenshot)
@@ -260,11 +266,12 @@ Three result categories:
 
 A migration that introduces a Violations entry (or moves a story from Passes → Incompletions without justification) is a regression. Same logic as visual parity: don't self-classify as INTENTIONAL.
 
-## css-naming.md is LEGACY — do not follow
+## css-naming.md is REMOVED — do not resurrect
 
-`docs/contribution/css-naming.md` describes MUI v4 + JSS conventions (`root` + `rootFull`/`rootShrink` for variants, `cx({ [classes.active]: active })`, etc.). **These are PRE-migration patterns.**
+`docs/contribution/css-naming.md` (deleted in the post-canary hygiene sweep, 2026-07-13, along with `jss-onboarding.md`) described MUI v4 + JSS conventions (`root` + `rootFull`/`rootShrink` for variants, `cx({ [classes.active]: active })`, etc.). **These are PRE-migration patterns** — if an older prompt, memory, or doc still points at that file, fix the pointer instead of restoring the file.
 
 For migrated components:
+
 - Use Tailwind class composition via `cx`/`twMerge` (see `code-standards.md §"Tailwind class composition"`).
 - For variant-driven classes, return a `string[]` from a pure function in `styles.ts` (Button precedent) and merge with `twMerge`.
 - Do NOT introduce new JSS `classes` maps. Existing JSS-using components (Tier 2 Radio, Tier 3 Page, sibling-package picasso-charts/RTE) are migration targets, not pattern sources.

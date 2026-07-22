@@ -1,12 +1,16 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { PicassoProvider } from '@toptal/picasso-provider'
+import { useAppConfig } from '@toptal/picasso-provider'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageHamburgerContextProvider } from '../PageHamburger'
 import type { PageContextProps, ViewportWidthType } from './types'
-import { createRootClassNames, createRootVariableClassNames } from './styles'
+import {
+  createRootClassNames,
+  createRootMinWidthClassNames,
+  createRootVariableClassNames,
+} from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
@@ -36,10 +40,7 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
     ...rest
   } = props
 
-  // Set only at runtime via PicassoProvider.disableResponsiveStyle()
-  // (<Picasso responsive={false} />) or extendTheme — not expressible as a
-  // static Tailwind class
-  const { contentMinWidth } = PicassoProvider.theme.layout
+  const { responsive } = useAppConfig()
 
   return (
     <div
@@ -48,12 +49,10 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={twMerge(
         ...createRootClassNames(),
         ...createRootVariableClassNames(),
+        ...createRootMinWidthClassNames(responsive),
         className
       )}
-      style={{
-        ...(contentMinWidth && { minWidth: contentMinWidth }),
-        ...style,
-      }}
+      style={style}
     >
       <PageContext.Provider value={{ width, fullWidth }}>
         <PageHamburgerContextProvider hamburgerId={hamburgerId}>

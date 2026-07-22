@@ -3,7 +3,7 @@
 exports[`TableCell sort direction is asc renders with a sort button in the right direction 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <table>
       <tbody>
@@ -53,7 +53,7 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
 exports[`TableCell sort direction is desc renders with a sort button in the right direction 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <table>
       <tbody>

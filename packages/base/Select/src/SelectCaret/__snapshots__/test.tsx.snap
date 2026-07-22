@@ -3,7 +3,7 @@
 exports[`SelectCaret renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <svg
       class="fill-current inline-block h-[1em] align-[-.125em] absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
@@ -21,7 +21,7 @@ exports[`SelectCaret renders 1`] = `
 exports[`SelectCaret renders disabled 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <svg
       class="fill-current inline-block h-[1em] align-[-.125em] absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-[1rem] cursor-inherit pointer-events text-graphite z-[1]"

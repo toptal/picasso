@@ -15,7 +15,7 @@ export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   >
   environment: EnvironmentType<'test' | 'temploy'>
   disableTransitions?: boolean
-  preventPageWidthChangeOnScrollbar?: boolean
+  responsive?: boolean
 }
 
 const breakpointKeyByRange: Record<BreakpointKeys, BreakpointKeys> = {
@@ -35,7 +35,7 @@ const PicassoGlobalStylesProvider = (
     environment,
     titleCase,
     disableTransitions,
-    preventPageWidthChangeOnScrollbar,
+    responsive,
   } = props
 
   const rootRef = useRef<HTMLDivElement | null>(null)
@@ -80,7 +80,7 @@ const PicassoGlobalStylesProvider = (
       }))
     },
     disableTransitions,
-    preventPageWidthChangeOnScrollbar,
+    responsive,
   })
 
   useEffect(() => {

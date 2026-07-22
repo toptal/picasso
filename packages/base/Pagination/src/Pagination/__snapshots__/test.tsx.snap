@@ -3,7 +3,7 @@
 exports[`Pagination renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="items-center inline-flex"
@@ -167,7 +167,7 @@ exports[`Pagination renders 1`] = `
 exports[`Pagination renders compact without totalPages 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="items-center inline-flex"
@@ -208,7 +208,7 @@ exports[`Pagination renders compact without totalPages 1`] = `
 exports[`Pagination renders disabled 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="items-center inline-flex"
@@ -390,7 +390,7 @@ exports[`Pagination renders disabled 1`] = `
 exports[`Pagination renders nothing for 0 pages 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   />
 </div>
 `;
@@ -398,7 +398,7 @@ exports[`Pagination renders nothing for 0 pages 1`] = `
 exports[`Pagination renders nothing for 1 page 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   />
 </div>
 `;
@@ -406,7 +406,7 @@ exports[`Pagination renders nothing for 1 page 1`] = `
 exports[`Pagination renders with next disabled 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="items-center inline-flex"

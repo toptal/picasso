@@ -3,7 +3,7 @@
 exports[`TableCell renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <table
       class="w-full border-collapse border-spacing"
@@ -31,7 +31,7 @@ exports[`TableCell renders 1`] = `
 exports[`TableCell renders compact 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <table
       class="w-full border-collapse border-spacing"
@@ -59,7 +59,7 @@ exports[`TableCell renders compact 1`] = `
 exports[`TableCell renders narrow 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <table
       class="w-full border-collapse border-spacing"

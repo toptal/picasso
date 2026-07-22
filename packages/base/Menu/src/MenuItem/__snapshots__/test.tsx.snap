@@ -3,7 +3,7 @@
 exports[`MenuItem renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <li
       aria-disabled="false"
@@ -36,7 +36,7 @@ exports[`MenuItem renders 1`] = `
 exports[`MenuItem renders checkmarked 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <li
       aria-disabled="false"
@@ -82,10 +82,10 @@ exports[`MenuItem renders checkmarked 1`] = `
 exports[`MenuItem renders in title case with global prop 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <li
         aria-disabled="false"
@@ -119,7 +119,7 @@ exports[`MenuItem renders in title case with global prop 1`] = `
 exports[`MenuItem renders in title case with local prop 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <li
       aria-disabled="false"
@@ -152,7 +152,7 @@ exports[`MenuItem renders in title case with local prop 1`] = `
 exports[`MenuItem renders with a sub menu arrow 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <li
       aria-disabled="false"
@@ -198,7 +198,7 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
 exports[`MenuItem renders with description 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <li
       aria-disabled="false"

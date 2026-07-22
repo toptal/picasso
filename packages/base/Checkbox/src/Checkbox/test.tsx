@@ -140,4 +140,87 @@ describe('Checkbox', () => {
       expect(container).toMatchSnapshot()
     })
   })
+
+  describe('single label-associated node', () => {
+    it('matches getByLabelText once and resolves to the accessible control', () => {
+      const { getByLabelText, getByRole } = renderCheckbox({
+        label: 'No Rate Limit',
+      })
+
+      // Regression: both the role="checkbox" span and the hidden native <input>
+      // used to be label-associated, so getByLabelText threw "Found multiple
+      // elements". It must now match only the accessible control.
+      expect(getByLabelText('No Rate Limit')).toBe(
+        getByRole('checkbox', { name: 'No Rate Limit' })
+      )
+    })
+
+    it('toggles once when the label text is clicked', () => {
+      const onChange = jest.fn()
+      const { getByText } = renderCheckbox({
+        label: 'No Rate Limit',
+        onChange,
+      })
+
+      fireEvent.click(getByText('No Rate Limit'))
+
+      expect(onChange).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not toggle when disabled and the label is clicked', () => {
+      const onChange = jest.fn()
+      const { getByText } = renderCheckbox({
+        label: 'No Rate Limit',
+        disabled: true,
+        onChange,
+      })
+
+      fireEvent.click(getByText('No Rate Limit'))
+
+      expect(onChange).not.toHaveBeenCalled()
+    })
+
+    it('moves focus to the control when the label text is clicked', () => {
+      const { getByText, getByRole } = renderCheckbox({
+        label: 'No Rate Limit',
+      })
+
+      fireEvent.click(getByText('No Rate Limit'))
+
+      expect(getByRole('checkbox')).toHaveFocus()
+    })
+
+    it('does not toggle when an interactive element inside the label is clicked', () => {
+      const onChange = jest.fn()
+      const { getByRole } = render(
+        <Checkbox
+          onChange={onChange}
+          label={
+            <>
+              I agree to the <a href='/terms'>Terms</a>
+            </>
+          }
+        />
+      )
+
+      fireEvent.click(getByRole('link', { name: 'Terms' }))
+
+      expect(onChange).not.toHaveBeenCalled()
+    })
+
+    describe('when nested inside a role="menuitem"', () => {
+      it('toggles on label-text click', () => {
+        const onChange = jest.fn()
+        const { getByText } = render(
+          <div role='menuitem'>
+            <Checkbox onChange={onChange} label='Select item' />
+          </div>
+        )
+
+        fireEvent.click(getByText('Select item'))
+
+        expect(onChange).toHaveBeenCalledTimes(1)
+      })
+    })
+  })
 })
