@@ -3,7 +3,7 @@
 exports[`AccordionSummary renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative flex items-center select-none cursor-pointer focus-visible:bg-black/12 outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"

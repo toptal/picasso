@@ -3,13 +3,13 @@
 exports[`PageTopBar renders hamburger on small screen 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] md:w-screen bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
@@ -75,13 +75,13 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
 exports[`PageTopBar renders normally on default screen size 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] md:w-screen bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
@@ -147,13 +147,13 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
 exports[`PageTopBar renders with custom logo 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] md:w-screen bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
@@ -198,13 +198,13 @@ exports[`PageTopBar renders with custom logo 1`] = `
 exports[`PageTopBar renders with link 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] md:w-screen bg-blue"
       >
         <div
           class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"

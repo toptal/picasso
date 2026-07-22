@@ -1,4 +1,5 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
+import { useBaseUiId } from '@base-ui/react/internals/useBaseUiId'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { toReactChangeEvent } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
@@ -49,14 +50,26 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
 
   const rootRest = rest as Omit<
     BaseUISwitch.Root.Props,
-    'checked' | 'disabled' | 'id' | 'value' | 'className' | 'style' | 'onCheckedChange'
+    | 'checked'
+    | 'disabled'
+    | 'id'
+    | 'value'
+    | 'className'
+    | 'style'
+    | 'onCheckedChange'
   >
+
+  // Name the control via `aria-labelledby` so it is the single label-associated
+  // node (see FormControlLabel `labelId`), only when there is a label.
+  const generatedLabelId = useBaseUiId()
+  const labelId = label ? generatedLabelId : undefined
 
   const switchElement = (
     <span className='relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip-margin:6px]'>
       <BaseUISwitch.Root
         {...rootRest}
         ref={ref}
+        aria-labelledby={rootRest['aria-labelledby'] ?? labelId}
         checked={checked}
         className={twMerge(
           'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
@@ -103,6 +116,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
         label: 'ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em-0.5em+1px)]',
       }}
       control={switchElement}
+      labelId={labelId}
       disabled={disabled}
       label={label}
       titleCase={titleCase}

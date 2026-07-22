@@ -8,7 +8,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
   />
   <div>
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <button
         aria-disabled="false"
@@ -120,7 +120,7 @@ exports[`Modal useModal opens and closes modal 2`] = `
   />
   <div>
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <button
         aria-disabled="false"
@@ -149,7 +149,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
   />
   <div>
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <button
         aria-disabled="false"

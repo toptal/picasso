@@ -3,7 +3,7 @@
 exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "button" when "href" prop is passed renders Button as a link 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       aria-disabled="false"
@@ -27,7 +27,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "butt
 exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "button" when "to" prop is passed renders Button as a link 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       aria-disabled="false"
@@ -51,7 +51,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "butt
 exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" component renders Button as a 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       aria-disabled="false"
@@ -75,7 +75,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
 exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" component when "disabled" prop is true renders Button as a and does not trigger onClick handler 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       aria-disabled="true"
@@ -100,7 +100,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
 exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" component when "href" prop is empty renders Button as a 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       aria-disabled="false"
@@ -124,7 +124,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
 exports[`ButtonBase when "as" prop is passed when "as" prop equals "a" renders Button as a 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <a
       aria-disabled="false"
@@ -148,7 +148,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "a" renders B
 exports[`ButtonBase when "disabled" prop is false renders Button and does not trigger onClick handler 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"
@@ -171,7 +171,7 @@ exports[`ButtonBase when "disabled" prop is false renders Button and does not tr
 exports[`ButtonBase when "disabled" prop is true renders Button and does not trigger onClick handler 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="true"
@@ -196,7 +196,7 @@ exports[`ButtonBase when "disabled" prop is true renders Button and does not tri
 exports[`ButtonBase when "loading" prop is true renders Button with loading state and does not trigger onClick handler 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"
@@ -246,7 +246,7 @@ exports[`ButtonBase when "loading" prop is true renders Button with loading stat
 exports[`ButtonBase when "role" prop is passed renders Button with a custom role 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"
@@ -269,7 +269,7 @@ exports[`ButtonBase when "role" prop is passed renders Button with a custom role
 exports[`ButtonBase when "titleCase" prop is true renders Button with transformed text to title case 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"

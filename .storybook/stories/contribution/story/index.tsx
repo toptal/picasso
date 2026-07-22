@@ -3,13 +3,11 @@
 import { createMarkdownPage } from '../../../components/Markdown'
 import PicassoBook from '../../../components/PicassoBook'
 // @ts-ignore
-import CSS_NAMING from '../../../../docs/contribution/css-naming.md'
+import STYLING from '../../../../docs/contribution/styling.md'
 // @ts-ignore
 import NEW_COMPONENT from '../../../../docs/contribution/new-component-creation.md'
 // @ts-ignore
 import GITHUB_WORKFLOW from '../../../../docs/contribution/github-workflow.md'
-// @ts-ignore
-import JSS_ONBOARDING from '../../../../docs/contribution/jss-onboarding.md'
 // @ts-ignore
 import CREATING_EXAMPLES from '../../../../docs/contribution/creating-examples.md'
 // @ts-ignore
@@ -24,9 +22,9 @@ import BASE_UI_API from '../../../../docs/contribution/base-ui-api.md'
 import TAILWIND_TOKENS from '../../../../docs/contribution/tailwind-tokens.md'
 
 const section = PicassoBook.section('Contribution')
+
 section.createDocPage('GitHub workflow', createMarkdownPage(GITHUB_WORKFLOW))
-section.createDocPage('CSS naming', createMarkdownPage(CSS_NAMING))
-section.createDocPage('JSS onboarding', createMarkdownPage(JSS_ONBOARDING))
+section.createDocPage('Styling', createMarkdownPage(STYLING))
 section.createDocPage('New components', createMarkdownPage(NEW_COMPONENT))
 section.createDocPage(
   'Creating examples',

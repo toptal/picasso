@@ -3,7 +3,7 @@
 exports[`Typography inherit size render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <p
       class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
@@ -17,7 +17,7 @@ exports[`Typography inherit size render 1`] = `
 exports[`Typography renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <p
       class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
@@ -31,7 +31,7 @@ exports[`Typography renders 1`] = `
 exports[`Typography variant heading small render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <h4
       class="m-0 text-md text-black font-semibold"

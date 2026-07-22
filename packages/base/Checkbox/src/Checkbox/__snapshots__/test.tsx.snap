@@ -3,7 +3,7 @@
 exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="flex flex-wrap -mr -mb flex-row"
@@ -14,19 +14,18 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
         >
-          <label
+          <div
             class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-            id="base-ui-:r10:"
           >
             <span
               class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
             >
               <span
                 aria-checked="false"
-                aria-labelledby="base-ui-:r10:"
+                aria-labelledby="base-ui-:r18:"
                 class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
                 data-unchecked=""
-                id="base-ui-:ru:"
+                id="base-ui-:r19:"
                 role="checkbox"
                 tabindex="0"
               />
@@ -40,6 +39,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
             </span>
             <span
               class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+              id="base-ui-:r18:"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -47,24 +47,23 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
                 Checkbox 1
               </span>
             </span>
-          </label>
+          </div>
         </div>
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
         >
-          <label
+          <div
             class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-            id="base-ui-:r13:"
           >
             <span
               class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
             >
               <span
                 aria-checked="false"
-                aria-labelledby="base-ui-:r13:"
+                aria-labelledby="base-ui-:r1c:"
                 class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
                 data-unchecked=""
-                id="base-ui-:r11:"
+                id="base-ui-:r1d:"
                 role="checkbox"
                 tabindex="0"
               />
@@ -78,6 +77,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
             </span>
             <span
               class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+              id="base-ui-:r1c:"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -85,24 +85,23 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
                 Checkbox 2
               </span>
             </span>
-          </label>
+          </div>
         </div>
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
         >
-          <label
+          <div
             class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-            id="base-ui-:r16:"
           >
             <span
               class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
             >
               <span
                 aria-checked="false"
-                aria-labelledby="base-ui-:r16:"
+                aria-labelledby="base-ui-:r1g:"
                 class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
                 data-unchecked=""
-                id="base-ui-:r14:"
+                id="base-ui-:r1h:"
                 role="checkbox"
                 tabindex="0"
               />
@@ -116,6 +115,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
             </span>
             <span
               class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+              id="base-ui-:r1g:"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -123,24 +123,23 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
                 Checkbox 3
               </span>
             </span>
-          </label>
+          </div>
         </div>
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
         >
-          <label
+          <div
             class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-            id="base-ui-:r19:"
           >
             <span
               class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
             >
               <span
                 aria-checked="false"
-                aria-labelledby="base-ui-:r19:"
+                aria-labelledby="base-ui-:r1k:"
                 class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
                 data-unchecked=""
-                id="base-ui-:r17:"
+                id="base-ui-:r1l:"
                 role="checkbox"
                 tabindex="0"
               />
@@ -154,6 +153,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
             </span>
             <span
               class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+              id="base-ui-:r1k:"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -161,24 +161,23 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
                 Checkbox 4
               </span>
             </span>
-          </label>
+          </div>
         </div>
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
         >
-          <label
+          <div
             class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-            id="base-ui-:r1c:"
           >
             <span
               class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
             >
               <span
                 aria-checked="false"
-                aria-labelledby="base-ui-:r1c:"
+                aria-labelledby="base-ui-:r1o:"
                 class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
                 data-unchecked=""
-                id="base-ui-:r1a:"
+                id="base-ui-:r1p:"
                 role="checkbox"
                 tabindex="0"
               />
@@ -192,6 +191,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
             </span>
             <span
               class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+              id="base-ui-:r1o:"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -199,24 +199,23 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
                 Checkbox 5
               </span>
             </span>
-          </label>
+          </div>
         </div>
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
         >
-          <label
+          <div
             class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-            id="base-ui-:r1f:"
           >
             <span
               class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
             >
               <span
                 aria-checked="false"
-                aria-labelledby="base-ui-:r1f:"
+                aria-labelledby="base-ui-:r1s:"
                 class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
                 data-unchecked=""
-                id="base-ui-:r1d:"
+                id="base-ui-:r1t:"
                 role="checkbox"
                 tabindex="0"
               />
@@ -230,6 +229,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
             </span>
             <span
               class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+              id="base-ui-:r1s:"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -237,7 +237,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
                 Checkbox 6
               </span>
             </span>
-          </label>
+          </div>
         </div>
       </div>
     </div>
@@ -248,21 +248,20 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
 exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <label
+    <div
       class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-      id="base-ui-:rq:"
     >
       <span
         class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
       >
         <span
           aria-checked="true"
-          aria-labelledby="base-ui-:rq:"
+          aria-labelledby="base-ui-:r10:"
           class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
           data-checked=""
-          id="base-ui-:ro:"
+          id="base-ui-:r11:"
           role="checkbox"
           tabindex="0"
         />
@@ -275,6 +274,7 @@ exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
       </span>
       <span
         class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+        id="base-ui-:r10:"
       >
         <span
           class="align-top text-[0.8125rem]"
@@ -282,7 +282,7 @@ exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
           Select item
         </span>
       </span>
-    </label>
+    </div>
   </div>
 </div>
 `;
@@ -290,7 +290,7 @@ exports[`Checkbox checkbox interaction should render checked checkbox 1`] = `
 exports[`Checkbox renders default checkbox without label 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
@@ -299,7 +299,7 @@ exports[`Checkbox renders default checkbox without label 1`] = `
         aria-checked="false"
         class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
         data-unchecked=""
-        id="base-ui-:r0:"
+        id="base-ui-:r1:"
         role="checkbox"
         tabindex="0"
       />
@@ -317,7 +317,7 @@ exports[`Checkbox renders default checkbox without label 1`] = `
 exports[`Checkbox renders disabled state 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
@@ -328,7 +328,7 @@ exports[`Checkbox renders disabled state 1`] = `
         class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
         data-disabled=""
         data-unchecked=""
-        id="base-ui-:r6:"
+        id="base-ui-:r9:"
         role="checkbox"
         tabindex="-1"
       />
@@ -347,7 +347,7 @@ exports[`Checkbox renders disabled state 1`] = `
 exports[`Checkbox renders indeterminate state 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
@@ -356,7 +356,7 @@ exports[`Checkbox renders indeterminate state 1`] = `
         aria-checked="mixed"
         class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
         data-indeterminate=""
-        id="base-ui-:r9:"
+        id="base-ui-:rd:"
         role="checkbox"
         tabindex="0"
       />
@@ -374,7 +374,7 @@ exports[`Checkbox renders indeterminate state 1`] = `
 exports[`Checkbox renders with (optional) 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
@@ -383,7 +383,7 @@ exports[`Checkbox renders with (optional) 1`] = `
         aria-checked="false"
         class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
         data-unchecked=""
-        id="base-ui-:rf:"
+        id="base-ui-:rl:"
         role="checkbox"
         tabindex="0"
       />
@@ -401,7 +401,7 @@ exports[`Checkbox renders with (optional) 1`] = `
 exports[`Checkbox renders with asterisk 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
@@ -410,7 +410,7 @@ exports[`Checkbox renders with asterisk 1`] = `
         aria-checked="false"
         class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
         data-unchecked=""
-        id="base-ui-:rc:"
+        id="base-ui-:rh:"
         role="checkbox"
         tabindex="0"
       />
@@ -428,21 +428,20 @@ exports[`Checkbox renders with asterisk 1`] = `
 exports[`Checkbox should render default checkbox with label 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <label
+    <div
       class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] picasso-checkbox"
-      id="base-ui-:r5:"
     >
       <span
         class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
       >
         <span
           aria-checked="false"
-          aria-labelledby="base-ui-:r5:"
+          aria-labelledby="base-ui-:r4:"
           class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
           data-unchecked=""
-          id="base-ui-:r3:"
+          id="base-ui-:r5:"
           role="checkbox"
           tabindex="0"
         />
@@ -455,6 +454,7 @@ exports[`Checkbox should render default checkbox with label 1`] = `
       </span>
       <span
         class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
+        id="base-ui-:r4:"
       >
         <span
           class="align-top text-[0.8125rem]"
@@ -462,7 +462,7 @@ exports[`Checkbox should render default checkbox with label 1`] = `
           Select item
         </span>
       </span>
-    </label>
+    </div>
   </div>
 </div>
 `;

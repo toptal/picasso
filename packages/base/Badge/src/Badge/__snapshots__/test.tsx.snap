@@ -3,7 +3,7 @@
 exports[`Badge renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="inline-flex shrink-0 content-middle flex-nowrap justify-normal text-[10px] font-semibold leading-3 align-middle text-graphite static"
@@ -21,7 +21,7 @@ exports[`Badge renders 1`] = `
 exports[`Badge renders in red variant 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <span
       class="inline-flex shrink-0 content-middle flex-nowrap justify-normal text-[10px] font-semibold leading-3 align-middle text-graphite static"

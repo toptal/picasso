@@ -3,7 +3,7 @@
 exports[`Notification renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] transition-shadow duration-300 bg-yellow px-[1em] py-[1.5em] sm:p-[1.5em] lg:px-[130px] lg:py-[1.5em]"

@@ -3,7 +3,7 @@
 exports[`Tooltip when closed does not render the content 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       data-base-ui-tooltip-trigger=""
@@ -20,7 +20,7 @@ exports[`Tooltip when closed does not render the content 1`] = `
 exports[`Tooltip when portals are disabled renders the content within the parent 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-describedby="tooltip-id"

@@ -3,7 +3,7 @@
 exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <li
       aria-disabled="true"
@@ -36,7 +36,7 @@ exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
 exports[`NonNativeSelectLimitFooter renders null when no overflow 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   />
 </div>
 `;

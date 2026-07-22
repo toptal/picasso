@@ -3,12 +3,16 @@ import type { SpacingType } from '@toptal/picasso-provider'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
-import { documentable, forwardRef } from '@toptal/picasso-utils'
+import {
+  documentable,
+  forwardRef,
+  getSpacingClasses,
+  getSpacingStyles,
+} from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import { alignmentClasses, variantClassesByColor } from './styles'
-import { getSpacingClasses, getSpacingStyles } from './utils'
 
 type ContainerType = 'div' | 'span'
 

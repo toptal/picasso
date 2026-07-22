@@ -3,7 +3,7 @@
 exports[`Tag dismissable label should render dismissable label 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -43,7 +43,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
 exports[`Tag renders \`blue\` variant 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-blue border-blue"
@@ -66,7 +66,7 @@ exports[`Tag renders \`blue\` variant 1`] = `
 exports[`Tag renders \`light-grey\` variant 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -89,7 +89,7 @@ exports[`Tag renders \`light-grey\` variant 1`] = `
 exports[`Tag renders with adornment 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -126,7 +126,7 @@ exports[`Tag renders with adornment 1`] = `
 exports[`Tag renders with connection and icon 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"

@@ -10,7 +10,6 @@ import React, {
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
-import { makeStyles, Theme } from '@material-ui/core/styles'
 import SourceRender, { RenderResult } from 'react-source-render'
 import copy from 'copy-to-clipboard'
 
@@ -21,15 +20,11 @@ import { Code16, Link16 } from '@toptal/picasso-icons'
 
 import Editor from '../Editor'
 import purifyFixedPosition from '../../utils/purify-fixed-position'
-import styles from './styles'
+import * as classes from './styles'
 
 const COPY_LINK_DEFAULT_TEXT = 'Link'
 const COPY_LINK_COPIED_TEXT = 'Copied!'
 const PRESETS = [['typescript', { allExtensions: true, isTSX: true }], 'es2015']
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCodeExample',
-})
 
 interface Props extends BaseProps {
   permanentLink: string
@@ -175,11 +170,7 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
   }
 
   return (
-    <Picasso
-      fixViewport={false}
-      loadFavicon={false}
-      preventPageWidthChangeOnScrollbar={false}
-    >
+    <Picasso fixViewport={false} loadFavicon={false}>
       <Purifier>{children}</Purifier>
     </Picasso>
   )
@@ -240,7 +231,6 @@ const CodeExample = ({
   permanentLink,
   src,
 }: Props) => {
-  const classes = useStyles()
   const [sourceCode, setSourceCode] = useState(
     getOriginalSourceCode({
       src,
@@ -272,12 +262,7 @@ const CodeExample = ({
    */
   if (TEST_ENV === 'visual') {
     const renderInTestPicasso = (element: ReactNode) => (
-      <Picasso
-        loadFonts={false}
-        fixViewport={false}
-        loadFavicon={false}
-        preventPageWidthChangeOnScrollbar={false}
-      >
+      <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
         <Purifier>{element}</Purifier>
       </Picasso>
     )
