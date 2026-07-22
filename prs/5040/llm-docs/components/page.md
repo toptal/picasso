@@ -1,6 +1,12 @@
 # Page
 
-A Page component
+A Page component.
+
+  Content width, padding and header height are set as CSS variables on the Page
+  root, so you can override them per page through `className` (it wins by the
+  cascade) — e.g. `<Page className="[--content-width:80em]" />` widens the content
+  column. Variables: `--content-width` (default width), `--content-width-wide`
+  (used by `width="wide"`), `--content-padding-horizontal`, `--header-height`.
 
 ## Props
 

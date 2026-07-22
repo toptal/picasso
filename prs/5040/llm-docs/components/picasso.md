@@ -50,7 +50,6 @@ utility components/providers:
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
 | RootComponent | `ForwardRefExoticComponent<PicassoRootNodeProps & RefAttributes<HTMLDivElement>>` | `PicassoRootNode` | Component that is used to render root node |
-| disableHelmet | `boolean` | - | Disables usage of `<HelmetProvider>` component from `react-helmet-async` package |
 | disableTransitions | `boolean` | - | Disables transitions for components like Loader, to make testing easier |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 

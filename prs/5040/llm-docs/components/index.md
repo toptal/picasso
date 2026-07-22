@@ -91,7 +91,7 @@ LLM-optimized documentation generated from Picasso Storybook stories.
 
 - [Container](./container.md): Use Container to add space between 2 elements.
 - [Grid](./grid.md): The layout element which is providing grid container functionality.
-- [Page](./page.md): A Page component
+- [Page](./page.md): A Page component.
 - [Paper](./paper.md): Elevated container with shadow
 - [Tabs](./tabs.md): Tabs allow to switch between content sections
 
