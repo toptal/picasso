@@ -91,15 +91,13 @@ const FormControlLabel = forwardRef<HTMLLabelElement | HTMLDivElement, Props>(
       </>
     )
 
-    // Opt-in path: control names itself via `aria-labelledby`, so we avoid a
-    // native `<label>` (which would make the control's hidden native input a
-    // second label-associated node) and re-create label click-to-toggle by
-    // forwarding clicks to that hidden input.
     if (labelId !== undefined) {
       const handleClick: React.MouseEventHandler<HTMLDivElement> = event => {
-        onClick?.(
-          event as unknown as React.MouseEvent<HTMLLabelElement, MouseEvent>
-        )
+        const forwardOnClick = onClick as
+          | React.MouseEventHandler<HTMLElement>
+          | undefined
+
+        forwardOnClick?.(event)
 
         if (disabled || event.defaultPrevented) {
           return
@@ -108,10 +106,6 @@ const FormControlLabel = forwardRef<HTMLLabelElement | HTMLDivElement, Props>(
         const target = event.target as HTMLElement
         const wrapper = event.currentTarget
 
-        // Mirror a native `<label>`: don't forward when the click lands on
-        // interactive content, but only *inside* the label subtree. `closest()`
-        // also matches interactive ancestors (e.g. a wrapping `role="menuitem"`
-        // in a dropdown filter), which must not suppress forwarding.
         const interactive = target.closest(
           'a[href],button,input,select,textarea,[role="checkbox"],[role="switch"],[role="radio"],[role="button"],[role="link"],[role="menuitem"],[role="tab"],[role="option"]'
         )
@@ -124,8 +118,6 @@ const FormControlLabel = forwardRef<HTMLLabelElement | HTMLDivElement, Props>(
           .querySelector<HTMLInputElement>('input[aria-hidden="true"]')
           ?.click()
 
-        // A native `<label>` moves focus to its control on activation; restore
-        // that so keyboard interaction keeps working after a label-text click.
         wrapper
           .querySelector<HTMLElement>(
             '[role="checkbox"],[role="switch"],[role="radio"]'
@@ -134,11 +126,8 @@ const FormControlLabel = forwardRef<HTMLLabelElement | HTMLDivElement, Props>(
       }
 
       return (
-        // Element-variance boundary: `rest` carries label-typed HTML
-        // attributes, but this wrapper renders a <div>. The attributes are
-        // runtime-compatible, so we resolve the variance once here.
         <div
-          {...(rest as unknown as React.HTMLAttributes<HTMLDivElement>)}
+          {...(rest as React.HTMLAttributes<HTMLDivElement>)}
           ref={ref as React.ForwardedRef<HTMLDivElement>}
           className={rootClassName}
           style={style}

@@ -7,7 +7,11 @@ import PicassoGlobalStylesProvider from '../PicassoGlobalStylesProvider'
 
 type PicassoLightProps = Omit<
   PicassoProps,
-  'loadFavicon' | 'loadFonts' | 'fixViewport' | 'notificationContainer'
+  | 'loadFavicon'
+  | 'loadFonts'
+  | 'fixViewport'
+  | 'notificationContainer'
+  | 'disableHelmet'
 >
 
 const PicassoLight = ({
