@@ -12,9 +12,8 @@ const EDITOR_ID = 'foo'
 
 export const editorSelector = `#${EDITOR_ID}`
 
-// Base editor props shared by every RTE spec; specs merge in their own
-// testIds. Typed as Record so plugin-specific testIds (not part of
-// RichTextEditorProps['testIds']) pass through.
+// Base props shared by every RTE spec. Typed as Record so plugin-specific
+// testIds (not in RichTextEditorProps['testIds']) pass through.
 export const makeEditorProps = (testIds: Record<string, string> = {}) => ({
   id: EDITOR_ID,
   onChange: () => {},

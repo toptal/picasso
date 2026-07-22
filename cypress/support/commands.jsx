@@ -32,20 +32,9 @@ Cypress.Commands.add('getByRole', (role, options) => {
   return cy.get(`[role=${role}]`, options)
 })
 
-// happo-cypress serializes the live DOM and re-renders it statically (no JS,
-// no CSS transitions replay) at the moment happoScreenshot runs. Hover styling
-// that animates (e.g. Radio/Checkbox/Button ease their border-color over
-// ~350ms) is therefore captured at whatever intermediate frame happens to be
-// current when serialization fires — a non-deterministic color that diffs
-// against the baseline. Wait for the transition-driven computed styles to stop
-// changing before snapshotting, so the capture reflects the settled hover
-// state rather than a mid-transition frame.
-//
-// Implemented via `.should()`, whose callback Cypress retries on its own
-// animation-frame loop (bounded by defaultCommandTimeout) until it passes —
-// so there are no hardcoded durations or poll intervals. The assertion only
-// passes once two consecutive reads are identical, i.e. the transition (and
-// any on its `::before`, captured here too) has come to rest.
+// Wait for hover/focus style transitions to settle before capturing — the
+// static happo snapshot would otherwise freeze a non-deterministic
+// mid-transition color.
 const readTransitionStyles = el => {
   const styleOf = pseudo => {
     const style = window.getComputedStyle(el, pseudo)
@@ -70,8 +59,7 @@ const waitForHoverToSettle = selector => {
     const wasPrevious = previous
 
     previous = current
-    // passes only once two consecutive reads match — i.e. the transition has
-    // come to rest. Cypress retries this callback until it passes or times out.
+    // passes only once two consecutive reads match — i.e. transitions at rest
     expect(current, 'style transitions settled').to.equal(wasPrevious)
   })
 }
@@ -83,10 +71,9 @@ Cypress.Commands.add('waitForTransitionsToSettle', selector =>
 )
 
 // Transient floating UI must be geometrically at rest before serializing:
-// `@floating-ui/react` poppers (Picasso's Popper stamps `x-placement`, base-ui's
-// Tooltip positions its `role="tooltip"` popup) commit their coordinates a frame
-// or two after open, and notistack notifications (`role="alert"`) slide in via
-// inline-style transforms that happo-cypress captures verbatim.
+// poppers (`x-placement`) and tooltips (`role="tooltip"`) commit their
+// coordinates a frame or two after opening, and notifications (`role="alert"`)
+// slide in via inline-style transforms captured verbatim in the static snapshot.
 // Settled = two consecutive reads of every visible element's box match.
 // Vacuous when nothing matches — asserting PRESENCE stays the callers' job.
 const GEOMETRY_SETTLE_SELECTOR =
@@ -143,7 +130,7 @@ Cypress.Commands.add(
     cy.get(subject.selector).invoke('attr', 'data-happo-hover', true)
 
     // let the hover transition finish before serializing, otherwise the static
-    // capture freezes a mid-transition color (see waitForHoverToSettle above)
+    // capture freezes a mid-transition color
     waitForHoverToSettle(subject.selector)
 
     cy.get('body').happoScreenshot(options)
@@ -152,14 +139,10 @@ Cypress.Commands.add(
   }
 )
 
-// Gate on an overlay (Modal/Drawer/PromptModal `[role="dialog"]`, …) being open
-// AND past its @base-ui/react enter transition before proceeding. Base UI fades
-// the overlay in (data-starting-style: opacity-0 → 1) and removes
-// `data-starting-style` once the transition starts; capturing mid-fade
-// composites bordered content (e.g. a secondary button) at partial opacity,
-// producing edge artifacts. Retried on Cypress's own loop via `.should()` — no
-// hardcoded durations. Shared so Modal/PromptModal/Drawer specs stop each
-// hand-rolling the same assertion.
+// Gate on an overlay (Modal/Drawer/PromptModal `[role="dialog"]`) being open AND
+// past its enter transition: the overlay fades in via `data-starting-style`
+// (opacity-0 → 1, removed once the transition starts); capturing mid-fade
+// composites bordered content at partial opacity, producing edge artifacts.
 Cypress.Commands.add('waitForOverlayOpen', (selector = '[role="dialog"]') =>
   cy
     .get(selector)
@@ -184,10 +167,10 @@ Cypress.Commands.add('waitForImagesDecoded', (selector = 'img') =>
 )
 
 // happo-cypress serializes the live DOM and re-renders it statically in the
-// cloud (no JS runs there). @base-ui/react removes `data-starting-style` one
-// frame after mount; if captured before removal, the attribute pins the element
-// at its starting style (e.g. opacity-0), producing a blank capture.
-// `data-ending-style` marks an exit in flight — wait it out too.
+// cloud (no JS runs there). `data-starting-style` is removed one frame after
+// mount; capturing before removal pins the element at its starting style
+// (e.g. opacity-0), producing a blank capture. `data-ending-style` marks an
+// exit in flight — wait it out too.
 Cypress.Commands.overwrite(
   'happoScreenshot',
   (originalFn, subject, options) => {

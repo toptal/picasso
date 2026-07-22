@@ -32,11 +32,10 @@ export const createPopupClassNames = (
 ]
 
 // A 45°-rotated square clipped by `overflow-hidden` to a 16px-base, 90°-apex
-// triangle. The `0.71rem` (11.36px) size is a DELIBERATE exception to the
-// whole-pixel rule (AGENTS.md §Styling): the apex needs a side of 8√2 ≈
-// 11.314px, so rounding to 11/12px visibly moves the tip — don't "fix" it. The
-// arrow carries its own box-shadow (not `filter: drop-shadow`) so Happo, which
-// grows a snapshot bbox for box-shadow but not for filter, keeps the shadow band.
+// triangle. The `0.71rem` (11.36px) size is a deliberate exception to the
+// whole-pixel rule: the apex needs a side of 8√2 ≈ 11.314px, so rounding to
+// 11/12px visibly moves the tip — don't "fix" it. The arrow carries its own
+// box-shadow (not `filter: drop-shadow`) so the shadow survives snapshotting.
 export const createArrowClassNames = (): string[] => [
   'box-border overflow-hidden text-white',
   "before:block before:h-full before:w-full before:bg-current before:content-['']",

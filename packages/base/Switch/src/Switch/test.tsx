@@ -81,9 +81,6 @@ describe('Switch', () => {
     it('matches getByLabelText once and resolves to the accessible control', () => {
       const { getByLabelText, getByRole } = renderSwitch({ label: 'A Switch' })
 
-      // Regression: both the role="switch" span and the hidden native <input>
-      // used to be label-associated, so getByLabelText threw "Found multiple
-      // elements". It must now match only the accessible control.
       expect(getByLabelText('A Switch')).toBe(
         getByRole('switch', { name: 'A Switch' })
       )

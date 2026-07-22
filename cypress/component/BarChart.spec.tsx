@@ -100,7 +100,7 @@ describe('BarChart', () => {
     cy.get('.recharts-surface').realClick()
     hoverOverBar('Berlin')
 
-    // assert the custom tooltip rendered before capturing (see above)
+    // assert the custom tooltip rendered before capturing
     assertCustomTooltipContent('Infected: 4000Recovered: 2400')
 
     cy.get('body').happoScreenshot({

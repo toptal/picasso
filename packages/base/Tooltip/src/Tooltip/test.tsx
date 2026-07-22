@@ -27,10 +27,9 @@ const TestTrigger = forwardRef<
   )
 })
 
-// A real click/tap is always preceded by `pointerdown` — base-ui relies on it
-// (its Trigger syncs `closeOnClick` into its store from `onPointerDown`), but
-// jsdom's `fireEvent.click` dispatches only the bare `click`, so emit the full
-// sequence ourselves.
+// A real click/tap is always preceded by `pointerdown` (the trigger relies on
+// it), but jsdom's `fireEvent.click` dispatches only the bare `click`, so emit
+// the full sequence ourselves.
 const clickElement = (element: Element) => {
   fireEvent.pointerDown(element)
   fireEvent.click(element)
@@ -135,9 +134,8 @@ describe('Tooltip', () => {
 
   describe('when an id is provided', () => {
     it('routes it to the popup, not the trigger', async () => {
-      // Legacy MUI put `id` on the popper, not the trigger. Restore that: the
-      // id addresses the popup (role="tooltip"), while the trigger keeps
-      // base-ui's own generated id.
+      // The `id` addresses the popup (role="tooltip"), while the trigger keeps
+      // its own generated id.
       const { getByTestId, getByRole } = renderTooltip({
         id: 'tooltip-id',
         open: true,
@@ -154,8 +152,7 @@ describe('Tooltip', () => {
     })
 
     it('describes the trigger with the popup id while open', async () => {
-      // base-ui doesn't wire aria-describedby (no useRole), so Picasso points
-      // the trigger at the popup id itself — the legacy MUI a11y link.
+      // Picasso points the trigger at the popup id itself via aria-describedby.
       const { getByTestId } = renderTooltip({
         id: 'tooltip-id',
         open: true,
@@ -213,10 +210,9 @@ describe('Tooltip', () => {
 
   describe('when no id is provided', () => {
     it('still associates the trigger with the popup while open', async () => {
-      // MUI v4 generated a fallback id so screen readers announced the tooltip
-      // even without a consumer id; base-ui wires nothing, so Picasso must keep
-      // that association alive with a generated id. Regression guard for the
-      // common (no-id) case.
+      // Without a consumer id, Picasso generates a fallback id so the
+      // trigger↔popup association still holds — this guards the common
+      // (no-id) case.
       const { getByTestId, getByRole } = renderTooltip({
         id: undefined,
         open: true,
@@ -224,9 +220,8 @@ describe('Tooltip', () => {
       })
 
       await waitFor(() => {
-        const describedby = getByTestId('tooltip-trigger').getAttribute(
-          'aria-describedby'
-        )
+        const describedby =
+          getByTestId('tooltip-trigger').getAttribute('aria-describedby')
 
         expect(describedby).toBeTruthy()
         expect(getByRole('tooltip')).toHaveAttribute('id', describedby)
@@ -298,7 +293,7 @@ describe('Tooltip', () => {
       // A disabled control wrapped in a trigger element (the documented pattern
       // for tooltips on disabled elements): the hover originates on the inner
       // disabled control, so the open must come from `mouseover` bubbling up to
-      // the trigger — base-ui's movement-based hover does not fire here.
+      // the trigger.
       const { getByTestId, queryByTestId } = render(
         <Tooltip id='tooltip-id' content={<TestContent />}>
           <span data-testid='tooltip-trigger'>
@@ -343,8 +338,8 @@ describe('Tooltip', () => {
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       )
 
-      // First move anchors the segment; a subsequent move past 50px dismisses the
-      // popup (base-ui's cursor tracking would otherwise keep it open).
+      // First move anchors the segment; a subsequent move past 50px dismisses
+      // the popup.
       fireEvent.mouseMove(trigger, { clientX: 10, clientY: 10 })
       fireEvent.mouseMove(trigger, { clientX: 200, clientY: 200 })
 
@@ -357,7 +352,7 @@ describe('Tooltip', () => {
   describe('when an open tooltip is clicked', () => {
     it('reopens on hover once the pointer has left', async () => {
       // Click-to-dismiss suppresses re-opening only while the pointer stays on
-      // the trigger; leaving lifts the suppression (legacy `ignoreOpening`).
+      // the trigger; leaving lifts the suppression.
       const { getByTestId, queryByTestId } = renderTooltip()
 
       const trigger = getByTestId('tooltip-trigger')
@@ -413,15 +408,14 @@ describe('Tooltip', () => {
 
   describe('when clicked during the hover-open delay on a pointer device', () => {
     it('opens the tooltip instead of latching it shut', async () => {
-      // Regression for PF-2245. The mouseover arms Picasso's 200ms hover-open;
-      // base-ui opens the tooltip synchronously on focus (its `useFocus`,
-      // reason `trigger-focus`); the trailing click lands while that open is in
-      // flight. It must NOT dismiss-and-latch the tooltip — otherwise it stays
-      // suppressed until the pointer leaves and re-enters, which never happens
-      // (the cursor sits on the trigger), so every consumer Cypress spec that
-      // `.click()`s a tooltip trigger fails. PF-2253 now suppresses a POINTER-
-      // initiated focus-open, so pin keyboard modality here (focusViaKeyboard)
-      // to keep base-ui's focus-open honored and exercise the latch path.
+      // The mouseover arms Picasso's 200ms hover-open; focus opens the tooltip
+      // synchronously; the trailing click lands while that open is in flight. It
+      // must NOT dismiss-and-latch the tooltip — otherwise it stays suppressed
+      // until the pointer leaves and re-enters, which never happens (the cursor
+      // sits on the trigger), so every consumer that `.click()`s a tooltip
+      // trigger would fail. A pointer-initiated focus-open is suppressed, so pin
+      // keyboard modality here (focusViaKeyboard) to keep the focus-open honored
+      // and exercise the latch path.
       const onOpenMock = jest.fn()
 
       const { getByTestId, queryByTestId } = renderTooltip({
@@ -740,8 +734,8 @@ describe('Tooltip', () => {
 
     describe('when following the cursor', () => {
       it('does not open the tooltip', async () => {
-        // followCursor is unsupported on touch devices (parity with
-        // @material-ui@5) — neither tap nor hover-like events may open it.
+        // followCursor is unsupported on touch devices — neither tap nor
+        // hover-like events may open it.
         const onOpenMock = jest.fn()
 
         const { getByTestId, queryByTestId } = renderTooltip({

@@ -198,8 +198,6 @@ const waitForScrollShades = () => {
       const el = $el.get(0)
       const overflows = el.scrollHeight > el.clientHeight
 
-      // No overflow (e.g. full-screen / xlarge on a tall viewport) → no shades
-      // to wait for. Otherwise wait for the fade to finish.
       return overflows
         ? cy.get('[data-active="true"]').should('have.css', 'opacity', '1')
         : cy.wrap(null)

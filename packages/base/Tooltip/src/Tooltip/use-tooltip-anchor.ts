@@ -4,10 +4,10 @@ import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 
 import { getSettledAnchorRect, isMenuItemAnchor } from './utils'
 
-// Wires the tooltip trigger's ref and derives everything the Positioner needs
+// Wires the tooltip trigger's ref and derives everything the positioner needs
 // from the anchor node: whether it is a menu item (drives anchor-tracking),
 // whether it has mounted (gates the enter fade), its portal parent (disablePortal
-// mode), and the settled-rect virtual anchor. [PF-2224]
+// mode), and the settled-rect virtual anchor.
 export const useTooltipAnchor = ({
   ref,
   disablePortal,
@@ -31,19 +31,17 @@ export const useTooltipAnchor = ({
     [disablePortal]
   )
 
-  // Mirror the anchor's menu-item-ness into state so `disableAnchorTracking`
-  // (on the Positioner) is correct on the render that matters. A `open`-from-mount
-  // tooltip (e.g. the Dropdown story) commits its Positioner before the trigger
-  // ref callback runs, so a bare `triggerNodeRef.current` read would still be
-  // null; the state update re-renders once the node is committed.
+  // Mirror the anchor's menu-item-ness into state so `disableAnchorTracking` is
+  // correct on the render that matters. An `open`-from-mount tooltip commits its
+  // positioner before the trigger ref callback runs, so a bare
+  // `triggerNodeRef.current` read would still be null; the state update
+  // re-renders once the node is committed.
   //
-  // `triggerMounted` additionally gates the base-ui Root `open` so a tooltip that
-  // is `open` from its very first render still plays its enter fade. base-ui's
-  // useTransitionStatus initializes `mounted` to `open` and only enters the
-  // `'starting'` phase on a false→true transition, so an open-at-mount Root never
-  // gets `data-starting-style` and the popup pops in at full opacity. Master (MUI
-  // Grow, `appear: true`) faded such tooltips in. The ref callback's setState
-  // flushes before paint, so this adds no visible delay. [PF-2224]
+  // `triggerMounted` additionally gates the Root `open` so a tooltip that is
+  // `open` from its very first render still plays its enter fade: the transition
+  // only starts on a false→true change, so an open-at-mount popup would otherwise
+  // appear at full opacity. The ref callback's setState flushes before paint, so
+  // this adds no visible delay.
   const trackAnchorRole = useCallback((node: HTMLElement | null) => {
     setAnchorIsMenuItem(isMenuItemAnchor(node))
     setTriggerMounted(node !== null)
@@ -58,23 +56,21 @@ export const useTooltipAnchor = ({
 
   // A menu-item anchor sits inside the Dropdown's Paper, which reveals with a
   // ~200ms scale-in — and a mid-scale ancestor taints the anchor's
-  // getBoundingClientRect, so base-ui's entrance solve would land the popup ~4px
-  // off and it would visibly re-position once the animation settles. This virtual
-  // anchor feeds base-ui the anchor's SETTLED rect instead (reconstructed from
+  // getBoundingClientRect, so the entrance solve would land the popup ~4px off
+  // and it would visibly re-position once the animation settles. This virtual
+  // anchor feeds the anchor's SETTLED rect instead (reconstructed from
   // transform-independent layout metrics, see getSettledAnchorRect), so the first
   // solve already lands on the final position and nothing moves afterwards.
-  // `contextElement` keeps floating-ui's ancestorScroll/hide plumbing attached to
-  // the real anchor node (autoUpdate and the hide middleware unwrap it), so scroll
-  // re-solving and data-[anchor-hidden] behave exactly as with an element anchor.
-  // Outside the scale animation the virtual rect IS the live getBoundingClientRect,
-  // so steady-state behavior is unchanged. [PF-2224]
+  // `contextElement` keeps the scroll/hide plumbing attached to the real anchor
+  // node, so scroll re-solving and data-[anchor-hidden] behave exactly as with an
+  // element anchor. Outside the scale animation the virtual rect IS the live
+  // getBoundingClientRect, so steady-state behavior is unchanged.
   //
-  // Because this rect is already the settled position, menu-item anchors also let
-  // the caller disable base-ui's resize/layout-shift observers (the Positioner's
-  // `disableAnchorTracking`): those would chase late sub-pixel reflows (a web font
-  // settling after paint nudges the option row a pixel) and make the popup drift —
-  // a jitter master's popper.js never had. Scoped to menu items only; widening it
-  // regressed Autocomplete, which has no scale-in but reflows and needs tracking.
+  // Because this rect is already the settled position, menu-item anchors also
+  // disable the resize/layout-shift observers (`disableAnchorTracking`): those
+  // would chase late sub-pixel reflows (a web font settling after paint nudges
+  // the option row a pixel) and make the popup drift. Scoped to menu items only —
+  // other anchors (e.g. Autocomplete) reflow and need tracking.
   const settledAnchor = useMemo(
     () => ({
       get contextElement() {

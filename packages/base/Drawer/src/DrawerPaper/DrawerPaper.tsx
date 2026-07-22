@@ -10,9 +10,6 @@ interface PaperProps extends HTMLAttributes<HTMLDivElement> {
   disableScroll?: boolean
 }
 
-// Resting (open) position is `translate-*-0`; the off-screen position is
-// applied for the enter (`data-starting-style`) and exit (`data-ending-style`)
-// frames so @base-ui/react drives the slide transition the legacy Slide handled.
 const anchorClassName: Record<AnchorType, string> = {
   left: 'left-0 right-auto translate-x-0 data-starting-style:-translate-x-full data-ending-style:-translate-x-full',
   right:

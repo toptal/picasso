@@ -79,13 +79,12 @@ const composeHandlers =
 
 let fallbackIdCounter = 0
 
-// base-ui's Tooltip wires no `aria-describedby` of its own (it runs
-// `useInteractions([dismiss, clientPoint])` with no `useRole`), so a tooltip
-// with no explicit `id` would leave its trigger unlinked to the popup and screen
-// readers would not announce it as the trigger's description. Generate a stable
-// fallback id when the consumer supplies none, and use it for BOTH the popup's
-// `id` and the trigger's `aria-describedby`. It is assigned in an effect so the
-// server renders no id and the client fills it in — no hydration mismatch.
+// The tooltip primitive wires no `aria-describedby` of its own, so a tooltip
+// with no explicit `id` would leave its trigger unlinked to the popup and
+// screen readers wouldn't announce it. Generate a stable fallback id when the
+// consumer supplies none, and use it for BOTH the popup's `id` and the
+// trigger's `aria-describedby`. Assigned in an effect so the server renders no
+// id and the client fills it in — no hydration mismatch.
 const useFallbackId = (idProp?: string): string | undefined => {
   const [fallbackId, setFallbackId] = useState(idProp)
 
@@ -242,9 +241,9 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       <BaseTooltip.Positioner
         ref={tooltipRef}
         anchor={anchor}
-        // Menu-item anchors disable base-ui's resize + layout-shift observers
-        // (ancestorScroll stays on); see useTooltipAnchor for why it is scoped
-        // to them and no wider.
+        // Menu-item anchors disable the resize + layout-shift observers (scroll
+        // tracking stays on); see useTooltipAnchor for why it is scoped to them
+        // and no wider.
         disableAnchorTracking={anchorIsMenuItem}
         // `z-tooltip` (1300): a tooltip opened inside a Dropdown must stack above
         // the menu. `data-[anchor-hidden]:invisible` hides the popup with its
@@ -283,11 +282,10 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
     return (
       <BaseTooltip.Provider delay={delayDurations[delay]} closeDelay={0}>
         <BaseTooltip.Root
-          // `&& triggerMounted` defers an open-at-mount `open` by one
-          // pre-paint commit so base-ui sees a false→true transition and
-          // plays the enter fade (see trackAnchorRole above). Hover/tap opens
-          // always happen with the trigger long mounted, so they're
-          // unaffected. [PF-2224]
+          // `&& triggerMounted` defers an open-at-mount `open` by one pre-paint
+          // commit so the popup sees a false→true transition and plays the
+          // enter fade. Hover/tap opens always happen with the trigger long
+          // mounted, so they're unaffected.
           open={actualOpen && triggerMounted}
           onOpenChange={handleOpenChange}
           onOpenChangeComplete={handleOpenChangeComplete}
@@ -299,8 +297,8 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             ref={setTriggerRef}
             className={className}
             style={style}
-            // Associate the popup with the trigger while open (matching MUI v4),
-            // preferring any consumer-supplied value (tooltipId is never empty).
+            // Associate the popup with the trigger while open, preferring any
+            // consumer-supplied value (tooltipId is never empty).
             aria-describedby={
               triggerRest['aria-describedby'] ??
               (actualOpen ? tooltipId : undefined)

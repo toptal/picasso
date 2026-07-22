@@ -267,7 +267,6 @@ const makeExpandableRowsData = (defaultExpanded: boolean): Data[] => [
   },
 ]
 
-// collapse and re-expand the first row, asserting the row content toggles
 const toggleFirstRowExpansion = (localData: Data[]) => {
   cy.getByTestId('job').as('job').should('be.visible')
 

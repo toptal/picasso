@@ -12,14 +12,14 @@ interface UsePopperLifecycleOptions {
   onUpdate?: PopperLifecycleCallback
 }
 
-// popper.js v1 callbacks declare a `data` argument we no longer provide;
-// invoking with fewer arguments is safe, expressed once at this boundary
+// These callbacks are typed to receive a `data` argument that is never
+// provided; invoking with fewer arguments is safe, cast once at this boundary.
 const toArgless = (callback?: PopperLifecycleCallback) =>
   callback as (() => void) | undefined
 
-// Replicates popper.js v1's onCreate/onUpdate lifecycle: onCreate fires once
-// per open cycle after the first successful positioning, onUpdate on each
-// subsequent position change while open.
+// onCreate/onUpdate lifecycle: onCreate fires once per open cycle after the
+// first successful positioning, onUpdate on each subsequent position change
+// while open.
 export const usePopperLifecycle = ({
   open,
   ready,

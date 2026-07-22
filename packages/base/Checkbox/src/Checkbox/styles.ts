@@ -1,11 +1,11 @@
-// Visual box for `@base-ui/react/checkbox`'s Root `<span>`. The checkmark and
+// Visual box for the checkbox control's `<span>`. The checkmark and
 // indeterminate dash are drawn with `::before` / `::after` pseudo-elements,
-// driven by Base UI's mutually-exclusive `data-checked` / `data-indeterminate`
+// driven by the mutually-exclusive `data-checked` / `data-indeterminate`
 // state attributes (a checkbox is never both at once).
 export const checkboxClassNames: string[] = [
   'relative box-border inline-block h-4 w-4 rounded-sm border border-solid',
   // `leading-4` pins line-height to 1rem; without it the line box falls back to
-  // `normal` and grows the rendered box ~1px (legacy MuiCheckbox.root pinned this).
+  // `normal` and grows the rendered box ~1px.
   'text-[1rem] leading-4',
   'cursor-pointer transition-all duration-350 ease-in-out',
 
@@ -15,8 +15,6 @@ export const checkboxClassNames: string[] = [
   'data-indeterminate:bg-blue-500 data-indeterminate:border-blue-500 data-indeterminate:text-white',
 
   // Hover (enabled only — a disabled checkbox keeps its resting border).
-  // color-mix replicates the legacy JSS `mix(blue.main, white, 0.16)` from the
-  // blue-500 token (84% blue + 16% white = #446AD7).
   // TODO(tokens) [PI-4318]: no canonical token for the hover shade (blue-500
   // mixed 84/16 with white) — derived inline from blue-500 via color-mix.
   '[&[data-unchecked]:not([data-disabled]):hover]:border-gray-600',
@@ -25,12 +23,9 @@ export const checkboxClassNames: string[] = [
   '[&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
   '[&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
 
-  // Focus ring — matches outline(blue.main): 3px blue.main @ 0.48 alpha.
-  // `data-focused` is Base UI's own state attribute (set by Field.Root when
-  // the control is focused). The Cypress spec also stamps it manually on the
-  // Root span before each Happo screenshot so the ring survives Happo's DOM
-  // serialization (`:focus-visible` is a live pseudo-class; it doesn't carry
-  // over into the static snapshot that Happo renders in the cloud).
+  // Focus ring: 3px blue-500 at 48% alpha.
+  // `data-focused` mirrors the `:focus-visible` ring so it survives DOM
+  // serialization for visual snapshots (live pseudo-classes don't).
   // TODO(tokens) [PI-4318]: no canonical token for the focus-ring colour
   // (blue-500 @ 48% alpha) — derived inline from blue-500 via color-mix.
   'focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
@@ -39,11 +34,8 @@ export const checkboxClassNames: string[] = [
   // Disabled
   'data-disabled:opacity-[0.48] data-disabled:cursor-default',
 
-  // Checkmark (checked) — two rotated white bars. The legacy coordinates were
-  // measured from the icon's OUTER (border-box) edge: the pseudo-elements lived
-  // on a borderless inner div and resolved against the MuiButtonBase root. Here
-  // they live on the bordered Root itself, where `absolute` resolves against
-  // the padding box (1px inside the border) — hence the `- 1px` compensation.
+  // Checkmark (checked) — two rotated white bars. `absolute` resolves against
+  // the padding box (1px inside the border), hence the `- 1px` in each coordinate.
   "data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)]",
   "data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)]",
 

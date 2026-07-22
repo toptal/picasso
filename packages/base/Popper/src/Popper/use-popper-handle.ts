@@ -11,8 +11,8 @@ export interface PopperHandle {
   scheduleUpdate: () => void
 }
 
-// Mirrors the MUI v4 popperRef semantics: the handle exists only while the
-// popper DOM element is mounted, so `ref.current?.popper` is always a node.
+// The handle exists only while the popper DOM element is mounted, so
+// `ref.current?.popper` is always a node.
 export const usePopperHandle = (
   ref: ForwardedRef<PopperHandle>,
   setFloating: (node: HTMLDivElement | null) => void,

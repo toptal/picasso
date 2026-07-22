@@ -1,4 +1,4 @@
-// Shared row set for the Table/TableCell specs (was duplicated verbatim).
+// Shared row set for the Table/TableCell specs.
 export const tableData = [
   {
     id: 0,

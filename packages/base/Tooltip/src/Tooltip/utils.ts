@@ -22,7 +22,7 @@ const COMPACT_POPUP_MARGIN_PX = remToPx(COMPACT_POPUP_MARGIN) // 4px
 // sinking into it. Scoped to menu items only — every other anchor keeps the
 // standard gap. Calibrated against the option's SETTLED rect, which is also the
 // rect the entrance solve positions against (see getSettledAnchorRect below),
-// so the gap is correct from the first paint. [PF-1994][PF-2224]
+// so the gap is correct from the first paint.
 const MENU_ITEM_ARROW_GAP = remToPx('0.4375rem') // 7px
 const FOLLOW_CURSOR_GAP = remToPx('0.625rem') // 10px
 
@@ -55,9 +55,8 @@ const parseScalePair = (value: string): { x: number; y: number } | null => {
 // True while the element is scaled away from identity — via the standalone
 // `scale` property (what Tailwind v4's `scale-*` sets, and what the Dropdown's
 // Paper animates) or via a `transform` whose matrix has non-1 scale components.
-// A pure translate (`matrix(1, 0, 0, 1, x, y)`, e.g. popper.js positioning)
-// is NOT a taint: it moves boxes without distorting them, and
-// getBoundingClientRect reports it faithfully.
+// A pure translate (`matrix(1, 0, 0, 1, x, y)`) is NOT a taint: it moves boxes
+// without distorting them, and getBoundingClientRect reports it faithfully.
 const hasNonIdentityScale = (element: Element): boolean => {
   const computed = getComputedStyle(element)
   const scale = parseScalePair(computed.scale)
@@ -105,14 +104,15 @@ const findScaleTaintedAncestor = (element: Element): HTMLElement | null => {
 
 // Distinguishes a mid-reveal transform (the Dropdown's scale-in — its rect is
 // transient) from a STATIC, deliberate one (an app-level `zoom`/`scale` wrapper,
-// an embedded preview — a stable rect master positioned against directly). Only
-// a running transition/animation warrants reconstructing the settled rect;
-// otherwise the live rect is already correct. `getAnimations` is absent under
-// SSR/jsdom, where we assume "animating" so the reconstruction path still runs.
+// an embedded preview — a stable rect). Only a running transition/animation
+// warrants reconstructing the settled rect; otherwise the live rect is already
+// correct. `getAnimations` is absent under SSR/jsdom, where we assume
+// "animating" so the reconstruction path still runs.
 type Animatable = { getAnimations?: () => unknown[] }
 
 const isAnimating = (target: Animatable): boolean =>
-  typeof target.getAnimations !== 'function' || target.getAnimations().length > 0
+  typeof target.getAnimations !== 'function' ||
+  target.getAnimations().length > 0
 
 // Accumulates the element's layout offset (border-box origin) relative to
 // `root`'s border-box origin, walking the offsetParent chain.
@@ -202,25 +202,24 @@ const makeRect = ({
 // The anchor's viewport rect with any ancestor scale animation factored OUT —
 // i.e. the rect the anchor will occupy once the animation settles.
 //
-// Why: base-ui positions the tooltip on its very first paint, and when the
-// anchor is a Menu.Item inside a Dropdown, that happens WHILE the Dropdown's
-// Paper is still playing its ~200ms scale-in. A mid-scale ancestor taints the
-// anchor's getBoundingClientRect, so the entrance solve lands ~4px off and the
-// tooltip visibly re-positions once the settled geometry is measured. This
-// helper makes the FIRST solve land on the final position instead: it finds the
-// nearest scale-animating ancestor, takes that ancestor's offsetParent (whose
-// own rect is transform-clean — popper.js positions it with a pure translate)
-// as a trustworthy origin, and reconstructs the anchor's rect from pure layout
-// metrics (offsetTop/offsetLeft chain + offsetWidth/offsetHeight), which CSS
-// transforms cannot touch. The result is CONSTANT for the whole animation and
-// exactly equals the settled rect, so there is nothing left to jump.
+// Why: the tooltip is positioned on its very first paint, and when the anchor
+// is a Menu.Item inside a Dropdown, that happens WHILE the Dropdown's Paper is
+// still playing its ~200ms scale-in. A mid-scale ancestor taints the anchor's
+// getBoundingClientRect, so the entrance solve lands ~4px off and the tooltip
+// visibly re-positions once the settled geometry is measured. This helper makes
+// the FIRST solve land on the final position instead: it finds the nearest
+// scale-animating ancestor, takes that ancestor's offsetParent (whose own rect
+// is transform-clean) as a trustworthy origin, and reconstructs the anchor's
+// rect from pure layout metrics (offsetTop/offsetLeft chain +
+// offsetWidth/offsetHeight), which CSS transforms cannot touch. The result is
+// CONSTANT for the whole animation and exactly equals the settled rect, so there
+// is nothing left to jump.
 //
 // Reconstruction is gated on a transform being ANIMATING (getAnimations): a
 // scaled ancestor that is not animating is deliberate, persistent geometry (an
-// app-level zoom, an embedded preview), whose live rect is already correct —
-// master positioned against it directly. So this returns the live
-// getBoundingClientRect unchanged both in the steady state (no scaled ancestor)
-// and against a static transform. [PF-2224]
+// app-level zoom, an embedded preview), whose live rect is already correct. So
+// this returns the live getBoundingClientRect unchanged both in the steady state
+// (no scaled ancestor) and against a static transform.
 export const getSettledAnchorRect = (
   anchor: HTMLElement | null
 ): AnchorRect => {
@@ -230,7 +229,7 @@ export const getSettledAnchorRect = (
 
   // Steady-state fast path: this runs on every scroll re-solve while the tooltip
   // is open, so when nothing in the document is animating — the common case — no
-  // ancestor can be mid-reveal and we skip the ancestor walk entirely. [PF-2224]
+  // ancestor can be mid-reveal and we skip the ancestor walk entirely.
   if (!isAnimating(document)) {
     return anchor.getBoundingClientRect()
   }
@@ -243,7 +242,7 @@ export const getSettledAnchorRect = (
 
   // A scaled ancestor that is NOT animating carries a deliberate, persistent
   // transform (not the Dropdown's scale-in), so its live rect is the real one —
-  // reconstruct only while it is actually mid-animation. [PF-2224]
+  // reconstruct only while it is actually mid-animation.
   if (!isAnimating(taintedAncestor)) {
     return anchor.getBoundingClientRect()
   }
@@ -316,9 +315,9 @@ export const getPositionerOffsets = ({
   const offsetLeft = spacingToPxNumber(offset.left ?? SPACING_0)
   const offsetTop = spacingToPxNumber(offset.top ?? SPACING_0)
 
-  // A single, flip-invariant gap, as MUI's Popper applied it: the `offset`
-  // modifier carried only the user offset and never varied by resolved side, so
-  // the anchor↔popup gap is identical whether or not floating-ui flips.
+  // A single, flip-invariant gap: the offset is applied as a constant user
+  // offset that never varies by resolved side, so the anchor↔popup gap is
+  // identical whether or not the popup flips.
   const userSideOffset = isVertical ? offsetTop : offsetLeft
   const alignOffset = isVertical ? offsetLeft : offsetTop
 

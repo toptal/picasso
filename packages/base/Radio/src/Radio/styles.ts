@@ -27,10 +27,8 @@ export const createInputClassNames = (): string[] => [
 // positioned pseudo-elements; they resolve their size/position against the
 // root span (the nearest positioned ancestor), not the zero-size icon span.
 //
-// The focus ring is driven by the root's `data-focused` attribute (set from
-// React on :focus-visible) instead of a CSS pseudo-class: Cypress-Happo
-// re-renders a serialized DOM where live pseudo-class state is lost, so the
-// ring must survive as a DOM attribute.
+// The focus ring is driven by the root's `data-focused` attribute (mirroring
+// `:focus-visible`) so it survives DOM serialization for visual snapshots.
 const ICON_BASE = [
   'pointer-events-none',
   'transition-all duration-350 ease-in-out',

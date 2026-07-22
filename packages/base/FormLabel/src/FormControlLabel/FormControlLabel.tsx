@@ -31,8 +31,8 @@ export interface Props
   requiredDecoration?: RequiredDecoration
   /**
    * Id of the label text node. When set, the wrapper renders as a non-`<label>`
-   * element that forwards label clicks — lets base-ui Checkbox/Switch name
-   * themselves via `aria-labelledby` without a duplicate label association.
+   * element that forwards label clicks — lets Checkbox/Switch name themselves
+   * via `aria-labelledby` without a duplicate label association.
    */
   labelId?: string
   classes?: {

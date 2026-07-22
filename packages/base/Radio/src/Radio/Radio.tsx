@@ -43,8 +43,8 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       'data-private': dataPrivate,
       id,
       name,
-      // runtime backstop: `classes` was dropped from the public Props; keep a
-      // stray JS-consumer value out of the DOM spread below
+      // Runtime backstop: keep a stray `classes` value (from JS consumers) out
+      // of the DOM spread below.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       classes: _classes,
       ...rest

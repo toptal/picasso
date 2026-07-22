@@ -103,13 +103,7 @@ describe('TypographyOverflow', () => {
     cy.mount(<CheckboxLabelExample />)
 
     cy.getByTestId('ellipsed-text').click()
-    // After migration to @base-ui/react, clicking the label text programmatically
-    // focuses the Checkbox.Root span via Base UI's hidden-input focus delegation,
-    // which spuriously activates CSS :focus-visible in Cypress's synthetic event
-    // environment (Chrome's input-modality tracker isn't updated by synthetic
-    // events the same way it is for real mouse input). Blurring before the
-    // screenshot strips the focus ring without affecting the tooltip or checked
-    // state.
+    // blur before screenshot so the synthetic-event focus ring doesn't leak into the capture
     cy.focused().blur()
     cy.get('body').happoScreenshot({
       component,

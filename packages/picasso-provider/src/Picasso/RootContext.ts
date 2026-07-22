@@ -45,7 +45,7 @@ export const usePicassoRoot = (): HTMLDivElement | undefined => {
   // rootNode is state-backed, so components rendered before the root node
   // mounts (e.g. a Modal open on first mount) re-render once it exists;
   // rootRef stays as a fallback for providers that only populate the ref.
-  // An unresolved root is `undefined`, NOT `null`: Base UI portals treat an
+  // An unresolved root is `undefined`, NOT `null`: portals treat an
   // explicit `null` container as "wait for the container" and render nothing,
   // while `undefined` falls back to `document.body` — so this hook's result
   // can be passed to any portal container without per-callsite coercion.

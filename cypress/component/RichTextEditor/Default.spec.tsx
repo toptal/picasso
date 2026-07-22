@@ -375,8 +375,7 @@ describe('RichTextEditor', () => {
 
       cy.get('label').realClick().type('foo')
       cy.contains('foo').should('be.visible')
-      // The focused state is signalled by the focus-ring shadow (the legacy JSS
-      // `focused` class no longer exists after the Tailwind migration).
+      // focused state = focus-ring shadow
       cy.get('@wrapper')
         .should('have.attr', 'class')
         .and('include', 'shadow-blue-500/[.48]')

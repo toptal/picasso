@@ -138,7 +138,7 @@ describe('ImagePlugin', () => {
 
       // capture body, not the dialog subtree — the modal's font-family is
       // inherited from outside the portal, so a subtree capture renders in a
-      // serif fallback (the old "fonts stopped working in modals" issue)
+      // serif fallback
       cy.waitForOverlayOpen()
       cy.get('body').happoScreenshot({
         component,

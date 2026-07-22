@@ -24,7 +24,7 @@ rootDiv.setAttribute('id', 'root')
 
 const children = 'some children'
 
-// floating-ui computes the position in a microtask after render
+// position is computed in a microtask after render
 const flushPosition = async () => {
   await act(async () => {})
 }

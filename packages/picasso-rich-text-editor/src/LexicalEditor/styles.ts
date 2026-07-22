@@ -1,15 +1,12 @@
 import { codeBlockStyles, codeStyles } from '../RichText/components/styles'
 
 // SVG list-bullet backgrounds, exposed as CSS custom properties on the editor
-// container (see LexicalEditor.tsx) and referenced below via `var(...)`.
-//
-// They CANNOT be inlined into a Tailwind arbitrary value (e.g.
-// `before:[background-image:${bullet}]`): Tailwind's JIT only generates classes
-// it finds as complete static strings while scanning source, and a template
-// literal with an interpolated variable never appears literally — so the class
-// is silently dropped and the bullet disappears. Routing the data URI through a
-// CSS variable keeps the Tailwind class static (`var(--rte-bullet)`) while the
-// value is supplied at runtime.
+// container and referenced below via `var(...)`. They can't be inlined into a
+// Tailwind arbitrary value (`before:[background-image:${bullet}]`): Tailwind's
+// JIT only generates classes it finds as complete static strings, so an
+// interpolated value is never seen and the class is dropped. Routing the data
+// URI through a CSS variable keeps the class static (`var(--rte-bullet)`) with
+// the value supplied at runtime.
 export const BULLET_VAR = '--rte-bullet'
 export const OUTLINED_BULLET_VAR = '--rte-outlined-bullet'
 
@@ -18,9 +15,6 @@ export const bullet =
 export const outlinedBullet =
   "url(\"data:image/svg+xml,%3Csvg%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M8%209c.55228%200%201-.44772%201-1s-.44772-1-1-1-1%20.44772-1%201%20.44772%201%201%201Zm0%201c1.10457%200%202-.89543%202-2s-.89543-2-2-2-2%20.89543-2%202%20.89543%202%202%202Z'%20fill='%23455065'/%3E%3C/svg%3E\")"
 
-// `counter-reset: list-0` on every non-li descendant. The legacy JSS also reset
-// list-1..list-9 on block elements, but that rule was emitted first and fully
-// overridden by this equal-specificity rule, so it is omitted (computed-identical).
 const listStyles = '[&_*:not(li)]:[counter-reset:list-0]'
 
 const indentStyles = [
@@ -60,8 +54,8 @@ const editorContainer = [
 const styles: Record<string, string> = {
   editorContainer,
 
-  // Padding is em-relative (legacy JSS `1em 0.5em`) so it scales with the 14px
-  // editor font — `px-2 py-4` (8px/16px fixed) shifted the text vs master.
+  // Padding is em-relative so it scales with the 14px editor font; fixed px
+  // would not track the font size.
   contentEditable:
     'outline-none h-full px-[0.5em] py-[1em] [tab-size:4] overflow-y-auto',
 

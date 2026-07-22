@@ -8,9 +8,8 @@ import type {
 } from 'react'
 import type { SizeType, BaseProps, StandardProps } from '@toptal/picasso-shared'
 
-// Mirrors @material-ui/core's `InputBaseComponentProps`: based on
-// `HTMLAttributes` (NOT `InputHTMLAttributes`) so it does not strictly type
-// `size` / `disabled` — consumers (e.g. Input) declare their own widened
+// Based on `HTMLAttributes` (NOT `InputHTMLAttributes`) so it does not strictly
+// type `size` / `disabled` — consumers (e.g. Input) declare their own widened
 // `size` union, which an `InputHTMLAttributes`-based shape would reject.
 export interface InputBaseComponentProps
   extends HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
