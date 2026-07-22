@@ -1,8 +1,7 @@
 /**
- * Tailwind class strings for the notistack `SnackbarProvider` container slots,
- * passed into its `classes` prop. The `[&>div]` / `[&>div>div]` variants target
- * notistack's internal container DOM: the per-anchor wrapper and, inside it,
- * each per-notification item wrapper.
+ * Tailwind class strings for the notistack `SnackbarProvider` container slots
+ * (its `classes` prop). `[&>div]` / `[&>div>div]` target notistack's internal
+ * DOM: the per-anchor wrapper and each per-notification item inside it.
  */
 
 // Header heights. `containerTopWithMargin` mirrors `headerHeight.default`;

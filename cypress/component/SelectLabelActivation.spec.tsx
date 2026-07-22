@@ -3,17 +3,10 @@ import { Button, Modal } from '@toptal/picasso'
 import { Form, FormSpy, OnChange } from '@toptal/picasso-forms'
 import { noop } from '@toptal/picasso/utils'
 
-// PF-2256 regression (staff-portal MemorandumAddModal › "verify the behaviour
-// when comment is modified"). The Select's popup closes correctly when the
-// selection commit opens a confirmation Modal — the Modal is incidental. What
-// broke the consumer flow is a click landing on the select's field <label>
-// afterwards: the browser forwards it to the associated select input as a
-// synthesized activation click, which re-opened the options popup over the
-// form. use-click-handler must ignore label-activation clicks. The unit-level
-// guard is covered in Select.spec.tsx and the use-click-handler jest tests;
-// this spec preserves the full consumer shape: picasso-forms field wiring
-// (randomized `htmlFor` → input id), an OnChange listener opening a Modal,
-// and the consumer's `key` remount of the Select.
+// Reproduces the full consumer shape that surfaced the label-activation bug —
+// picasso-forms field wiring, an OnChange listener opening a Modal, and a `key`
+// remount of the Select. The guard lives in use-click-handler (unit-tested in
+// Select.spec.tsx and its jest tests).
 const CATEGORY_OPTIONS = [
   { text: 'Talent rate', value: 'talent-rate' },
   { text: 'Engagement closed', value: 'engagement-closed' },
@@ -119,7 +112,7 @@ const TestForm = () => {
   )
 }
 
-describe('Form.Select whose selection opens a confirmation Modal (PF-2256)', () => {
+describe('Form.Select whose selection opens a confirmation Modal', () => {
   it('keeps the options popup closed through the confirmation and a later label click', () => {
     cy.mount(<TestForm />)
 
@@ -137,9 +130,7 @@ describe('Form.Select whose selection opens a confirmation Modal (PF-2256)', () 
 
     cy.getByTestId('notify').parent().click()
 
-    // a click on the select's field label forwards a browser-synthesized
-    // activation click to the (remounted) select input — it must focus the
-    // select but NOT re-open the options popup
+    // label click must focus the remounted select but NOT re-open the popup
     cy.contains('label', 'Category').click()
 
     cy.get('[data-picasso-popper]').should('not.exist')

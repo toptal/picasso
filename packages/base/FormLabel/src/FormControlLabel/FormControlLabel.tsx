@@ -30,12 +30,9 @@ export interface Props
   /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
   requiredDecoration?: RequiredDecoration
   /**
-   * Id of the label text node, for controls that name themselves via
-   * `aria-labelledby` (base-ui Checkbox/Switch). When provided, the wrapper is
-   * rendered as a non-`<label>` element so the control's hidden native input
-   * is not a second label-associated node — this keeps `getByLabelText` /
-   * `getByRole` matching a single accessible control. Label clicks are
-   * forwarded to the control to preserve click-to-toggle.
+   * Id of the label text node. When set, the wrapper renders as a non-`<label>`
+   * element that forwards label clicks — lets base-ui Checkbox/Switch name
+   * themselves via `aria-labelledby` without a duplicate label association.
    */
   labelId?: string
   classes?: {

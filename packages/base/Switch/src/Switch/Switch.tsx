@@ -59,10 +59,8 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     | 'onCheckedChange'
   >
 
-  // Name the control via `aria-labelledby` so it is the single
-  // label-associated node (see FormControlLabel `labelId`). Only relevant when
-  // there is a label to point at. `useBaseUiId` wraps `React.useId` with a
-  // React < 18 fallback, matching base-ui's own peer support.
+  // Name the control via `aria-labelledby` so it is the single label-associated
+  // node (see FormControlLabel `labelId`), only when there is a label.
   const generatedLabelId = useBaseUiId()
   const labelId = label ? generatedLabelId : undefined
 

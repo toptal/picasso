@@ -120,7 +120,7 @@ export const useScreenSize = () => {
 
 const useMediaQueryMatch = (query: string): boolean => {
   // `screens()` produces an `@media …` string, but matchMedia expects the bare
-  // query. MUI's useMediaQuery stripped this prefix for us pre-migration.
+  // query.
   const mediaQuery = query.replace(/^@media\s?/, '')
 
   const getMatches = () =>

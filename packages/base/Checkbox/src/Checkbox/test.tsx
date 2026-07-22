@@ -141,17 +141,15 @@ describe('Checkbox', () => {
     })
   })
 
-  describe('single label-associated node (PF-2244)', () => {
+  describe('single label-associated node', () => {
     it('matches getByLabelText once and resolves to the accessible control', () => {
       const { getByLabelText, getByRole } = renderCheckbox({
         label: 'No Rate Limit',
       })
 
-      // Regression: the base-ui control renders a role="checkbox" span plus a
-      // hidden native <input>. Both used to be label-associated (the span via
-      // aria-labelledby, the input via the wrapping <label>), so getByLabelText
-      // threw "Found multiple elements". It must now match exactly the
-      // accessible control.
+      // Regression: both the role="checkbox" span and the hidden native <input>
+      // used to be label-associated, so getByLabelText threw "Found multiple
+      // elements". It must now match only the accessible control.
       expect(getByLabelText('No Rate Limit')).toBe(
         getByRole('checkbox', { name: 'No Rate Limit' })
       )

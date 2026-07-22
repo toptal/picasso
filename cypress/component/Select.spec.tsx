@@ -458,9 +458,7 @@ describe('Select with an associated label', () => {
   it('does not open the options from a label-activation click', () => {
     cy.mount(<TestSelectWithLabel />)
 
-    // the browser forwards a label click to the associated select input as a
-    // synthesized activation click — it must focus the input without toggling
-    // the options popup, matching native <select> behavior [PF-2256]
+    // label click must focus the input without toggling the popup
     cy.contains('label', 'State').click()
 
     cy.focused().should('have.id', 'label-activation-select')

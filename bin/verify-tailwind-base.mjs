@@ -1,17 +1,9 @@
 #!/usr/bin/env node
 /**
- * PF-2221 — verifies the `@toptal/picasso-tailwind/base` reset entry under
- * both consumer Tailwind entry styles:
- *
- *   A) v3-compat — granular theme/utilities imports, utilities UNLAYERED
- *      (the shape this repo and Staff Portal use)
- *   B) standard v4 — `@import 'tailwindcss'` with layered utilities
- *
- * Asserts in both: the reset resolves through the package subpath export and
- * lands inside `@layer base`. For (B) additionally asserts the emitted layer
- * order declares `base` before `utilities`, so utilities always win over the
- * baseline by cascade-layer rules. (For (A) that guarantee is by spec:
- * unlayered CSS beats any layer.)
+ * Verifies the `@toptal/picasso-tailwind/base` reset resolves through the
+ * package subpath export and lands in `@layer base` (ahead of `utilities`, so
+ * utilities win) under both consumer Tailwind setups: v3-compat with unlayered
+ * utilities and standard v4 `@import 'tailwindcss'`.
  *
  * Run: node bin/verify-tailwind-base.mjs
  */

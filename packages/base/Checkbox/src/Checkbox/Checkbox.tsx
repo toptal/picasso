@@ -76,26 +76,21 @@ export const Checkbox = forwardRef<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, 'data-private': dataPrivate, ...checkboxAttributes } = rest
 
-  // Element-variance boundary: `Props` extends button/anchor HTML attributes,
-  // but BaseCheckbox.Root renders a <span>. The event-handler element types
-  // are runtime-compatible, so we resolve the variance once here instead of
-  // narrowing the public API.
+  // `Props` extends button/anchor HTML attributes but BaseCheckbox.Root renders
+  // a <span>; the event-handler element types are runtime-compatible, so resolve
+  // the variance once here rather than narrowing the public API.
   const rootRest = checkboxAttributes as CheckboxRootProps
 
-  // Name the control via `aria-labelledby` so it is the single
-  // label-associated node (see FormControlLabel `labelId`). Only relevant
-  // when there is a label to point at. `useBaseUiId` wraps `React.useId`
-  // with a React < 18 fallback, matching base-ui's own peer support.
+  // Name the control via `aria-labelledby` so it is the single label-associated
+  // node (see FormControlLabel `labelId`), only when there is a label.
   const generatedLabelId = useBaseUiId()
   const labelId = label ? generatedLabelId : undefined
 
   const checkboxElement = (
-    // Tame Base UI's visually-hidden <input>, which ships
-    // `position:absolute; top:0; left:0; margin:-1px` (inline). `relative` +
-    // the `translate-px` pair anchor it inside the 16px box so its bounds
-    // don't grow the rendered box past the legacy size (fixes the Happo
-    // dimension_mismatch). `appearance-none` keeps the native control from
-    // ever painting now that the input sits over the box.
+    // Base UI's visually-hidden <input> ships inline `position:absolute` with a
+    // negative margin; `relative` + `translate-px` anchor it inside the 16px box
+    // so it doesn't grow the rendered box (fixes the Happo dimension_mismatch),
+    // and `appearance-none` stops the native control painting over it.
     <span className='relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x-px [&_input]:translate-y-px'>
       <BaseCheckbox.Root
         {...rootRest}

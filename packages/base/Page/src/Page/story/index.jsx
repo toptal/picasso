@@ -11,12 +11,6 @@ const page = PicassoBook.section('Layout').createPage(
   'Page',
   `A Page component.
 
-  Content width, padding and header height are set as CSS variables on the Page
-  root, so you can override them per page through \`className\` (it wins by the
-  cascade) — e.g. \`<Page className="[--content-width:80em]" />\` widens the content
-  column. Variables: \`--content-width\` (default width), \`--content-width-wide\`
-  (used by \`width="wide"\`), \`--content-padding-horizontal\`, \`--header-height\`.
-
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -30,6 +24,20 @@ page
   .addComponentDocs(pageFooterStory.componentDocs)
   .addComponentDocs(pageBannerStory.componentDocs)
   .addComponentDocs(pageAutocompleteStory.componentDocs)
+
+page.createChapter('Customizing layout').addTextSection(
+  `
+Content width, padding and header height are set as CSS variables on the \`Page\`
+root, so you can override them per page through \`className\` (it wins by the
+cascade) — e.g. \`<Page className="[--content-width:80em]" />\` widens the content
+column.
+
+ * \`--content-width\` — max width of default content
+ * \`--content-width-wide\` — max width when \`width="wide"\`
+ * \`--content-padding-horizontal\` — horizontal content side padding
+ * \`--header-height\` — \`Page.TopBar\` height
+`
+)
 
 page
   .createChapter()
