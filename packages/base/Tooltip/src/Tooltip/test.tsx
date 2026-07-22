@@ -440,6 +440,35 @@ describe('Tooltip', () => {
       expect(onOpenMock).toHaveBeenCalled()
     })
 
+    it('keeps PF-2245 behaviour on the real pointer gesture (opens via hover, no latch)', async () => {
+      // The production/Cypress gesture end-to-end: `mouseover` arms the 200ms
+      // hover-open, then a real pointer click fires `pointerdown` → `focus` →
+      // `click`. PF-2253 vetoes the pointer-initiated focus-open, so — unlike the
+      // pre-fix path — there is no transient focus-open for the click to
+      // dismiss-and-latch. The click is a desktop no-op and the armed hover timer
+      // still opens the tooltip. This is the PF-2245 guarantee (a click during the
+      // hover delay must not leave the tooltip permanently suppressed) holding
+      // under the pointer-focus veto — the exact interaction consumer Cypress
+      // specs exercise.
+      const onOpenMock = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderTooltip({
+        onOpen: onOpenMock,
+      })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.mouseOver(trigger)
+      fireEvent.pointerDown(trigger)
+      fireEvent.focus(trigger)
+      fireEvent.click(trigger)
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+      expect(onOpenMock).toHaveBeenCalled()
+    })
+
     it('still dismisses a click once the hover-open has fired', async () => {
       // The click-during-delay exemption must not disarm ordinary click-to-
       // dismiss: once the 200ms hover-open has actually fired (pending flag
