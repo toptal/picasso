@@ -2,7 +2,14 @@ import type { ChangeEvent, MouseEvent, TouchEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import type { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import { toReactEvent } from '@toptal/picasso-shared'
-import { isPointerDevice } from '@toptal/picasso-utils'
+import {
+  isPointerDevice,
+  isPointerModality,
+  subscribePointerModality,
+  unsubscribePointerModality,
+} from '@toptal/picasso-utils'
+
+import { shouldHonorOpen } from './should-honor-open'
 
 const FOLLOW_CURSOR_CLOSE_DISTANCE = 50
 const FOLLOW_CURSOR_STOP_DELAY = 250
@@ -92,13 +99,12 @@ export const useTooltipState = ({
   // when it fires and every cancel path (click-dismiss, mouseleave, unmount)
   // nulls it too, so `openTimerRef.current !== undefined` reliably means the
   // enter-delay is still counting down. handleTriggerClick relies on that — a
-  // click landing in this window belongs to the same gesture as the hover:
-  // base-ui opens synchronously on the mousedown-focus (`trigger-focus`, via
-  // its `useFocus`; `matchesFocusVisible` is unconditionally true under jsdom
-  // and for the untrusted/programmatic focus a Cypress `.click()` dispatches),
-  // so the trailing click must not read that transient open and dismiss-then-
-  // latch it shut. Let hover win, as the pre-v2 build did (its click read
-  // lagging closure state and was a desktop no-op). [PF-2245]
+  // click landing in this window belongs to the same gesture as the hover, so
+  // it must not read base-ui's transient focus-open from that same gesture and
+  // dismiss-then-latch it shut. Let hover win, as the pre-v2 build did (its
+  // click read lagging closure state and was a desktop no-op). [PF-2245]
+  // (Why base-ui opens on that mousedown-focus at all is environment lore —
+  // see the pointer-modality util doc and ADR-20.)
   const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
   const touchOpenedRef = useRef(false)
@@ -111,13 +117,18 @@ export const useTooltipState = ({
   const followCursorHiddenRef = useRef(false)
   const stopTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    // Input-modality tracking feeds the pointer-focus veto in shouldHonorOpen
+    // (see the pointer-modality util doc for why `:focus-visible` alone can't
+    // make that call). [PF-2253]
+    subscribePointerModality()
+
+    return () => {
+      unsubscribePointerModality()
       clearTimeout(openTimerRef.current)
       clearTimeout(stopTimerRef.current)
-    },
-    []
-  )
+    }
+  }, [])
 
   // Fire onTransitionExiting when the close transition BEGINS (open flips
   // true→false), mirroring MUI's Grow `onExiting`; onTransitionExited then
@@ -154,25 +165,23 @@ export const useTooltipState = ({
       return
     }
 
-    // In uncontrolled mode Picasso decides which of base-ui's open requests to
-    // honor. Veto three: a click-dismiss latch (suppressReopenRef) or a
-    // follow-cursor roam-hide (followCursorHiddenRef) that must stay closed,
-    // and base-ui's `trigger-hover` open — Picasso owns hover-open via its own
-    // enter-delay timer (handleTriggerMouseOver), whereas base-ui's hover is
-    // REST-based (opens only once the cursor stops, not the enter-based delay
-    // MUI/legacy Picasso used), so honoring it would race a second, differently
-    // timed hover-open machine. base-ui still owns focus-open (`trigger-focus`,
-    // relied on for keyboard/focus) and every close/dismiss above.
+    // Picasso decides which open requests to honor — the whole veto set lives
+    // in shouldHonorOpen's truth table. Runs BEFORE the controlled/
+    // uncontrolled split, but the arbiter keeps the hover/latch/roam vetoes
+    // uncontrolled-only (a controlled tooltip's only hover-open is base-ui's
+    // forwarded `trigger-hover` → onOpen); only the pointer-focus veto newly
+    // applies to controlled mode. Keyboard focus-open stays honored for a11y.
+    // [PF-2253]
     if (
-      !isControlled &&
-      (suppressReopenRef.current ||
-        followCursorHiddenRef.current ||
-        eventDetails.reason === 'trigger-hover')
+      !shouldHonorOpen({
+        reason: eventDetails.reason,
+        isControlled,
+        suppressReopen: suppressReopenRef.current,
+        followCursorHidden: followCursorHiddenRef.current,
+        followCursorUnsupported,
+        isPointerModality: isPointerModality(),
+      })
     ) {
-      return
-    }
-
-    if (followCursorUnsupported) {
       return
     }
 
@@ -199,9 +208,11 @@ export const useTooltipState = ({
 
     if (openRef.current) {
       // A hover-open is still in flight: this "open" is base-ui's transient
-      // focus-open from the same click gesture, not a deliberately shown
-      // tooltip — don't dismiss-and-latch it. Leave the pending timer to open
-      // it for real (its callback no-ops if base-ui already did). [PF-2245]
+      // focus-open coexisting with the same gesture (now a keyboard-focus-open,
+      // since row 5 vetoes pointer-focus — still reachable where a focus fires
+      // without a preceding pointerdown), not a deliberately shown tooltip —
+      // don't dismiss-and-latch it. Leave the pending timer to open it for real
+      // (its callback no-ops if base-ui already did). [PF-2245]
       if (openTimerRef.current !== undefined) {
         return
       }

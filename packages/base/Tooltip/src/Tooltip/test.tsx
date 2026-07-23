@@ -47,6 +47,17 @@ const tapElement = (element: Element) => {
   fireEvent.click(element)
 }
 
+// A genuine KEYBOARD focus is preceded by a keydown (Tab). Firing it flips the
+// shared input-modality flag back to keyboard so base-ui's focus-open is
+// honored — the hook suppresses only POINTER-initiated focus (a mousedown that
+// focuses the trigger fires `pointerDown` before `focus` instead). Modality is
+// tracked in module state that persists across tests, so every focus-open test
+// pins it explicitly rather than relying on order. [PF-2253]
+const focusViaKeyboard = (element: Element) => {
+  fireEvent.keyDown(element, { key: 'Tab' })
+  fireEvent.focus(element)
+}
+
 const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
   // onClick/onMouseOver/onMouseMove/onMouseLeave belong on the wrapped trigger,
   // not on Tooltip — keep them off the {...tooltipProps} spread so they aren't
@@ -227,7 +238,7 @@ describe('Tooltip', () => {
     it('opens the tooltip and closes it on blur', async () => {
       const { getByTestId, queryByTestId } = renderTooltip()
 
-      fireEvent.focus(getByTestId('tooltip-trigger'))
+      focusViaKeyboard(getByTestId('tooltip-trigger'))
       await waitFor(() => {
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       })
@@ -247,7 +258,7 @@ describe('Tooltip', () => {
         onClose: onCloseMock,
       })
 
-      fireEvent.focus(getByTestId('tooltip-trigger'))
+      focusViaKeyboard(getByTestId('tooltip-trigger'))
       await waitFor(() => expect(onOpenMock).toHaveBeenCalled())
 
       fireEvent.blur(getByTestId('tooltip-trigger'))
@@ -312,7 +323,7 @@ describe('Tooltip', () => {
         followCursor: true,
       })
 
-      fireEvent.focus(getByTestId('tooltip-trigger'))
+      focusViaKeyboard(getByTestId('tooltip-trigger'))
 
       await waitFor(() =>
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
@@ -402,16 +413,15 @@ describe('Tooltip', () => {
 
   describe('when clicked during the hover-open delay on a pointer device', () => {
     it('opens the tooltip instead of latching it shut', async () => {
-      // Regression for PF-2245. A real `cy.click()` fires
-      // mouseover → mousedown(focus) → click. The mouseover arms Picasso's
-      // 200ms hover-open; the mousedown-focus makes base-ui open the tooltip
-      // synchronously (its `useFocus`, reason `trigger-focus` — `matchesFocus-
-      // Visible` is unconditionally true under jsdom and for the untrusted
-      // programmatic focus a `cy.click()` dispatches); the trailing click
-      // lands while that open is in flight. It must NOT dismiss-and-latch the
-      // tooltip — otherwise it stays suppressed until the pointer leaves and
-      // re-enters, which never happens (the cursor sits on the trigger), so
-      // every consumer Cypress spec that `.click()`s a tooltip trigger fails.
+      // Regression for PF-2245. The mouseover arms Picasso's 200ms hover-open;
+      // base-ui opens the tooltip synchronously on focus (its `useFocus`,
+      // reason `trigger-focus`); the trailing click lands while that open is in
+      // flight. It must NOT dismiss-and-latch the tooltip — otherwise it stays
+      // suppressed until the pointer leaves and re-enters, which never happens
+      // (the cursor sits on the trigger), so every consumer Cypress spec that
+      // `.click()`s a tooltip trigger fails. PF-2253 now suppresses a POINTER-
+      // initiated focus-open, so pin keyboard modality here (focusViaKeyboard)
+      // to keep base-ui's focus-open honored and exercise the latch path.
       const onOpenMock = jest.fn()
 
       const { getByTestId, queryByTestId } = renderTooltip({
@@ -421,8 +431,37 @@ describe('Tooltip', () => {
       const trigger = getByTestId('tooltip-trigger')
 
       fireEvent.mouseOver(trigger)
-      fireEvent.focus(trigger)
+      focusViaKeyboard(trigger)
       clickElement(trigger)
+
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+      expect(onOpenMock).toHaveBeenCalled()
+    })
+
+    it('keeps PF-2245 behaviour on the real pointer gesture (opens via hover, no latch)', async () => {
+      // The production/Cypress gesture end-to-end: `mouseover` arms the 200ms
+      // hover-open, then a real pointer click fires `pointerdown` → `focus` →
+      // `click`. PF-2253 vetoes the pointer-initiated focus-open, so — unlike the
+      // pre-fix path — there is no transient focus-open for the click to
+      // dismiss-and-latch. The click is a desktop no-op and the armed hover timer
+      // still opens the tooltip. This is the PF-2245 guarantee (a click during the
+      // hover delay must not leave the tooltip permanently suppressed) holding
+      // under the pointer-focus veto — the exact interaction consumer Cypress
+      // specs exercise.
+      const onOpenMock = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderTooltip({
+        onOpen: onOpenMock,
+      })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.mouseOver(trigger)
+      fireEvent.pointerDown(trigger)
+      fireEvent.focus(trigger)
+      fireEvent.click(trigger)
 
       await waitFor(() =>
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
@@ -444,7 +483,7 @@ describe('Tooltip', () => {
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       )
 
-      fireEvent.focus(trigger)
+      focusViaKeyboard(trigger)
       clickElement(trigger)
       await waitFor(() =>
         expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
@@ -453,6 +492,114 @@ describe('Tooltip', () => {
       // Still hovering: suppressed. Leaving lifts it; a re-hover opens again.
       fireEvent.mouseLeave(trigger, { clientX: 100, clientY: 100 })
       fireEvent.mouseOver(trigger)
+      await waitFor(() =>
+        expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+      )
+    })
+  })
+
+  describe('when a pointer click focuses the trigger', () => {
+    // PF-2253. A mousedown that focuses the trigger fires `pointerDown` then
+    // `focus`; base-ui would open on that pointer-initiated focus (reason
+    // `trigger-focus`). It must NOT — otherwise the popup flashes open
+    // mid-click and, if the positioner lands it over the trigger, swallows the
+    // trailing click, leaving the wrapped control unclickable.
+    it('does not open the tooltip on pointer-initiated focus', async () => {
+      const onOpenMock = jest.fn()
+
+      const { getByTestId, queryByTestId } = renderTooltip({
+        onOpen: onOpenMock,
+      })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.pointerDown(trigger)
+      fireEvent.focus(trigger)
+
+      await expect(() =>
+        waitFor(() => {
+          expect(queryByTestId('tooltip-content')).toBeInTheDocument()
+        })
+      ).rejects.toThrow()
+      expect(onOpenMock).not.toHaveBeenCalled()
+    })
+
+    it('still fires the wrapped control onClick', async () => {
+      // Wiring smoke-test only: it confirms Tooltip forwards the trigger's own
+      // onClick through the pointer-focus path. It does NOT prove the tooltip
+      // stops swallowing clicks — jsdom has no hit-testing, so a popup
+      // overlaying the trigger wouldn't intercept the click here anyway. The
+      // real click-swallowing proof is the client-portal Cypress `force:true`
+      // revert per the DoD.
+      const onClickMock = jest.fn()
+
+      const { getByTestId } = renderTooltip({ onClick: onClickMock })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.pointerDown(trigger)
+      fireEvent.focus(trigger)
+      fireEvent.click(trigger)
+
+      expect(onClickMock).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not call onOpen in controlled mode either', () => {
+      // The one controlled-mode behavior change (row 5): a pointer-initiated
+      // focus must not call onOpen on a controlled tooltip. The complementary
+      // guarantee — that a controlled tooltip STILL forwards base-ui's
+      // `trigger-hover` to onOpen (rows 2–4 stay uncontrolled-only) — is
+      // covered by should-honor-open.test.ts's controlled cases; base-ui's
+      // REST-based hover-open is impractical to drive in jsdom, so the pure
+      // arbiter is the coverage for that path (see ADR-20).
+      const onOpenMock = jest.fn()
+
+      const { getByTestId } = renderTooltip({
+        open: false,
+        onOpen: onOpenMock,
+      })
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.pointerDown(trigger)
+      fireEvent.focus(trigger)
+      fireEvent.click(trigger)
+
+      // Synchronous assertion is valid: base-ui's focus-open fires inline
+      // (no `delay` set), so onOpen would already have run by now if honored.
+      expect(onOpenMock).not.toHaveBeenCalled()
+    })
+
+    it('still calls onOpen on keyboard focus in controlled mode', async () => {
+      // The honored controlled path end-to-end: a keyboard focus must still
+      // reach a controlled consumer's onOpen (row 6). Guards against the call
+      // site passing `isControlled` wrongly — the veto side is covered above,
+      // this covers the honor side.
+      const onOpenMock = jest.fn()
+
+      const { getByTestId } = renderTooltip({
+        open: false,
+        onOpen: onOpenMock,
+      })
+
+      focusViaKeyboard(getByTestId('tooltip-trigger'))
+
+      await waitFor(() => expect(onOpenMock).toHaveBeenCalled())
+    })
+
+    it('still opens on keyboard focus after a prior pointer click', async () => {
+      // The pointer modality must not poison a later genuine keyboard focus:
+      // a Tab keydown flips the modality back so focus opens the tooltip again.
+      const { getByTestId, queryByTestId } = renderTooltip()
+
+      const trigger = getByTestId('tooltip-trigger')
+
+      fireEvent.pointerDown(trigger)
+      fireEvent.focus(trigger)
+      fireEvent.blur(trigger)
+
+      focusViaKeyboard(trigger)
+
       await waitFor(() =>
         expect(queryByTestId('tooltip-content')).toBeInTheDocument()
       )
