@@ -316,6 +316,7 @@ export type {
   PopperModifiers,
   PopperOptions,
   PopperPadding,
+  PopperPlacementType,
   PopperProps,
   PopperReferenceObject,
 } from '@toptal/picasso-popper'

@@ -9,7 +9,7 @@
 
 Decommission the MUI v4 runtime and remove the `@material-ui/core` peer dependency.
 
-`@toptal/picasso-provider` no longer ships an MUI theme runtime, and `@toptal/picasso` no longer requires `@material-ui/core` as a peer dependency. Both packages now allow React 19 (the `react`/`react-dom` peer range widens to `>=16.12.0`).
+`@toptal/picasso-provider` no longer ships an MUI theme runtime, and `@toptal/picasso` no longer requires `@material-ui/core` as a peer dependency.
 
 Breaking changes (consumer action required):
 

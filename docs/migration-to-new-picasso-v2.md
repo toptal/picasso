@@ -13,9 +13,8 @@ It has two parts, same content pitched at two audiences:
   agent (grep inventories, per-pattern fix matrices, verification gates, a
   failing-test triage tree).
 
-> This supersedes and absorbs the test-only
-> [`docs/modernization/migration-to-new-picasso.md`](modernization/migration-to-new-picasso.md)
-> (Jest + Cypress only). Use **this** document for a full application upgrade.
+> This is the full application-upgrade guide — it supersedes and absorbs an
+> earlier test-only migration note (Jest + Cypress only).
 
 It is a synthesis of four real consumer migrations — **staff-portal**,
 **top-scheduler-frontend**, **topkit**, and **client-portal** — reconciled
@@ -868,8 +867,6 @@ This guide reconciles four consumer migrations with the current Picasso source:
 
 Authoritative in-repo references: the `decommission-mui-provider`,
 `picasso-tailwind-base-entry`, and `page-topbar-wscreen` changesets;
-[`docs/modernization/migration-to-new-picasso.md`](modernization/migration-to-new-picasso.md)
-(the test-only predecessor this document supersedes);
 [`AGENTS.md`](../AGENTS.md) §Styling / §"Base UI composition" for the end-state
 component-authoring rules.
 

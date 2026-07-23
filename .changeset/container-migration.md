@@ -4,6 +4,5 @@
 
 ### Container
 
-- Drop residual `@material-ui/core` type import (`PropTypes.Alignment`) in favor of an explicit literal union on the `align` prop. Public API and behavior unchanged.
-- Migrate the props interface to `extends BaseProps`, dropping the vestigial `classes` prop from the public type. The prop was inherited from `StandardProps` but was never read in source and had zero internal / external consumer usage per the cross-tier audit.
-- Lift `react` peer cap to `>=16.12.0` so the package is compatible with React 19.
+- drop residual `@material-ui/core` type import (`PropTypes.Alignment`) in favor of an explicit literal union on the `align` prop. Public API and behavior unchanged.
+- migrate the props interface to `extends BaseProps`, dropping the vestigial `classes` prop from the public type. The prop was inherited from `StandardProps` but was never read in source and had zero internal / external consumer usage per the cross-tier audit.

@@ -39,8 +39,7 @@
 - breaking DOM-lifecycle change: the popup now unmounts when closed (it was
   kept mounted-but-hidden under MUI). Consumer DOM queries / tests that assert
   a closed tooltip's content is "not visible" should assert it "does not exist".
-- lift the `react` peer-dependency upper bound to `>=16.12.0` (drop the
-  `< 19.0.0` cap). Drop the `@material-ui/core` peer dependency.
+- drop the `@material-ui/core` peer dependency.
 - seat the arrow closer to menu-item anchors (`role="menuitem"`): a menu
   item's box includes top padding, so the standard flush gap points the tip at
   that padding (the strip above the option); menu-item tooltips now pull the

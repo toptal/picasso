@@ -9,7 +9,6 @@
 - breaking: the forwarded `ref` resolves to a `PopperHandle` (`popper` element, `update()`, `scheduleUpdate()`) instead of a popper.js instance; popper.js-only instance members (`destroy()`, `enableEventListeners()`, `options`, …) are gone. `ref.current.popper` keeps working
 - breaking: lifecycle callbacks `onCreate`/`onUpdate` are invoked without the popper.js `data` argument
 - breaking: when portaled, the popper element is wrapped in a `data-floating-ui-portal` element inside the container instead of being appended directly
-- lift the React 19 peer-dependency cap (`react: >=16.12.0`)
 
 ### Cypress test notes
 
