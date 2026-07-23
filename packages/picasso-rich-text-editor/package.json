@@ -28,12 +28,12 @@
     "@lexical/selection": "0.11.3",
     "@lexical/text": "0.11.3",
     "@lexical/utils": "0.11.3",
-    "@toptal/picasso-shared": "^16.0.0",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0",
+    "@toptal/picasso-shared": "workspace:^",
+    "react": ">=17.0.0 < 19.0.0",
+    "react-dom": ">=17.0.0 < 19.0.0",
     "typescript": "^5.5.0",
-    "@toptal/picasso-tailwind-merge": "^2.0.0",
-    "@toptal/picasso-tailwind": ">=2.7"
+    "@toptal/picasso-tailwind-merge": "workspace:^",
+    "@toptal/picasso-tailwind": "workspace:^"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.2.1",

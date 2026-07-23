@@ -54,7 +54,9 @@ for (let pass = 1; pass <= 3 && pending.length > 0; pass++) {
 
 if (pending.length > 0) {
   console.error(
-    `::error::${pending.length} published package(s) not found on npm: ${pending.join(', ')}`
+    `::error::${
+      pending.length
+    } published package(s) not found on npm: ${pending.join(', ')}`
   )
   process.exit(1)
 }

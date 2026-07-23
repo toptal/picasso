@@ -45,12 +45,12 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@toptal/picasso-tailwind-merge": "^2.0.0",
-    "@toptal/picasso-provider": "*",
-    "react-dom": "^18.2.0",
-    "@toptal/picasso-tailwind": ">=2.7",
-    "@toptal/picasso-skeleton-loader": "^1.0.37",
-    "react": ">=17.0.0"
+    "@toptal/picasso-tailwind-merge": "workspace:^",
+    "@toptal/picasso-provider": "workspace:^",
+    "react-dom": ">=17.0.0 < 19.0.0",
+    "@toptal/picasso-tailwind": "workspace:^",
+    "@toptal/picasso-skeleton-loader": "workspace:^",
+    "react": ">=17.0.0 < 19.0.0"
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "workspace:*",

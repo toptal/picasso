@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-charts#readme",
   "peerDependencies": {
-    "@toptal/picasso-shared": "^16.0.0",
-    "react": ">=17.0.0",
+    "@toptal/picasso-shared": "workspace:^",
+    "react": ">=17.0.0 < 19.0.0",
     "typescript": "^5.5.0"
   },
   "devDependencies": {

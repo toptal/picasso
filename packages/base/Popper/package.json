@@ -28,10 +28,10 @@
     "@toptal/picasso-modal-context": "workspace:*"
   },
   "peerDependencies": {
-    "@toptal/picasso-provider": "*",
-    "react": ">=17.0.0",
-    "@toptal/picasso-tailwind": ">=2.5.0",
-    "@toptal/picasso-tailwind-merge": "^2.0.0"
+    "@toptal/picasso-provider": "workspace:^",
+    "react": ">=17.0.0 < 19.0.0",
+    "@toptal/picasso-tailwind": "workspace:^",
+    "@toptal/picasso-tailwind-merge": "workspace:^"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "workspace:*"

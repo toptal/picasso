@@ -35,10 +35,10 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@toptal/picasso-provider": "*",
-    "@toptal/picasso-tailwind-merge": "^2.0.0",
+    "@toptal/picasso-provider": "workspace:^",
+    "@toptal/picasso-tailwind-merge": "workspace:^",
     "react": ">=17.0.0 < 19.0.0",
-    "@toptal/picasso-tailwind": ">=2.5.0"
+    "@toptal/picasso-tailwind": "workspace:^"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "workspace:*",

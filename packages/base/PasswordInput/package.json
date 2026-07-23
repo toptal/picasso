@@ -34,8 +34,8 @@
   ],
   "peerDependencies": {
     "react": ">=17.0.0 < 19.0.0",
-    "@toptal/picasso-tailwind-merge": "^2.0.0",
-    "@toptal/picasso-tailwind": ">=2.5.0"
+    "@toptal/picasso-tailwind-merge": "workspace:^",
+    "@toptal/picasso-tailwind": "workspace:^"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

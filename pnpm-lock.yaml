@@ -622,7 +622,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.6.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -656,7 +656,7 @@ importers:
         specifier: workspace:*
         version: link:../Menu
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -690,7 +690,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -737,7 +737,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -789,10 +789,10 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -835,7 +835,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -872,7 +872,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -897,7 +897,7 @@ importers:
         specifier: workspace:*
         version: link:../Fade
       '@toptal/picasso-tailwind':
-        specifier: '>2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -941,10 +941,10 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.6.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -996,7 +996,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1036,10 +1036,10 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1079,7 +1079,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1110,7 +1110,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1141,7 +1141,7 @@ importers:
   packages/base/Collapse:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1166,10 +1166,10 @@ importers:
   packages/base/Container:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1209,7 +1209,7 @@ importers:
         specifier: workspace:*
         version: link:../Popper
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1258,7 +1258,7 @@ importers:
         specifier: workspace:*
         version: link:../Paper
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1323,10 +1323,10 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1357,7 +1357,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1372,10 +1372,10 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.8.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       classnames:
         specifier: ^2.5.1
@@ -1391,7 +1391,7 @@ importers:
   packages/base/Fade:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1431,7 +1431,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
         specifier: workspace:*
@@ -1483,7 +1483,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1523,7 +1523,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1548,7 +1548,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1573,10 +1573,10 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 16.0.0
+        specifier: workspace:^
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1610,7 +1610,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1632,10 +1632,10 @@ importers:
   packages/base/Icons:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1657,10 +1657,10 @@ importers:
   packages/base/Image:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1697,7 +1697,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1722,7 +1722,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1741,7 +1741,7 @@ importers:
   packages/base/Link:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1775,7 +1775,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1803,7 +1803,7 @@ importers:
   packages/base/Loader:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1825,7 +1825,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -1858,7 +1858,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1901,7 +1901,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -1945,7 +1945,7 @@ importers:
         specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
@@ -1979,7 +1979,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2028,7 +2028,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2062,7 +2062,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2151,13 +2151,13 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-skeleton-loader':
-        specifier: ^1.0.37
+        specifier: workspace:^
         version: link:../SkeletonLoader
       '@toptal/picasso-tag':
         specifier: workspace:*
         version: link:../Tag
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
         specifier: workspace:*
@@ -2200,7 +2200,7 @@ importers:
         specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2222,7 +2222,7 @@ importers:
   packages/base/Paper:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.0.1'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2256,7 +2256,7 @@ importers:
         specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2284,10 +2284,10 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2312,7 +2312,7 @@ importers:
         specifier: workspace:*
         version: link:../Modal
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2334,7 +2334,7 @@ importers:
         specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2359,7 +2359,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.4.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2396,7 +2396,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2427,7 +2427,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2510,7 +2510,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2554,7 +2554,7 @@ importers:
   packages/base/Slide:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2582,7 +2582,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
         specifier: workspace:*
@@ -2653,7 +2653,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: ^4.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       react:
         specifier: ^18.2.0
@@ -2684,7 +2684,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2727,7 +2727,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2767,7 +2767,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>2.1.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2832,7 +2832,7 @@ importers:
   packages/base/Test-Utils:
     dependencies:
       '@toptal/picasso-provider':
-        specifier: '*'
+        specifier: workspace:^
         version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: workspace:*
@@ -2854,7 +2854,7 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -2885,10 +2885,10 @@ importers:
         specifier: workspace:*
         version: link:../OutlinedInput
       '@toptal/picasso-tailwind':
-        specifier: '>=2.5.0'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2947,7 +2947,7 @@ importers:
         specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2966,7 +2966,7 @@ importers:
   packages/base/Typography:
     dependencies:
       '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -2988,7 +2988,7 @@ importers:
   packages/base/TypographyOverflow:
     dependencies:
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tooltip':
         specifier: workspace:*
@@ -3022,10 +3022,10 @@ importers:
         specifier: workspace:*
         version: link:../Container
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.5
+        specifier: workspace:^
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -3219,7 +3219,7 @@ importers:
         specifier: workspace:*
         version: link:../base/PromptModal
       '@toptal/picasso-provider':
-        specifier: '*'
+        specifier: workspace:^
         version: link:../picasso-provider
       '@toptal/picasso-quote':
         specifier: workspace:*
@@ -3267,7 +3267,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Tagselector
       '@toptal/picasso-tailwind':
-        specifier: '>=3'
+        specifier: workspace:^
         version: link:../picasso-tailwind
       '@toptal/picasso-test-utils':
         specifier: workspace:*
@@ -3391,7 +3391,7 @@ importers:
   packages/picasso-charts:
     dependencies:
       '@toptal/picasso-shared':
-        specifier: ^16.0.0
+        specifier: workspace:^
         version: link:../shared
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -3510,7 +3510,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
-        specifier: ^16.0.0
+        specifier: workspace:^
         version: link:../shared
       '@toptal/picasso-switch':
         specifier: workspace:*
@@ -3519,7 +3519,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Tagselector
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../picasso-tailwind
       '@toptal/picasso-timepicker':
         specifier: workspace:*
@@ -3580,7 +3580,7 @@ importers:
   packages/picasso-pictograms:
     dependencies:
       '@toptal/picasso-shared':
-        specifier: ^16.0.0
+        specifier: workspace:^
         version: link:../shared
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -3660,7 +3660,7 @@ importers:
         specifier: workspace:*
         version: link:../base/PromptModal
       '@toptal/picasso-provider':
-        specifier: '*'
+        specifier: workspace:^
         version: link:../picasso-provider
       '@toptal/picasso-radio':
         specifier: workspace:*
@@ -3672,7 +3672,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Tagselector
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
@@ -3793,10 +3793,10 @@ importers:
         specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
-        specifier: ^16.0.0
+        specifier: workspace:^
         version: link:../shared
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -3925,7 +3925,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Paper
       '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
+        specifier: workspace:^
         version: link:../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*

@@ -42,8 +42,11 @@ verified behavior and flags the difference.
 - **Popups (Select, Dropdown, Menu, Tooltip, DatePicker, Modal, Drawer) render
   asynchronously, in portals** attached to the Picasso root — they used to
   render inline.
-- **React 19 is unblocked** (the `react`/`react-dom` peer range widens to
-  `>=16.12.0`).
+- **React 16 is dropped; the React 19 cap lift ships separately.** The
+  `react`/`react-dom` peer range is `>=17.0.0 < 19.0.0` — the floor rose to
+  React 17 because `@base-ui/react` requires `^17 || ^18 || ^19`. The
+  modernization removes the blockers to React 19, but lifting the `< 19.0.0`
+  cap (once validated) is tracked separately in PF-2262.
 
 > ### 🏆 Golden rule
 >
