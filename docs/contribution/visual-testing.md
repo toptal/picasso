@@ -16,6 +16,32 @@ Follow these steps for fixing a visual differences in Happo reports:
 3. Approve the report if they are acceptable.
 4. Success! The PR job is now green.
 
+## Verifying a component visually in a local browser
+
+When a Happo diff needs investigating — or you just want to eyeball a change before pushing — render a single story headlessly, the same way Happo does.
+
+Picasso ships **Storybook 6.5** (not 7+). Each story renders on its own canvas at:
+
+```
+http://localhost:9001/iframe.html?id=<story-id>&viewMode=story
+```
+
+`iframe.html` renders **only** the story canvas — no sidebar, toolbar, or addons panel — which is exactly what Happo screenshots. (`/?path=/story/...` renders the full Storybook chrome instead.) Discover the exact `<story-id>` from the browser console:
+
+```js
+// Storybook 6.5 surface:
+window.__STORYBOOK_CLIENT_API__.raw().map(s => s.id)
+// e.g. "components-button--button"
+```
+
+`__STORYBOOK_PREVIEW__.storyStoreValue` and `/index.json` are Storybook **7+** APIs — they return `undefined` / 404 here. If you land on Storybook's red error overlay, the id is wrong; fix the id rather than screenshotting the overlay.
+
+### The production font is domain-locked — localhost renders Arial
+
+Picasso's `proxima-nova` loads from a domain-locked Adobe Typekit kit that only serves on `*.toptal.net`. So the Happo baseline (rendered on `picasso.toptal.net`) uses the real font, while `localhost:9001` falls back to **Arial**.
+
+The consequence that bites: a genuine **font-metric** regression (a dropped `line-height` pin, a wrong `letter-spacing`, glyph-driven box sizing) will **not reproduce locally** — Arial masks it — yet it is real in the Happo cloud render. So "I couldn't reproduce it locally" is never, by itself, grounds to dismiss a Happo diff as flaky or environmental. When a dimension/metric diff won't reproduce locally, stop comparing rendered boxes and **diff the source styles** instead.
+
 ## Responsive components and layout breakpoints testing
 
 Some components on Picasso behave differently based on different device sizes

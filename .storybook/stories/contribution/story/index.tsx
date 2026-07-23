@@ -16,6 +16,12 @@ import CREATING_EXAMPLES from '../../../../docs/contribution/creating-examples.m
 import VISUAL_SNAPSHOTS from '../../../../docs/contribution/visual-testing.md'
 // @ts-ignore
 import COMPONENT_API from '../../../../docs/contribution/component-api.md'
+// @ts-ignore
+import BASE_UI_STYLING from '../../../../docs/contribution/base-ui-styling.md'
+// @ts-ignore
+import BASE_UI_API from '../../../../docs/contribution/base-ui-api.md'
+// @ts-ignore
+import TAILWIND_TOKENS from '../../../../docs/contribution/tailwind-tokens.md'
 
 const section = PicassoBook.section('Contribution')
 section.createDocPage('GitHub workflow', createMarkdownPage(GITHUB_WORKFLOW))
@@ -28,3 +34,6 @@ section.createDocPage(
 )
 section.createDocPage('Visual snapshots', createMarkdownPage(VISUAL_SNAPSHOTS))
 section.createDocPage('Design component API', createMarkdownPage(COMPONENT_API))
+section.createDocPage('Base UI styling', createMarkdownPage(BASE_UI_STYLING))
+section.createDocPage('Base UI API', createMarkdownPage(BASE_UI_API))
+section.createDocPage('Tailwind tokens', createMarkdownPage(TAILWIND_TOKENS))

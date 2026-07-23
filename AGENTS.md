@@ -2,7 +2,7 @@
 
 This file guides AI coding agents and contributors working in this repo. Read it top-to-bottom once; it is the single page meant to replace hunting through scattered docs.
 
-**How to read it:** the _operate_ sections (tooling, commands, layout) tell you how to run the repo. The _author_ sections (API, types, styling, …) each state a **principle** first, then the Picasso-specific rules you could not deduce from it — when a case is not covered, reason from the principle. The **Migration in flight** section near the end is transient and gets deleted when the `@base-ui/react` migration completes; everything else describes the steady state.
+**How to read it:** the _operate_ sections (tooling, commands, layout) tell you how to run the repo. The _author_ sections (API, types, styling, …) each state a **principle** first, then the Picasso-specific rules you could not deduce from it — when a case is not covered, reason from the principle.
 
 ## What this repo is
 
@@ -131,7 +131,8 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **Tokens over arbitrary values** — use Picasso token names (`text-graphite-800`, `shadow-2`, `p-4`). An `[arbitrary-value]` plus a `// TODO(tokens): …` comment is a last resort to raise with designers; never invent tokens.
 - **No `!important`.** If a utility won't win, walk the override ladder: don't-override → `data-[…]:` / `className` → `render` prop → (last resort) inline `style`. Reaching for `!important` means you skipped a rung.
 - **No CSS/JSS** — no `.css`/`.scss`/`.module.css`, no `makeStyles`/`createStyles`/`withStyles`/`&$selector`. Inline `style` is only for genuinely runtime-computed values, never static ones.
-- **Whole-pixel geometry.** Positions/dimensions should resolve to whole pixels — sub-pixel values blur borders, dividers, and text. Avoid the usual culprits: `translate(-50%, …)` on odd-size elements, uneven `%` / `calc(100% / 3)`, fractional `rem`/`line-height`/`border-width`. _Exception:_ Base UI primitives self-center via `translate: -50% -50%` — accept their geometry rather than re-introducing pixel-snapping offsets to fight it (see `docs/migration/references/base-ui-styling.md §7.1` rung -1).
+- **Whole-pixel geometry.** Positions/dimensions should resolve to whole pixels — sub-pixel values blur borders, dividers, and text. Avoid the usual culprits: `translate(-50%, …)` on odd-size elements, uneven `%` / `calc(100% / 3)`, fractional `rem`/`line-height`/`border-width`. _Exception:_ Base UI primitives self-center via `translate: -50% -50%` — accept their geometry rather than re-introducing pixel-snapping offsets to fight it.
+- **Deep dive:** the full Base UI + Tailwind styling doctrine and the override-preference ladder live in `docs/contribution/base-ui-styling.md`; the canonical token list is `docs/contribution/tailwind-tokens.md`.
 
 ## Base UI composition
 
@@ -142,6 +143,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **Components passed to `render` must forward `ref`.**
 - **For opinionated defaults, add DOM inside a slot or wrap the Root** — don't fork the primitive.
 - **Override Base UI's internal inline styles by passing `style` to the part** (its `mergeProps` is rightmost-wins) — but first check whether you can simply not override (accept the primitive's geometry).
+- **API patterns catalogued** in `docs/contribution/base-ui-api.md` — compound parts, `render`/`nativeButton`, and the `toReactChangeEvent` / `toReactEvent` event-boundary adapters for form inputs.
 
 ## Code organization
 
@@ -175,30 +177,10 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **Dependencies:** caret (`^`) for npm deps, exact for workspace deps; install with plain `pnpm install`.
 - **CI is repo-wide:** touched files must pass `pnpm prettier --check` and ESLint (`pnpm lint:fix` autofixes most). A lint error _anywhere_ in the repo blocks the PR.
 
----
-
-## Migration in flight (transient — delete when the `@base-ui/react` migration completes)
-
-Temporary rules for the in-progress migration off `@mui/base` / `@material-ui/core`. Everything above is the end state and does **not** depend on this section; remove it in one cut when the migration lands.
-
-- **Preserve existing violations.** A library-swap PR keeps the current public API _and_ its pre-existing rule violations as-is. Don't opportunistically fix unrelated naming/styling — scope creep breaks the "no consumer-visible change" contract. (`docs/migration/references/design-patterns-addendum.md §1`)
-- **Migrate away from v0, never toward it.** `@mui/base`, `slotProps`, public `classes`, and `group-[.base--*]` selectors are legacy — never introduce them in new code. Pre-v1 components keep their `base--*` selectors until their own migration.
-- **Sanctioned API-rule exceptions** (audit-backed; keep as-is, do not "fix"): Tier-3.b `classes` stays narrowed on **Dropdown** & **OutlinedInput** (rule 5); `StandardProps` / mixed `extends` stay until the end-state removal from `@toptal/picasso-shared` (rule 10); existing `isOpen`-style names and non-compound shapes are left untouched (rules 14/15). (`docs/migration/references/design-patterns-addendum.md §"Migration-period architectural exceptions"`; `CLAUDE.md §"classes prop handling per tier"`)
-- **Adapt type mismatches at the boundary, prop-by-prop.** Destructure the _specific_ incompatible props and spread `...rest` unchanged; bridge Base UI's `eventDetails.event` to Picasso's `React.ChangeEvent` with `toReactChangeEvent` (form inputs) or `toReactEvent<R>` (generic) from `@toptal/picasso-shared`. Never narrow the public `Props` to satisfy `tsc`. (`docs/migration/references/code-standards.md §"prop-by-prop boundary"`)
-- **Build before you snapshot.** Run `build:package` before `jest -u`; when you drop a workspace dep from `package.json`, also drop its `references` entry from `tsconfig.json`. Take `versionBump` verbatim from `docs/migration/manifest.json`. `@base-ui/utils` ships via a patch. JSS→Tailwind mechanics live in `docs/migration/rules/jss-to-tailwind-crib.md`.
-
----
-
 ## Reference docs
 
 - `README.md` — top-level project commands and Happo setup.
 - `CONTRIBUTING.md` + `docs/contribution/*.md` — workflow, component creation, examples, visual testing, packages architecture, PR jobs.
+- `docs/contribution/base-ui-styling.md` · `base-ui-api.md` · `tailwind-tokens.md` — Base UI + Tailwind authoring references: styling doctrine & override ladder, `@base-ui/react` API patterns, and the canonical token list.
 - `PICASSO_COMPONENT_DESIGN_PATTERNS.md` — CI-enforced component API rules (the 16 + 3 patterns).
 - `docs/decisions/` — numbered ADRs for non-obvious decisions (MUI v5 migration, picasso-provider as peer dep, breakpoints, spacings, etc.). Skim the matching ADR before changing related code.
-- `docs/migration/references/code-standards.md` — depth on organization, types, casting, tests, changesets, CI.
-- `docs/migration/references/base-ui-styling.md` + `docs/migration/rules/styling.md` — styling doctrine + the full override ladder.
-- `docs/migration/references/practices.md` — graduated migration patterns.
-
-## Imported Claude Cowork project instructions
-
-It's github repo for Picasso UI kit. Use it to analyze codebase etc, but documents should be created in ./docs/modernization
