@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-breadcrumbs",
-  "version": "3.0.22",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Breadcrumbs",
   "publishConfig": {
     "access": "public"

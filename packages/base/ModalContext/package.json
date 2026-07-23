@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-modal-context",
-  "version": "1.0.1",
+  "version": "99.0.0",
   "description": "Toptal UI components library - ModalContext",
   "publishConfig": {
     "access": "public"

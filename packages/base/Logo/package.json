@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-logo",
-  "version": "2.0.19",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Logo",
   "publishConfig": {
     "access": "public"

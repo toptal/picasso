@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-section",
-  "version": "6.0.2",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Section",
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-fade",
-  "version": "1.0.10",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Fade",
   "publishConfig": {
     "access": "public"

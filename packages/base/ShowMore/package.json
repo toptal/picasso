@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-show-more",
-  "version": "3.0.2",
+  "version": "99.0.0",
   "description": "Toptal UI components library - ShowMore",
   "publishConfig": {
     "access": "public"

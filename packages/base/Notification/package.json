@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-notification",
-  "version": "5.0.2",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Notification",
   "publishConfig": {
     "access": "public"

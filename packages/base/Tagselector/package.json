@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tagselector",
-  "version": "4.0.3",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Tagselector",
   "publishConfig": {
     "access": "public"

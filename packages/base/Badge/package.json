@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-badge",
-  "version": "4.0.1",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Badge",
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tree-view",
-  "version": "3.0.47",
+  "version": "99.0.0",
   "description": "Toptal UI components library - TreeView",
   "publishConfig": {
     "access": "public"

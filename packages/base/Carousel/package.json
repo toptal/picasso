@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-carousel",
-  "version": "4.0.35",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Carousel",
   "publishConfig": {
     "access": "public"

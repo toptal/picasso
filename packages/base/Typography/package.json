@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-typography",
-  "version": "5.1.0",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Typography",
   "publishConfig": {
     "access": "public"

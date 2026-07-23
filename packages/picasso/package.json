@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "55.0.2",
+  "version": "99.0.0",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
