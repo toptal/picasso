@@ -37,7 +37,7 @@
     "lint:fix": "davinci-syntax lint code .",
     "prepare": "husky",
     "refresh:tsconfig-references": "./bin/refresh-tsconfig-references.mjs",
-    "release": "pnpm build:package && changeset publish",
+    "release": "pnpm build:package && ./scripts/npm-publish-retry.sh",
     "start": "pnpm -s build:package && concurrently --names build,storybook --raw 'pnpm build:package:watch' 'pnpm start:storybook'",
     "start:storybook": "start-storybook -p 9001 -c .storybook",
     "symlink": "cross-env ./bin/symlink --link",
