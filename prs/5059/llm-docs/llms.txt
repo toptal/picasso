@@ -98,13 +98,14 @@
 
 - [Container](./components/container.md): Use Container to add space between 2 elements.
 - [Grid](./components/grid.md): The layout element which is providing grid container functionality.
-- [Page](./components/page.md): A Page component
+- [Page](./components/page.md): A Page component.
 - [Paper](./components/paper.md): Elevated container with shadow
 - [Tabs](./components/tabs.md): Tabs allow to switch between content sections
 
 ## Overlays
 
 - [Modal](./components/modal.md): A modal displays content that temporarily blocks interactions with the main view of a site.
+- [Popper](./components/popper.md): Popper is a low-level positioning primitive.
 - [PromptModal](./components/promptmodal.md): Predefined modal for short prompts that asks user for input.
 - [Tooltip](./components/tooltip.md): Tooltips display informative text when users hover over, focus on, or tap an element
 
@@ -147,7 +148,6 @@
 - [How to layout a page](./tutorials/how-to-layout-a-page.md): Learn how to create page layouts using Picasso Grid component along with Page and Container components.
 - [How to layout forms](./tutorials/how-to-layout-forms.md): Learn how to create form layouts using Picasso Form components.
 - [How to optimize for bundle size](./tutorials/how-to-optimize-for-bundle-size.md): Learn how to optimize Picasso usage for bundle size
-- [How to use server side rendering](./tutorials/how-to-use-server-side-rendering.md)
 - [How to use spacings](./tutorials/how-to-use-spacings.md)
 - [Merging classes](./tutorials/merging-classes.md): How to merge classes with respect of Picasso TailwindCSS theme
 - [Styled Components](./tutorials/styled-components.md): Tips and tricks for using Picasso components with styled-components
