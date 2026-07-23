@@ -29,7 +29,7 @@ export type OpenArbiterState = {
  * runs its own MUI-compatible enter-delay hover timer while base-ui's Trigger
  * independently drives REST-based hover and instant focus opens; honoring
  * base-ui's requests unfiltered would run two differently-timed open machines
- * at once (see docs/decisions/20-tooltip-open-arbitration.md).
+ * at once (see docs/decisions/23-tooltip-open-arbitration.md).
  *
  * First matching veto wins. Rows 2–4 are UNCONTROLLED-ONLY (they were gated
  * behind `!isControlled` pre-refactor): in controlled mode Picasso's hover

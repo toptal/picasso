@@ -4,7 +4,7 @@
 
 ### Tooltip
 
-- Suppress opening on pointer-initiated focus. A `mousedown` that focuses a
+- suppress opening on pointer-initiated focus. A `mousedown` that focuses a
   tooltip trigger made base-ui open the tooltip mid-click (its `useFocus`
   reports `trigger-focus`, and `matchesFocusVisible` treats that focus as
   focus-visible under jsdom and for typeable triggers such as inputs). The
@@ -15,10 +15,10 @@
   Keyboard focus still opens it, preserving accessibility. Note this is
   stricter than the pre-migration build for tooltip-wrapped inputs, which
   previously also flashed open on click. [PF-2253]
-- The pointer-focus suppression now also applies to controlled tooltips: a
+- the pointer-focus suppression now also applies to controlled tooltips: a
   pointer-initiated focus no longer calls `onOpen` on a controlled tooltip
   either. This is the only controlled-mode behavior change — hover-timing, the
   click-dismiss latch and follow-cursor roam-hide keep their original
   uncontrolled-only gating, so a controlled tooltip still forwards base-ui's
   hover-open to `onOpen` as before. See
-  `docs/decisions/20-tooltip-open-arbitration.md`. [PF-2253]
+  `docs/decisions/23-tooltip-open-arbitration.md`. [PF-2253]

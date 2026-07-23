@@ -25191,7 +25191,7 @@ snapshots:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   chownr@2.0.0: {}
 
@@ -29355,7 +29355,7 @@ snapshots:
       micromatch: 4.0.8
       walker: 1.0.8
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   jest-haste-map@29.7.0:
     dependencies:
@@ -29371,7 +29371,7 @@ snapshots:
       micromatch: 4.0.8
       walker: 1.0.8
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   jest-html-reporters@3.1.7:
     dependencies:
@@ -33781,7 +33781,7 @@ snapshots:
 
   rollup@2.79.2:
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   rrweb-cssom@0.7.1: {}
 
