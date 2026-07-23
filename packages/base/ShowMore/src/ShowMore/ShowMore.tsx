@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef, useMemo, useCallback, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
-import Truncate from 'react-truncate'
+import { Truncate } from '@re-dev/react-truncate'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { ChevronRight16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'

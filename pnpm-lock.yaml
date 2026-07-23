@@ -417,9 +417,6 @@ importers:
       '@types/pngjs':
         specifier: ^6.0.5
         version: 6.0.5
-      '@types/react-truncate':
-        specifier: ^2.3.4
-        version: 2.3.4
       '@vercel/ncc':
         specifier: ^0.38.3
         version: 0.38.3
@@ -2503,6 +2500,9 @@ importers:
 
   packages/base/ShowMore:
     dependencies:
+      '@re-dev/react-truncate':
+        specifier: 0.6.0
+        version: 0.6.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -2518,9 +2518,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-truncate:
-        specifier: ^2.4.0
-        version: 2.4.0(prop-types@15.8.1)(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
@@ -3347,9 +3344,6 @@ importers:
       react-input-mask:
         specifier: ^3.0.0-alpha.2
         version: 3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-truncate:
-        specifier: ^2.4.0
-        version: 2.4.0(prop-types@15.8.1)(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -6313,6 +6307,12 @@ packages:
   '@polka/url@1.0.0-next.23':
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
 
+  '@re-dev/react-truncate@0.6.0':
+    resolution: {integrity: sha512-wO+MMHvbNtFKQgWIie4upsih49xKDBYVTFAGyNnCwUpTCS5Bn6EB9wxA+Z9vRNoSqL0XWdIDtgOH1y9NHoKZRw==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+
   '@reach/router@1.3.4':
     resolution: {integrity: sha512-+mtn9wjlB9NN2CNnnC/BRYtwdKBfSyyasPYraNAyvaV1occr/5NnB4CVzjEZipNHwYebQwcndGUmpFzxAUoqSA==}
     peerDependencies:
@@ -7621,9 +7621,6 @@ packages:
     resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
     peerDependencies:
       '@types/react': '17'
-
-  '@types/react-truncate@2.3.4':
-    resolution: {integrity: sha512-+ugDlho66dRn7Sw/lPkE/wlOi0KUIRwY2KOiUiehWjFf7EmiMDjMpHqrBhiLJfH2Z9EC+qRBHC9o7iZoEmmWQw==}
 
   '@types/react@17.0.39':
     resolution: {integrity: sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==}
@@ -15329,12 +15326,6 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  react-truncate@2.4.0:
-    resolution: {integrity: sha512-3QW11/COYwi6iPUaunUhl06DW5NJBJD1WkmxW5YxqqUu6kvP+msB3jfoLg8WRbu57JqgebjVW8Lknw6T5/QZdA==}
-    peerDependencies:
-      prop-types: <= 15.x.x
-      react: ^18.2.0
-
   react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
@@ -21276,6 +21267,11 @@ snapshots:
 
   '@polka/url@1.0.0-next.23': {}
 
+  '@re-dev/react-truncate@0.6.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
   '@reach/router@1.3.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       create-react-context: 0.3.0(prop-types@15.8.1)(react@18.2.0)
@@ -23649,10 +23645,6 @@ snapshots:
       '@types/react': 17.0.39
 
   '@types/react-transition-group@4.4.12(@types/react@17.0.39)':
-    dependencies:
-      '@types/react': 17.0.39
-
-  '@types/react-truncate@2.3.4':
     dependencies:
       '@types/react': 17.0.39
 
@@ -33289,11 +33281,6 @@ snapshots:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  react-truncate@2.4.0(prop-types@15.8.1)(react@18.2.0):
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
 
   react@18.2.0:
     dependencies:

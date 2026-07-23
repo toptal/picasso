@@ -25,7 +25,7 @@
     "@toptal/picasso-button": "workspace:*",
     "@toptal/picasso-icons": "workspace:*",
     "@toptal/picasso-typography": "workspace:*",
-    "react-truncate": "^2.4.0"
+    "@re-dev/react-truncate": "0.6.0"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@toptal/picasso-tailwind": ">=2.7",
     "@toptal/picasso-tailwind-merge": "^2.0.0",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": ">=17.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
