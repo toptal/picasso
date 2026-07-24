@@ -1,0 +1,42 @@
+diff --git a/dist/changesets-get-github-info.cjs.js b/dist/changesets-get-github-info.cjs.js
+index a74df59f8a5988f458a3476087399f5e6dfe4818..186fca25ebdf786766631ccbc9f859de9f50d552 100644
+--- a/dist/changesets-get-github-info.cjs.js
++++ b/dist/changesets-get-github-info.cjs.js
+@@ -211,6 +211,16 @@ const GHDataLoader = new DataLoader__default["default"](async requests => {
+ 
+     return cleanedData[repo][data.kind][data.kind === "pull" ? data.pull : data.commit];
+   });
++}, {
++  // `changeset version` calls getReleaseLine once per (package x changeset) pair,
++  // so a large release floods this loader with hundreds of lookups in one tick,
++  // most of them duplicates of the same commit. Default DataLoader cache keys are
++  // object identities, so nothing dedupes, and the single batched GraphQL query
++  // grows until GitHub rejects it with `validationTimeout`, failing the release.
++  // Dedupe keys by value and cap the batch so every query stays small enough for
++  // GitHub to validate. Both options exist in dataloader@1.4.0. [PF-1988]
++  cacheKeyFn: key => JSON.stringify(key),
++  maxBatchSize: 5
+ });
+ async function getInfo(request) {
+   if (!request.commit) {
+diff --git a/dist/changesets-get-github-info.esm.js b/dist/changesets-get-github-info.esm.js
+index 27e5c972ab1202ff16f5124b471f4bbcc46be2b5..dc96b76f0f5eba5e01bd7817d1124d68bd09a059 100644
+--- a/dist/changesets-get-github-info.esm.js
++++ b/dist/changesets-get-github-info.esm.js
+@@ -202,6 +202,16 @@ const GHDataLoader = new DataLoader(async requests => {
+ 
+     return cleanedData[repo][data.kind][data.kind === "pull" ? data.pull : data.commit];
+   });
++}, {
++  // `changeset version` calls getReleaseLine once per (package x changeset) pair,
++  // so a large release floods this loader with hundreds of lookups in one tick,
++  // most of them duplicates of the same commit. Default DataLoader cache keys are
++  // object identities, so nothing dedupes, and the single batched GraphQL query
++  // grows until GitHub rejects it with `validationTimeout`, failing the release.
++  // Dedupe keys by value and cap the batch so every query stays small enough for
++  // GitHub to validate. Both options exist in dataloader@1.4.0. [PF-1988]
++  cacheKeyFn: key => JSON.stringify(key),
++  maxBatchSize: 5
+ });
+ async function getInfo(request) {
+   if (!request.commit) {
