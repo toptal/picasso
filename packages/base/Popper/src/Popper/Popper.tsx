@@ -1,14 +1,32 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useContext } from 'react'
-import { Popper as MUIPopper } from '@material-ui/core'
-import type { ReferenceObject, PopperOptions } from 'popper.js'
-import type PopperJs from 'popper.js'
+import React, { forwardRef, useContext, useEffect, useMemo } from 'react'
+import { autoUpdate, FloatingPortal, useFloating } from '@floating-ui/react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 import { useWidthOf } from '@toptal/picasso-utils'
 import ModalContext from '@toptal/picasso-modal-context'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+
+import type { PopperOptions } from './popper-options'
+import {
+  createMiddleware,
+  getParityAttributes,
+  getPopperOptions,
+  resolveStrategy,
+} from './popper-options'
+import type { PopperHandle } from './use-popper-handle'
+import { usePopperHandle } from './use-popper-handle'
+import { usePopperLifecycle } from './use-popper-lifecycle'
+
+export type {
+  PopperModifierOptions,
+  PopperModifiers,
+  PopperOptions,
+  PopperPadding,
+} from './popper-options'
+export type { PopperHandle } from './use-popper-handle'
+export { getPopperOptions } from './popper-options'
 
 export type PopperPlacementType =
   | 'bottom-end'
@@ -24,6 +42,13 @@ export type PopperPlacementType =
   | 'top-start'
   | 'top'
 
+/** Structural stand-in for popper.js v1's `ReferenceObject` */
+export interface PopperReferenceObject {
+  clientHeight: number
+  clientWidth: number
+  getBoundingClientRect: () => ClientRect
+}
+
 export interface Props extends BaseProps {
   children?: ReactNode
   /** if true, the popper is visible */
@@ -32,7 +57,7 @@ export interface Props extends BaseProps {
   disablePortal?: boolean
   /** Popper placement */
   placement?: PopperPlacementType
-  /** Options provided to the popper.js instance */
+  /** Options provided to the popper instance */
   popperOptions?: PopperOptions
   /** Always keep Popper's children in the DOM */
   keepMounted?: boolean
@@ -46,52 +71,20 @@ export interface Props extends BaseProps {
    * HTML Element instance or a referenceObject
    * https://popper.js.org/popper-documentation.html#referenceObject
    */
-  anchorEl: null | ReferenceObject | (() => ReferenceObject)
+  anchorEl: null | PopperReferenceObject | (() => PopperReferenceObject)
   /** Popper automatically resize to anchor element width */
   autoWidth?: boolean
   /** Popper width */
   width?: string
   /** Take full window width on small and medium screens */
   enableCompactMode?: boolean
+  /** ARIA role of the floating element, matching the popup's content (defaults to `tooltip`) */
+  role?: React.AriaRole
 }
 
 const getAnchorEl = (
-  anchorEl: null | ReferenceObject | (() => ReferenceObject)
+  anchorEl: null | PopperReferenceObject | (() => PopperReferenceObject)
 ) => (typeof anchorEl === 'function' ? anchorEl() : anchorEl)
-
-const getPreventOverflowOptions = (isInsideModal: boolean) => {
-  if (isInsideModal) {
-    return {
-      boundariesElement: 'scrollParent',
-      padding: 0,
-    }
-  }
-
-  return {
-    boundariesElement: 'viewport',
-    padding: 5,
-  }
-}
-
-export const getPopperOptions = (
-  popperOptions: PopperOptions,
-  isInsideModal = false
-) => ({
-  ...popperOptions,
-
-  modifiers: {
-    ...popperOptions.modifiers,
-    flip: {
-      enabled: true,
-      ...popperOptions.modifiers?.flip,
-    },
-    preventOverflow: {
-      enabled: true,
-      ...getPreventOverflowOptions(isInsideModal),
-      ...popperOptions.modifiers?.preventOverflow,
-    },
-  },
-})
 
 const useWidthStyle = ({
   anchorEl,
@@ -99,7 +92,7 @@ const useWidthStyle = ({
   width,
 }: Pick<Props, 'anchorEl' | 'autoWidth' | 'width'>) => {
   const resolvedAnchorEl = getAnchorEl(anchorEl)
-  const anchorElWidth = useWidthOf<ReferenceObject>(resolvedAnchorEl)
+  const anchorElWidth = useWidthOf<PopperReferenceObject>(resolvedAnchorEl)
 
   if (width) {
     return { width }
@@ -112,18 +105,13 @@ const useWidthStyle = ({
   return {}
 }
 
-export const Popper = forwardRef<PopperJs, Props>(function Popper(
+export const Popper = forwardRef<PopperHandle, Props>(function Popper(
   {
     open = false,
     disablePortal = false,
     placement = 'bottom',
     popperOptions = {},
     autoWidth = true,
-    ...props
-  },
-  ref
-) {
-  const {
     children,
     anchorEl,
     className,
@@ -132,14 +120,15 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(
     width,
     enableCompactMode,
     style,
+    role = 'tooltip',
     ...rest
-  } = props
-
+  },
+  ref
+) {
   const picassoRootContainer = usePicassoRoot()
   const isInsideModal = useContext(ModalContext)
 
-  const isCompactLayoutResolution = useBreakpoint(['xs', 'sm', 'md'])
-  const isCompactLayout = enableCompactMode && isCompactLayoutResolution
+  const isCompactLayout = useBreakpoint(['xs', 'sm', 'md']) && enableCompactMode
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })
   const anchorElWidthStyle = !isCompactLayout && widthStyle
 
@@ -155,35 +144,101 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(
     }
   }, [isCompactLayout, open])
 
-  const memoizedPopperOptions = React.useMemo(
+  const resolvedOptions = useMemo(
     () => getPopperOptions(popperOptions, isInsideModal),
     [popperOptions, isInsideModal]
   )
 
-  return (
-    <MUIPopper
-      open={open}
-      container={container || picassoRootContainer}
-      anchorEl={anchorEl}
+  // PopperReferenceObject is a structural anchor type; real DOM elements satisfy
+  // it and are what is received at runtime.
+  const referenceEl = getAnchorEl(anchorEl) as Element | null
+
+  const {
+    refs,
+    floatingStyles,
+    middlewareData,
+    isPositioned,
+    update,
+    x,
+    y,
+    placement: resolvedPlacement,
+  } = useFloating({
+    open,
+    placement,
+    strategy: resolveStrategy(popperOptions),
+    // useFloating deep-compares middleware, so the inline array is stable
+    middleware: createMiddleware(resolvedOptions),
+    whileElementsMounted: autoUpdate,
+    elements: {
+      reference: referenceEl,
+    },
+  })
+
+  // Nudge floating descendants to re-measure whenever this popper's geometry
+  // settles or changes: a descendant positioned against a node inside this
+  // popper (e.g. a Tooltip anchored to a Menu.Item in a Dropdown) is portaled
+  // elsewhere, so a synthetic window scroll is the only signal that reaches it
+  // when we move.
+  useEffect(() => {
+    if (open && isPositioned) {
+      window.dispatchEvent(new Event('scroll'))
+    }
+  }, [open, isPositioned, x, y])
+
+  usePopperLifecycle({
+    open,
+    ready: isPositioned,
+    x,
+    y,
+    onCreate: resolvedOptions.onCreate,
+    onUpdate: resolvedOptions.onUpdate,
+  })
+
+  const setFloatingRef = usePopperHandle(ref, refs.setFloating, update)
+
+  const resolvedContainer = useMemo(
+    () => (typeof container === 'function' ? container() : container),
+    [container]
+  )
+
+  if (!open && !keepMounted) {
+    return null
+  }
+
+  const popperNode = (
+    <div
+      ref={setFloatingRef}
+      role={role}
+      // Modal's focus trap exempts `[data-picasso-popper]` popups from focus
+      // stealing; roles vary per consumer, so `role` can't be the marker.
+      data-picasso-popper=''
       className={twMerge(
         'z-modal',
         'xs:max-md:w-screen xs:max-md:max-w-screen xs:max-md:p-0 xs:max-md:m-0',
         '[&[x-out-of-boundaries]]:hidden',
         className
       )}
-      popperRef={ref}
-      popperOptions={memoizedPopperOptions}
-      disablePortal={disablePortal}
-      keepMounted={keepMounted}
       style={{
+        ...floatingStyles,
         ...style,
         ...anchorElWidthStyle,
+        ...(!open && keepMounted ? { display: 'none' } : {}),
       }}
-      placement={placement}
+      {...getParityAttributes(resolvedPlacement, middlewareData)}
       {...rest}
     >
       {children}
-    </MUIPopper>
+    </div>
+  )
+
+  if (disablePortal) {
+    return popperNode
+  }
+
+  return (
+    <FloatingPortal root={resolvedContainer ?? picassoRootContainer}>
+      {popperNode}
+    </FloatingPortal>
   )
 })
 

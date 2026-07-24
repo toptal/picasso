@@ -30,16 +30,21 @@ describe('Checkbox', () => {
       variant: 'default-checked/after-hovered',
     })
 
-    // our data-testid's are not being passed to the input
-    cy.get('input').first().focus()
+    // Stamp `data-focused` (the state attribute that drives the focus-ring
+    // styles) manually before each snapshot: `:focus-visible` is a live
+    // pseudo-class that doesn't survive Happo's DOM serialization.
+    cy.get('[role="checkbox"]').first().invoke('attr', 'data-focused', '')
     cy.get('body').happoScreenshot({
       component,
       variant: 'default-unchecked/after-focused',
     })
-    cy.get('input').last().focus()
+    cy.get('[role="checkbox"]').first().invoke('removeAttr', 'data-focused')
+
+    cy.get('[role="checkbox"]').last().invoke('attr', 'data-focused', '')
     cy.get('body').happoScreenshot({
       component,
       variant: 'default-checked/after-focused',
     })
+    cy.get('[role="checkbox"]').last().invoke('removeAttr', 'data-focused')
   })
 })

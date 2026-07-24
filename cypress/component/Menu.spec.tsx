@@ -30,7 +30,8 @@ const MenuExample = (props: MenuProps) => {
 
   return (
     <Container style={{ width: '240px' }}>
-      <div data-testid='spacer' style={{ height: 1 }} />
+      {/* in-flow filler — removing it shifts every baseline by 1px */}
+      <div style={{ height: 1 }} />
       <Menu {...props} data-testid='menu'>
         <Menu.Item data-testid='item-a'>Item A</Menu.Item>
         <Menu.Item menu={menuForItemB} data-testid='item-b'>
@@ -42,6 +43,13 @@ const MenuExample = (props: MenuProps) => {
 }
 
 const component = 'Menu'
+
+// deselect via body click, then let the blurred item's transition-colors
+// (~150ms) come to rest so the snapshot doesn't freeze a mid-transition color
+const clickBodyAndSettle = () => {
+  cy.get('body').click()
+  cy.waitForTransitionsToSettle('[role="menuitem"]')
+}
 
 describe('Menu', () => {
   it('navigates slide menu', () => {
@@ -64,7 +72,7 @@ describe('Menu', () => {
     cy.getByTestId('item-b1').click()
     cy.getByTestId('menu-b1').should('be.visible')
     cy.getByTestId('menu-b2').should('not.exist')
-    cy.get('body').click()
+    clickBodyAndSettle()
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
@@ -73,7 +81,7 @@ describe('Menu', () => {
     cy.getByTestId('menu-back').last().click()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').click()
+    clickBodyAndSettle()
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
@@ -90,22 +98,30 @@ describe('Menu', () => {
 
   it('navigates drilldown menu', () => {
     cy.mount(<MenuExample variant='drilldown' />)
-    cy.getByTestId('spacer').trigger('mouseover')
+    // park the pointer off the menu — drilldown hover is state-driven and
+    // would serialize into the capture
+    cy.get('body').realHover({ position: 'bottomRight' })
     cy.getByTestId('menu-b').should('not.exist')
+    cy.getByTestId('item-a').should(
+      'have.css',
+      'background-color',
+      'rgba(0, 0, 0, 0)'
+    )
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/before-mouseover-item',
     })
 
-    cy.getByTestId('item-b').trigger('mouseover')
+    cy.getByTestId('item-b').realHover()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
+    cy.getByTestId('menu-b2').should('not.exist')
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseover-item',
     })
 
-    cy.getByTestId('item-b1').trigger('mouseover')
+    cy.getByTestId('item-b1').realHover()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('be.visible')
     cy.get('[data-cy-root]').happoScreenshot({
@@ -113,10 +129,10 @@ describe('Menu', () => {
       variant: 'drilldown/after-mouseover-subitem',
     })
 
-    cy.getByTestId('menu-b1').trigger('mouseout')
-    cy.getByTestId('item-b').trigger('mouseover')
+    cy.getByTestId('item-b').realHover()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
+    cy.getByTestId('menu-b2').should('not.exist')
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseout-subitem',

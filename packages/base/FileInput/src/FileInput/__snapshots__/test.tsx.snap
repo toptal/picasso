@@ -3,7 +3,7 @@
 exports[`FileInput can change label 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="max-w"
@@ -34,7 +34,7 @@ exports[`FileInput can change label 1`] = `
 exports[`FileInput renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="max-w"

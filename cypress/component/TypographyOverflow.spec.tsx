@@ -103,6 +103,8 @@ describe('TypographyOverflow', () => {
     cy.mount(<CheckboxLabelExample />)
 
     cy.getByTestId('ellipsed-text').click()
+    // blur before screenshot so the synthetic-event focus ring doesn't leak into the capture
+    cy.focused().blur()
     cy.get('body').happoScreenshot({
       component,
       variant: 'checkbox-label/after-hovered',

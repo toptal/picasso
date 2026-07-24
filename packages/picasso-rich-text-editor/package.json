@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-rich-text-editor",
-  "version": "19.0.2",
+  "version": "99.0.0",
   "description": "Picasso rich text editor",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-rich-text-editor#readme",
@@ -28,13 +28,12 @@
     "@lexical/selection": "0.11.3",
     "@lexical/text": "0.11.3",
     "@lexical/utils": "0.11.3",
-    "@material-ui/core": "4.12.4",
-    "@toptal/picasso-shared": "^16.0.0",
-    "react": ">=16.12.0 < 19.0.0",
-    "react-dom": ">=16.12.0 < 19.0.0",
+    "@toptal/picasso-shared": "workspace:^",
+    "react": ">=17.0.0 < 19.0.0",
+    "react-dom": ">=17.0.0 < 19.0.0",
     "typescript": "^5.5.0",
-    "@toptal/picasso-tailwind-merge": "^2.0.0",
-    "@toptal/picasso-tailwind": ">=2.7"
+    "@toptal/picasso-tailwind-merge": "workspace:^",
+    "@toptal/picasso-tailwind": "workspace:^"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.2.1",
@@ -68,7 +67,6 @@
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
     "jsdom": "^26.1.0",
-    "@material-ui/core": "4.12.4",
     "@testing-library/react-hooks": "^8.0.1",
     "@toptal/picasso-test-utils": "workspace:*",
     "@toptal/picasso-tailwind-merge": "workspace:*",

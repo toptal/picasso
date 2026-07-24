@@ -3,10 +3,10 @@
 exports[`Rotate180 render with transformation 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Rotate180-transition Rotate180-rotate180"
+      class="transition-transform duration-150 ease-in rotate-180"
     >
       Rotating component
     </div>
@@ -17,10 +17,10 @@ exports[`Rotate180 render with transformation 1`] = `
 exports[`Rotate180 render without transformation 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Rotate180-transition"
+      class="transition-transform duration-150 ease-in"
     >
       Rotating component
     </div>

@@ -1,20 +1,14 @@
 import React from 'react'
 import { Tabs } from '@toptal/picasso'
 
+import { loadAvatarFixture } from '../support/fixtures'
+
 const component = 'Tabs'
+
+const getAvatarSrc = loadAvatarFixture()
 
 describe('Tabs', () => {
   describe('with vertical orientation', () => {
-    let src: string | null = null
-
-    before(() => {
-      // eslint-disable-next-line max-nested-callbacks, promise/catch-or-return
-      cy.fixture('pablo.jpg').then(image => {
-        src = 'data:image/jpg;base64,' + image
-
-        return image
-      })
-    })
     it('renders with label', () => {
       cy.mount(
         <Tabs value={0} orientation='vertical'>
@@ -70,27 +64,38 @@ describe('Tabs', () => {
     it('renders with user badge', () => {
       cy.mount(
         <Tabs value={0} orientation='vertical'>
-          <Tabs.Tab avatar={src} description='Description' label='Label' />
-          <Tabs.Tab avatar={src} description='Description' label='Label' />
           <Tabs.Tab
-            avatar={src}
+            avatar={getAvatarSrc()}
+            description='Description'
+            label='Label'
+          />
+          <Tabs.Tab
+            avatar={getAvatarSrc()}
+            description='Description'
+            label='Label'
+          />
+          <Tabs.Tab
+            avatar={getAvatarSrc()}
             disabled
             description='Description'
             label='Label'
           />
-          <Tabs.Tab avatar={src} label='Label' />
+          <Tabs.Tab avatar={getAvatarSrc()} label='Label' />
 
           <Tabs.Tab avatar={null} description='Description' label='Label' />
           <Tabs.Tab avatar='' description='Description' label='Label' />
 
           <Tabs.Tab
-            avatar={src}
+            avatar={getAvatarSrc()}
             data-testid='to-be-hovered'
             description='Description'
             label='Label'
           />
         </Tabs>
       )
+
+      // let the base64 fixture avatars decode before capturing
+      cy.waitForImagesDecoded()
 
       cy.getByTestId('to-be-hovered').hoverAndTakeHappoScreenshot({
         component,

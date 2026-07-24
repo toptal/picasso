@@ -1,13 +1,16 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { useAppConfig } from '@toptal/picasso-provider'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageHamburgerContextProvider } from '../PageHamburger'
 import type { PageContextProps, ViewportWidthType } from './types'
-import styles from './styles'
+import {
+  createRootClassNames,
+  createRootMinWidthClassNames,
+  createRootVariableClassNames,
+} from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** DEPRECATED! Component becomes responsive with width 100% and overrides width prop */
@@ -23,11 +26,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 export const PageContext = React.createContext<PageContextProps>({})
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'Page',
-})
-
-// eslint-disable-next-line react/display-name
 export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   props,
   ref
@@ -41,19 +39,20 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
     fullWidth,
     ...rest
   } = props
-  const classes = useStyles()
+
+  const { responsive } = useAppConfig()
 
   return (
     <div
       {...rest}
       ref={ref}
-      className={cx(
-        classes.root,
-        className,
-        '[--content-padding-horizontal:1em] md:[--content-padding-horizontal:2em]',
-        '[--header-height:3.5rem] [--content-width-wide:90em] [--content-width:75em]'
+      className={twMerge(
+        ...createRootClassNames(),
+        ...createRootVariableClassNames(),
+        ...createRootMinWidthClassNames(responsive),
+        className
       )}
-      style={{ ...style } as React.CSSProperties}
+      style={style}
     >
       <PageContext.Provider value={{ width, fullWidth }}>
         <PageHamburgerContextProvider hamburgerId={hamburgerId}>

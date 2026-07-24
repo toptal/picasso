@@ -288,6 +288,8 @@ const component = 'Tooltip'
 describe('Tooltip', () => {
   it('renders by default', () => {
     cy.mount(<SnapshotTooltipExample />)
+    // opens via async setOpen — gate on it before capturing
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'default',
@@ -296,6 +298,7 @@ describe('Tooltip', () => {
 
   it('renders with disabled portals', () => {
     cy.mount(<SnapshotTooltipExample disablePortal />)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'with-disabled-portals',
@@ -304,6 +307,7 @@ describe('Tooltip', () => {
 
   it('renders compact', () => {
     cy.mount(<SnapshotTooltipExample compact />)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'compact',
@@ -312,6 +316,7 @@ describe('Tooltip', () => {
 
   it('renders long text with max width', () => {
     cy.mount(<SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} />)
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'long-text-with-max-width',
@@ -322,6 +327,7 @@ describe('Tooltip', () => {
     cy.mount(
       <SnapshotTooltipExample content={TOOLTIP_LONG_TEXT} maxWidth='none' />
     )
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'long-text-without-max-width',
@@ -335,6 +341,7 @@ describe('Tooltip', () => {
         preventOverflow={false}
       />
     )
+    cy.getByRole('tooltip').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'without-overflow-prevention',
@@ -343,6 +350,8 @@ describe('Tooltip', () => {
 
   it('renders with different placements', () => {
     cy.mount(<PlacementTooltipExample />)
+    // 12 tooltips, all opened via async setOpen — wait for the full set
+    cy.getByRole('tooltip').should('have.length', 12).and('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'with-different-placements',
@@ -354,6 +363,11 @@ describe('Tooltip', () => {
   // We are skipping this test until we get a response from Happo team
   it.skip('renders inside and outside of a modal', () => {
     cy.mount(<ModalTooltipExample />)
+
+    // modal + both tooltips open via async state — gate on them before capturing
+    cy.waitForOverlayOpen()
+    cy.getByRole('tooltip').should('have.length', 2).and('be.visible')
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'inside-and-outside-modal',
@@ -372,7 +386,7 @@ describe('Tooltip', () => {
     cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
     cy.getByTestId(testIds.tooltipTrigger).click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders on hover, and hides on click for Checkbox', () => {
@@ -390,8 +404,8 @@ describe('Tooltip', () => {
       component,
       variant: 'inside-checkbox',
     })
-    cy.get('@trigger').click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.get('@trigger').realClick()
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders on hover, and hides on click for Radio', () => {
@@ -407,8 +421,8 @@ describe('Tooltip', () => {
       component,
       variant: 'inside-radio',
     })
-    cy.getByTestId(testIds.radioTrigger).click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.radioTrigger).realClick()
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders on hover, hides on click, and does not render again until the mouse leave trigger element boundaries', () => {
@@ -428,7 +442,7 @@ describe('Tooltip', () => {
       position: 'bottomRight',
     })
 
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.getByTestId(testIds.tooltipContent).should('not.exist')
   })
 
   it('renders interactive content', () => {
@@ -444,8 +458,8 @@ describe('Tooltip', () => {
     cy.url().should('include', '#link')
     cy.get('@Content').should('be.visible')
 
-    cy.get('@Trigger').click()
-    cy.get('@Content').should('not.be.visible')
+    cy.get('@Trigger').realClick()
+    cy.get('@Content').should('not.exist')
   })
 
   it('renders inside an autocomplete', () => {

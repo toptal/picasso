@@ -101,6 +101,27 @@ describe('Radio', () => {
       expect(container).toMatchSnapshot()
     })
 
+    it('selects a radio and invokes the group onChange with its value', () => {
+      const onGroupChange = jest.fn()
+      const { getByLabelText } = render(
+        <Radio.Group name='my-group' value='VALUE+1' onChange={onGroupChange}>
+          <Radio label='LABEL+1' value='VALUE+1' />
+          <Radio label='LABEL+2' value='VALUE+2' />
+        </Radio.Group>
+      )
+
+      const firstRadio = getByLabelText('LABEL+1') as HTMLInputElement
+      const secondRadio = getByLabelText('LABEL+2') as HTMLInputElement
+
+      expect(firstRadio.checked).toBe(true)
+      expect(secondRadio.checked).toBe(false)
+
+      fireEvent.click(secondRadio)
+
+      expect(onGroupChange).toHaveBeenCalledTimes(1)
+      expect(onGroupChange.mock.calls[0][1]).toBe('VALUE+2')
+    })
+
     it('renders radio in a grid group', () => {
       const { container } = render(
         <Radio.Group horizontal sm={4} name='my-group'>

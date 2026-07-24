@@ -4,7 +4,7 @@ import {
   screen,
   cleanup,
   fireEvent,
-  waitForElementToBeRemoved,
+  waitFor,
 } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { useModal } from '@toptal/picasso-utils'
@@ -75,6 +75,14 @@ describe('Modal', () => {
     expect(modalRoot).toMatchSnapshot()
   })
 
+  it('renders content when mounted already open', async () => {
+    render(<Modal open>Mount-open modal content</Modal>)
+
+    expect(
+      await screen.findByText('Mount-open modal content')
+    ).toBeInTheDocument()
+  })
+
   it('useModal opens and closes modal', async () => {
     const TestComponent = () => {
       const { showModal, hideModal, isOpen } = useModal()
@@ -102,7 +110,7 @@ describe('Modal', () => {
     const hideModalButton = getByText('Hide')
 
     fireEvent.click(hideModalButton)
-    await waitForElementToBeRemoved(() => getByText('Hide'))
+    await waitFor(() => expect(queryByText('Hide')).toBeFalsy())
 
     expect(queryByText('Modal content')).toBeFalsy()
     expect(baseElement).toMatchSnapshot()

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-input",
-  "version": "5.1.1",
+  "version": "99.0.0",
   "description": "Toptal UI components library - Input",
   "publishConfig": {
     "access": "public"
@@ -35,8 +35,8 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@toptal/picasso-tailwind": ">=2.7",
-    "react": ">=16.12.0 < 19.0.0"
+    "@toptal/picasso-tailwind": "workspace:^",
+    "react": ">=17.0.0 < 19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js",

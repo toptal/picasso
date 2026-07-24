@@ -3,7 +3,7 @@
 exports[`Note renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="rounded-md border border-solid border-gray py-6 pr-6 pl-[28px] relative overflow-hidden bg-white before:content-[''] before:bg-yellow before:block before:h-full before:absolute before:top-0 before:left-0 before:w-[4px]"

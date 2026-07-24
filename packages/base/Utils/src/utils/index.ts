@@ -30,7 +30,8 @@ export {
   type OverridableComponent,
 } from '@toptal/picasso-shared'
 
-export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
+export { default as ClickAwayListener } from './ClickAwayListener'
+export type { ClickAwayListenerProps } from './ClickAwayListener'
 
 export { capitalize } from './capitalize'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
@@ -46,6 +47,11 @@ export { default as isString } from './is-string'
 export { default as isSubstring } from './is-substring'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'
 export { default as noop } from './noop'
+export {
+  isPointerModality,
+  subscribePointerModality,
+  unsubscribePointerModality,
+} from './pointer-modality'
 export { default as toTitleCase } from './to-title-case'
 export { default as useCombinedRefs } from './use-combined-refs'
 export { default as useSafeState } from './use-safe-state'
@@ -87,7 +93,8 @@ export { SPACING_6 } from '@toptal/picasso-provider'
 export { SPACING_8 } from '@toptal/picasso-provider'
 export { SPACING_10 } from '@toptal/picasso-provider'
 export { SPACING_12 } from '@toptal/picasso-provider'
-export { spacingToRem } from '@toptal/picasso-provider'
+export { spacingToRem, spacingToPx } from '@toptal/picasso-provider'
+export * from './spacing-classes'
 
 export {
   useDeprecationWarning,

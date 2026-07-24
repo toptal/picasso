@@ -1,12 +1,10 @@
 import React from 'react'
-import MUIPopper from '@material-ui/core/Popper'
 import { usePicassoRoot } from '@toptal/picasso-provider'
-import { render } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 
-import type { Props } from './Popper'
-import Popper, { getPopperOptions } from './Popper'
+import type { PopperHandle, Props } from './Popper'
+import Popper from './Popper'
 
-jest.mock('@material-ui/core/Popper', () => jest.fn(() => null))
 jest.mock('@toptal/picasso-provider', () => ({
   useBreakpoint: () => true,
   usePicassoRoot: jest.fn(),
@@ -19,131 +17,173 @@ jest.mock('@toptal/picasso-utils', () => ({
 const mockedUsePicassoRoot = usePicassoRoot as jest.Mock<
   ReturnType<typeof usePicassoRoot>
 >
-const mockedMUIPopper = MUIPopper as jest.Mock<ReturnType<typeof MUIPopper>>
 
 const rootDiv = document.createElement('div')
 
 rootDiv.setAttribute('id', 'root')
 
-const anchorEl = document.body
 const children = 'some children'
-const className =
-  'z-modal xs:max-md:w-screen xs:max-md:max-w-screen xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of-boundaries]]:hidden'
-const disablePortal = false
-const open = true
-const placement = 'top'
-const defaultPopperProps = {
-  container: rootDiv,
-  anchorEl,
-  children,
-  className,
-  disablePortal,
-  open,
-  placement,
-  popperRef: null,
-  style: {
-    width: '300px',
-  },
-  popperOptions: getPopperOptions({}),
+
+// position is computed in a microtask after render
+const flushPosition = async () => {
+  await act(async () => {})
 }
 
-const renderComponent = (props: Partial<Props> = {}) => {
+const renderPopper = (props: Partial<Props> = {}) => {
   return render(
-    <div id='root'>
-      <Popper
-        open={open}
-        anchorEl={anchorEl}
-        disablePortal={disablePortal}
-        placement={placement}
-        {...props}
-      >
-        {children}
-      </Popper>
-    </div>,
-    {
-      container: document.body.appendChild(rootDiv),
-    }
+    <Popper open anchorEl={document.body} placement='top' {...props}>
+      {children}
+    </Popper>
   )
 }
 
 describe('Popper', () => {
   beforeEach(() => {
-    mockedMUIPopper.mockClear()
+    document.body.appendChild(rootDiv)
     mockedUsePicassoRoot.mockReturnValue(rootDiv)
   })
 
-  describe('when container prop is passed', () => {
-    it('calls MUIPopper with passed container', () => {
-      const container = document.createElement('div')
+  afterEach(() => {
+    rootDiv.remove()
+  })
 
-      renderComponent({
-        container,
-      })
+  it('renders children inside the default picasso root container', async () => {
+    renderPopper()
+    await flushPosition()
 
-      expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
-      expect(mockedMUIPopper).toHaveBeenCalledWith(
-        {
-          ...defaultPopperProps,
-          container,
-        },
-        {}
-      )
+    const popper = screen.getByRole('tooltip')
+
+    expect(popper).toHaveTextContent(children)
+    expect(rootDiv).toContainElement(popper)
+  })
+
+  it('renders children inside a passed container', async () => {
+    const container = document.createElement('div')
+
+    document.body.appendChild(container)
+
+    renderPopper({ container })
+    await flushPosition()
+
+    expect(container).toContainElement(screen.getByRole('tooltip'))
+
+    container.remove()
+  })
+
+  it('does not render children when closed', async () => {
+    renderPopper({ open: false })
+    await flushPosition()
+
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+  })
+
+  it('keeps children mounted but hidden when closed with keepMounted', async () => {
+    renderPopper({ open: false, keepMounted: true })
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip', { hidden: true })).toHaveStyle({
+      display: 'none',
     })
   })
 
-  describe('when container prop is NOT passed', () => {
-    it('calls MUIPopper with default root container', () => {
-      renderComponent({
-        container: undefined,
-      })
+  it('applies the anchor element width when autoWidth is set', async () => {
+    renderPopper()
+    await flushPosition()
 
-      expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
-      expect(mockedMUIPopper).toHaveBeenCalledWith(
-        {
-          ...defaultPopperProps,
-          container: rootDiv,
-        },
-        {}
-      )
-    })
+    expect(screen.getByRole('tooltip')).toHaveStyle({ width: '300px' })
   })
 
-  describe('when custom width prop is passed', () => {
-    it('calls MUIPopper with custom width style', () => {
-      renderComponent({
-        width: '400px',
-      })
+  it('applies a custom width over the anchor element width', async () => {
+    renderPopper({ width: '400px' })
+    await flushPosition()
 
-      expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
-      expect(mockedMUIPopper).toHaveBeenCalledWith(
-        {
-          ...defaultPopperProps,
-          style: {
-            width: '400px',
-          },
-        },
-        {}
-      )
-    })
+    expect(screen.getByRole('tooltip')).toHaveStyle({ width: '400px' })
   })
 
-  describe('when custom width prop is NOT passed', () => {
-    describe('when autoWidth prop is false', () => {
-      it('calls MUIPopper without assigning width style', () => {
-        renderComponent({
-          width: undefined,
-          autoWidth: false,
-        })
+  it('does not assign a width when autoWidth is disabled', async () => {
+    renderPopper({ width: undefined, autoWidth: false })
+    await flushPosition()
 
-        expect(mockedMUIPopper).toHaveBeenCalledTimes(1)
-        expect(mockedMUIPopper).toHaveBeenCalledWith(
-          {
-            ...defaultPopperProps,
-            style: {},
-          },
-          {}
-        )
-      })
+    expect(screen.getByRole('tooltip').style.width).toBe('')
+  })
+
+  it('exposes a popper.js-compatible handle via ref', async () => {
+    const ref = React.createRef<PopperHandle>()
+
+    renderPopper({ ref } as Partial<Props>)
+    await flushPosition()
+
+    expect(ref.current?.popper).toBe(screen.getByRole('tooltip'))
+    expect(typeof ref.current?.update).toBe('function')
+    expect(typeof ref.current?.scheduleUpdate).toBe('function')
+  })
+
+  it('calls onCreate once positioned', async () => {
+    const onCreate = jest.fn()
+
+    renderPopper({ popperOptions: { onCreate } })
+    await flushPosition()
+
+    expect(onCreate).toHaveBeenCalledTimes(1)
+  })
+
+  it('renders in place when portal is disabled', async () => {
+    const { container } = renderPopper({ disablePortal: true })
+
+    await flushPosition()
+
+    expect(container).toContainElement(screen.getByRole('tooltip'))
+  })
+
+  it('positions with absolute strategy by default', async () => {
+    renderPopper()
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'absolute' })
+  })
+
+  it('positions with fixed strategy via popperOptions.positionFixed', async () => {
+    renderPopper({ popperOptions: { positionFixed: true } })
+    await flushPosition()
+
+    expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+  })
+
+  describe('role', () => {
+    it('defaults the floating element to role="tooltip"', async () => {
+      renderPopper()
+      await flushPosition()
+
+      expect(screen.getByRole('tooltip')).toHaveTextContent(children)
+    })
+
+    it('applies a custom role over the default', async () => {
+      renderPopper({ role: 'dialog' })
+      await flushPosition()
+
+      const popper = screen.getByRole('dialog')
+
+      expect(popper).toHaveTextContent(children)
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+    })
+
+    it('marks the floating element presentational with role="presentation"', async () => {
+      renderPopper({ role: 'presentation' })
+      await flushPosition()
+
+      // `presentation` removes it from the a11y tree — query by content
+      expect(screen.getByText(children)).toBeInTheDocument()
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+    })
+
+    it('always marks the floating element with data-picasso-popper regardless of role', async () => {
+      renderPopper({ role: 'presentation' })
+      await flushPosition()
+
+      // Modal's focus trap keys on this marker (roles vary per consumer)
+      expect(
+        screen.getByText(children).closest('[data-picasso-popper]')
+      ).toBeInTheDocument()
     })
   })
 })

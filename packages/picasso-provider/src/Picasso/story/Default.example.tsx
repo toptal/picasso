@@ -5,11 +5,7 @@ import { default as Picasso, SPACING_12 } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
 
 const App = () => (
-  <Picasso
-    loadFavicon={false}
-    fixViewport={false}
-    preventPageWidthChangeOnScrollbar={false}
-  >
+  <Picasso loadFavicon={false} fixViewport={false}>
     <Page>
       <Page.TopBar title='App Page' />
       <Page.Content>

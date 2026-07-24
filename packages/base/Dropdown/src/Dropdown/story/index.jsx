@@ -60,6 +60,11 @@ page
     'base/Dropdown'
   )
   .addExample(
+    'Dropdown/story/ResponsiveOffset.example.tsx',
+    'Responsive Offset',
+    'base/Dropdown'
+  )
+  .addExample(
     'Dropdown/story/CustomTrigger.example.tsx',
     'Custom Anchor',
     'base/Dropdown'

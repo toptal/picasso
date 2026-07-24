@@ -72,6 +72,10 @@ describe('Highlight Autofill', () => {
         </Container>
       )
 
+      // Lexical mounts the RTE toolbar async — gate on it so the capture
+      // always includes the fully initialized editor
+      cy.get('#footoolbar button').should('be.visible')
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'default',

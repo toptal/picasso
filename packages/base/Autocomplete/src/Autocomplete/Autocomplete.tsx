@@ -13,7 +13,7 @@ import type {
 import React, { forwardRef, useRef } from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { isForwardRef } from '@toptal/picasso-shared'
-import type { PopperOptions } from 'popper.js'
+import type { PopperOptions } from '@toptal/picasso-popper'
 import { Input } from '@toptal/picasso-input'
 import { Container } from '@toptal/picasso-container'
 import { Loader } from '@toptal/picasso-loader'
@@ -287,6 +287,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         <div role='listbox'>
           {isOpen && inputWrapperRef.current && optionsMenu && (
             <Popper
+              role='presentation'
               autoWidth
               width={menuWidth}
               placement='bottom-start'

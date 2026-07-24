@@ -76,4 +76,51 @@ describe('Switch', () => {
     expect(onChange).toHaveBeenCalled()
     expect(getByTestId('switch')).toMatchSnapshot()
   })
+
+  describe('single label-associated node', () => {
+    it('matches getByLabelText once and resolves to the accessible control', () => {
+      const { getByLabelText, getByRole } = renderSwitch({ label: 'A Switch' })
+
+      expect(getByLabelText('A Switch')).toBe(
+        getByRole('switch', { name: 'A Switch' })
+      )
+    })
+
+    it('toggles when the label text is clicked', () => {
+      const onChange = jest.fn()
+      const { getByText } = renderSwitch({ label: 'A Switch', onChange })
+
+      fireEvent.click(getByText('A Switch'))
+
+      expect(onChange).toHaveBeenCalledTimes(1)
+    })
+
+    it('does not toggle when disabled and the label text is clicked', () => {
+      const onChange = jest.fn()
+      const { getByText } = renderSwitch({
+        label: 'A Switch',
+        disabled: true,
+        onChange,
+      })
+
+      fireEvent.click(getByText('A Switch'))
+
+      expect(onChange).not.toHaveBeenCalled()
+    })
+
+    describe('when nested inside a role="menuitem"', () => {
+      it('toggles on label-text click', () => {
+        const onChange = jest.fn()
+        const { getByText } = render(
+          <div role='menuitem'>
+            <Switch onChange={onChange} label='A Switch' />
+          </div>
+        )
+
+        fireEvent.click(getByText('A Switch'))
+
+        expect(onChange).toHaveBeenCalledTimes(1)
+      })
+    })
+  })
 })

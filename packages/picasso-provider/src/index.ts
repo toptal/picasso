@@ -40,8 +40,6 @@ export type {
   BreakpointKeys,
 } from './Picasso/config'
 
-export { default as PicassoProvider } from './Picasso/PicassoProvider'
-
 export {
   usePicassoRoot,
   usePageTopBar,
@@ -49,8 +47,8 @@ export {
   useDrawer,
   useSidebar,
   useCurrentBreakpointRange,
-  usePreventPageWidthChangeOnScrollbar,
   RootContext,
+  PicassoRootNodeContext,
 } from './Picasso/RootContext'
 
 export * from './Picasso/utils'

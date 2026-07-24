@@ -1,13 +1,15 @@
 {
   "name": "@toptal/picasso-tailwind",
-  "version": "4.0.0",
+  "version": "99.0.0",
   "description": "Picasso Tailwind configuration",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-tailwind#readme",
   "license": "MIT",
   "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.js",
+    "./base": "./src/base.css",
+    "./base.css": "./src/base.css"
   },
   "publishConfig": {
     "access": "public"
@@ -29,7 +31,9 @@
   "peerDependencies": {
     "tailwindcss": "^4.2.1"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",

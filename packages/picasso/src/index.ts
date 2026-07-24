@@ -150,6 +150,7 @@ export type {
   GridSize,
   GridItemProps,
   GridSizeProps,
+  GridItemSizeProps,
 } from '@toptal/picasso-grid'
 export { HelpboxCompound as Helpbox } from '@toptal/picasso-helpbox'
 export type { HelpboxProps } from '@toptal/picasso-helpbox'
@@ -309,7 +310,16 @@ export type { UserBadgeProps } from '@toptal/picasso-user-badge'
 export { Carousel } from '@toptal/picasso-carousel'
 export type { CarouselProps } from '@toptal/picasso-carousel'
 export { Popper } from '@toptal/picasso-popper'
-export type { PopperProps } from '@toptal/picasso-popper'
+export type {
+  PopperHandle,
+  PopperModifierOptions,
+  PopperModifiers,
+  PopperOptions,
+  PopperPadding,
+  PopperPlacementType,
+  PopperProps,
+  PopperReferenceObject,
+} from '@toptal/picasso-popper'
 
 // hygen code generator inserts export statements above this comment.
 export * from '@toptal/picasso-icons'

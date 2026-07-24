@@ -3,10 +3,10 @@
 exports[`Timeline renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <div
         class="table h-fit w-fit"
@@ -104,10 +104,10 @@ exports[`Timeline renders 1`] = `
 exports[`Timeline renders with dates 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <div
         class="table h-fit w-fit"
@@ -244,10 +244,10 @@ exports[`Timeline renders with dates 1`] = `
 exports[`Timeline renders with icons 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <div
         class="table h-fit w-fit"
@@ -345,10 +345,10 @@ exports[`Timeline renders with icons 1`] = `
 exports[`Timeline renders without a connector 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="Picasso-root"
+      class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
     >
       <div
         class="table h-fit w-fit"

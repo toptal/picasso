@@ -1,33 +1,16 @@
-import React, { useState } from 'react'
-import type { RichTextEditorProps } from '@toptal/picasso-rich-text-editor'
-import { CodePlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
-import { Container } from '@toptal/picasso'
+import React from 'react'
+import { CodePlugin } from '@toptal/picasso-rich-text-editor'
 
-const editorTestId = 'editor'
+import {
+  Editor,
+  buttonShouldBeActive,
+  buttonShouldNotBeActive,
+  component,
+  editorSelector,
+  makeEditorProps,
+} from './test-helpers'
 
-const defaultProps = {
-  id: 'foo',
-  onChange: () => {},
-  placeholder: 'placeholder',
-  testIds: {
-    editor: editorTestId,
-  },
-}
-
-const editorSelector = `#${defaultProps.id}`
-
-const Editor = (props: RichTextEditorProps) => {
-  const [value, setValue] = useState('')
-
-  return (
-    <Container style={{ maxWidth: '600px' }} padded='small'>
-      <RichTextEditor {...props} onChange={value => setValue(value)} />
-      <Container padded='small'>{value}</Container>
-    </Container>
-  )
-}
-
-const component = 'RichTextEditor'
+const defaultProps = makeEditorProps()
 
 describe('CodePlugin', () => {
   describe('when the code button in toolbar is used', () => {
@@ -51,9 +34,7 @@ describe('CodePlugin', () => {
       cy.get('@editor').type(codeText)
       cy.get('code').should('exist').should('have.text', codeText)
 
-      cy.get('@button')
-        .should('have.attr', 'class')
-        .and('include', 'bg-graphite-700')
+      buttonShouldBeActive(cy.get('@button'))
 
       cy.get('body').happoScreenshot({
         component,
@@ -61,9 +42,7 @@ describe('CodePlugin', () => {
       })
 
       cy.contains(normalText).click()
-      cy.get('@button')
-        .should('have.attr', 'class')
-        .and('not.include', 'bg-graphite-700')
+      buttonShouldNotBeActive(cy.get('@button'))
 
       cy.get('body').happoScreenshot({
         component,

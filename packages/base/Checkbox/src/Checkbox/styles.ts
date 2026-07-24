@@ -1,127 +1,44 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { mix, outline } from '@toptal/picasso-shared'
-import { PicassoProvider } from '@toptal/picasso-provider'
+// Visual box for the checkbox control's `<span>`. The checkmark and
+// indeterminate dash are drawn with `::before` / `::after` pseudo-elements,
+// driven by the mutually-exclusive `data-checked` / `data-indeterminate`
+// state attributes (a checkbox is never both at once).
+export const checkboxClassNames: string[] = [
+  'relative box-border inline-block h-4 w-4 rounded-sm border border-solid',
+  // `leading-4` pins line-height to 1rem; without it the line box falls back to
+  // `normal` and grows the rendered box ~1px.
+  'text-[1rem] leading-4',
+  'cursor-pointer transition-all duration-350 ease-in-out',
 
-PicassoProvider.override(() => ({
-  MuiCheckbox: {
-    root: {
-      fontSize: '1rem',
-      lineHeight: '1rem',
-      padding: 0,
+  // Resting state colours
+  'data-unchecked:bg-white data-unchecked:border-gray-500',
+  'data-checked:bg-blue-500 data-checked:border-blue-500 data-checked:text-white',
+  'data-indeterminate:bg-blue-500 data-indeterminate:border-blue-500 data-indeterminate:text-white',
 
-      '&$disabled': {
-        opacity: 0.48,
-      },
-    },
-  },
-}))
+  // Hover (enabled only — a disabled checkbox keeps its resting border).
+  // TODO(tokens) [PI-4318]: no canonical token for the hover shade (blue-500
+  // mixed 84/16 with white) — derived inline from blue-500 via color-mix.
+  '[&[data-unchecked]:not([data-disabled]):hover]:border-gray-600',
+  '[&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
+  '[&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
+  '[&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
+  '[&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
 
-export default ({ palette, sizes, transitions }: Theme) =>
-  createStyles({
-    root: {
-      fontSize: '1rem',
-      '&:hover $uncheckedIcon': {
-        border: `${sizes.borderWidth} solid ${palette.grey.main2}`,
-      },
-      '&:hover $checkedIcon': {
-        background: mix(palette.primary.main, palette.common.white, 0.16),
-        border: `${sizes.borderWidth} solid ${mix(
-          palette.primary.main,
-          palette.common.white,
-          0.16
-        )}`,
-      },
-      '&:hover $indeterminateIcon': {
-        background: mix(palette.primary.main, palette.common.white, 0.16),
-        border: `${sizes.borderWidth} solid ${mix(
-          palette.primary.main,
-          palette.common.white,
-          0.16
-        )}`,
-      },
-    },
-    withLabel: {
-      alignSelf: 'flex-start',
-    },
-    disabled: {
-      '&:hover $uncheckedIcon': {
-        border: `${sizes.borderWidth} solid ${palette.grey.main}`,
-      },
-    },
-    focused: {
-      '& $uncheckedIcon': {
-        ...outline(palette.primary.main),
-      },
-      '& $checkedIcon': {
-        ...outline(palette.primary.main),
-      },
-      '& $indeterminateIcon': {
-        ...outline(palette.primary.main),
-      },
-    },
-    checkedIcon: {
-      height: '1em',
-      width: '1em',
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-      background: palette.primary.main,
-      border: `${sizes.borderWidth} solid ${palette.primary.main}`,
-      borderRadius: sizes.borderRadius.small,
-      color: palette.common.white,
-      '&:before': {
-        top: '0.5em',
-        left: '0.1875em',
-        width: '0.1875em',
-        height: '0.125em',
-        content: '""',
-        position: 'absolute',
-        transform: 'rotate(45deg)',
-        background: 'white',
-      },
-      '&:after': {
-        top: '0.4375em',
-        left: '0.25em',
-        width: '0.5625em',
-        height: '0.125em',
-        content: '""',
-        position: 'absolute',
-        transform: 'rotate(-45deg)',
-        background: 'white',
-      },
-    },
-    uncheckedIcon: {
-      height: '1em',
-      width: '1em',
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-      background: palette.common.white,
-      border: `${sizes.borderWidth} solid ${palette.grey.main}`,
-      borderRadius: sizes.borderRadius.small,
-    },
+  // Focus ring: 3px blue-500 at 48% alpha.
+  // `data-focused` mirrors the `:focus-visible` ring so it survives DOM
+  // serialization for visual snapshots (live pseudo-classes don't).
+  // TODO(tokens) [PI-4318]: no canonical token for the focus-ring colour
+  // (blue-500 @ 48% alpha) — derived inline from blue-500 via color-mix.
+  'focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
+  'data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
 
-    indeterminateIcon: {
-      position: 'relative',
-      height: '1em',
-      width: '1em',
-      transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
-      background: palette.primary.main,
-      border: `${sizes.borderWidth} solid ${palette.primary.main}`,
-      borderRadius: sizes.borderRadius.small,
-      color: palette.common.white,
+  // Disabled
+  'data-disabled:opacity-[0.48] data-disabled:cursor-default',
 
-      '&:before': {
-        content: '""',
-        position: 'absolute',
-        background: 'white',
-        width: '0.625em',
-        height: '0.125em',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-      },
-    },
-    labelWithRightSpacing: {},
-    checkboxWrapper: {
-      alignSelf: 'flex-start',
-      verticalAlign: 'middle',
-    },
-  })
+  // Checkmark (checked) — two rotated white bars. `absolute` resolves against
+  // the padding box (1px inside the border), hence the `- 1px` in each coordinate.
+  "data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)]",
+  "data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)]",
+
+  // Indeterminate dash — one centred white bar
+  "data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]",
+]

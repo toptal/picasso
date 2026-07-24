@@ -27,12 +27,18 @@
         "commit": false,
         "stageChanges": false,
         "tag": false
-      }
+      },
+      "preserveMatchingDependencyRanges": [
+        "dependencies",
+        "devDependencies",
+        "optionalDependencies"
+      ]
     },
     "changelog": {
       "workspaceChangelog": false,
       "projectChangelogs": false
     }
   },
-  "$schema": "./node_modules/nx/schemas/nx-schema.json"
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "analytics": false
 }

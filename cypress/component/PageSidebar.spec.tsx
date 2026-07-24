@@ -175,6 +175,15 @@ describe('Sidebar', () => {
       // Expand collapsible Menu
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
 
+      // gate on the expanded menu being present, then on its height animation
+      // being at rest (the accordion transitions height over ~300ms)
+      cy.getByTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)
+        .filter(':visible')
+        .should('be.visible')
+      cy.waitForGeometryToSettle(
+        `[data-testid="${TestIds.COLLAPSIBLE_MENU_INNER_MENU}"]`
+      )
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'expanded accordion menu',
@@ -195,6 +204,13 @@ describe('Sidebar', () => {
 
       // Open collapsible Menu as dropdown
       cy.getByTestId(TestIds.COLLAPSIBLE_MENU_HEADER).realClick()
+
+      // the sub-menu popper is keepMounted (in the DOM at 0×0 while closed),
+      // so the global geometry-settle passes vacuously — gate on exactly one
+      // dropdown actually being open.
+      cy.getByTestId(TestIds.COLLAPSIBLE_MENU_INNER_MENU)
+        .filter(':visible')
+        .should('have.length', 1)
 
       cy.get('body').happoScreenshot({
         component,

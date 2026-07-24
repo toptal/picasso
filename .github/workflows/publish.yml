@@ -31,6 +31,14 @@ jobs:
     name: Publish updated packages to NPM
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: publish-${{ github.ref }}
+      cancel-in-progress: false
+    env:
+      # Big-bang releases (e.g. the v100 re-baseline) publish ~90 packages at once;
+      # give the retry wrapper enough attempts to clear npm's publish rate limit.
+      PUBLISH_MAX_ATTEMPTS: 8
     steps:
       - name: Check out code
         # Same as actions/checkout@v5

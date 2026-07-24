@@ -8,7 +8,7 @@ This document focuses on spacing properties of [Container component](https://pic
 
 ## Context
 
-`Container` and `Dropdown` spacing properties have `SizeType` that can be a spacing constant like `xsmall`, `small`, etc. or a number (which is a spacing in `rem` units). Spacing constants are resolved to `rem` units as well. 
+`Container` and `Dropdown` spacing properties have `SizeType` that can be a spacing constant like `xsmall`, `small`, etc. or a number (which is a spacing in `rem` units). Spacing constants are resolved to `rem` units as well.
 
 The scale of the problem is large enough for measures to be taken. According to the research in [Container properties usages section](#container-properties-usage), 4% of the `Container.top` spacing property usages retrieve the screen size before calculating the value of the property:
 
@@ -31,14 +31,14 @@ The `Container` and `Dropdown` component spacing properties allow setting values
  * Value         |0px     480px    768px    1024px   1440px
  * Screen width  |--------|--------|--------|--------|-------->
  * Range         |   xs   |   sm   |   md   |   lg   |   xl
- * 
+ *
  * For screens in "xs", "sm", and "md" breakpoint ranges top padding is SPACING_1
  * For screens in and bigger than "lg" breakpoint range top padding is SPACING_2
  */
 
 /**
  * Current approach
- * 
+ *
  * Container.top can be "SpacingType" only
  */
 const mobileScreen = useBreakpoint(['xs', 'sm', 'md'])
@@ -46,7 +46,7 @@ const mobileScreen = useBreakpoint(['xs', 'sm', 'md'])
 
 /**
  * Proposed approach
- * 
+ *
  * Container.top can be "SpacingType" or "{ xs?: SpacingType, sm?: SpacingType, md?: SpacingType, lg?: SpacingType, xl?: SpacingType }
  */
 <Container top={{
@@ -110,13 +110,23 @@ Another approach is to make spacing properties accept arrays with spacing values
  * Value         |0px     480px    768px    1024px   1440px
  * Screen width  |--------|--------|--------|--------|-------->
  * Range         |   xs   |   sm   |   md   |   lg   |   xl
- * 
+ *
  * For screens in "xs" and "sm" breakpoint ranges top padding is 0rem / 0px (due to "null" value)
  * For screens in "md" breakpoint range top padding is SPACING_1
  * For screens in and bigger than "lg" breakpoint range top padding is SPACING_2
  */
 
-<Container top={[/* xs */ null, /* sm */ null, /* md */ SPACING_1, /* lg */ SPACING_2]}/>
+<Container
+  top={[/* xs */ null, /* sm */ null, /* md */ SPACING_1, /* lg */ SPACING_2]}
+/>
 ```
 
 Array syntax requires explicit specification of smaller breakpoint ranges even if spacing is not set for them, which makes it less usable compared to object syntax. Array syntax is not consistent with the way Picasso defines APIs of components, it is not used anywhere else. Array syntax requires remembering of breakpoint ranges to match the index of value in array to the breakpoint range. All three factors make it a less preferable approach compared to object syntax mentioned earlier.
+
+## Status update (2026-07-15 — PF-2226)
+
+The API shipped as designed and is unchanged. The implementation has been replaced:
+
+- The original JSS/CSS-variable runtime emitted its media queries largest-first, inverting the mobile-first cascade this ADR specified (on wide viewports the smallest specified breakpoint won). The bug shipped with the feature; org-wide adoption of the responsive object form stayed at zero.
+- PF-2023 ported that runtime off JSS to a client-only `<style>` injection, which silently lost the SSR compatibility this ADR's Problem statement called for (PF-2238).
+- PF-2226 deleted the runtime engine entirely. Responsive spacing now resolves through a static Tailwind class table + pure resolver in `@toptal/picasso-utils` (shared by Container spacing props and Dropdown `offset`). The cascade is now genuinely mobile-first (fixing the inversion) and SSR-correct (the classes ship in build-time CSS). One behavioral note: responsive spacing uses the fixed Tailwind screens and no longer reacts to `disableMobileBreakpoints()`.

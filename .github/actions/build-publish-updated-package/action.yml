@@ -20,9 +20,19 @@ runs:
       uses: ./.github/actions/pnpm-install
 
     - name: Publish to npm
+      id: changesets
       # Same as changesets/action@v1.5.3
       uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
       with:
         publish: pnpm release
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
+
+    # Safety net for large releases: fail loudly if any reported-published version
+    # is missing from npm (e.g. a rate-limited big-bang that published only partway).
+    - name: Verify published versions are visible on npm
+      if: steps.changesets.outputs.published == 'true'
+      shell: bash
+      env:
+        PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
+      run: node "${{ github.action_path }}/verify-published.mjs"

@@ -3,12 +3,13 @@
 exports[`ButtonCheckbox renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <label
       aria-disabled="false"
       class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 px-4 text-center py-2 pr-6 pl-4"
       data-component-type="button"
+      id="base-ui-:r3:"
       role="button"
       tabindex="0"
       type="button"
@@ -17,26 +18,23 @@ exports[`ButtonCheckbox renders 1`] = `
         class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         <span
-          class="inline-flex PicassoCheckbox-checkboxWrapper"
+          class="relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x [&_input]:translate-y"
         >
           <span
-            aria-disabled="false"
-            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiCheckbox-root PicassoCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <input
-                class="PrivateSwitchBase-input"
-                data-indeterminate="false"
-                type="checkbox"
-                value=""
-              />
-              <div
-                class="PicassoCheckbox-uncheckedIcon"
-              />
-            </span>
-          </span>
+            aria-checked="false"
+            aria-labelledby="base-ui-:r3:"
+            class="relative box-border inline-block h-4 w-4 rounded-sm border border-solid text-[1rem] leading-4 cursor-pointer transition-all duration-350 ease-in data-unchecked:bg-white data-unchecked:border-gray data-checked:bg-blue data-checked:border-blue data-checked:text-white data-indeterminate:bg-blue data-indeterminate:border-blue data-indeterminate:text-white [&[data-unchecked]:not([data-disabled]):hover]:border-gray [&[data-checked]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-checked]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] [&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)] focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] data-disabled:opacity-[0.48] data-disabled:cursor-default data-checked:before:absolute data-checked:before:content-[''] data-checked:before:top-[calc(0.5rem_-_1px)] data-checked:before:left-[calc(0.1875rem_-_1px)] data-checked:before:h-[0.125rem] data-checked:before:w-[0.1875rem] data-checked:before:bg-white data-checked:before:[transform:rotate(45deg)] data-checked:after:absolute data-checked:after:content-[''] data-checked:after:top-[calc(0.4375rem_-_1px)] data-checked:after:left-[calc(0.25rem_-_1px)] data-checked:after:h-[0.125rem] data-checked:after:w-[0.5625rem] data-checked:after:bg-white data-checked:after:[transform:rotate(-45deg)] data-indeterminate:before:absolute data-indeterminate:before:content-[''] data-indeterminate:before:top-1/2 data-indeterminate:before:left-1/2 data-indeterminate:before:h-[0.125rem] data-indeterminate:before:w-[0.625rem] data-indeterminate:before:bg-white data-indeterminate:before:[transform:translate(-50%,-50%)]"
+            data-unchecked=""
+            id="base-ui-:r1:"
+            role="checkbox"
+            tabindex="0"
+          />
+          <input
+            aria-hidden="true"
+            style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+            tabindex="-1"
+            type="checkbox"
+          />
         </span>
         <div
           class="min-w"

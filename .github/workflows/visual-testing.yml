@@ -1,8 +1,16 @@
 name: Visual Testing
 
 on:
+  # Manual trigger: (re)generate baselines for a branch tip on demand.
+  workflow_dispatch:
   push:
-    branches: [master]
+    # Same branch set as ci.yaml's PR trigger: master + the long-lived
+    # feature/** integration branches that serve as PR bases. Each needs its
+    # own Storybook + Cypress Happo baseline, or PRs stacked on it fall back
+    # to comparing against master.
+    branches:
+      - master
+      - 'feature/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

@@ -3,7 +3,7 @@
 exports[`Indicator renders in red color 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="w-2 h-2 rounded-[50%] bg-red"

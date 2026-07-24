@@ -81,3 +81,19 @@ page
     },
     'base/Drawer'
   )
+  .addExample(
+    'Drawer/story/DisablePortal.example.tsx',
+    {
+      title: 'With disabled portal',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/DisableScroll.example.tsx',
+    {
+      title: 'With disabled scroll',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )

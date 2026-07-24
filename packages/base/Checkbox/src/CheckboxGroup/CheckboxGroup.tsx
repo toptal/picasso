@@ -1,20 +1,24 @@
 /* eslint-disable react/no-array-index-key */
 import type { HTMLAttributes } from 'react'
 import React from 'react'
-import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
+import type { GridItemSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { fromPx } from '@toptal/picasso-shared'
+import { SPACING_4, spacingToPx } from '@toptal/picasso-utils'
 
 type GridSpacing = GridProps['spacing']
 
-export interface Props extends HTMLAttributes<HTMLDivElement>, GridSizeProps {
+export interface Props
+  extends HTMLAttributes<HTMLDivElement>,
+    GridItemSizeProps {
   /** Align checkboxes horizontally  */
   horizontal?: boolean
   /** Defines amount of space between checkbox components (in px) */
   spacing?: GridSpacing
 }
 
-const HORIZONTAL_SPACING = 16
+const HORIZONTAL_SPACING = fromPx(spacingToPx(SPACING_4)) as GridSpacing
 
 const CheckboxGroup = ({ horizontal = false, ...props }: Props) => {
   const { spacing, xs, sm, md, lg, xl, className, ...rest } = props
@@ -33,11 +37,7 @@ const CheckboxGroup = ({ horizontal = false, ...props }: Props) => {
         className
       )}
     >
-      <Grid
-        direction={direction}
-        spacing={gridSpacing as GridSpacing}
-        className='mt-0 mb-0'
-      >
+      <Grid direction={direction} spacing={gridSpacing} className='mt-0 mb-0'>
         {children.map((child, index) => (
           <Grid.Item
             key={index}

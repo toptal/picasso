@@ -1,8 +1,12 @@
-This file provides guidance to AI coding agent when working with code in this repository.
+# Picasso — agent & contributor guide
+
+This file guides AI coding agents and contributors working in this repo. Read it top-to-bottom once; it is the single page meant to replace hunting through scattered docs.
+
+**How to read it:** the _operate_ sections (tooling, commands, layout) tell you how to run the repo. The _author_ sections (API, types, styling, …) each state a **principle** first, then the Picasso-specific rules you could not deduce from it — when a case is not covered, reason from the principle.
 
 ## What this repo is
 
-Picasso is Toptal's reusable UI library, distributed as a set of NPM packages from a single pnpm workspace. It's a public-facing library — API stability, semver discipline, and visual regression matter more than they would in a typical product repo.
+Picasso is Toptal's reusable UI library, distributed as a set of NPM packages from a single pnpm workspace. It's a public-facing library — API stability, semver discipline, and visual regression matter more than they would in a typical product repo. Two consequences drive everything below: the **props interface is a public contract** (breaking it costs every consumer a migration), and **appearance is guarded by visual regression** (Happo). When unsure, optimize for the consumer's stability and the next reader's clarity.
 
 ## Tooling stack
 
@@ -36,8 +40,8 @@ pnpm test                          # unit + integration (CI parity, slow)
 pnpm changeset                     # REQUIRED on PRs that change package code
 pnpm generate:component            # scaffold a new component (davinci-code)
 pnpm generate:example              # scaffold a story example
-pnpm generate:icons       # regenerate icon React components from SVG
-pnpm generate:pictograms       # regenerate pictogram React components from SVG
+pnpm generate:icons                # regenerate icon React components from SVG
+pnpm generate:pictograms           # regenerate pictogram React components from SVG
 pnpm refresh:tsconfig-references   # resync project references after pkg deps change
 pnpm circularity                   # madge --circular packages/*/src
 ```
@@ -46,7 +50,7 @@ pnpm circularity                   # madge --circular packages/*/src
 
 Happo (visual regression) requires `HAPPO_API_KEY` / `HAPPO_API_SECRET` — see `README.md` § "Running visual tests locally". You usually do not need to run it locally; CI handles it and reports back on the PR.
 
-## Package layout
+## Repo & package layout
 
 Two tiers of packages, both inside `pnpm-workspace.yaml`:
 
@@ -61,7 +65,7 @@ Two tiers of packages, both inside `pnpm-workspace.yaml`:
       └── Button/
           ├── Button.tsx                 # component implementation
           ├── index.ts                   # re-exports Button + its types
-          ├── styles.ts                  # JSS styles (createStyles)
+          ├── styles.ts                  # Tailwind class-building fns (pure, return string[])
           ├── test.tsx                   # jest unit tests
           ├── __snapshots__/             # jest snapshots
           └── story/
@@ -72,6 +76,7 @@ Two tiers of packages, both inside `pnpm-workspace.yaml`:
   ```
 
   Sibling sub-components (e.g. `ButtonGroup`, `ButtonCircular`) live as peer folders under the same package's `src/`.
+
 - **`packages/<top-level>/`** — aggregating packages consumers actually import:
   - `picasso` — the main barrel, depends on every `@toptal/picasso-*` base package. Exports all components and types, in case consumers want a single import.
   - `picasso-forms` — `react-final-form`-based form solution. Provides form components.
@@ -85,44 +90,97 @@ Two tiers of packages, both inside `pnpm-workspace.yaml`:
   - `topkit-analytics-charts` - `@topkit/analytics-charts`, analytics charts.
   - `picasso-codemod` - utility package for codemods.
 
-Cross-package import rules (enforced by `.eslintrc.js`):
-
-- `packages/picasso/src/**` may not import from `@toptal/picasso`, `@toptal/picasso-forms`, `@toptal/picasso-charts` (i.e. the aggregating packages — import the underlying base package directly).
-- **Never** import `useLayoutEffect` from `react` — use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared` (SSR safety; the rule is enforced).
+Cross-package import rule (enforced by `.eslintrc.js`): `packages/picasso/src/**` may not import from `@toptal/picasso`, `@toptal/picasso-forms`, `@toptal/picasso-charts` (the aggregating packages — import the underlying base package directly). The sibling no-self-import and SSR (`useLayoutEffect`) rules live under **Code organization** below.
 
 Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases, `.storybook/components/CodeExample/CodeExample.tsx` imports, and `Dockerfile`. Then run `pnpm refresh:tsconfig-references`.
 
-## Component design patterns (enforced)
+## Component API design
 
-`PICASSO_COMPONENT_DESIGN_PATTERNS.md` is the source of truth and is **checked by a GitHub Actions workflow on every PR** — failing means the PR is blocked. Read it before adding or changing component APIs.
+`PICASSO_COMPONENT_DESIGN_PATTERNS.md` is the source of truth for the component API surface and is **checked by a GitHub Actions workflow on every PR** — failing blocks the PR. The rules below are the readable summary; that file is authoritative.
 
-## Conventions
+**Principle: optimize for the common case, speak one vocabulary across the kit, and mirror the web platform.**
 
-- **Commit messages**: capital letter, imperative mood ("Add" not "Added"), no trailing period, ≤79 chars. Enforced by Danger in CI.
-- **`TODO` / `FIXME` / `@deprecated`** comments must include a Jira ref — either `[ABC-1234]` or the full `https://toptal-core.atlassian.net/browse/...` URL. The `todo-plz/ticket-ref` ESLint rule will warn otherwise.
-- **Changesets** are required for any PR that changes behavior for consumers. Run `pnpm changeset` and commit the generated file alongside the change. The release PR ("Version Packages") is opened automatically after merge. Check docs/contribution/changeset-guidelines.md for best practices.
-- **Icons/pictograms**: drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants for icons) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` or `pnpm generate:pictograms`.
-- **Design tokens** must match the BASE design system. Don't invent local synonyms.
+- **Sensible defaults** — the most common look needs zero or near-zero props. Pick defaults for `variant`/`size`/`color`.
+- **One vocabulary** — reuse an existing prop name before inventing one; keep names short (`size`, not `sizeText`); mirror native HTML attributes verbatim (`name`, `value`, `disabled`, `checked`, `href`, `onChange`…). A handler's _callback signature_ may simplify (`onChange?: (value: string) => void`) even though its name stays native.
+- **Booleans are bare adjectives** — `open`, `disabled`, `loading`, `selected` — never an `is`/`has`/`should` prefix.
+- **One `variant` string-union** for visual styles (`variant?: 'rectangle' | 'circular'`) — never parallel boolean flags.
+- **`children` for content**; reserve named content props for components with multiple distinct slots.
+- **`as` for polymorphism**, narrowed to the tags actually supported (`as?: 'a' | 'button'`) — never `tag`/`component`/`element`, and no runtime `as` guards (TypeScript already constrains it).
+- **Compound components for multi-part APIs** — attach parts to the parent (`Modal.Title`, `Modal.Content`, `Modal.Actions`); consumers compose them as children.
+- **`testIds` object** (one optional prop, optional keys) for addressing multiple parts in tests — never per-part `data-testid` props at the top level.
+- **Style hooks are `className` and `style` only** — never expose `classes`, `sx`, `css`, `styles`, theme overrides, or slot-level class props.
+
+## Props & type contract
+
+**Principle: `Props` is the public contract; the type system enforces it — so never lie to it.**
+
+- **Extend `BaseProps`** (gives `className`, `style`, `data-testid`).
+- **Form components** extend `FieldProps` (or a descendant like `InputProps`/`SelectProps`), honor the full `final-form` field set (`name`, `value`, `defaultValue`, `required`, `disabled`, `onChange`, `onBlur`, `onFocus`), and render their chrome through `PicassoField` — never reimplement label/hint/error/required layout.
+- **Declare with `interface Props extends …`**, never `type Props = { … }`. Defaults come from **signature destructuring**, never a static `Component.defaultProps`.
+- **Draw design values from the shared scales** — `SizeType`, `Palette`, `ColorSample`; names must match the BASE design system. No raw hex/rgb, no invented names (`tiny`, `accent`). Express sizes in `rem` (the lone exception is a `1px` hairline).
+- **JSDoc every public prop** (single-line `/** … */` above it). **Never** JSDoc passthrough/injected props (`data-private`, `data-testid`, `ownerState`, primitive-injected props) — they'd surface as public API.
+- **No `any`, no `as unknown as`, no bare `@ts-ignore`** in component source. If you must suppress, use `@ts-expect-error <reason>`. **Cast at the type boundary** (a helper's return type or a local typed binding), never at the JSX call site.
 
 ## Styling
 
-### Never produce sub-pixel values
+**Principle: Tailwind is the only styling layer; consumer overrides must always win; let state live in the DOM.**
 
-All positions and dimensions must resolve to whole pixels. Sub-pixel values (e.g. `12.5px`) make the browser anti-alias edges, producing blurry borders, dividers, and text.
+- **Compose with `twMerge(...)`** from `@toptal/picasso-tailwind-merge`, and put the **consumer `className` LAST** so it wins on conflicts.
+- **Conditionals: `twMerge(cx({ 'm-0': expanded }))`** — `cx` (from `classnames`) expresses branching/variant classes (object syntax or `cond && 'x'`), preferred over scattering `&&`/ternaries across `twMerge` args; `twMerge` resolves Tailwind conflicts. (`twMerge` takes no object syntax — that's `cx`'s job.) Plain `twMerge('a', 'b', className)` is fine when nothing branches.
+- **State-driven styling uses `data-[…]:` variants** (`data-[checked]:bg-blue-500`, `data-[disabled]:opacity-50`). Read state from the DOM; don't mirror it into `useState` just to style it.
+- **Tokens over arbitrary values** — use Picasso token names (`text-graphite-800`, `shadow-2`, `p-4`). An `[arbitrary-value]` plus a `// TODO(tokens): …` comment is a last resort to raise with designers; never invent tokens.
+- **No `!important`.** If a utility won't win, walk the override ladder: don't-override → `data-[…]:` / `className` → `render` prop → (last resort) inline `style`. Reaching for `!important` means you skipped a rung.
+- **No CSS/JSS** — no `.css`/`.scss`/`.module.css`, no `makeStyles`/`createStyles`/`withStyles`/`&$selector`. Inline `style` is only for genuinely runtime-computed values, never static ones.
+- **Whole-pixel geometry.** Positions/dimensions should resolve to whole pixels — sub-pixel values blur borders, dividers, and text. Avoid the usual culprits: `translate(-50%, …)` on odd-size elements, uneven `%` / `calc(100% / 3)`, fractional `rem`/`line-height`/`border-width`. _Exception:_ Base UI primitives self-center via `translate: -50% -50%` — accept their geometry rather than re-introducing pixel-snapping offsets to fight it.
+- **Deep dive:** the full Base UI + Tailwind styling doctrine and the override-preference ladder live in `docs/contribution/base-ui-styling.md`; the canonical token list is `docs/contribution/tailwind-tokens.md`.
 
-Do not use techniques that can yield a fractional pixel:
+## Base UI composition
 
-- `transform: translate(-50%, …)` to center elements of odd size.
-- Percentage widths, heights, or offsets that don't divide evenly.
-- Dividing `calc()`, e.g. `calc(100% / 3)`.
-- Fractional `rem`/`em` (`1rem = 16px`, so `0.1rem = 1.6px`).
-- Fractional `line-height` or `border-width`.
+**Principle: Base UI ships behavior and accessibility; you ship looks. Compose, don't fork.**
 
-Instead, use whole-pixel values, `rem` multiples of `16px`, and fixed integer gaps.
+- **Style each Base UI part directly** with `className` / `data-[…]:` — no `slots`/`classes`-style indirection.
+- **Swap the rendered tag with `render` / `useRender`**, and pair it with **`nativeButton={false}`** on any button-default part (Button, `Menu.Trigger`, `Tabs.Tab`, `NumberField.Increment/Decrement`, `Toolbar.Button`) — omitting it silently breaks keyboard accessibility.
+- **Components passed to `render` must forward `ref`.**
+- **For opinionated defaults, add DOM inside a slot or wrap the Root** — don't fork the primitive.
+- **Override Base UI's internal inline styles by passing `style` to the part** (its `mergeProps` is rightmost-wins) — but first check whether you can simply not override (accept the primitive's geometry).
+- **API patterns catalogued** in `docs/contribution/base-ui-api.md` — compound parts, `render`/`nativeButton`, and the `toReactChangeEvent` / `toReactEvent` event-boundary adapters for form inputs.
 
-## Reference docs in this repo
+## Code organization
+
+**Principle: one component, one folder; co-locate everything it owns; the export surface is contractual.**
+
+- **Folder layout:** `<Component>/` holding `index.ts`, `<Component>.tsx` (implementation + `Props`), `styles.ts` (pure functions returning `string[]`), `test.tsx`, and `story/*.example.tsx`. Co-locate sub-components and hooks (`use-{hook}.ts`) here — never a parallel `hooks/` directory.
+- **Exports:** provide both named and default; `forwardRef` wraps a _named_ inner function; set `displayName`. `index.ts` re-exports default + named + `type <Component>Props`.
+- **Compound APIs** attach parts via `Object.assign` in `<Component>Compound/index.ts`. When a child must talk _upward_ to the parent, use a component-level React Context + an exported hook — not prop-drilling or refs.
+- **Aggregate re-export:** every public symbol must be re-exported from both the sub-package's `src/index.ts` and the aggregate `packages/picasso/src/index.ts`, in the same PR.
+- **Imports:** order is ESLint-autofixed (`pnpm davinci-syntax lint code …`); always import from package barrels (`@toptal/picasso-shared`), never deep paths; a sub-package never imports from the `@toptal/picasso` aggregate.
+- **SSR:** use `useIsomorphicLayoutEffect` from `@toptal/picasso-shared` (never `useLayoutEffect` from React — ESLint-enforced); keep `window`/`document` out of module scope and render — only touch them inside effects/handlers.
+
+## Testing
+
+**Principle: test observable behavior, not implementation.**
+
+- One top-level `describe('ComponentName', …)`; nest only for behavioral groupings, never 3+ deep.
+- Render through a local `renderComponent` helper that wraps `render()` from `@toptal/picasso-test-utils`.
+- Use user-centric queries (`getByRole`/`getByText`/`getByTestId`) with `userEvent` — no `fireEvent`, and no bare "renders without crashing" tests.
+- Keep 2–3 shape snapshots per component; the rest are explicit assertions.
+- Responsive components run Happo at all breakpoints (`screenshotBreakpoints: true`); fix every Violation the a11y addon reports.
+
+## Conventions & shipping
+
+**Principle: every consumer-visible change is versioned; CI is the contract.**
+
+- **Commits:** capital start, imperative mood ("Add" not "Added"), no trailing period, ≤79 chars. Enforced by Danger in CI.
+- **Changesets** are required for any PR that changes behavior for consumers — run `pnpm changeset`, commit the file alongside the change (the "Version Packages" release PR opens automatically after merge). Tier by **consumer-visible impact**, not effort: `patch` = bug fix / no consumer effect; `minor` = new prop, value, behavior, or component; `major` = removed/renamed/narrowed prop, flipped default, or layout break (name the break). Body in present-simple ("Fix…", not "Fixed…"). See `docs/contribution/changeset-guidelines.md`.
+- **`TODO` / `FIXME` / `@deprecated`** comments must include a Jira ref — `[ABC-1234]` or the full `https://toptal-core.atlassian.net/browse/...` URL. The `todo-plz/ticket-ref` ESLint rule warns otherwise.
+- **Icons/pictograms:** drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` / `pnpm generate:pictograms`.
+- **Dependencies:** caret (`^`) for npm deps, exact for workspace deps; install with plain `pnpm install`.
+- **CI is repo-wide:** touched files must pass `pnpm prettier --check` and ESLint (`pnpm lint:fix` autofixes most). A lint error _anywhere_ in the repo blocks the PR.
+
+## Reference docs
 
 - `README.md` — top-level project commands and Happo setup.
-- `CONTRIBUTING.md` + `docs/contribution/*.md` — workflow, component creation, examples, visual testing, JSS onboarding, packages architecture, PR jobs.
-- `PICASSO_COMPONENT_DESIGN_PATTERNS.md` — CI-enforced component API rules.
+- `CONTRIBUTING.md` + `docs/contribution/*.md` — workflow, component creation, examples, visual testing, packages architecture, PR jobs.
+- `docs/contribution/base-ui-styling.md` · `base-ui-api.md` · `tailwind-tokens.md` — Base UI + Tailwind authoring references: styling doctrine & override ladder, `@base-ui/react` API patterns, and the canonical token list.
+- `PICASSO_COMPONENT_DESIGN_PATTERNS.md` — CI-enforced component API rules (the 16 + 3 patterns).
 - `docs/decisions/` — numbered ADRs for non-obvious decisions (MUI v5 migration, picasso-provider as peer dep, breakpoints, spacings, etc.). Skim the matching ADR before changing related code.

@@ -1,22 +1,30 @@
-import { Checkbox as MUICheckbox } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
+import { useBaseUiId } from '@base-ui/react/internals/useBaseUiId'
 import type {
   ButtonOrAnchorProps,
   BaseProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { toReactChangeEvent } from '@toptal/picasso-shared'
 import type { ComponentProps, CSSProperties, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { Container } from '@toptal/picasso-container'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import type { RequiredDecoration } from '@toptal/picasso-form-label'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { checkboxClassNames } from './styles'
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })
+type CheckboxRootProps = Omit<
+  BaseCheckbox.Root.Props,
+  | 'checked'
+  | 'disabled'
+  | 'id'
+  | 'value'
+  | 'indeterminate'
+  | 'onCheckedChange'
+  | 'className'
+  | 'style'
+>
 
 export interface Props
   extends BaseProps,
@@ -45,91 +53,96 @@ export interface Props
   value?: string
 }
 
-export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
-  function Checkbox(
-    { disabled = false, indeterminate = false, onChange = () => {}, ...props },
-    ref
-  ) {
-    const {
-      label,
-      id,
-      className,
-      style,
-      labelStyle,
-      requiredDecoration,
-      value,
-      checked,
-      titleCase,
-      ...rest
-    } = props
+export const Checkbox = forwardRef<
+  HTMLButtonElement | HTMLLabelElement | HTMLDivElement,
+  Props
+>(function Checkbox(
+  { disabled = false, indeterminate = false, onChange = () => {}, ...props },
+  ref
+) {
+  const {
+    label,
+    id,
+    className,
+    style,
+    labelStyle,
+    requiredDecoration,
+    value,
+    checked,
+    titleCase,
+    ...rest
+  } = props
 
-    const classes = useStyles()
-    const rootClasses = {
-      root: classes.root,
-      disabled: classes.disabled,
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { color, 'data-private': dataPrivate, ...checkboxAttributes } = rest
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { color, 'data-private': dataPrivate, ...checkboxAttributes } = rest
 
-    const muiCheckbox = (
-      <Container as='span' flex inline className={classes.checkboxWrapper}>
-        <MUICheckbox
-          {...checkboxAttributes}
-          ref={
-            label ? undefined : (ref as React.ForwardedRef<HTMLButtonElement>)
-          }
-          checked={checked}
-          icon={<div className={classes.uncheckedIcon} />}
-          checkedIcon={<div className={classes.checkedIcon} />}
-          indeterminateIcon={<div className={classes.indeterminateIcon} />}
-          classes={rootClasses}
-          className={cx(className, {
-            [classes.withLabel]: Boolean(label),
-          })}
-          style={style}
-          disabled={disabled}
-          id={id}
-          indeterminate={indeterminate}
-          onChange={onChange}
-          value={value}
-          focusVisibleClassName={classes.focused}
-        />
-      </Container>
-    )
+  // Public Props extend button/anchor HTML attributes, but the rendered control
+  // is a <span>; the event-handler element types are runtime-compatible, so
+  // resolve the variance once here rather than narrowing the public API.
+  const rootRest = checkboxAttributes as CheckboxRootProps
 
-    if (!label) {
-      return muiCheckbox
-    }
+  // Name the control via `aria-labelledby` so it is the single label-associated
+  // node (see FormControlLabel `labelId`), only when there is a label.
+  const generatedLabelId = useBaseUiId()
+  const labelId = label ? generatedLabelId : undefined
 
-    const externalEventListeners = {
-      onMouseLeave: rest.onMouseLeave,
-      onMouseOver: rest.onMouseOver,
-    } as ComponentProps<typeof FormControlLabel>
-
-    return (
-      <FormControlLabel
-        {...externalEventListeners}
-        style={labelStyle}
-        ref={ref as React.ForwardedRef<HTMLLabelElement>}
-        classes={{
-          root: 'text-[1rem]',
-          label: twJoin(
-            'max-w-[calc(100%_-_1.5em_+_1px)]',
-            'ml-[0.5em]',
-            disabled && 'text-gray-500'
-          ),
-        }}
-        control={muiCheckbox}
-        requiredDecoration={requiredDecoration}
+  const checkboxElement = (
+    // The visually-hidden <input> ships inline `position:absolute` with a
+    // negative margin; `relative` + `translate-px` anchor it inside the 16px
+    // box so it doesn't grow the rendered box, and `appearance-none` stops the
+    // native control painting over it.
+    <span className='relative inline-flex self-start align-middle [&_input]:appearance-none [&_input]:translate-x-px [&_input]:translate-y-px'>
+      <BaseCheckbox.Root
+        {...rootRest}
+        ref={label ? undefined : (ref as React.Ref<HTMLElement>)}
+        aria-labelledby={rootRest['aria-labelledby'] ?? labelId}
+        checked={checked}
         disabled={disabled}
-        label={label}
-        titleCase={titleCase}
-        className='picasso-checkbox'
-        data-private={dataPrivate}
+        id={id}
+        value={value}
+        indeterminate={indeterminate}
+        onCheckedChange={(nextChecked, { event }) =>
+          onChange(toReactChangeEvent(event), nextChecked)
+        }
+        className={twMerge(checkboxClassNames, className)}
+        style={style}
       />
-    )
+    </span>
+  )
+
+  if (!label) {
+    return checkboxElement
   }
-)
+
+  const externalEventListeners = {
+    onMouseLeave: rest.onMouseLeave,
+    onMouseOver: rest.onMouseOver,
+  } as ComponentProps<typeof FormControlLabel>
+
+  return (
+    <FormControlLabel
+      {...externalEventListeners}
+      style={labelStyle}
+      ref={ref as React.ForwardedRef<HTMLLabelElement | HTMLDivElement>}
+      classes={{
+        root: 'text-[1rem]',
+        label: twJoin(
+          'max-w-[calc(100%_-_1.5em_+_1px)]',
+          'ml-[0.5em]',
+          disabled && 'text-gray-500'
+        ),
+      }}
+      control={checkboxElement}
+      labelId={labelId}
+      requiredDecoration={requiredDecoration}
+      disabled={disabled}
+      label={label}
+      titleCase={titleCase}
+      className='picasso-checkbox'
+      data-private={dataPrivate}
+    />
+  )
+})
 
 Checkbox.displayName = 'Checkbox'
 

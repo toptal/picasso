@@ -3,7 +3,7 @@
 exports[`SidebarMenu renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <ul
       class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
@@ -17,7 +17,7 @@ exports[`SidebarMenu renders 1`] = `
 exports[`SidebarMenu with bottom 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <ul
       class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 [&_&]:flex-1 grow-0 shrink-1 max-w order-[99]"

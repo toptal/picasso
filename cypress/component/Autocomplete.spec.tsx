@@ -119,18 +119,19 @@ const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
 
 const component = 'Autocomplete'
 
+const openMenuAndTakeScreenshot = (variant: string) => {
+  cy.getByTestId(testIds.input).click()
+  cy.getByRole('menu').should('be.visible')
+
+  cy.get('body').happoScreenshot({ component, variant })
+}
+
 // eslint-disable-next-line max-lines-per-function
 describe('Autocomplete', () => {
   it('renders a list of options when clicked', () => {
     cy.mount(<TestAutocomplete />)
 
-    cy.getByTestId(testIds.input).click()
-    cy.getByRole('menu').should('be.visible')
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'default/after-clicked',
-    })
+    openMenuAndTakeScreenshot('default/after-clicked')
   })
 
   it('renders a list of options with descriptions when clicked', () => {
@@ -146,13 +147,7 @@ describe('Autocomplete', () => {
       />
     )
 
-    cy.getByTestId(testIds.input).click()
-    cy.getByRole('menu').should('be.visible')
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'with-description/after-clicked',
-    })
+    openMenuAndTakeScreenshot('with-description/after-clicked')
   })
 
   it('renders a reset button', () => {
@@ -204,25 +199,13 @@ describe('Autocomplete', () => {
   it('renders in different menu widths', () => {
     cy.mount(<TestAutocomplete menuWidth='200px' />)
 
-    cy.getByTestId(testIds.input).click()
-    cy.getByRole('menu').should('be.visible')
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'with-different-menu-widths',
-    })
+    openMenuAndTakeScreenshot('with-different-menu-widths')
   })
 
   it('renders other option', () => {
     cy.mount(<TestAutocomplete showOtherOption options={[]} value='picasso' />)
 
-    cy.getByTestId(testIds.input).click()
-    cy.getByRole('menu').should('be.visible')
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'with-other-option',
-    })
+    openMenuAndTakeScreenshot('with-other-option')
   })
 
   it('renders no options text', () => {
@@ -235,13 +218,7 @@ describe('Autocomplete', () => {
       />
     )
 
-    cy.getByTestId(testIds.input).click()
-    cy.getByRole('menu').should('be.visible')
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'with-no-options',
-    })
+    openMenuAndTakeScreenshot('with-no-options')
   })
 
   it('renders powered by google', () => {
@@ -249,13 +226,7 @@ describe('Autocomplete', () => {
       <TestAutocomplete poweredByGoogle options={[{ text: 'Belarus' }]} />
     )
 
-    cy.getByTestId(testIds.input).click()
-    cy.getByRole('menu').should('be.visible')
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'powered-by-google',
-    })
+    openMenuAndTakeScreenshot('powered-by-google')
   })
 
   it('focuses Autocomplete with dynamic options should NOT open options list', () => {

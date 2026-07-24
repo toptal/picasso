@@ -110,6 +110,21 @@ const MANY_OPTIONS = [
   { value: '10', text: 'Option 10' },
 ]
 const OPTIONS = MANY_OPTIONS.slice(0, 5)
+
+const TestSelectWithLabel = () => (
+  <Container padded='medium'>
+    <label htmlFor='label-activation-select'>State</label>
+    <Select
+      id='label-activation-select'
+      data-testid='select'
+      options={OPTIONS}
+      placeholder='Choose an option...'
+      onChange={noop}
+      width='auto'
+    />
+  </Container>
+)
+
 const OPTION_GROUPS = {
   'Group 1': [
     { value: '1', text: 'Option 1' },
@@ -140,6 +155,10 @@ const getNativeOption = (value: string | number) =>
 
 const openSelect = () => {
   cy.getByTestId('select').click()
+
+  // the menu mounts async in a popper — gate on its stable marker (roles vary)
+  // so a screenshot right after opening can't capture a menu-less frame
+  cy.get('[data-picasso-popper]').should('be.visible')
 }
 
 const pressArrowDown = () => {
@@ -334,7 +353,11 @@ describe('Select', () => {
         <Drawer open>
           <Form>
             <Form.Field>
-              <TestSelect searchThreshold={-1} disablePortal />
+              <TestSelect
+                searchThreshold={-1}
+                disablePortal
+                testIds={{ searchInput: 'search-input' }}
+              />
             </Form.Field>
           </Form>
         </Drawer>
@@ -342,7 +365,7 @@ describe('Select', () => {
 
       openSelect()
 
-      cy.get('[role="tooltip"]').find('input').as('searchInput')
+      cy.getByTestId('search-input').find('input').as('searchInput')
 
       cy.get('@searchInput').should('be.visible')
       cy.get('@searchInput').click()
@@ -428,5 +451,20 @@ describe('Select', () => {
         })
       })
     })
+  })
+})
+
+describe('Select with an associated label', () => {
+  it('does not open the options from a label-activation click', () => {
+    cy.mount(<TestSelectWithLabel />)
+
+    // label click must focus the input without toggling the popup
+    cy.contains('label', 'State').click()
+
+    cy.focused().should('have.id', 'label-activation-select')
+    cy.get('[data-picasso-popper]').should('not.exist')
+
+    // a real pointer click on the select still opens it
+    openSelect()
   })
 })

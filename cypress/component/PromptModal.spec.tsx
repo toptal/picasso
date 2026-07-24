@@ -25,6 +25,9 @@ const TestProptModal = () => {
 describe('PromptModal', () => {
   it('renders on desktop and mobile', () => {
     cy.mount(<TestProptModal />)
+
+    cy.waitForOverlayOpen()
+
     cy.get('body').happoScreenshot({
       component,
       variant: 'default',

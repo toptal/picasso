@@ -3,7 +3,7 @@
 exports[`Section renders collapsible initially collapsed 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="pt-8"
@@ -29,7 +29,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
               class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] text-[1.2em] flex-1 Rotate180-transition"
+                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] transition-transform duration-150 ease-in text-[1.2em] flex-1"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -49,7 +49,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
 exports[`Section renders collapsible initially expanded 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="pt-8"
@@ -75,7 +75,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
               class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] text-[1.2em] flex-1 Rotate180-transition Rotate180-rotate180"
+                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] transition-transform duration-150 ease-in rotate-180 text-[1.2em] flex-1"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -115,7 +115,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
 exports[`Section renders with title, subtitle, actions and content 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
@@ -171,7 +171,7 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
 exports[`Section renders without header 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="pt-8 [&>:last-child:not(:first-child)]:mt-6"

@@ -3,16 +3,16 @@
 exports[`ProgressBar renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="items-center flex"
     >
       <div
-        class="PicassoProgressBar-progressBar"
+        class="w-full min-w h-2 bg-gray rounded-sm"
       >
         <div
-          class="PicassoProgressBar-progressIndicator"
+          class="h-2 rounded-sm bg-blue transition-[width] duration-300 ease-in"
           style="width: 50%;"
         />
       </div>
@@ -24,16 +24,16 @@ exports[`ProgressBar renders 1`] = `
 exports[`ProgressBar renders with percentage 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class="items-center flex"
     >
       <div
-        class="PicassoProgressBar-progressBar"
+        class="w-full min-w h-2 bg-gray rounded-sm"
       >
         <div
-          class="PicassoProgressBar-progressIndicator"
+          class="h-2 rounded-sm bg-blue transition-[width] duration-300 ease-in"
           style="width: 50%;"
         />
       </div>
@@ -41,7 +41,7 @@ exports[`ProgressBar renders with percentage 1`] = `
         class="ml-2"
       >
         <p
-          class="m-0 text-xxs text-graphite font-semibold PicassoProgressBar-percentageValue"
+          class="m-0 text-xxs text-graphite font-semibold min-w leading-[1.125rem]"
         >
           50
           %

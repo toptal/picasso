@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "55.0.2",
+  "version": "99.0.0",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -27,12 +27,11 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "peerDependencies": {
-    "@material-ui/core": "4.12.4",
-    "@toptal/picasso-provider": "*",
-    "@toptal/picasso-tailwind": ">=3",
+    "@toptal/picasso-provider": "workspace:^",
+    "@toptal/picasso-tailwind": "workspace:^",
     "notistack": "3.0.1",
-    "react": ">=16.12.0 < 19.0.0",
-    "react-dom": ">=16.12.0 < 19.0.0",
+    "react": ">=17.0.0 < 19.0.0",
+    "react-dom": ">=17.0.0 < 19.0.0",
     "typescript": "^5.5.0"
   },
   "dependencies": {
@@ -134,7 +133,6 @@
     "@types/glider-js": "^1.7.8",
     "@types/react-input-mask": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
-    "popper.js": "^1.16.1",
     "react-router-dom": "^5.3.4",
     "styled-components": "^6.1.1"
   },

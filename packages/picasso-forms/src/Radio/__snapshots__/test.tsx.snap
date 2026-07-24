@@ -3,7 +3,7 @@
 exports[`FormRadio renders 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class=""
@@ -27,7 +27,7 @@ exports[`FormRadio renders 1`] = `
             </span>
           </label>
           <div
-            class="MuiFormGroup-root"
+            class="flex flex-col flex-wrap"
             id="color"
             role="radiogroup"
             type="radio"
@@ -42,25 +42,23 @@ exports[`FormRadio renders 1`] = `
                   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
                 >
                   <span
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+                    class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer mr-[0.5rem]"
                   >
+                    <input
+                      class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"
+                      name="color"
+                      type="radio"
+                      value="#ed143d"
+                    />
                     <span
-                      class="MuiIconButton-label"
-                    >
-                      <input
-                        class="PrivateSwitchBase-input"
-                        name="color"
-                        type="radio"
-                        value="#ed143d"
-                      />
-                      <div
-                        class="Radio-uncheckedIcon"
-                      />
-                    </span>
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color text-gray before:border-gray before:bg-white after:opacity-0 group-hover:before:border-gray"
+                    />
+                    <span
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color hidden text-white before:border-blue before:bg-blue after:opacity-100 group-hover:before:border-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))] group-hover:before:bg-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]"
+                    />
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -77,26 +75,24 @@ exports[`FormRadio renders 1`] = `
                   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
                 >
                   <span
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
+                    class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer mr-[0.5rem]"
                   >
+                    <input
+                      checked=""
+                      class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"
+                      name="color"
+                      type="radio"
+                      value="#ffe4b5"
+                    />
                     <span
-                      class="MuiIconButton-label"
-                    >
-                      <input
-                        checked=""
-                        class="PrivateSwitchBase-input"
-                        name="color"
-                        type="radio"
-                        value="#ffe4b5"
-                      />
-                      <div
-                        class="Radio-checkedIcon"
-                      />
-                    </span>
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color hidden text-gray before:border-gray before:bg-white after:opacity-0 group-hover:before:border-gray"
+                    />
+                    <span
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color text-white before:border-blue before:bg-blue after:opacity-100 group-hover:before:border-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))] group-hover:before:bg-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]"
+                    />
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -118,7 +114,7 @@ exports[`FormRadio renders 1`] = `
 exports[`FormRadio required with asterisk 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
       class=""
@@ -146,7 +142,7 @@ exports[`FormRadio required with asterisk 1`] = `
             </span>
           </label>
           <div
-            class="MuiFormGroup-root"
+            class="flex flex-col flex-wrap"
             id="color"
             role="radiogroup"
             type="radio"
@@ -161,25 +157,23 @@ exports[`FormRadio required with asterisk 1`] = `
                   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
                 >
                   <span
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+                    class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer mr-[0.5rem]"
                   >
+                    <input
+                      class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"
+                      name="color"
+                      type="radio"
+                      value="#ed143d"
+                    />
                     <span
-                      class="MuiIconButton-label"
-                    >
-                      <input
-                        class="PrivateSwitchBase-input"
-                        name="color"
-                        type="radio"
-                        value="#ed143d"
-                      />
-                      <div
-                        class="Radio-uncheckedIcon"
-                      />
-                    </span>
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color text-gray before:border-gray before:bg-white after:opacity-0 group-hover:before:border-gray"
+                    />
+                    <span
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color hidden text-white before:border-blue before:bg-blue after:opacity-100 group-hover:before:border-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))] group-hover:before:bg-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]"
+                    />
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -196,26 +190,24 @@ exports[`FormRadio required with asterisk 1`] = `
                   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
                 >
                   <span
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel PrivateSwitchBase-checked Mui-checked"
+                    class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer mr-[0.5rem]"
                   >
+                    <input
+                      checked=""
+                      class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"
+                      name="color"
+                      type="radio"
+                      value="#ffe4b5"
+                    />
                     <span
-                      class="MuiIconButton-label"
-                    >
-                      <input
-                        checked=""
-                        class="PrivateSwitchBase-input"
-                        name="color"
-                        type="radio"
-                        value="#ffe4b5"
-                      />
-                      <div
-                        class="Radio-checkedIcon"
-                      />
-                    </span>
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color hidden text-gray before:border-gray before:bg-white after:opacity-0 group-hover:before:border-gray"
+                    />
+                    <span
+                      class="pointer-events transition-all duration-350 ease-in before:content-[''] before:pointer-events before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:[transform:translate(-50%,-50%)] before:rounded-full before:border before:border-solid before:transition-[border-color] before:duration-350 before:ease-in after:content-[''] after:pointer-events after:absolute after:left-1/2 after:top-1/2 after:[transform:translate(-50%,-50%)] after:rounded-full after:border-[0.125rem] after:border-solid after:border-current after:bg-current after:transition-all after:duration-350 after:ease-in group-data-[focused]:before:shadow-[0_0_0_3px_color text-white before:border-blue before:bg-blue after:opacity-100 group-hover:before:border-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))] group-hover:before:bg-[color-mix(in_srgb,theme(colors.white)_16%,theme(colors.blue.500))]"
+                    />
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25rem] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"

@@ -2,7 +2,7 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 import type { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
-import type PopperJs from 'popper.js'
+import type { PopperHandle } from '@toptal/picasso-popper'
 import type { KeyboardEvent, ReactNode } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Calendar16 } from '@toptal/picasso-icons'
@@ -167,7 +167,7 @@ export const DatePicker = ({
   const showCalendar = () => setCalendarIsShown(true)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const popperRef = useRef<PopperJs>(null)
+  const popperRef = useRef<PopperHandle>(null)
   const calendarRef = useRef<HTMLDivElement>(null)
   const inputWrapperRef = useRef<HTMLDivElement>(null)
 
@@ -341,22 +341,19 @@ export const DatePicker = ({
       return
     }
 
-    if (key === 'Tab' && calendarIsShown) {
+    // forward Tab only — Shift+Tab moves back; the input blur closes the calendar
+    if (key === 'Tab' && !event.shiftKey && calendarIsShown) {
       event.preventDefault()
       event.stopPropagation()
 
-      if (!calendarIsShown) {
-        event.currentTarget.blur()
-      } else {
-        const firstButton =
-          calendarRef.current?.querySelector<HTMLButtonElement>(
-            'button:not([tabindex="-1"])'
-          )
+      // also match buttons swept to tabindex="-1" by floating-ui's
+      // disableFocusInside — focusing one restores them; disabled days lack
+      // data-tabindex and stay excluded
+      const firstButton = calendarRef.current?.querySelector<HTMLButtonElement>(
+        'button:not([tabindex="-1"]), button[data-tabindex]:not([data-tabindex="-1"])'
+      )
 
-        if (firstButton) {
-          firstButton.focus()
-        }
-      }
+      firstButton?.focus()
     }
   }
 
@@ -422,6 +419,7 @@ export const DatePicker = ({
       </Container>
       {inputWrapperRef.current && (
         <Popper
+          role='dialog'
           placement='bottom-start'
           open={calendarIsShown}
           anchorEl={inputWrapperRef.current}

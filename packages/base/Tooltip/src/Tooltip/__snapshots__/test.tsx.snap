@@ -1,55 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tooltip with isPointerDevice being true renders closed by default 1`] = `
+exports[`Tooltip when closed does not render the content 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <div
-      class=""
+    <button
+      data-base-ui-tooltip-trigger=""
       data-testid="tooltip-trigger"
+      id="base-ui-:r1:"
+      type="button"
     >
       Trigger
-    </div>
+    </button>
   </div>
 </div>
 `;
 
-exports[`Tooltip with isPointerDevice being true renders with portals disabled 1`] = `
+exports[`Tooltip when portals are disabled renders the content within the parent 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
-    <div
+    <button
       aria-describedby="tooltip-id"
-      class=""
+      data-base-ui-tooltip-trigger=""
+      data-popup-open=""
       data-testid="tooltip-trigger"
+      id="base-ui-:r7:"
+      type="button"
     >
       Trigger
-    </div>
+    </button>
     <div
-      class="MuiTooltip-popper MuiTooltip-popperArrow"
-      id="tooltip-id"
-      role="tooltip"
-      style="position: absolute;"
-      x-placement="top"
+      data-base-ui-portal=""
+      id=":r8:"
     >
       <div
-        class="MuiTooltip-tooltip PicassoTooltip-tooltip PicassoTooltip-light MuiTooltip-tooltipPlacementTop MuiTooltip-tooltipArrow"
-        style="opacity: 1; transform: scale(1, 1); transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 133ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        class="z-tooltip data-[anchor-hidden]:invisible"
+        data-align="center"
+        data-open=""
+        data-side="top"
+        role="presentation"
+        style="position: absolute; left: 0px; top: 0px; opacity: 0; pointer-events: none; transition: none; transform: translate(0px, 0px);"
       >
         <div
-          class="m-0 text-sm text-inherit font-regular"
+          class="relative box-border rounded-sm font-sans max-w scale-100 opacity-100 [transform-origin:var(--transform transition-[opacity,scale] duration-200 ease-out data-[starting-style]:scale-75 data-[starting-style]:opacity-0 data-[ending-style]:scale-75 data-[ending-style]:opacity-0 shadow-4 bg-white text-graphite p-4 data-[side=top]:my-[0.875rem] data-[side=bottom]:my-[0.875rem] data-[side=left]:mx-[0.875rem] data-[side=right]:mx-[0.875rem]"
+          data-align="center"
+          data-base-ui-focusable=""
+          data-open=""
+          data-side="top"
+          data-starting-style=""
+          id="tooltip-id"
+          role="tooltip"
+          style="transition: none;"
+          tabindex="-1"
         >
           <div
-            data-testid="tooltip-content"
+            aria-hidden="true"
+            class="box-border overflow-hidden text-white before:block before:h-full before:w-full before:bg-current before:content-[''] before:[transform:rotate(45deg)] before:[box-shadow:0_0_0.125rem_0_rgb(0_0_0/0.24),0_0_0.25rem_0_rgb(0_0_0/0.12)] data-[side=top]:h-[0.71rem] data-[side=top]:w-[1rem] data-[side=top]:bottom-0 data-[side=top]:mb-[-0.71rem] data-[side=top]:before:[transform-origin:100%_0] data-[side=bottom]:h-[0.71rem] data-[side=bottom]:w-[1rem] data-[side=bottom]:top-0 data-[side=bottom]:mt-[-0.71rem] data-[side=bottom]:before:[transform-origin:0_100%] data-[side=left]:h-[1rem] data-[side=left]:w-[0.71rem] data-[side=left]:right-0 data-[side=left]:mr-[-0.71rem] data-[side=left]:before:[transform-origin:0_0] data-[side=right]:h-[1rem] data-[side=right]:w-[0.71rem] data-[side=right]:left-0 data-[side=right]:ml-[-0.71rem] data-[side=right]:before:[transform-origin:100%_100%]"
+            data-align="center"
+            data-open=""
+            data-side="top"
+            data-uncentered=""
+            style="position: absolute;"
+          />
+          <div
+            class="m-0 text-sm text-inherit font-regular"
           >
-            Content
+            <div
+              data-testid="tooltip-content"
+            >
+              Content
+            </div>
           </div>
         </div>
-        <span
-          class="MuiTooltip-arrow PicassoTooltip-arrow"
-        />
       </div>
     </div>
   </div>

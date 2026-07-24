@@ -16,48 +16,7 @@ import {
   ArrowUpMinor16,
 } from '@toptal/picasso'
 
-const data = [
-  {
-    id: 0,
-    name: 'Delia Floyd',
-    talentType: 'Designer',
-    company: 'Airbnb',
-    role: 'UX lead',
-    country: 'United States',
-  },
-  {
-    id: 1,
-    name: 'Linnie Sims',
-    talentType: 'Designer',
-    company: 'Facebook',
-    role: 'Art director',
-    country: 'Spain',
-  },
-  {
-    id: 2,
-    name: 'Charles Watson',
-    talentType: 'Developer',
-    company: 'Amazon',
-    role: 'Ruby developer',
-    country: 'Germany',
-  },
-  {
-    id: 3,
-    name: 'Leila Pena',
-    talentType: 'Developer',
-    company: 'Invision',
-    role: 'Web developer',
-    country: 'Poland',
-  },
-  {
-    id: 4,
-    name: 'Logan Burton',
-    talentType: 'Developer',
-    company: 'Microsoft',
-    role: 'CTO',
-    country: 'United States',
-  },
-]
+import { tableData as data } from '../support/table-data'
 
 const renderTable = (
   props: Omit<TableProps, 'children'> = {},
@@ -281,6 +240,45 @@ type Data = {
   defaultExpanded: boolean
 }
 
+const makeExpandableRowsData = (defaultExpanded: boolean): Data[] => [
+  {
+    id: 0,
+    task: "Invoice the client for half of Sanin's time...",
+    relatedTo: 'Passionate PHP Dev...',
+    time: '2:19 PM',
+    assignee: 'AD',
+    defaultExpanded,
+  },
+  {
+    id: 1,
+    task: 'BUG: try to edit skills in profile',
+    relatedTo: 'Ardelia Conn',
+    time: '3:27 PM',
+    assignee: 'AD',
+    defaultExpanded,
+  },
+  {
+    id: 2,
+    task: 'Assign attendee to scheduled meeting',
+    relatedTo: 'Mariel Ankunding',
+    time: '1:27 PM',
+    assignee: 'AD',
+    defaultExpanded,
+  },
+]
+
+const toggleFirstRowExpansion = (localData: Data[]) => {
+  cy.getByTestId('job').as('job').should('be.visible')
+
+  cy.getByTestId(`expand-button-${localData[0].id}`)
+    .as('expandButton')
+    .realClick()
+
+  cy.get('@job').should('not.exist')
+  cy.get('@expandButton').realClick()
+  cy.get('@job').should('exist')
+}
+
 const component = 'Table'
 
 describe('Table', () => {
@@ -321,32 +319,7 @@ describe('Table', () => {
   })
 
   it('renders expandable rows', () => {
-    const localData: Data[] = [
-      {
-        id: 0,
-        task: "Invoice the client for half of Sanin's time...",
-        relatedTo: 'Passionate PHP Dev...',
-        time: '2:19 PM',
-        assignee: 'AD',
-        defaultExpanded: false,
-      },
-      {
-        id: 1,
-        task: 'BUG: try to edit skills in profile',
-        relatedTo: 'Ardelia Conn',
-        time: '3:27 PM',
-        assignee: 'AD',
-        defaultExpanded: false,
-      },
-      {
-        id: 2,
-        task: 'Assign attendee to scheduled meeting',
-        relatedTo: 'Mariel Ankunding',
-        time: '1:27 PM',
-        assignee: 'AD',
-        defaultExpanded: false,
-      },
-    ]
+    const localData = makeExpandableRowsData(false)
 
     cy.mount(<TableExpandableRowsExample localData={localData} />)
 
@@ -357,43 +330,10 @@ describe('Table', () => {
       variant: 'expandable-rows',
     })
 
-    cy.getByTestId('job').as('job').should('be.visible')
-
-    cy.getByTestId(`expand-button-${localData[0].id}`)
-      .as('expandButton')
-      .realClick()
-
-    cy.get('@job').should('not.exist')
-    cy.get('@expandButton').realClick()
-    cy.get('@job').should('exist')
+    toggleFirstRowExpansion(localData)
   })
   it('renders expandable rows with default expanded', () => {
-    const localData: Data[] = [
-      {
-        id: 0,
-        task: "Invoice the client for half of Sanin's time...",
-        relatedTo: 'Passionate PHP Dev...',
-        time: '2:19 PM',
-        assignee: 'AD',
-        defaultExpanded: true,
-      },
-      {
-        id: 1,
-        task: 'BUG: try to edit skills in profile',
-        relatedTo: 'Ardelia Conn',
-        time: '3:27 PM',
-        assignee: 'AD',
-        defaultExpanded: true,
-      },
-      {
-        id: 2,
-        task: 'Assign attendee to scheduled meeting',
-        relatedTo: 'Mariel Ankunding',
-        time: '1:27 PM',
-        assignee: 'AD',
-        defaultExpanded: true,
-      },
-    ]
+    const localData = makeExpandableRowsData(true)
 
     cy.mount(<TableExpandableRowsExample localData={localData} />)
 
@@ -402,14 +342,6 @@ describe('Table', () => {
       variant: 'expandable-rows/default-expanded',
     })
 
-    cy.getByTestId('job').as('job').should('be.visible')
-
-    cy.getByTestId(`expand-button-${localData[0].id}`)
-      .as('expandButton')
-      .realClick()
-
-    cy.get('@job').should('not.exist')
-    cy.get('@expandButton').realClick()
-    cy.get('@job').should('exist')
+    toggleFirstRowExpansion(localData)
   })
 })

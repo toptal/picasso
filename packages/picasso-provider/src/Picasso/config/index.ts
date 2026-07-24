@@ -1,4 +1,3 @@
-import './theme'
 export { default as palette, colors, gradients } from './palette'
 export { default as transitions } from './transitions'
 export { default as typography } from './typography'

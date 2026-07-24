@@ -3,7 +3,7 @@
 exports[`useNotifications error notification render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"
@@ -48,7 +48,7 @@ exports[`useNotifications error notification render 1`] = `
       </span>
     </button>
     <div
-      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 PicassoNotificationsProvider-root"
+      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 [&>div]:pointer-events [&>div>div]:px-0 [&>div>div]:py-[6px] [&>div>div]:[transition:padding_300ms_ease_0ms]"
     >
       <div
         class="go1475592160 go1671063245"
@@ -122,7 +122,7 @@ exports[`useNotifications error notification render 1`] = `
 exports[`useNotifications info notification render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"
@@ -167,7 +167,7 @@ exports[`useNotifications info notification render 1`] = `
       </span>
     </button>
     <div
-      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 PicassoNotificationsProvider-root"
+      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 [&>div]:pointer-events [&>div>div]:px-0 [&>div>div]:py-[6px] [&>div>div]:[transition:padding_300ms_ease_0ms]"
     >
       <div
         class="go1475592160 go1671063245"
@@ -244,7 +244,7 @@ exports[`useNotifications info notification render 1`] = `
 exports[`useNotifications success notification render 1`] = `
 <div>
   <div
-    class="Picasso-root"
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <button
       aria-disabled="false"
@@ -289,7 +289,7 @@ exports[`useNotifications success notification render 1`] = `
       </span>
     </button>
     <div
-      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 PicassoNotificationsProvider-root"
+      class="notistack-SnackbarContainer go3118922589 go2989568495 go1141946668 [&>div]:pointer-events [&>div>div]:px-0 [&>div>div]:py-[6px] [&>div>div]:[transition:padding_300ms_ease_0ms]"
     >
       <div
         class="go1475592160 go1671063245"

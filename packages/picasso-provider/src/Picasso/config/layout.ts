@@ -1,7 +1,6 @@
 export interface Layout {
   contentWidthWide: string
   contentWidth: string
-  contentMinWidth?: string
   contentPaddingHorizontal: string
   contentMobilePaddingHorizontal: string
 }
