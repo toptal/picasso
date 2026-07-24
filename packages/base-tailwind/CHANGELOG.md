@@ -1,5 +1,14 @@
 # @toptal/base-tailwind
 
+## 100.0.0
+
+### Major Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Re-baseline the entire Picasso library to a single unified major version (v100) as part of the @base-ui/react modernization.
+  - all Picasso packages are released together at v100.0.0 as one unified version.
+  - no API or behavior change comes from this re-baseline itself; see each package's changelog for the specific modernization changes it received.
+
 ## 2.0.0
 
 ### Major Changes

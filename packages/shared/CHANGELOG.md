@@ -1,5 +1,40 @@
 # Change Log
 
+## 100.0.0
+
+### Major Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Raise the `react` and `react-dom` peer-dependency floor to React 17.
+
+  - raise the `react` and `react-dom` peer-dependency floor from `>=16.12.0` to `>=17.0.0` across all Picasso packages — **React 16 is no longer supported**. Picasso components now depend on `@base-ui/react`, which requires React 17+ (`^17 || ^18 || ^19`), so React 16 could no longer be honored in practice.
+  - this is a peer-range change only — no runtime or API changes. Existing upper bounds are untouched: packages currently capped at `<19.0.0` stay capped (lifting that cap to admit React 19 is tracked separately in PF-2236 / PF-2262).
+  - consumer action: ensure `react` and `react-dom` resolve to `>=17`. [PF-2237]
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Re-baseline the entire Picasso library to a single unified major version (v100) as part of the @base-ui/react modernization.
+  - all Picasso packages are released together at v100.0.0 as one unified version.
+  - no API or behavior change comes from this re-baseline itself; see each package's changelog for the specific modernization changes it received.
+
+### Minor Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### picasso-shared
+
+- add `toReactEvent<R>(event)` boundary-cast helper for bridging native DOM `Event` to React.SyntheticEvent variants at the `@base-ui/react` ↔ Picasso form-component interface. Proxy-based: preserves native event identity, synthesizes the four React-SyntheticEvent shim methods (`nativeEvent`, `persist`, `isDefaultPrevented`, `isPropagationStopped`).
+- add `toReactChangeEvent<T>(event)` specialized helper for form-input `onChange` adapters. Constrains `T` to `HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement` and dev-warns when the event target is not a DOM element. Delegates to `toReactEvent` for the Proxy machinery.
+
+### Patch Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### picasso-shared
+
+- Fix `toReactEvent` / `toReactChangeEvent`: bind forwarded native event methods (`preventDefault`, `stopPropagation`, …) to the underlying native event. Without binding they were invoked with the Proxy as `this`, throwing "Illegal invocation" in real browsers when a consumer `onChange` called e.g. `event.stopPropagation()`.
+- Updated dependencies [[`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5)]:
+  - @toptal/picasso-provider@100.0.0
+
 ## 16.0.0
 
 ### Major Changes
@@ -10,7 +45,7 @@
   Picasso now builds against TypeScript 5.5 and pulls its lint/test/codegen infrastructure from `@toptal/davinci-syntax@25`, `@toptal/davinci-engine@15`, `@toptal/davinci-qa@19.1`, `@toptal/davinci-ci@8`, and `@toptal/davinci-code@3` (the stable releases of toptal/davinci#2677). Build, typecheck, and lint all pass clean (0 errors).
   Public type surface:
   - the `OverridableComponent<P>` type in `@toptal/picasso-shared` is rewritten as a single-signature interface `(props: P & { [key: string]: any }) => JSX.Element | null`. declared fields of `P` remain strictly typed at JSX call sites (e.g. `<Button size={42} />` still errors), and any other prop is accepted untyped. this preserves the polymorphic `as`-prop usage pattern and lets `forwardRef<R, P>(...)` assign directly without an escape hatch. trade-off versus the pre-PF-2031 shape: TypeScript no longer pulls prop types FROM the `as` target — `<Button as={Link} to={...} />` does not validate `to` against `Link`'s props. full polymorphic-inheritance typing for the `as` prop is tracked in FF-125.
-  Internal type adjustments in `Tagselector`, `Container`, `Menu`, `PromptModal`, and `NumberInput` (not publicly exported) resolve build/lint regressions surfaced by `@typescript-eslint` v8. `OverviewBlock`, `Page`, `Breadcrumbs`, `Button`, `ButtonBase`, `ButtonCircular`, `MenuItem`, `Link`, and `SidebarItem` compile cleanly without source changes under the new `OverridableComponent` shape. `ButtonAction` got a one-line internal fix (an `icon` helper returning `null` where `ReactElement | undefined` was declared) that the stricter declared-prop typing in the new shape surfaced.
+    Internal type adjustments in `Tagselector`, `Container`, `Menu`, `PromptModal`, and `NumberInput` (not publicly exported) resolve build/lint regressions surfaced by `@typescript-eslint` v8. `OverviewBlock`, `Page`, `Breadcrumbs`, `Button`, `ButtonBase`, `ButtonCircular`, `MenuItem`, `Link`, and `SidebarItem` compile cleanly without source changes under the new `OverridableComponent` shape. `ButtonAction` got a one-line internal fix (an `icon` helper returning `null` where `ReactElement | undefined` was declared) that the stricter declared-prop typing in the new shape surfaced.
 
 ## 15.0.0
 

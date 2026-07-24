@@ -1,5 +1,84 @@
 # @toptal/picasso-page
 
+## 100.0.0
+
+### Major Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### PageTopBar
+
+- the `Page.TopBar` header always applies `md:w-screen`, keeping the top bar coordinated with the page-width-jump fix that now ships unconditionally in `@toptal/picasso-tailwind/base`. It was previously conditional on the provider's `preventPageWidthChangeOnScrollbar` prop, which is removed. Consumers that opted out of the fix and need the old top-bar width back override via `className` (e.g. `md:w-full`) — consumer `className` is last in the merge, so it wins
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Raise the `react` and `react-dom` peer-dependency floor to React 17.
+
+  - raise the `react` and `react-dom` peer-dependency floor from `>=16.12.0` to `>=17.0.0` across all Picasso packages — **React 16 is no longer supported**. Picasso components now depend on `@base-ui/react`, which requires React 17+ (`^17 || ^18 || ^19`), so React 16 could no longer be honored in practice.
+  - this is a peer-range change only — no runtime or API changes. Existing upper bounds are untouched: packages currently capped at `<19.0.0` stay capped (lifting that cap to admit React 19 is tracked separately in PF-2236 / PF-2262).
+  - consumer action: ensure `react` and `react-dom` resolve to `>=17`. [PF-2237]
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Re-baseline the entire Picasso library to a single unified major version (v100) as part of the @base-ui/react modernization.
+  - all Picasso packages are released together at v100.0.0 as one unified version.
+  - no API or behavior change comes from this re-baseline itself; see each package's changelog for the specific modernization changes it received.
+
+### Minor Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### PicassoProvider
+
+- expose the `responsive` flag through `RootContext` / `useAppConfig()` (new optional `responsive` prop on `PicassoGlobalStylesProvider`)
+
+### Page
+
+- read the non-responsive min-width from `useAppConfig()` instead of `PicassoProvider.theme.layout`, and apply it as a static Tailwind class (`min-w-[768px]`) instead of an inline style
+- merge the consumer `className` after the `--content-width*` CSS variable defaults, so overrides like `<Page className='[--content-width:80em]'>` win
+- in `Page.Content` and `Page.Footer` read their max-width from the `--content-width` / `--content-width-wide` variables (with the previous values as fallbacks) instead of hardcoded values
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Align the `react` and `react-dom` peer-dependency range to a uniform `>=17.0.0 < 19.0.0` across all Picasso packages.
+  - previously the base-UI-migrated packages declared an uncapped `react` peer (`>=17.0.0`) while the rest were capped at `< 19.0.0`; this unifies the whole library on one supported range so consumers see a consistent React requirement.
+  - react 19 support is intentionally deferred — lifting the `< 19.0.0` cap across all packages, once validated, is tracked in PF-2262.
+  - peer-range change only; no runtime or API changes.
+
+### Patch Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Page
+
+- `SidebarItemAccordion` routes its Accordion slot styling through `className` instead of the removed `classes` prop; no visual change
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Page
+
+- re-implement the `Page` root shell styling on Tailwind; behavioral parity with the JSS implementation, public Props API unchanged
+- remove `@material-ui/core` from `peerDependencies` — consumers no longer need it installed for this package
+- Updated dependencies [[`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5)]:
+  - @toptal/picasso-accordion@100.0.0
+  - @toptal/picasso-badge@100.0.0
+  - @toptal/picasso-container@100.0.0
+  - @toptal/picasso-provider@100.0.0
+  - @toptal/picasso-utils@100.0.0
+  - @toptal/picasso-dropdown@100.0.0
+  - @toptal/picasso-notification@100.0.0
+  - @toptal/picasso-menu@100.0.0
+  - @toptal/picasso-shared@100.0.0
+  - @toptal/picasso-tailwind@100.0.0
+  - @toptal/picasso-autocomplete@100.0.0
+  - @toptal/picasso-avatar@100.0.0
+  - @toptal/picasso-button@100.0.0
+  - @toptal/picasso-icons@100.0.0
+  - @toptal/picasso-logo@100.0.0
+  - @toptal/picasso-skeleton-loader@100.0.0
+  - @toptal/picasso-tag@100.0.0
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-tooltip@100.0.0
+  - @toptal/picasso-typography@100.0.0
+  - @toptal/picasso-user-badge@100.0.0
+
 ## 6.0.3
 
 ### Patch Changes

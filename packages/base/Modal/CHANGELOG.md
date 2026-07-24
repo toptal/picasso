@@ -1,5 +1,81 @@
 # @toptal/picasso-modal
 
+## 100.0.0
+
+### Major Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Raise the `react` and `react-dom` peer-dependency floor to React 17.
+
+  - raise the `react` and `react-dom` peer-dependency floor from `>=16.12.0` to `>=17.0.0` across all Picasso packages — **React 16 is no longer supported**. Picasso components now depend on `@base-ui/react`, which requires React 17+ (`^17 || ^18 || ^19`), so React 16 could no longer be honored in practice.
+  - this is a peer-range change only — no runtime or API changes. Existing upper bounds are untouched: packages currently capped at `<19.0.0` stay capped (lifting that cap to admit React 19 is tracked separately in PF-2236 / PF-2262).
+  - consumer action: ensure `react` and `react-dom` resolve to `>=17`. [PF-2237]
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Re-baseline the entire Picasso library to a single unified major version (v100) as part of the @base-ui/react modernization.
+  - all Picasso packages are released together at v100.0.0 as one unified version.
+  - no API or behavior change comes from this re-baseline itself; see each package's changelog for the specific modernization changes it received.
+
+### Minor Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Align the `react` and `react-dom` peer-dependency range to a uniform `>=17.0.0 < 19.0.0` across all Picasso packages.
+  - previously the base-UI-migrated packages declared an uncapped `react` peer (`>=17.0.0`) while the rest were capped at `< 19.0.0`; this unifies the whole library on one supported range so consumers see a consistent React requirement.
+  - react 19 support is intentionally deferred — lifting the `< 19.0.0` cap across all packages, once validated, is tracked in PF-2262.
+  - peer-range change only; no runtime or API changes.
+
+### Patch Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Modal
+
+- re-implement on `@base-ui/react`'s `Dialog` (`Dialog.Root` + `Dialog.Portal` + `Dialog.Backdrop` + `Dialog.Popup`), replacing `@mui/base/Modal`. Public Props API is unchanged — `open`, `onClose`, `onOpen`, `onBackdropClick`, `disableBackdropClick`, `hideBackdrop`, `container`, `size`, `align`, `transitionProps`, `transitionDuration`, `paperProps`, `testIds` and the narrowed `classes?: { closeButton }` are all preserved, with behavioral parity (custom focus management, page scroll lock, multi-modal coexistence, backdrop-click and escape close).
+- internally the dim overlay is now a `Dialog.Backdrop` element instead of the composed `@toptal/picasso-backdrop` component, and the open/close fade is driven by `data-starting-style`/`data-ending-style` Tailwind transitions instead of `@toptal/picasso-fade`.
+- the `@mui/base`, `@toptal/picasso-backdrop` and `@toptal/picasso-fade` are dropped from dependencies.
+- the `ModalContent` scroll shades now fade in and out via CSS opacity (`data-active` + `transition-opacity`) instead of being conditionally mounted; no API change.
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Provider
+
+- fix `usePicassoRoot()` returning `null` forever for components rendered during the tree's first render pass: the Picasso root node is now mirrored into React state through the new `PicassoRootNodeContext`, so `usePicassoRoot` consumers re-render and receive the real node once it mounts (`RootContext.rootRef` is kept for backward compatibility)
+- `usePicassoRoot()` now returns `undefined` instead of `null` when the root is unavailable, so its result can be passed directly to any Base UI portal `container` (which treats an explicit `null` as "wait for the container" but falls back to `document.body` on `undefined`). Update any strict `=== null` checks on its result to `== null` or a falsy check
+
+### Modal, Drawer, Popper
+
+- fix a Modal, Drawer or Popper that is open on its very first mount never appearing: an unresolved Picasso root was passed as an explicit `null` portal container, which Base UI treats as "wait for the container" (rendering nothing forever). The portal container now degrades to `document.body` when the Picasso root is unavailable, restoring the pre-migration MUI behavior
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Modal
+
+- exempt Popper-based popups (Select, DatePicker, Dropdown, Menu) from the focus trap, so focus is no longer stolen from a popup opened inside a Modal (e.g. a Select's search input)
+
+### DatePicker
+
+- fix Tab dead-ending on the input when entering an open calendar a second time
+- fix Shift+Tab on the input jumping forward into the calendar instead of moving back to the previous field
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Upgrade `@base-ui/react` from 1.4.1 to 1.6.0
+  No consumer-facing API changes. base-ui 1.6 emits a few additional data
+  attributes for styling/animation (`data-popup-open`, `data-activation-direction`,
+  `data-hidden`) and tightens its internal accessibility semantics (Accordion Root
+  no longer carries `role="region"`, per APG; Modal focus guards use
+  `aria-hidden` instead of `role="button"`).
+- Updated dependencies [[`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5)]:
+  - @toptal/picasso-provider@100.0.0
+  - @toptal/picasso-utils@100.0.0
+  - @toptal/picasso-modal-context@100.0.0
+  - @toptal/picasso-shared@100.0.0
+  - @toptal/picasso-tailwind@100.0.0
+  - @toptal/picasso-button@100.0.0
+  - @toptal/picasso-icons@100.0.0
+  - @toptal/picasso-paper@100.0.0
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-typography@100.0.0
+
 ## 4.0.2
 
 ### Patch Changes
