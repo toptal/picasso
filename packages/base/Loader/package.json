@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-loader",
-  "version": "99.0.0",
+  "version": "100.0.0",
   "description": "Toptal UI components library - Loader",
   "publishConfig": {
     "access": "public"

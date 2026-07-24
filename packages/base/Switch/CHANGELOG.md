@@ -1,5 +1,63 @@
 # @toptal/picasso-switch
 
+## 100.0.0
+
+### Major Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Raise the `react` and `react-dom` peer-dependency floor to React 17.
+
+  - raise the `react` and `react-dom` peer-dependency floor from `>=16.12.0` to `>=17.0.0` across all Picasso packages — **React 16 is no longer supported**. Picasso components now depend on `@base-ui/react`, which requires React 17+ (`^17 || ^18 || ^19`), so React 16 could no longer be honored in practice.
+  - this is a peer-range change only — no runtime or API changes. Existing upper bounds are untouched: packages currently capped at `<19.0.0` stay capped (lifting that cap to admit React 19 is tracked separately in PF-2236 / PF-2262).
+  - consumer action: ensure `react` and `react-dom` resolve to `>=17`. [PF-2237]
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Re-baseline the entire Picasso library to a single unified major version (v100) as part of the @base-ui/react modernization.
+  - all Picasso packages are released together at v100.0.0 as one unified version.
+  - no API or behavior change comes from this re-baseline itself; see each package's changelog for the specific modernization changes it received.
+
+### Minor Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Checkbox, Switch
+
+- expose a single label-associated node when a `label` is provided, so `getByLabelText`, `getByText` and `getByRole` match once. The base-ui control renders an accessible `role` element plus a hidden native `<input>`; both used to be label-associated (the `role` element via `aria-labelledby`, the input via the wrapping `<label>`), which made those queries throw "Found multiple elements" in consumer tests. The control now names itself via `aria-labelledby`. Note the DOM contract change: a labeled control's root element changes from `<label>` to `<div>`, and the derived `"<id>-label"` node id is gone — update selectors/styles that relied on the `label` tag or that id. Label clicks are still forwarded to preserve click-to-toggle and focus, and interactive content inside the label (links, buttons) no longer toggles the control
+
+### FormControlLabel
+
+- add an optional `labelId` prop. When provided, the wrapper renders as a non-`<label>` element (so a control's hidden native input is not a second label-associated node) and forwards label-text clicks to the control (skipping interactive descendants). The default `<label>` path is unchanged, so `Radio` and other consumers are unaffected
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Align the `react` and `react-dom` peer-dependency range to a uniform `>=17.0.0 < 19.0.0` across all Picasso packages.
+  - previously the base-UI-migrated packages declared an uncapped `react` peer (`>=17.0.0`) while the rest were capped at `< 19.0.0`; this unifies the whole library on one supported range so consumers see a consistent React requirement.
+  - react 19 support is intentionally deferred — lifting the `< 19.0.0` cap across all packages, once validated, is tracked in PF-2262.
+  - peer-range change only; no runtime or API changes.
+
+### Patch Changes
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Switch
+
+- re-implement on `@base-ui/react` (behavioral parity); compound parts (`Switch.Root` + `Switch.Thumb`) replace the single `@mui/base/Switch` slot system
+- adapt the public `onChange(event, checked)` callback over base-ui's `onCheckedChange` so consumer signatures are preserved
+- public API unchanged: `Props` and `ref` keep master's `HTMLButtonElement` typing
+
+- [#5059](https://github.com/toptal/picasso/pull/5059) [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5) Thanks [@vedrani](https://github.com/vedrani)!
+  Upgrade `@base-ui/react` from 1.4.1 to 1.6.0
+  No consumer-facing API changes. base-ui 1.6 emits a few additional data
+  attributes for styling/animation (`data-popup-open`, `data-activation-direction`,
+  `data-hidden`) and tightens its internal accessibility semantics (Accordion Root
+  no longer carries `role="region"`, per APG; Modal focus guards use
+  `aria-hidden` instead of `role="button"`).
+- Updated dependencies [[`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5), [`de9dba3`](https://github.com/toptal/picasso/commit/de9dba37e3d371d4bf26fb025c555d8e679dcaa5)]:
+  - @toptal/picasso-form-label@100.0.0
+  - @toptal/picasso-provider@100.0.0
+  - @toptal/picasso-shared@100.0.0
+  - @toptal/picasso-tailwind@100.0.0
+  - @toptal/picasso-tailwind-merge@100.0.0
+
 ## 5.0.1
 
 ### Patch Changes

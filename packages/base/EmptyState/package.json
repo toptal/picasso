@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-empty-state",
-  "version": "99.0.0",
+  "version": "100.0.0",
   "description": "Toptal UI components library - EmptyState",
   "publishConfig": {
     "access": "public"
