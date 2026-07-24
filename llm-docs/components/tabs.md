@@ -9,7 +9,7 @@ Tabs allow to switch between content sections
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | disabled | `boolean` | `false` | If true, the tab will be disabled |
-| value | `string \| number` | - | You can provide your own value. Otherwise, we fallback to the child position index |
+| value | `TabsValueType` | - | You can provide your own value. Otherwise, we fallback to the child position index |
 | label | `ReactNode` | - | The label element |
 | icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | The Icon element |
 | avatar | `string \| null` | - | Image URL |

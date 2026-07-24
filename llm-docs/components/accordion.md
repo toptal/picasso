@@ -17,7 +17,8 @@ Accordions store information behind collapsible sections,
 | expandIcon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Customize icon indicating expanded status |
 | borders | `"all" \| "middle" \| "none"` | `all` | Defines where the horizontal borders show |
 | onChange | `((event: ChangeEvent<{}>, expanded: boolean) => void)` | `() => {}` | Callback invoked when `Accordion` item is toggled |
-| transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) |
+| transitionProps | `TransitionProps` | - | Animation lifecycle props. `timeout` (ms) sets the CSS height-transition duration (defaults to ~300ms); `onExited` fires after the collapse transition completes |
+| testIds | `{ emptyAccordionSummary?: string; accordionSummary?: string; } \| undefined` | - | Test ids for accordion's inner elements |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 
@@ -25,6 +26,7 @@ Accordions store information behind collapsible sections,
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| **children** | `ReactNode` | - | Content of the details |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 
@@ -32,6 +34,7 @@ Accordions store information behind collapsible sections,
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| **children** | `ReactNode` | - | Content of the summary |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 
