@@ -62,7 +62,7 @@ For example, in order to compare two commits (`abc123` and `def456`), follow the
 pnpm test:integration:ci
 ...
 [HAPPO] https://happo.io/a/675/jobs/1104613
-✨  Done in 378.45s.
+✨  Done in 378.44s.
 ```
 
 ## Project commands
