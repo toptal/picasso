@@ -1,5 +1,7 @@
 import type { MutableState } from 'final-form'
 
+// `final-form` types a Mutator's `args` as `any[]`, so the parameter cannot be
+// the tuple this mutator expects. The cast documents the expected shape.
 export const setHasMultilineCounter = <
   FormValues = object,
   InitialFormValues extends Partial<FormValues> = Partial<FormValues>
