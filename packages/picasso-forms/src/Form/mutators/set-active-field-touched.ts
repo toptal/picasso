@@ -2,7 +2,7 @@ import type { MutableState } from 'final-form'
 
 export const setActiveFieldTouched = <
   FormValues = object,
-  InitialFormValues = Partial<FormValues>
+  InitialFormValues extends Partial<FormValues> = Partial<FormValues>
 >(
   _: any[],
   state: MutableState<FormValues, InitialFormValues>
