@@ -1,11 +1,11 @@
 /* eslint-disable no-inline-styles/no-inline-styles */
 import React, { useEffect } from 'react'
 import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 
 import RichTextEditorButton from '../RichTextEditorButton'
+import EmojiMartPicker from './EmojiMartPicker'
 import type { CustomEmojiGroup, Emoji } from '../plugins/EmojiPlugin'
 
 interface Props {
@@ -82,11 +82,11 @@ export const RichTextEditorEmojiPicker = ({
           showEmojiPicker && classes.activePointers
         )}
       >
-        <Picker
+        <EmojiMartPicker
           data={data}
           custom={customEmojis}
           onEmojiSelect={handleEmojiInsert}
-          onClickOutside={showEmojiPicker && closePicker}
+          onClickOutside={showEmojiPicker ? closePicker : undefined}
         />
       </Container>
     </Container>
