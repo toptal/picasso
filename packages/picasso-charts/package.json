@@ -35,7 +35,7 @@
     "classnames": "^2.5.1",
     "d3-array": "^3.2.2",
     "debounce": "^1.2.1",
-    "recharts": "^2.12.3"
+    "recharts": "^2.15.4"
   },
   "exports": {
     ".": "./dist-package/src/index.js",
