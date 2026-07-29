@@ -82,7 +82,7 @@ const renderNotificationContent = (props: PrivateProps) => {
       <Container
         flex
         alignItems='center'
-        className={twJoin(
+        className={twMerge(
           'min-w-[1.5em] mr-[1em]',
           variant === 'yellow'
             ? 'h-[1em] min-w-[1em] mt-[2px] basis-0'

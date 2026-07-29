@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import React, { forwardRef, useMemo, useState } from 'react'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */
@@ -102,7 +102,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
         {state => {
           return (
             <div
-              className={twJoin([
+              className={twMerge([
                 'transition-[height] ease-in-out min-h-0',
                 state === 'exited' && !inProps && 'invisible',
                 state === 'entered' ? 'overflow-visible' : 'overflow-hidden',

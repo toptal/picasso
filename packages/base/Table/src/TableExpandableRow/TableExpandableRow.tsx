@@ -2,7 +2,7 @@ import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useRef, useEffect } from 'react'
 import { Collapse } from '@toptal/picasso-collapse'
 import { type BaseProps } from '@toptal/picasso-shared'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { TableRow } from '../TableRow'
 import { TableCell } from '../TableCell'
@@ -56,7 +56,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {row}
         {expanded && (
           <TableRow
-            className={twJoin(className, stripeEven && 'bg-gray-200/[0.32]')}
+            className={twMerge(stripeEven && 'bg-gray-200/[0.32]', className)}
             style={style}
           >
             <TableCell className='p-0 last:pr-0' colSpan={MAX_COL_SPAN}>

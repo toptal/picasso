@@ -11,7 +11,7 @@ import {
   ArrowDownMinor24,
   ArrowUpMinor24,
 } from '@toptal/picasso-icons'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export type Size = SizeType<'small' | 'medium' | 'large'>
 
@@ -124,30 +124,21 @@ export const NumberInputEndAdornment = ({
     }
   }
 
-  const rootClassName = twJoin(
-    `flex relative items-center justify-center align-middle 
-
-    p-0 bottom-0 cursor-pointer
-
-    text-graphite-700 decoration-graphite-700 bg-inherit bg-transparent
-
-    border-y-0 border-x border-x-solid
-    border-l-gray-400 border-r-transparent
-
-    hover:bg-gray-400 hover:border-gray-400
-
-    [&]:border-solid
-    [&+&]:border-t [&+&]:border-solid
-    [&+&]:border-t-gray-400
-
-    active:[&+&]:border-t active:[&+&]:border-t-solid 
-    active:[&+&]:border-gray-500
-
-    active:bg-gray-500 active:border-t-gray-500 
-
-    [&:first-child]:rounded-tr-sm [&:last-child]:rounded-br-sm 
-
-    transition-[color,_border,_background] ease-out duration-350`,
+  const rootClassName = twMerge(
+    'flex relative items-center justify-center align-middle',
+    'p-0 bottom-0 cursor-pointer',
+    'text-graphite-700 decoration-graphite-700 bg-transparent',
+    'border-y-0 border-x border-x-solid',
+    'border-l-gray-400 border-r-transparent',
+    'hover:bg-gray-400 hover:border-gray-400',
+    '[&]:border-solid',
+    '[&+&]:border-t [&+&]:border-solid',
+    '[&+&]:border-t-gray-400',
+    'active:[&+&]:border-t',
+    'active:[&+&]:border-gray-500',
+    'active:bg-gray-500 active:border-t-gray-500',
+    '[&:first-child]:rounded-tr-sm [&:last-child]:rounded-br-sm',
+    'transition-[color,_border,_background] ease-out duration-350',
     classBySize[size],
     disabled && 'opacity-[0.48]'
   )

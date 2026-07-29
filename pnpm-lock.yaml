@@ -3875,8 +3875,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       tailwind-merge:
-        specifier: ^2.2.2
-        version: 2.3.0
+        specifier: ^3.6.0
+        version: 3.6.0
     devDependencies:
       '@toptal/picasso-tailwind':
         specifier: workspace:*
@@ -16533,8 +16533,8 @@ packages:
     resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
     engines: {node: '>=10.0.0'}
 
-  tailwind-merge@2.3.0:
-    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+  tailwind-merge@3.6.0:
+    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
 
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
@@ -34780,9 +34780,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  tailwind-merge@2.3.0:
-    dependencies:
-      '@babel/runtime': 7.28.4
+  tailwind-merge@3.6.0: {}
 
   tailwindcss@4.2.1: {}
 

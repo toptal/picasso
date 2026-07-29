@@ -19,6 +19,26 @@ describe('twMerge', () => {
     })
   })
 
+  describe('Tailwind v4 class vocabulary', () => {
+    it('merges utilities that only exist in Tailwind v4', () => {
+      expect(twMerge('min-h-0 min-h-auto')).toBe('min-h-auto')
+      expect(twMerge('outline-none outline-hidden')).toBe('outline-hidden')
+      expect(twMerge('translate-x-0 translate-px')).toBe('translate-px')
+    })
+
+    it('merges arbitrary numeric values against scale values', () => {
+      expect(twMerge('delay-200 delay-225')).toBe('delay-225')
+    })
+
+    it('keeps a gradient direction separate from a background color', () => {
+      expect(twMerge('bg-white bg-linear-to-b')).toBe('bg-white bg-linear-to-b')
+    })
+
+    it('passes unknown classes through untouched', () => {
+      expect(twMerge('min-h-auto dellay-225')).toBe('min-h-auto dellay-225')
+    })
+  })
+
   describe('Config', () => {
     // This test should detect if the config was changed to
     // help identify cases when major update is needed
