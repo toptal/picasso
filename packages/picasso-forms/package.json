@@ -56,17 +56,16 @@
     "classnames": "^2.5.1",
     "debounce": "^1.2.1",
     "detect-browser": "^5.3.0",
-    "final-form": "^4.20.9",
-    "final-form-arrays": "3.0.2",
-    "react-final-form": "^6.5.9",
-    "react-final-form-arrays": "^3.1.4",
-    "react-final-form-listeners": "^1.0.3"
+    "final-form": "^5.0.1",
+    "final-form-arrays": "^4.0.1",
+    "react-final-form": "^7.0.1",
+    "react-final-form-arrays": "^5.0.0",
+    "react-final-form-listeners": "^3.0.1"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^8.0.1",
     "@toptal/picasso-test-utils": "workspace:*",
     "@types/classnames": "^2.3.1",
-    "@types/react-final-form-listeners": "^1.0.0",
     "type-fest": "^4.15.0"
   },
   "sideEffects": false,
