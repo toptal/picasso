@@ -1,6 +1,7 @@
 export {
   default,
   FixViewport,
+  FixViewportProps,
   FontsLoader,
   NotificationsProvider,
   NotificationsProviderProps,

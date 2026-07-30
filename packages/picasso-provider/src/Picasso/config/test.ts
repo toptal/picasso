@@ -1,10 +1,38 @@
-import { isScreenSize, screens, PicassoBreakpoints } from './'
+import { renderHook } from '@testing-library/react'
+
+import {
+  breakpointsList,
+  isScreenSize,
+  screens,
+  useBreakpoint,
+  PicassoBreakpoints,
+} from './'
 
 const SCREEN_SIZES = {
   small: 500,
   medium: 800,
   large: 1060,
   extraLarge: 1500,
+}
+
+// jsdom's `matchMedia` never evaluates the query, so resolve the
+// `min-width`/`max-width` pairs against a fixed width ourselves.
+const mockViewportWidth = (width: number) => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: (query: string) => ({
+      matches: query.split(',').some(singleQuery => {
+        const min = singleQuery.match(/min-width:\s*([\d.]+)px/)
+        const max = singleQuery.match(/max-width:\s*([\d.]+)px/)
+
+        return (
+          (!min || width >= Number(min[1])) && (!max || width <= Number(max[1]))
+        )
+      }),
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    }),
+  })
 }
 
 describe('responsive breakpoint utils', () => {
@@ -36,6 +64,32 @@ describe('responsive breakpoint utils', () => {
       expect(mediaQuery).toBe(
         '@media (min-width: 480px) and (max-width: 767.98px), (min-width: 768px) and (max-width: 1023.98px), (min-width: 1024px) and (max-width: 1439.98px)'
       )
+    })
+  })
+
+  describe('useBreakpoint', () => {
+    it('matches the desktop range on a medium screen', () => {
+      mockViewportWidth(SCREEN_SIZES.medium)
+
+      const { result } = renderHook(() => useBreakpoint(['md', 'lg', 'xl']))
+
+      expect(result.current).toBe(true)
+    })
+
+    it('matches the compact range on a small screen', () => {
+      mockViewportWidth(SCREEN_SIZES.small)
+
+      const { result } = renderHook(() => useBreakpoint(['xs', 'sm', 'md']))
+
+      expect(result.current).toBe(true)
+    })
+
+    it('does not match the compact range on a large screen', () => {
+      mockViewportWidth(SCREEN_SIZES.large)
+
+      const { result } = renderHook(() => useBreakpoint(['xs', 'sm', 'md']))
+
+      expect(result.current).toBe(false)
     })
   })
 
@@ -113,6 +167,11 @@ describe('non-responsive breakpoint utils', () => {
     PicassoBreakpoints.disableMobileBreakpoints()
   })
 
+  // `disableMobileBreakpoints()` is process-wide — hand the defaults back
+  afterAll(() => {
+    PicassoBreakpoints.reset()
+  })
+
   describe('media query generation', () => {
     it('xs', () => {
       const mediaQuery = screens('xs')
@@ -135,9 +194,44 @@ describe('non-responsive breakpoint utils', () => {
     it('small medium large', () => {
       const mediaQuery = screens('sm', 'md', 'lg')
 
+      expect(mediaQuery).toBe('@media (max-width: 1439.98px)')
+    })
+
+    it('medium large extra large covers every width', () => {
+      const mediaQuery = screens('md', 'lg', 'xl')
+
       expect(mediaQuery).toBe(
-        '@media (min-width: 1024px) and (max-width: 1439.98px)'
+        '@media (max-width: 1439.98px), (min-width: 1440px)'
       )
+    })
+  })
+
+  describe('useBreakpoint', () => {
+    // `lg` is the desktop floor here, so desktop checks hold at every width —
+    // including the 768–1023.98px band that used to match nothing
+    it.each([
+      ['small', SCREEN_SIZES.small],
+      ['medium', SCREEN_SIZES.medium],
+      ['large', SCREEN_SIZES.large],
+      ['extra large', SCREEN_SIZES.extraLarge],
+    ])('matches the desktop range on a %s screen', (_name, width) => {
+      mockViewportWidth(width)
+
+      const { result } = renderHook(() => useBreakpoint(['md', 'lg', 'xl']))
+
+      expect(result.current).toBe(true)
+    })
+
+    it.each([
+      ['small', SCREEN_SIZES.small],
+      ['medium', SCREEN_SIZES.medium],
+      ['large', SCREEN_SIZES.large],
+    ])('does not match the compact range on a %s screen', (_name, width) => {
+      mockViewportWidth(width)
+
+      const { result } = renderHook(() => useBreakpoint(['xs', 'sm', 'md']))
+
+      expect(result.current).toBe(false)
     })
   })
 
@@ -206,6 +300,21 @@ describe('non-responsive breakpoint utils', () => {
       const isExtraLarge = isScreenSize('xl', SCREEN_SIZES.extraLarge)
 
       expect(isExtraLarge).toBeTruthy()
+    })
+  })
+
+  describe('reset', () => {
+    it('restores the responsive breakpoints', () => {
+      PicassoBreakpoints.reset()
+
+      expect(screens('md')).toBe(
+        '@media (min-width: 768px) and (max-width: 1023.98px)'
+      )
+      expect(isScreenSize('md', SCREEN_SIZES.medium)).toBeTruthy()
+      expect(breakpointsList.sm).toBe(480)
+
+      // hand the suite's own fixture back
+      PicassoBreakpoints.disableMobileBreakpoints()
     })
   })
 })

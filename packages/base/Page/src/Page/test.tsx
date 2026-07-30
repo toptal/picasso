@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RenderResult } from '@toptal/picasso-test-utils'
 import { render } from '@toptal/picasso-test-utils'
-import Picasso from '@toptal/picasso-provider'
+import Picasso, { PicassoBreakpoints } from '@toptal/picasso-provider'
 
 import { Page } from './Page'
 
@@ -14,6 +14,12 @@ describe('Page', () => {
 
   beforeEach(() => {
     api = renderPage(<div>Test</div>)
+  })
+
+  // `responsive={false}` below disables mobile breakpoints process-wide —
+  // hand the defaults back
+  afterEach(() => {
+    PicassoBreakpoints.reset()
   })
   it('renders', () => {
     const { container } = api

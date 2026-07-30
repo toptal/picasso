@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 
+import { PicassoBreakpoints } from './config'
 import { isBrowser } from '../utils'
 
-const FixViewport = () => {
+export interface FixViewportProps {
+  /** Set to false for apps without mobile layouts, to pin the layout viewport */
+  responsive?: boolean
+}
+
+const FixViewport = ({ responsive = true }: FixViewportProps) => {
   const [warned, setWarned] = useState(false)
 
   if (!isBrowser()) {
     return null
   }
 
-  const content = 'width=device-width, user-scalable=no'
+  // Non-responsive apps have no mobile layouts, so pin the viewport to `md` —
+  // mobile browsers then evaluate CSS media queries (Tailwind's static `md:`
+  // variants included) at the width the JS breakpoints assume; desktop ignores
+  // `width`. Zoom stays enabled: the pin already scales pages down (WCAG 1.4.4).
+  const content = responsive
+    ? 'width=device-width, user-scalable=no'
+    : `width=${PicassoBreakpoints.breakpoints.values.md}`
   // eslint-disable-next-line ssr-friendly/no-dom-globals-in-react-fc
   const nonPicassoViewportTags = document.querySelectorAll(
     'meta[name="viewport"]:not([data-picasso="true"])'
