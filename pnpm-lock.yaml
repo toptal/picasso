@@ -46,6 +46,9 @@ patchedDependencies:
   '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0':
     hash: 3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a
     path: patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch
+  react-final-form-listeners@3.0.1:
+    hash: 267ee13c92b1d81c3016dd0b8d2ca4b7b95003e6479058644735ece6376f3e6e
+    path: patches/react-final-form-listeners@3.0.1.patch
   webpack@5.98.0:
     hash: e2c4e4364d7f63ce4220ac564a0eb0a6789525608c04a20b13e962e3eccec20c
     path: patches/webpack@5.98.0.patch
@@ -3549,11 +3552,11 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       final-form:
-        specifier: ^4.20.9
-        version: 4.20.9
+        specifier: ^5.0.1
+        version: 5.0.1
       final-form-arrays:
-        specifier: 3.0.2
-        version: 3.0.2(final-form@4.20.9)
+        specifier: ^4.0.1
+        version: 4.0.1(final-form@5.0.1)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3561,14 +3564,14 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-final-form:
-        specifier: ^6.5.9
-        version: 6.5.9(final-form@4.20.9)(react@18.2.0)
+        specifier: ^7.0.1
+        version: 7.0.1(final-form@5.0.1)(react@18.2.0)
       react-final-form-arrays:
-        specifier: ^3.1.4
-        version: 3.1.4(final-form-arrays@3.0.2(final-form@4.20.9))(final-form@4.20.9)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0)
+        specifier: ^5.0.0
+        version: 5.0.0(final-form-arrays@4.0.1(final-form@5.0.1))(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0)
       react-final-form-listeners:
-        specifier: ^1.0.3
-        version: 1.0.3(final-form@4.20.9)(prop-types@15.8.1)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0)
+        specifier: ^3.0.1
+        version: 3.0.1(patch_hash=267ee13c92b1d81c3016dd0b8d2ca4b7b95003e6479058644735ece6376f3e6e)(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3582,9 +3585,6 @@ importers:
       '@types/classnames':
         specifier: ^2.3.1
         version: 2.3.1
-      '@types/react-final-form-listeners':
-        specifier: ^1.0.0
-        version: 1.0.0
       type-fest:
         specifier: ^4.15.0
         version: 4.15.0
@@ -7611,9 +7611,6 @@ packages:
   '@types/react-dom@18.0.0':
     resolution: {integrity: sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==}
 
-  '@types/react-final-form-listeners@1.0.0':
-    resolution: {integrity: sha512-DovKaDfBqBzPnThFV8mGXL4iAbMCObEFIPUkH7wbD/EN3jZEjpDuPibrqY+w4W1dzicO109YP1LT9KsDDxdYnw==}
-
   '@types/react-input-mask@3.0.0':
     resolution: {integrity: sha512-W8I2GRt1wkFgEJJ4dleSCw1ly2lL+pW71OPkJSz6G93V77io4ulSSnZyiyCv3uljmQDOr94NMbNr5V5hfkMaUg==}
 
@@ -10793,13 +10790,14 @@ packages:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
 
-  final-form-arrays@3.0.2:
-    resolution: {integrity: sha512-TfO8aZNz3RrsZCDx8GHMQcyztDNpGxSSi9w4wpSNKlmv2PfFWVVM8P7Yj5tj4n0OWax+x5YwTLhT5BnqSlCi+w==}
+  final-form-arrays@4.0.1:
+    resolution: {integrity: sha512-aIGGN1ibtxxmRR4LsIEhSbWbUKyHAy9BCAUEcG19U1OpYqD1M9dU9MxgXHmGoM6JLegD4DEVKFLxJjI0q1VjhQ==}
     peerDependencies:
-      final-form: ^4.18.2
+      final-form: ^5.0.0
 
-  final-form@4.20.9:
-    resolution: {integrity: sha512-shA1X/7v8RmukWMNRHx0l7+Bm41hOivY78IvOiBrPVHjyWFIyqqIEMCz7yTVRc9Ea+EU4WkZ5r4MH6whSo5taw==}
+  final-form@5.0.1:
+    resolution: {integrity: sha512-Ohygw2lDgc2HNynfUu82Jp5U45+OLLeBQcwWbrex1IAbQw0uNaFMUbm5dhYCF6y7jcORgl5tg19/1zYxlJtLmg==}
+    engines: {node: '>=18'}
 
   finalhandler@1.3.1:
     resolution: {integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==}
@@ -15180,26 +15178,25 @@ packages:
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
-  react-final-form-arrays@3.1.4:
-    resolution: {integrity: sha512-siVFAolUAe29rMR6u8VwepoysUcUdh6MLV2OWnCtKpsPRUdT9VUgECjAPaVMAH2GROZNiVB9On1H9MMrm9gdpg==}
+  react-final-form-arrays@5.0.0:
+    resolution: {integrity: sha512-M7J73727AaK0YPJbvf/NiBKZrxnCiYZWSuRSHjg6iiA9+KrSuuRm5Y+8gLsah1ziVk4jH4eLK/Atl26LPkB1Dg==}
     peerDependencies:
-      final-form: ^4.15.0
-      final-form-arrays: '>=1.0.4'
+      final-form: ^5.0.1
+      final-form-arrays: ^4.0.1
       react: ^18.2.0
-      react-final-form: ^6.2.1
+      react-final-form: ^7.0.1
 
-  react-final-form-listeners@1.0.3:
-    resolution: {integrity: sha512-OrdCNxSS4JQS/EXD+R530kZKFqaPfa+WcXPgVro/h4BpaBDF/Ja+BtHyCzDezCIb5rWaGGdOJIj+tN2YdtvrXg==}
+  react-final-form-listeners@3.0.1:
+    resolution: {integrity: sha512-oJbPJsqDLs65oxMoo4kSkN7IbtjeqoVEkU7pPKjGnR/meDj83KDjsJj4aTnDCAbocxpjEcV30y+26CfMODFB/g==}
     peerDependencies:
-      final-form: '>=4.0.0'
-      prop-types: ^15.6.0
+      final-form: '>=5.0.0'
       react: ^18.2.0
-      react-final-form: '>=3.0.0'
+      react-final-form: '>=7.0.0'
 
-  react-final-form@6.5.9:
-    resolution: {integrity: sha512-x3XYvozolECp3nIjly+4QqxdjSSWfcnpGEL5K8OBT6xmGrq5kBqbA6+/tOqoom9NwqIPPbxPNsOViFlbKgowbA==}
+  react-final-form@7.0.1:
+    resolution: {integrity: sha512-8K1ITLecBI7F+jCxiMA/JI1amHT/+klQB+nhl5YFZu3R1sQftbiQk/UfwRDvE7ZxIqIvCf8nYLDQRrfwaDT3kQ==}
     peerDependencies:
-      final-form: ^4.20.4
+      final-form: ^5.0.0
       react: ^18.2.0
 
   react-focus-lock@2.6.0:
@@ -23634,10 +23631,6 @@ snapshots:
     dependencies:
       '@types/react': 17.0.39
 
-  '@types/react-final-form-listeners@1.0.0':
-    dependencies:
-      '@types/react': 17.0.39
-
   '@types/react-input-mask@3.0.0':
     dependencies:
       '@types/react': 17.0.39
@@ -27430,13 +27423,13 @@ snapshots:
     dependencies:
       to-regex-range: 5.0.1
 
-  final-form-arrays@3.0.2(final-form@4.20.9):
+  final-form-arrays@4.0.1(final-form@5.0.1):
     dependencies:
-      final-form: 4.20.9
+      final-form: 5.0.1
 
-  final-form@4.20.9:
+  final-form@5.0.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
 
   finalhandler@1.3.1:
     dependencies:
@@ -33041,26 +33034,25 @@ snapshots:
 
   react-fast-compare@3.2.2: {}
 
-  react-final-form-arrays@3.1.4(final-form-arrays@3.0.2(final-form@4.20.9))(final-form@4.20.9)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0):
+  react-final-form-arrays@5.0.0(final-form-arrays@4.0.1(final-form@5.0.1))(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
-      final-form: 4.20.9
-      final-form-arrays: 3.0.2(final-form@4.20.9)
+      '@babel/runtime': 7.29.2
+      final-form: 5.0.1
+      final-form-arrays: 4.0.1(final-form@5.0.1)
       react: 18.2.0
-      react-final-form: 6.5.9(final-form@4.20.9)(react@18.2.0)
+      react-final-form: 7.0.1(final-form@5.0.1)(react@18.2.0)
 
-  react-final-form-listeners@1.0.3(final-form@4.20.9)(prop-types@15.8.1)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0):
+  react-final-form-listeners@3.0.1(patch_hash=267ee13c92b1d81c3016dd0b8d2ca4b7b95003e6479058644735ece6376f3e6e)(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
-      final-form: 4.20.9
-      prop-types: 15.8.1
+      '@babel/runtime': 7.29.2
+      final-form: 5.0.1
       react: 18.2.0
-      react-final-form: 6.5.9(final-form@4.20.9)(react@18.2.0)
+      react-final-form: 7.0.1(final-form@5.0.1)(react@18.2.0)
 
-  react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0):
+  react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
-      final-form: 4.20.9
+      '@babel/runtime': 7.29.2
+      final-form: 5.0.1
       react: 18.2.0
 
   react-focus-lock@2.6.0(@types/react@17.0.39)(react@18.2.0):

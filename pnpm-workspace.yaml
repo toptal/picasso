@@ -64,6 +64,7 @@ overrides:
 patchedDependencies:
   '@changesets/get-github-info@0.6.0': patches/@changesets__get-github-info@0.6.0.patch
   '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0': 'patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch'
+  react-final-form-listeners@3.0.1: patches/react-final-form-listeners@3.0.1.patch
   'webpack@5.98.0': 'patches/webpack@5.98.0.patch'
 resolvePeersFromWorkspaceRoot: true
 strictPeerDependencies: false
