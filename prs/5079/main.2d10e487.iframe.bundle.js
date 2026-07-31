@@ -30734,7 +30734,8 @@ page.createChapter().addExample('EnvironmentBanner/story/Variants.example.tsx', 
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
 /* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
-/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
+/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 
 
 
@@ -30759,14 +30760,11 @@ var Fade = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function F
     onEnter: onEnter,
     onExited: onExited
   });
-  var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)([ref, nodeRef,
-  // TODO: come up with proper type for children.ref
-  // @ts-expect-error ReactElement has no public `ref` field
-  children.ref]);
+  var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)([ref, nodeRef, (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)(children)]);
   var timeouts = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* .getTransitionTimeouts */ .g)(timeout);
   var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(children, {
-    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_4__/* .twMerge */ .QP)('transition-opacity', children.props.className,
+    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__/* .twMerge */ .QP)('transition-opacity', children.props.className,
     // State classes stay after the child's className: behavior, not
     // overridable defaults
     classnames__WEBPACK_IMPORTED_MODULE_1___default()({
@@ -30840,6 +30838,8 @@ var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 var use_transition_status = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js
 var use_multiple_forward_refs = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/get-element-ref.js
+var get_element_ref = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 ;// ./packages/base/Fade/src/Fade/Fade.tsx
@@ -30867,10 +30867,7 @@ var Fade = /*#__PURE__*/react.forwardRef(function Fade(_ref, ref) {
     onEnter: onEnter,
     onExited: onExited
   });
-  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef,
-  // TODO: come up with proper type for children.ref
-  // @ts-expect-error ReactElement has no public `ref` field
-  children.ref]);
+  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef, (0,get_element_ref/* default */.A)(children)]);
   var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
   var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react.cloneElement(children, {
@@ -93139,6 +93136,8 @@ var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 var use_transition_status = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js
 var use_multiple_forward_refs = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/get-element-ref.js
+var get_element_ref = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 ;// ./packages/base/Slide/dist-package/src/Slide/styles.js
@@ -93202,10 +93201,7 @@ var Slide = /*#__PURE__*/react.forwardRef(function Slide(_ref, ref) {
     onEnter: onEnter,
     onExited: onExited
   });
-  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef,
-  // TODO: come up with proper type for children.ref
-  // @ts-expect-error ReactElement has no public `ref` field
-  children.ref]);
+  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef, (0,get_element_ref/* default */.A)(children)]);
   var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
   var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react.cloneElement(children, {
@@ -93270,6 +93266,8 @@ var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 var use_transition_status = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js
 var use_multiple_forward_refs = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/get-element-ref.js
+var get_element_ref = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 ;// ./packages/base/Slide/src/Slide/styles.ts
@@ -93333,10 +93331,7 @@ var Slide = /*#__PURE__*/react.forwardRef(function Slide(_ref, ref) {
     onEnter: onEnter,
     onExited: onExited
   });
-  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef,
-  // TODO: come up with proper type for children.ref
-  // @ts-expect-error ReactElement has no public `ref` field
-  children.ref]);
+  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef, (0,get_element_ref/* default */.A)(children)]);
   var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
   var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react.cloneElement(children, {
@@ -106220,6 +106215,7 @@ __webpack_require__.d(__webpack_exports__, {
   forwardRef: () => (/* reexport */ forward_ref/* forwardRef */.R),
   generateRandomString: () => (/* reexport */ src.generateRandomString),
   generateRandomStringOrGetEmptyInTest: () => (/* reexport */ src.generateRandomStringOrGetEmptyInTest),
+  getElementRef: () => (/* reexport */ get_element_ref/* default */.A),
   getMappedClass: () => (/* reexport */ get_spacing_classes/* getMappedClass */.Ef),
   getNameInitials: () => (/* reexport */ get_name_initials/* default */.A),
   getReactNodeTextContent: () => (/* reexport */ get_react_node_text_content/* getReactNodeTextContent */.G),
@@ -106346,6 +106342,8 @@ var use_mouse_enter = __webpack_require__("./packages/base/Utils/dist-package/sr
 var sum = __webpack_require__("./packages/base/Utils/dist-package/src/utils/sum.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js
 var use_multiple_forward_refs = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/get-element-ref.js
+var get_element_ref = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-page-scroll-lock.js
 var use_page_scroll_lock = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-page-scroll-lock.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-transition-status.js
@@ -106405,6 +106403,7 @@ var colorUtils = {
   lighten: styles/* lighten */.a,
   darken: styles/* darken */.e$
 };
+
 
 
 
@@ -106904,6 +106903,29 @@ var documentable = function (component) {
 var forwardRef = function (component) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(component);
 };
+
+/***/ }),
+
+/***/ "./packages/base/Utils/dist-package/src/utils/get-element-ref.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * Reads the ref attached to a React element.
+ *
+ * `ReactElement` has no public `ref` field, so the cast keeps the lookup in
+ * one place. React 19 moves the ref into props instead; reading it from
+ * there has to wait until the `react` peer range allows v19, because on
+ * v18 `props.ref` is a getter that warns when accessed.
+ */
+var getElementRef = function (element) {
+  var ref = element.ref;
+  return ref !== null && ref !== void 0 ? ref : null;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getElementRef);
 
 /***/ }),
 
@@ -107974,7 +107996,8 @@ var useMultipleForwardRefs = function (refs) {
     } finally {
       _iterator.f();
     }
-  }, _toConsumableArray(refs));
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  _toConsumableArray(refs));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useMultipleForwardRefs);
 
@@ -158612,4 +158635,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.91ac9b07.iframe.bundle.js.map
+//# sourceMappingURL=main.2d10e487.iframe.bundle.js.map
