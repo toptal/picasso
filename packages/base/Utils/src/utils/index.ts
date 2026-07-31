@@ -66,6 +66,15 @@ export { default as sum } from './sum'
 export type { ReferenceObject } from './use-width-of'
 export { default as useMultipleForwardRefs } from './use-multiple-forward-refs'
 export { usePageScrollLock } from './use-page-scroll-lock'
+export {
+  default as useTransitionStatus,
+  getTransitionTimeouts,
+} from './use-transition-status'
+export type {
+  TransitionStatus,
+  TransitionTimeout,
+  UseTransitionStatusOptions,
+} from './use-transition-status'
 export { AVATAR_INITIALS_LIMIT } from './constants'
 
 export const Transitions = TransitionUtils

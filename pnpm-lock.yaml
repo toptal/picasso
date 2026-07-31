@@ -902,12 +902,12 @@ importers:
       '@toptal/picasso-fade':
         specifier: workspace:*
         version: link:../Fade
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
-      '@toptal/picasso-utils':
-        specifier: workspace:*
-        version: link:../Utils
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -915,6 +915,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
@@ -1396,25 +1399,28 @@ importers:
 
   packages/base/Fade:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      '@types/react-transition-group':
-        specifier: ^4.4.5
-        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/FileInput:
     dependencies:
@@ -2559,25 +2565,28 @@ importers:
 
   packages/base/Slide:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      '@types/react-transition-group':
-        specifier: ^4.4.5
-        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/Slider:
     dependencies:
@@ -3865,9 +3874,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.3.0
