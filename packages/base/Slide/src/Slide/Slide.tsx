@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import {
+  getElementRef,
   getTransitionTimeouts,
   useMultipleForwardRefs,
   useTransitionStatus,
@@ -52,9 +53,7 @@ export const Slide = React.forwardRef<HTMLDivElement, Props>(function Slide(
   const combinedRef = useMultipleForwardRefs([
     ref,
     nodeRef,
-    // TODO: come up with proper type for children.ref
-    // @ts-expect-error ReactElement has no public `ref` field
-    children.ref,
+    getElementRef<HTMLDivElement>(children),
   ])
 
   const timeouts = getTransitionTimeouts(timeout)

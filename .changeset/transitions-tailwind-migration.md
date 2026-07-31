@@ -9,6 +9,7 @@
 ### Utils
 
 - add `useTransitionStatus` hook and `getTransitionTimeouts` helper — a timer-driven replacement for react-transition-group's `Transition` state machine with identical callback timing
+- add `getElementRef` helper, typing the ref lookup on a React element in one place
 
 ### Fade
 
