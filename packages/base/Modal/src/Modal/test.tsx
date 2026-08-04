@@ -207,6 +207,47 @@ describe('Modal', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
+  describe('backdrop', () => {
+    const getBackdrops = (element: HTMLElement) =>
+      element.querySelectorAll('[role="presentation"]')
+
+    it('renders a backdrop for a nested modal by default', () => {
+      const { baseElement } = render(
+        <Modal open>
+          <p>Outer modal content</p>
+          <Modal open>
+            <p>Nested modal content</p>
+          </Modal>
+        </Modal>
+      )
+
+      expect(getBackdrops(baseElement)).toHaveLength(2)
+    })
+
+    it('given forceRender is false, does not render a backdrop for a nested modal', () => {
+      const { baseElement } = render(
+        <Modal open>
+          <p>Outer modal content</p>
+          <Modal open forceRender={false}>
+            <p>Nested modal content</p>
+          </Modal>
+        </Modal>
+      )
+
+      expect(getBackdrops(baseElement)).toHaveLength(1)
+    })
+
+    it('given hideBackdrop is true, does not render a backdrop', () => {
+      const { baseElement } = render(
+        <Modal open hideBackdrop>
+          <p>Modal content</p>
+        </Modal>
+      )
+
+      expect(getBackdrops(baseElement)).toHaveLength(0)
+    })
+  })
+
   describe('page scroll lock', () => {
     afterEach(() => {
       cleanup()
