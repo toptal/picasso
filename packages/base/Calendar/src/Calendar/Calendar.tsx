@@ -12,8 +12,7 @@ import type {
   DateRange,
 } from 'react-day-picker'
 import { DayPicker } from 'react-day-picker'
-import isWeekend from 'date-fns/isWeekend'
-import { format, isEqual } from 'date-fns'
+import { format, isEqual, isWeekend } from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
 
 import type { RenderDay } from '../CalendarDay'
