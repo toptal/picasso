@@ -1,7 +1,13 @@
 import React, { useRef } from 'react'
-import { Transition } from 'react-transition-group'
+import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
-import { useMultipleForwardRefs } from '@toptal/picasso-utils'
+import {
+  getElementRef,
+  getTransitionTimeouts,
+  useMultipleForwardRefs,
+  useTransitionStatus,
+} from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */
@@ -12,55 +18,54 @@ export interface Props extends TransitionProps, BaseProps {
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
-export const Fade = React.forwardRef<HTMLDivElement, Props>(
-  ({ timeout = 300, children, in: inProp, style, onEnter, onExited }, ref) => {
-    const nodeRef = useRef(null)
-    const transitionStyles = {
-      entering: { opacity: 1 },
-      entered: { opacity: 1 },
-      exiting: { opacity: 0 },
-      exited: { opacity: 0 },
-    }
+const DEFAULT_TIMEOUT = 300
 
-    const combinedRef = useMultipleForwardRefs([
-      ref,
-      nodeRef,
-      // TODO: come up with proper type for children.ref
-      // @ts-ignore
-      children.ref,
-    ])
+export const Fade = React.forwardRef<HTMLDivElement, Props>(function Fade(
+  { timeout = DEFAULT_TIMEOUT, children, in: inProp, style, onEnter, onExited },
+  ref
+) {
+  const nodeRef = useRef<HTMLDivElement>(null)
 
-    return (
-      <Transition
-        appear
-        nodeRef={nodeRef}
-        in={inProp}
-        timeout={timeout}
-        onExited={onExited}
-        onEnter={onEnter}
-      >
-        {(
-          state: 'entering' | 'entered' | 'exiting' | 'exited',
-          childProps: {}
-        ) => {
-          return React.cloneElement(children, {
-            style: {
-              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-              transitionDuration: `${timeout}ms`,
-              ...transitionStyles[state],
-              ...style,
-              ...children.props.style,
-            },
-            className: `opacity-0 transition-opacity ${
-              children.props.className || ''
-            }`,
-            ref: combinedRef,
-            ...childProps,
-          })
-        }}
-      </Transition>
-    )
-  }
-)
+  const status = useTransitionStatus({
+    in: inProp,
+    // Historical behavior: enter callbacks fire on mount-open, with no
+    // visible fade (the status flips pre-paint)
+    appear: true,
+    timeout,
+    nodeRef,
+    onEnter,
+    onExited,
+  })
+
+  const combinedRef = useMultipleForwardRefs([
+    ref,
+    nodeRef,
+    getElementRef<HTMLDivElement>(children),
+  ])
+
+  const timeouts = getTransitionTimeouts(timeout)
+  const duration = inProp ? timeouts.enter : timeouts.exit
+
+  return React.cloneElement(children, {
+    className: twMerge(
+      'transition-opacity',
+      children.props.className,
+      // State classes stay after the child's className: behavior, not
+      // overridable defaults
+      cx({
+        'opacity-0': !inProp,
+        invisible: status === 'exited' && !inProp,
+      })
+    ),
+    style: {
+      transitionDuration: `${duration}ms`,
+      ...style,
+      ...children.props.style,
+    },
+    ref: combinedRef,
+  })
+})
+
+Fade.displayName = 'Fade'
 
 export default Fade
