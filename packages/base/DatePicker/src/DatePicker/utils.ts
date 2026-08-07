@@ -1,11 +1,13 @@
-import parse from 'date-fns/parse'
-import isValid from 'date-fns/isValid'
-import formatDate from 'date-fns/format'
-import isWithinInterval from 'date-fns/isWithinInterval'
-import isEqual from 'date-fns/isEqual'
-import isBefore from 'date-fns/isBefore'
-import isAfter from 'date-fns/isAfter'
-import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
+import {
+  parse,
+  isValid,
+  format as formatDate,
+  isWithinInterval,
+  isEqual,
+  isBefore,
+  isAfter,
+} from 'date-fns'
+import { toZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
 import type {
   DateOrDateRangeType,
   DateRangeType,
@@ -25,7 +27,7 @@ export const timezoneConvert = (
        * when someone is editing properties in a Storybook examples.
        */
       try {
-        return utcToZonedTime(dateToConvert, timeZone)
+        return toZonedTime(dateToConvert, timeZone)
       } catch {
         return dateToConvert
       }

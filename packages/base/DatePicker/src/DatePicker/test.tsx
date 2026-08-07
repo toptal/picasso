@@ -14,6 +14,105 @@ const testIds = {
 
 const FAR_EAST_TIMEZONE = 'Asia/Tokyo'
 const NEW_YORK_TIMEZONE = 'America/New_York'
+const SHANGHAI_TIMEZONE = 'Asia/Shanghai'
+const LOS_ANGELES_TIMEZONE = 'America/Los_Angeles'
+
+/**
+ * Both sides of the midnight boundary for the offsets the component realistically
+ * meets, including both DST states of the two zones that observe it. Tests run
+ * under `TZ=UTC`, so every case is one where the UTC date and the target zone's
+ * date disagree — the situation that makes a date land on the wrong day.
+ *
+ * Each literal carries the offset the zone genuinely has at that instant. Getting
+ * that wrong does not fail the test, it silently moves the case off the boundary
+ * it is meant to probe, so keep literal and zone in step when editing.
+ */
+const MIDNIGHT_BOUNDARY_CASES = [
+  {
+    label: 'Tokyo +09:00, just after midnight',
+    date: '2020-06-25T00:00:00+09:00',
+    timezone: FAR_EAST_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'Tokyo +09:00, one second before midnight',
+    date: '2020-06-24T23:59:59+09:00',
+    timezone: FAR_EAST_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'Shanghai +08:00, just after midnight',
+    date: '2020-06-25T00:00:00+08:00',
+    timezone: SHANGHAI_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'Shanghai +08:00, one second before midnight',
+    date: '2020-06-24T23:59:59+08:00',
+    timezone: SHANGHAI_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'Los Angeles -08:00 (PST), just after midnight',
+    date: '2020-01-25T00:00:00-08:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jan 25, 2020',
+  },
+  {
+    label: 'Los Angeles -08:00 (PST), one second before midnight',
+    date: '2020-01-24T23:59:59-08:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jan 24, 2020',
+  },
+  {
+    label: 'Los Angeles -07:00 (PDT), just after midnight',
+    date: '2020-06-25T00:00:00-07:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'Los Angeles -07:00 (PDT), one second before midnight',
+    date: '2020-06-24T23:59:59-07:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'New York -04:00 (EDT), just after midnight',
+    date: '2020-06-25T00:00:00-04:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'New York -04:00 (EDT), one second before midnight',
+    date: '2020-06-24T23:59:59-04:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'New York -05:00 (EST), just after midnight',
+    date: '2020-01-25T00:00:00-05:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jan 25, 2020',
+  },
+  {
+    label: 'New York -05:00 (EST), one second before midnight',
+    date: '2020-01-24T23:59:59-05:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jan 24, 2020',
+  },
+]
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
@@ -172,6 +271,22 @@ describe('DatePicker', () => {
         `Jul 25, 2020`
       )
     })
+
+    it.each(MIDNIGHT_BOUNDARY_CASES)(
+      'should display date in given timezone across a midnight boundary ($label)',
+      ({ date, timezone, expectedInputValue }) => {
+        const { getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          timezone,
+          value: new Date(date),
+        })
+
+        expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
+          'value',
+          expectedInputValue
+        )
+      }
+    )
 
     it('should work within interval', () => {
       const MIN_DATE = new Date(2020, 6, 10)
@@ -434,24 +549,8 @@ describe('DatePicker', () => {
   })
 
   describe('Calendar', () => {
-    it.each([
-      {
-        date: '2020-06-25T00:00:00+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-        expectedSelectedDate: '25',
-      },
-      {
-        date: '2020-06-24T23:59:59+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-        expectedSelectedDate: '24',
-      },
-      {
-        date: '2020-06-25T00:00:00-05:00',
-        timezone: NEW_YORK_TIMEZONE,
-        expectedSelectedDate: '25',
-      },
-    ])(
-      'should display date in given timezone',
+    it.each(MIDNIGHT_BOUNDARY_CASES)(
+      'should display date in given timezone ($label)',
       ({ date, timezone, expectedSelectedDate }) => {
         const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
@@ -465,21 +564,8 @@ describe('DatePicker', () => {
       }
     )
 
-    it.each([
-      {
-        date: '2020-06-25T00:00:00+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-      },
-      {
-        date: '2020-06-24T23:59:59+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-      },
-      {
-        date: '2020-06-25T00:00:00-05:00',
-        timezone: NEW_YORK_TIMEZONE,
-      },
-    ])(
-      'should display date in given timezone after day click',
+    it.each(MIDNIGHT_BOUNDARY_CASES)(
+      'should display date in given timezone after day click ($label)',
       async ({ date, timezone }) => {
         const { getByPlaceholderText, getByText } = renderDatePicker({
           ...defaultProps,
