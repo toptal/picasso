@@ -31,6 +31,7 @@ const useMultipleForwardRefs = <T>(refs: ForwardedRef<T>[]) =>
         forwardRef(ref, refValue)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [...refs]
   )
 
