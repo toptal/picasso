@@ -80,7 +80,7 @@ importers:
         version: 7.23.1
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@changesets/changelog-github':
         specifier: ^0.5.0
         version: 0.5.0(encoding@0.1.13)
@@ -466,8 +466,8 @@ importers:
         specifier: ^1.12.0
         version: 1.12.0(cypress@13.6.0)
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       debounce:
         specifier: ^1.2.1
         version: 1.2.1
@@ -620,7 +620,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -982,7 +982,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-checkbox':
         specifier: workspace:*
         version: link:../Checkbox
@@ -1060,8 +1060,8 @@ importers:
         specifier: workspace:*
         version: link:../Utils
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1111,7 +1111,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -1227,11 +1227,11 @@ importers:
         specifier: workspace:*
         version: link:../Utils
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       date-fns-tz:
-        specifier: ^2.0.0
-        version: 2.0.0(date-fns@2.30.0)
+        specifier: ^3.2.0
+        version: 3.2.0(date-fns@4.4.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1256,7 +1256,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -1899,7 +1899,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -2595,7 +2595,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -2663,7 +2663,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -2734,7 +2734,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-container':
         specifier: workspace:*
         version: link:../Container
@@ -2929,7 +2929,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -3330,11 +3330,11 @@ importers:
         specifier: ^3
         version: 3.0.0
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       date-fns-tz:
-        specifier: ^2.0.0
-        version: 2.0.0(date-fns@2.30.0)
+        specifier: ^3.2.0
+        version: 3.2.0(date-fns@4.4.0)
       debounce:
         specifier: ^1.2.1
         version: 1.2.1
@@ -3968,8 +3968,8 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
 
 packages:
 
@@ -9633,14 +9633,17 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  date-fns-tz@2.0.0:
-    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
+  date-fns-tz@3.2.0:
+    resolution: {integrity: sha512-sg8HqoTEulcbbbVXeg84u5UnlsQa8GS5QXMqjjYIhS4abEVVKIUwe0/l/UhrZdKaL/W5eWZNlbTeEIiOXTcsBQ==}
     peerDependencies:
-      date-fns: '>=2.0.0'
+      date-fns: ^3.0.0 || ^4.0.0
 
   date-fns@2.30.0:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
+
+  date-fns@4.4.0:
+    resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
 
   dateformat@3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
@@ -19155,7 +19158,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@base-ui/react@1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@base-ui/react@1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@base-ui/utils': 0.3.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -19166,7 +19169,7 @@ snapshots:
       use-sync-external-store: 1.6.0(react@18.2.0)
     optionalDependencies:
       '@types/react': 17.0.39
-      date-fns: 2.30.0
+      date-fns: 4.4.0
 
   '@base-ui/utils@0.3.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -26092,13 +26095,15 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  date-fns-tz@2.0.0(date-fns@2.30.0):
+  date-fns-tz@3.2.0(date-fns@4.4.0):
     dependencies:
-      date-fns: 2.30.0
+      date-fns: 4.4.0
 
   date-fns@2.30.0:
     dependencies:
       '@babel/runtime': 7.28.4
+
+  date-fns@4.4.0: {}
 
   dateformat@3.0.3: {}
 
@@ -32917,7 +32922,7 @@ snapshots:
 
   react-day-picker@8.10.2(date-fns@2.30.0)(react@18.2.0):
     dependencies:
-      date-fns: 2.30.0
+      date-fns: 4.4.0
       react: 18.2.0
 
   react-deprecate@0.1.0: {}
