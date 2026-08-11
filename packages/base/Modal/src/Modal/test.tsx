@@ -224,11 +224,11 @@ describe('Modal', () => {
       expect(getBackdrops(baseElement)).toHaveLength(2)
     })
 
-    it('given forceRender is false, does not render a backdrop for a nested modal', () => {
+    it('given forceRenderBackdrop is false, does not render a backdrop for a nested modal', () => {
       const { baseElement } = render(
         <Modal open>
           <p>Outer modal content</p>
-          <Modal open forceRender={false}>
+          <Modal open forceRenderBackdrop={false}>
             <p>Nested modal content</p>
           </Modal>
         </Modal>

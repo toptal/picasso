@@ -78,10 +78,10 @@ describe('Drawer', () => {
     expect(getBackdrops(baseElement)).toHaveLength(2)
   })
 
-  it('given forceRender is false, does not render a backdrop for a nested drawer', () => {
+  it('given forceRenderBackdrop is false, does not render a backdrop for a nested drawer', () => {
     const { baseElement } = renderDrawer(
       {},
-      <Drawer open forceRender={false} onClose={jest.fn()}>
+      <Drawer open forceRenderBackdrop={false} onClose={jest.fn()}>
         <span>Nested drawer body</span>
       </Drawer>
     )
