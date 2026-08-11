@@ -220,8 +220,6 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
       )}
       style={{
         ...floatingStyles,
-        // keeps the not-yet-positioned popper viewport-relative, so focusing
-        // content inside (autoFocus) cannot scroll the page
         ...(isPositioned ? {} : { position: 'fixed' as const }),
         ...style,
         ...anchorElWidthStyle,
