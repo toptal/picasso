@@ -149,6 +149,30 @@ describe('Popper', () => {
     expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
   })
 
+  describe('pre-positioned frame', () => {
+    // fixed keeps the not-yet-positioned popper in view, so autoFocus
+    // content cannot scroll the page
+    it('stays position fixed until positioned', async () => {
+      renderPopper()
+
+      expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+
+      await flushPosition()
+
+      expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'absolute' })
+    })
+
+    it('stays position fixed until positioned when portal is disabled', async () => {
+      renderPopper({ disablePortal: true })
+
+      expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'fixed' })
+
+      await flushPosition()
+
+      expect(screen.getByRole('tooltip')).toHaveStyle({ position: 'absolute' })
+    })
+  })
+
   describe('role', () => {
     it('defaults the floating element to role="tooltip"', async () => {
       renderPopper()
