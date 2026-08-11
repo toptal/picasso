@@ -1,5 +1,14 @@
 # Change Log
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`9666282`](https://github.com/toptal/picasso/commit/96662826eef4ec4c299e6fc9315806929bc64b95)]:
+  - @toptal/picasso-modal@100.1.0
+  - @toptal/picasso-drawer@100.1.0
+  - @toptal/picasso-prompt-modal@100.0.2
+
 ## 100.0.1
 
 ### Patch Changes
