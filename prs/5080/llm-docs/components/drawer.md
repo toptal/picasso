@@ -19,7 +19,7 @@ Allows rendering a sidebar with custom content
 | maintainBodyScrollLock | `boolean` | - | enable Drawer to maintain body scroll lock |
 | transparentBackdrop | `boolean` | - | Specify the backdrop transparency |
 | disableBackdrop | `boolean` | - | Remove the backdrop and leave elements behind interactive |
-| forceRender | `boolean` | - | If `true`, the backdrop is rendered even when nested in another dialog |
+| forceRenderBackdrop | `boolean` | - | If `true`, the backdrop is rendered even when nested in another dialog |
 | disableScroll | `boolean` | `false` | Disable drawer scrolling and let children manage their own scroll |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
