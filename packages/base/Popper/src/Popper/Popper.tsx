@@ -220,6 +220,7 @@ export const Popper = forwardRef<PopperHandle, Props>(function Popper(
       )}
       style={{
         ...floatingStyles,
+        ...(isPositioned ? {} : { position: 'fixed' as const }),
         ...style,
         ...anchorElWidthStyle,
         ...(!open && keepMounted ? { display: 'none' } : {}),
