@@ -1,5 +1,15 @@
 # @toptal/picasso-modal
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5080](https://github.com/toptal/picasso/pull/5080) [`9666282`](https://github.com/toptal/picasso/commit/96662826eef4ec4c299e6fc9315806929bc64b95) Thanks [@azebich](https://github.com/azebich)!
+
+### Modal, Drawer
+
+- add a `forceRenderBackdrop` prop, defaulting to `true`, so a modal or drawer nested inside another dialog keeps rendering its backdrop. `@base-ui/react`'s `Dialog.Backdrop` skips rendering whenever it detects a parent dialog in the React tree unless `forceRender` is set, which silently dropped the backdrop of such modals and drawers (for example a `Modal` opened from inside a `Drawer`). Pass `forceRenderBackdrop={false}` to opt into the `@base-ui/react` behavior and render a single, outermost backdrop
+
 ## 100.0.1
 
 ### Patch Changes
