@@ -42,6 +42,8 @@ export interface Props extends BaseProps {
   transparentBackdrop?: boolean
   /** Remove the backdrop and leave elements behind interactive  */
   disableBackdrop?: boolean
+  /** If `true`, the backdrop is rendered even when nested in another dialog */
+  forceRenderBackdrop?: boolean
   /** Disable drawer scrolling and let children manage their own scroll */
   disableScroll?: boolean
 }
@@ -80,6 +82,7 @@ export const Drawer = ({
     maintainBodyScrollLock = true,
     transparentBackdrop,
     disableBackdrop,
+    forceRenderBackdrop = true,
     className,
     style,
     'data-testid': testId,
@@ -117,6 +120,7 @@ export const Drawer = ({
     <>
       {!disableBackdrop && (
         <BaseUIDialog.Backdrop
+          forceRender={forceRenderBackdrop}
           className={twMerge(
             'z-drawer fixed inset-0 bg-black transition-opacity duration-300',
             'data-starting-style:opacity-0 data-ending-style:opacity-0',

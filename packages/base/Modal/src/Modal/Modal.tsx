@@ -43,6 +43,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   container?: ContainerValue
   /** If `true`, the backdrop is not rendered */
   hideBackdrop?: boolean
+  /** If `true`, the backdrop is rendered even when nested in another dialog */
+  forceRenderBackdrop?: boolean
   /** Position of the modal relative to the browser's viewport */
   align?: Alignment
   /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
@@ -116,6 +118,7 @@ const generateKey = (() => {
 export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   {
     hideBackdrop = false,
+    forceRenderBackdrop = true,
     disableBackdropClick = false,
     size = 'medium',
     transitionDuration = 300,
@@ -243,6 +246,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       <BaseUIDialog.Portal container={resolvedContainer}>
         {!hideBackdrop && (
           <BaseUIDialog.Backdrop
+            forceRender={forceRenderBackdrop}
             className='fixed z-modal inset-0 bg-black/50 transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0'
             style={durationStyle}
           />

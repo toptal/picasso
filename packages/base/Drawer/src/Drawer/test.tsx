@@ -13,6 +13,9 @@ const renderDrawer = (props: Partial<Props> = {}, children: ReactNode = null) =>
     </Drawer>
   )
 
+const getBackdrops = (element: HTMLElement) =>
+  element.querySelectorAll('.bg-black\\/50')
+
 describe('Drawer', () => {
   it('renders content when open', () => {
     const { getByTestId } = renderDrawer()
@@ -61,7 +64,29 @@ describe('Drawer', () => {
   it('does not render a backdrop when disableBackdrop is set', () => {
     const { baseElement } = renderDrawer({ disableBackdrop: true })
 
-    expect(baseElement.querySelector('.bg-black\\/50')).toBeNull()
+    expect(getBackdrops(baseElement)).toHaveLength(0)
+  })
+
+  it('renders a backdrop for a nested drawer by default', () => {
+    const { baseElement } = renderDrawer(
+      {},
+      <Drawer open onClose={jest.fn()}>
+        <span>Nested drawer body</span>
+      </Drawer>
+    )
+
+    expect(getBackdrops(baseElement)).toHaveLength(2)
+  })
+
+  it('given forceRenderBackdrop is false, does not render a backdrop for a nested drawer', () => {
+    const { baseElement } = renderDrawer(
+      {},
+      <Drawer open forceRenderBackdrop={false} onClose={jest.fn()}>
+        <span>Nested drawer body</span>
+      </Drawer>
+    )
+
+    expect(getBackdrops(baseElement)).toHaveLength(1)
   })
 
   it('disables paper scrolling when disableScroll is set', () => {
