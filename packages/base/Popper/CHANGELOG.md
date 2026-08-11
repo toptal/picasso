@@ -1,5 +1,15 @@
 # @toptal/picasso-popper
 
+## 100.0.1
+
+### Patch Changes
+
+- [#5083](https://github.com/toptal/picasso/pull/5083) [`4b7eb19`](https://github.com/toptal/picasso/commit/4b7eb19e04ae44986f85cbba7dfe16cdc63ac5e7) Thanks [@azebich](https://github.com/azebich)!
+
+### Popper
+
+- keep the floating element `position: fixed` until positioned, so mount-time autofocus inside the popper no longer scrolls the page to the top
+
 ## 100.0.0
 
 ### Major Changes
