@@ -65,7 +65,7 @@ exports[`Dropdown should render menu 1`] = `
           class="z-modal xs:max-md:w-screen xs:max-md:max-w xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of shadow-2"
           data-picasso-popper=""
           role="presentation"
-          style="position: absolute; left: 0px; top: 0px; transform: translate(0px, 0px);"
+          style="position: fixed; left: 0px; top: 0px; transform: translate(0px, 0px);"
           x-placement="bottom-end"
         >
           <div
