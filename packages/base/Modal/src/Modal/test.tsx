@@ -248,6 +248,73 @@ describe('Modal', () => {
     })
   })
 
+  describe('backdrop click', () => {
+    const renderModal = (props?: Partial<ModalProps>) => {
+      const onClose = jest.fn()
+      const onBackdropClick = jest.fn()
+
+      const { baseElement } = render(
+        <Modal
+          open
+          onClose={onClose}
+          onBackdropClick={onBackdropClick}
+          {...props}
+        >
+          <Modal.Content>
+            <input />
+          </Modal.Content>
+        </Modal>
+      )
+
+      return {
+        onClose,
+        onBackdropClick,
+        // the popup is the transparent full-screen element over the backdrop
+        popup: baseElement.querySelector('[role="dialog"]') as HTMLElement,
+      }
+    }
+
+    it('closes when pressing and releasing on the backdrop', () => {
+      const { popup, onClose, onBackdropClick } = renderModal()
+
+      fireEvent.mouseDown(popup)
+      fireEvent.click(popup)
+
+      expect(onBackdropClick).toHaveBeenCalled()
+      expect(onClose).toHaveBeenCalled()
+    })
+
+    it('given the press started inside the content, does not close', () => {
+      const { popup, onClose, onBackdropClick } = renderModal()
+
+      // selecting text in a field and releasing outside the paper: the browser
+      // dispatches the click on the common ancestor of both targets — the popup
+      fireEvent.mouseDown(screen.getByRole('textbox'))
+      fireEvent.click(popup)
+
+      expect(onBackdropClick).not.toHaveBeenCalled()
+      expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('given disableBackdropClick, does not close on a backdrop click', () => {
+      const { popup, onClose } = renderModal({ disableBackdropClick: true })
+
+      fireEvent.mouseDown(popup)
+      fireEvent.click(popup)
+
+      expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('forwards onMouseDown', () => {
+      const onMouseDown = jest.fn()
+      const { popup } = renderModal({ onMouseDown })
+
+      fireEvent.mouseDown(popup)
+
+      expect(onMouseDown).toHaveBeenCalled()
+    })
+  })
+
   describe('page scroll lock', () => {
     afterEach(() => {
       cleanup()

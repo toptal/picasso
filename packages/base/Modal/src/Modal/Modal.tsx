@@ -134,6 +134,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     onClose,
     onOpen,
     onClick,
+    onMouseDown,
     className,
     style,
     container,
@@ -150,6 +151,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   )
   const modalId = useRef(generateKey())
   const wasOpen = useRef(false)
+  const mouseDownOnPopupRef = useRef(false)
   const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
@@ -218,8 +220,24 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     (typeof container === 'function' ? container() : container) ||
     picassoRootContainer
 
+  // The popup is a transparent full-screen element covering the backdrop, so a
+  // press on the visible backdrop targets the popup itself. A press that starts
+  // inside the content and ends outside the paper (selecting text in a field,
+  // say) makes the browser dispatch the click on their common ancestor — the
+  // popup — which is indistinguishable from a backdrop click without knowing
+  // where the press began.
+  const handlePopupMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    mouseDownOnPopupRef.current = event.target === event.currentTarget
+
+    onMouseDown?.(event)
+  }
+
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget && !disableBackdropClick) {
+    if (
+      mouseDownOnPopupRef.current &&
+      event.target === event.currentTarget &&
+      !disableBackdropClick
+    ) {
       onBackdropClick?.()
       onClose?.()
     }
@@ -265,6 +283,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           )}
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
+          onMouseDown={handlePopupMouseDown}
         >
           <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
             <ModalContext.Provider value>
