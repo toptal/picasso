@@ -220,4 +220,38 @@ describe('Checkbox', () => {
       })
     })
   })
+
+  describe('testIds', () => {
+    it('keeps the top-level data-testid on the role element', () => {
+      const { getByTestId, getByRole } = render(
+        <Checkbox data-testid='checkbox' label='Select item' />
+      )
+
+      expect(getByTestId('checkbox')).toBe(getByRole('checkbox'))
+    })
+
+    it('places testIds.input on the visually hidden native input', () => {
+      const { getByTestId, getByRole } = render(
+        <Checkbox label='Select item' testIds={{ input: 'checkbox-input' }} />
+      )
+
+      const input = getByTestId('checkbox-input')
+
+      expect(input).toBeInstanceOf(HTMLInputElement)
+      // the input is rendered beside the role element, not inside it
+      expect(getByRole('checkbox')).not.toContainElement(input)
+
+      fireEvent.click(getByRole('checkbox'))
+
+      expect(input).toBeChecked()
+    })
+
+    it('places testIds.input on the input when there is no label', () => {
+      const { getByTestId } = render(
+        <Checkbox testIds={{ input: 'checkbox-input' }} />
+      )
+
+      expect(getByTestId('checkbox-input')).toBeInstanceOf(HTMLInputElement)
+    })
+  })
 })

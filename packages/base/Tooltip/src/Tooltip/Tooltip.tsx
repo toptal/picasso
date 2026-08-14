@@ -77,6 +77,21 @@ const composeHandlers =
     ours(event)
   }
 
+// Both testids stamp the anchor (the rendered trigger child) — the only
+// element the Tooltip owns while closed; `testIds.anchor` names it
+// explicitly, the top-level `data-testid` keeps flowing for backwards
+// compatibility. Returns the attribute only when set: an explicit
+// `data-testid: undefined` would clobber the child's own testid in the
+// trigger's prop merge.
+const buildAnchorTestIdProps = (
+  testIds: Props['testIds'],
+  dataTestId: string | undefined
+): { 'data-testid'?: string } => {
+  const anchorTestId = testIds?.anchor ?? dataTestId
+
+  return anchorTestId === undefined ? {} : { 'data-testid': anchorTestId }
+}
+
 let fallbackIdCounter = 0
 
 // The tooltip primitive wires no `aria-describedby` of its own, so a tooltip
@@ -137,6 +152,16 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   container?: ContainerValue
   /** Offset to allow shifting tooltip's position from left and top. */
   offset?: OffsetType
+  /** Testids of the `Tooltip` internal elements */
+  testIds?: {
+    /**
+     * Testid of the anchor — the element the tooltip's open/close listeners
+     * are attached to (the rendered trigger child). Hover this element in
+     * tests: a natively disabled child swallows pointer events, so hovering
+     * the child itself never opens the tooltip.
+     */
+    anchor?: string
+  }
 }
 
 export const Tooltip = forwardRef<HTMLElement, Props>(
@@ -173,6 +198,8 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       tooltipRef,
       container,
       'data-private': dataPrivate,
+      'data-testid': dataTestId,
+      testIds,
       ...rest
     } = props
 
@@ -237,6 +264,8 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
       'className' | 'style' | 'disabled' | 'closeOnClick' | 'onClick' | 'render'
     >
 
+    const anchorTestIdProps = buildAnchorTestIdProps(testIds, dataTestId)
+
     const positioner = (
       <BaseTooltip.Positioner
         ref={tooltipRef}
@@ -297,6 +326,7 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             ref={setTriggerRef}
             className={className}
             style={style}
+            {...anchorTestIdProps}
             // Associate the popup with the trigger while open, preferring any
             // consumer-supplied value (tooltipId is never empty).
             aria-describedby={
