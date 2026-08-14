@@ -135,6 +135,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     onOpen,
     onClick,
     onMouseDown,
+    onMouseUp,
     className,
     style,
     container,
@@ -152,6 +153,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   const modalId = useRef(generateKey())
   const wasOpen = useRef(false)
   const mouseDownOnPopupRef = useRef(false)
+  const mouseUpOnPopupRef = useRef(false)
   const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
@@ -220,21 +222,24 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     (typeof container === 'function' ? container() : container) ||
     picassoRootContainer
 
-  // The popup is a transparent full-screen element covering the backdrop, so a
-  // press on the visible backdrop targets the popup itself. A press that starts
-  // inside the content and ends outside the paper (selecting text in a field,
-  // say) makes the browser dispatch the click on their common ancestor — the
-  // popup — which is indistinguishable from a backdrop click without knowing
-  // where the press began.
   const handlePopupMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     mouseDownOnPopupRef.current = event.target === event.currentTarget
 
     onMouseDown?.(event)
   }
 
+  const handlePopupMouseUp = (event: React.MouseEvent<HTMLDivElement>) => {
+    mouseUpOnPopupRef.current = event.target === event.currentTarget
+
+    onMouseUp?.(event)
+  }
+
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    // a drag between the backdrop and the content dispatches its click on the
+    // common ancestor — this popup — so both ends must have been on it
     if (
       mouseDownOnPopupRef.current &&
+      mouseUpOnPopupRef.current &&
       event.target === event.currentTarget &&
       !disableBackdropClick
     ) {
@@ -284,6 +289,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
           onMouseDown={handlePopupMouseDown}
+          onMouseUp={handlePopupMouseUp}
         >
           <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
             <ModalContext.Provider value>

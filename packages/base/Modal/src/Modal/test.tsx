@@ -274,11 +274,27 @@ describe('Modal', () => {
       }
     }
 
+    // a pointer interaction fires mousedown → mouseup → click, and the browser
+    // dispatches the click on the nearest common ancestor of the press and the
+    // release target — the popup itself whenever the two differ
+    const press = ({
+      from,
+      to,
+      popup,
+    }: {
+      from: HTMLElement
+      to: HTMLElement
+      popup: HTMLElement
+    }) => {
+      fireEvent.mouseDown(from)
+      fireEvent.mouseUp(to)
+      fireEvent.click(from === to ? from : popup)
+    }
+
     it('closes when pressing and releasing on the backdrop', () => {
       const { popup, onClose, onBackdropClick } = renderModal()
 
-      fireEvent.mouseDown(popup)
-      fireEvent.click(popup)
+      press({ from: popup, to: popup, popup })
 
       expect(onBackdropClick).toHaveBeenCalled()
       expect(onClose).toHaveBeenCalled()
@@ -287,10 +303,18 @@ describe('Modal', () => {
     it('given the press started inside the content, does not close', () => {
       const { popup, onClose, onBackdropClick } = renderModal()
 
-      // selecting text in a field and releasing outside the paper: the browser
-      // dispatches the click on the common ancestor of both targets — the popup
-      fireEvent.mouseDown(screen.getByRole('textbox'))
-      fireEvent.click(popup)
+      // selecting text in a field and releasing outside the paper
+      press({ from: screen.getByRole('textbox'), to: popup, popup })
+
+      expect(onBackdropClick).not.toHaveBeenCalled()
+      expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('given the press ended inside the content, does not close', () => {
+      const { popup, onClose, onBackdropClick } = renderModal()
+
+      // selecting from outside the paper into a field
+      press({ from: popup, to: screen.getByRole('textbox'), popup })
 
       expect(onBackdropClick).not.toHaveBeenCalled()
       expect(onClose).not.toHaveBeenCalled()
@@ -299,10 +323,18 @@ describe('Modal', () => {
     it('given disableBackdropClick, does not close on a backdrop click', () => {
       const { popup, onClose } = renderModal({ disableBackdropClick: true })
 
-      fireEvent.mouseDown(popup)
-      fireEvent.click(popup)
+      press({ from: popup, to: popup, popup })
 
       expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('forwards onMouseUp', () => {
+      const onMouseUp = jest.fn()
+      const { popup } = renderModal({ onMouseUp })
+
+      fireEvent.mouseUp(popup)
+
+      expect(onMouseUp).toHaveBeenCalled()
     })
 
     it('forwards onMouseDown', () => {
