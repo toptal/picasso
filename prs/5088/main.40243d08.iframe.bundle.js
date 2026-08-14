@@ -71533,7 +71533,7 @@ try {
     // @ts-ignore
     Logo.displayName = "Logo";
     // @ts-ignore
-    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"black\"" }, { "value": "\"default\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"default\"" }, { "value": "\"black\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -73004,6 +73004,7 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_a, ref) {
     onOpen = props.onOpen,
     onClick = props.onClick,
     onMouseDown = props.onMouseDown,
+    onMouseUp = props.onMouseUp,
     className = props.className,
     style = props.style,
     container = props.container,
@@ -73011,12 +73012,13 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_a, ref) {
     testIds = props.testIds,
     transitionProps = props.transitionProps,
     classes = props.classes,
-    rest = Modal_rest(props, ["children", "open", "onBackdropClick", "onClose", "onOpen", "onClick", "onMouseDown", "className", "style", "container", "paperProps", "testIds", "transitionProps", "classes"]);
+    rest = Modal_rest(props, ["children", "open", "onBackdropClick", "onClose", "onOpen", "onClick", "onMouseDown", "onMouseUp", "className", "style", "container", "paperProps", "testIds", "transitionProps", "classes"]);
   var picassoRootContainer = (0,src.usePicassoRoot)();
   var modalRef = (0,use_combined_refs/* default */.A)(ref, (0,react.useRef)(null));
   var modalId = (0,react.useRef)(generateKey());
   var wasOpen = (0,react.useRef)(false);
   var mouseDownOnPopupRef = (0,react.useRef)(false);
+  var mouseUpOnPopupRef = (0,react.useRef)(false);
   var _useContext = (0,react.useContext)(src.RootContext),
     rootRef = _useContext.rootRef;
   (0,react.useEffect)(function () {
@@ -73067,18 +73069,18 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_a, ref) {
     transitionDuration: `${duration}ms`
   };
   var resolvedContainer = (typeof container === 'function' ? container() : container) || picassoRootContainer;
-  // The popup is a transparent full-screen element covering the backdrop, so a
-  // press on the visible backdrop targets the popup itself. A press that starts
-  // inside the content and ends outside the paper (selecting text in a field,
-  // say) makes the browser dispatch the click on their common ancestor — the
-  // popup — which is indistinguishable from a backdrop click without knowing
-  // where the press began.
   var handlePopupMouseDown = function (event) {
     mouseDownOnPopupRef.current = event.target === event.currentTarget;
     onMouseDown === null || onMouseDown === void 0 ? void 0 : onMouseDown(event);
   };
+  var handlePopupMouseUp = function (event) {
+    mouseUpOnPopupRef.current = event.target === event.currentTarget;
+    onMouseUp === null || onMouseUp === void 0 ? void 0 : onMouseUp(event);
+  };
   var handlePopupClick = function (event) {
-    if (mouseDownOnPopupRef.current && event.target === event.currentTarget && !disableBackdropClick) {
+    // a drag between the backdrop and the content dispatches its click on the
+    // common ancestor — this popup — so both ends must have been on it
+    if (mouseDownOnPopupRef.current && mouseUpOnPopupRef.current && event.target === event.currentTarget && !disableBackdropClick) {
       onBackdropClick === null || onBackdropClick === void 0 ? void 0 : onBackdropClick();
       onClose === null || onClose === void 0 ? void 0 : onClose();
     }
@@ -73114,7 +73116,8 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_a, ref) {
     className: (0,twMerge/* twMerge */.QP)('fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center transition-opacity data-starting-style:opacity-0 data-ending-style:opacity-0', className),
     style: Object.assign(Object.assign({}, style), durationStyle),
     onClick: handlePopupClick,
-    onMouseDown: handlePopupMouseDown
+    onMouseDown: handlePopupMouseDown,
+    onMouseUp: handlePopupMouseUp
   }), /*#__PURE__*/react.createElement(ModalPaper, Object.assign({
     size: size,
     align: align,
@@ -73552,7 +73555,7 @@ try {
 catch (__react_docgen_typescript_loader_error) { }
 ;// ./packages/base/Modal/src/Modal/Modal.tsx
 var Modal_excluded = ["hideBackdrop", "forceRenderBackdrop", "disableBackdropClick", "size", "transitionDuration", "align"],
-  _excluded2 = ["children", "open", "onBackdropClick", "onClose", "onOpen", "onClick", "onMouseDown", "className", "style", "container", "paperProps", "testIds", "transitionProps", "classes"];
+  _excluded2 = ["children", "open", "onBackdropClick", "onClose", "onOpen", "onClick", "onMouseDown", "onMouseUp", "className", "style", "container", "paperProps", "testIds", "transitionProps", "classes"];
 function Modal_objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = Modal_objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function Modal_objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 
@@ -73630,6 +73633,7 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_ref, ref) {
     onOpen = props.onOpen,
     onClick = props.onClick,
     onMouseDown = props.onMouseDown,
+    onMouseUp = props.onMouseUp,
     className = props.className,
     style = props.style,
     container = props.container,
@@ -73643,6 +73647,7 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_ref, ref) {
   var modalId = (0,react.useRef)(generateKey());
   var wasOpen = (0,react.useRef)(false);
   var mouseDownOnPopupRef = (0,react.useRef)(false);
+  var mouseUpOnPopupRef = (0,react.useRef)(false);
   var _useContext = (0,react.useContext)(src.RootContext),
     rootRef = _useContext.rootRef;
   (0,react.useEffect)(function () {
@@ -73693,19 +73698,18 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_ref, ref) {
     transitionDuration: `${duration}ms`
   };
   var resolvedContainer = (typeof container === 'function' ? container() : container) || picassoRootContainer;
-
-  // The popup is a transparent full-screen element covering the backdrop, so a
-  // press on the visible backdrop targets the popup itself. A press that starts
-  // inside the content and ends outside the paper (selecting text in a field,
-  // say) makes the browser dispatch the click on their common ancestor — the
-  // popup — which is indistinguishable from a backdrop click without knowing
-  // where the press began.
   var handlePopupMouseDown = function (event) {
     mouseDownOnPopupRef.current = event.target === event.currentTarget;
     onMouseDown === null || onMouseDown === void 0 ? void 0 : onMouseDown(event);
   };
+  var handlePopupMouseUp = function (event) {
+    mouseUpOnPopupRef.current = event.target === event.currentTarget;
+    onMouseUp === null || onMouseUp === void 0 ? void 0 : onMouseUp(event);
+  };
   var handlePopupClick = function (event) {
-    if (mouseDownOnPopupRef.current && event.target === event.currentTarget && !disableBackdropClick) {
+    // a drag between the backdrop and the content dispatches its click on the
+    // common ancestor — this popup — so both ends must have been on it
+    if (mouseDownOnPopupRef.current && mouseUpOnPopupRef.current && event.target === event.currentTarget && !disableBackdropClick) {
       onBackdropClick === null || onBackdropClick === void 0 ? void 0 : onBackdropClick();
       onClose === null || onClose === void 0 ? void 0 : onClose();
     }
@@ -73742,6 +73746,7 @@ var Modal = /*#__PURE__*/(0,react.forwardRef)(function Modal(_ref, ref) {
         style: Object.assign({}, style, durationStyle),
         onClick: handlePopupClick,
         onMouseDown: handlePopupMouseDown,
+        onMouseUp: handlePopupMouseUp,
         children: /*#__PURE__*/(0,jsx_runtime.jsx)(ModalPaper, Object.assign({
           size: size,
           align: align,
@@ -158513,4 +158518,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.5cf01dee.iframe.bundle.js.map
+//# sourceMappingURL=main.40243d08.iframe.bundle.js.map
