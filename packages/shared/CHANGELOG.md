@@ -1,5 +1,23 @@
 # Change Log
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5087](https://github.com/toptal/picasso/pull/5087) [`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Checkbox
+
+- add `testIds.input` for placing a `data-testid` on the visually hidden native `<input>` — Base UI renders it beside the `[role="checkbox"]` element, so it is not reachable from the top-level `data-testid`. Flows through `Form.Checkbox` as well
+
+### Switch
+
+- add `testIds.input` for placing a `data-testid` on the visually hidden native `<input>` — Base UI renders it beside the `[role="switch"]` element, so it is not reachable from the top-level `data-testid`. Flows through `Form.Switch` as well
+
+### useInputTestId
+
+- add `useInputTestId` hook — a callback ref that stamps a `data-testid` on the input a Base UI primitive exposes only through `inputRef`
+
 ## 100.0.0
 
 ### Major Changes

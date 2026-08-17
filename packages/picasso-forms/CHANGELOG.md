@@ -1,5 +1,36 @@
 # Change Log
 
+## 100.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d), [`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d)]:
+  - @toptal/picasso-switch@101.0.0
+  - @toptal/picasso-checkbox@100.1.0
+  - @toptal/picasso-shared@100.1.0
+  - @toptal/picasso-button@100.0.2
+  - @toptal/picasso-autocomplete@100.0.2
+  - @toptal/picasso-avatar-upload@100.0.2
+  - @toptal/picasso-file-input@100.0.2
+  - @toptal/picasso-form@100.0.2
+  - @toptal/picasso-form-label@100.0.1
+  - @toptal/picasso-input@100.0.2
+  - @toptal/picasso-notification@100.0.2
+  - @toptal/picasso-number-input@100.0.2
+  - @toptal/picasso-outlined-input@100.0.2
+  - @toptal/picasso-radio@100.0.1
+  - @toptal/picasso-select@100.0.2
+  - @toptal/picasso-tagselector@100.0.2
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-password-input@100.0.2
+  - @toptal/picasso-rich-text-editor@100.0.4
+  - @toptal/picasso-date-picker@100.0.2
+  - @toptal/picasso-dropzone@100.0.2
+  - @toptal/picasso-timepicker@100.0.2
+  - @toptal/picasso-container@100.0.1
+  - @toptal/picasso-rating@100.0.1
+  - @toptal/picasso-icons@100.0.1
+
 ## 100.0.3
 
 ### Patch Changes

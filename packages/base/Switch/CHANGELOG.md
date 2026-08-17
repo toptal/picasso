@@ -1,5 +1,38 @@
 # @toptal/picasso-switch
 
+## 101.0.0
+
+### Major Changes
+
+- [#5087](https://github.com/toptal/picasso/pull/5087) [`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Switch
+
+- place the top-level `data-testid` of a labeled `Switch` on the `[role="switch"]` element instead of the label wrapper, aligning it with `Checkbox` and with the unlabeled `Switch` (previously the placement changed when a `label` was added). Tests that resolved a labeled Switch testid to the wrapper — e.g. asserting label text on it or calling `.find('input')` from it — should query the label text directly, or use the new `testIds.input` to address the hidden input
+
+### Minor Changes
+
+- [#5087](https://github.com/toptal/picasso/pull/5087) [`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Checkbox
+
+- add `testIds.input` for placing a `data-testid` on the visually hidden native `<input>` — Base UI renders it beside the `[role="checkbox"]` element, so it is not reachable from the top-level `data-testid`. Flows through `Form.Checkbox` as well
+
+### Switch
+
+- add `testIds.input` for placing a `data-testid` on the visually hidden native `<input>` — Base UI renders it beside the `[role="switch"]` element, so it is not reachable from the top-level `data-testid`. Flows through `Form.Switch` as well
+
+### useInputTestId
+
+- add `useInputTestId` hook — a callback ref that stamps a `data-testid` on the input a Base UI primitive exposes only through `inputRef`
+
+### Patch Changes
+
+- Updated dependencies [[`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d)]:
+  - @toptal/picasso-shared@100.1.0
+  - @toptal/picasso-form-label@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+
 ## 100.0.0
 
 ### Major Changes

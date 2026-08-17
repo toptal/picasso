@@ -1,5 +1,17 @@
 # @toptal/picasso-helpbox
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@100.0.2
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-container@100.0.1
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-icons@100.0.1
+
 ## 100.0.1
 
 ### Patch Changes

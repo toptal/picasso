@@ -1,5 +1,16 @@
 # @toptal/picasso-dropdown
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d)]:
+  - @toptal/picasso-shared@100.1.0
+  - @toptal/picasso-popper@100.0.2
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-paper@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+
 ## 100.0.1
 
 ### Patch Changes
