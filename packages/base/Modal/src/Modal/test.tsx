@@ -248,6 +248,105 @@ describe('Modal', () => {
     })
   })
 
+  describe('backdrop click', () => {
+    const renderModal = (props?: Partial<ModalProps>) => {
+      const onClose = jest.fn()
+      const onBackdropClick = jest.fn()
+
+      const { baseElement } = render(
+        <Modal
+          open
+          onClose={onClose}
+          onBackdropClick={onBackdropClick}
+          {...props}
+        >
+          <Modal.Content>
+            <input />
+          </Modal.Content>
+        </Modal>
+      )
+
+      return {
+        onClose,
+        onBackdropClick,
+        // the popup is the transparent full-screen element over the backdrop
+        popup: baseElement.querySelector('[role="dialog"]') as HTMLElement,
+      }
+    }
+
+    // a pointer interaction fires mousedown → mouseup → click, and the browser
+    // dispatches the click on the nearest common ancestor of the press and the
+    // release target — the popup itself whenever the two differ
+    const press = ({
+      from,
+      to,
+      popup,
+    }: {
+      from: HTMLElement
+      to: HTMLElement
+      popup: HTMLElement
+    }) => {
+      fireEvent.mouseDown(from)
+      fireEvent.mouseUp(to)
+      fireEvent.click(from === to ? from : popup)
+    }
+
+    it('closes when pressing and releasing on the backdrop', () => {
+      const { popup, onClose, onBackdropClick } = renderModal()
+
+      press({ from: popup, to: popup, popup })
+
+      expect(onBackdropClick).toHaveBeenCalled()
+      expect(onClose).toHaveBeenCalled()
+    })
+
+    it('given the press started inside the content, does not close', () => {
+      const { popup, onClose, onBackdropClick } = renderModal()
+
+      // selecting text in a field and releasing outside the paper
+      press({ from: screen.getByRole('textbox'), to: popup, popup })
+
+      expect(onBackdropClick).not.toHaveBeenCalled()
+      expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('given the press ended inside the content, does not close', () => {
+      const { popup, onClose, onBackdropClick } = renderModal()
+
+      // selecting from outside the paper into a field
+      press({ from: popup, to: screen.getByRole('textbox'), popup })
+
+      expect(onBackdropClick).not.toHaveBeenCalled()
+      expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('given disableBackdropClick, does not close on a backdrop click', () => {
+      const { popup, onClose } = renderModal({ disableBackdropClick: true })
+
+      press({ from: popup, to: popup, popup })
+
+      expect(onClose).not.toHaveBeenCalled()
+    })
+
+    it('forwards onMouseUp', () => {
+      const onMouseUp = jest.fn()
+      const { popup } = renderModal({ onMouseUp })
+
+      fireEvent.mouseUp(popup)
+
+      expect(onMouseUp).toHaveBeenCalled()
+    })
+
+    it('forwards onMouseDown', () => {
+      const onMouseDown = jest.fn()
+      const { popup } = renderModal({ onMouseDown })
+
+      fireEvent.mouseDown(popup)
+
+      expect(onMouseDown).toHaveBeenCalled()
+    })
+  })
+
   describe('page scroll lock', () => {
     afterEach(() => {
       cleanup()
