@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-checkbox",
-  "version": "100.0.0",
+  "version": "100.1.0",
   "description": "Toptal UI components library - Checkbox",
   "publishConfig": {
     "access": "public"

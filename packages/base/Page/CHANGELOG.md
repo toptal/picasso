@@ -1,5 +1,30 @@
 # @toptal/picasso-page
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d), [`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d)]:
+  - @toptal/picasso-shared@100.1.0
+  - @toptal/picasso-tooltip@100.1.0
+  - @toptal/picasso-button@100.0.2
+  - @toptal/picasso-accordion@100.0.2
+  - @toptal/picasso-autocomplete@100.0.2
+  - @toptal/picasso-avatar@100.0.1
+  - @toptal/picasso-badge@100.0.1
+  - @toptal/picasso-dropdown@100.0.2
+  - @toptal/picasso-menu@100.0.2
+  - @toptal/picasso-notification@100.0.2
+  - @toptal/picasso-skeleton-loader@100.0.2
+  - @toptal/picasso-tag@100.0.1
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-user-badge@100.0.1
+  - @toptal/picasso-container@100.0.1
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-icons@100.0.1
+  - @toptal/picasso-logo@100.0.1
+
 ## 100.0.1
 
 ### Patch Changes

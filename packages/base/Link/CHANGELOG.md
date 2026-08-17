@@ -1,5 +1,14 @@
 # @toptal/picasso-link
 
+## 100.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+
 ## 100.0.0
 
 ### Major Changes

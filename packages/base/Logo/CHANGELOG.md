@@ -1,5 +1,14 @@
 # @toptal/picasso-logo
 
+## 100.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-icons@100.0.1
+
 ## 100.0.0
 
 ### Major Changes
