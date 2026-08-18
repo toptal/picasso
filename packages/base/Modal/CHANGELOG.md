@@ -1,5 +1,29 @@
 # @toptal/picasso-modal
 
+## 100.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d)]:
+  - @toptal/picasso-shared@100.1.0
+  - @toptal/picasso-button@100.0.2
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-modal-context@100.0.0
+  - @toptal/picasso-paper@100.0.1
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-icons@100.0.1
+
+## 100.1.1
+
+### Patch Changes
+
+- [#5088](https://github.com/toptal/picasso/pull/5088) [`137d1da`](https://github.com/toptal/picasso/commit/137d1dac9eb94e28d132779b0f797d7c9115d83f) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Modal
+
+- fix the modal closing when a click starts or ends inside its content instead of on the backdrop, which most visibly wiped a form when selecting the text of one of its fields. The popup is a transparent full-screen element covering the backdrop, so when a press and its release land on different elements the browser dispatches the click on their common ancestor — that same popup — making it indistinguishable from a backdrop click. Backdrop dismissal now requires both ends of the interaction to have been on the popup itself. Note for tests: a bare synthetic `click` on the popup no longer dismisses the modal; dispatch `mousedown` and `mouseup` on it first (a real or `realClick`-style click already does)
+
 ## 100.1.0
 
 ### Minor Changes

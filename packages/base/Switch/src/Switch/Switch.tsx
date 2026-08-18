@@ -1,7 +1,7 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import { useBaseUiId } from '@base-ui/react/internals/useBaseUiId'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import { toReactChangeEvent } from '@toptal/picasso-shared'
+import { toReactChangeEvent, useInputTestId } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
@@ -22,6 +22,11 @@ export interface Props
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
   ) => void
+  /** Testids of the `Switch` internal elements. The top-level `data-testid` stays on the `[role="switch"]` element */
+  testIds?: {
+    /** Testid of the visually hidden native `<input>` (rendered as a sibling of the `[role="switch"]` element) */
+    input?: string
+  }
 }
 
 export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
@@ -39,7 +44,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     titleCase,
     value,
     color: _color, // eslint-disable-line @typescript-eslint/no-unused-vars
-    'data-testid': dataTestId,
+    testIds,
     ...rest
   } = props
 
@@ -64,11 +69,16 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
   const generatedLabelId = useBaseUiId()
   const labelId = label ? generatedLabelId : undefined
 
+  // Base UI renders the hidden input beside the root and exposes it only
+  // through `inputRef`, so the testid is stamped on it imperatively
+  const inputTestIdRef = useInputTestId(testIds?.input)
+
   const switchElement = (
     <span className='relative inline-flex shrink-0 align-middle overflow-clip [overflow-clip-margin:6px]'>
       <BaseUISwitch.Root
         {...rootRest}
         ref={ref}
+        inputRef={inputTestIdRef}
         aria-labelledby={rootRest['aria-labelledby'] ?? labelId}
         checked={checked}
         className={twMerge(
@@ -81,7 +91,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
         id={id}
         value={value === undefined ? undefined : String(value)}
         onCheckedChange={handleCheckedChange}
-        data-testid={label ? undefined : dataTestId}
       >
         <span
           className={twMerge(
@@ -120,7 +129,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       disabled={disabled}
       label={label}
       titleCase={titleCase}
-      data-testid={dataTestId}
     />
   )
 })

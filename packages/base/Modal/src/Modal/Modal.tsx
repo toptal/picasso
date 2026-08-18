@@ -134,6 +134,8 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     onClose,
     onOpen,
     onClick,
+    onMouseDown,
+    onMouseUp,
     className,
     style,
     container,
@@ -150,6 +152,8 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   )
   const modalId = useRef(generateKey())
   const wasOpen = useRef(false)
+  const mouseDownOnPopupRef = useRef(false)
+  const mouseUpOnPopupRef = useRef(false)
   const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
@@ -218,8 +222,27 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     (typeof container === 'function' ? container() : container) ||
     picassoRootContainer
 
+  const handlePopupMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    mouseDownOnPopupRef.current = event.target === event.currentTarget
+
+    onMouseDown?.(event)
+  }
+
+  const handlePopupMouseUp = (event: React.MouseEvent<HTMLDivElement>) => {
+    mouseUpOnPopupRef.current = event.target === event.currentTarget
+
+    onMouseUp?.(event)
+  }
+
   const handlePopupClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget && !disableBackdropClick) {
+    // a drag between the backdrop and the content dispatches its click on the
+    // common ancestor — this popup — so both ends must have been on it
+    if (
+      mouseDownOnPopupRef.current &&
+      mouseUpOnPopupRef.current &&
+      event.target === event.currentTarget &&
+      !disableBackdropClick
+    ) {
       onBackdropClick?.()
       onClose?.()
     }
@@ -265,6 +288,8 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
           )}
           style={{ ...style, ...durationStyle }}
           onClick={handlePopupClick}
+          onMouseDown={handlePopupMouseDown}
+          onMouseUp={handlePopupMouseUp}
         >
           <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
             <ModalContext.Provider value>

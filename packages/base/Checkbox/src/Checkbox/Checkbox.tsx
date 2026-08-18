@@ -5,7 +5,7 @@ import type {
   BaseProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import { toReactChangeEvent } from '@toptal/picasso-shared'
+import { toReactChangeEvent, useInputTestId } from '@toptal/picasso-shared'
 import type { ComponentProps, CSSProperties, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
@@ -51,6 +51,11 @@ export interface Props
   ) => void
   /** Value of the `Checkbox` (applicable only for controlled component) */
   value?: string
+  /** Testids of the `Checkbox` internal elements. The top-level `data-testid` stays on the `[role="checkbox"]` element */
+  testIds?: {
+    /** Testid of the visually hidden native `<input>` (rendered as a sibling of the `[role="checkbox"]` element) */
+    input?: string
+  }
 }
 
 export const Checkbox = forwardRef<
@@ -70,6 +75,7 @@ export const Checkbox = forwardRef<
     value,
     checked,
     titleCase,
+    testIds,
     ...rest
   } = props
 
@@ -86,6 +92,10 @@ export const Checkbox = forwardRef<
   const generatedLabelId = useBaseUiId()
   const labelId = label ? generatedLabelId : undefined
 
+  // Base UI renders the hidden input beside the root and exposes it only
+  // through `inputRef`, so the testid is stamped on it imperatively
+  const inputTestIdRef = useInputTestId(testIds?.input)
+
   const checkboxElement = (
     // The visually-hidden <input> ships inline `position:absolute` with a
     // negative margin; `relative` + `translate-px` anchor it inside the 16px
@@ -95,6 +105,7 @@ export const Checkbox = forwardRef<
       <BaseCheckbox.Root
         {...rootRest}
         ref={label ? undefined : (ref as React.Ref<HTMLElement>)}
+        inputRef={inputTestIdRef}
         aria-labelledby={rootRest['aria-labelledby'] ?? labelId}
         checked={checked}
         disabled={disabled}

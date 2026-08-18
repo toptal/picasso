@@ -22,6 +22,12 @@ against the current Picasso source. Where the early adopters' repo-local notes
 disagreed with each other or with the shipped code, this guide states the
 verified behavior and flags the difference.
 
+The staff-portal migration has since shipped against the **stable v100
+release** (staff-portal PR #16155). The
+[Modals & Drawers step](#step-8--modals--drawers-keep-them-mounted-drive-open)
+and the nested-backdrop row in the upstream table come from that rollout —
+both were invisible to CI and caught only by humans clicking a preview deploy.
+
 ---
 
 ## What changed, in one screen
@@ -73,7 +79,7 @@ The base-ui/Tailwind Picasso ships as a **coordinated `v100` release**: **every
 # Part 1 — Engineer migration tutorial
 
 Work through the steps in order. Steps 1–4 are the mechanical upgrade; Steps
-5–10 are the fallout you fix afterward; Steps 11–12 are CI and sign-off. Each
+5–11 are the fallout you fix afterward; Steps 12–13 are CI and sign-off. Each
 step ends with what "done" looks like.
 
 ## Step 0 — Prerequisites
@@ -162,6 +168,15 @@ grep -rln makeResponsiveSpacingProps node_modules/@toptal | grep -v picasso-prov
 > almost always a stale Jest transform cache. Clear it:
 > `npx jest --clearCache` (or `rm -rf /tmp/jest_rs`), then re-run.
 
+> **Companion Toptal packages move in the same PR.** Anything that itself
+> renders Picasso — `@toptal/top-scheduler` (its **v5** line is the one built
+> against picasso `100.x`), `@topkit/*`, `@toptal/pictograms`, … — must be
+> bumped to its picasso-100-compatible release together with the Picasso
+> bump. A stale companion drags the old peer graph (and MUI-era DOM) back
+> into the bundle — the same failure mode as a stale peer range, one level
+> removed. staff-portal shipped top-scheduler v5.0.1, pictograms v100, and
+> the rich-text-editor v100 inside the upgrade PR for exactly this reason.
+
 **Done when:** the graph collapsed to a single `100.x` per Picasso package, the
 stale-copy check prints `OK`, and the `grep` prints nothing.
 
@@ -194,7 +209,7 @@ Notes and gotchas:
   their root node; your app code keeps whatever box model it had.
 - **`body { min-height: 100vh }`** is part of the reset. In Cypress/Happo this
   can add uniform extra bottom whitespace to short `cy.get('body')` screenshots
-  (see [Step 10](#step-10--visual-regression-happo)).
+  (see [Step 11](#step-11--visual-regression-happo)).
 - The reset also ships the **page-width-jump fix** (`html { overflow-x: hidden }`
   - `body { width: 100vw }` from 768px up). If your app needs horizontal page
     scroll (wide tables, etc.), re-disable it with **unlayered** app CSS —
@@ -328,6 +343,19 @@ with a plain wrapper component:
 > capture hover-only weight effects. Beware `tailwind-merge` bucketing custom
 > `font-*` classes into the wrong conflict group.
 
+> **Pitfall — descendant `data-component-type` selectors leak into nested
+> instances.** `**:data-[component-type=accordion-summary]:…` (or an
+> equivalent CSS descendant selector) styles every matching descendant —
+> including _other_ Accordions rendered inside this one's panel, silently
+> overriding their own styling. Pinning the DOM shape with child combinators
+> (`& > * > * > [data-component-type=…]`) holds only until base-ui adds a
+> wrapper, and reads as unmaintainable in review (staff-portal's reviewers
+> flagged exactly this). When an instance must style **only its own**
+> internals, pass a unique testid through the component's `testIds` prop
+> (e.g. `testIds={{ accordionSummary: 'sidebar-group-menu-summary' }}`) and
+> select `[data-testid=…]` — nested instances never carry it, so the rule
+> cannot leak regardless of DOM nesting.
+
 ### Step 4c. `@material-ui` type imports → Picasso types
 
 Even Tailwind-native repos often keep one type-only MUI import. Replace with
@@ -402,12 +430,13 @@ fireEvent.click(input)
 expect(control).toBeChecked() // reads aria-checked on the role element
 ```
 
-| Broken pattern                                                      | Fix                                                                                                                                                                                                          |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `getByTestId(x).querySelector('input')`, `.children[0].children[0]` | Query the role element: `getByRole('checkbox'\|'switch', { name })` or the testid — Picasso forwards `data-testid` to the role element (Switch: to the role span when unlabeled, else to the label wrapper). |
-| `getByLabelText('…')` expecting a clickable input                   | `getByRole('checkbox', { name })` for the span, then find the sibling input to click.                                                                                                                        |
-| `toHaveAttribute('checked')`                                        | `toBeChecked()` (reads `aria-checked` on the role element). If a controlling prop never updates in the test, assert the `onChange` callback instead — there is no DOM change to observe.                     |
-| `toBeDisabled()` on a checkbox/switch                               | `toHaveAttribute('aria-disabled', 'true')` on the role element — the span is not a form element with a native `disabled`.                                                                                    |
+| Broken pattern                                                            | Fix                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getByTestId(x).querySelector('input')`, `.children[0].children[0]`       | Query the role element: `getByRole('checkbox'\|'switch', { name })` or the testid — Picasso forwards `data-testid` to the role element (Switch: to the role span when unlabeled, else to the label wrapper).                                                                                                                                    |
+| Rewriting `getByTestId(labelWrapper).click()` because it stopped toggling | **Unnecessary on current builds** — `FormControlLabel` (the `labelId` variant Checkbox/Switch render) forwards any non-interactive click inside the wrapper to the hidden input, so wrapper/testid clicks toggle again (staff-portal reverted such a rewrite wholesale, 3/3 green). Only pin-point the role element if stuck on an early alpha. |
+| `getByLabelText('…')` expecting a clickable input                         | `getByRole('checkbox', { name })` for the span, then find the sibling input to click.                                                                                                                                                                                                                                                           |
+| `toHaveAttribute('checked')`                                              | `toBeChecked()` (reads `aria-checked` on the role element). If a controlling prop never updates in the test, assert the `onChange` callback instead — there is no DOM change to observe.                                                                                                                                                        |
+| `toBeDisabled()` on a checkbox/switch                                     | `toHaveAttribute('aria-disabled', 'true')` on the role element — the span is not a form element with a native `disabled`.                                                                                                                                                                                                                       |
 
 ### Step 5c. Radio — still a native `<input>` (NOT base-ui)
 
@@ -475,24 +504,28 @@ Assert **semantically**:
 
 ## Step 6 — Fix Cypress tests
 
-| Broken pattern                                                                                   | Fix                                                                                                                                                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `cy.get('input[...]').click()` on a checkbox/radio/switch input → _"covered by another element"_ | The real input is visually hidden. `check()`/`uncheck({ force: true })` is the documented remedy (sets `checked` + fires `change`, which base-ui honors, preserving ensure-semantics). Prefer clicking the **role element** by testid where possible.                                                  |
-| `cy.get('[role="tooltip"]')` for **Select/Dropdown/Autocomplete/DatePicker** popups              | Those poppers no longer carry `role="tooltip"` (Select/Dropdown/Menu → `role="presentation"`, DatePicker → `role="dialog"`; only real **Tooltips** keep `role="tooltip"`). Query the stable marker **`[data-picasso-popper]`**.                                                                        |
-| Option queries: `cy.get('[role="listbox"]').find('li[value=…]')`                                 | Options still carry `role="option"` inside a `role="listbox"`, but the popper _wrapper_ is `presentation` and **portals out**. Use `cy.get('[data-picasso-popper]').find('[role=option]')` (or a shared `cy.getPopup()`), scoping to `[role=option]` so you don't match the trigger's displayed value. |
-| Popup queries inside `cy.within()` find nothing                                                  | Popups portal to the Picasso root, outside your scope — escape with `{ withinSubject: null }`, e.g. `cy.get('[data-picasso-popper]', { withinSubject: null })`.                                                                                                                                        |
-| Clicking a field `<label>` to **open a Select**                                                  | Removed on purpose (PR #5040 / PF-2256): label-activation clicks only _focus_ the input, matching native `<select>`. Click the control itself: `cy.getByTestId(field).click()` or `.find('input').click()`. Keyboard (Enter/Space), real pointer, and AT activation still toggle.                      |
-| Backdrop click doesn't close a modal/drawer                                                      | base-ui dismissal reacts only to **trusted** pointer events; synthetic `cy.click()` is ignored. Use `cy.get('body').realClick({ x: 1, y: 1 })` (cypress-real-events) or the explicit close button.                                                                                                     |
-| Wrapped-subject chains (`this.modal.findByTestId(…).find(…)`) failing with _"the page updated"_  | Use one **atomic** selector — `cy.get('div[role="dialog"] [data-testid=…] …')` — so Cypress retries the whole query; give each action its own fresh chain instead of `.click().clear().type()`.                                                                                                        |
-| Async-populated options/radios intermittently "not found" on CI                                  | Use a retryable atomic selector that includes the expected value (`.find('input[value="…"]')`, `.contains(text)`), let `.should()` gate on it, then assert the resulting state — this waits for the option to actually mount.                                                                          |
-| Selectors coupled to old markup (`label.picasso-checkbox`, `span[role="slider"]`, tag+structure) | Query by role or testid — the role survived the migration, the tag and structure did not.                                                                                                                                                                                                              |
-| Desktop-only UI missing at the component viewport                                                | See [`responsive={false}` breakpoint gap](#the-responsivefalse-breakpoint-gap); add `cy.viewport(1280, 800)`.                                                                                                                                                                                          |
+| Broken pattern                                                                                                                                                                                | Fix                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cy.get('input[...]').click()` / `.check()` / `.uncheck()` on a checkbox/switch input → _"covered by another element"_ (its own wrapper — the clipped 1×1 input can never pass actionability) | **Do not reach for `{ force: true }`** — click the visible control: testid on the role span → `cy.getByTestId(x).click()`; selector yields the input (`[name=…]`, `#id`, `.find('input')`) → `.parent().click()` (the wrapper contains both), then assert the result (`should('be.checked')` / `aria-checked`). Best wrapped once as a state-aware child command — staff-portal ships `cy.setChecked(desired?)` (clicks only when the state differs, `check()`-style ensure semantics, then asserts the input state). Force bypasses every actionability check and keeps broken tests green — a real consumer spec force-checked a checkbox **behind a modal backdrop** and stayed green for months. |
+| `check()`/`uncheck({ force: true })` on a **Radio** input                                                                                                                                     | Delete the option — Radio's native input is a full-size `opacity-0 z-[1]` overlay and Cypress treats `opacity: 0` as hidden only for **visibility assertions**, not actionability, so plain `.check()` / `.check(value)` passes. Verified across two consumer apps' radio suites.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `cy.get('[role="tooltip"]')` for **Select/Dropdown/Autocomplete/DatePicker** popups                                                                                                           | Those poppers no longer carry `role="tooltip"` (Select/Dropdown/Menu → `role="presentation"`, DatePicker → `role="dialog"`; only real **Tooltips** keep `role="tooltip"`). Query the stable marker **`[data-picasso-popper]`**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Option queries: `cy.get('[role="listbox"]').find('li[value=…]')`                                                                                                                              | Options still carry `role="option"` inside a `role="listbox"`, but the popper _wrapper_ is `presentation` and **portals out**. Use `cy.get('[data-picasso-popper]').find('[role=option]')` (or a shared `cy.getPopup()`), scoping to `[role=option]` so you don't match the trigger's displayed value.                                                                                                                                                                                                                                                                                                                                                                                               |
+| Popup queries inside `cy.within()` find nothing                                                                                                                                               | Popups portal to the Picasso root, outside your scope — escape with `{ withinSubject: null }`, e.g. `cy.get('[data-picasso-popper]', { withinSubject: null })`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Clicking a field `<label>` to **open a Select**                                                                                                                                               | Removed on purpose (PR #5040 / PF-2256): label-activation clicks only _focus_ the input, matching native `<select>`. Click the control itself: `cy.getByTestId(field).click()` or `.find('input').click()`. Keyboard (Enter/Space), real pointer, and AT activation still toggle.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Backdrop click doesn't close a modal/drawer                                                                                                                                                   | base-ui dismissal reacts only to **trusted** pointer events; synthetic `cy.click()` is ignored. Use `cy.get('body').realClick({ x: 1, y: 1 })` (cypress-real-events) or the explicit close button.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Wrapped-subject chains (`this.modal.findByTestId(…).find(…)`) failing with _"the page updated"_                                                                                               | Use one **atomic** selector — `cy.get('div[role="dialog"] [data-testid=…] …')` — so Cypress retries the whole query; give each action its own fresh chain instead of `.click().clear().type()`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Async-populated options/radios intermittently "not found" on CI                                                                                                                               | Use a retryable atomic selector that includes the expected value (`.find('input[value="…"]')`, `.contains(text)`), let `.should()` gate on it, then assert the resulting state — this waits for the option to actually mount.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Selectors coupled to old markup (`label.picasso-checkbox`, `span[role="slider"]`, tag+structure)                                                                                              | Query by role or testid — the role survived the migration, the tag and structure did not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Desktop-only UI missing at the component viewport                                                                                                                                             | See [`responsive={false}` breakpoint gap](#the-responsivefalse-breakpoint-gap); add `cy.viewport(1280, 800)`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 > **Checkbox/switch input relationship in Cypress:** because the hidden input is
 > a **sibling** of the role element, from a testid on the role element the input
 > is `.siblings('input')`; if your selector yields the _input_ (`[name=…]`,
 > `#id`, `.find('input')`), climb to `.parent()` to reach the wrapper. Prefer
-> clicking the role element directly.
+> clicking the role element directly. Clicking the wrapper is equally fine on
+> current builds: `FormControlLabel` (`labelId` variant) forwards any
+> non-interactive click inside it to the hidden input — the same forwarding that
+> makes label clicks toggle for real users.
 
 ### The `responsive={false}` breakpoint gap
 
@@ -552,7 +585,79 @@ in order of how often they bite:
 > **Never delete assertions to go green.** A failing assertion is usually a real
 > signal pointing at one of the classes above.
 
-## Step 8 — Tailwind v4 gotchas
+## Step 8 — Modals & Drawers: keep them mounted, drive `open`
+
+base-ui animates dialogs on the **open/close flip of a mounted component**
+(CSS `data-starting-style` / `data-ending-style` transitions, surfaced through
+Picasso's `transitionDuration` / `transitionProps`). Two MUI-era integration
+patterns now visibly break — and **nothing in CI catches them**: unit and
+Cypress tests assert end states, and Happo shots are static. Both issues below
+shipped through staff-portal's fully green suites and were caught only by a
+reviewer clicking through a preview deploy. Budget a manual animation/backdrop
+pass (Step 13).
+
+### Step 8a. Conditionally-rendered dialogs lose their animations
+
+`{isOpen && <Drawer …>}` mounts the dialog already open — there is no
+closed→open flip, so the **enter** transition never plays; on close it
+unmounts instantly, so the **exit** transition can't play either. Keep the
+dialog mounted and drive the built-in `open` prop:
+
+```diff
+-{isModalOpen && (
+-  <ReassignMatcherModal
+-    jobId={job.id}
+-    hideModal={() => setIsModalOpen(false)}
+-  />
+-)}
++<ReassignMatcherModal
++  open={isModalOpen}
++  jobId={job.id}
++  hideModal={() => setIsModalOpen(false)}
++/>
+```
+
+Consequences of staying mounted:
+
+- **Gate data fetching on `open`, not on prop presence** — staff-portal's
+  drawer queries moved from `skip: !jobId` to `skip: !open` (and expensive
+  subtrees can stay behind `open && (…)` inside the dialog).
+- Props the component only received when conditionally mounted may need to
+  become optional (`jobId?: string`).
+
+Find candidates (conditional renders usually span lines — check context):
+
+```bash
+grep -rn -B2 -E '<[A-Z][A-Za-z]*(Modal|Drawer)[ />]' --include='*.tsx' src | grep -E '&&\s*\(?\s*$|&&\s*<'
+```
+
+### Step 8b. Modal services must delay unmount until `onExited`
+
+If modals are routed through a service/stack that mounts and unmounts them
+(staff-portal: `@topkit/modals-service`), unmount-on-close kills the exit
+transition even when each modal is driven by `open`. The fix staff-portal
+ships as a package patch: the service provides an open-state context so each
+modal renders **closed for the first painted frame** (the closed→open flip
+makes the enter transition play), and on close it flips `open` to `false` but
+keeps the modal mounted until `transitionProps.onExited` fires (Picasso's
+Modal forwards react-transition-group lifecycle callbacks). No hardcoded
+durations — a custom `transitionDuration` keeps working.
+
+### Step 8c. Nested dialogs: a modal above a drawer loses its backdrop (upstream)
+
+Base UI suppresses the backdrop of a dialog nested inside another dialog's
+portal — open a Modal from an open Drawer and it renders with **no grey
+backdrop** over the drawer. The fix is in progress in Picasso; until it
+ships, staff-portal patches `@toptal/picasso-modal` to pass `forceRender` to
+`BaseUIDialog.Backdrop` (exposed as a `forceRenderBackdrop` prop, default
+`true`). If your app opens dialogs above dialogs, click through that flow and
+take the same pnpm patch — or wait on the upstream release (see the
+[upstream table](#upstream-issue-status-as-of-the-v100-line)).
+
+**Done when:** every Modal/Drawer animates in **and** out on a deployed
+build, and a modal opened above a drawer greys out the content beneath it.
+
+## Step 9 — Tailwind v4 gotchas
 
 - **Bare borders render in `currentColor`.** Tailwind v4 removed v3's `gray-200`
   default border color; a bare `border` / `border-b` / `divide` / `ring` now
@@ -572,7 +677,7 @@ in order of how often they bite:
   **per-package** Cypress/Happo build lacks. Verify missing-utility hypotheses
   from the **package cwd**, not the root.
 
-## Step 9 — TypeScript fallout (stricter typings)
+## Step 10 — TypeScript fallout (stricter typings)
 
 - **`Radio.Group` `value`** is now `string | number | boolean | undefined`.
   Narrow at the call site rather than casting (e.g. default a nullable filter to
@@ -581,7 +686,7 @@ in order of how often they bite:
   `ReactNode`) — it must attach a ref to its child. Wrap multi-node children in a
   single element.
 
-## Step 10 — Visual regression (Happo)
+## Step 11 — Visual regression (Happo)
 
 - **Expect diffs across the board** (font smoothing, reset, minor spacing).
   Run Happo, review, and **accept the new baselines as part of this upgrade PR.**
@@ -609,6 +714,13 @@ in order of how often they bite:
   reset-less). Neutralize with an **unlayered** `body { min-height: auto }` in
   your Cypress support CSS — keep the base import; components rely on the rest of
   the reset.
+- **A tooltip caught in a full-body snapshot.** Early alphas opened tooltips on
+  synthetic-click _focus_ and never closed them (pointer-move-away cannot
+  dismiss a focus-tooltip). Fixed in the v100 line (PF-2253 vetoes
+  pointer-modality focus opens). Guard such snapshots with
+  `cy.get('[role="tooltip"]').should('not.exist')` — do **not** jQuery/CSS-hide
+  elements before capture; hiding mutates the page under test and masks real
+  regressions (use Happo's `transformDOM` for genuinely dynamic content).
 - **Storybook/Cypress popup timing.** base-ui popups position asynchronously;
   simulate a `requestAnimationFrame` tick before each capture or popups
   screenshot blank. Portals resolve their container from the Picasso root, which
@@ -616,7 +728,7 @@ in order of how often they bite:
 - Drawer/Modal full-page or mispositioned screenshots → check for a sass
   `position` override on the paper (Step 7.4) before suspecting Picasso.
 
-## Step 11 — CI
+## Step 12 — CI
 
 - **Drop any Picasso version matrix.** If CI installed multiple Picasso versions
   (`pnpm add @toptal/picasso@${{ matrix.version }}`), remove it — the repo should
@@ -625,7 +737,7 @@ in order of how often they bite:
   `Cypress using Picasso 54.x`): either keep the job name unchanged, or update the
   required-check name in branch protection **first**.
 
-## Step 12 — Verification checklist
+## Step 13 — Verification checklist
 
 ```bash
 pnpm install --no-frozen-lockfile
@@ -644,8 +756,11 @@ pnpm cypress:ci         # or your repo's Cypress command
 - [ ] Jest snapshots regenerated and reviewed (structural only)
 - [ ] Checkbox/Switch tests use the role-element + sibling-input pattern; Radio uses the native input
 - [ ] `jest.mock` factories spread `requireActual`
-- [ ] Cypress uses `[data-picasso-popper]` + `{ withinSubject: null }`; force is reserved for `check/uncheck`
+- [ ] Cypress uses `[data-picasso-popper]` + `{ withinSubject: null }`; **no `{ force: true }` on form-control interactions** (role-element clicks / `setChecked`-style helper; plain `.check()` for radios)
 - [ ] Component-code bug classes audited (onClick→onChange, currentTarget.checked, `as`, sass)
+- [ ] Modals/Drawers stay mounted and are driven by `open` (no `{isOpen && <Modal/>}`); queries gated on `open`; modal services unmount only from `transitionProps.onExited`
+- [ ] Smoke-tested on a deployed build: dialog enter **and** exit animations play; a modal opened above a drawer still greys out the background — CI and Happo cannot catch either
+- [ ] Companion Toptal packages that render Picasso (top-scheduler v5, topkit, pictograms, …) bumped to their picasso-100 builds
 - [ ] Happo diffs reviewed and accepted
 - [ ] Storybook and app boot and look right; key flows smoke-tested
 - [ ] `peerDependencies` bumped to `100.x` if the repo publishes a package
@@ -702,6 +817,7 @@ grep -rn "toHaveAttribute('checked')\|\.querySelector('input')\|getByLabelText" 
 grep -rn "role=\"tooltip\"\|role='tooltip'\|role=\"listbox\"\|\[role=listbox\]" --include='*.cy.*' --include='*.ts' cypress src
 grep -rn "\.find('label')\|contains(.*).click()" --include='*.cy.*' src   # label-click Select openers (candidates)
 grep -rnE "input\[[^]]*\]\)?\.click\(\)" --include='*.cy.*' src            # unforced hidden-input clicks
+grep -rn "force: true" --include='*.cy.*' src cypress                       # force inventory — target: zero on check/uncheck/form-control clicks
 grep -rn "WithStyles(" --include='*.test.tsx' src                          # Enzyme wrappers
 grep -rnE "jest\.mock\((['\"]@toptal/picasso" --include='*.test.*' src     # bare mock factories (check for requireActual)
 
@@ -709,6 +825,9 @@ grep -rnE "jest\.mock\((['\"]@toptal/picasso" --include='*.test.*' src     # bar
 grep -rn "<Checkbox[^>]*onClick\|<Switch[^>]*onClick\|<Radio[^>]*onClick" --include='*.tsx' src
 grep -rn "currentTarget.checked" --include='*.tsx' src
 grep -rnE "as=\{[^}]*\?[^}]*:[^}]*Button" --include='*.tsx' src            # as={cond ? Link : Button}
+
+# A6 Conditionally-mounted dialogs (Step 8) — animation-loss candidates
+grep -rn -B2 -E '<[A-Z][A-Za-z]*(Modal|Drawer)[ />]' --include='*.tsx' src | grep -E '&&\s*\(?\s*$|&&\s*<'
 ```
 
 **Output of Phase A:** a manifest `{ phase → {hitCount, files[]} }`. Phases with
@@ -773,17 +892,17 @@ and review the diff for structural-only changes.
 
 **Cypress matrix**
 
-| Signal                                                                        | Fix                                                                                | Conf |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---- |
-| `[role="tooltip"]` / `[role="listbox"]` for Select/Dropdown/DatePicker popups | `[data-picasso-popper]` (+ `[role=option]` for options), `{ withinSubject: null }` | HIGH |
-| popup query inside `cy.within()` finds nothing                                | escape scope: `{ withinSubject: null }`                                            | HIGH |
-| `.click()` on hidden checkbox/radio/switch input "covered"                    | prefer role element by testid; else `check/uncheck({ force: true })`               | HIGH |
-| label click no longer opens a Select                                          | click the control: `getByTestId(field).click()` / `.find('input').click()`         | HIGH |
-| backdrop `cy.click()` doesn't dismiss                                         | `cy.get('body').realClick({ x:1, y:1 })` or the close button                       | HIGH |
-| `.findByTestId(…).find(…)` "page updated"                                     | one atomic `cy.get('… [data-testid=…] …')`; fresh chain per action                 | HIGH |
-| async options intermittently missing on CI                                    | retryable atomic selector w/ value + `.should()` gate                              | MED  |
-| desktop UI absent at 822px component viewport                                 | `cy.viewport(1280, 800)` (breakpoint gap)                                          | HIGH |
-| selector coupled to old markup/tag                                            | query by role or testid                                                            | HIGH |
+| Signal                                                                        | Fix                                                                                                                                                                 | Conf |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| `[role="tooltip"]` / `[role="listbox"]` for Select/Dropdown/DatePicker popups | `[data-picasso-popper]` (+ `[role=option]` for options), `{ withinSubject: null }`                                                                                  | HIGH |
+| popup query inside `cy.within()` finds nothing                                | escape scope: `{ withinSubject: null }`                                                                                                                             | HIGH |
+| `.click()`/`.check()` on hidden checkbox/switch input "covered"               | role element by testid, or the input's `.parent().click()` + state assert (wrap as a shared `setChecked`-style command); **radios: plain `.check()` — never force** | HIGH |
+| label click no longer opens a Select                                          | click the control: `getByTestId(field).click()` / `.find('input').click()`                                                                                          | HIGH |
+| backdrop `cy.click()` doesn't dismiss                                         | `cy.get('body').realClick({ x:1, y:1 })` or the close button                                                                                                        | HIGH |
+| `.findByTestId(…).find(…)` "page updated"                                     | one atomic `cy.get('… [data-testid=…] …')`; fresh chain per action                                                                                                  | HIGH |
+| async options intermittently missing on CI                                    | retryable atomic selector w/ value + `.should()` gate                                                                                                               | MED  |
+| desktop UI absent at 822px component viewport                                 | `cy.viewport(1280, 800)` (breakpoint gap)                                                                                                                           | HIGH |
+| selector coupled to old markup/tag                                            | query by role or testid                                                                                                                                             | HIGH |
 
 **Gate:** `pnpm test` and the Cypress suite green with no removed assertions.
 
@@ -798,9 +917,16 @@ re-target against real DOM (never override `position` on Drawer/Modal paper).
 Each of these is a **real user-facing bug** — fix the component and add/keep a
 colocated test.
 
+Apply [Step 8](#step-8--modals--drawers-keep-them-mounted-drive-open) here as
+well: convert conditionally-mounted Modal/Drawer usages (A6 hits) to
+always-mounted + `open`, gate their queries on `open`, and route
+modal-service unmounts through `transitionProps.onExited`. These are LOW-risk
+mechanical edits but their _verification_ is manual (animations don't show in
+CI) — list every converted dialog in the PR for a human click-through.
+
 ## Phase G — Visual + CI
 
-_See Part 1, Steps 10–11._
+_See Part 1, Steps 11–12._
 
 Run Happo; classify each diff before accepting (reset/font vs. a real
 regression vs. a vendor content-glob gap vs. a sass `position`-on-paper break).
@@ -823,6 +949,10 @@ version matrices; reconcile required-check names. **Gate:** Happo reviewed,
    restyle before accepting a new baseline.
 5. **Clicks "work" but nothing happens** → suspect a Phase F component-code bug,
    not the test.
+6. **A dialog appears/disappears with no animation, or a nested modal has no
+   grey backdrop** → not a test signal at all (CI stays green). Conditionally
+   mounted dialog, a modal service unmounting before `onExited`, or the
+   nested-backdrop suppression — see Step 8.
 
 ---
 
@@ -830,15 +960,17 @@ version matrices; reconcile required-check names. **Gate:** Happo reviewed,
 
 ### Upstream issue status (as of the v100 line)
 
-| Item                                                                   | Status                      | Consumer impact                                                                           |
-| ---------------------------------------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------- |
-| PF-2243 duplicate `role="dialog"`                                      | **Fixed**                   | Plain `findByRole('dialog')` works; remove `findAllByRole('dialog')[0]` workarounds.      |
-| PF-2244 duplicate checkbox/switch label node                           | **Fixed**                   | Labels render once; no workaround.                                                        |
-| PF-2230 Popper default role                                            | **Fixed**                   | Popper defaults to `role="tooltip"`; Select/Dropdown poppers are `presentation`.          |
-| PF-2256 / PR #5040 label-activation click no-op                        | **Intentional (permanent)** | Opening a Select by clicking its `<label>` no longer works — click the control.           |
-| PF-2253 focus-opened tooltip flips over its trigger and steals a click | **Open**                    | Documented `click({ force: true })` exception with an `eslint-disable` + PF-2253 comment. |
-| PF-2248 body-center click lands inside an open DatePicker popup        | **Open**                    | Corner click: `cy.get('body').click(5, 5)`.                                               |
-| `responsive={false}` empties `md`, dead zone 768–1023.98px             | **Open — report upstream**  | Add `cy.viewport(1280, 800)` in specs; do not work around in app code.                    |
+| Item                                                                   | Status                      | Consumer impact                                                                                                                                                                                                                                             |
+| ---------------------------------------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PF-2243 duplicate `role="dialog"`                                      | **Fixed**                   | Plain `findByRole('dialog')` works; remove `findAllByRole('dialog')[0]` workarounds.                                                                                                                                                                        |
+| PF-2244 duplicate checkbox/switch label node                           | **Fixed**                   | Labels render once; no workaround.                                                                                                                                                                                                                          |
+| PF-2230 Popper default role                                            | **Fixed**                   | Popper defaults to `role="tooltip"`; Select/Dropdown poppers are `presentation`.                                                                                                                                                                            |
+| PF-2256 / PR #5040 label-activation click no-op                        | **Intentional (permanent)** | Opening a Select by clicking its `<label>` no longer works — click the control.                                                                                                                                                                             |
+| PF-2253 focus-opened tooltip flips over its trigger and steals a click | **Fixed**                   | Pointer-modality focus no longer opens tooltips — remove `click({ force: true })` exceptions and hide-before-Happo workarounds; guard full-page snapshots with `cy.get('[role="tooltip"]').should('not.exist')`.                                            |
+| Label-wrapper clicks on Checkbox/Switch didn't toggle (early alphas)   | **Fixed**                   | `FormControlLabel` (`labelId` variant) forwards non-interactive wrapper clicks to the hidden input — testid/wrapper-click tests written against pre-migration code work again; revert early-alpha rewrites (verified: staff-portal reverted two wholesale). |
+| PF-2248 body-center click lands inside an open DatePicker popup        | **Open**                    | Corner click: `cy.get('body').click(5, 5)`.                                                                                                                                                                                                                 |
+| `responsive={false}` empties `md`, dead zone 768–1023.98px             | **Open — report upstream**  | Add `cy.viewport(1280, 800)` in specs; do not work around in app code.                                                                                                                                                                                      |
+| Nested-dialog backdrop suppressed — a Modal opened above an open Drawer renders no grey backdrop | **Open — fix in progress in Picasso** | Base UI suppresses backdrops of dialogs nested in another dialog's portal. Interim: staff-portal patches `@toptal/picasso-modal` to pass `forceRender` to `BaseUIDialog.Backdrop` (exposed as `forceRenderBackdrop`, default `true`) — take the same pnpm patch if your app opens dialogs above dialogs (Step 8c). |
 
 ### DOM / role cheat-sheet
 
@@ -860,7 +992,8 @@ popups **portal to the Picasso root** (escape enclosing scopes with
 
 This guide reconciles four consumer migrations with the current Picasso source:
 
-- staff-portal — `picasso-baseui-test-migration.md`
+- staff-portal — `docs/migrations/picasso-baseui-test-migration.md`
+  (maintained through the stable-v100 upgrade, staff-portal PR #16155)
 - top-scheduler-frontend — `docs/picasso-v55-upgrade-guide.md`
 - topkit — `docs/picasso-v55-upgrade-guide.md`
 - client-portal — `docs/picasso-baseui-migration-client-portal.md`

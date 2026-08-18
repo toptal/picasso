@@ -1,5 +1,15 @@
 # @toptal/picasso-show-more
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@100.0.2
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-icons@100.0.1
+
 ## 100.0.1
 
 ### Patch Changes

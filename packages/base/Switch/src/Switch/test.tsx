@@ -33,36 +33,36 @@ describe('Switch', () => {
   })
 
   it('renders default Switch with label', () => {
-    const { getByTestId } = renderSwitch({ label: 'A Switch' })
+    const { getByRole } = renderSwitch({ label: 'A Switch' })
 
-    expect(getByTestId('switch')).toHaveTextContent('A Switch')
+    expect(getByRole('switch', { name: 'A Switch' })).toBeVisible()
   })
 
   it('renders disabled state', () => {
-    const { getByTestId } = renderSwitch({
+    const { container } = renderSwitch({
       disabled: true,
       label: 'Disabled',
     })
 
-    expect(getByTestId('switch')).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 
   it('transforms text to title case when Picasso titleCase property is true', () => {
-    const { getByTestId } = renderSwitch(
+    const { getByText } = renderSwitch(
       { label: 'abc ac4' },
       { titleCase: true }
     )
 
-    expect(getByTestId('switch')).toHaveTextContent('Abc Ac4')
+    expect(getByText('Abc Ac4')).toBeVisible()
   })
 
   it('transforms text to title case when Picasso titleCase property is true but the component property overrides it', () => {
-    const { getByTestId } = renderSwitch(
+    const { getByText } = renderSwitch(
       { label: 'abc dp3', titleCase: false },
       { titleCase: true }
     )
 
-    expect(getByTestId('switch')).toHaveTextContent('abc dp3')
+    expect(getByText('abc dp3')).toBeVisible()
   })
 
   it('behaves correctly when interacting', () => {
@@ -121,6 +121,36 @@ describe('Switch', () => {
 
         expect(onChange).toHaveBeenCalledTimes(1)
       })
+    })
+  })
+
+  describe('testIds', () => {
+    it('keeps the top-level data-testid on the role element, with and without label', () => {
+      const labelled = render(<Switch data-testid='switch' label='A Switch' />)
+
+      expect(labelled.getByTestId('switch')).toBe(labelled.getByRole('switch'))
+
+      labelled.unmount()
+
+      const bare = render(<Switch data-testid='switch' />)
+
+      expect(bare.getByTestId('switch')).toBe(bare.getByRole('switch'))
+    })
+
+    it('places testIds.input on the visually hidden native input', () => {
+      const { getByTestId, getByRole } = render(
+        <Switch label='A Switch' testIds={{ input: 'switch-input' }} />
+      )
+
+      const input = getByTestId('switch-input')
+
+      expect(input).toBeInstanceOf(HTMLInputElement)
+      // the input is rendered beside the role element, not inside it
+      expect(getByRole('switch')).not.toContainElement(input)
+
+      fireEvent.click(getByRole('switch'))
+
+      expect(input).toBeChecked()
     })
   })
 })

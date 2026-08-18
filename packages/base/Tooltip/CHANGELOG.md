@@ -1,5 +1,23 @@
 # @toptal/picasso-tooltip
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5087](https://github.com/toptal/picasso/pull/5087) [`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Tooltip
+
+- add `testIds.anchor` for placing a `data-testid` on the tooltip's anchor — the rendered trigger child that owns the open/close listeners. Hover this element in tests: a natively disabled child swallows pointer events, so hovering the child itself never opens the tooltip. The top-level `data-testid` keeps flowing to the same element for backwards compatibility
+
+### Patch Changes
+
+- Updated dependencies [[`a726b1c`](https://github.com/toptal/picasso/commit/a726b1ce44b902507fa03b97b897475b0d19311d)]:
+  - @toptal/picasso-shared@100.1.0
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+
 ## 100.0.0
 
 ### Major Changes

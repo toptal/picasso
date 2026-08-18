@@ -758,4 +758,36 @@ describe('Tooltip', () => {
       })
     })
   })
+
+  describe('testIds', () => {
+    it('places testIds.anchor on the trigger child — the element owning the tooltip listeners', async () => {
+      const { getByTestId, getByRole } = render(
+        <Tooltip content={<TestContent />} testIds={{ anchor: 'anchor' }}>
+          <button type='button'>Trigger</button>
+        </Tooltip>
+      )
+
+      const anchor = getByTestId('anchor')
+
+      expect(anchor).toBe(getByRole('button', { name: 'Trigger' }))
+
+      fireEvent.mouseOver(anchor)
+
+      await waitFor(() => {
+        expect(getByTestId('tooltip-content')).toBeInTheDocument()
+      })
+    })
+
+    it('keeps the top-level data-testid flowing to the anchor', () => {
+      const { getByTestId, getByRole } = render(
+        <Tooltip content={<TestContent />} data-testid='anchor'>
+          <button type='button'>Trigger</button>
+        </Tooltip>
+      )
+
+      expect(getByTestId('anchor')).toBe(
+        getByRole('button', { name: 'Trigger' })
+      )
+    })
+  })
 })
