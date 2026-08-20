@@ -1,0 +1,38 @@
+{
+  "name": "@toptal/picasso-cypress-utils",
+  "version": "100.0.0",
+  "description": "Cypress commands for testing against Picasso's DOM contract",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
+  "scripts": {
+    "build:package": "tsc -b tsconfig.json",
+    "prepublishOnly": "pnpm build:package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "author": "Toptal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
+  "sideEffects": false,
+  "peerDependencies": {
+    "cypress": ">=13.0.0 < 16.0.0"
+  },
+  "exports": {
+    ".": "./dist-package/src/index.js",
+    "./eslint": "./eslint.cjs"
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo",
+    "src",
+    "eslint.cjs"
+  ]
+}

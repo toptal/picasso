@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist-package",
+    "typeRoots": ["../../node_modules/@types", "../../node_modules"],
+    "types": ["cypress"]
+  },
+  "include": ["src"],
+  "references": []
+}

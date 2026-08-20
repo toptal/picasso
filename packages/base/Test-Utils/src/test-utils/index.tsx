@@ -33,3 +33,4 @@ export * from '@testing-library/react'
 export { customRender as render, TestingPicasso }
 export { HAPPO_TARGETS, getHappoTargets } from './get-happo-targets'
 export { createPoppersSettledWaitFor } from './wait-for-poppers-settled'
+export { POPPER_ACT_WARNING } from './console-allowlist'

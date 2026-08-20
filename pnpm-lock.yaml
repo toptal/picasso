@@ -204,6 +204,9 @@ importers:
       '@toptal/picasso-container':
         specifier: workspace:*
         version: link:packages/base/Container
+      '@toptal/picasso-cypress-utils':
+        specifier: workspace:*
+        version: link:packages/picasso-cypress-utils
       '@toptal/picasso-date-picker':
         specifier: workspace:*
         version: link:packages/base/DatePicker
@@ -3449,6 +3452,12 @@ importers:
       '@types/jscodeshift':
         specifier: ^0.11.6
         version: 0.11.6
+
+  packages/picasso-cypress-utils:
+    dependencies:
+      cypress:
+        specifier: '>=13.0.0 < 16.0.0'
+        version: 13.6.0
 
   packages/picasso-forms:
     dependencies:

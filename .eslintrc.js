@@ -1,3 +1,10 @@
+// The bans that ship with the Cypress commands, applied to our own suite so
+// this repo cannot reintroduce what the package exists to replace.
+// eslint-disable-next-line import/no-extraneous-dependencies
+const {
+  restrictedSyntax: picassoCypressRestrictedSyntax,
+} = require('@toptal/picasso-cypress-utils/eslint')
+
 const forbiddenImports = {
   picasso: ['picasso', 'picasso-forms', 'picasso-charts'],
   'picasso-charts': ['picasso-charts'],
@@ -100,6 +107,13 @@ module.exports = {
         'no-inline-styles/no-inline-styles': 'off',
         'max-lines': 'off',
         ...generateSameSettingRules(ssrFriendlyRuleNames, 'off'),
+      },
+    },
+    // Cypress specs and support files
+    {
+      files: ['cypress/**/*.ts', 'cypress/**/*.tsx', 'cypress/**/*.jsx'],
+      rules: {
+        'no-restricted-syntax': ['error', ...picassoCypressRestrictedSyntax],
       },
     },
     // codemod fixtures

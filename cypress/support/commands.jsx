@@ -5,6 +5,20 @@ import { mount } from 'cypress/react'
 import React from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TestingPicasso } from '@toptal/picasso-test-utils'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { registerPicassoCypressCommands } from '@toptal/picasso-cypress-utils'
+
+// The commands Picasso publishes for consumers — getPopup, getTooltip,
+// setChecked, assertChecked, assertDisabled, selectOption. We register the
+// same ones we ship so this suite exercises the public API rather than a
+// private copy of it. Generic queries (getByTestId, getByRole) stay local
+// on purpose — they encode nothing about Picasso's DOM.
+registerPicassoCypressCommands()
+
+Cypress.Commands.add('getByTestId', (testId, options) => {
+  // quoted, so testids containing dots or brackets (array field names) resolve
+  return cy.get(`[data-testid="${testId}"]`, options)
+})
 
 Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
   const windowInnerWidth = Cypress.config(`viewportWidth`)
@@ -22,10 +36,6 @@ Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
     expect(bounding.right).not.to.be.greaterThan(windowInnerWidth)
     expect(bounding.bottom).not.to.be.greaterThan(windowInnerHeight)
   })
-})
-
-Cypress.Commands.add('getByTestId', (testId, options) => {
-  return cy.get(`[data-testid=${testId}]`, options)
 })
 
 Cypress.Commands.add('getByRole', (role, options) => {

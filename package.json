@@ -145,6 +145,7 @@
     "@toptal/picasso-form": "workspace:*",
     "@toptal/picasso-form-label": "workspace:*",
     "@toptal/picasso-form-layout": "workspace:*",
+    "@toptal/picasso-cypress-utils": "workspace:*",
     "@toptal/picasso-forms": "workspace:*",
     "@toptal/picasso-grid": "workspace:*",
     "@toptal/picasso-helpbox": "workspace:*",
