@@ -101691,7 +101691,8 @@ var Tooltip = /*#__PURE__*/(0,react.forwardRef)(function (_a, ref) {
   }, /*#__PURE__*/react.createElement(TooltipTrigger/* TooltipTrigger */.k, Object.assign({}, triggerRest, {
     ref: setTriggerRef,
     className: className,
-    style: style
+    style: style,
+    "data-picasso-tooltip-anchor": ''
   }, anchorTestIdProps, {
     "aria-describedby": (_b = triggerRest['aria-describedby']) !== null && _b !== void 0 ? _b : actualOpen ? tooltipId : undefined,
     disabled: disableListeners,
@@ -102822,6 +102823,12 @@ var Tooltip = /*#__PURE__*/(0,react.forwardRef)(function (_ref2, ref) {
         ref: setTriggerRef,
         className: className,
         style: style
+        // Stable test hook marking the anchor — the element the open/close
+        // listeners attach to. Roles and testids vary per consumer, so
+        // neither can be the marker; cy.hoverAnchor() resolves this to
+        // hover tooltips whose child is natively disabled.
+        ,
+        "data-picasso-tooltip-anchor": ""
       }, anchorTestIdProps, {
         // Associate the popup with the trigger while open, preferring any
         // consumer-supplied value (tooltipId is never empty).
@@ -158638,4 +158645,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.b97bd2a8.iframe.bundle.js.map
+//# sourceMappingURL=main.b3ee194b.iframe.bundle.js.map
