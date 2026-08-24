@@ -14,6 +14,12 @@ export const POPPER_SELECTOR = '[data-picasso-popper]'
 /** Only real Tooltips keep `role="tooltip"` — Select/Dropdown poppers do not. */
 export const TOOLTIP_SELECTOR = '[role="tooltip"]'
 
+/**
+ * Marks a Tooltip's anchor — the rendered trigger child owning the open/close
+ * listeners. Hover THIS to open a tooltip whose child is natively disabled.
+ */
+export const TOOLTIP_ANCHOR_SELECTOR = '[data-picasso-tooltip-anchor]'
+
 /** Options inside a Select/Autocomplete listbox. */
 export const OPTION_SELECTOR = '[role="option"]'
 

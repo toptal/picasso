@@ -1,3 +1,4 @@
+import { resolveToggleInput } from './resolve-toggle'
 import { TOGGLE_ROLE_SELECTOR } from './selectors'
 
 /**
@@ -17,6 +18,14 @@ import { TOGGLE_ROLE_SELECTOR } from './selectors'
  * disabled checkbox ignores clicks): on already-matching state this skips the
  * click entirely and passes vacuously. Click the role element instead and
  * assert the state did not change.
+ *
+ * **Not** for controlled components whose `checked` prop never updates (a
+ * stubbed `onChange`): there is no DOM change to ensure, so the trailing
+ * assertion can only time out — and whether the click even fires depends on
+ * the pinned value. Use `toggleControl().click()` and assert the handler.
+ *
+ * Yields the hidden native input (wrapped in the state assertion); use
+ * `toggleControl()` when you need the visible role element.
  */
 export const setChecked = (
   subject: JQuery<HTMLElement>,
@@ -30,16 +39,7 @@ export const setChecked = (
     )
   }
 
-  const $el = subject.first()
-  let $input: JQuery<HTMLElement>
-
-  if ($el.is('input')) {
-    $input = $el
-  } else if ($el.is(TOGGLE_ROLE_SELECTOR)) {
-    $input = $el.siblings('input').first()
-  } else {
-    $input = $el.find('input').first()
-  }
+  const $input = resolveToggleInput(subject.first())
 
   if ($input.length === 0) {
     throw new Error('setChecked: could not find a native input for the subject')

@@ -789,5 +789,19 @@ describe('Tooltip', () => {
         getByRole('button', { name: 'Trigger' })
       )
     })
+
+    it('always marks the anchor with data-picasso-tooltip-anchor regardless of testids', () => {
+      const { getByRole } = render(
+        <Tooltip content={<TestContent />}>
+          <button type='button'>Trigger</button>
+        </Tooltip>
+      )
+
+      // the stable marker cy.hoverAnchor() resolves — hover THIS element to
+      // open a tooltip whose child is natively disabled
+      expect(getByRole('button', { name: 'Trigger' })).toHaveAttribute(
+        'data-picasso-tooltip-anchor'
+      )
+    })
   })
 })

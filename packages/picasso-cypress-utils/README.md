@@ -58,6 +58,9 @@ the support file, add a reference:
 | `.assertChecked(desired?)`  | element | Asserts checked state                                       |
 | `.assertDisabled(desired?)` | element | Asserts disabled state                                      |
 | `.selectOption(target)`     | element | Opens a Select from its trigger and picks an option         |
+| `.toggleControl()`          | element | Yields the visible role element from any subject shape      |
+| `cy.queryPopup(inner?)`     | —       | One-query popup lookup, for negative assertions             |
+| `.hoverAnchor()`            | element | Hovers a Tooltip's anchor — for natively disabled triggers  |
 
 Deliberately **not** included: generic queries like `getByTestId` /
 `findByTestId`. Every Toptal app already ships its own (with differing
@@ -76,6 +79,17 @@ cy.getByTestId('terms').assertDisabled(false)
 
 cy.getByTestId('menu-button').click()
 cy.getPopup().contains('[role="option"]', 'Archive').click()
+
+// controlled checkbox whose prop never updates — dispatch, assert the handler
+cy.getByTestId('pinned').toggleControl().click()
+cy.get('@onChange').should('have.been.calledOnce')
+
+// negative assertions that tolerate an absent popup
+cy.queryPopup('[role="option"]:contains("X")').should('not.exist')
+
+// tooltip on a natively disabled control — hover the anchor, no force
+cy.getByTestId('save').hoverAnchor()
+cy.getTooltip().should('contain', 'Why this is disabled')
 ```
 
 ## Why these, and not the obvious thing
@@ -95,6 +109,22 @@ cy.getPopup().contains('[role="option"]', 'Archive').click()
   anything that is not an input matches nothing and **passes vacuously**. These
   resolve the real control first and throw a distinct "found no control" error
   when a selector is wrong.
+- **`toggleControl()`** — `setChecked`'s ensure-semantics assume the DOM
+  reflects state. A controlled component whose `checked` prop never updates (a
+  stubbed handler) has nothing to ensure — dispatch with
+  `toggleControl().click()` and assert the handler, the Cypress twin of the
+  RTL rule in the migration guide.
+- **`queryPopup(inner?)`** — Cypress's implicit-existence rule means
+  `getPopup().contains(x).should('not.exist')` fails on the _command_ when the
+  popup is legitimately absent (only the last query gets the `not.exist`
+  waiver). `queryPopup` folds the inner selector into **one** query, so the
+  waiver covers the whole lookup — attach the `should` directly.
+- **`hoverAnchor()`** — a natively disabled control swallows pointer events,
+  so hovering it never opens its tooltip; the historical workaround,
+  `trigger('mouseover', { force: true })`, fires handlers through a channel
+  real pointers never reach. This hovers the marked anchor **without force**;
+  where it still can't open the tooltip, users can't either — wrap the
+  disabled trigger in the app.
 
 ## Lint rules
 
@@ -116,6 +146,13 @@ module.exports = {
 
 `createCypressOverride(files?)` returns that `overrides` entry ready-made.
 
+One ESLint gotcha (hit by the first adopter): `overrides` **replace** a rule's
+options rather than merging them. If another override already configures
+`no-restricted-syntax` for the same files, spread `restrictedSyntax` into that
+existing entry — or repeat the existing selectors in the new one — instead of
+adding a second override and silently losing whichever loses the specificity
+race.
+
 ## Escape hatches on the components
 
 Some assertions genuinely need an element these commands do not yield:
@@ -124,8 +161,9 @@ Some assertions genuinely need an element these commands do not yield:
   native input, for assertions about the serialized form value. Prefer
   `assertChecked` for state.
 - `testIds={{ anchor }}` on `Tooltip` names the element the open/close listeners
-  attach to. A natively disabled child swallows pointer events, so hovering it
-  never opens its tooltip — hover the anchor.
+  attach to. The anchor also always carries `data-picasso-tooltip-anchor` —
+  which is what `.hoverAnchor()` resolves — so the testid is only needed to
+  address a _specific_ tooltip's anchor globally.
 
 ## Migration guide
 

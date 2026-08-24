@@ -27,7 +27,8 @@
   },
   "exports": {
     ".": "./dist-package/src/index.js",
-    "./eslint": "./eslint.cjs"
+    "./eslint": "./eslint.cjs",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist-package/**",

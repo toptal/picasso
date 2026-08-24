@@ -2,6 +2,9 @@ import { assertChecked } from './assert-checked'
 import { assertDisabled } from './assert-disabled'
 import { getPopup } from './get-popup'
 import { getTooltip } from './get-tooltip'
+import { hoverAnchor } from './hover-anchor'
+import { queryPopup } from './query-popup'
+import { toggleControl } from './toggle-control'
 import type { SelectOptionTarget } from './select-option'
 import { selectOption } from './select-option'
 import { setChecked } from './set-checked'
@@ -11,8 +14,11 @@ export type PicassoCommandName =
   | 'assertDisabled'
   | 'getPopup'
   | 'getTooltip'
+  | 'hoverAnchor'
+  | 'queryPopup'
   | 'selectOption'
   | 'setChecked'
+  | 'toggleControl'
 
 export type RegisterOptions = {
   /**
@@ -32,6 +38,12 @@ declare global {
       getPopup: typeof getPopup
       /** Yields the open Tooltip — only real Tooltips keep `role="tooltip"`. */
       getTooltip: typeof getTooltip
+      /** One-query popup lookup for negative/optional assertions — attach `should` directly. */
+      queryPopup: (innerSelector?: string) => Chainable<JQuery<HTMLElement>>
+      /** Yields the visible role element of a Checkbox/Switch from any subject shape. */
+      toggleControl: () => Chainable<JQuery<HTMLElement>>
+      /** Hovers a Tooltip's anchor (unforced) — for natively disabled triggers. */
+      hoverAnchor: () => Chainable<JQuery<HTMLElement>>
       /** Ensures a Checkbox/Switch state by clicking its visible role element. */
       setChecked: (desired?: boolean) => Chainable<JQuery<HTMLElement>>
       /** Asserts checked state off a role element, input, or wrapper. */
@@ -52,8 +64,9 @@ declare global {
  * Wrapped in a function rather than run as an import side effect so bundlers
  * cannot tree-shake the registrations away, and so repos that already own one
  * of these names can opt out instead of having their version silently
- * overwritten (Cypress only throws for duplicate *query* commands; plain
- * `Commands.add` lets the last registration win).
+ * overwritten. Note the asymmetry: plain `Commands.add` lets the last
+ * registration win, while duplicate *query* commands (`toggleControl`) make
+ * Cypress throw — so a repeat call must skip the queries.
  *
  * Deliberately no generic `getByTestId`/`findByTestId`: every Toptal app
  * already ships its own (with differing signatures — `@topkit/cypress-utils`
@@ -80,6 +93,18 @@ export const registerPicassoCypressCommands = ({
 
   if (shouldRegister('getTooltip')) {
     Cypress.Commands.add('getTooltip', getTooltip)
+  }
+
+  if (shouldRegister('queryPopup')) {
+    Cypress.Commands.add('queryPopup', queryPopup)
+  }
+
+  if (shouldRegister('toggleControl')) {
+    Cypress.Commands.addQuery('toggleControl', toggleControl)
+  }
+
+  if (shouldRegister('hoverAnchor')) {
+    Cypress.Commands.add('hoverAnchor', { prevSubject: 'element' }, hoverAnchor)
   }
 
   if (shouldRegister('setChecked')) {

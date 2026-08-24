@@ -598,14 +598,17 @@ commands):
 registerPicassoCypressCommands({ skip: ['setChecked'] })
 ```
 
-| Command                     | Subject | Replaces                                                                 |
-| --------------------------- | ------- | ------------------------------------------------------------------------ |
-| `cy.getPopup()`             | —       | hand-rolled `[data-picasso-popper]` queries                              |
-| `cy.getTooltip()`           | —       | ad-hoc `[role="tooltip"]` queries                                        |
-| `.setChecked(desired?)`     | element | `.check()` / `.uncheck()` / `click({ force: true })` on the hidden input |
-| `.assertChecked(desired?)`  | element | `.parent().find('input').should('be.checked')`                           |
-| `.assertDisabled(desired?)` | element | `should('be.disabled')` on an element with no native `disabled`          |
-| `.selectOption(target)`     | element | open-select-then-pick boilerplate                                        |
+| Command                     | Subject | Replaces                                                                      |
+| --------------------------- | ------- | ----------------------------------------------------------------------------- |
+| `cy.getPopup()`             | —       | hand-rolled `[data-picasso-popper]` queries                                   |
+| `cy.getTooltip()`           | —       | ad-hoc `[role="tooltip"]` queries                                             |
+| `.setChecked(desired?)`     | element | `.check()` / `.uncheck()` / `click({ force: true })` on the hidden input      |
+| `.assertChecked(desired?)`  | element | `.parent().find('input').should('be.checked')`                                |
+| `.assertDisabled(desired?)` | element | `should('be.disabled')` on an element with no native `disabled`               |
+| `.selectOption(target)`     | element | open-select-then-pick boilerplate                                             |
+| `.toggleControl()`          | element | hand-rolled `.find('[role=checkbox]')` to reach the visible control           |
+| `cy.queryPopup(inner?)`     | —       | negative popup assertions that failed on the command instead of the assertion |
+| `.hoverAnchor()`            | element | `trigger('mouseover', { force: true })` on natively disabled tooltip triggers |
 
 Two of these encode a trap that is otherwise easy to get wrong:
 
@@ -617,6 +620,17 @@ Two of these encode a trap that is otherwise easy to get wrong:
   wrong. `should('be.checked')` on a non-input subject matches nothing and
   **passes vacuously** — a `<td>` is never `:checked`. This is the single biggest
   source of tests that survive the migration while asserting nothing.
+
+Two boundaries worth knowing up front: `setChecked` **ensures** state, so a
+controlled component whose `checked` prop never updates (a stubbed handler) has
+nothing to ensure — dispatch with `.toggleControl().click()` and assert the
+handler instead (the Cypress twin of the Jest rule in
+[Step 5b](#step-5b-checkbox--switch--role-element--hidden-sibling-input)). And
+`getPopup` carries Cypress's implicit existence assertion, so for negative
+checks — "this option is offered nowhere, popup open or not" — use
+`cy.queryPopup('[role="option"]:contains("X")').should('not.exist')`, which
+folds the lookup into one query so it tolerates an absent popup; attach the
+`should` directly rather than chaining `.find()` in between.
 
 The package deliberately ships **no** generic `getByTestId`/`findByTestId` —
 every Toptal app already owns those names (with differing signatures), and they
@@ -654,6 +668,9 @@ module.exports = {
 | Async-populated options/radios intermittently "not found" on CI                                                                                                                               | Use a retryable atomic selector that includes the expected value (`.find('input[value="…"]')`, `.contains(text)`), let `.should()` gate on it, then assert the resulting state — this waits for the option to actually mount.                                                                                                                                                                                                                                                                              |
 | Selectors coupled to old markup (`label.picasso-checkbox`, `span[role="slider"]`, tag+structure)                                                                                              | Query by role or testid — the role survived the migration, the tag and structure did not.                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Desktop-only UI missing at the component viewport                                                                                                                                             | See [`responsive={false}` breakpoint gap](#the-responsivefalse-breakpoint-gap); add `cy.viewport(1280, 800)`.                                                                                                                                                                                                                                                                                                                                                                                              |
+| Options exist in the DOM but `getPopup()` finds nothing / an option click is refused as hidden                                                                                                | The popper **hides itself entirely** (`[x-out-of-boundaries]` → `display: none`) when floating-ui cannot place it inside the viewport — options stay in the DOM inside an invisible popper. Forcing the click "works" against UI no user can see; the fix is more room, usually **height**: `cy.viewport(1280, 1000)`. Same fix family as the breakpoint gap, different mechanism (vertical space, not media queries).                                                                                     |
+| A same-day date range cannot address the day twice by testid                                                                                                                                  | `CalendarDay`'s testid **mutates with selection state** (`day-button-<n>` → `day-button-selected`), so after picking the start day the same testid is gone. Use `cy.getPopup().contains(<day>)` for the second pick. Upstream smell — testids should be stable and state should live in ARIA/`data-*`.                                                                                                                                                                                                     |
+| A `should('be.checked')` passes against the wrong element entirely                                                                                                                            | Chaining `.get()` off a subject **resets to the document root** (unlike `.find()`), so `getByTestId(x).get('input').should('be.checked')` asserts "any input on the page is checked" and passes off unrelated controls. Use `.find()` — or `assertChecked`, which resolves the control from the subject.                                                                                                                                                                                                   |
 
 > **Checkbox/switch input relationship in Cypress:** the hidden input is a
 > **sibling** of the role element, so from a testid on the role element it is
@@ -670,10 +687,11 @@ module.exports = {
 Some assertions genuinely need an element no command yields. Two props exist for
 exactly that, and both are newer than the initial `100.0.x` line:
 
-| Prop                                                                                           | Ships in                                             | Use it for                                                                                                                                                              |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `testIds={{ input }}` on `Checkbox` / `Switch` (flows through `Form.Checkbox` / `Form.Switch`) | `picasso-checkbox@100.1.0`, `picasso-switch@101.0.0` | Stamps the visually-hidden native input, for assertions genuinely about the serialized form value. Prefer `assertChecked` for state.                                    |
-| `testIds={{ anchor }}` on `Tooltip`                                                            | `picasso-tooltip@100.1.0`                            | Names the element the open/close listeners attach to. A natively **disabled** child swallows pointer events, so hovering it never opens its tooltip — hover the anchor. |
+| Prop                                                                                           | Ships in                                             | Use it for                                                                                                                                                                               |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `testIds={{ input }}` on `Checkbox` / `Switch` (flows through `Form.Checkbox` / `Form.Switch`) | `picasso-checkbox@100.1.0`, `picasso-switch@101.0.0` | Stamps the visually-hidden native input, for assertions genuinely about the serialized form value. Prefer `assertChecked` for state.                                                     |
+| `testIds={{ anchor }}` on `Tooltip`                                                            | `picasso-tooltip@100.1.0`                            | Names the element the open/close listeners attach to. A natively **disabled** child swallows pointer events, so hovering it never opens its tooltip — hover the anchor.                  |
+| `data-picasso-tooltip-anchor` marker on every `Tooltip` anchor                                 | `picasso-tooltip@100.2.0`                            | Always present — no per-usage prop needed. `.hoverAnchor()` resolves it from any node inside the trigger, so `testIds={{ anchor }}` is only for addressing a _specific_ anchor globally. |
 
 Both are stamped through `useInputTestId` from `@toptal/picasso-shared`, which is
 also exported if you need the same trick on your own Base UI wrapper.
@@ -708,15 +726,16 @@ documentation text rather than test code.
 > standalone `should('be.visible')` is still right when it _replaces_ an
 > interaction ("the popup appeared"), never as a gate.
 
-| Pattern                                                                      | Fix                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Popup option clicks** — force carried over from the `[role="tooltip"]` era | `cy.getPopup().find('li[value="…"]').click()`. Scoping to the open popper matters: with several same-label dropdowns in sequence, an unscoped `cy.contains('li', …)` can match the _previous, closing_ popup, and force then clicks the dying node.                                                                                                                                                                                |
-| **Dropdown helpers taking a `force`/`scrollBehavior` option**                | Delete the escape hatch from the signature. Inside: `scrollIntoView()` the trigger, click the visible input by quoted id prefix, then pick from `getPopup()`.                                                                                                                                                                                                                                                                      |
-| **The Select reset (✕) adornment**                                           | It renders `invisible` and only appears on `peer-focus`/`group-hover`, and Cypress's synthetic events never trigger CSS `:hover`. Focus the field's visible input first, then click plainly — or use `.realHover()` when focusing would have side effects.                                                                                                                                                                         |
-| **Cargo-cult force on plain visible buttons**                                | Delete it. When removing a force makes a click fail, that failure is **a finding, not a nuisance** — it is how real overlap and clipping bugs surface.                                                                                                                                                                                                                                                                             |
-| **Committing an `EditableField`** (save-on-blur)                             | `cy.focused().blur()` — the editor testid sits on the field _container_, which is never the focused node, and Cypress refuses `.blur()` on a non-focused element. Escape is not an alternative: it runs the field's reset and cancels the edit.                                                                                                                                                                                    |
-| **File upload into a dropzone's hidden input**                               | Drop on the dropzone root — `find('input[type=file]').parent()`, per react-dropzone's `getRootProps`/`getInputProps` contract — with `{ action: 'drag-drop' }`. _Scope note:_ a plain `FileInput` (a button opening the native dialog) has no drop handlers; there `selectFile(…, { force: true })` on the hidden input is Cypress's sanctioned idiom, and still better than `.invoke('show')`, which mutates the page under test. |
-| **Clicking the popup container itself** after typing into an autocomplete    | Say what the test means: `getPopup().find('li').first().click()` to pick a suggestion, or `getPopup().should('be.visible')` if existence is the assertion.                                                                                                                                                                                                                                                                         |
+| Pattern                                                                              | Fix                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Popup option clicks** — force carried over from the `[role="tooltip"]` era         | `cy.getPopup().find('li[value="…"]').click()`. Scoping to the open popper matters: with several same-label dropdowns in sequence, an unscoped `cy.contains('li', …)` can match the _previous, closing_ popup, and force then clicks the dying node.                                                                                                                                                                                |
+| **Dropdown helpers taking a `force`/`scrollBehavior` option**                        | Delete the escape hatch from the signature. Inside: `scrollIntoView()` the trigger, click the visible input by quoted id prefix, then pick from `getPopup()`.                                                                                                                                                                                                                                                                      |
+| **The Select reset (✕) adornment**                                                   | It renders `invisible` and only appears on `peer-focus`/`group-hover`, and Cypress's synthetic events never trigger CSS `:hover`. Focus the field's visible input first, then click plainly — or use `.realHover()` when focusing would have side effects.                                                                                                                                                                         |
+| **Cargo-cult force on plain visible buttons**                                        | Delete it. When removing a force makes a click fail, that failure is **a finding, not a nuisance** — it is how real overlap and clipping bugs surface.                                                                                                                                                                                                                                                                             |
+| **Committing an `EditableField`** (save-on-blur)                                     | `cy.focused().blur()` — the editor testid sits on the field _container_, which is never the focused node, and Cypress refuses `.blur()` on a non-focused element. Escape is not an alternative: it runs the field's reset and cancels the edit.                                                                                                                                                                                    |
+| **File upload into a dropzone's hidden input**                                       | Drop on the dropzone root — `find('input[type=file]').parent()`, per react-dropzone's `getRootProps`/`getInputProps` contract — with `{ action: 'drag-drop' }`. _Scope note:_ a plain `FileInput` (a button opening the native dialog) has no drop handlers; there `selectFile(…, { force: true })` on the hidden input is Cypress's sanctioned idiom, and still better than `.invoke('show')`, which mutates the page under test. |
+| **Clicking the popup container itself** after typing into an autocomplete            | Say what the test means: `getPopup().find('li').first().click()` to pick a suggestion, or `getPopup().should('be.visible')` if existence is the assertion.                                                                                                                                                                                                                                                                         |
+| **`trigger('mouseover', { force: true })` on a tooltip's natively disabled trigger** | `.hoverAnchor()` — hovers the marked anchor without force. Where it still can't open the tooltip, **real users can't either** (the anchor _is_ the disabled element, which swallows pointer events); the durable fix is wrapping the disabled trigger in a `<span>` in app code, not forcing an event users can never produce.                                                                                                     |
 
 ### The `responsive={false}` breakpoint gap
 
@@ -1194,11 +1213,13 @@ version matrices; reconcile required-check names. **Gate:** Happo reviewed,
 | **Tooltip / Popper**           | portal, `role="tooltip"` (default)                      | —                                                                             | n/a                                                   | —                                                                                                        |
 | **Modal / DatePicker popup**   | portal, `role="dialog"`                                 | —                                                                             | n/a                                                   | —                                                                                                        |
 
-Stable hooks for tests: **`[data-picasso-popper]`** marks every popper wrapper;
-popups **portal to the Picasso root** (escape enclosing scopes with
-`{ withinSubject: null }`). In Cypress, prefer `cy.getPopup()` — it applies both,
-plus the `:visible` filter that keeps a closed `keepMounted` popper from
-shadowing the open one.
+Stable hooks for tests: **`[data-picasso-popper]`** marks every popper wrapper
+and **`[data-picasso-tooltip-anchor]`** marks every Tooltip anchor (from
+`picasso-tooltip@100.2.0`); popups **portal to the Picasso root** (escape
+enclosing scopes with `{ withinSubject: null }`). In Cypress, prefer
+`cy.getPopup()` / `cy.queryPopup()` / `.hoverAnchor()` — they apply the
+escapes, the `:visible` filter that keeps a closed `keepMounted` popper from
+shadowing the open one, and the anchor resolution.
 
 Addressable-by-prop internals: `testIds={{ input }}` on `Checkbox`/`Switch`,
 `testIds={{ anchor }}` on `Tooltip` — see

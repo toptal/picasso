@@ -7,6 +7,7 @@ exports[`Tooltip when closed does not render the content 1`] = `
   >
     <button
       data-base-ui-tooltip-trigger=""
+      data-picasso-tooltip-anchor=""
       data-testid="tooltip-trigger"
       id="base-ui-:r1:"
       type="button"
@@ -25,6 +26,7 @@ exports[`Tooltip when portals are disabled renders the content within the parent
     <button
       aria-describedby="tooltip-id"
       data-base-ui-tooltip-trigger=""
+      data-picasso-tooltip-anchor=""
       data-popup-open=""
       data-testid="tooltip-trigger"
       id="base-ui-:r7:"

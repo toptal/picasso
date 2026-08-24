@@ -326,6 +326,11 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             ref={setTriggerRef}
             className={className}
             style={style}
+            // Stable test hook marking the anchor — the element the open/close
+            // listeners attach to. Roles and testids vary per consumer, so
+            // neither can be the marker; cy.hoverAnchor() resolves this to
+            // hover tooltips whose child is natively disabled.
+            data-picasso-tooltip-anchor=''
             {...anchorTestIdProps}
             // Associate the popup with the trigger while open, preferring any
             // consumer-supplied value (tooltipId is never empty).

@@ -8,6 +8,7 @@ import {
   Radio,
   Select,
   Switch,
+  Tooltip,
 } from '@toptal/picasso'
 
 /**
@@ -26,8 +27,11 @@ const registerNone = () =>
       'assertDisabled',
       'getPopup',
       'getTooltip',
+      'hoverAnchor',
+      'queryPopup',
       'selectOption',
       'setChecked',
+      'toggleControl',
     ],
   })
 
@@ -97,6 +101,32 @@ const SelectHarness = () => {
     </Container>
   )
 }
+
+const ControlledCheckbox = ({ onChange }: { onChange: () => void }) => (
+  <Container padded='medium'>
+    {/* checked is pinned — the DOM never changes, only the handler fires */}
+    <Checkbox
+      checked={false}
+      data-testid='pinned'
+      label='Pinned'
+      onChange={onChange}
+    />
+  </Container>
+)
+
+const DisabledTriggerTooltip = () => (
+  <Container padded='medium'>
+    <Tooltip content='Why this is disabled'>
+      {/* the wrapper span is the anchor; the disabled button swallows pointer
+          events, so hovering the button itself can never open the tooltip */}
+      <span data-testid='save-wrap'>
+        <Button data-testid='save' disabled>
+          Save
+        </Button>
+      </span>
+    </Tooltip>
+  </Container>
+)
 
 describe('picasso-cypress-utils', () => {
   describe('setChecked', () => {
@@ -204,14 +234,98 @@ describe('picasso-cypress-utils', () => {
     })
   })
 
+  describe('toggleControl', () => {
+    it('dispatches a toggle on a pinned controlled checkbox', () => {
+      const onChange = cy.stub().as('change')
+
+      cy.mount(<ControlledCheckbox onChange={onChange} />)
+
+      // setChecked would time out here — there is no DOM state to ensure
+      cy.getByTestId('pinned').toggleControl().click()
+      cy.get('@change').should('have.been.calledOnce')
+      cy.getByTestId('pinned').assertChecked(false)
+    })
+
+    it('resolves the role element from the hidden input and from a wrapper', () => {
+      cy.mount(<Toggles />)
+
+      cy.getByTestId('newsletter-input')
+        .toggleControl()
+        .should('have.attr', 'role', 'checkbox')
+      cy.getByTestId('notifications')
+        .toggleControl()
+        .should('have.attr', 'role', 'switch')
+    })
+
+    it('drives focus for touched-state flows', () => {
+      cy.mount(<Toggles />)
+
+      cy.getByTestId('newsletter').toggleControl().focus()
+      cy.focused().should('have.attr', 'role', 'checkbox')
+      cy.getByTestId('newsletter').toggleControl().blur()
+      cy.focused().should('not.exist')
+    })
+
+    it('fails loudly on a subject with no toggle control', () => {
+      cy.mount(<Container data-testid='plain'>Nothing here</Container>)
+
+      expectFailure('no [role="checkbox"|"switch"] element found')
+
+      cy.getByTestId('plain').toggleControl()
+    })
+  })
+
+  describe('queryPopup', () => {
+    it('passes negative assertions when the popup is absent', () => {
+      cy.mount(<SelectHarness />)
+
+      cy.queryPopup().should('not.exist')
+      cy.queryPopup('[role="option"]:contains("Croatia")').should('not.exist')
+    })
+
+    it('passes when the popup is open without the option', () => {
+      cy.mount(<SelectHarness />)
+
+      cy.getByTestId('country').click()
+      cy.getPopup().should('be.visible')
+      cy.queryPopup('[role="option"]:contains("Atlantis")').should('not.exist')
+      cy.queryPopup('[role="option"]:contains("Croatia")').should('exist')
+    })
+  })
+
+  describe('hoverAnchor', () => {
+    it('opens a tooltip whose trigger child is natively disabled', () => {
+      cy.mount(<DisabledTriggerTooltip />)
+
+      // hovering the disabled button itself can never open it — resolve the
+      // anchor from the child and hover that, without force
+      cy.getByTestId('save').hoverAnchor()
+      cy.getTooltip().should('contain', 'Why this is disabled')
+    })
+
+    it('yields the anchor for chaining', () => {
+      cy.mount(<DisabledTriggerTooltip />)
+
+      cy.getByTestId('save-wrap')
+        .hoverAnchor()
+        .should('have.attr', 'data-picasso-tooltip-anchor')
+    })
+  })
+
   describe('registerPicassoCypressCommands', () => {
-    // The support file already registered every command. Cypress only throws
-    // for duplicate *query* commands — plain Commands.add lets the last
-    // registration silently overwrite a same-named command — so a repeat call
-    // must stay safe, and `skip` exists to keep an app's own version rather
-    // than to avoid a crash.
-    it('tolerates a repeat registration (last one wins)', () => {
-      expect(registerAll).not.to.throw()
+    // The support file already registered every command. The duplicate rules
+    // are asymmetric: plain Commands.add silently lets the last registration
+    // win, while a duplicate *query* command (toggleControl) makes Cypress
+    // throw — so a bare repeat call fails loudly, and re-running registration
+    // means skipping the queries.
+    it('throws on a repeat registration of the query commands', () => {
+      expect(registerAll).to.throw()
+    })
+
+    it('re-registers cleanly when the query commands are skipped', () => {
+      expect(() =>
+        registerPicassoCypressCommands({ skip: ['toggleControl'] })
+      ).not.to.throw()
     })
 
     it('accepts a skip list covering every command', () => {
