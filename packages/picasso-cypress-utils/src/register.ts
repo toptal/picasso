@@ -1,7 +1,7 @@
 import { assertChecked } from './assert-checked'
 import { assertDisabled } from './assert-disabled'
 import { getPopup } from './get-popup'
-import { getTooltip } from './get-tooltip'
+import { getTooltip, queryTooltip } from './get-tooltip'
 import { hoverAnchor, unhoverAnchor } from './hover-anchor'
 import { queryPopup } from './query-popup'
 import { toggleControl } from './toggle-control'
@@ -9,17 +9,26 @@ import type { SelectOptionTarget } from './select-option'
 import { selectOption } from './select-option'
 import { setChecked } from './set-checked'
 
-export type PicassoCommandName =
-  | 'assertChecked'
-  | 'assertDisabled'
-  | 'getPopup'
-  | 'getTooltip'
-  | 'hoverAnchor'
-  | 'queryPopup'
-  | 'unhoverAnchor'
-  | 'selectOption'
-  | 'setChecked'
-  | 'toggleControl'
+/**
+ * Every command this package registers — the single runtime source of truth.
+ * The type is derived from it, and a test asserts the docs cover it, so a new
+ * command cannot ship undocumented.
+ */
+export const PICASSO_COMMAND_NAMES = [
+  'assertChecked',
+  'assertDisabled',
+  'getPopup',
+  'getTooltip',
+  'hoverAnchor',
+  'queryPopup',
+  'queryTooltip',
+  'selectOption',
+  'setChecked',
+  'toggleControl',
+  'unhoverAnchor',
+] as const
+
+export type PicassoCommandName = (typeof PICASSO_COMMAND_NAMES)[number]
 
 export type RegisterOptions = {
   /**
@@ -39,6 +48,11 @@ declare global {
       getPopup: typeof getPopup
       /** Yields the open Tooltip — only real Tooltips keep `role="tooltip"`. */
       getTooltip: typeof getTooltip
+      /** One-query tooltip lookup for negative assertions — attach `should` directly. */
+      queryTooltip: (
+        innerSelector?: string,
+        text?: string
+      ) => Chainable<JQuery<HTMLElement>>
       /** One-query popup lookup for negative/optional assertions — attach `should` directly. */
       queryPopup: (
         innerSelector?: string,
@@ -112,6 +126,7 @@ export const registerPicassoCypressCommands = ({
     ['getPopup', getPopup],
     ['getTooltip', getTooltip],
     ['queryPopup', queryPopup],
+    ['queryTooltip', queryTooltip],
   ]
 
   const children: [PicassoCommandName, (...args: never[]) => unknown][] = [

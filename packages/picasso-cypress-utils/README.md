@@ -92,6 +92,9 @@ cy.getByTestId('save').hoverAnchor()
 cy.getTooltip().should('contain', 'Why this is disabled')
 cy.getByTestId('save').unhoverAnchor()
 cy.getTooltip().should('not.exist')
+
+// looking inside a tooltip that may not be open
+cy.queryTooltip('strong', 'Required').should('not.exist')
 ```
 
 ## Why these, and not the obvious thing
@@ -116,13 +119,16 @@ cy.getTooltip().should('not.exist')
   stubbed handler) has nothing to ensure — dispatch with
   `toggleControl().click()` and assert the handler, the Cypress twin of the
   RTL rule in the migration guide.
-- **`queryPopup(inner?)`** — Cypress's implicit-existence rule means
+- **`queryPopup(inner?, text?)` / `queryTooltip(inner?, text?)`** — Cypress's implicit-existence rule means
   `getPopup().contains(x).should('not.exist')` fails on the _command_ when the
   popup is legitimately absent (only the last query gets the `not.exist`
   waiver). `queryPopup` folds the inner selector into **one** query, so the
   waiver covers the whole lookup — attach the `should` directly. Pass the text
   as the second argument rather than writing `:contains(…)`: the value is
-  escaped, so quotes and backslashes in labels are safe.
+  escaped, so quotes and backslashes in labels are safe. `getTooltip()`/
+  `getPopup()` with a `should` attached directly is fine for the simple
+  "nothing is open" case; reach for the `query*` form as soon as you need to
+  look _inside_.
 - **`hoverAnchor()`** — a natively disabled control swallows pointer events,
   so hovering it never opens its tooltip; the historical workaround,
   `trigger('mouseover', { force: true })`, fires handlers through a channel

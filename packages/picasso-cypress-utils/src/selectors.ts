@@ -38,3 +38,10 @@ export const CONTROL_INPUT_SELECTOR =
   'input[type="checkbox"], input[type="radio"]'
 
 export const NATIVE_CONTROL_SELECTOR = 'input, button, select, textarea'
+
+/**
+ * jQuery's `:contains()` takes a quoted string, so a literal `"` or `\` in the
+ * text breaks the selector. Escaping both makes any text safe to embed.
+ */
+export const escapeContainsText = (text: string) =>
+  text.replace(/\\/g, '\\\\').replace(/"/g, '\\"')

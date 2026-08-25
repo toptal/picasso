@@ -1,4 +1,4 @@
-import { TOOLTIP_SELECTOR } from './selectors'
+import { escapeContainsText, TOOLTIP_SELECTOR } from './selectors'
 
 /**
  * Yields the open Tooltip. Kept separate from {@link getPopup} on purpose:
@@ -10,3 +10,33 @@ import { TOOLTIP_SELECTOR } from './selectors'
  */
 export const getTooltip = (): Cypress.Chainable<JQuery<HTMLElement>> =>
   cy.get(`${TOOLTIP_SELECTOR}:visible`, { withinSubject: null })
+
+/**
+ * The may-be-absent counterpart to {@link getTooltip} — the tooltip twin of
+ * `queryPopup`, with the same rationale.
+ *
+ * `getTooltip().should('not.exist')` already works, because the waiver applies
+ * to the single query it is attached to. But the moment a spec needs to look
+ * *inside* the tooltip — `getTooltip().contains(x).should('not.exist')` — it
+ * hits the trap: the inner query gets the waiver while the outer `get` still
+ * demands a tooltip. This folds the lookup into one query.
+ *
+ * `text` is escaped, so quotes and backslashes are safe. Matching is jQuery's
+ * case-sensitive substring.
+ *
+ * @example
+ * cy.queryTooltip().should('not.exist')
+ * cy.queryTooltip('strong', 'Required').should('not.exist')
+ */
+export const queryTooltip = (
+  innerSelector?: string,
+  text?: string
+): Cypress.Chainable<JQuery<HTMLElement>> => {
+  const inner = innerSelector
+    ? ` ${innerSelector}${
+        text === undefined ? '' : `:contains("${escapeContainsText(text)}")`
+      }`
+    : ''
+
+  return cy.get(`${TOOLTIP_SELECTOR}:visible${inner}`, { withinSubject: null })
+}

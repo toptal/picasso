@@ -1,11 +1,4 @@
-import { POPPER_SELECTOR } from './selectors'
-
-/**
- * jQuery's `:contains()` takes a quoted string, so a literal `"` or `\` in the
- * text breaks the selector. Escaping both makes any text safe to embed.
- */
-const escapeContainsText = (text: string) =>
-  text.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+import { escapeContainsText, POPPER_SELECTOR } from './selectors'
 
 /**
  * The may-be-absent counterpart to `getPopup`, named after Testing Library's

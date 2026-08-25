@@ -29,6 +29,7 @@ const registerNone = () =>
       'getTooltip',
       'hoverAnchor',
       'queryPopup',
+      'queryTooltip',
       'selectOption',
       'setChecked',
       'toggleControl',
@@ -331,6 +332,17 @@ describe('picasso-cypress-utils', () => {
       cy.getTooltip().should('be.visible')
       cy.getByTestId('save').unhoverAnchor()
       cy.getTooltip().should('not.exist')
+    })
+
+    it('queryTooltip passes negative assertions inside an absent tooltip', () => {
+      cy.mount(<DisabledTriggerTooltip />)
+
+      cy.queryTooltip().should('not.exist')
+      // the trap queryTooltip exists for: looking inside a tooltip that is not open
+      cy.queryTooltip('div', 'Why this is disabled').should('not.exist')
+
+      cy.getByTestId('save').hoverAnchor()
+      cy.queryTooltip('div', 'Why this is disabled').should('exist')
     })
 
     it('yields the anchor for chaining', () => {
