@@ -32,6 +32,7 @@ const registerNone = () =>
       'selectOption',
       'setChecked',
       'toggleControl',
+      'unhoverAnchor',
     ],
   })
 
@@ -84,6 +85,18 @@ const Toggles = () => {
     </Container>
   )
 }
+
+const QuotedOptionSelect = () => (
+  <Container padded='medium'>
+    <Select
+      data-testid='quoted'
+      onChange={() => {}}
+      options={[{ value: 'q', text: 'The "Best" Option' }]}
+      placeholder='Pick…'
+      value=''
+    />
+  </Container>
+)
 
 const SelectHarness = () => {
   const [value, setValue] = useState<SelectValueType>('')
@@ -280,7 +293,7 @@ describe('picasso-cypress-utils', () => {
       cy.mount(<SelectHarness />)
 
       cy.queryPopup().should('not.exist')
-      cy.queryPopup('[role="option"]:contains("Croatia")').should('not.exist')
+      cy.queryPopup('[role="option"]', 'Croatia').should('not.exist')
     })
 
     it('passes when the popup is open without the option', () => {
@@ -288,8 +301,16 @@ describe('picasso-cypress-utils', () => {
 
       cy.getByTestId('country').click()
       cy.getPopup().should('be.visible')
-      cy.queryPopup('[role="option"]:contains("Atlantis")').should('not.exist')
-      cy.queryPopup('[role="option"]:contains("Croatia")').should('exist')
+      cy.queryPopup('[role="option"]', 'Atlantis').should('not.exist')
+      cy.queryPopup('[role="option"]', 'Croatia').should('exist')
+    })
+
+    it('matches text containing quotes, which jQuery :contains cannot', () => {
+      cy.mount(<QuotedOptionSelect />)
+
+      cy.getByTestId('quoted').click()
+      cy.queryPopup('[role="option"]', 'The "Best" Option').should('exist')
+      cy.queryPopup('[role="option"]', 'No "Such" Option').should('not.exist')
     })
   })
 
@@ -303,6 +324,15 @@ describe('picasso-cypress-utils', () => {
       cy.getTooltip().should('contain', 'Why this is disabled')
     })
 
+    it('closes the tooltip again via unhoverAnchor', () => {
+      cy.mount(<DisabledTriggerTooltip />)
+
+      cy.getByTestId('save').hoverAnchor()
+      cy.getTooltip().should('be.visible')
+      cy.getByTestId('save').unhoverAnchor()
+      cy.getTooltip().should('not.exist')
+    })
+
     it('yields the anchor for chaining', () => {
       cy.mount(<DisabledTriggerTooltip />)
 
@@ -313,19 +343,12 @@ describe('picasso-cypress-utils', () => {
   })
 
   describe('registerPicassoCypressCommands', () => {
-    // The support file already registered every command. The duplicate rules
-    // are asymmetric: plain Commands.add silently lets the last registration
-    // win, while a duplicate *query* command (toggleControl) makes Cypress
-    // throw — so a bare repeat call fails loudly, and re-running registration
-    // means skipping the queries.
-    it('throws on a repeat registration of the query commands', () => {
-      expect(registerAll).to.throw()
-    })
-
-    it('re-registers cleanly when the query commands are skipped', () => {
-      expect(() =>
-        registerPicassoCypressCommands({ skip: ['toggleControl'] })
-      ).not.to.throw()
+    // The support file already registered every command, so these calls are
+    // repeats. Cypress throws on a duplicate *query* command and silently
+    // overwrites a duplicate regular one — neither is useful, so registration
+    // is idempotent and a repeat call is simply a no-op.
+    it('is idempotent — a repeat call does not throw', () => {
+      expect(registerAll).not.to.throw()
     })
 
     it('accepts a skip list covering every command', () => {

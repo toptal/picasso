@@ -28,10 +28,9 @@ import { registerPicassoCypressCommands } from '@toptal/picasso-cypress-utils'
 registerPicassoCypressCommands()
 ```
 
-If your repo already owns one of these names — say a hand-rolled `setChecked`
-from an earlier migration layer — skip it, or whichever registration runs last
-silently overwrites the other (Cypress only throws for duplicate _query_
-commands):
+Calling it twice is safe — registration is idempotent, so a support file pulled
+in twice cannot crash the run. To keep your own implementation of a name
+instead, skip it:
 
 ```ts
 registerPicassoCypressCommands({ skip: ['setChecked'] })
@@ -50,17 +49,18 @@ the support file, add a reference:
 
 ## Commands
 
-| Command                     | Subject | What it does                                                |
-| --------------------------- | ------- | ----------------------------------------------------------- |
-| `cy.getPopup()`             | —       | The open Select/Dropdown/Menu/Autocomplete/DatePicker popup |
-| `cy.getTooltip()`           | —       | The open Tooltip                                            |
-| `.setChecked(desired?)`     | element | Ensures a Checkbox/Switch state                             |
-| `.assertChecked(desired?)`  | element | Asserts checked state                                       |
-| `.assertDisabled(desired?)` | element | Asserts disabled state                                      |
-| `.selectOption(target)`     | element | Opens a Select from its trigger and picks an option         |
-| `.toggleControl()`          | element | Yields the visible role element from any subject shape      |
-| `cy.queryPopup(inner?)`     | —       | One-query popup lookup, for negative assertions             |
-| `.hoverAnchor()`            | element | Hovers a Tooltip's anchor — for natively disabled triggers  |
+| Command                        | Subject | What it does                                                |
+| ------------------------------ | ------- | ----------------------------------------------------------- |
+| `cy.getPopup()`                | —       | The open Select/Dropdown/Menu/Autocomplete/DatePicker popup |
+| `cy.getTooltip()`              | —       | The open Tooltip                                            |
+| `.setChecked(desired?)`        | element | Ensures a Checkbox/Switch state                             |
+| `.assertChecked(desired?)`     | element | Asserts checked state                                       |
+| `.assertDisabled(desired?)`    | element | Asserts disabled state                                      |
+| `.selectOption(target)`        | element | Opens a Select from its trigger and picks an option         |
+| `.toggleControl()`             | element | Yields the visible role element from any subject shape      |
+| `cy.queryPopup(inner?, text?)` | —       | One-query popup lookup, for negative assertions             |
+| `.hoverAnchor()`               | element | Hovers a Tooltip's anchor — for natively disabled triggers  |
+| `.unhoverAnchor()`             | element | Moves the pointer off the anchor — closes the tooltip       |
 
 Deliberately **not** included: generic queries like `getByTestId` /
 `findByTestId`. Every Toptal app already ships its own (with differing
@@ -85,11 +85,13 @@ cy.getByTestId('pinned').toggleControl().click()
 cy.get('@onChange').should('have.been.calledOnce')
 
 // negative assertions that tolerate an absent popup
-cy.queryPopup('[role="option"]:contains("X")').should('not.exist')
+cy.queryPopup('[role="option"]', 'X').should('not.exist')
 
 // tooltip on a natively disabled control — hover the anchor, no force
 cy.getByTestId('save').hoverAnchor()
 cy.getTooltip().should('contain', 'Why this is disabled')
+cy.getByTestId('save').unhoverAnchor()
+cy.getTooltip().should('not.exist')
 ```
 
 ## Why these, and not the obvious thing
@@ -118,7 +120,9 @@ cy.getTooltip().should('contain', 'Why this is disabled')
   `getPopup().contains(x).should('not.exist')` fails on the _command_ when the
   popup is legitimately absent (only the last query gets the `not.exist`
   waiver). `queryPopup` folds the inner selector into **one** query, so the
-  waiver covers the whole lookup — attach the `should` directly.
+  waiver covers the whole lookup — attach the `should` directly. Pass the text
+  as the second argument rather than writing `:contains(…)`: the value is
+  escaped, so quotes and backslashes in labels are safe.
 - **`hoverAnchor()`** — a natively disabled control swallows pointer events,
   so hovering it never opens its tooltip; the historical workaround,
   `trigger('mouseover', { force: true })`, fires handlers through a channel

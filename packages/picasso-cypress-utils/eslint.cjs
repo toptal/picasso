@@ -32,6 +32,22 @@ const SET_CHECKED_MESSAGE =
  * Spread into your own `no-restricted-syntax` list — these are additive, so an
  * app keeps whatever bans it already has.
  */
+const HOVER_ANCHOR_MESSAGE =
+  "trigger('mouseover', { force: true }) fires a hover through a channel real " +
+  'pointers never reach, so it can pass against a tooltip no user can open. ' +
+  'Use cy.hoverAnchor() — it resolves the tooltip anchor and hovers it ' +
+  'unforced. If the plain unforced hover already works, just drop the force.'
+
+/**
+ * Spread into your own `no-restricted-syntax` list — these are additive, so an
+ * app keeps whatever bans it already has.
+ *
+ * Deliberately NOT banned: literal `[role=checkbox]`/`[role=switch]`
+ * selectors. `setChecked`/`toggleControl` replace most of them, but multi-control
+ * lookups are legitimate (staff-portal has
+ * `.find('[role="checkbox"]').last()` over a group, which `toggleControl`
+ * rejects by design), so a blanket ban would be noise rather than signal.
+ */
 const restrictedSyntax = [
   {
     selector: 'Literal[value=/data-picasso-popper/]',
@@ -45,6 +61,11 @@ const restrictedSyntax = [
     selector:
       "CallExpression[callee.property.name=/^(check|uncheck)$/] ObjectExpression > Property[key.name='force'][value.value=true]",
     message: SET_CHECKED_MESSAGE,
+  },
+  {
+    selector:
+      "CallExpression[callee.property.name='trigger'][arguments.0.value=/^mouse(over|enter)$/] ObjectExpression > Property[key.name='force'][value.value=true]",
+    message: HOVER_ANCHOR_MESSAGE,
   },
 ]
 
