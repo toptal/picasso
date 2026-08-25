@@ -71548,7 +71548,7 @@ try {
     // @ts-ignore
     Logo.displayName = "Logo";
     // @ts-ignore
-    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"black\"" }, { "value": "\"default\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"default\"" }, { "value": "\"black\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -158607,4 +158607,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.0f209857.iframe.bundle.js.map
+//# sourceMappingURL=main.ec454dd2.iframe.bundle.js.map
