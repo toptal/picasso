@@ -98,10 +98,16 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
     <button
       ref={buttonRef}
       type='button'
-      data-testid={`day-button-${
-        isSelected ? 'selected' : getDayFormatted(date)
-      }`}
+      // Stable and unique: the day number never changes with selection state
+      // (read that from `data-selected` / `aria-selected` instead), and an
+      // outside-month cell is prefixed so it cannot collide with the in-month
+      // cell showing the same number. `data-calendar-day` is the ISO-dated
+      // hook when you want one selector that is unique across months.
+      data-testid={`day-button-${isOutside ? 'outside-' : ''}${getDayFormatted(
+        date
+      )}`}
       data-calendar-day={isoDate}
+      data-selected={isSelected || undefined}
       tabIndex={isDisabled ? -1 : undefined}
       className={twJoin(
         'h-10 w-10 min-w-10',

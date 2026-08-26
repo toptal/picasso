@@ -28,6 +28,12 @@ const SET_CHECKED_MESSAGE =
   'Base UI input. Use cy.setChecked(desired?), which clicks the visible role ' +
   'element only when the state differs.'
 
+const GET_TOOLTIP_MESSAGE =
+  'Use cy.getTooltip() (or cy.queryTooltip() for negative assertions) instead ' +
+  'of selecting [role="tooltip"] directly — they scope to the visible tooltip ' +
+  'and escape cy.within(). Note only real Tooltips carry this role; ' +
+  'Select/Dropdown poppers do not, so use cy.getPopup() for those.'
+
 /**
  * Spread into your own `no-restricted-syntax` list — these are additive, so an
  * app keeps whatever bans it already has.
@@ -41,6 +47,10 @@ const HOVER_ANCHOR_MESSAGE =
 /**
  * Spread into your own `no-restricted-syntax` list — these are additive, so an
  * app keeps whatever bans it already has.
+ *
+ * Apply them to spec globs and **exclude your Cypress support/utils layer** —
+ * that layer legitimately touches the raw markers (it is where `getPopup`,
+ * `getTooltip` and geometry-settling helpers live).
  *
  * Deliberately NOT banned: literal `[role=checkbox]`/`[role=switch]`
  * selectors. `setChecked`/`toggleControl` replace most of them, but multi-control
@@ -66,6 +76,14 @@ const restrictedSyntax = [
     selector:
       "CallExpression[callee.property.name='trigger'][arguments.0.value=/^mouse(over|enter)$/] ObjectExpression > Property[key.name='force'][value.value=true]",
     message: HOVER_ANCHOR_MESSAGE,
+  },
+  {
+    selector: 'Literal[value=/\\[role=.?tooltip/]',
+    message: GET_TOOLTIP_MESSAGE,
+  },
+  {
+    selector: 'TemplateElement[value.raw=/\\[role=.?tooltip/]',
+    message: GET_TOOLTIP_MESSAGE,
   },
 ]
 

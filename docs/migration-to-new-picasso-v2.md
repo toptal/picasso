@@ -769,6 +769,11 @@ On an older Picasso, or if you still see mobile branches in tests:
   scattering `cy.viewport(1280, 800)` per spec.
 - Per-spec, use `cy.viewport(1280, 800)` (a width comfortably inside `lg`;
   exactly 1024 can flip on scrollbar width). Never work around it in app code.
+- Both breakpoint APIs agree under `responsive={false}`: `useBreakpoint` (media
+  queries) and `useScreens`/`isScreenSize` (pixel values) both report `lg` for
+  every width below `xl`. If you are on a Picasso that has PF-2282 but not this
+  follow-up, `isScreenSize('md', 800)` still returns `true` while
+  `useBreakpoint('md')` returns `false` — query `lg`, not `md`.
 - `PicassoBreakpoints.reset()` restores the responsive defaults —
   `disableMobileBreakpoints()` is process-wide and one-way, so call it in an
   `afterEach` to stop `responsive={false}` leaking between tests.

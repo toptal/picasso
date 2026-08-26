@@ -109,9 +109,13 @@ module.exports = {
         ...generateSameSettingRules(ssrFriendlyRuleNames, 'off'),
       },
     },
-    // Cypress specs and support files
+    // Cypress specs. The support layer is excluded: it legitimately touches the
+    // raw markers the bans point away from (geometry-settling reads
+    // `[role="tooltip"]`), the same carve-out consumers make for their own
+    // cypress-utils package.
     {
       files: ['cypress/**/*.ts', 'cypress/**/*.tsx', 'cypress/**/*.jsx'],
+      excludedFiles: ['cypress/support/**'],
       rules: {
         'no-restricted-syntax': ['error', ...picassoCypressRestrictedSyntax],
       },

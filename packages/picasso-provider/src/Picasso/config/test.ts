@@ -235,6 +235,23 @@ describe('non-responsive breakpoint utils', () => {
     })
   })
 
+  describe('the two breakpoint APIs agree', () => {
+    // Media queries drive useBreakpoint; pixel values drive
+    // useScreens/isScreenSize. They must never disagree about one width.
+    it.each([SCREEN_SIZES.medium, 822, 1000, SCREEN_SIZES.large])(
+      'reports the same breakpoint at %ipx',
+      width => {
+        mockViewportWidth(width)
+
+        const { result } = renderHook(() => useBreakpoint('lg'))
+
+        expect(result.current).toBe(true)
+        expect(isScreenSize('lg', width)).toBeTruthy()
+        expect(isScreenSize('md', width)).toBeFalsy()
+      }
+    )
+  })
+
   describe('screen size checks', () => {
     it('small breakpoint no screen size', () => {
       const isSmall = isScreenSize('sm')
@@ -266,10 +283,13 @@ describe('non-responsive breakpoint utils', () => {
       expect(isMedium).toBeFalsy()
     })
 
-    it('medium breakpoint on a medium screen', () => {
+    // With mobile breakpoints off there is one desktop floor, so a medium
+    // width reports `lg`, not `md`. Previously the pixel API said `md` here
+    // while `useBreakpoint('md')` said false, because `md` is blanked.
+    it('does not report medium on a medium screen — everything under xl is lg', () => {
       const isMedium = isScreenSize('md', SCREEN_SIZES.medium)
 
-      expect(isMedium).toBeTruthy()
+      expect(isMedium).toBeFalsy()
     })
 
     it('medium breakpoint on a large screen', () => {
@@ -278,10 +298,10 @@ describe('non-responsive breakpoint utils', () => {
       expect(isMedium).toBeFalsy()
     })
 
-    it('large breakpoint on a medium screen', () => {
+    it('reports large on a medium screen — the desktop floor drops to 768', () => {
       const isLarge = isScreenSize('lg', SCREEN_SIZES.medium)
 
-      expect(isLarge).toBeFalsy()
+      expect(isLarge).toBeTruthy()
     })
 
     it('large breakpoint on a large screen', () => {
