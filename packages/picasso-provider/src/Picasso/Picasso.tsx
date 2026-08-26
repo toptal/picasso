@@ -60,7 +60,7 @@ const Picasso = ({
       responsive={responsive}
     >
       <HelmetProvider disabled={disableHelmet}>
-        {fixViewport && <FixViewport />}
+        {fixViewport && <FixViewport responsive={responsive} />}
         {loadFonts && <FontsLoader />}
         {loadFavicon && <Favicon environment={environment} />}
         <NotificationsProvider container={notificationContainer}>

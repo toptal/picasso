@@ -516,7 +516,7 @@ Assert **semantically**:
 | Wrapped-subject chains (`this.modal.findByTestId(…).find(…)`) failing with _"the page updated"_                                                                                               | Use one **atomic** selector — `cy.get('div[role="dialog"] [data-testid=…] …')` — so Cypress retries the whole query; give each action its own fresh chain instead of `.click().clear().type()`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Async-populated options/radios intermittently "not found" on CI                                                                                                                               | Use a retryable atomic selector that includes the expected value (`.find('input[value="…"]')`, `.contains(text)`), let `.should()` gate on it, then assert the resulting state — this waits for the option to actually mount.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Selectors coupled to old markup (`label.picasso-checkbox`, `span[role="slider"]`, tag+structure)                                                                                              | Query by role or testid — the role survived the migration, the tag and structure did not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Desktop-only UI missing at the component viewport                                                                                                                                             | See [`responsive={false}` breakpoint gap](#the-responsivefalse-breakpoint-gap); add `cy.viewport(1280, 800)`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Desktop-only UI missing at the component viewport                                                                                                                                             | Fixed upstream (PF-2282) — see [`responsive={false}` breakpoint gap](#the-responsivefalse-breakpoint-gap); on older versions add `cy.viewport(1280, 800)`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 > **Checkbox/switch input relationship in Cypress:** because the hidden input is
 > a **sibling** of the role element, from a testid on the role element the input
@@ -529,19 +529,34 @@ Assert **semantically**:
 
 ### The `responsive={false}` breakpoint gap
 
-If your test wrapper mounts `<Picasso responsive={false}>` (common), be aware of
-a real upstream bug: `responsive={false}` calls `disableMobileBreakpoints()`,
-which **empties** the `xs`/`sm`/`md` media-query strings and leaves `lg` starting
-at 1024px. That creates a **dead zone at 768–1023.98px** where _no_ breakpoint
-matches, so at the default Cypress component viewport (822px) desktop checks like
-`useBreakpoint(['md','lg','xl'])` return `false` and components render their
-**mobile** branch — the opposite of what `responsive={false}` intends.
+**Fixed upstream in PF-2282** — no workaround needed on a Picasso version that
+includes it.
 
-- **Consumer-side fix:** `cy.viewport(1280, 800)` in specs that assert
+If your test wrapper mounts `<Picasso responsive={false}>` (common), older
+Picasso versions hit a real upstream bug: `responsive={false}` calls
+`disableMobileBreakpoints()`, which **empties** the `xs`/`sm`/`md` media-query
+strings and left `lg` starting at 1024px. That created a **dead zone at
+768–1023.98px** where _no_ breakpoint matched, so at the default Cypress
+component viewport (822px) desktop checks like `useBreakpoint(['md','lg','xl'])`
+returned `false` and components rendered their **mobile** branch — the opposite
+of what `responsive={false}` intends.
+
+PF-2282 widens `lg` to `(max-width: 1439.98px)` when mobile breakpoints are
+disabled, making it the desktop floor: desktop checks now hold at every width,
+and compact checks (`useBreakpoint(['xs','sm','md'])`) stay `false`. It also
+pins the layout viewport to `width=768` so **mobile browsers** evaluate CSS
+media queries (Tailwind's `md:` variants included) at the width the JS
+breakpoints assume.
+
+- **On an older version:** `cy.viewport(1280, 800)` in specs that assert
   desktop-gated UI (pick a width comfortably inside `lg`; exactly 1024 can flip
   on scrollbar width).
-- This is an upstream bug (`md` should match everything below `lg`, not nothing)
-  — report it rather than baking workarounds into app code.
+- **Still true after PF-2282:** the viewport pin does not reach **iframes**, so
+  Cypress component tests rely on the hook fix, not on it. Component-level CSS
+  breakpoints in an iframe still follow the real frame width.
+- **Isolate tests that mount it:** `disableMobileBreakpoints()` is process-wide
+  and one-way, so call `PicassoBreakpoints.reset()` in an `afterEach` — otherwise
+  a `responsive={false}` case leaks into every test after it.
 
 **Done when:** the Cypress component + e2e suites pass without deleting
 assertions.
@@ -942,8 +957,8 @@ version matrices; reconcile required-check names. **Gate:** Happo reviewed,
 2. **Cypress can't find / interact with an element** → identify the primitive
    (Select / Checkbox / Button-as-Link / Drawer) and apply the matching Cypress
    matrix row.
-3. **Desktop UI mysteriously absent** → `responsive={false}` breakpoint gap; add
-   the viewport.
+3. **Desktop UI mysteriously absent** → `responsive={false}` breakpoint gap;
+   fixed in PF-2282, otherwise add the viewport.
 4. **Happo diff** → vendor Tailwind package missing from `content` globs? Drawer/
    Modal sass `position` on the paper? Otherwise compare against the intended
    restyle before accepting a new baseline.
@@ -960,16 +975,16 @@ version matrices; reconcile required-check names. **Gate:** Happo reviewed,
 
 ### Upstream issue status (as of the v100 line)
 
-| Item                                                                   | Status                      | Consumer impact                                                                                                                                                                                                                                             |
-| ---------------------------------------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PF-2243 duplicate `role="dialog"`                                      | **Fixed**                   | Plain `findByRole('dialog')` works; remove `findAllByRole('dialog')[0]` workarounds.                                                                                                                                                                        |
-| PF-2244 duplicate checkbox/switch label node                           | **Fixed**                   | Labels render once; no workaround.                                                                                                                                                                                                                          |
-| PF-2230 Popper default role                                            | **Fixed**                   | Popper defaults to `role="tooltip"`; Select/Dropdown poppers are `presentation`.                                                                                                                                                                            |
-| PF-2256 / PR #5040 label-activation click no-op                        | **Intentional (permanent)** | Opening a Select by clicking its `<label>` no longer works — click the control.                                                                                                                                                                             |
-| PF-2253 focus-opened tooltip flips over its trigger and steals a click | **Fixed**                   | Pointer-modality focus no longer opens tooltips — remove `click({ force: true })` exceptions and hide-before-Happo workarounds; guard full-page snapshots with `cy.get('[role="tooltip"]').should('not.exist')`.                                            |
-| Label-wrapper clicks on Checkbox/Switch didn't toggle (early alphas)   | **Fixed**                   | `FormControlLabel` (`labelId` variant) forwards non-interactive wrapper clicks to the hidden input — testid/wrapper-click tests written against pre-migration code work again; revert early-alpha rewrites (verified: staff-portal reverted two wholesale). |
-| PF-2248 body-center click lands inside an open DatePicker popup        | **Open**                    | Corner click: `cy.get('body').click(5, 5)`.                                                                                                                                                                                                                 |
-| `responsive={false}` empties `md`, dead zone 768–1023.98px             | **Open — report upstream**  | Add `cy.viewport(1280, 800)` in specs; do not work around in app code.                                                                                                                                                                                      |
+| Item                                                                                             | Status                                | Consumer impact                                                                                                                                                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PF-2243 duplicate `role="dialog"`                                                                | **Fixed**                             | Plain `findByRole('dialog')` works; remove `findAllByRole('dialog')[0]` workarounds.                                                                                                                                                                                                                               |
+| PF-2244 duplicate checkbox/switch label node                                                     | **Fixed**                             | Labels render once; no workaround.                                                                                                                                                                                                                                                                                 |
+| PF-2230 Popper default role                                                                      | **Fixed**                             | Popper defaults to `role="tooltip"`; Select/Dropdown poppers are `presentation`.                                                                                                                                                                                                                                   |
+| PF-2256 / PR #5040 label-activation click no-op                                                  | **Intentional (permanent)**           | Opening a Select by clicking its `<label>` no longer works — click the control.                                                                                                                                                                                                                                    |
+| PF-2253 focus-opened tooltip flips over its trigger and steals a click                           | **Fixed**                             | Pointer-modality focus no longer opens tooltips — remove `click({ force: true })` exceptions and hide-before-Happo workarounds; guard full-page snapshots with `cy.get('[role="tooltip"]').should('not.exist')`.                                                                                                   |
+| Label-wrapper clicks on Checkbox/Switch didn't toggle (early alphas)                             | **Fixed**                             | `FormControlLabel` (`labelId` variant) forwards non-interactive wrapper clicks to the hidden input — testid/wrapper-click tests written against pre-migration code work again; revert early-alpha rewrites (verified: staff-portal reverted two wholesale).                                                        |
+| PF-2248 body-center click lands inside an open DatePicker popup                                  | **Open**                              | Corner click: `cy.get('body').click(5, 5)`.                                                                                                                                                                                                                                                                        |
+| PF-2282 `responsive={false}` dead zone 768–1023.98px                                             | **Fixed**                             | `lg` is the desktop floor when mobile breakpoints are off; drop `cy.viewport` workarounds.                                                                                                                                                                                                                         |
 | Nested-dialog backdrop suppressed — a Modal opened above an open Drawer renders no grey backdrop | **Open — fix in progress in Picasso** | Base UI suppresses backdrops of dialogs nested in another dialog's portal. Interim: staff-portal patches `@toptal/picasso-modal` to pass `forceRender` to `BaseUIDialog.Backdrop` (exposed as `forceRenderBackdrop`, default `true`) — take the same pnpm patch if your app opens dialogs above dialogs (Step 8c). |
 
 ### DOM / role cheat-sheet

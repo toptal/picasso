@@ -11,40 +11,60 @@ type BreakpointsList = {
   [key: string]: number
 }
 
+const DEFAULT_BREAKPOINT_VALUES: BreakpointValues = {
+  xs: 0,
+  sm: 480,
+  md: 768,
+  lg: 1024,
+  xl: 1440,
+}
+
+const createMediaQueries = ({ sm, md, lg, xl }: BreakpointValues) => ({
+  xs: `(max-width: ${sm - 0.02}px)`,
+  sm: `(min-width: ${sm}px) and (max-width: ${md - 0.02}px)`,
+  md: `(min-width: ${md}px) and (max-width: ${lg - 0.02}px)`,
+  lg: `(min-width: ${lg}px) and (max-width: ${xl - 0.02}px)`,
+  xl: `(min-width: ${xl}px)`,
+})
+
 class BreakpointProvider {
   breakpoints: Record<'values', BreakpointValues> = {
-    values: {
-      xs: 0,
-      sm: 480,
-      md: 768,
-      lg: 1024,
-      xl: 1440,
-    },
+    values: { ...DEFAULT_BREAKPOINT_VALUES },
   }
 
   mediaQueries: {
     [key in BreakpointKeys]: string
-  }
+  } = createMediaQueries(DEFAULT_BREAKPOINT_VALUES)
 
-  constructor() {
-    const { sm, md, lg, xl } = this.breakpoints.values
-
-    this.mediaQueries = {
-      xs: `(max-width: ${sm - 0.02}px)`,
-      sm: `(min-width: ${sm}px) and (max-width: ${md - 0.02}px)`,
-      md: `(min-width: ${md}px) and (max-width: ${lg - 0.02}px)`,
-      lg: `(min-width: ${lg}px) and (max-width: ${xl - 0.02}px)`,
-      xl: `(min-width: ${xl}px)`,
-    }
-  }
-
+  /**
+   * Stops `xs`/`sm`/`md` from matching, for `<Picasso responsive={false}>`.
+   * `lg` widens to the desktop floor — left at 1024px it made 768–1023.98px
+   * match nothing, so `useBreakpoint(['md', 'lg', 'xl'])` was `false` there.
+   */
   disableMobileBreakpoints() {
+    const { xl } = this.breakpoints.values
+
     this.breakpoints.values.xs = 768
     this.breakpoints.values.sm = 768
 
     this.mediaQueries.xs = ''
     this.mediaQueries.sm = ''
     this.mediaQueries.md = ''
+    this.mediaQueries.lg = `(max-width: ${xl - 0.02}px)`
+  }
+
+  /**
+   * Restores the responsive defaults, in place so the exported
+   * `breakpointsList` alias stays live. `disableMobileBreakpoints()` is
+   * process-wide and one-way — tests mounting `responsive={false}` call this
+   * in an `afterEach` to avoid leaking.
+   */
+  reset() {
+    Object.assign(this.breakpoints.values, DEFAULT_BREAKPOINT_VALUES)
+    Object.assign(
+      this.mediaQueries,
+      createMediaQueries(DEFAULT_BREAKPOINT_VALUES)
+    )
   }
 }
 
