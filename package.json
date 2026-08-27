@@ -40,6 +40,7 @@
     "release": "pnpm build:package && ./scripts/npm-publish-retry.sh",
     "start": "pnpm -s build:package && concurrently --names build,storybook --raw 'pnpm build:package:watch' 'pnpm start:storybook'",
     "start:storybook": "start-storybook -p 9001 -c .storybook",
+    "start:storybook:react19": "cross-env STORYBOOK_REACT_19=1 start-storybook -p 9001 -c .storybook",
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "syncpack": "pnpm syncpack:list & pnpm syncpack:fix",
