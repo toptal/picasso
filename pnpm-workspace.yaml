@@ -1,6 +1,8 @@
 packages:
   - 'packages/*'
   - 'packages/base/*'
+  # React 19 validation harness (not published; see jest.react19.mjs)
+  - 'react19'
 autoInstallPeers: true
 linkWorkspacePackages: true
 
@@ -66,8 +68,8 @@ overrides:
 # be satisfied, and Base UI wins: it is the primitive layer the kit is moving
 # to. react-day-picker v8 is verified to work on v4 — it imports date-fns only
 # through named barrel imports, and all 31 functions it uses are unchanged in
-# v4. This entry goes away with the react-day-picker v9+ migration: from 9.0.0
-# on, date-fns is a regular dependency of the package and not a peer at all.
+# v4. This entry goes away with the react-day-picker v9+ migration [PF-2297]:
+# from 9.0.0 on, date-fns is a regular dependency of the package and not a peer at all.
 peerDependencyRules:
   allowedVersions:
     'react-day-picker>date-fns': '4'

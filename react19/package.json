@@ -1,0 +1,12 @@
+{
+  "name": "picasso-react19-harness",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Isolated React 19 install for the test:react19 harness (PF-2262 workstream E). Lives in its own workspace member so React 19 never participates in the root's peer resolution; jest.react19.mjs maps react/react-dom/@testing-library imports here.",
+  "dependencies": {
+    "react-dom19": "npm:react-dom@^19.2.0",
+    "react19": "npm:react@^19.2.0",
+    "testing-library-dom-v10": "npm:@testing-library/dom@^10.4.0",
+    "testing-library-react19": "npm:@testing-library/react@^16.3.0"
+  }
+}
