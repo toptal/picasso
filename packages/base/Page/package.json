@@ -38,7 +38,8 @@
     "@toptal/picasso-tooltip": "workspace:*",
     "@toptal/picasso-typography": "workspace:*",
     "@toptal/picasso-user-badge": "workspace:*",
-    "@toptal/picasso-utils": "workspace:*"
+    "@toptal/picasso-utils": "workspace:*",
+    "react-helmet-async": "3.0.0"
   },
   "sideEffects": [
     "**/styles.ts",
