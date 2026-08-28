@@ -1,7 +1,5 @@
 export type SlideDirection = 'up' | 'down' | 'left' | 'right'
 
-// Historical mapping: `direction` is where the element travels TO on
-// enter, so it rests hidden on the opposite side
 const hiddenClassByDirection: Record<SlideDirection, string> = {
   right: '-translate-x-full',
   left: 'translate-x-full',

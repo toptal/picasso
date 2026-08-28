@@ -89,6 +89,9 @@ const useTransitionStatus = <T extends HTMLElement>(
   })
 
   const prevInRef = useRef<boolean | null>(null)
+  const pendingSettleRef = useRef<
+    { phase: 'enter'; isAppearing: boolean } | { phase: 'exit' } | null
+  >(null)
 
   useIsomorphicLayoutEffect(() => {
     const prevIn = prevInRef.current
@@ -96,11 +99,53 @@ const useTransitionStatus = <T extends HTMLElement>(
 
     prevInRef.current = inProp
 
-    // Effect replay without an `in` flip (StrictMode double invocation):
-    // skip rather than double-fire the start callbacks, matching
-    // react-transition-group's cancelled-settle behavior
+    const timeouts = getTransitionTimeouts(optionsRef.current.timeout)
+
+    const scheduleEnterSettle = (isAppearing: boolean) =>
+      setTimeout(
+        () => {
+          pendingSettleRef.current = null
+          setStatus('entered')
+
+          const settledNode = nodeRef.current
+
+          if (settledNode) {
+            optionsRef.current.onEntered?.(settledNode, isAppearing)
+          }
+        },
+        isAppearing ? timeouts.appear : timeouts.enter
+      )
+
+    const scheduleExitSettle = () =>
+      setTimeout(() => {
+        pendingSettleRef.current = null
+        setStatus('exited')
+
+        const settledNode = nodeRef.current
+
+        if (settledNode) {
+          optionsRef.current.onExited?.(settledNode)
+        }
+      }, timeouts.exit)
+
+    // Effect replay without an `in` flip (StrictMode double invocation): never
+    // re-fire the start callbacks, but reschedule a settle the replay's
+    // cleanup cancelled so the transition still completes. (For comparison,
+    // react-transition-group re-runs performEnter here, double-firing onEnter
+    // in dev; we settle without the double-fire.)
     if (prevIn === inProp) {
-      return
+      const pending = pendingSettleRef.current
+
+      if (!pending) {
+        return
+      }
+
+      const timer =
+        pending.phase === 'enter'
+          ? scheduleEnterSettle(pending.isAppearing)
+          : scheduleExitSettle()
+
+      return () => clearTimeout(timer)
     }
 
     // Mounting hidden never exits; mounting shown enters only with `appear`
@@ -108,7 +153,6 @@ const useTransitionStatus = <T extends HTMLElement>(
       return
     }
 
-    const timeouts = getTransitionTimeouts(optionsRef.current.timeout)
     const node = nodeRef.current
 
     const performEnter = () => {
@@ -124,18 +168,9 @@ const useTransitionStatus = <T extends HTMLElement>(
         optionsRef.current.onEntering?.(node, isAppearing)
       }
 
-      return setTimeout(
-        () => {
-          setStatus('entered')
+      pendingSettleRef.current = { phase: 'enter', isAppearing }
 
-          const settledNode = nodeRef.current
-
-          if (settledNode) {
-            optionsRef.current.onEntered?.(settledNode, isAppearing)
-          }
-        },
-        isAppearing ? timeouts.appear : timeouts.enter
-      )
+      return scheduleEnterSettle(isAppearing)
     }
 
     const performExit = () => {
@@ -149,15 +184,9 @@ const useTransitionStatus = <T extends HTMLElement>(
         optionsRef.current.onExiting?.(node)
       }
 
-      return setTimeout(() => {
-        setStatus('exited')
+      pendingSettleRef.current = { phase: 'exit' }
 
-        const settledNode = nodeRef.current
-
-        if (settledNode) {
-          optionsRef.current.onExited?.(settledNode)
-        }
-      }, timeouts.exit)
+      return scheduleExitSettle()
     }
 
     const timer = inProp ? performEnter() : performExit()
