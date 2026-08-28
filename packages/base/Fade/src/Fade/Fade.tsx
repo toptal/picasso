@@ -50,8 +50,7 @@ export const Fade = React.forwardRef<HTMLDivElement, Props>(function Fade(
     className: twMerge(
       'transition-opacity',
       children.props.className,
-      // State classes stay after the child's className: behavior, not
-      // overridable defaults
+      // behavior classes, not defaults — must stay after the child's className
       cx({
         'opacity-0': !inProp,
         invisible: status === 'exited' && !inProp,
