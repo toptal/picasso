@@ -1,4 +1,6 @@
+import React, { StrictMode } from 'react'
 import { renderHook, act } from '@testing-library/react-hooks'
+import { render, act as actDom } from '@testing-library/react'
 
 import type { UseTransitionStatusOptions } from '../use-transition-status'
 import useTransitionStatus, {
@@ -299,5 +301,54 @@ describe('useTransitionStatus', () => {
     expect(onExited).toHaveBeenCalledTimes(1)
     expect(onExited).toHaveBeenCalledWith(nodeRef.current)
     expect(result.current).toBe('unmounted')
+  })
+})
+
+describe('useTransitionStatus under StrictMode', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
+  // StrictMode replays the mount effect (setup -> cleanup -> setup); the
+  // cleanup cancels the pending settle timer, so the replay must reschedule
+  // it or an appear transition never leaves `entering`
+  it('settles an appear transition despite the double-invoked effect', () => {
+    const onEnter = jest.fn()
+    const onEntered = jest.fn()
+    const nodeRef = createNodeRef()
+
+    const Probe = () => {
+      const status = useTransitionStatus({
+        in: true,
+        appear: true,
+        timeout: 300,
+        nodeRef,
+        onEnter,
+        onEntered,
+      })
+
+      return <div data-testid='status'>{status}</div>
+    }
+
+    const { getByTestId } = render(
+      <StrictMode>
+        <Probe />
+      </StrictMode>
+    )
+
+    expect(getByTestId('status').textContent).toBe('entering')
+    expect(onEnter).toHaveBeenCalledTimes(1)
+
+    actDom(() => {
+      jest.advanceTimersByTime(300)
+    })
+
+    expect(getByTestId('status').textContent).toBe('entered')
+    expect(onEntered).toHaveBeenCalledTimes(1)
+    expect(onEntered).toHaveBeenCalledWith(nodeRef.current, true)
   })
 })

@@ -4,7 +4,7 @@ export const setActiveFieldTouched = <
   FormValues = object,
   InitialFormValues extends Partial<FormValues> = Partial<FormValues>
 >(
-  _: any[],
+  _: unknown[],
   state: MutableState<FormValues, InitialFormValues>
 ) => {
   const activeFieldName = state.formState.active

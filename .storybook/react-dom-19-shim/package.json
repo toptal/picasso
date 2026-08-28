@@ -1,0 +1,7 @@
+{
+  "name": "react-dom-19-shim",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.js",
+  "description": "STORYBOOK_REACT_19=1 alias target: react-dom 19 with an 18-prefixed version string so @storybook/react@6.5's version sniff takes its createRoot path (see .storybook/main.js)"
+}
