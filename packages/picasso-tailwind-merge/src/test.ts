@@ -1,6 +1,11 @@
 import * as picassoTailwindConfig from '@toptal/picasso-tailwind'
 
-import { CONFIG, PICASSO_TW_FONT_SIZES, twMerge } from './twMerge'
+import {
+  CONFIG,
+  PICASSO_TW_FONT_SIZES,
+  PICASSO_TW_SHADOWS,
+  twMerge,
+} from './twMerge'
 
 describe('twMerge', () => {
   it('merges font size classes correctly', () => {
@@ -9,11 +14,33 @@ describe('twMerge', () => {
     )
   })
 
+  it('merges box shadow classes correctly', () => {
+    expect(twMerge('shadow-1 shadow-5')).toBe('shadow-5')
+    expect(twMerge('shadow-5 shadow-none')).toBe('shadow-none')
+    expect(twMerge('shadow-1 shadow-[0_0_4px_red]')).toBe(
+      'shadow-[0_0_4px_red]'
+    )
+    // a shadow color is not a box shadow conflict
+    expect(twMerge('shadow-5 shadow-blue-500/[.48]')).toBe(
+      'shadow-5 shadow-blue-500/[.48]'
+    )
+  })
+
   describe('PICASSO_TW_FONT_SIZES', () => {
     it('contains all font sizes from picasso-tailwind', () => {
       expect(PICASSO_TW_FONT_SIZES).toStrictEqual(
         Object.keys(picassoTailwindConfig.theme.fontSize).map(
           key => `text-${key}`
+        )
+      )
+    })
+  })
+
+  describe('PICASSO_TW_SHADOWS', () => {
+    it('contains all box shadows from picasso-tailwind', () => {
+      expect(PICASSO_TW_SHADOWS).toStrictEqual(
+        Object.keys(picassoTailwindConfig.theme.boxShadow).map(
+          key => `shadow-${key}`
         )
       )
     })

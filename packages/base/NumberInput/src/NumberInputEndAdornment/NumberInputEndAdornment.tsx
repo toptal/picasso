@@ -128,7 +128,7 @@ export const NumberInputEndAdornment = ({
     'flex relative items-center justify-center align-middle',
     'p-0 bottom-0 cursor-pointer',
     'text-graphite-700 decoration-graphite-700 bg-transparent',
-    'border-y-0 border-x border-x-solid',
+    'border-y-0 border-x',
     'border-l-gray-400 border-r-transparent',
     'hover:bg-gray-400 hover:border-gray-400',
     '[&]:border-solid',

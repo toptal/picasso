@@ -143,7 +143,7 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
       <div
         {...rest}
         className={twMerge(
-          'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
+          'relative w-full flex flex-nowrap items-start shadow-none rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
           elevated && 'shadow-3 rounded-sm',
           variant
             ? classByVariant[`notification${capitalize(variant)}`]
