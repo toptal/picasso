@@ -125,7 +125,9 @@ cy.queryTooltip('strong', 'Required').should('not.exist')
   waiver). `queryPopup` folds the inner selector into **one** query, so the
   waiver covers the whole lookup — attach the `should` directly. Pass the text
   as the second argument rather than writing `:contains(…)`: the value is
-  escaped, so quotes and backslashes in labels are safe. `getTooltip()`/
+  escaped, so quotes and backslashes in labels are safe. Both arguments are
+  independently optional — pass `text` alone (`queryPopup(undefined, 'X')`) to
+  match the popup itself rather than a descendant. `getTooltip()`/
   `getPopup()` with a `should` attached directly is fine for the simple
   "nothing is open" case; reach for the `query*` form as soon as you need to
   look _inside_.
@@ -138,7 +140,10 @@ cy.queryTooltip('strong', 'Required').should('not.exist')
 
 ## Lint rules
 
-Ship-with-the-command bans that stop the replaced patterns coming back:
+Ship-with-the-command bans that stop the replaced patterns coming back —
+selecting `data-picasso-popper` directly, `check()/uncheck({ force: true })`,
+`trigger('mouseover'|'mouseenter', { force: true })`, and selecting
+`role="tooltip"` directly:
 
 ```js
 // .eslintrc.js
@@ -154,7 +159,11 @@ module.exports = {
 }
 ```
 
-`createCypressOverride(files?)` returns that `overrides` entry ready-made.
+`createCypressOverride(files?, excludedFiles?)` returns that `overrides` entry
+ready-made. It excludes `**/cypress/support/**` by default: your command layer
+is the one place that legitimately touches these raw markers, since it is where
+`getPopup`/`getTooltip` are implemented. Pass your own exclusions if that layer
+lives elsewhere.
 
 One ESLint gotcha (hit by the first adopter): `overrides` **replace** a rule's
 options rather than merging them. If another override already configures

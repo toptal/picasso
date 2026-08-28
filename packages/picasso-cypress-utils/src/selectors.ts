@@ -45,3 +45,27 @@ export const NATIVE_CONTROL_SELECTOR = 'input, button, select, textarea'
  */
 export const escapeContainsText = (text: string) =>
   text.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+
+/**
+ * Builds the one compound selector behind `queryPopup` / `queryTooltip`.
+ *
+ * Folding popper, descendant and text into a single selector keeps the whole
+ * lookup inside **one** built-in query, which is what makes `not.exist` work
+ * (Cypress waives the implicit existence assertion only for the query the
+ * assertion attaches to) and what makes it retry as a unit.
+ *
+ * With no `innerSelector`, `text` matches against the floating element itself
+ * rather than being silently dropped.
+ */
+export const buildFloatingSelector = (
+  base: string,
+  innerSelector?: string,
+  text?: string
+) => {
+  const contains =
+    text === undefined ? '' : `:contains("${escapeContainsText(text)}")`
+
+  return innerSelector
+    ? `${base}:visible ${innerSelector}${contains}`
+    : `${base}:visible${contains}`
+}

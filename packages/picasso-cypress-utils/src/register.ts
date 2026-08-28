@@ -9,26 +9,18 @@ import type { SelectOptionTarget } from './select-option'
 import { selectOption } from './select-option'
 import { setChecked } from './set-checked'
 
-/**
- * Every command this package registers — the single runtime source of truth.
- * The type is derived from it, and a test asserts the docs cover it, so a new
- * command cannot ship undocumented.
- */
-export const PICASSO_COMMAND_NAMES = [
-  'assertChecked',
-  'assertDisabled',
-  'getPopup',
-  'getTooltip',
-  'hoverAnchor',
-  'queryPopup',
-  'queryTooltip',
-  'selectOption',
-  'setChecked',
-  'toggleControl',
-  'unhoverAnchor',
-] as const
-
-export type PicassoCommandName = (typeof PICASSO_COMMAND_NAMES)[number]
+export type PicassoCommandName =
+  | 'assertChecked'
+  | 'assertDisabled'
+  | 'getPopup'
+  | 'getTooltip'
+  | 'hoverAnchor'
+  | 'queryPopup'
+  | 'queryTooltip'
+  | 'selectOption'
+  | 'setChecked'
+  | 'toggleControl'
+  | 'unhoverAnchor'
 
 export type RegisterOptions = {
   /**
@@ -109,10 +101,60 @@ declare global {
  */
 const registered = new Set<PicassoCommandName>()
 
+type ShouldRegister = (name: PicassoCommandName) => boolean
+
+/** Commands started from `cy` — they find their own subject. */
+const registerParents = (shouldRegister: ShouldRegister) => {
+  if (shouldRegister('getPopup')) {
+    Cypress.Commands.add('getPopup', getPopup)
+  }
+
+  if (shouldRegister('getTooltip')) {
+    Cypress.Commands.add('getTooltip', getTooltip)
+  }
+
+  if (shouldRegister('queryPopup')) {
+    Cypress.Commands.add('queryPopup', queryPopup)
+  }
+
+  if (shouldRegister('queryTooltip')) {
+    Cypress.Commands.add('queryTooltip', queryTooltip)
+  }
+}
+
+/** Commands chained off an element subject. */
+const registerChildren = (shouldRegister: ShouldRegister) => {
+  const onElement = { prevSubject: 'element' } as const
+
+  if (shouldRegister('setChecked')) {
+    Cypress.Commands.add('setChecked', onElement, setChecked)
+  }
+
+  if (shouldRegister('assertChecked')) {
+    Cypress.Commands.add('assertChecked', onElement, assertChecked)
+  }
+
+  if (shouldRegister('assertDisabled')) {
+    Cypress.Commands.add('assertDisabled', onElement, assertDisabled)
+  }
+
+  if (shouldRegister('selectOption')) {
+    Cypress.Commands.add('selectOption', onElement, selectOption)
+  }
+
+  if (shouldRegister('hoverAnchor')) {
+    Cypress.Commands.add('hoverAnchor', onElement, hoverAnchor)
+  }
+
+  if (shouldRegister('unhoverAnchor')) {
+    Cypress.Commands.add('unhoverAnchor', onElement, unhoverAnchor)
+  }
+}
+
 export const registerPicassoCypressCommands = ({
   skip = [],
 }: RegisterOptions = {}) => {
-  const shouldRegister = (name: PicassoCommandName) => {
+  const shouldRegister: ShouldRegister = name => {
     if (skip.includes(name) || registered.has(name)) {
       return false
     }
@@ -122,33 +164,8 @@ export const registerPicassoCypressCommands = ({
     return true
   }
 
-  const parents: [PicassoCommandName, (...args: never[]) => unknown][] = [
-    ['getPopup', getPopup],
-    ['getTooltip', getTooltip],
-    ['queryPopup', queryPopup],
-    ['queryTooltip', queryTooltip],
-  ]
-
-  const children: [PicassoCommandName, (...args: never[]) => unknown][] = [
-    ['setChecked', setChecked],
-    ['assertChecked', assertChecked],
-    ['assertDisabled', assertDisabled],
-    ['selectOption', selectOption],
-    ['hoverAnchor', hoverAnchor],
-    ['unhoverAnchor', unhoverAnchor],
-  ]
-
-  parents.forEach(([name, fn]) => {
-    if (shouldRegister(name)) {
-      Cypress.Commands.add(name, fn as never)
-    }
-  })
-
-  children.forEach(([name, fn]) => {
-    if (shouldRegister(name)) {
-      Cypress.Commands.add(name, { prevSubject: 'element' }, fn as never)
-    }
-  })
+  registerParents(shouldRegister)
+  registerChildren(shouldRegister)
 
   // a query, so the whole chain re-runs on retry instead of pinning a stale node
   if (shouldRegister('toggleControl')) {

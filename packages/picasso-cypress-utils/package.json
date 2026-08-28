@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-cypress-utils",
-  "version": "100.0.0",
+  "version": "99.0.0",
   "description": "Cypress commands for testing against Picasso's DOM contract",
   "publishConfig": {
     "access": "public"

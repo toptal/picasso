@@ -1,4 +1,4 @@
-import { escapeContainsText, TOOLTIP_SELECTOR } from './selectors'
+import { buildFloatingSelector, TOOLTIP_SELECTOR } from './selectors'
 
 /**
  * Yields the open Tooltip. Kept separate from {@link getPopup} on purpose:
@@ -27,16 +27,12 @@ export const getTooltip = (): Cypress.Chainable<JQuery<HTMLElement>> =>
  * @example
  * cy.queryTooltip().should('not.exist')
  * cy.queryTooltip('strong', 'Required').should('not.exist')
+ * cy.queryTooltip(undefined, 'Required').should('not.exist') // no tooltip says it
  */
 export const queryTooltip = (
   innerSelector?: string,
   text?: string
-): Cypress.Chainable<JQuery<HTMLElement>> => {
-  const inner = innerSelector
-    ? ` ${innerSelector}${
-        text === undefined ? '' : `:contains("${escapeContainsText(text)}")`
-      }`
-    : ''
-
-  return cy.get(`${TOOLTIP_SELECTOR}:visible${inner}`, { withinSubject: null })
-}
+): Cypress.Chainable<JQuery<HTMLElement>> =>
+  cy.get(buildFloatingSelector(TOOLTIP_SELECTOR, innerSelector, text), {
+    withinSubject: null,
+  })

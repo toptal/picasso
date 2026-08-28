@@ -1,4 +1,4 @@
-import { escapeContainsText, POPPER_SELECTOR } from './selectors'
+import { buildFloatingSelector, POPPER_SELECTOR } from './selectors'
 
 /**
  * The may-be-absent counterpart to `getPopup`, named after Testing Library's
@@ -20,6 +20,7 @@ import { escapeContainsText, POPPER_SELECTOR } from './selectors'
  * cy.queryPopup().should('not.exist')                             // closed
  * cy.queryPopup('[role="option"]').should('not.exist')            // no options anywhere
  * cy.queryPopup('[role="option"]', 'Croatia').should('not.exist') // that option offered nowhere
+ * cy.queryPopup(undefined, 'Croatia').should('not.exist')         // no popup says it
  *
  * Attach the assertion directly — inserting `.find()`/`.contains()` after it
  * re-introduces the existence requirement on the popup itself.
@@ -27,12 +28,7 @@ import { escapeContainsText, POPPER_SELECTOR } from './selectors'
 export const queryPopup = (
   innerSelector?: string,
   text?: string
-): Cypress.Chainable<JQuery<HTMLElement>> => {
-  const inner = innerSelector
-    ? ` ${innerSelector}${
-        text === undefined ? '' : `:contains("${escapeContainsText(text)}")`
-      }`
-    : ''
-
-  return cy.get(`${POPPER_SELECTOR}:visible${inner}`, { withinSubject: null })
-}
+): Cypress.Chainable<JQuery<HTMLElement>> =>
+  cy.get(buildFloatingSelector(POPPER_SELECTOR, innerSelector, text), {
+    withinSubject: null,
+  })

@@ -87,7 +87,7 @@ const restrictedSyntax = [
   },
 ]
 
-/** Default globs for Cypress specs and support files. */
+/** Default globs for Cypress specs. */
 const defaultFiles = [
   '**/*.cy.js',
   '**/*.cy.jsx',
@@ -100,11 +100,28 @@ const defaultFiles = [
 ]
 
 /**
- * Ready-made ESLint `overrides` entry. Pass your own globs when your specs live
- * somewhere the defaults miss.
+ * Globs excluded by default: your Cypress support/utils layer is the one place
+ * that legitimately touches the raw markers these bans point away from — it is
+ * where `getPopup`, `getTooltip` and geometry-settling helpers are implemented.
+ * Without this, `**\/cypress/**` would sweep that layer in and flag it.
+ *
+ * A support layer living outside `cypress/` (e.g. a `cypress-utils` package)
+ * is already outside the default globs; pass your own `excludedFiles` if yours
+ * sits somewhere else again.
  */
-const createCypressOverride = (files = defaultFiles) => ({
+const defaultExcludedFiles = ['**/cypress/support/**']
+
+/**
+ * Ready-made ESLint `overrides` entry. Pass your own globs when your specs live
+ * somewhere the defaults miss, and your own exclusions when your command layer
+ * does.
+ */
+const createCypressOverride = (
+  files = defaultFiles,
+  excludedFiles = defaultExcludedFiles
+) => ({
   files,
+  excludedFiles,
   rules: {
     'no-restricted-syntax': ['error', ...restrictedSyntax],
   },
@@ -113,5 +130,6 @@ const createCypressOverride = (files = defaultFiles) => ({
 module.exports = {
   restrictedSyntax,
   defaultFiles,
+  defaultExcludedFiles,
   createCypressOverride,
 }

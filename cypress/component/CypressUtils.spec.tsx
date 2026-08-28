@@ -306,6 +306,16 @@ describe('picasso-cypress-utils', () => {
       cy.queryPopup('[role="option"]', 'Croatia').should('exist')
     })
 
+    it('applies text to the popup itself when no inner selector is given', () => {
+      cy.mount(<SelectHarness />)
+
+      cy.getByTestId('country').click()
+      cy.getPopup().should('be.visible')
+      cy.queryPopup(undefined, 'Croatia').should('exist')
+      // would match the open popup — and wrongly pass — if text were dropped
+      cy.queryPopup(undefined, 'Atlantis').should('not.exist')
+    })
+
     it('matches text containing quotes, which jQuery :contains cannot', () => {
       cy.mount(<QuotedOptionSelect />)
 
@@ -343,6 +353,8 @@ describe('picasso-cypress-utils', () => {
 
       cy.getByTestId('save').hoverAnchor()
       cy.queryTooltip('div', 'Why this is disabled').should('exist')
+      cy.queryTooltip(undefined, 'Why this is disabled').should('exist')
+      cy.queryTooltip(undefined, 'Some other reason').should('not.exist')
     })
 
     it('yields the anchor for chaining', () => {
