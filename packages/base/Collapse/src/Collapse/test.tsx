@@ -40,6 +40,17 @@ describe('Collapse', () => {
     expect(getByTestId('collapse')).toHaveStyle('display: block')
   })
 
+  it('lets a consumer className override its own overflow', () => {
+    const { getByTestId } = render(
+      <Collapse in={true} className='overflow-auto' data-testid='collapse'>
+        <SomeChildComponent />
+      </Collapse>
+    )
+
+    expect(getByTestId('collapse')).toHaveClass('overflow-auto')
+    expect(getByTestId('collapse')).not.toHaveClass('overflow-hidden')
+  })
+
   it('forwards the ref', () => {
     const ref = React.createRef<HTMLDivElement>()
     const { getByTestId } = render(

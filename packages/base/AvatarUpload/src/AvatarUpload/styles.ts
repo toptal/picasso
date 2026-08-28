@@ -1,6 +1,6 @@
 import type { Status } from '@toptal/picasso-outlined-input'
 import type { Sizes } from '@toptal/picasso-shared'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export const rootClassBySize: Record<Exclude<Sizes, 'xlarge'>, string> = {
   xxsmall: 'w-8 h-8',
@@ -14,7 +14,7 @@ export const getIconClass = (
   hovered: boolean,
   status?: Extract<Status, 'error' | 'default'>
 ) =>
-  twJoin(
+  twMerge(
     'absolute pointer-events-none',
     hovered && 'text-blue-500/[.84]',
     status === 'error' ? (hovered ? 'text-red-500/[.84]' : 'text-red-500') : ''

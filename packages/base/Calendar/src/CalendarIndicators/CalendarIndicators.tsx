@@ -1,5 +1,5 @@
 import React from 'react'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props {
   isSelected: boolean
@@ -17,7 +17,7 @@ export const CalendarIndicators = ({
       <div className='flex flex-row	justify-around w-[1.3em] absolute bottom-[0.375rem]'>
         {isToday && (
           <div
-            className={twJoin(
+            className={twMerge(
               'h-1 w-1 rounded-[50%] bg-blue-500',
               isSelected && 'bg-white'
             )}
