@@ -12,6 +12,11 @@ const NOT_FOUND = 'expected to find a control inside the subject'
  * control is disabled. This reads `aria-disabled` for role elements and the
  * native property for real form elements.
  *
+ * Every control inside the subject must match, so pointing this at a field
+ * *wrapper* asserts the adornments too — a disabled `Input` with an enabled
+ * clear or reveal button fails. Target the control itself when that is not what
+ * you mean: `cy.getByTestId(field).find('input').assertDisabled()`.
+ *
  * @example
  * cy.getByTestId('submit').assertDisabled()
  * cy.getByTestId('terms-checkbox').assertDisabled(false)

@@ -1,5 +1,5 @@
 import { getPopup } from './get-popup'
-import { OPTION_SELECTOR } from './selectors'
+import { escapeSelectorString, OPTION_SELECTOR } from './selectors'
 
 /** Match an option by its visible text, or by the `value` attribute it carries. */
 export type SelectOptionTarget = string | number | { value: string | number }
@@ -29,7 +29,11 @@ export const selectOption = (
 
   if (typeof target === 'object') {
     return getPopup()
-      .find(`${OPTION_SELECTOR}[value="${target.value}"]`)
+      .find(
+        `${OPTION_SELECTOR}[value="${escapeSelectorString(
+          String(target.value)
+        )}"]`
+      )
       .click()
   }
 

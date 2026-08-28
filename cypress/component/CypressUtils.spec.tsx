@@ -20,23 +20,6 @@ import {
 
 const registerAll = () => registerPicassoCypressCommands()
 
-const registerNone = () =>
-  registerPicassoCypressCommands({
-    skip: [
-      'assertChecked',
-      'assertDisabled',
-      'getPopup',
-      'getTooltip',
-      'hoverAnchor',
-      'queryPopup',
-      'queryTooltip',
-      'selectOption',
-      'setChecked',
-      'toggleControl',
-      'unhoverAnchor',
-    ],
-  })
-
 /** Swallows the next command failure once its message matches. */
 const expectFailure = (fragment: string) =>
   cy.on('fail', error => {
@@ -92,7 +75,10 @@ const QuotedOptionSelect = () => (
     <Select
       data-testid='quoted'
       onChange={() => {}}
-      options={[{ value: 'q', text: 'The "Best" Option' }]}
+      options={[
+        { value: 'q', text: 'The "Best" Option' },
+        { value: 'a"b', text: 'Quoted Value' },
+      ]}
       placeholder='Pick…'
       value=''
     />
@@ -184,13 +170,21 @@ describe('picasso-cypress-utils', () => {
   })
 
   describe('assertChecked', () => {
-    it('resolves controls inside a wrapper', () => {
+    it('resolves the control when the subject is the input itself', () => {
       cy.mount(<Toggles />)
 
-      // the group wrapper holds two radios; only one is checked, so asserting
-      // "checked" across all of them must fail
       cy.get('input[value="free"]').assertChecked()
       cy.get('input[value="pro"]').assertChecked(false)
+    })
+
+    it('asserts every control inside a wrapper, not just the first', () => {
+      cy.mount(<Toggles />)
+
+      // the group holds two radios and only 'free' is checked, so asserting
+      // "checked" across the wrapper must fail — on the second one, named
+      expectFailure('expected the input 2 of 2 to be checked')
+
+      cy.getByTestId('plan-group').assertChecked()
     })
 
     it('fails loudly when the subject contains no control', () => {
@@ -236,6 +230,14 @@ describe('picasso-cypress-utils', () => {
 
       cy.getByTestId('country').selectOption({ value: 'ke' })
       cy.getByTestId('selected').should('have.text', 'ke')
+    })
+
+    it('picks an option whose value contains a quote', () => {
+      cy.mount(<QuotedOptionSelect />)
+
+      // unescaped, `[value="a"b"]` ends the attribute string early and throws
+      cy.getByTestId('quoted').selectOption({ value: 'a"b' })
+      cy.getPopup().should('not.exist')
     })
 
     it('yields the open popper and its options', () => {
@@ -373,10 +375,6 @@ describe('picasso-cypress-utils', () => {
     // is idempotent and a repeat call is simply a no-op.
     it('is idempotent — a repeat call does not throw', () => {
       expect(registerAll).not.to.throw()
-    })
-
-    it('accepts a skip list covering every command', () => {
-      expect(registerNone).not.to.throw()
     })
   })
 })

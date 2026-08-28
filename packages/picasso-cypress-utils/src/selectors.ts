@@ -40,11 +40,12 @@ export const CONTROL_INPUT_SELECTOR =
 export const NATIVE_CONTROL_SELECTOR = 'input, button, select, textarea'
 
 /**
- * jQuery's `:contains()` takes a quoted string, so a literal `"` or `\` in the
- * text breaks the selector. Escaping both makes any text safe to embed.
+ * Escapes a value being embedded in a double-quoted position inside a selector
+ * — `:contains("…")` and `[attr="…"]` alike. A literal `"` or `\` would end the
+ * string early and break the selector, so both are escaped.
  */
-export const escapeContainsText = (text: string) =>
-  text.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+export const escapeSelectorString = (value: string) =>
+  value.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
 
 /**
  * Builds the one compound selector behind `queryPopup` / `queryTooltip`.
@@ -63,7 +64,7 @@ export const buildFloatingSelector = (
   text?: string
 ) => {
   const contains =
-    text === undefined ? '' : `:contains("${escapeContainsText(text)}")`
+    text === undefined ? '' : `:contains("${escapeSelectorString(text)}")`
 
   return innerSelector
     ? `${base}:visible ${innerSelector}${contains}`

@@ -572,7 +572,11 @@ describe('DatePicker', () => {
 
   // The day testid is stable (`day-button-<n>`), so selection state is read from
   // `data-selected` rather than from a testid that changes when you click.
-  const getSelectedDay = () => document.querySelector('[data-selected]')
+  // Paired with `data-calendar-day` because the calendar portals out of the
+  // render container, and Base UI stamps `data-selected` on select and tab
+  // items too — the pair can only match a calendar day.
+  const getSelectedDay = () =>
+    document.querySelector('[data-calendar-day][data-selected]')
 
   const renderDatePicker = (props: Props = defaultProps) => {
     return render(<DatePicker testIds={testIds} {...props} />)

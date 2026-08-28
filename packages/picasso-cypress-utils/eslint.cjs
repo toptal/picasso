@@ -6,17 +6,12 @@
  * with `require`.
  *
  * @example
- * // .eslintrc.js
- * const { restrictedSyntax } = require('@toptal/picasso-cypress-utils/eslint')
+ * // .eslintrc.js — the ready-made entry, which already excludes your support layer
+ * const {
+ *   createCypressOverride,
+ * } = require('@toptal/picasso-cypress-utils/eslint')
  *
- * module.exports = {
- *   overrides: [
- *     {
- *       files: ['**\/*.cy.*', 'cypress/**\/*'],
- *       rules: { 'no-restricted-syntax': ['error', ...restrictedSyntax] },
- *     },
- *   ],
- * }
+ * module.exports = { overrides: [createCypressOverride()] }
  */
 
 const GET_POPUP_MESSAGE =
@@ -34,10 +29,6 @@ const GET_TOOLTIP_MESSAGE =
   'and escape cy.within(). Note only real Tooltips carry this role; ' +
   'Select/Dropdown poppers do not, so use cy.getPopup() for those.'
 
-/**
- * Spread into your own `no-restricted-syntax` list — these are additive, so an
- * app keeps whatever bans it already has.
- */
 const HOVER_ANCHOR_MESSAGE =
   "trigger('mouseover', { force: true }) fires a hover through a channel real " +
   'pointers never reach, so it can pass against a tooltip no user can open. ' +
@@ -93,8 +84,6 @@ const defaultFiles = [
   '**/*.cy.jsx',
   '**/*.cy.ts',
   '**/*.cy.tsx',
-  '**/*.spec.cy.ts',
-  '**/*.spec.cy.tsx',
   '**/cypress/**/*.ts',
   '**/cypress/**/*.tsx',
 ]

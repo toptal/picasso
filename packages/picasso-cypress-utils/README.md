@@ -49,18 +49,19 @@ the support file, add a reference:
 
 ## Commands
 
-| Command                        | Subject | What it does                                                |
-| ------------------------------ | ------- | ----------------------------------------------------------- |
-| `cy.getPopup()`                | —       | The open Select/Dropdown/Menu/Autocomplete/DatePicker popup |
-| `cy.getTooltip()`              | —       | The open Tooltip                                            |
-| `.setChecked(desired?)`        | element | Ensures a Checkbox/Switch state                             |
-| `.assertChecked(desired?)`     | element | Asserts checked state                                       |
-| `.assertDisabled(desired?)`    | element | Asserts disabled state                                      |
-| `.selectOption(target)`        | element | Opens a Select from its trigger and picks an option         |
-| `.toggleControl()`             | element | Yields the visible role element from any subject shape      |
-| `cy.queryPopup(inner?, text?)` | —       | One-query popup lookup, for negative assertions             |
-| `.hoverAnchor()`               | element | Hovers a Tooltip's anchor — for natively disabled triggers  |
-| `.unhoverAnchor()`             | element | Moves the pointer off the anchor — closes the tooltip       |
+| Command                          | Subject | What it does                                                |
+| -------------------------------- | ------- | ----------------------------------------------------------- |
+| `cy.getPopup()`                  | —       | The open Select/Dropdown/Menu/Autocomplete/DatePicker popup |
+| `cy.getTooltip()`                | —       | The open Tooltip                                            |
+| `.setChecked(desired?)`          | element | Ensures a Checkbox/Switch state                             |
+| `.assertChecked(desired?)`       | element | Asserts checked state                                       |
+| `.assertDisabled(desired?)`      | element | Asserts disabled state                                      |
+| `.selectOption(target)`          | element | Opens a Select from its trigger and picks an option         |
+| `.toggleControl()`               | element | Yields the visible role element from any subject shape      |
+| `cy.queryPopup(inner?, text?)`   | —       | One-query popup lookup, for negative assertions             |
+| `cy.queryTooltip(inner?, text?)` | —       | One-query tooltip lookup, for negative assertions           |
+| `.hoverAnchor()`                 | element | Hovers a Tooltip's anchor — for natively disabled triggers  |
+| `.unhoverAnchor()`               | element | Moves the pointer off the anchor — closes the tooltip       |
 
 Deliberately **not** included: generic queries like `getByTestId` /
 `findByTestId`. Every Toptal app already ships its own (with differing
@@ -147,12 +148,29 @@ selecting `data-picasso-popper` directly, `check()/uncheck({ force: true })`,
 
 ```js
 // .eslintrc.js
-const { restrictedSyntax } = require('@toptal/picasso-cypress-utils/eslint')
+const {
+  createCypressOverride,
+} = require('@toptal/picasso-cypress-utils/eslint')
+
+module.exports = { overrides: [createCypressOverride()] }
+```
+
+Spelling it out instead? Carry the `excludedFiles` — without it the bans flag
+your own command layer, which is the one place that legitimately uses the raw
+markers:
+
+```js
+const {
+  restrictedSyntax,
+  defaultFiles,
+  defaultExcludedFiles,
+} = require('@toptal/picasso-cypress-utils/eslint')
 
 module.exports = {
   overrides: [
     {
-      files: ['**/*.cy.tsx', 'cypress/**/*.ts'],
+      files: defaultFiles,
+      excludedFiles: defaultExcludedFiles,
       rules: { 'no-restricted-syntax': ['error', ...restrictedSyntax] },
     },
   ],

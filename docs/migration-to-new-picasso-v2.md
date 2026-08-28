@@ -694,17 +694,19 @@ module.exports = {
 
 ### Step 6c. Testid escape hatches
 
-Some assertions genuinely need an element no command yields. Two props exist for
-exactly that, and both are newer than the initial `100.0.x` line:
+Some assertions genuinely need an element no command yields. Three escape
+hatches exist for exactly that, all newer than the initial `100.0.x` line:
 
-| Prop                                                                                           | Ships in                                             | Use it for                                                                                                                                                                               |
+| Escape hatch                                                                                   | Ships in                                             | Use it for                                                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `testIds={{ input }}` on `Checkbox` / `Switch` (flows through `Form.Checkbox` / `Form.Switch`) | `picasso-checkbox@100.1.0`, `picasso-switch@101.0.0` | Stamps the visually-hidden native input, for assertions genuinely about the serialized form value. Prefer `assertChecked` for state.                                                     |
 | `testIds={{ anchor }}` on `Tooltip`                                                            | `picasso-tooltip@100.1.0`                            | Names the element the open/close listeners attach to. A natively **disabled** child swallows pointer events, so hovering it never opens its tooltip — hover the anchor.                  |
 | `data-picasso-tooltip-anchor` marker on every `Tooltip` anchor                                 | `picasso-tooltip@100.2.0`                            | Always present — no per-usage prop needed. `.hoverAnchor()` resolves it from any node inside the trigger, so `testIds={{ anchor }}` is only for addressing a _specific_ anchor globally. |
 
-Both are stamped through `useInputTestId` from `@toptal/picasso-shared`, which is
-also exported if you need the same trick on your own Base UI wrapper.
+The `testIds={{ input }}` props are stamped through `useInputTestId` from
+`@toptal/picasso-shared`, which is also exported if you need the same trick on
+your own Base UI wrapper. `Tooltip` builds its anchor testid separately, and the
+`data-picasso-tooltip-anchor` marker needs no prop at all — it is always there.
 
 > ### ⚠️ `picasso-switch@101.0.0` is a breaking change for tests
 >

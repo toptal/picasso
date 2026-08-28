@@ -70,35 +70,7 @@ declare global {
   }
 }
 
-/**
- * Registers Picasso's Cypress commands. Call it from your Cypress support file.
- *
- * Wrapped in a function rather than run as an import side effect so bundlers
- * cannot tree-shake the registrations away, and so repos that already own one
- * of these names can opt out instead of having their version silently
- * overwritten. Note the asymmetry: plain `Commands.add` lets the last
- * registration win, while duplicate *query* commands (`toggleControl`) make
- * Cypress throw — so a repeat call must skip the queries.
- *
- * Calling it more than once is a no-op for names already registered, so a
- * support file pulled in twice cannot crash the run (Cypress throws on a
- * duplicate *query* command, and silently overwrites a duplicate regular one —
- * neither is a useful outcome here).
- *
- * Deliberately no generic `getByTestId`/`findByTestId`: every Toptal app
- * already ships its own (with differing signatures — `@topkit/cypress-utils`
- * takes variadic extra selectors), and they encode nothing about Picasso.
- * This package registers only commands that break when Picasso's DOM changes.
- *
- * @example
- * import { registerPicassoCypressCommands } from '@toptal/picasso-cypress-utils'
- *
- * registerPicassoCypressCommands()
- *
- * @example
- * // an app that still keeps its own setChecked from a hand-rolled layer
- * registerPicassoCypressCommands({ skip: ['setChecked'] })
- */
+/** Names already registered, so a repeat call cannot re-add them. */
 const registered = new Set<PicassoCommandName>()
 
 type ShouldRegister = (name: PicassoCommandName) => boolean
@@ -151,6 +123,35 @@ const registerChildren = (shouldRegister: ShouldRegister) => {
   }
 }
 
+/**
+ * Registers Picasso's Cypress commands. Call it from your Cypress support file.
+ *
+ * Wrapped in a function rather than run as an import side effect so bundlers
+ * cannot tree-shake the registrations away, and so repos that already own one
+ * of these names can opt out instead of having their version silently
+ * overwritten. Note the asymmetry: plain `Commands.add` lets the last
+ * registration win, while duplicate *query* commands (`toggleControl`) make
+ * Cypress throw — so a repeat call must skip the queries.
+ *
+ * Calling it more than once is a no-op for names already registered, so a
+ * support file pulled in twice cannot crash the run (Cypress throws on a
+ * duplicate *query* command, and silently overwrites a duplicate regular one —
+ * neither is a useful outcome here).
+ *
+ * Deliberately no generic `getByTestId`/`findByTestId`: every Toptal app
+ * already ships its own (with differing signatures — `@topkit/cypress-utils`
+ * takes variadic extra selectors), and they encode nothing about Picasso.
+ * This package registers only commands that break when Picasso's DOM changes.
+ *
+ * @example
+ * import { registerPicassoCypressCommands } from '@toptal/picasso-cypress-utils'
+ *
+ * registerPicassoCypressCommands()
+ *
+ * @example
+ * // an app that still keeps its own setChecked from a hand-rolled layer
+ * registerPicassoCypressCommands({ skip: ['setChecked'] })
+ */
 export const registerPicassoCypressCommands = ({
   skip = [],
 }: RegisterOptions = {}) => {
