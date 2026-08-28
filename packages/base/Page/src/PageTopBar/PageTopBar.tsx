@@ -121,11 +121,13 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     </div>
   )
 
-  const innerClassName = twJoin(
-    fullWidth || width === 'full' ? 'max-w-full' : '',
-    width === 'wide' ? 'max-w-[var(--content-width-wide,90em)]' : '',
+  // The width overrides come last so `twMerge` resolves them over the default
+  // `max-w`, in ascending precedence: default -> wide -> full.
+  const innerClassName = twMerge(
     'box-border flex items-center justify-between mx-auto my-0 h-[var(--header-height,3.5rem)]',
-    'max-w-[var(--content-width,75em)] py-0 px-[var(--content-padding-horizontal,1em)] md:px-[var(--content-padding-horizontal,2em)]'
+    'max-w-[var(--content-width,75em)] py-0 px-[var(--content-padding-horizontal,1em)] md:px-[var(--content-padding-horizontal,2em)]',
+    width === 'wide' && 'max-w-[var(--content-width-wide,90em)]',
+    (fullWidth || width === 'full') && 'max-w-full'
   )
 
   return (
