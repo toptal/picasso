@@ -15,6 +15,7 @@
 | requiredDecoration | `"asterisk" \| "optional"` | - | Whether to show asterisk or (optional) postfix for the label as a 'required' decoration |
 | onChange | `((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void)` | `() => {}` | Callback invoked when `Checkbox` changed its value |
 | value | `string` | - | Value of the `Checkbox` (applicable only for controlled component) |
+| testIds | `{ input?: string; }` | - | Testids of the `Checkbox` internal elements. The top-level `data-testid` stays on the `[role="checkbox"]` element |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
