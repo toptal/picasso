@@ -22,8 +22,8 @@ export const NativeSelectInput = forwardRef<
     <>
       <select
         className={twMerge(
-          `appearance-none select-none rounded-none min-w-4 cursor-pointer
-           focus:bg-black/[.05] focus:rounded-none`,
+          'appearance-none select-none rounded-none min-w-4 cursor-pointer',
+          'focus:bg-black/[.05] focus:rounded-none',
           disabled && 'cursor-default',
           multiple ? 'h-auto' : '[&_option]:bg-white [&_optgroup]:bg-white',
           className,
