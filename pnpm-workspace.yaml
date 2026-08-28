@@ -1,8 +1,6 @@
 packages:
   - 'packages/*'
   - 'packages/base/*'
-  # React 19 validation harness (not published; see jest.react19.mjs)
-  - 'react19'
 autoInstallPeers: true
 linkWorkspacePackages: true
 

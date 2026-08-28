@@ -1,21 +1,21 @@
 import baseConfig from './jest.spec.mjs'
 
-// React 19 validation harness ([PF-2262] workstream E, PR #5070).
+// React 19 validation harness ([PF-2262] workstream E, PR #5096).
 //
 // Runs the unit-test suite against React 19 WITHOUT touching the workspace's
-// React 18 install. The repo-wide `react: '^18.2.0'` override in
-// pnpm-workspace.yaml rewrites every dependency named `react`, so nothing in
-// the workspace can resolve React 19 — npm aliases escape the override
-// because their dependency name differs (`react19`, `react-dom19`, ...), and
-// they are declared in the `react19/` workspace member (NOT root devDeps) so
-// React 19 never participates in the root importer's peer resolution —
-// root-level aliases would rebind other packages' react peers to 19 via
-// resolvePeersFromWorkspaceRoot. The hoisted node linker still places the
-// alias packages in the root node_modules, which the mappings point at.
-// The mappings below rewrite every react / react-dom /
-// @testing-library/react import to that member for this run only
-// (@testing-library/react@16 is the first line whose peers admit React 19;
-// it needs @testing-library/dom@10 alongside).
+// React 18 install. The React 19 packages live in `react19/` as a STANDALONE
+// pnpm project (own lockfile, installed with --ignore-workspace by the
+// test:react19 script) — deliberately NOT a workspace member: inside the
+// workspace, its React 19 copies join hoisting and peer resolution, and on a
+// fresh CI install react-dom@19 can win the root `node_modules/react-dom`
+// slot, breaking react-transition-group (`findDOMNode`) for the React 18
+// suite. A standalone install cannot interact with the main graph at all,
+// and `<rootDir>/react19/node_modules/...` is a deterministic location on
+// every machine (no hoisting involved).
+//
+// The mappings rewrite every react / react-dom / @testing-library import to
+// that install for this run only (@testing-library/react@16 is the first
+// line whose peers admit React 19; it needs @testing-library/dom@10).
 //
 // Usage: pnpm test:react19 [jest args], e.g.
 //   pnpm test:react19 --testPathPattern react19/sanity
@@ -23,18 +23,16 @@ const config = {
   ...baseConfig,
   roots: [...baseConfig.roots, '<rootDir>/react19'],
   moduleNameMapper: {
-    // Absolute paths so every requiring file — wherever it lives — gets the
-    // SAME hoisted copy; a bare specifier resolved from inside react19/ would
-    // find the nested duplicate and split React into two instances.
-    '^react$': '<rootDir>/node_modules/react19',
-    '^react/(.*)$': '<rootDir>/node_modules/react19/$1',
-    '^react-dom$': '<rootDir>/node_modules/react-dom19',
-    '^react-dom/(.*)$': '<rootDir>/node_modules/react-dom19/$1',
+    '^react$': '<rootDir>/react19/node_modules/react',
+    '^react/(.*)$': '<rootDir>/react19/node_modules/react/$1',
+    '^react-dom$': '<rootDir>/react19/node_modules/react-dom',
+    '^react-dom/(.*)$': '<rootDir>/react19/node_modules/react-dom/$1',
     '^@testing-library/react$':
-      '<rootDir>/node_modules/testing-library-react19',
+      '<rootDir>/react19/node_modules/@testing-library/react',
     '^@testing-library/react/(.*)$':
-      '<rootDir>/node_modules/testing-library-react19/$1',
-    '^@testing-library/dom$': '<rootDir>/node_modules/testing-library-dom-v10',
+      '<rootDir>/react19/node_modules/@testing-library/react/$1',
+    '^@testing-library/dom$':
+      '<rootDir>/react19/node_modules/@testing-library/dom',
     ...baseConfig.moduleNameMapper,
   },
 }

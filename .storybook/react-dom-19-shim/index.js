@@ -1,9 +1,10 @@
-// [PF-2262] React 19 storybook mode: re-export react-dom 19 with an
-// '18.'-prefixed version string. @storybook/react@6.5 picks its renderer via
-// `version.startsWith('18')` (dist/esm/client/preview/render.js:111); the
-// legacy branch calls ReactDOM.render/unmountComponentAtNode, both removed in
-// React 19, so the sniff must land on the modern createRoot path.
-const reactDom = require('react-dom19')
+// [PF-2262] React 19 storybook mode: re-export react-dom 19 (from the
+// standalone react19/ install) with an '18.'-prefixed version string.
+// @storybook/react@6.5 picks its renderer via `version.startsWith('18')`
+// (dist/esm/client/preview/render.js:111); the legacy branch calls
+// ReactDOM.render/unmountComponentAtNode, both removed in React 19, so the
+// sniff must land on the modern createRoot path.
+const reactDom = require('../../react19/node_modules/react-dom/index.js')
 
 module.exports = {
   ...reactDom,

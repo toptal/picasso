@@ -1,1 +1,1 @@
-module.exports = require('react-dom19/client')
+module.exports = require('../../react19/node_modules/react-dom/client.js')

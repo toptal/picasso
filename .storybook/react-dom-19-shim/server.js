@@ -1,1 +1,1 @@
-module.exports = require('react-dom19/server')
+module.exports = require('../../react19/node_modules/react-dom/server.browser.js')
