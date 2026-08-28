@@ -29,8 +29,8 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
-    "notistack": "3.0.1",
-    "react-helmet-async": "2.0.3"
+    "notistack": "3.0.2",
+    "react-helmet-async": "3.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.1.2",
