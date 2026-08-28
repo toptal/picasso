@@ -12,6 +12,27 @@ const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP =
 const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
 
+// [PF-2262] React 19 validation mode: STORYBOOK_REACT_19=1 swaps the
+// preview's React for the standalone React 19 install in react19/ (own
+// lockfile, installed with `pnpm -C react19 install --ignore-workspace`;
+// jest.react19.mjs plays the same trick for unit tests — see its header for
+// why the harness must NOT be a workspace member). Normal runs are
+// byte-identical — every entry below is gated on the env var.
+const useReact19 = env.STORYBOOK_REACT_19 === '1'
+// Storybook's builder injects its own plain-key aliases
+// (`react`/`react-dom` → the workspace React 18 dirs,
+// builder-webpack5 iframe-webpack.config.js:202) — plain keys also shadow
+// `$`-exact ones, so we must overwrite the SAME keys. A plain directory
+// alias covers subpaths too (react/jsx-runtime, react-dom/client), which is
+// why react-dom points at a shim *package* that re-exports react-dom 19 with
+// a doctored version (storybook 6.5 sniffs `version.startsWith('18')`).
+const react19Aliases = useReact19
+  ? {
+      react: path.resolve(__dirname, '../react19/node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'react-dom-19-shim'),
+    }
+  : {}
+
 const tsConfigFile = path.join(__dirname, './tsconfig.json')
 const threadLoaders = [{ loader: 'cache-loader' }, { loader: 'thread-loader' }]
 
@@ -158,6 +179,16 @@ module.exports = {
           savePropValueAsString: true,
         }),
       ],
+      // webpack's persistent cache does not key on our alias swap — without
+      // a distinct cache version, switching STORYBOOK_REACT_19 on/off would
+      // serve modules resolved against the other mode's React
+      cache:
+        config.cache && typeof config.cache === 'object'
+          ? {
+              ...config.cache,
+              version: useReact19 ? 'react19-standalone' : 'react18',
+            }
+          : config.cache,
       node: {
         ...config.node,
         /*
@@ -181,6 +212,7 @@ module.exports = {
         alias: {
           ...config.resolve.alias,
           '~': path.resolve(__dirname, '..'),
+          ...react19Aliases,
         },
       },
     }
@@ -218,7 +250,8 @@ module.exports = {
     }
   },
   reactOptions: {
-    fastRefresh: true,
+    // react-refresh 0.11 (storybook 6.5's line) predates React 19
+    fastRefresh: !useReact19,
     strictMode: true,
   },
   features: {

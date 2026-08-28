@@ -56,14 +56,13 @@ export const RichTextEditorEmojiPicker = ({
       return
     }
 
-    document.body.addEventListener('keyup', event => {
+    const handleKeyUp = (event: KeyboardEvent) =>
       handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
-    })
+
+    document.body.addEventListener('keyup', handleKeyUp)
 
     return () => {
-      document.body.removeEventListener('keyup', event => {
-        handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
-      })
+      document.body.removeEventListener('keyup', handleKeyUp)
     }
   }, [showEmojiPicker, setShowEmojiPicker])
 
