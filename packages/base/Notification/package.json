@@ -29,7 +29,7 @@
     "@toptal/picasso-typography": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",
     "classnames": "^2.5.1",
-    "notistack": "3.0.1"
+    "notistack": "3.0.2"
   },
   "sideEffects": [
     "**/styles.ts",
