@@ -46,22 +46,21 @@ const TimelineRow = ({
         >
           {typeof icon !== 'undefined' ? (
             React.cloneElement(icon, {
-              className: twJoin(
-                icon.props.className,
-                'my-1 mx-0 text-gray-600'
+              className: twMerge(
+                'my-1 mx-0 text-gray-600',
+                icon.props.className
               ),
             })
           ) : (
             <div
-              className='
-            w-4 h-4 flex items-center justify-center bg-white my-1 mx-0
-
-            [&:after]:content-[""]
-            [&:after]:w-[9px]
-            [&:after]:h-[9px]
-            [&:after]:bg-gray-600
-            [&:after]:rounded-[50%] [&:after]:leading-5
-            '
+              className={twJoin(
+                'w-4 h-4 flex items-center justify-center bg-white my-1 mx-0',
+                '[&:after]:content-[""]',
+                '[&:after]:w-[9px]',
+                '[&:after]:h-[9px]',
+                '[&:after]:bg-gray-600',
+                '[&:after]:rounded-[50%] [&:after]:leading-5'
+              )}
               data-testid={testIds.dot}
             />
           )}
