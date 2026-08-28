@@ -2006,8 +2006,8 @@ importers:
         specifier: ^2.5.1
         version: 2.5.1
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2189,6 +2189,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      react-helmet-async:
+        specifier: 3.0.0
+        version: 3.0.0(react@18.2.0)
     devDependencies:
       '@toptal/picasso-provider':
         specifier: workspace:*
@@ -3345,8 +3348,8 @@ importers:
         specifier: ^1.7.8
         version: 1.7.8
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3623,14 +3626,14 @@ importers:
         specifier: ^2.5.1
         version: 2.5.1
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-helmet-async:
-        specifier: 2.0.3
-        version: 2.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.0
+        version: 3.0.0(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3922,8 +3925,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   packages/topkit-analytics-charts:
     dependencies:
@@ -13877,8 +13880,8 @@ packages:
     resolution: {integrity: sha512-uVFpKhj5MheNBJRTiMZ9pE/7hD1QTeEvugSJW/OmLzAp78PB5O6adfMNTvmfKhXBkvCzC+rqifWcVYpGFwTjnw==}
     engines: {node: '>=14.16'}
 
-  notistack@3.0.1:
-    resolution: {integrity: sha512-ntVZXXgSQH5WYfyU+3HfcXuKaapzAJ8fBLQ/G618rn3yvSzEbnOB8ZSOwhX+dAORy/lw+GC2N061JA0+gYWTVA==}
+  notistack@3.0.2:
+    resolution: {integrity: sha512-0R+/arLYbK5Hh7mEfR2adt0tyXJcCC9KkA2hc56FeWik2QN6Bm/S4uW+BjzDARsJth5u06nTjelSw/VSnB1YEA==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       react: ^18.2.0
@@ -15207,11 +15210,10 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  react-helmet-async@2.0.3:
-    resolution: {integrity: sha512-7/X3ehSCbjCaIljWa39Bb7F1Y2JWM23FN80kLozx2TdgzUmxKDSLN6qu06NG0Srzm8ljGOjgk7r7CXeEOx4MPw==}
+  react-helmet-async@3.0.0:
+    resolution: {integrity: sha512-nA3IEZfXiclgrz4KLxAhqJqIfFDuvzQwlKwpdmzZIuC1KNSghDEIXmyU0TKtbM+NafnkICcwx8CECFrZ/sL/1w==}
     peerDependencies:
       react: ^18.2.0
-      react-dom: ^18.2.0
 
   react-hot-loader@4.13.1:
     resolution: {integrity: sha512-ZlqCfVRqDJmMXTulUGic4lN7Ic1SXgHAFw7y/Jb7t25GBgTR0fYAJ8uY4mrpxjRyWGWmqw77qJQGnYbzCvBU7g==}
@@ -31470,7 +31472,7 @@ snapshots:
 
   normalize-url@8.0.0: {}
 
-  notistack@3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  notistack@3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       clsx: 1.2.1
       goober: 2.1.13(csstype@3.1.2)
@@ -33071,11 +33073,10 @@ snapshots:
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-helmet-async@2.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-helmet-async@3.0.0(react@18.2.0):
     dependencies:
       invariant: 2.2.4
       react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
