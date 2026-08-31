@@ -3,9 +3,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { mount } from 'cypress/react'
 import type { HappoScreenshotOptions } from 'happo-cypress'
-// registers the Cypress.Chainable augmentation for the published commands
-// (getPopup, getTooltip, setChecked, assertChecked, assertDisabled,
-// selectOption)
 // eslint-disable-next-line import/no-extraneous-dependencies
 import '@toptal/picasso-cypress-utils'
 

@@ -55,8 +55,8 @@ export const escapeSelectorString = (value: string) =>
  * (Cypress waives the implicit existence assertion only for the query the
  * assertion attaches to) and what makes it retry as a unit.
  *
- * With no `innerSelector`, `text` matches against the floating element itself
- * rather than being silently dropped.
+ * With no `innerSelector`, `text` matches against the floating element
+ * itself.
  */
 export const buildFloatingSelector = (
   base: string,

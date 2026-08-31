@@ -236,8 +236,8 @@ describe('non-responsive breakpoint utils', () => {
   })
 
   describe('the two breakpoint APIs agree', () => {
-    // Media queries drive useBreakpoint; pixel values drive
-    // useScreens/isScreenSize. They must never disagree about one width.
+    // media queries drive useBreakpoint; pixel values drive
+    // useScreens/isScreenSize — they must never disagree about one width
     it.each([SCREEN_SIZES.medium, 822, 1000, SCREEN_SIZES.large])(
       'reports the same breakpoint at %ipx',
       width => {
@@ -253,12 +253,9 @@ describe('non-responsive breakpoint utils', () => {
   })
 
   describe('below the 768 floor', () => {
-    // Sub-768 widths are out of contract under responsive={false}:
-    // FixViewport pins mobile viewports to width=768, so only a manually
-    // narrowed desktop window gets here. The invariant that matters is that
-    // desktop-gated UI must not collapse — the media queries hold lg at any
-    // width. The pixel APIs report xs there (the values floor at 768), which
-    // is why SCREEN_SIZES.small is not in the agree-list above.
+    // sub-768 widths are out of contract under responsive={false} —
+    // FixViewport pins mobile viewports to width=768. Desktop-gated UI must
+    // still not collapse, while the pixel APIs report xs below the floor.
     it('holds the desktop branch while the pixel APIs report xs', () => {
       mockViewportWidth(SCREEN_SIZES.small)
 
@@ -301,9 +298,7 @@ describe('non-responsive breakpoint utils', () => {
       expect(isMedium).toBeFalsy()
     })
 
-    // With mobile breakpoints off there is one desktop floor, so a medium
-    // width reports `lg`, not `md`. Previously the pixel API said `md` here
-    // while `useBreakpoint('md')` said false, because `md` is blanked.
+    // one desktop floor: a medium width reports `lg`, not the blanked `md`
     it('does not report medium on a medium screen — everything under xl is lg', () => {
       const isMedium = isScreenSize('md', SCREEN_SIZES.medium)
 

@@ -156,8 +156,7 @@ const getNativeOption = (value: string | number) =>
 const openSelect = () => {
   cy.getByTestId('select').click()
 
-  // the menu mounts async in a popper — gate on it so a screenshot right after
-  // opening can't capture a menu-less frame
+  // the menu mounts async in a popper — gate on it before screenshotting
   cy.getPopup().should('be.visible')
 }
 

@@ -12,10 +12,8 @@ import {
 } from '@toptal/picasso'
 
 /**
- * Exercises the commands `@toptal/picasso-cypress-utils` publishes, against the
- * real components whose DOM they encode. Picasso's Cypress support registers
- * the package rather than a private copy, so this suite is the contract test
- * for the consumer-facing API.
+ * Contract tests for the commands `@toptal/picasso-cypress-utils` publishes,
+ * run against the real components whose DOM they encode.
  */
 
 const registerAll = () => registerPicassoCypressCommands()
@@ -104,7 +102,6 @@ const SelectHarness = () => {
 
 const ControlledCheckbox = ({ onChange }: { onChange: () => void }) => (
   <Container padded='medium'>
-    {/* checked is pinned — the DOM never changes, only the handler fires */}
     <Checkbox
       checked={false}
       data-testid='pinned'
@@ -117,8 +114,6 @@ const ControlledCheckbox = ({ onChange }: { onChange: () => void }) => (
 const DisabledTriggerTooltip = () => (
   <Container padded='medium'>
     <Tooltip content='Why this is disabled'>
-      {/* the wrapper span is the anchor; the disabled button swallows pointer
-          events, so hovering the button itself can never open the tooltip */}
       <span data-testid='save-wrap'>
         <Button data-testid='save' disabled>
           Save
@@ -136,7 +131,6 @@ describe('picasso-cypress-utils', () => {
       cy.getByTestId('newsletter').setChecked()
       cy.getByTestId('newsletter').assertChecked()
 
-      // ensure semantics: a second call is a no-op, not a toggle
       cy.getByTestId('newsletter').setChecked()
       cy.getByTestId('newsletter').assertChecked()
 
@@ -147,7 +141,6 @@ describe('picasso-cypress-utils', () => {
     it('accepts the hidden input as the subject', () => {
       cy.mount(<Toggles />)
 
-      // testIds={{ input }} stamps the visually-hidden sibling input
       cy.getByTestId('newsletter-input').setChecked()
       cy.getByTestId('newsletter').assertChecked()
     })
@@ -179,14 +172,10 @@ describe('picasso-cypress-utils', () => {
 
     it(
       'asserts every control inside a wrapper, not just the first',
-      // the assertion must exhaust its retries before it fails — don't burn
-      // the default 4s doing it
       { defaultCommandTimeout: 1000 },
       () => {
         cy.mount(<Toggles />)
 
-        // the group holds two radios and only 'free' is checked, so asserting
-        // "checked" across the wrapper must fail — on the second one, named
         expectFailure('expected the input 2 of 2 to be checked')
 
         cy.getByTestId('plan-group').assertChecked()
@@ -203,8 +192,6 @@ describe('picasso-cypress-utils', () => {
           'expected to find a checkbox/switch/radio control inside the subject'
         )
 
-        // a plain container is never `:checked`, so should('be.checked') would
-        // pass vacuously here — the command must report the missing control
         cy.getByTestId('no-controls').assertChecked()
       }
     )
@@ -245,7 +232,6 @@ describe('picasso-cypress-utils', () => {
     it('picks an option whose value contains a quote', () => {
       cy.mount(<QuotedOptionSelect />)
 
-      // unescaped, `[value="a"b"]` ends the attribute string early and throws
       cy.getByTestId('quoted').selectOption({ value: 'a"b' })
       cy.getPopup().should('not.exist')
     })
@@ -266,7 +252,6 @@ describe('picasso-cypress-utils', () => {
 
       cy.mount(<ControlledCheckbox onChange={onChange} />)
 
-      // setChecked would time out here — there is no DOM state to ensure
       cy.getByTestId('pinned').toggleControl().click()
       cy.get('@change').should('have.been.calledOnce')
       cy.getByTestId('pinned').assertChecked(false)
@@ -328,7 +313,6 @@ describe('picasso-cypress-utils', () => {
       cy.getByTestId('country').click()
       cy.getPopup().should('be.visible')
       cy.queryPopup(undefined, 'Croatia').should('exist')
-      // would match the open popup — and wrongly pass — if text were dropped
       cy.queryPopup(undefined, 'Atlantis').should('not.exist')
     })
 
@@ -345,8 +329,6 @@ describe('picasso-cypress-utils', () => {
     it('opens a tooltip whose trigger child is natively disabled', () => {
       cy.mount(<DisabledTriggerTooltip />)
 
-      // hovering the disabled button itself can never open it — resolve the
-      // anchor from the child and hover that, without force
       cy.getByTestId('save').hoverAnchor()
       cy.getTooltip().should('contain', 'Why this is disabled')
     })
@@ -364,7 +346,6 @@ describe('picasso-cypress-utils', () => {
       cy.mount(<DisabledTriggerTooltip />)
 
       cy.queryTooltip().should('not.exist')
-      // the trap queryTooltip exists for: looking inside a tooltip that is not open
       cy.queryTooltip('div', 'Why this is disabled').should('not.exist')
 
       cy.getByTestId('save').hoverAnchor()
@@ -383,10 +364,6 @@ describe('picasso-cypress-utils', () => {
   })
 
   describe('registerPicassoCypressCommands', () => {
-    // The support file already registered every command, so these calls are
-    // repeats. Cypress throws on a duplicate *query* command and silently
-    // overwrites a duplicate regular one — neither is useful, so registration
-    // is idempotent and a repeat call is simply a no-op.
     it('is idempotent — a repeat call does not throw', () => {
       expect(registerAll).not.to.throw()
     })

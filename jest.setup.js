@@ -38,9 +38,7 @@ if (typeof global.PointerEvent === 'undefined') {
 }
 
 // jsdom also lacks the pointer-capture APIs Base UI calls alongside those
-// events. Without these stubs a click on a Base UI primitive throws
-// "hasPointerCapture is not a function" rather than the missing-constructor
-// error above, so both halves are needed.
+// events.
 if (typeof Element !== 'undefined') {
   Element.prototype.hasPointerCapture ||= () => false
   Element.prototype.setPointerCapture ||= () => {}

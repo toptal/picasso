@@ -44,10 +44,8 @@ const HOVER_ANCHOR_MESSAGE =
  * `getTooltip` and geometry-settling helpers live).
  *
  * Deliberately NOT banned: literal `[role=checkbox]`/`[role=switch]`
- * selectors. `setChecked`/`toggleControl` replace most of them, but multi-control
- * lookups are legitimate (staff-portal has
- * `.find('[role="checkbox"]').last()` over a group, which `toggleControl`
- * rejects by design), so a blanket ban would be noise rather than signal.
+ * selectors — multi-control lookups over a group are legitimate, so a
+ * blanket ban would be noise rather than signal.
  */
 const restrictedSyntax = [
   {

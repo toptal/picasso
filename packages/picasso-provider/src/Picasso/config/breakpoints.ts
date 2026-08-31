@@ -42,11 +42,8 @@ class BreakpointProvider {
    * match nothing, so `useBreakpoint(['md', 'lg', 'xl'])` was `false` there.
    *
    * `values.lg` drops to the same floor so the two APIs cannot disagree: the
-   * media queries decide `useBreakpoint`, while the pixel values decide
-   * `useScreens`/`isScreenSize`. With `lg` left at 1024 a width of 800px was
-   * `lg` by media query and `md` by pixel value at the same moment — and `md`
-   * is blanked, so `useBreakpoint('md')` was false while
-   * `isScreenSize('md', 800)` was true. One desktop floor, one answer.
+   * media queries decide `useBreakpoint`, the pixel values decide
+   * `useScreens`/`isScreenSize` — one desktop floor, one answer.
    */
   disableMobileBreakpoints() {
     const { xl } = this.breakpoints.values

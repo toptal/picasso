@@ -797,8 +797,6 @@ describe('Tooltip', () => {
         </Tooltip>
       )
 
-      // the stable marker cy.hoverAnchor() resolves — hover THIS element to
-      // open a tooltip whose child is natively disabled
       expect(getByRole('button', { name: 'Trigger' })).toHaveAttribute(
         'data-picasso-tooltip-anchor'
       )

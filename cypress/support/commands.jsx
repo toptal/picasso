@@ -8,11 +8,6 @@ import { TestingPicasso } from '@toptal/picasso-test-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { registerPicassoCypressCommands } from '@toptal/picasso-cypress-utils'
 
-// The commands Picasso publishes for consumers — getPopup, getTooltip,
-// setChecked, assertChecked, assertDisabled, selectOption. We register the
-// same ones we ship so this suite exercises the public API rather than a
-// private copy of it. Generic queries (getByTestId, getByRole) stay local
-// on purpose — they encode nothing about Picasso's DOM.
 registerPicassoCypressCommands()
 
 Cypress.Commands.add('getByTestId', (testId, options) => {

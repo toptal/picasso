@@ -1,5 +1,3 @@
-// The bans that ship with the Cypress commands, applied to our own suite so
-// this repo cannot reintroduce what the package exists to replace.
 // eslint-disable-next-line import/no-extraneous-dependencies
 const {
   restrictedSyntax: picassoCypressRestrictedSyntax,
@@ -109,10 +107,8 @@ module.exports = {
         ...generateSameSettingRules(ssrFriendlyRuleNames, 'off'),
       },
     },
-    // Cypress specs. The support layer is excluded: it legitimately touches the
-    // raw markers the bans point away from (geometry-settling reads
-    // `[role="tooltip"]`), the same carve-out consumers make for their own
-    // cypress-utils package.
+    // the support layer is excluded: it legitimately touches the raw markers
+    // the bans point away from
     {
       files: ['cypress/**/*.ts', 'cypress/**/*.tsx', 'cypress/**/*.jsx'],
       excludedFiles: ['cypress/support/**'],
