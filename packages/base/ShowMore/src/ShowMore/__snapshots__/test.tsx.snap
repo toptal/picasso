@@ -9,17 +9,9 @@ exports[`ShowMore renders 1`] = `
       class="m-0 text-md text-graphite font-regular"
     >
       <span
-        width="0"
+        class="overflow-hidden [display:-webkit [-webkit-box break-words"
       >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
       </span>
     </p>
     <button
@@ -62,17 +54,9 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       class="m-0 text-md text-graphite font-regular"
     >
       <span
-        width="0"
+        class="overflow-hidden [display:-webkit [-webkit-box break-words"
       >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
       </span>
     </p>
     <button
@@ -115,17 +99,9 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       class="m-0 text-md text-graphite font-regular"
     >
       <span
-        width="0"
+        class="overflow-hidden [display:-webkit [-webkit-box break-words"
       >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
       </span>
     </p>
     <button
@@ -168,17 +144,9 @@ exports[`ShowMore when disableToggle prop is true should render version without 
       class="m-0 text-md text-graphite font-regular"
     >
       <span
-        width="0"
+        class="overflow-hidden [display:-webkit [-webkit-box break-words"
       >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
       </span>
     </p>
   </div>
@@ -235,17 +203,9 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       class="m-0 text-md text-graphite font-regular"
     >
       <span
-        width="0"
+        class="overflow-hidden [display:-webkit [-webkit-box break-words"
       >
-        <span />
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
-        </span>
-        <span
-          style="position: fixed; visibility: hidden; top: 0px; left: 0px;"
-        >
-          …
-        </span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
       </span>
     </p>
     <button
