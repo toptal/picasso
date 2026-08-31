@@ -789,5 +789,17 @@ describe('Tooltip', () => {
         getByRole('button', { name: 'Trigger' })
       )
     })
+
+    it('always marks the anchor with data-picasso-tooltip-anchor regardless of testids', () => {
+      const { getByRole } = render(
+        <Tooltip content={<TestContent />}>
+          <button type='button'>Trigger</button>
+        </Tooltip>
+      )
+
+      expect(getByRole('button', { name: 'Trigger' })).toHaveAttribute(
+        'data-picasso-tooltip-anchor'
+      )
+    })
   })
 })

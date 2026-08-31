@@ -3,12 +3,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { mount } from 'cypress/react'
 import type { HappoScreenshotOptions } from 'happo-cypress'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import '@toptal/picasso-cypress-utils'
 
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
       isWithinViewport(): Chainable<Subject>
-      getByTestId(testId: string): Chainable<Subject>
+      getByTestId(testId: string, options?: object): Chainable<Subject>
       getByRole(role: string): Chainable<Subject>
       hoverAndTakeHappoScreenshot(
         options?: HappoScreenshotOptions

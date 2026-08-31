@@ -453,7 +453,7 @@ describe('DatePicker', () => {
     ])(
       'should display date in given timezone',
       ({ date, timezone, expectedSelectedDate }) => {
-        const { getByPlaceholderText, getByTestId } = renderDatePicker({
+        const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
           timezone,
           value: new Date(date),
@@ -461,9 +461,7 @@ describe('DatePicker', () => {
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
 
-        expect(getByTestId('day-button-selected')).toHaveTextContent(
-          expectedSelectedDate
-        )
+        expect(getSelectedDay()).toHaveTextContent(expectedSelectedDate)
       }
     )
 
@@ -483,12 +481,11 @@ describe('DatePicker', () => {
     ])(
       'should display date in given timezone after day click',
       async ({ date, timezone }) => {
-        const { getByPlaceholderText, getByTestId, getByText } =
-          renderDatePicker({
-            ...defaultProps,
-            timezone,
-            value: new Date(date),
-          })
+        const { getByPlaceholderText, getByText } = renderDatePicker({
+          ...defaultProps,
+          timezone,
+          value: new Date(date),
+        })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
 
@@ -498,22 +495,21 @@ describe('DatePicker', () => {
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
 
-        expect(getByTestId('day-button-selected')).toHaveTextContent('15')
+        expect(getSelectedDay()).toHaveTextContent('15')
       }
     )
 
     describe('when `enableReset` option is passed', () => {
       it('should not close calendar on `reset` button click', async () => {
-        const { getByRole, queryByTestId, getByPlaceholderText } =
-          renderDatePicker({
-            ...defaultProps,
-            enableReset: true,
-          })
+        const { getByRole, getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          enableReset: true,
+        })
 
         fireEvent.focus(getByPlaceholderText(defaultProps.placeholder))
         fireEvent.click(getByRole('reset', { hidden: true }))
 
-        expect(queryByTestId('day-button-selected')).toBeInTheDocument()
+        expect(getSelectedDay()).toBeInTheDocument()
       })
 
       it('should not open calendar on `reset` button click', async () => {
@@ -573,6 +569,12 @@ describe('DatePicker', () => {
     value: new Date(2020, 11, 24),
     placeholder: 'Pick a date',
   }
+
+  // paired with `data-calendar-day` because the calendar portals out of the
+  // render container and Base UI stamps `data-selected` on select and tab
+  // items too — the pair can only match a calendar day
+  const getSelectedDay = () =>
+    document.querySelector('[data-calendar-day][data-selected]')
 
   const renderDatePicker = (props: Props = defaultProps) => {
     return render(<DatePicker testIds={testIds} {...props} />)

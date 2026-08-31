@@ -1,3 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const {
+  restrictedSyntax: picassoCypressRestrictedSyntax,
+} = require('@toptal/picasso-cypress-utils/eslint')
+
 const forbiddenImports = {
   picasso: ['picasso', 'picasso-forms', 'picasso-charts'],
   'picasso-charts': ['picasso-charts'],
@@ -100,6 +105,15 @@ module.exports = {
         'no-inline-styles/no-inline-styles': 'off',
         'max-lines': 'off',
         ...generateSameSettingRules(ssrFriendlyRuleNames, 'off'),
+      },
+    },
+    // the support layer is excluded: it legitimately touches the raw markers
+    // the bans point away from
+    {
+      files: ['cypress/**/*.ts', 'cypress/**/*.tsx', 'cypress/**/*.jsx'],
+      excludedFiles: ['cypress/support/**'],
+      rules: {
+        'no-restricted-syntax': ['error', ...picassoCypressRestrictedSyntax],
       },
     },
     // codemod fixtures

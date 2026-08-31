@@ -46,6 +46,7 @@ COPY --chown=node:node packages/base-tailwind/package.json ./packages/base-tailw
 COPY --chown=node:node packages/picasso/package.json ./packages/picasso/package.json
 COPY --chown=node:node packages/picasso-charts/package.json ./packages/picasso-charts/package.json
 COPY --chown=node:node packages/picasso-codemod/package.json ./packages/picasso-codemod/package.json
+COPY --chown=node:node packages/picasso-cypress-utils/package.json ./packages/picasso-cypress-utils/package.json
 COPY --chown=node:node packages/picasso-forms/package.json ./packages/picasso-forms/package.json
 COPY --chown=node:node packages/picasso-pictograms/package.json ./packages/picasso-pictograms/package.json
 COPY --chown=node:node packages/picasso-provider/package.json ./packages/picasso-provider/package.json

@@ -98,10 +98,14 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
     <button
       ref={buttonRef}
       type='button'
-      data-testid={`day-button-${
-        isSelected ? 'selected' : getDayFormatted(date)
-      }`}
+      // Stable and unique: selection state lives on `data-selected`, and an
+      // outside-month cell is prefixed so it cannot collide with the in-month
+      // cell showing the same number.
+      data-testid={`day-button-${isOutside ? 'outside-' : ''}${getDayFormatted(
+        date
+      )}`}
       data-calendar-day={isoDate}
+      data-selected={isSelected || undefined}
       tabIndex={isDisabled ? -1 : undefined}
       className={twJoin(
         'h-10 w-10 min-w-10',

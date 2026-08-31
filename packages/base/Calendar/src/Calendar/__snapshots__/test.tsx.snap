@@ -152,7 +152,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-25"
-                        data-testid="day-button-25"
+                        data-testid="day-button-outside-25"
                         type="button"
                         value="Mon Nov 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -166,7 +166,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-26"
-                        data-testid="day-button-26"
+                        data-testid="day-button-outside-26"
                         type="button"
                         value="Tue Nov 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -180,7 +180,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-27"
-                        data-testid="day-button-27"
+                        data-testid="day-button-outside-27"
                         type="button"
                         value="Wed Nov 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -194,7 +194,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-28"
-                        data-testid="day-button-28"
+                        data-testid="day-button-outside-28"
                         type="button"
                         value="Thu Nov 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -208,7 +208,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-29"
-                        data-testid="day-button-29"
+                        data-testid="day-button-outside-29"
                         type="button"
                         value="Fri Nov 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -222,7 +222,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-30"
-                        data-testid="day-button-30"
+                        data-testid="day-button-outside-30"
                         type="button"
                         value="Sat Nov 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -398,7 +398,8 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-white bg-blue border-none rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-12"
-                        data-testid="day-button-selected"
+                        data-selected="true"
+                        data-testid="day-button-12"
                         type="button"
                         value="Thu Dec 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -690,7 +691,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-01"
-                        data-testid="day-button-1"
+                        data-testid="day-button-outside-1"
                         type="button"
                         value="Wed Jan 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -704,7 +705,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-02"
-                        data-testid="day-button-2"
+                        data-testid="day-button-outside-2"
                         type="button"
                         value="Thu Jan 02 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -718,7 +719,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-03"
-                        data-testid="day-button-3"
+                        data-testid="day-button-outside-3"
                         type="button"
                         value="Fri Jan 03 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -732,7 +733,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-04"
-                        data-testid="day-button-4"
+                        data-testid="day-button-outside-4"
                         type="button"
                         value="Sat Jan 04 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
@@ -746,7 +747,7 @@ exports[`Calendar renders 1`] = `
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-05"
-                        data-testid="day-button-5"
+                        data-testid="day-button-outside-5"
                         type="button"
                         value="Sun Jan 05 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >

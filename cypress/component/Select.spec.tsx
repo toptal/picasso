@@ -156,9 +156,8 @@ const getNativeOption = (value: string | number) =>
 const openSelect = () => {
   cy.getByTestId('select').click()
 
-  // the menu mounts async in a popper — gate on its stable marker (roles vary)
-  // so a screenshot right after opening can't capture a menu-less frame
-  cy.get('[data-picasso-popper]').should('be.visible')
+  // the menu mounts async in a popper — gate on it before screenshotting
+  cy.getPopup().should('be.visible')
 }
 
 const pressArrowDown = () => {
@@ -462,7 +461,7 @@ describe('Select with an associated label', () => {
     cy.contains('label', 'State').click()
 
     cy.focused().should('have.id', 'label-activation-select')
-    cy.get('[data-picasso-popper]').should('not.exist')
+    cy.getPopup().should('not.exist')
 
     // a real pointer click on the select still opens it
     openSelect()

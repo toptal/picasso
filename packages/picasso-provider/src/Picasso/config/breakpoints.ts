@@ -40,12 +40,17 @@ class BreakpointProvider {
    * Stops `xs`/`sm`/`md` from matching, for `<Picasso responsive={false}>`.
    * `lg` widens to the desktop floor — left at 1024px it made 768–1023.98px
    * match nothing, so `useBreakpoint(['md', 'lg', 'xl'])` was `false` there.
+   *
+   * `values.lg` drops to the same floor so the two APIs cannot disagree: the
+   * media queries decide `useBreakpoint`, the pixel values decide
+   * `useScreens`/`isScreenSize` — one desktop floor, one answer.
    */
   disableMobileBreakpoints() {
     const { xl } = this.breakpoints.values
 
     this.breakpoints.values.xs = 768
     this.breakpoints.values.sm = 768
+    this.breakpoints.values.lg = 768
 
     this.mediaQueries.xs = ''
     this.mediaQueries.sm = ''

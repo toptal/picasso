@@ -133,6 +133,7 @@
     "@toptal/picasso-codemod": "workspace:*",
     "@toptal/picasso-collapse": "workspace:*",
     "@toptal/picasso-container": "workspace:*",
+    "@toptal/picasso-cypress-utils": "workspace:*",
     "@toptal/picasso-date-picker": "workspace:*",
     "@toptal/picasso-date-select": "workspace:*",
     "@toptal/picasso-drawer": "workspace:*",

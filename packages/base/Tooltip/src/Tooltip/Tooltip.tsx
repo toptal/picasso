@@ -326,6 +326,9 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
             ref={setTriggerRef}
             className={className}
             style={style}
+            // stable test hook marking the anchor — the element the
+            // open/close listeners attach to
+            data-picasso-tooltip-anchor=''
             {...anchorTestIdProps}
             // Associate the popup with the trigger while open, preferring any
             // consumer-supplied value (tooltipId is never empty).

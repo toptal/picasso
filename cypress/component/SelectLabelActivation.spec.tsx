@@ -118,9 +118,7 @@ describe('Form.Select whose selection opens a confirmation Modal', () => {
     cy.get('#comment').type('Some comment')
 
     cy.getByTestId('category').click()
-    cy.get('[data-picasso-popper]')
-      .contains('Talent rate')
-      .click({ force: true })
+    cy.getPopup().contains('[role="option"]', 'Talent rate').click()
 
     // the selection commit closed the popup and opened the confirmation
     cy.getByTestId('confirmation').should('be.visible')
@@ -132,7 +130,7 @@ describe('Form.Select whose selection opens a confirmation Modal', () => {
     // label click must focus the remounted select but NOT re-open the popup
     cy.contains('label', 'Category').click()
 
-    cy.get('[data-picasso-popper]').should('not.exist')
+    cy.getPopup().should('not.exist')
     cy.getByTestId('comment').find('textarea, input').first().clear()
     cy.getByTestId('comment')
       .find('textarea, input')
