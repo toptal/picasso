@@ -1,5 +1,6 @@
 ---
 '@toptal/picasso-calendar': major
+'@toptal/picasso-date-picker': major
 ---
 
 ### CalendarDay
@@ -8,3 +9,5 @@
 - prefix outside-month cells as `day-button-outside-<n>`, so a trailing day from the previous month no longer stamps the same testid as the in-month cell showing that number. Specs that reached for `click({ multiple: true })` to disambiguate can drop it
 
 **Migration:** replace `getByTestId('day-button-selected')` with a `[data-selected]` query — for example `container.querySelector('[data-selected]')`, or `cy.getPopup().find('[data-selected]')`. To target one specific date across months, prefer the stable `data-calendar-day="<ISO date>"` hook the cell already carried. Measured before shipping: no `day-button-selected` usage exists in staff-portal or client-portal, and no spec in either targets the outside-month duplicate — the only dependents were three assertions in Picasso's own DatePicker tests
+
+`@toptal/picasso-date-picker` majors alongside: it renders these day cells, so the testid contract of an open DatePicker changes identically

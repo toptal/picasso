@@ -7,6 +7,7 @@
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",
+  "types": "./dist-package/src/index.d.ts",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
     "prepublishOnly": "pnpm build:package"
@@ -26,7 +27,10 @@
     "cypress": ">=13.0.0 < 16.0.0"
   },
   "exports": {
-    ".": "./dist-package/src/index.js",
+    ".": {
+      "types": "./dist-package/src/index.d.ts",
+      "default": "./dist-package/src/index.js"
+    },
     "./eslint": "./eslint.cjs",
     "./package.json": "./package.json"
   },

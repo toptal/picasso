@@ -177,27 +177,37 @@ describe('picasso-cypress-utils', () => {
       cy.get('input[value="pro"]').assertChecked(false)
     })
 
-    it('asserts every control inside a wrapper, not just the first', () => {
-      cy.mount(<Toggles />)
+    it(
+      'asserts every control inside a wrapper, not just the first',
+      // the assertion must exhaust its retries before it fails — don't burn
+      // the default 4s doing it
+      { defaultCommandTimeout: 1000 },
+      () => {
+        cy.mount(<Toggles />)
 
-      // the group holds two radios and only 'free' is checked, so asserting
-      // "checked" across the wrapper must fail — on the second one, named
-      expectFailure('expected the input 2 of 2 to be checked')
+        // the group holds two radios and only 'free' is checked, so asserting
+        // "checked" across the wrapper must fail — on the second one, named
+        expectFailure('expected the input 2 of 2 to be checked')
 
-      cy.getByTestId('plan-group').assertChecked()
-    })
+        cy.getByTestId('plan-group').assertChecked()
+      }
+    )
 
-    it('fails loudly when the subject contains no control', () => {
-      cy.mount(<Container data-testid='no-controls'>Nothing here</Container>)
+    it(
+      'fails loudly when the subject contains no control',
+      { defaultCommandTimeout: 1000 },
+      () => {
+        cy.mount(<Container data-testid='no-controls'>Nothing here</Container>)
 
-      expectFailure(
-        'expected to find a checkbox/switch/radio control inside the subject'
-      )
+        expectFailure(
+          'expected to find a checkbox/switch/radio control inside the subject'
+        )
 
-      // a plain container is never `:checked`, so should('be.checked') would
-      // pass vacuously here — the command must report the missing control
-      cy.getByTestId('no-controls').assertChecked()
-    })
+        // a plain container is never `:checked`, so should('be.checked') would
+        // pass vacuously here — the command must report the missing control
+        cy.getByTestId('no-controls').assertChecked()
+      }
+    )
   })
 
   describe('assertDisabled', () => {
@@ -282,13 +292,17 @@ describe('picasso-cypress-utils', () => {
       cy.focused().should('not.exist')
     })
 
-    it('fails loudly on a subject with no toggle control', () => {
-      cy.mount(<Container data-testid='plain'>Nothing here</Container>)
+    it(
+      'fails loudly on a subject with no toggle control',
+      { defaultCommandTimeout: 1000 },
+      () => {
+        cy.mount(<Container data-testid='plain'>Nothing here</Container>)
 
-      expectFailure('no [role="checkbox"|"switch"] element found')
+        expectFailure('no [role="checkbox"|"switch"] element found')
 
-      cy.getByTestId('plain').toggleControl()
-    })
+        cy.getByTestId('plain').toggleControl()
+      }
+    )
   })
 
   describe('queryPopup', () => {

@@ -252,6 +252,24 @@ describe('non-responsive breakpoint utils', () => {
     )
   })
 
+  describe('below the 768 floor', () => {
+    // Sub-768 widths are out of contract under responsive={false}:
+    // FixViewport pins mobile viewports to width=768, so only a manually
+    // narrowed desktop window gets here. The invariant that matters is that
+    // desktop-gated UI must not collapse — the media queries hold lg at any
+    // width. The pixel APIs report xs there (the values floor at 768), which
+    // is why SCREEN_SIZES.small is not in the agree-list above.
+    it('holds the desktop branch while the pixel APIs report xs', () => {
+      mockViewportWidth(SCREEN_SIZES.small)
+
+      const { result } = renderHook(() => useBreakpoint('lg'))
+
+      expect(result.current).toBe(true)
+      expect(isScreenSize('xs', SCREEN_SIZES.small)).toBeTruthy()
+      expect(isScreenSize('lg', SCREEN_SIZES.small)).toBeFalsy()
+    })
+  })
+
   describe('screen size checks', () => {
     it('small breakpoint no screen size', () => {
       const isSmall = isScreenSize('sm')
