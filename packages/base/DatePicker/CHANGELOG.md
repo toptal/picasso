@@ -1,5 +1,31 @@
 # @toptal/picasso-date-picker
 
+## 101.0.0
+
+### Major Changes
+
+- [#5092](https://github.com/toptal/picasso/pull/5092) [`6d1b219`](https://github.com/toptal/picasso/commit/6d1b2195a634807590d5d807fcd15c6ea3c1f39e) Thanks [@vedrani](https://github.com/vedrani)!
+
+### CalendarDay
+
+- stop mutating the day testid with selection state. A selected day kept `day-button-<n>` instead of becoming `day-button-selected`, so the hook for a given day no longer disappears the moment it is picked — a same-day range (`[7, 7]`) can address the day twice. Read selection from the new `data-selected` attribute instead of from the testid
+- prefix outside-month cells as `day-button-outside-<n>`, so a trailing day from the previous month no longer stamps the same testid as the in-month cell showing that number. Specs that reached for `click({ multiple: true })` to disambiguate can drop it
+
+**Migration:** replace `getByTestId('day-button-selected')` with a `[data-selected]` query — for example `container.querySelector('[data-selected]')`, or `cy.getPopup().find('[data-selected]')`. To target one specific date across months, prefer the stable `data-calendar-day="<ISO date>"` hook the cell already carried. Measured before shipping: no `day-button-selected` usage exists in staff-portal or client-portal, and no spec in either targets the outside-month duplicate — the only dependents were three assertions in Picasso's own DatePicker tests
+
+`@toptal/picasso-date-picker` majors alongside: it renders these day cells, so the testid contract of an open DatePicker changes identically
+
+### Patch Changes
+
+- Updated dependencies [[`6d1b219`](https://github.com/toptal/picasso/commit/6d1b2195a634807590d5d807fcd15c6ea3c1f39e)]:
+  - @toptal/picasso-calendar@101.0.0
+  - @toptal/picasso-container@100.0.1
+  - @toptal/picasso-input@100.0.2
+  - @toptal/picasso-input-adornment@100.0.1
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-icons@100.0.1
+  - @toptal/picasso-popper@100.0.2
+
 ## 100.0.2
 
 ### Patch Changes

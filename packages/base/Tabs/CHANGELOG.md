@@ -1,5 +1,19 @@
 # @toptal/picasso-tabs
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-container@100.0.1
+  - @toptal/picasso-typography@100.0.1
+  - @toptal/picasso-typography-overflow@100.0.2
+  - @toptal/picasso-user-badge@100.0.1
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-icons@100.0.1
+  - @toptal/picasso-shared@100.1.0
+
 ## 100.0.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @toptal/picasso-slider
 
+## 100.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`6d1b219`](https://github.com/toptal/picasso/commit/6d1b2195a634807590d5d807fcd15c6ea3c1f39e), [`6d1b219`](https://github.com/toptal/picasso/commit/6d1b2195a634807590d5d807fcd15c6ea3c1f39e)]:
+  - @toptal/picasso-tooltip@100.2.0
+  - @toptal/picasso-provider@100.2.0
+  - @toptal/picasso-utils@100.0.1
+  - @toptal/picasso-tailwind-merge@100.0.0
+  - @toptal/picasso-shared@100.1.0
+
 ## 100.0.1
 
 ### Patch Changes
