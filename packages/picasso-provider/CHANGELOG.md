@@ -1,5 +1,15 @@
 # Change Log
 
+## 100.2.0
+
+### Minor Changes
+
+- [#5092](https://github.com/toptal/picasso/pull/5092) [`6d1b219`](https://github.com/toptal/picasso/commit/6d1b2195a634807590d5d807fcd15c6ea3c1f39e) Thanks [@vedrani](https://github.com/vedrani)!
+
+### PicassoBreakpoints
+
+- drop `values.lg` to the desktop floor (768) alongside the widened `lg` media query when `disableMobileBreakpoints()` runs, so the two breakpoint APIs cannot disagree. The media queries drive `useBreakpoint`, the pixel values drive `useScreens`/`isScreenSize`, and with `values.lg` left at 1024 a width of 800px was `lg` by media query and `md` by pixel value at the same moment — while `md` is blanked, so `useBreakpoint('md')` was `false` and `isScreenSize('md', 800)` was `true` together. Follow-up to PF-2282, which fixed the practical dead zone but left this split behind
+
 ## 100.1.0
 
 ### Minor Changes

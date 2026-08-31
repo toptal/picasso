@@ -1,8 +1,10 @@
----
-'@toptal/picasso-cypress-utils': major
-'@toptal/picasso-test-utils': minor
-'@toptal/picasso-tooltip': minor
----
+# @toptal/picasso-cypress-utils
+
+## 100.0.0
+
+### Major Changes
+
+- [#5092](https://github.com/toptal/picasso/pull/5092) [`6d1b219`](https://github.com/toptal/picasso/commit/6d1b2195a634807590d5d807fcd15c6ea3c1f39e) Thanks [@vedrani](https://github.com/vedrani)!
 
 ### picasso-cypress-utils
 
