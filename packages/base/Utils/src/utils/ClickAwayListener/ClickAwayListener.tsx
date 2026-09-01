@@ -7,6 +7,8 @@ import type {
 import React, { useCallback, useEffect, useRef } from 'react'
 import { toReactEvent } from '@toptal/picasso-shared'
 
+import getElementRef from '../get-element-ref'
+
 type ClickAwayMouseEventHandler = 'onClick' | 'onMouseDown' | 'onMouseUp'
 type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd'
 
@@ -86,7 +88,7 @@ export const ClickAwayListener = (props: Props) => {
     }
   }, [])
 
-  const childRef = (children as { ref?: Ref<Element> }).ref
+  const childRef = getElementRef<Element>(children)
 
   const handleRef = useCallback(
     (instance: Element | null) => {
