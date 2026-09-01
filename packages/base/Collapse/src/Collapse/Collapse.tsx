@@ -10,15 +10,15 @@ import {
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
-  /* Element that accepts ref */
+  /** Content to expand and collapse */
   children: ReactNode
-  /* Show the component; triggers the enter or exit states */
+  /** Show the content; toggling runs the enter or exit transition */
   in?: boolean
-  /* Trigger the transition on the first mount, regardless of the `in` prop. */
+  /** Run the enter transition when mounting with `in` already true */
   appear?: boolean
-  /* Unmount the component on exit */
+  /** Unmount the component once it has fully exited */
   unmountOnExit?: boolean
-  /* Callback fired when the component has entered */
+  /** Callback fired when the enter transition starts */
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
@@ -51,9 +51,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
     onExited,
   })
 
-  const [height, setHeight] = useState<string>(
-    inProps && !appear ? 'auto' : '0px'
-  )
+  const [height, setHeight] = useState(status === 'entered' ? 'auto' : '0px')
 
   // The from-value and to-value of a height transition must land in separate
   // painted frames, or CSS sees a single change and skips the animation. The
@@ -88,17 +86,28 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
     setHeight('0px')
   }, [status])
 
+  // `appear` describes only the mount transition — the first exit ends it and
+  // every later enter is a regular one — so its duration applies until then.
+  const [appearing, setAppearing] = useState(Boolean(appear && inProps))
+
+  useIsomorphicLayoutEffect(() => {
+    if (status === 'exiting') {
+      setAppearing(false)
+    }
+  }, [status])
+
   const combinedRef = useMultipleForwardRefs([ref, nodeRef])
 
   const memoStyles = useMemo(() => {
     const timeouts = getTransitionTimeouts(timeout)
+    const enterDuration = appearing ? timeouts.appear : timeouts.enter
 
     return {
       ...style,
-      transitionDuration: `${inProps ? timeouts.enter : timeouts.exit}ms`,
+      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
       height,
     }
-  }, [timeout, inProps, height, style])
+  }, [timeout, inProps, appearing, height, style])
 
   if (status === 'unmounted') {
     return null

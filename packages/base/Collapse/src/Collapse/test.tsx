@@ -1,9 +1,12 @@
+/* eslint-disable max-lines-per-function */
 import React, { StrictMode } from 'react'
 import { act, cleanup, render } from '@toptal/picasso-test-utils'
 
 import Collapse from './Collapse'
 
 const CONTENT_HEIGHT = 120
+// one mocked rAF frame — jest's fake timers schedule requestAnimationFrame
+// callbacks 16 ms apart
 const FRAME = 20
 
 const SomeChildComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
@@ -209,6 +212,44 @@ describe('Collapse', () => {
     expect(getByTestId('collapse')).toHaveStyle({
       transitionDuration: '200ms',
     })
+  })
+
+  it('applies the `appear` duration to the mount transition only', () => {
+    const timeout = { enter: 100, exit: 200, appear: 500 }
+    const { getByTestId, rerender } = render(
+      <Collapse appear in timeout={timeout} data-testid='collapse'>
+        <SomeChildComponent />
+      </Collapse>
+    )
+
+    const collapse = getByTestId('collapse')
+
+    expect(collapse).toHaveStyle({ transitionDuration: '500ms' })
+
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    rerender(
+      <Collapse appear in={false} timeout={timeout} data-testid='collapse'>
+        <SomeChildComponent />
+      </Collapse>
+    )
+
+    expect(collapse).toHaveStyle({ transitionDuration: '200ms' })
+
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    // a re-enter after the appear pass is a regular enter
+    rerender(
+      <Collapse appear in timeout={timeout} data-testid='collapse'>
+        <SomeChildComponent />
+      </Collapse>
+    )
+
+    expect(collapse).toHaveStyle({ transitionDuration: '100ms' })
   })
 
   it('lets a consumer className override its own overflow', () => {

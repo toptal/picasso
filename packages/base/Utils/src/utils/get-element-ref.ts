@@ -1,8 +1,8 @@
 import type { ForwardedRef, ReactElement } from 'react'
 import React from 'react'
 
-type ElementWithRef<T> = ReactElement & { ref?: ForwardedRef<T> }
 type PropsWithRef<T> = { ref?: ForwardedRef<T> }
+type ElementWithRef<T> = ReactElement & PropsWithRef<T>
 
 // React 19 moved element refs into props — `element.ref` is deprecated there
 // and slated for removal — while earlier majors keep the ref on the element
