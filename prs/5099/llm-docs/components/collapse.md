@@ -6,6 +6,11 @@
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| **children** | `ReactNode` | - | Content to expand and collapse |
+| in | `boolean` | - | Show the content; toggling runs the enter or exit transition |
+| appear | `boolean` | - | Run the enter transition when mounting with `in` already true |
+| unmountOnExit | `boolean` | - | Unmount the component once it has fully exited |
+| onEnter | `((node: HTMLElement, isAppearing: boolean) => void)` | - | Callback fired when the enter transition starts |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 

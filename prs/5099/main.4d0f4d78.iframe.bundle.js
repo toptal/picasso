@@ -26202,7 +26202,7 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
     onEnter: onEnter,
     onExited: onExited
   });
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(inProps && !appear ? 'auto' : '0px'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(status === 'entered' ? 'auto' : '0px'),
     _useState2 = _slicedToArray(_useState, 2),
     height = _useState2[0],
     setHeight = _useState2[1];
@@ -26240,14 +26240,26 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
     }
     setHeight('0px');
   }, [status]);
+  // `appear` describes only the mount transition — the first exit ends it and
+  // every later enter is a regular one — so its duration applies until then.
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Boolean(appear && inProps)),
+    _useState4 = _slicedToArray(_useState3, 2),
+    appearing = _useState4[0],
+    setAppearing = _useState4[1];
+  (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* .useIsomorphicLayoutEffect */ .E)(function () {
+    if (status === 'exiting') {
+      setAppearing(false);
+    }
+  }, [status]);
   var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)([ref, nodeRef]);
   var memoStyles = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
     var timeouts = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* .getTransitionTimeouts */ .g)(timeout);
+    var enterDuration = appearing ? timeouts.appear : timeouts.enter;
     return Object.assign(Object.assign({}, style), {
-      transitionDuration: `${inProps ? timeouts.enter : timeouts.exit}ms`,
+      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
       height: height
     });
-  }, [timeout, inProps, height, style]);
+  }, [timeout, inProps, appearing, height, style]);
   if (status === 'unmounted') {
     return null;
   }
@@ -26361,7 +26373,7 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
     onEnter: onEnter,
     onExited: onExited
   });
-  var _useState = (0,react.useState)(inProps && !appear ? 'auto' : '0px'),
+  var _useState = (0,react.useState)(status === 'entered' ? 'auto' : '0px'),
     _useState2 = _slicedToArray(_useState, 2),
     height = _useState2[0],
     setHeight = _useState2[1];
@@ -26400,14 +26412,27 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
     }
     setHeight('0px');
   }, [status]);
+
+  // `appear` describes only the mount transition — the first exit ends it and
+  // every later enter is a regular one — so its duration applies until then.
+  var _useState3 = (0,react.useState)(Boolean(appear && inProps)),
+    _useState4 = _slicedToArray(_useState3, 2),
+    appearing = _useState4[0],
+    setAppearing = _useState4[1];
+  (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
+    if (status === 'exiting') {
+      setAppearing(false);
+    }
+  }, [status]);
   var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef]);
   var memoStyles = (0,react.useMemo)(function () {
     var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
+    var enterDuration = appearing ? timeouts.appear : timeouts.enter;
     return Object.assign({}, style, {
-      transitionDuration: `${inProps ? timeouts.enter : timeouts.exit}ms`,
+      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
       height: height
     });
-  }, [timeout, inProps, height, style]);
+  }, [timeout, inProps, appearing, height, style]);
   if (status === 'unmounted') {
     return null;
   }
@@ -26432,7 +26457,7 @@ try {
     // @ts-ignore
     Collapse.displayName = "Collapse";
     // @ts-ignore
-    Collapse.__docgenInfo = { "description": "", "displayName": "Collapse", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Collapse.__docgenInfo = { "description": "", "displayName": "Collapse", "props": { "children": { "defaultValue": null, "description": "Content to expand and collapse", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "in": { "defaultValue": null, "description": "Show the content; toggling runs the enter or exit transition", "name": "in", "required": false, "type": { "name": "boolean | undefined" } }, "appear": { "defaultValue": null, "description": "Run the enter transition when mounting with `in` already true", "name": "appear", "required": false, "type": { "name": "boolean | undefined" } }, "unmountOnExit": { "defaultValue": null, "description": "Unmount the component once it has fully exited", "name": "unmountOnExit", "required": false, "type": { "name": "boolean | undefined" } }, "onEnter": { "defaultValue": null, "description": "Callback fired when the enter transition starts", "name": "onEnter", "required": false, "type": { "name": "((node: HTMLElement, isAppearing: boolean) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -106577,8 +106602,10 @@ var Transitions = Transitions_namespaceObject;
 /* harmony export */ });
 /* unused harmony export ClickAwayListener */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/shared/dist-package/src/utils/to-react-event.js");
+/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/shared/dist-package/src/utils/to-react-event.js");
 /* harmony import */ var _get_element_ref__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
+/* harmony import */ var _use_multiple_forward_refs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+
 
 
 
@@ -106595,14 +106622,6 @@ var isEventInsideNode = function (event, node, doc) {
     return event.composedPath().indexOf(node) > -1;
   }
   return !doc.documentElement.contains(event.target) || node.contains(event.target);
-};
-var setRef = function (ref, value) {
-  if (typeof ref === 'function') {
-    ref(value);
-  } else if (ref) {
-    ;
-    ref.current = value;
-  }
 };
 var ClickAwayListener = function (props) {
   var children = props.children,
@@ -106629,10 +106648,7 @@ var ClickAwayListener = function (props) {
     };
   }, []);
   var childRef = (0,_get_element_ref__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .A)(children);
-  var handleRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (instance) {
-    nodeRef.current = instance;
-    setRef(childRef, instance);
-  }, [childRef]);
+  var handleRef = (0,_use_multiple_forward_refs__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)([nodeRef, childRef]);
   var handleClickAway = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (event) {
     var _a;
     var insideReactTree = syntheticEventRef.current;
@@ -106648,7 +106664,7 @@ var ClickAwayListener = function (props) {
     }
     var insideDOM = isEventInsideNode(event, node, doc);
     if (!insideDOM && (disableReactTree || !insideReactTree)) {
-      onClickAway((0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(event));
+      onClickAway((0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)(event));
     }
   }, [disableReactTree, onClickAway]);
   var createHandleSynthetic = function (handlerName) {
@@ -158951,4 +158967,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.8c91e7d0.iframe.bundle.js.map
+//# sourceMappingURL=main.4d0f4d78.iframe.bundle.js.map
