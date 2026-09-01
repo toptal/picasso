@@ -24,19 +24,14 @@ const ImageAvatar = (props: Props) => {
   } = props
 
   return (
-    <>
-      <Image
-        alt={alt || name || ''}
-        className={twMerge(
-          'object-cover w-full h-full [image-rendering:-webkit-optimize-contrast]',
-          className
-        )}
-        src={src}
-        style={style}
-        data-testid={dataTestId}
-        data-private={dataPrivate}
-      />
-    </>
+    <Image
+      alt={alt || name || ''}
+      className={twMerge('object-cover w-full h-full', className)}
+      src={src}
+      style={style}
+      data-testid={dataTestId}
+      data-private={dataPrivate}
+    />
   )
 }
 

@@ -199,7 +199,7 @@ exports[`AccountSelect renders 1`] = `
                         >
                           <img
                             alt="Phil Leif 3"
-                            class="block object-cover w-full h-full [image-rendering:-webkit-optimize"
+                            class="block object-cover w-full h-full"
                             src="./jacqueline-with-flowers-1954-square.jpg"
                           />
                         </div>
