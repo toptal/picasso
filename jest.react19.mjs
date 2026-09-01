@@ -23,7 +23,9 @@ const config = {
   ...baseConfig,
   roots: [...baseConfig.roots, '<rootDir>/react19'],
   moduleNameMapper: {
-    '^react$': '<rootDir>/react19/node_modules/react',
+    // react re-exported with useId normalized to the React 18 id format,
+    // so version-agnostic snapshots stay comparable (see the .cjs header)
+    '^react$': '<rootDir>/react19/react-useid-compat.cjs',
     '^react/(.*)$': '<rootDir>/react19/node_modules/react/$1',
     '^react-dom$': '<rootDir>/react19/node_modules/react-dom',
     '^react-dom/(.*)$': '<rootDir>/react19/node_modules/react-dom/$1',
