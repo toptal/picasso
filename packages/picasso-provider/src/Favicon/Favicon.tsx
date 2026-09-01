@@ -54,6 +54,14 @@ export const Favicon = ({ environment }: Props) => {
 
   const { icon16, icon32, icon180 } = icons
 
+  // React 19 decides whether a `<link>` can be hoisted into `<head>` when the
+  // element mounts: one mounted with an undefined `href` renders in place and
+  // stays there even after the href arrives. The icons resolve asynchronously,
+  // so keep the links unmounted until their hrefs exist.
+  if (!icon16 || !icon32 || !icon180) {
+    return null
+  }
+
   // favicon.ico will be loaded automatically by browser from "public" folder
   // if it exists there. It's needed only for old browsers
   // we don't have to specify it in the head

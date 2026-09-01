@@ -16,25 +16,40 @@ const render: typeof baseRender = ui =>
     </Picasso>
   )
 
+// The icons resolve through the file mock, so every href is the same stub;
+// what matters is that each link reaches `<head>` carrying its href — React 19
+// only hoists a link whose href exists when the element mounts.
+const expectFaviconLinks = async () => {
+  await waitFor(() => {
+    expect(document.querySelectorAll('head > link')).toHaveLength(3)
+  })
+
+  const linkFor = (selector: string) =>
+    document.querySelector(`head > link${selector}`)
+
+  expect(linkFor('[rel="apple-touch-icon"][sizes="180x180"]')).toHaveAttribute(
+    'href',
+    'test-file-stub'
+  )
+  expect(
+    linkFor('[rel="icon"][type="image/png"][sizes="32x32"]')
+  ).toHaveAttribute('href', 'test-file-stub')
+  expect(
+    linkFor('[rel="icon"][type="image/png"][sizes="16x16"]')
+  ).toHaveAttribute('href', 'test-file-stub')
+}
+
 describe('Favicon', () => {
   it('renders', async () => {
     render(<Favicon />)
 
-    await waitFor(() => {
-      expect(document.querySelectorAll('head > link')).not.toHaveLength(0)
-    })
-
-    expect(document.querySelectorAll('head > link')).toMatchSnapshot()
+    await expectFaviconLinks()
   })
 
   it('renders with environment specified', async () => {
     render(<Favicon environment='staging' />)
 
-    await waitFor(() => {
-      expect(document.querySelectorAll('head > link')).not.toHaveLength(0)
-    })
-
-    expect(document.querySelectorAll('head > link')).toMatchSnapshot()
+    await expectFaviconLinks()
   })
 
   it('renders nothing in a test environment', async () => {
