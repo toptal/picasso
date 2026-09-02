@@ -53,10 +53,6 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
 
   const [height, setHeight] = useState(status === 'entered' ? 'auto' : '0px')
 
-  // The from-value and to-value of a height transition must land in separate
-  // painted frames, or CSS sees a single change and skips the animation. The
-  // inner wrapper keeps its natural clientHeight even while the outer div is
-  // collapsed, so measuring is always synchronous.
   useIsomorphicLayoutEffect(() => {
     const measured = () => `${wrapperRef.current?.clientHeight ?? 0}px`
 
@@ -69,7 +65,6 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
     }
 
     if (status === 'entered') {
-      // height 'auto' after the transition supports dynamic content inside
       setHeight('auto')
 
       return
@@ -78,7 +73,11 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
     if (status === 'exiting') {
       setHeight(measured())
 
-      const frame = requestAnimationFrame(() => setHeight('0px'))
+      const frame = requestAnimationFrame(() => {
+        void nodeRef.current?.offsetHeight
+
+        setHeight('0px')
+      })
 
       return () => cancelAnimationFrame(frame)
     }
@@ -86,8 +85,6 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
     setHeight('0px')
   }, [status])
 
-  // `appear` describes only the mount transition — the first exit ends it and
-  // every later enter is a regular one — so its duration applies until then.
   const [appearing, setAppearing] = useState(Boolean(appear && inProps))
 
   useIsomorphicLayoutEffect(() => {
