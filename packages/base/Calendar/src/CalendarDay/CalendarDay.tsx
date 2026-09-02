@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import React, { useMemo, useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
 import { useDayRender } from 'react-day-picker'
@@ -35,7 +35,7 @@ const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
 /**
  * The content of a day cell
  */
-const CalendarDay = (dayProps: DayProps): JSX.Element => {
+const CalendarDay = (dayProps: DayProps): React.ReactElement => {
   const { date, displayMonth } = dayProps
   const buttonRef = useRef<HTMLButtonElement>(null)
   const { onDayMouseEnter, renderDay } = useCalendar()
@@ -43,7 +43,8 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
   const { activeModifiers, buttonProps } = useDayRender(
     date,
     displayMonth,
-    buttonRef
+    // react-day-picker types the ref without `null`; the value is the same
+    buttonRef as RefObject<HTMLButtonElement>
   )
 
   const {

@@ -31,7 +31,10 @@ export const PageHamburgerContextProvider = ({
   hamburgerId,
 }: Props) => {
   const [hasPageHamburger, setHasPageHamburger] = useState(false)
-  const hamburgerRef = useRef<HTMLDivElement>(null)
+  // useRef(null) is RefObject<T | null> on @types/react 19; the JSX ref prop wants RefObject<T>
+  const hamburgerRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>
 
   const context: InternalHamburgerContextProps = {
     hamburgerId,

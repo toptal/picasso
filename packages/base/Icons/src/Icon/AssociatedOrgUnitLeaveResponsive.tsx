@@ -13,7 +13,7 @@ const AssociatedOrgUnitLeaveResponsive = (props: Props) => {
       xl: <AssociatedOrgUnitLeave16 {...props} />,
     },
     <AssociatedOrgUnitLeave24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AssociatedOrgUnitLeaveResponsive

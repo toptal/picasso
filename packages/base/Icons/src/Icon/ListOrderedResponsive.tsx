@@ -13,7 +13,7 @@ const ListOrderedResponsive = (props: Props) => {
       xl: <ListOrdered16 {...props} />,
     },
     <ListOrdered24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ListOrderedResponsive

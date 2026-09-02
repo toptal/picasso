@@ -13,7 +13,7 @@ const ReturnedResponsive = (props: Props) => {
       xl: <Returned16 {...props} />,
     },
     <Returned24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ReturnedResponsive

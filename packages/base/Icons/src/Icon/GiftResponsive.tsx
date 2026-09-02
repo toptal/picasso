@@ -13,7 +13,7 @@ const GiftResponsive = (props: Props) => {
       xl: <Gift16 {...props} />,
     },
     <Gift24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default GiftResponsive

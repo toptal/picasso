@@ -13,7 +13,7 @@ const BookmarkResponsive = (props: Props) => {
       xl: <Bookmark16 {...props} />,
     },
     <Bookmark24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BookmarkResponsive

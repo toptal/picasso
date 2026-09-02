@@ -13,7 +13,7 @@ const AbstractResponsive = (props: Props) => {
       xl: <Abstract16 {...props} />,
     },
     <Abstract24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AbstractResponsive

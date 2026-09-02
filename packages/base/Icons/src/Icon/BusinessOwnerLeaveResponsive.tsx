@@ -13,7 +13,7 @@ const BusinessOwnerLeaveResponsive = (props: Props) => {
       xl: <BusinessOwnerLeave16 {...props} />,
     },
     <BusinessOwnerLeave24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BusinessOwnerLeaveResponsive

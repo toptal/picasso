@@ -13,7 +13,7 @@ const QuoteResponsive = (props: Props) => {
       xl: <Quote16 {...props} />,
     },
     <Quote24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default QuoteResponsive

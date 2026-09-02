@@ -13,7 +13,7 @@ const SpecialGroupResponsive = (props: Props) => {
       xl: <SpecialGroup16 {...props} />,
     },
     <SpecialGroup24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SpecialGroupResponsive

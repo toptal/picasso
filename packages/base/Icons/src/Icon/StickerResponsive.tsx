@@ -13,7 +13,7 @@ const StickerResponsive = (props: Props) => {
       xl: <Sticker16 {...props} />,
     },
     <Sticker24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default StickerResponsive

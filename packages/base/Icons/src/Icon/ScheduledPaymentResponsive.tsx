@@ -13,7 +13,7 @@ const ScheduledPaymentResponsive = (props: Props) => {
       xl: <ScheduledPayment16 {...props} />,
     },
     <ScheduledPayment24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ScheduledPaymentResponsive

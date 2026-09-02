@@ -13,7 +13,7 @@ const CalendarReminderResponsive = (props: Props) => {
       xl: <CalendarReminder16 {...props} />,
     },
     <CalendarReminder24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CalendarReminderResponsive

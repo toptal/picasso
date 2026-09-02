@@ -7,7 +7,7 @@ import { ButtonCircular } from '@toptal/picasso-button'
 type Props = BaseProps & {
   active?: boolean
   disabled?: boolean
-  icon: ReactElement
+  icon: ReactElement<{ className?: string }>
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   id?: string
 }

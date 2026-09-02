@@ -13,7 +13,7 @@ const TasksResponsive = (props: Props) => {
       xl: <Tasks16 {...props} />,
     },
     <Tasks24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TasksResponsive

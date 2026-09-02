@@ -13,7 +13,7 @@ const PinSolidResponsive = (props: Props) => {
       xl: <PinSolid16 {...props} />,
     },
     <PinSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PinSolidResponsive

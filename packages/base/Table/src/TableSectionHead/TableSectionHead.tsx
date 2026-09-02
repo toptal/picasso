@@ -14,7 +14,7 @@ export interface Props
   extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
   colSpan?: number
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
 }
 
 export const TableSectionHead: FunctionComponent<Props> = forwardRef<

@@ -46,7 +46,7 @@ const convertImageElement = (domNode: Node): null | DOMConversionOutput => {
   return null
 }
 
-export class CustomEmojiNode extends DecoratorNode<JSX.Element> {
+export class CustomEmojiNode extends DecoratorNode<React.ReactElement> {
   src: string
   id: string
 

@@ -13,7 +13,7 @@ import { SidebarItem } from '../SidebarItem'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** Pass icon to be used as part of item */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Highlights the item as selected */
   selected?: boolean
   /** Component name to render the menu item as */

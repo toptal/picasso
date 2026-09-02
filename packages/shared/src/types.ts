@@ -2,6 +2,7 @@ import type {
   CSSProperties,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ExoticComponent,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -73,7 +74,7 @@ export interface NamedComponent<P> {
 // TS 5.5 variance change.
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (props: P & { [key: string]: any }): JSX.Element | null
+  (props: P & { [key: string]: any }): ReturnType<ExoticComponent<P>>
 }
 
 type BaseEnvironments = 'development' | 'staging' | 'production'

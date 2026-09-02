@@ -13,7 +13,7 @@ const UndoResponsive = (props: Props) => {
       xl: <Undo16 {...props} />,
     },
     <Undo24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default UndoResponsive

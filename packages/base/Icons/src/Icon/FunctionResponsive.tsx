@@ -13,7 +13,7 @@ const FunctionResponsive = (props: Props) => {
       xl: <Function16 {...props} />,
     },
     <Function24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FunctionResponsive

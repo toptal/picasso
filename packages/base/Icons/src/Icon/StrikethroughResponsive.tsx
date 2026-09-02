@@ -13,7 +13,7 @@ const StrikethroughResponsive = (props: Props) => {
       xl: <Strikethrough16 {...props} />,
     },
     <Strikethrough24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default StrikethroughResponsive

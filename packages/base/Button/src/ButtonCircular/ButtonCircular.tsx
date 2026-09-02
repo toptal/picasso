@@ -24,7 +24,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Shows a loading indicator and disables click events */
   loading?: boolean
   /** Callback invoked when component is clicked */

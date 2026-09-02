@@ -5,7 +5,7 @@ import { Typography } from '@toptal/picasso-typography'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Adds <Icon /> above EmptyStatePage content  */
-  image: ReactElement
+  image: ReactElement<{ className?: string }>
   /** Adds Title string below the main image */
   title?: string
 }

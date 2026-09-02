@@ -33,7 +33,13 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
   // Find the first selected or first non-disabled item
   React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
+    if (
+      !React.isValidElement<{
+        disabled?: boolean
+        selected?: boolean
+        tabIndex?: number
+      }>(child)
+    ) {
       return
     }
 
@@ -59,7 +65,13 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   })
 
   const items = React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
+    if (
+      !React.isValidElement<{
+        disabled?: boolean
+        selected?: boolean
+        tabIndex?: number
+      }>(child)
+    ) {
       return
     }
 

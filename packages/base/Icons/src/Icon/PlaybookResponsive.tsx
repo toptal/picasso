@@ -13,7 +13,7 @@ const PlaybookResponsive = (props: Props) => {
       xl: <Playbook16 {...props} />,
     },
     <Playbook24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PlaybookResponsive

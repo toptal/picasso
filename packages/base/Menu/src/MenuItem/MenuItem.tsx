@@ -53,7 +53,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** The additional description */
   description?: ReactNode
   /** Render an `<Icon />` */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Render an <Avatar /> */
   avatar?: ReactElement<AvatarProps, typeof Avatar>
   /** Callback when item is clicked */

@@ -13,7 +13,7 @@ const ThumbsUpResponsive = (props: Props) => {
       xl: <ThumbsUp16 {...props} />,
     },
     <ThumbsUp24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ThumbsUpResponsive

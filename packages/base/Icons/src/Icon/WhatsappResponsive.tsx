@@ -13,7 +13,7 @@ const WhatsappResponsive = (props: Props) => {
       xl: <Whatsapp16 {...props} />,
     },
     <Whatsapp24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default WhatsappResponsive

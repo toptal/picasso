@@ -13,7 +13,7 @@ const ResetResponsive = (props: Props) => {
       xl: <Reset16 {...props} />,
     },
     <Reset24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ResetResponsive

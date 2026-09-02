@@ -48,3 +48,6 @@ jobs:
 
       - name: Jest Tests on React 19
         run: pnpm test:react19 --maxWorkers=4 --ci
+
+      - name: Type check against @types/react 19
+        run: pnpm typecheck:react19

@@ -13,7 +13,7 @@ const SkypeResponsive = (props: Props) => {
       xl: <Skype16 {...props} />,
     },
     <Skype24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SkypeResponsive

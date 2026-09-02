@@ -6,7 +6,7 @@ import { Typography } from '@toptal/picasso-typography'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Adds <Icon /> before EmptyStateCollection content */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
 }
 
 export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(

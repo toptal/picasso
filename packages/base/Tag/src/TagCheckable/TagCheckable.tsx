@@ -16,7 +16,7 @@ export interface Props extends BaseProps, TextLabelProps {
   /** Defines if `Tag` is disabled */
   disabled?: boolean
   /** Specify the icon which should be rendered inside Tag */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   onClick?: ClickType
   /** Callback invoked when component is clicked */
   onChange?: (checked: boolean) => void

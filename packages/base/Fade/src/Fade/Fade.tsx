@@ -11,7 +11,11 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */
-  children: React.ReactElement
+  children: React.ReactElement<{
+    className?: string
+    style?: React.CSSProperties
+    ref?: React.Ref<HTMLElement>
+  }>
   /* Show the component; triggers the enter or exit states */
   in: boolean
   /* Callback fired when the component has entered */

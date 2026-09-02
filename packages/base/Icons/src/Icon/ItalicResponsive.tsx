@@ -13,7 +13,7 @@ const ItalicResponsive = (props: Props) => {
       xl: <Italic16 {...props} />,
     },
     <Italic24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ItalicResponsive

@@ -13,7 +13,7 @@ const MentionResponsive = (props: Props) => {
       xl: <Mention16 {...props} />,
     },
     <Mention24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MentionResponsive

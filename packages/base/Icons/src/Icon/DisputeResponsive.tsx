@@ -13,7 +13,7 @@ const DisputeResponsive = (props: Props) => {
       xl: <Dispute16 {...props} />,
     },
     <Dispute24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DisputeResponsive

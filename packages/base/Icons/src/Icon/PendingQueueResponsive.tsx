@@ -13,7 +13,7 @@ const PendingQueueResponsive = (props: Props) => {
       xl: <PendingQueue16 {...props} />,
     },
     <PendingQueue24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PendingQueueResponsive

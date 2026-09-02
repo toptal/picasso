@@ -13,7 +13,7 @@ const ArchiveResponsive = (props: Props) => {
       xl: <Archive16 {...props} />,
     },
     <Archive24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ArchiveResponsive

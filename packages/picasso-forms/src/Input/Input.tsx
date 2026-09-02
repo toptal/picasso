@@ -40,7 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     mutators: { setHasMultilineCounter },
   } = useForm()
 
-  const { label, labelEndAdornment, titleCase, ...rest } = props
+  const { label, labelEndAdornment, titleCase, name, ...rest } = props
   const { multiline, rows, rowsMax } = props
 
   const alignment = useMemo(() => {
@@ -58,6 +58,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   return (
     <InputField<FormInputProps>
       {...rest}
+      name={name}
       setHasMultilineCounter={setHasMultilineCounter}
       label={
         label ? (

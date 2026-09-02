@@ -13,7 +13,7 @@ const HelpResponsive = (props: Props) => {
       xl: <Help16 {...props} />,
     },
     <Help24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default HelpResponsive

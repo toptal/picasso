@@ -58,7 +58,7 @@ const EmptyAccordionSummary = ({
 
 export interface Props
   extends Omit<StandardProps, 'classes'>,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'content'> {
   /** Always visible part of accordion */
   children?: ReactNode
   /** Collapsible content of `Accordion` */
@@ -70,7 +70,7 @@ export interface Props
   /** Whether the Accordion is disabled */
   disabled?: boolean
   /** Customize icon indicating expanded status */
-  expandIcon?: ReactElement
+  expandIcon?: ReactElement<{ className?: string }>
   /** Defines where the horizontal borders show */
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
@@ -85,7 +85,7 @@ export interface Props
 }
 
 const decorateWithExpandIconClasses = (
-  expandIcon: ReactElement,
+  expandIcon: ReactElement<{ className?: string }>,
   classes: string
 ) =>
   React.cloneElement(expandIcon, {

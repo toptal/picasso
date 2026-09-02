@@ -13,7 +13,7 @@ const ExpandResponsive = (props: Props) => {
       xl: <Expand16 {...props} />,
     },
     <Expand24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ExpandResponsive

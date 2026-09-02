@@ -26,7 +26,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** Text content of the `Tag` component */
   children?: ReactNode
   /** Specify the icon which should be rendered inside Tag */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Defines if `Tag` is disabled */
   disabled?: boolean
   /** A callback which is invoked after remove `Icon` is clicked

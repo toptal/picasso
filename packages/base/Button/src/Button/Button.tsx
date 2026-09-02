@@ -51,7 +51,7 @@ export interface Props
   /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
@@ -77,7 +77,7 @@ const getIcon = ({
   size,
 }: {
   children: ReactNode
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   iconPosition?: IconPositionType
   size: SizeType<'small' | 'medium' | 'large'>
 }) => {

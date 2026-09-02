@@ -28,7 +28,7 @@ export interface Props
   label?: ReactNode
 
   /** The Icon element */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
 
   /** Image URL */
   avatar?: string | null

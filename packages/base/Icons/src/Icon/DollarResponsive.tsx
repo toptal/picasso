@@ -13,7 +13,7 @@ const DollarResponsive = (props: Props) => {
       xl: <Dollar16 {...props} />,
     },
     <Dollar24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DollarResponsive

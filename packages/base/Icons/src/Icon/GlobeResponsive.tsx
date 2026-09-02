@@ -13,7 +13,7 @@ const GlobeResponsive = (props: Props) => {
       xl: <Globe16 {...props} />,
     },
     <Globe24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default GlobeResponsive

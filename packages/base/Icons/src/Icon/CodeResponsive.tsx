@@ -13,7 +13,7 @@ const CodeResponsive = (props: Props) => {
       xl: <Code16 {...props} />,
     },
     <Code24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CodeResponsive

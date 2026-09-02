@@ -30,7 +30,7 @@ export interface Props
   /** ClassName for the content */
   contentClassName?: string
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
@@ -51,7 +51,7 @@ const getClickHandler = (
 ): BaseUIButton.Props['onClick'] =>
   (loading ? noop : handler) as BaseUIButton.Props['onClick']
 
-const getIcon = ({ icon }: { icon?: ReactElement }) => {
+const getIcon = ({ icon }: { icon?: ReactElement<{ className?: string }> }) => {
   if (!icon) {
     return undefined
   }

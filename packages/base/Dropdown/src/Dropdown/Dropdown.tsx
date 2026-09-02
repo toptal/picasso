@@ -30,10 +30,10 @@ type StyleProps = {
 
 interface InternalProps
   extends StandardProps,
-    HTMLAttributes<HTMLDivElement>,
+    Omit<HTMLAttributes<HTMLDivElement>, 'content' | 'children'>,
     StyleProps {
   /** Anchor element that opens content on click */
-  children: ReactNode
+  children: ReactNode | ((props: { isOpen: boolean }) => ReactNode)
   /** Content element that opens when anchor is clicked */
   content: ReactNode
   /** The placement of the content element relative to anchor element. */

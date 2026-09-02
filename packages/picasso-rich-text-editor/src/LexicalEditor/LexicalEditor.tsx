@@ -1,3 +1,4 @@
+import type { RefObject } from 'react'
 import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { ListItemNode, ListNode } from '@lexical/list'
@@ -14,7 +15,7 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso-utils'
-import type { LexicalEditor as LexicalEditorType } from 'lexical'
+import type { EditorState, LexicalEditor as LexicalEditorType } from 'lexical'
 import { $getRoot } from 'lexical'
 
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
@@ -141,7 +142,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const classes = styles
 
-  const toolbarRef = useRef<HTMLDivElement | null>(null)
+  // useRef(null) is RefObject<T | null> on @types/react 19; the toolbar's JSX ref prop wants RefObject<T>
+  const toolbarRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>
 
   const theme = useLexicalTheme(classes)
 
@@ -166,7 +168,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   )
 
   const handleChange = useCallback(
-    (editorState, editor) => {
+    (editorState: EditorState, editor: LexicalEditorType) => {
       editorState.read(() => {
         const root = $getRoot()
         const topLevelChildren = root.getChildren()

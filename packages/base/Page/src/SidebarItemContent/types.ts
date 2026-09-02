@@ -12,7 +12,7 @@ export type SidebarBadgeProps = Omit<BadgeProps, 'size' | 'children'>
 
 export interface Props {
   compact?: boolean
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   badge?: SidebarBadgeProps
   tag?: SidebarTagProps
   children?: ReactNode

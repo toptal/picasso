@@ -13,7 +13,7 @@ const EducationResponsive = (props: Props) => {
       xl: <Education16 {...props} />,
     },
     <Education24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default EducationResponsive

@@ -18,7 +18,7 @@ const getIcon = ({
   iconPosition,
 }: {
   children: ReactNode
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   iconPosition?: IconPositionType
 }) => {
   if (!icon) {
@@ -46,7 +46,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */

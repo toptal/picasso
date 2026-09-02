@@ -13,7 +13,7 @@ const LeadOrgUnitJoinResponsive = (props: Props) => {
       xl: <LeadOrgUnitJoin16 {...props} />,
     },
     <LeadOrgUnitJoin24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LeadOrgUnitJoinResponsive

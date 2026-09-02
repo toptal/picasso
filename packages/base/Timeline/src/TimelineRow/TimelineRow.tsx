@@ -9,7 +9,7 @@ export interface Props extends BaseProps {
   /** Timeline row content */
   children: ReactNode
   /** Icon for the row between lines */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string }>
   /** Timeline row date */
   date?: string
   /** Whether to render a connector line after the row */

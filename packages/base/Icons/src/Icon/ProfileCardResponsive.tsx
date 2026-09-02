@@ -13,7 +13,7 @@ const ProfileCardResponsive = (props: Props) => {
       xl: <ProfileCard16 {...props} />,
     },
     <ProfileCard24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ProfileCardResponsive
