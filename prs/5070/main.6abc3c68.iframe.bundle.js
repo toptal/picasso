@@ -26154,8 +26154,10 @@ var componentDocs = PicassoBook/* default */.A.createComponentDocs(CheckboxGroup
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var react_transition_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./node_modules/react-transition-group/cjs/index.js");
-/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
+/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -26174,34 +26176,8 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
-var useCollapseLogic = function (inProps) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(inProps ? 'auto' : '0px'),
-    _useState2 = _slicedToArray(_useState, 2),
-    height = _useState2[0],
-    setHeight = _useState2[1];
-  var wrapperRef = react__WEBPACK_IMPORTED_MODULE_1__.useRef(null);
-  var getCurrentHeight = function () {
-    var _a;
-    return (_a = wrapperRef.current) === null || _a === void 0 ? void 0 : _a.clientHeight;
-  };
-  var setHeightToCurrent = function () {
-    return setHeight(`${getCurrentHeight()}px`);
-  };
-  var setHeightToZero = function () {
-    return setHeight('0px');
-  };
-  var setHeightToAuto = function () {
-    return setHeight('auto');
-  };
-  return {
-    height: height,
-    wrapperRef: wrapperRef,
-    setHeightToCurrent: setHeightToCurrent,
-    setHeightToZero: setHeightToZero,
-    setHeightToAuto: setHeightToAuto
-  };
-};
-var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(function (_a, ref) {
+
+var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(function Collapse(_a, ref) {
   var children = _a.children,
     className = _a.className,
     _a$in = _a.in,
@@ -26215,61 +26191,86 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
     onEnter = _a.onEnter,
     onExited = _a.onExited,
     rest = __rest(_a, ["children", "className", "in", "timeout", "unmountOnExit", "style", "appear", 'data-testid', "onEnter", "onExited"]);
-  var _useCollapseLogic = useCollapseLogic(inProps),
-    height = _useCollapseLogic.height,
-    wrapperRef = _useCollapseLogic.wrapperRef,
-    setHeightToZero = _useCollapseLogic.setHeightToZero,
-    setHeightToAuto = _useCollapseLogic.setHeightToAuto,
-    setHeightToCurrent = _useCollapseLogic.setHeightToCurrent;
-  // we need to add small delay as 'enter', 'entering' and 'exit', 'exiting'
-  // are triggered in the same time and React is batching them
-  var handleEntering = function () {
-    return setTimeout(setHeightToCurrent, 50);
-  };
-  var handleExiting = function () {
-    return setTimeout(setHeightToZero, 50);
-  };
-  var handleEnter = function (node, isAppearing) {
-    setHeightToZero();
-    onEnter === null || onEnter === void 0 ? void 0 : onEnter(node, isAppearing);
-  };
-  var handleExited = function (node) {
-    setHeightToZero();
-    onExited === null || onExited === void 0 ? void 0 : onExited(node);
-  };
-  var memoStyles = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
-    return Object.assign(Object.assign({}, style), {
-      transitionDuration: `${timeout}ms`,
-      height: height
-    });
-  }, [timeout, height, style]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_2__.Transition, Object.assign({
+  var nodeRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  var wrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
+  var status = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)({
     in: inProps,
     appear: appear,
-    onEnter: handleEnter,
-    onEntering: handleEntering,
-    // we need to set height to 'auto' after transition is finished
-    // to support dynamic content inside Collapse
-    onEntered: setHeightToAuto,
-    onExit: setHeightToCurrent,
-    onExiting: handleExiting,
-    onExited: handleExited,
     unmountOnExit: unmountOnExit,
-    timeout: timeout
-  }, rest), function (state) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-      className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_3__/* .twMerge */ .QP)(['transition-[height] ease-in-out min-h-0', state === 'exited' && !inProps && 'invisible', state === 'entered' ? 'overflow-visible' : 'overflow-hidden', className]),
-      style: memoStyles,
-      "data-testid": dataTestId,
-      ref: ref
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-      className: 'flex',
-      ref: wrapperRef
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-      className: 'w-full'
-    }, children)));
+    timeout: timeout,
+    nodeRef: nodeRef,
+    onEnter: onEnter,
+    onExited: onExited
   });
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(status === 'entered' ? 'auto' : '0px'),
+    _useState2 = _slicedToArray(_useState, 2),
+    height = _useState2[0],
+    setHeight = _useState2[1];
+  (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* .useIsomorphicLayoutEffect */ .E)(function () {
+    var measured = function () {
+      var _a, _b;
+      return `${(_b = (_a = wrapperRef.current) === null || _a === void 0 ? void 0 : _a.clientHeight) !== null && _b !== void 0 ? _b : 0}px`;
+    };
+    if (status === 'entering') {
+      setHeight('0px');
+      var frame = requestAnimationFrame(function () {
+        return setHeight(measured());
+      });
+      return function () {
+        return cancelAnimationFrame(frame);
+      };
+    }
+    if (status === 'entered') {
+      setHeight('auto');
+      return;
+    }
+    if (status === 'exiting') {
+      setHeight(measured());
+      var _frame = requestAnimationFrame(function () {
+        var _a;
+        void ((_a = nodeRef.current) === null || _a === void 0 ? void 0 : _a.offsetHeight);
+        setHeight('0px');
+      });
+      return function () {
+        return cancelAnimationFrame(_frame);
+      };
+    }
+    setHeight('0px');
+  }, [status]);
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Boolean(appear && inProps)),
+    _useState4 = _slicedToArray(_useState3, 2),
+    appearing = _useState4[0],
+    setAppearing = _useState4[1];
+  (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* .useIsomorphicLayoutEffect */ .E)(function () {
+    if (status === 'exiting') {
+      setAppearing(false);
+    }
+  }, [status]);
+  var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)([ref, nodeRef]);
+  var memoStyles = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
+    var timeouts = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* .getTransitionTimeouts */ .g)(timeout);
+    var enterDuration = appearing ? timeouts.appear : timeouts.enter;
+    return Object.assign(Object.assign({}, style), {
+      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
+      height: height
+    });
+  }, [timeout, inProps, appearing, height, style]);
+  if (status === 'unmounted') {
+    return null;
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", Object.assign({}, rest, {
+    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__/* .twMerge */ .QP)(['transition-[height] ease-in-out min-h-0', status === 'exited' && !inProps && 'invisible', status === 'entered' ? 'overflow-visible' : 'overflow-hidden', className]),
+    style: memoStyles,
+    "data-testid": dataTestId,
+    ref: combinedRef
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: 'flex',
+    ref: wrapperRef
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: 'w-full'
+  }, children)));
 });
+Collapse.displayName = 'Collapse';
 Collapse.__docgenInfo = {
   "description": "",
   "methods": [],
@@ -26316,8 +26317,12 @@ var Collapse = __webpack_require__("./packages/base/Collapse/dist-package/src/Co
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./node_modules/react-transition-group/cjs/index.js
-var cjs = __webpack_require__("./node_modules/react-transition-group/cjs/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js
+var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
+// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-transition-status.js
+var use_transition_status = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
+// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js
+var use_multiple_forward_refs = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
@@ -26325,46 +26330,20 @@ var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
 ;// ./packages/base/Collapse/src/Collapse/Collapse.tsx
 
 var _excluded = ["children", "className", "in", "timeout", "unmountOnExit", "style", "appear", "data-testid", "onEnter", "onExited"];
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 
 
 
 
-var useCollapseLogic = function (inProps) {
-  var _useState = (0,react.useState)(inProps ? 'auto' : '0px'),
-    _useState2 = _slicedToArray(_useState, 2),
-    height = _useState2[0],
-    setHeight = _useState2[1];
-  var wrapperRef = react.useRef(null);
-  var getCurrentHeight = function () {
-    var _wrapperRef$current;
-    return (_wrapperRef$current = wrapperRef.current) === null || _wrapperRef$current === void 0 ? void 0 : _wrapperRef$current.clientHeight;
-  };
-  var setHeightToCurrent = function () {
-    return setHeight(`${getCurrentHeight()}px`);
-  };
-  var setHeightToZero = function () {
-    return setHeight('0px');
-  };
-  var setHeightToAuto = function () {
-    return setHeight('auto');
-  };
-  return {
-    height: height,
-    wrapperRef: wrapperRef,
-    setHeightToCurrent: setHeightToCurrent,
-    setHeightToZero: setHeightToZero,
-    setHeightToAuto: setHeightToAuto
-  };
-};
-var Collapse = /*#__PURE__*/(0,react.forwardRef)(function (_ref, ref) {
+
+var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
   var children = _ref.children,
     className = _ref.className,
     _ref$in = _ref.in,
@@ -26378,74 +26357,95 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function (_ref, ref) {
     onEnter = _ref.onEnter,
     onExited = _ref.onExited,
     rest = _objectWithoutProperties(_ref, _excluded);
-  var _useCollapseLogic = useCollapseLogic(inProps),
-    height = _useCollapseLogic.height,
-    wrapperRef = _useCollapseLogic.wrapperRef,
-    setHeightToZero = _useCollapseLogic.setHeightToZero,
-    setHeightToAuto = _useCollapseLogic.setHeightToAuto,
-    setHeightToCurrent = _useCollapseLogic.setHeightToCurrent;
-
-  // we need to add small delay as 'enter', 'entering' and 'exit', 'exiting'
-  // are triggered in the same time and React is batching them
-  var handleEntering = function () {
-    return setTimeout(setHeightToCurrent, 50);
-  };
-  var handleExiting = function () {
-    return setTimeout(setHeightToZero, 50);
-  };
-  var handleEnter = function (node, isAppearing) {
-    setHeightToZero();
-    onEnter === null || onEnter === void 0 ? void 0 : onEnter(node, isAppearing);
-  };
-  var handleExited = function (node) {
-    setHeightToZero();
-    onExited === null || onExited === void 0 ? void 0 : onExited(node);
-  };
-  var memoStyles = (0,react.useMemo)(function () {
-    return Object.assign({}, style, {
-      transitionDuration: `${timeout}ms`,
-      height: height
-    });
-  }, [timeout, height, style]);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(cjs.Transition, Object.assign({
+  var nodeRef = (0,react.useRef)(null);
+  var wrapperRef = (0,react.useRef)(null);
+  var status = (0,use_transition_status/* default */.A)({
     in: inProps,
     appear: appear,
-    onEnter: handleEnter,
-    onEntering: handleEntering
-    // we need to set height to 'auto' after transition is finished
-    // to support dynamic content inside Collapse
-    ,
-    onEntered: setHeightToAuto,
-    onExit: setHeightToCurrent,
-    onExiting: handleExiting,
-    onExited: handleExited,
     unmountOnExit: unmountOnExit,
-    timeout: timeout
-  }, rest, {
-    children: function (state) {
-      return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-        className: (0,twMerge/* twMerge */.QP)(['transition-[height] ease-in-out min-h-0', state === 'exited' && !inProps && 'invisible', state === 'entered' ? 'overflow-visible' : 'overflow-hidden', className]),
-        style: memoStyles,
-        "data-testid": dataTestId,
-        ref: ref,
-        children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-          className: "flex",
-          ref: wrapperRef,
-          children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-            className: "w-full",
-            children: children
-          })
-        })
+    timeout: timeout,
+    nodeRef: nodeRef,
+    onEnter: onEnter,
+    onExited: onExited
+  });
+  var _useState = (0,react.useState)(status === 'entered' ? 'auto' : '0px'),
+    _useState2 = _slicedToArray(_useState, 2),
+    height = _useState2[0],
+    setHeight = _useState2[1];
+  (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
+    var measured = function () {
+      var _wrapperRef$current$c, _wrapperRef$current;
+      return `${(_wrapperRef$current$c = (_wrapperRef$current = wrapperRef.current) === null || _wrapperRef$current === void 0 ? void 0 : _wrapperRef$current.clientHeight) !== null && _wrapperRef$current$c !== void 0 ? _wrapperRef$current$c : 0}px`;
+    };
+    if (status === 'entering') {
+      setHeight('0px');
+      var frame = requestAnimationFrame(function () {
+        return setHeight(measured());
       });
+      return function () {
+        return cancelAnimationFrame(frame);
+      };
     }
+    if (status === 'entered') {
+      setHeight('auto');
+      return;
+    }
+    if (status === 'exiting') {
+      setHeight(measured());
+      var _frame = requestAnimationFrame(function () {
+        var _nodeRef$current;
+        void ((_nodeRef$current = nodeRef.current) === null || _nodeRef$current === void 0 ? void 0 : _nodeRef$current.offsetHeight);
+        setHeight('0px');
+      });
+      return function () {
+        return cancelAnimationFrame(_frame);
+      };
+    }
+    setHeight('0px');
+  }, [status]);
+  var _useState3 = (0,react.useState)(Boolean(appear && inProps)),
+    _useState4 = _slicedToArray(_useState3, 2),
+    appearing = _useState4[0],
+    setAppearing = _useState4[1];
+  (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
+    if (status === 'exiting') {
+      setAppearing(false);
+    }
+  }, [status]);
+  var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef]);
+  var memoStyles = (0,react.useMemo)(function () {
+    var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
+    var enterDuration = appearing ? timeouts.appear : timeouts.enter;
+    return Object.assign({}, style, {
+      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
+      height: height
+    });
+  }, [timeout, inProps, appearing, height, style]);
+  if (status === 'unmounted') {
+    return null;
+  }
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("div", Object.assign({}, rest, {
+    className: (0,twMerge/* twMerge */.QP)(['transition-[height] ease-in-out min-h-0', status === 'exited' && !inProps && 'invisible', status === 'entered' ? 'overflow-visible' : 'overflow-hidden', className]),
+    style: memoStyles,
+    "data-testid": dataTestId,
+    ref: combinedRef,
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+      className: "flex",
+      ref: wrapperRef,
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        className: "w-full",
+        children: children
+      })
+    })
   }));
 });
+Collapse.displayName = 'Collapse';
 /* harmony default export */ const Collapse_Collapse = ((/* unused pure expression or super */ null && (Collapse)));
 try {
     // @ts-ignore
     Collapse.displayName = "Collapse";
     // @ts-ignore
-    Collapse.__docgenInfo = { "description": "", "displayName": "Collapse", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Collapse.__docgenInfo = { "description": "", "displayName": "Collapse", "props": { "children": { "defaultValue": null, "description": "Content to expand and collapse", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "in": { "defaultValue": null, "description": "Show the content; toggling runs the enter or exit transition", "name": "in", "required": false, "type": { "name": "boolean | undefined" } }, "appear": { "defaultValue": null, "description": "Run the enter transition when mounting with `in` already true", "name": "appear", "required": false, "type": { "name": "boolean | undefined" } }, "unmountOnExit": { "defaultValue": null, "description": "Unmount the component once it has fully exited", "name": "unmountOnExit", "required": false, "type": { "name": "boolean | undefined" } }, "onEnter": { "defaultValue": null, "description": "Callback fired when the enter transition starts", "name": "onEnter", "required": false, "type": { "name": "((node: HTMLElement, isAppearing: boolean) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -106590,7 +106590,11 @@ var Transitions = Transitions_namespaceObject;
 /* harmony export */ });
 /* unused harmony export ClickAwayListener */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./packages/shared/dist-package/src/utils/to-react-event.js");
+/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/shared/dist-package/src/utils/to-react-event.js");
+/* harmony import */ var _get_element_ref__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/get-element-ref.js");
+/* harmony import */ var _use_multiple_forward_refs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+
+
 
 
 var mapEventPropToEvent = function (eventProp) {
@@ -106606,14 +106610,6 @@ var isEventInsideNode = function (event, node, doc) {
     return event.composedPath().indexOf(node) > -1;
   }
   return !doc.documentElement.contains(event.target) || node.contains(event.target);
-};
-var setRef = function (ref, value) {
-  if (typeof ref === 'function') {
-    ref(value);
-  } else if (ref) {
-    ;
-    ref.current = value;
-  }
 };
 var ClickAwayListener = function (props) {
   var children = props.children,
@@ -106639,11 +106635,8 @@ var ClickAwayListener = function (props) {
       clearTimeout(timeout);
     };
   }, []);
-  var childRef = children.ref;
-  var handleRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (instance) {
-    nodeRef.current = instance;
-    setRef(childRef, instance);
-  }, [childRef]);
+  var childRef = (0,_get_element_ref__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .A)(children);
+  var handleRef = (0,_use_multiple_forward_refs__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)([nodeRef, childRef]);
   var handleClickAway = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (event) {
     var _a;
     var insideReactTree = syntheticEventRef.current;
@@ -106659,7 +106652,7 @@ var ClickAwayListener = function (props) {
     }
     var insideDOM = isEventInsideNode(event, node, doc);
     if (!insideDOM && (disableReactTree || !insideReactTree)) {
-      onClickAway((0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .A)(event));
+      onClickAway((0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)(event));
     }
   }, [disableReactTree, onClickAway]);
   var createHandleSynthetic = function (handlerName) {
@@ -107031,16 +107024,20 @@ var forwardRef = function (component) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/react/index.js");
+
+// React 19 moved element refs into props — `element.ref` is deprecated there
+// and slated for removal — while earlier majors keep the ref on the element
+// and their dev builds warn when `props.ref` is touched instead. Each major
+// warns on the other's location, so the read must be version-aware rather
+// than a fallback chain.
+var isReact19OrNewer = Number.parseInt(react__WEBPACK_IMPORTED_MODULE_0__.version, 10) >= 19;
 /**
- * Reads the ref attached to a React element.
- *
- * `ReactElement` has no public `ref` field, so the cast keeps the lookup in
- * one place. React 19 moves the ref into props instead; reading it from
- * there has to wait until the `react` peer range allows v19, because on
- * v18 `props.ref` is a getter that warns when accessed.
+ * Reads the ref attached to a React element from the location the running
+ * React major stores it in.
  */
 var getElementRef = function (element) {
-  var ref = element.ref;
+  var ref = isReact19OrNewer ? element.props.ref : element.ref;
   return ref !== null && ref !== void 0 ? ref : null;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getElementRef);
@@ -158958,4 +158955,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.6cce8137.iframe.bundle.js.map
+//# sourceMappingURL=main.6abc3c68.iframe.bundle.js.map
