@@ -22,7 +22,6 @@ exports[`MonthSelect renders 1`] = `
             readonly=""
             size="1"
             type="text"
-            value=""
           />
         </div>
         <svg

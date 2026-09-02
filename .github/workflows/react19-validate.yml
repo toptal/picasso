@@ -3,11 +3,8 @@
 # The workspace runs React 18 (pnpm-workspace.yaml overrides); the standalone
 # react19/ install plus jest.react19.mjs map every react/react-dom/
 # @testing-library import to React 19 for this run only. See jest.react19.mjs
-# for the architecture and react19/react-useid-compat.cjs for the snapshot
-# id normalization.
-#
-# Non-blocking while the known-diff triage (tracked under PF-2262) is being
-# worked off; flip continue-on-error to false once the suite is green.
+# for the wiring and jest/react-compat/README.md for how one snapshot set
+# serves both React majors.
 name: React 19 Validate
 
 on:
@@ -31,7 +28,6 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Unit tests on React 19
     runs-on: ubuntu-latest
-    continue-on-error: true
     permissions:
       contents: read
     timeout-minutes: 45

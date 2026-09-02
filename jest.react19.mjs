@@ -22,10 +22,15 @@ import baseConfig from './jest.spec.mjs'
 const config = {
   ...baseConfig,
   roots: [...baseConfig.roots, '<rootDir>/react19'],
+  // React 19 element tags are normalized before the shared serializers run
+  // (see jest/react-compat/README.md)
+  snapshotSerializers: [
+    './jest/react-compat/react-element-serializer.cjs',
+    ...baseConfig.snapshotSerializers,
+  ],
   moduleNameMapper: {
-    // react re-exported with useId normalized to the React 18 id format,
-    // so version-agnostic snapshots stay comparable (see the .cjs header)
-    '^react$': '<rootDir>/react19/react-useid-compat.cjs',
+    // react with useId rewritten to the React 18 id format the snapshots use
+    '^react$': '<rootDir>/jest/react-compat/react-useid-compat.cjs',
     '^react/(.*)$': '<rootDir>/react19/node_modules/react/$1',
     '^react-dom$': '<rootDir>/react19/node_modules/react-dom',
     '^react-dom/(.*)$': '<rootDir>/react19/node_modules/react-dom/$1',

@@ -13,12 +13,10 @@ export interface Props {
   environment?: EnvironmentType<'test' | 'temploy'>
 }
 
+type Icons = Awaited<ReturnType<typeof getIcons>>
+
 export const Favicon = ({ environment }: Props) => {
-  const [icons, setIcons] = useSafeState<{
-    icon16?: string
-    icon32?: string
-    icon180?: string
-  }>({})
+  const [icons, setIcons] = useSafeState<Icons | null>(null)
 
   const { environment: configEnvironment } = useAppConfig()
 
@@ -52,15 +50,14 @@ export const Favicon = ({ environment }: Props) => {
     return null
   }
 
-  const { icon16, icon32, icon180 } = icons
-
-  // React 19 decides whether a `<link>` can be hoisted into `<head>` when the
-  // element mounts: one mounted with an undefined `href` renders in place and
-  // stays there even after the href arrives. The icons resolve asynchronously,
-  // so keep the links unmounted until their hrefs exist.
-  if (!icon16 || !icon32 || !icon180) {
+  // React 19 decides whether a `<link>` can be hoisted into `<head>` when it
+  // mounts, and one mounted with an undefined `href` stays in the body for
+  // good — so the links wait for the asynchronously loaded icons.
+  if (!icons) {
     return null
   }
+
+  const { icon16, icon32, icon180 } = icons
 
   // favicon.ico will be loaded automatically by browser from "public" folder
   // if it exists there. It's needed only for old browsers

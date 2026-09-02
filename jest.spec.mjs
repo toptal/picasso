@@ -20,12 +20,19 @@ const NODE_MODULES_TO_IGNORE_TRANSFORM = [
 
 const config = {
   ...davinciJestConfig,
-  roots: ['<rootDir>/packages'],
+  roots: ['<rootDir>/packages', '<rootDir>/jest'],
 
   moduleNameMapper: {
     ...davinciJestConfig.moduleNameMapper,
   },
   setupFiles: ['jest-canvas-mock', './jest.setup.js'],
+  // See jest/react-compat/README.md. The input serializer must come first: it
+  // prints a clone, and the clone lacks the "processed" marker the JSS
+  // serializer sets — running after it would mangle class names twice.
+  snapshotSerializers: [
+    './jest/react-compat/input-empty-value-serializer.cjs',
+    './jest/react-compat/jss-serializer-guard.cjs',
+  ],
   transformIgnorePatterns: [
     // Match both flat (yarn 1 / pnpm node-linker=hoisted) and pnpm
     // nested (.pnpm/<pkg>@ver/node_modules/...) layouts so transforms
