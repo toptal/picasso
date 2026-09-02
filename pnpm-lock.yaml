@@ -1149,6 +1149,9 @@ importers:
 
   packages/base/Collapse:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
@@ -1158,9 +1161,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
@@ -1168,9 +1168,6 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      '@types/react-transition-group':
-        specifier: ^4.4.5
-        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/Container:
     dependencies:
@@ -7619,11 +7616,6 @@ packages:
 
   '@types/react-textarea-autosize@4.3.6':
     resolution: {integrity: sha512-cTf8tCem0c8A7CERYbTuF+bRFaqYu7N7HLCa6ZhUhDx8XnUsTpGx5udMWljt87JpciUKuUkImKPEsy6kcKhrcQ==}
-
-  '@types/react-transition-group@4.4.12':
-    resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
-    peerDependencies:
-      '@types/react': '17'
 
   '@types/react@17.0.39':
     resolution: {integrity: sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==}
@@ -23633,10 +23625,6 @@ snapshots:
       '@types/react': 17.0.39
 
   '@types/react-textarea-autosize@4.3.6':
-    dependencies:
-      '@types/react': 17.0.39
-
-  '@types/react-transition-group@4.4.12(@types/react@17.0.39)':
     dependencies:
       '@types/react': 17.0.39
 

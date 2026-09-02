@@ -19,11 +19,16 @@ describe('getElementRef', () => {
     expect(getElementRef<HTMLDivElement>(<div ref={ref} />)).toBe(ref)
   })
 
-  it('does not read `ref` from props, which warns on React 18', () => {
+  it('reads from the version-appropriate location without warnings', () => {
+    // React <19 warns when `props.ref` is accessed; React 19+ warns when
+    // `element.ref` is accessed. This runs under both jest configs
+    // (jest.spec.mjs on 18, jest.react19.mjs on 19), proving the read is
+    // silent on the running major either way.
     const consoleError = jest.spyOn(console, 'error').mockImplementation()
+    const ref = jest.fn()
 
-    getElementRef(<div />)
-
+    expect(getElementRef(<div />)).toBeNull()
+    expect(getElementRef<HTMLDivElement>(<div ref={ref} />)).toBe(ref)
     expect(consoleError).not.toHaveBeenCalled()
 
     consoleError.mockRestore()
