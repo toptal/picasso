@@ -1,11 +1,13 @@
 import type {
   MouseEvent as ReactMouseEvent,
   ReactElement,
-  Ref,
   SyntheticEvent,
 } from 'react'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { toReactEvent } from '@toptal/picasso-shared'
+
+import getElementRef from '../get-element-ref'
+import useMultipleForwardRefs from '../use-multiple-forward-refs'
 
 type ClickAwayMouseEventHandler = 'onClick' | 'onMouseDown' | 'onMouseUp'
 type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd'
@@ -51,14 +53,6 @@ const isEventInsideNode = (
   )
 }
 
-const setRef = <T,>(ref: Ref<T> | undefined, value: T | null): void => {
-  if (typeof ref === 'function') {
-    ref(value)
-  } else if (ref) {
-    ;(ref as React.MutableRefObject<T | null>).current = value
-  }
-}
-
 export const ClickAwayListener = (props: Props) => {
   const {
     children,
@@ -86,15 +80,8 @@ export const ClickAwayListener = (props: Props) => {
     }
   }, [])
 
-  const childRef = (children as { ref?: Ref<Element> }).ref
-
-  const handleRef = useCallback(
-    (instance: Element | null) => {
-      nodeRef.current = instance
-      setRef(childRef, instance)
-    },
-    [childRef]
-  )
+  const childRef = getElementRef<Element>(children)
+  const handleRef = useMultipleForwardRefs([nodeRef, childRef])
 
   const handleClickAway = useCallback(
     (event: Event) => {
