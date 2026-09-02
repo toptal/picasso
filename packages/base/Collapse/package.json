@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-utils": "workspace:*",
-    "react-transition-group": "^4.4.5"
+    "@toptal/picasso-shared": "workspace:*",
+    "@toptal/picasso-utils": "workspace:*"
   },
   "sideEffects": false,
   "peerDependencies": {
@@ -36,8 +36,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "workspace:*",
-    "@toptal/picasso-test-utils": "workspace:*",
-    "@types/react-transition-group": "^4.4.5"
+    "@toptal/picasso-test-utils": "workspace:*"
   },
   "files": [
     "dist-package/**",
