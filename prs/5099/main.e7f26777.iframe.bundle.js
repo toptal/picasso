@@ -26206,10 +26206,6 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
     _useState2 = _slicedToArray(_useState, 2),
     height = _useState2[0],
     setHeight = _useState2[1];
-  // The from-value and to-value of a height transition must land in separate
-  // painted frames, or CSS sees a single change and skips the animation. The
-  // inner wrapper keeps its natural clientHeight even while the outer div is
-  // collapsed, so measuring is always synchronous.
   (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* .useIsomorphicLayoutEffect */ .E)(function () {
     var measured = function () {
       var _a, _b;
@@ -26225,14 +26221,15 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
       };
     }
     if (status === 'entered') {
-      // height 'auto' after the transition supports dynamic content inside
       setHeight('auto');
       return;
     }
     if (status === 'exiting') {
       setHeight(measured());
       var _frame = requestAnimationFrame(function () {
-        return setHeight('0px');
+        var _a;
+        void ((_a = nodeRef.current) === null || _a === void 0 ? void 0 : _a.offsetHeight);
+        setHeight('0px');
       });
       return function () {
         return cancelAnimationFrame(_frame);
@@ -26240,8 +26237,6 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
     }
     setHeight('0px');
   }, [status]);
-  // `appear` describes only the mount transition — the first exit ends it and
-  // every later enter is a regular one — so its duration applies until then.
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Boolean(appear && inProps)),
     _useState4 = _slicedToArray(_useState3, 2),
     appearing = _useState4[0],
@@ -26377,11 +26372,6 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
     _useState2 = _slicedToArray(_useState, 2),
     height = _useState2[0],
     setHeight = _useState2[1];
-
-  // The from-value and to-value of a height transition must land in separate
-  // painted frames, or CSS sees a single change and skips the animation. The
-  // inner wrapper keeps its natural clientHeight even while the outer div is
-  // collapsed, so measuring is always synchronous.
   (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
     var measured = function () {
       var _wrapperRef$current$c, _wrapperRef$current;
@@ -26397,14 +26387,15 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
       };
     }
     if (status === 'entered') {
-      // height 'auto' after the transition supports dynamic content inside
       setHeight('auto');
       return;
     }
     if (status === 'exiting') {
       setHeight(measured());
       var _frame = requestAnimationFrame(function () {
-        return setHeight('0px');
+        var _nodeRef$current;
+        void ((_nodeRef$current = nodeRef.current) === null || _nodeRef$current === void 0 ? void 0 : _nodeRef$current.offsetHeight);
+        setHeight('0px');
       });
       return function () {
         return cancelAnimationFrame(_frame);
@@ -26412,9 +26403,6 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
     }
     setHeight('0px');
   }, [status]);
-
-  // `appear` describes only the mount transition — the first exit ends it and
-  // every later enter is a regular one — so its duration applies until then.
   var _useState3 = (0,react.useState)(Boolean(appear && inProps)),
     _useState4 = _slicedToArray(_useState3, 2),
     appearing = _useState4[0],
@@ -158967,4 +158955,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.4d0f4d78.iframe.bundle.js.map
+//# sourceMappingURL=main.e7f26777.iframe.bundle.js.map
