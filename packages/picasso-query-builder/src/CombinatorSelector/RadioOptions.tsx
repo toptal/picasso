@@ -15,8 +15,8 @@ export const RadioOptions = ({ options, disabled }: Props) => {
         {option.options.map(opt => (
           <Radio
             disabled={disabled}
-            key={opt.name}
-            value={opt.name}
+            key={opt.value ?? opt.name}
+            value={opt.value ?? opt.name}
             label={opt.label}
           />
         ))}
@@ -28,8 +28,8 @@ export const RadioOptions = ({ options, disabled }: Props) => {
     return options.map(option => (
       <Radio
         disabled={disabled}
-        key={option.name}
-        value={option.name}
+        key={option.value ?? option.name}
+        value={option.value ?? option.name}
         label={option.label}
       />
     ))
