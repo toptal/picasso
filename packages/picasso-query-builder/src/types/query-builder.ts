@@ -1,6 +1,7 @@
-import type { ReactNode } from 'react'
+import type { MouseEventHandler, ReactNode } from 'react'
 import type {
   Field as QueryBuilderField,
+  FullField,
   ValidationResult,
   ValueEditorProps,
   VersatileSelectorProps,
@@ -18,31 +19,49 @@ export type RangeValue = {
   to?: number
 }
 
+/**
+ * react-querybuilder's `Field` carries a `[key: string]: unknown` index
+ * signature, which makes `Omit` collapse every declared property to the index
+ * type — strip it before deriving the field variants below.
+ */
+type RemoveIndexSignature<T> = {
+  [K in keyof T as string extends K
+    ? never
+    : number extends K
+    ? never
+    : K]: T[K]
+}
+
+type StrictQueryBuilderField = RemoveIndexSignature<QueryBuilderField>
+
 interface BasicField
-  extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
+  extends Omit<StrictQueryBuilderField, 'inputType' | 'valueEditorType'> {
   inputType?: 'text' | 'number' | null
   valueEditorType?: 'text' | 'number' | 'select' | null
   hideOperator?: boolean
 }
 interface RangeField
-  extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'>,
+  extends Omit<StrictQueryBuilderField, 'inputType' | 'valueEditorType'>,
     Partial<RangeFieldOptions> {
   valueEditorType?: 'range'
 }
 
 interface BooleanField
-  extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType' | 'values'> {
+  extends Omit<
+    StrictQueryBuilderField,
+    'inputType' | 'valueEditorType' | 'values'
+  > {
   valueEditorType?: 'boolean'
 }
 interface MultiSelectField
-  extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
+  extends Omit<StrictQueryBuilderField, 'inputType' | 'valueEditorType'> {
   valueEditorType?: 'multiselect'
   enableReset?: boolean
   enableResetSearch?: boolean
 }
 
 interface AutoCompleteField
-  extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
+  extends Omit<StrictQueryBuilderField, 'inputType' | 'valueEditorType'> {
   valueEditorType: 'autocomplete'
   /**
    * Callback for autocomplete input change
@@ -58,14 +77,47 @@ interface AutoCompleteField
   loading: boolean
 }
 
-export type BaseValueEditorProps = Omit<ValueEditorProps, 'schema'>
-export type BaseVersatileSelectorProps = Omit<VersatileSelectorProps, 'schema'>
-export type Field =
+/**
+ * Everything Picasso's custom editors and selectors read off `fieldData`.
+ * Upstream types `fieldData` as `FullField`, whose index signature yields
+ * `unknown` for the custom properties Picasso fields carry, so the upstream
+ * prop types are instantiated with this type instead.
+ */
+type EditorFieldData = FullField &
+  RangeFieldOptions & {
+    hideOperator?: boolean
+    onClick?: MouseEventHandler<HTMLInputElement>
+    loading?: boolean
+    enableReset?: boolean
+    enableResetSearch?: boolean
+    onSearch?: (searchTerm: string) => void
+    options?: { label: string; name: string }[]
+  }
+
+export type BaseValueEditorProps = Omit<
+  ValueEditorProps<EditorFieldData>,
+  'schema'
+>
+export type BaseVersatileSelectorProps = Omit<
+  VersatileSelectorProps,
+  'schema' | 'fieldData'
+> & {
+  fieldData?: EditorFieldData
+}
+/**
+ * Custom properties beyond the variants below are still allowed (v6's `Field`
+ * permitted them through an `any` index signature); they surface as `unknown`,
+ * mirroring react-querybuilder v7+.
+ */
+export type Field = (
   | BasicField
   | RangeField
   | AutoCompleteField
   | BooleanField
   | MultiSelectField
+) & {
+  [key: string]: unknown
+}
 export type QueryBuilderErrors = {
   [key: string]: ValidationResult | true
 }
@@ -74,7 +126,7 @@ export type QueryBuilderContext = {
   maxDepth: number
   queryBuilderValid?: boolean
   submitButtonClicked: boolean
-  getDisabledFields: () => Field[]
+  getDisabledFields: () => string[]
   testIds?: TestId
 }
 export type ValueEditorValidationProps = {

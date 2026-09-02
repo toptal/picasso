@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import type {
   RuleGroupTypeAny,
   RuleType,
@@ -9,11 +9,12 @@ import { isRuleGroup } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'
 
-type ValidatorMap = Record<string, RuleValidator>
+type ValidatorMap = Record<string, RuleValidator | null>
 export type ValidatorResult = Record<string, ValidationResult | boolean>
 
 type Props = {
   fields: Field[]
+  query: RuleGroupTypeAny
 }
 
 const validateRule = (rule: RuleType, fieldValidatorMap: ValidatorMap) => {
@@ -70,11 +71,7 @@ const validateQuery = (
   return validateRule(query as RuleType, fieldValidatorMap)
 }
 
-const useQueryBuilderValidation = ({ fields }: Props) => {
-  const [validationErrors, setValidationErrors] = useState<ValidatorResult>({})
-  const [queryBuilderValid, setIsQueryBuilderValid] = useState<
-    boolean | undefined
-  >()
+const useQueryBuilderValidation = ({ fields, query }: Props) => {
   const fieldValidatorMap: ValidatorMap = useMemo(() => {
     return fields.reduce(
       (acc, field) => ({
@@ -85,6 +82,18 @@ const useQueryBuilderValidation = ({ fields }: Props) => {
     )
   }, [fields])
 
+  const validationErrors: ValidatorResult = useMemo(
+    () => (query ? validateQuery(query, fieldValidatorMap) : {}),
+    [query, fieldValidatorMap]
+  )
+
+  const queryBuilderValid = useMemo(
+    () => !Object.values(validationErrors).some(result => result !== true),
+    [validationErrors]
+  )
+
+  // react-querybuilder invokes the validator during render, so it must stay
+  // pure — updating state from it makes v7+ re-render in an endless loop
   const validator = useCallback(
     (queryToValidate: RuleGroupTypeAny) => {
       if (!queryToValidate) {
@@ -93,12 +102,7 @@ const useQueryBuilderValidation = ({ fields }: Props) => {
 
       const valResult = validateQuery(queryToValidate, fieldValidatorMap)
 
-      const isValid = !Object.values(valResult).some(result => result !== true)
-
-      setIsQueryBuilderValid?.(isValid)
-      setValidationErrors?.(valResult)
-
-      return isValid
+      return !Object.values(valResult).some(result => result !== true)
     },
     [fieldValidatorMap]
   )

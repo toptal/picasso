@@ -7,10 +7,12 @@ const OPTIONS = [
   {
     label: 'Yes',
     name: 'true',
+    value: 'true',
   },
   {
     label: 'No',
     name: 'false',
+    value: 'false',
   },
 ]
 

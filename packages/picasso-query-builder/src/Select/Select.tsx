@@ -2,14 +2,16 @@ import type { ComponentProps } from 'react'
 import React, { useMemo } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Select as PicassoSelect } from '@toptal/picasso-select'
-import type { VersatileSelectorProps } from 'react-querybuilder'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
-import type { ValueEditorValidationProps } from '../types/query-builder'
+import type {
+  BaseVersatileSelectorProps,
+  ValueEditorValidationProps,
+} from '../types/query-builder'
 
 interface Props
-  extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
+  extends Omit<BaseVersatileSelectorProps, 'path' | 'level'>,
     Pick<ComponentProps<typeof PicassoSelect>, 'renderOption'>,
     ValueEditorValidationProps {
   valueEditorTestId?: string
