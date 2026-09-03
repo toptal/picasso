@@ -17810,8 +17810,6 @@ var Avatar = function (_a) {
         alt: alt,
         className: className,
         name: name,
-        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-        size: size,
         src: src,
         style: style,
         "data-testid": testIds === null || testIds === void 0 ? void 0 : testIds.image,
@@ -18990,9 +18988,7 @@ var Avatar = function (_ref) {
       return /*#__PURE__*/(0,jsx_runtime.jsx)(ImageAvatar_ImageAvatar, {
         alt: alt,
         className: className,
-        name: name
-        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */,
-        size: size,
+        name: name,
         src: src,
         style: style,
         "data-testid": testIds === null || testIds === void 0 ? void 0 : testIds.image,
@@ -158737,4 +158733,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.440acfad.iframe.bundle.js.map
+//# sourceMappingURL=main.58395626.iframe.bundle.js.map
