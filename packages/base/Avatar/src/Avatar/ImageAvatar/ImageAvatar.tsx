@@ -1,12 +1,9 @@
 import React from 'react'
-import type { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import { Image } from '@toptal/picasso-image'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
-
 export interface Props extends BaseProps {
-  size: Size
   src: string
   alt?: string
   name?: string
@@ -24,19 +21,14 @@ const ImageAvatar = (props: Props) => {
   } = props
 
   return (
-    <>
-      <Image
-        alt={alt || name || ''}
-        className={twMerge(
-          'object-cover w-full h-full [image-rendering:-webkit-optimize-contrast]',
-          className
-        )}
-        src={src}
-        style={style}
-        data-testid={dataTestId}
-        data-private={dataPrivate}
-      />
-    </>
+    <Image
+      alt={alt || name || ''}
+      className={twMerge('object-cover w-full h-full', className)}
+      src={src}
+      style={style}
+      data-testid={dataTestId}
+      data-private={dataPrivate}
+    />
   )
 }
 

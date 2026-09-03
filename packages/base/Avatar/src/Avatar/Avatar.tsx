@@ -52,8 +52,6 @@ export const Avatar = ({ size = 'xsmall', ...props }: Props) => {
           alt={alt}
           className={className}
           name={name}
-          /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-          size={size!}
           src={src}
           style={style}
           data-testid={testIds?.image}
