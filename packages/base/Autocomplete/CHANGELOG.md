@@ -1,5 +1,13 @@
 # @toptal/picasso-autocomplete
 
+## 100.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@100.0.3
+  - @toptal/picasso-select@100.0.3
+
 ## 100.0.2
 
 ### Patch Changes

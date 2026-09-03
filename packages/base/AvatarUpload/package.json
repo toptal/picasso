@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-avatar-upload",
-  "version": "100.0.2",
+  "version": "100.0.3",
   "description": "Toptal UI components library - AvatarUpload",
   "publishConfig": {
     "access": "public"

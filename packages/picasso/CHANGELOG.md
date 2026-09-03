@@ -1,5 +1,22 @@
 # Change Log
 
+## 100.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`88c5b63`](https://github.com/toptal/picasso/commit/88c5b6320f5083972ccf9ec73092cb7cf331feaf)]:
+  - @toptal/picasso-avatar@100.0.2
+  - @toptal/picasso-avatar-upload@100.0.3
+  - @toptal/picasso-menu@100.0.3
+  - @toptal/picasso-page@100.0.4
+  - @toptal/picasso-user-badge@100.0.2
+  - @toptal/picasso-account-select@100.0.3
+  - @toptal/picasso-autocomplete@100.0.3
+  - @toptal/picasso-select@100.0.3
+  - @toptal/picasso-tabs@100.0.3
+  - @toptal/picasso-tagselector@100.0.3
+  - @toptal/picasso-date-select@100.0.3
+
 ## 100.0.5
 
 ### Patch Changes
