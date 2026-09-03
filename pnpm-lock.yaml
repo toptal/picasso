@@ -3683,6 +3683,9 @@ importers:
       '@toptal/picasso-select':
         specifier: workspace:*
         version: link:../base/Select
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../shared
       '@toptal/picasso-tagselector':
         specifier: workspace:*
         version: link:../base/Tagselector
