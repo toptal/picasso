@@ -64,20 +64,15 @@ const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
 // found in https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
+// hidden inputs cannot take focus
 const focusableElementsString =
-  'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'
+  'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'
 // Popups portaled outside the modal that must keep focus: tooltips and any
 // Picasso Popper popup (marked `data-picasso-popper` — roles vary per consumer).
 const exemptPopupContainerString = '[role=tooltip], [data-picasso-popper]'
 
 const focusFirstFocusableElement = (node: Element) => {
-  const elements = node.querySelectorAll(focusableElementsString)
-  // Convert NodeList to Array
-  const focusableElements = Array.prototype.slice.call(elements)
-
-  if (focusableElements.length > 0) {
-    focusableElements[0].focus()
-  }
+  node.querySelector<HTMLElement>(focusableElementsString)?.focus()
 }
 
 const isFocusInsideModal = (modalNode: Element) => {
