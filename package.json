@@ -55,7 +55,7 @@
     "test:integration:open": "pnpm build:package && concurrently --names build,test --raw 'pnpm build:package:watch' 'pnpm test:setup cypress open --browser=electron --component'",
     "test:integration:react19": "pnpm -C react19 install --ignore-workspace && pnpm build:package && pnpm test:setup:react19 cypress run --component",
     "test:integration:react19:open": "pnpm -C react19 install --ignore-workspace && pnpm build:package && pnpm test:setup:react19 cypress open --browser=electron --component",
-    "typecheck:react19": "pnpm -C react19 install --ignore-workspace && tsc -p tsconfig.react19.json",
+    "typecheck:react19": "pnpm -C react19 install --ignore-workspace && pnpm build:package && tsc -p tsconfig.react19.json",
     "test:react19": "pnpm -C react19 install --ignore-workspace && NODE_OPTIONS='--no-experimental-require-module' pnpm build:package && davinci-qa unit --config=./jest.react19.mjs",
     "test:setup": "cross-env TZ=UTC NODE_ENV=development",
     "test:setup:react19": "cross-env TZ=UTC NODE_ENV=development CYPRESS_REACT_19=1",
