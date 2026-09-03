@@ -178,6 +178,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **`TODO` / `FIXME` / `@deprecated`** comments must include a Jira ref — `[ABC-1234]` or the full `https://toptal-core.atlassian.net/browse/...` URL. The `todo-plz/ticket-ref` ESLint rule warns otherwise.
 - **Icons/pictograms:** drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` / `pnpm generate:pictograms`.
 - **Dependencies:** caret (`^`) for npm deps, exact for workspace deps; install with plain `pnpm install`.
+  - One deliberate exception: the root devDependency `@cypress/request` is pinned exactly at `3.0.9` so Cypress 14 dedupes onto it and its `qs` stays off the Dependency Review advisory list (3.0.10 pins a vulnerable `qs`). Drop the pin with Cypress 15+, whose request client resolves a patched `qs` on its own.
 - **CI is repo-wide:** touched files must pass `pnpm prettier --check` and ESLint (`pnpm lint:fix` autofixes most). A lint error _anywhere_ in the repo blocks the PR.
 
 ## Reference docs

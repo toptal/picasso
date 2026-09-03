@@ -40,6 +40,12 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     mutators: { setHasMultilineCounter },
   } = useForm()
 
+  // `name` is passed explicitly rather than left in `rest`: under
+  // @types/react 19 `forwardRef` types `props` as `PropsWithoutRef<Props>`, and
+  // react-final-form's `[otherProp: string]: any` index signature collapses
+  // that `Omit` to a bare index signature, so the spread no longer proves the
+  // required `name` to `InputField`. Types 17 and 18 hand `Props` through
+  // untouched; the explicit prop satisfies all three.
   const { label, labelEndAdornment, titleCase, name, ...rest } = props
   const { multiline, rows, rowsMax } = props
 

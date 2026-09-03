@@ -64,7 +64,7 @@
     "test:unit:coverage": "pnpm test:unit:ci --collect-coverage --coverage true --collectCoverageFrom packages/**/*.{ts,tsx} --coverageDirectory coverage/jest",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk pnpm test:unit",
     "test:unit:watch": "pnpm test:unit --watch",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p jest/tsconfig.json",
     "generate:llm-docs": "node bin/generate-docs.mjs"
   },
   "lint-staged": {
@@ -100,6 +100,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.29.7",
     "@changesets/get-github-info": "^0.6.0",
+    "@cypress/request": "3.0.9",
     "@cypress/skip-test": "^2.6.1",
     "@nx/js": "22.7.5",
     "@storybook/addon-a11y": "^6.5.15",

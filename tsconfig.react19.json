@@ -28,6 +28,7 @@
       "react-dom/*": ["./react19/node_modules/@types/react-dom/*"]
     }
   },
+  "files": ["react19/sanity.test.tsx"],
   "include": ["packages/*/src", "packages/base/*/src"],
   "exclude": [
     "**/test.tsx",

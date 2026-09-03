@@ -72,6 +72,12 @@ export interface NamedComponent<P> {
 // have required fields (Page.Article, Breadcrumbs.Item, OverviewBlock).
 // Those sites broke the previous generic call-signature shape under the
 // TS 5.5 variance change.
+//
+// The call signature returns `ReturnType<ExoticComponent<P>>` instead of a
+// literal `ReactElement | null` so one declaration serves both type majors:
+// under @types/react 17 it resolves to `ReactElement | null`, which keeps the
+// interface a valid JSX element type, and under 19 to `ReactNode`, which is
+// what `forwardRef` components return there.
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (props: P & { [key: string]: any }): ReturnType<ExoticComponent<P>>
