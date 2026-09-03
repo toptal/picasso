@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Select as PicassoSelect } from '@toptal/picasso-select'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
 import type {
@@ -11,7 +12,8 @@ import type {
 } from '../types/query-builder'
 
 interface Props
-  extends Omit<BaseVersatileSelectorProps, 'path' | 'level'>,
+  extends BaseProps,
+    Omit<BaseVersatileSelectorProps, 'path' | 'level' | 'className'>,
     Pick<ComponentProps<typeof PicassoSelect>, 'renderOption'>,
     ValueEditorValidationProps {
   valueEditorTestId?: string
@@ -26,6 +28,8 @@ export const Select = ({
   value,
   disabled,
   className,
+  style,
+  'data-testid': dataTestId,
   fieldData,
   valueEditorTestId,
   renderOption,
@@ -41,7 +45,11 @@ export const Select = ({
   })
 
   return (
-    <Container className={twMerge('flex-[1_0_6.25rem]', className)}>
+    <Container
+      className={twMerge('flex-[1_0_6.25rem]', className)}
+      style={style}
+      data-testid={dataTestId}
+    >
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}

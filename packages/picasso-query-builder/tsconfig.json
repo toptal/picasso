@@ -20,6 +20,7 @@
     { "path": "../base/Utils" },
     { "path": "../picasso-provider" },
     { "path": "../picasso-tailwind" },
-    { "path": "../picasso-tailwind-merge" }
+    { "path": "../picasso-tailwind-merge" },
+    { "path": "../shared" }
   ]
 }
