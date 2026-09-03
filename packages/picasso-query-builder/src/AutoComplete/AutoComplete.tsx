@@ -51,7 +51,7 @@ export const AutoComplete = ({
   }, [fieldData?.options, inputValue])
 
   const handleChangeDebounced = useDebouncedCallback((searchterm: string) => {
-    fieldData?.onSearch(searchterm)
+    fieldData?.onSearch?.(searchterm)
   }, 1000)
 
   const handleInputChange = useCallback(

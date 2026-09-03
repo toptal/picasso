@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react-hooks'
 import type { RuleGroupTypeAny, RuleType } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'
@@ -104,17 +104,14 @@ describe('useQueryBuilderValidation', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidation({
             fields,
+            query: query(),
           })
         )
 
-        const { validator } = result.current
+        const { validator, validationErrors, queryBuilderValid } =
+          result.current
 
-        act(() => {
-          expect(validator(query())).toBe(true)
-        })
-
-        const { validationErrors, queryBuilderValid } = result.current
-
+        expect(validator(query())).toBe(true)
         expect(queryBuilderValid).toBe(true)
         expect(validationErrors).toEqual({
           rule1: true,
@@ -129,17 +126,14 @@ describe('useQueryBuilderValidation', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidation({
             fields,
+            query: query('invalid value for field2'),
           })
         )
 
-        const { validator } = result.current
+        const { validator, validationErrors, queryBuilderValid } =
+          result.current
 
-        act(() => {
-          expect(validator(query('invalid value for field2'))).toBe(false)
-        })
-
-        const { validationErrors, queryBuilderValid } = result.current
-
+        expect(validator(query('invalid value for field2'))).toBe(false)
         expect(queryBuilderValid).toBe(false)
         expect(validationErrors).toEqual({
           rule1: true,
@@ -159,17 +153,14 @@ describe('useQueryBuilderValidation', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidation({
             fields,
+            query: groupedQuery(),
           })
         )
 
-        const { validator } = result.current
+        const { validator, validationErrors, queryBuilderValid } =
+          result.current
 
-        act(() => {
-          expect(validator(groupedQuery())).toBe(true)
-        })
-
-        const { validationErrors, queryBuilderValid } = result.current
-
+        expect(validator(groupedQuery())).toBe(true)
         expect(queryBuilderValid).toBe(true)
         expect(validationErrors).toEqual({
           group1: true,
@@ -186,17 +177,14 @@ describe('useQueryBuilderValidation', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidation({
             fields,
+            query: groupedQuery('invalid rule'),
           })
         )
 
-        const { validator } = result.current
+        const { validator, validationErrors, queryBuilderValid } =
+          result.current
 
-        act(() => {
-          expect(validator(groupedQuery('invalid rule'))).toBe(false)
-        })
-
-        const { validationErrors, queryBuilderValid } = result.current
-
+        expect(validator(groupedQuery('invalid rule'))).toBe(false)
         expect(queryBuilderValid).toBe(false)
         expect(validationErrors).toEqual({
           group1: true,

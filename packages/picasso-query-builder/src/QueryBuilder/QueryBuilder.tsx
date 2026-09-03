@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ComponentType, ReactNode } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { useNotifications } from '@toptal/picasso-notification'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
   Field as QueryBuilderField,
+  RuleGroupType,
   RuleGroupTypeAny,
   Operator,
 } from 'react-querybuilder'
@@ -108,6 +109,7 @@ const QueryBuilder = ({
   const { validator, validationErrors, queryBuilderValid } =
     useQueryBuilderValidator({
       fields,
+      query,
     })
 
   const resetQuery = useCallback(() => {
@@ -178,6 +180,41 @@ const QueryBuilder = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryBuilderValid])
 
+  // react-querybuilder v7+ memoizes aggressively and expects stable prop references
+  const controlElements = useMemo(() => ({ valueEditor }), [valueEditor])
+
+  // v8 types its props as a discriminated union over RuleGroupType vs
+  // RuleGroupTypeIC and cannot accept the RuleGroupTypeAny union statically;
+  // at runtime it detects independent combinators from the query shape
+  const standardTypeQuery = query as RuleGroupType
+
+  const queryBuilder = (
+    <ReactQueryBuilder
+      resetOnFieldChange={resetOnFieldChange}
+      fields={fields as QueryBuilderField[]}
+      addRuleToNewGroups
+      controlClassnames={controlClassnames}
+      query={standardTypeQuery}
+      validator={validator}
+      onQueryChange={handleQueryChange}
+      showCloneButtons
+      getOperators={getOperators}
+      context={
+        {
+          removeGroup: handleRemoveGroup,
+          maxDepth: maxGroupDepth,
+          queryBuilderValid: queryBuilderValid,
+          submitButtonClicked,
+          resetSubmitButtonClicked,
+          getDisabledFields,
+          testIds,
+        } as QueryBuilderContext
+      }
+      controlElements={controlElements}
+      enableDragAndDrop={enableDragAndDrop}
+    />
+  )
+
   return (
     <ControlElementsContext>
       <Container
@@ -190,34 +227,17 @@ const QueryBuilder = ({
         {header && (
           <Container data-testid={testIds?.header}>{header}</Container>
         )}
-        <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
-          <ReactQueryBuilder
-            resetOnFieldChange={resetOnFieldChange}
-            fields={fields as QueryBuilderField[]}
-            addRuleToNewGroups
-            controlClassnames={controlClassnames}
-            query={query}
-            validator={validator}
-            onQueryChange={handleQueryChange}
-            showCloneButtons
-            getOperators={getOperators}
-            context={
-              {
-                removeGroup: handleRemoveGroup,
-                maxDepth: maxGroupDepth,
-                queryBuilderValid: queryBuilderValid,
-                submitButtonClicked,
-                resetSubmitButtonClicked,
-                getDisabledFields,
-                testIds,
-              } as QueryBuilderContext
-            }
-            controlElements={{
-              valueEditor,
-            }}
-            enableDragAndDrop={enableDragAndDrop}
-          />
-        </QueryBuilderDnD>
+        {/* QueryBuilderDnD mounts a react-dnd HTML5 backend per instance and
+        the backend is a per-window singleton, so only wrap when drag and drop
+        is actually enabled — otherwise multiple query builders on one page
+        throw "Cannot have two HTML5 backends at the same time" */}
+        {enableDragAndDrop ? (
+          <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
+            {queryBuilder}
+          </QueryBuilderDnD>
+        ) : (
+          queryBuilder
+        )}
         {!hideControls && (
           <Container
             flex

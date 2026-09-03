@@ -1,4 +1,4 @@
-import type { Controls } from 'react-querybuilder'
+import type { ControlElementsProp, FullField } from 'react-querybuilder'
 import { getCompatContextProvider } from 'react-querybuilder'
 
 import { AddGroupButton } from '../AddGroupButton'
@@ -13,7 +13,7 @@ import { Select } from '../Select'
 import { OperatorSelector } from '../OperatorSelector'
 import { FieldSelector } from '../FieldSelector'
 
-export const picassoControlElements: Partial<Controls> = {
+export const picassoControlElements: ControlElementsProp<FullField, string> = {
   addGroupAction: AddGroupButton,
   addRuleAction: AddRuleButton,
   cloneGroupAction: CloneGroupButton,
@@ -28,6 +28,5 @@ export const picassoControlElements: Partial<Controls> = {
 }
 
 export const ControlElementsContext = getCompatContextProvider({
-  key: 'picasso',
   controlElements: picassoControlElements,
 })

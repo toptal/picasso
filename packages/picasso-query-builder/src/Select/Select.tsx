@@ -2,14 +2,25 @@ import type { ComponentProps } from 'react'
 import React, { useMemo } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Select as PicassoSelect } from '@toptal/picasso-select'
-import type { VersatileSelectorProps } from 'react-querybuilder'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
-import type { ValueEditorValidationProps } from '../types/query-builder'
+import type {
+  BaseVersatileSelectorProps,
+  ValueEditorValidationProps,
+} from '../types/query-builder'
 
+/**
+ * Internal react-querybuilder control element (renders field/operator/
+ * combinator/value-source selectors inside the query builder). Not a form
+ * field: it implements react-querybuilder's selector contract
+ * (`options`/`value`/`handleOnChange`), so `FieldProps`/`PicassoField` do
+ * not apply.
+ */
 interface Props
-  extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
+  extends BaseProps,
+    Omit<BaseVersatileSelectorProps, 'path' | 'level' | 'className'>,
     Pick<ComponentProps<typeof PicassoSelect>, 'renderOption'>,
     ValueEditorValidationProps {
   valueEditorTestId?: string
@@ -24,6 +35,8 @@ export const Select = ({
   value,
   disabled,
   className,
+  style,
+  'data-testid': dataTestId,
   fieldData,
   valueEditorTestId,
   renderOption,
@@ -39,7 +52,11 @@ export const Select = ({
   })
 
   return (
-    <Container className={twMerge('flex-[1_0_6.25rem]', className)}>
+    <Container
+      className={twMerge('flex-[1_0_6.25rem]', className)}
+      style={style}
+      data-testid={dataTestId}
+    >
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}
