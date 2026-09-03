@@ -11,6 +11,13 @@ import type {
   ValueEditorValidationProps,
 } from '../types/query-builder'
 
+/**
+ * Internal react-querybuilder control element (renders field/operator/
+ * combinator/value-source selectors inside the query builder). Not a form
+ * field: it implements react-querybuilder's selector contract
+ * (`options`/`value`/`handleOnChange`), so `FieldProps`/`PicassoField` do
+ * not apply.
+ */
 interface Props
   extends BaseProps,
     Omit<BaseVersatileSelectorProps, 'path' | 'level' | 'className'>,
