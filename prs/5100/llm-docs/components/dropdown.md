@@ -8,7 +8,7 @@ Allows rendering of menus and custom content triggered by custom anchors
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| **children** | `ReactNode \| ((props: { isOpen: boolean; }) => ReactNode)` | - | Anchor element that opens content on click |
+| **children** | `ReactNode \| ((props: { open: boolean; }) => ReactNode)` | - | Anchor element that opens content on click, or a render function receiving `{ open }` so the anchor can reflect the open state |
 | **content** | `ReactNode` | - | Content element that opens when anchor is clicked |
 | placement | `"bottom-end" \| "bottom-start" \| "bottom" \| "left-end" \| "left-start" \| "left" \| "right-end" \| "right-start" \| "right" \| "top-end" \| "top-start" \| "top"` | - | The placement of the content element relative to anchor element. |
 | disabled | `boolean` | - | Disabled |
