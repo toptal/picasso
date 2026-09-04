@@ -14,7 +14,7 @@ SubmitButton reacts to the submission state of the form.
 | disabled | `boolean` | - | Disables button |
 | fullWidth | `boolean` | - | Take the full width of a container |
 | hovered | `boolean` | - | Set hovered style for the button |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
+| icon | `IconElement` | - | Add an `<Icon />` along Button's children |
 | iconPosition | `"left" \| "right"` | - | Icon can be positioned on the left or right |
 | loading | `boolean` | - | Shows a loading indicator and disables click events |
 | onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |

@@ -15,7 +15,7 @@
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Timeline row content |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Icon for the row between lines |
+| icon | `IconElement` | - | Icon for the row between lines |
 | date | `string` | - | Timeline row date |
 | hasConnector | `boolean` | `true` | Whether to render a connector line after the row |
 | className | `string` | - | Classnames applied to root element |

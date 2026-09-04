@@ -2291,8 +2291,6 @@ var LexicalEditor = /*#__PURE__*/(0,react.forwardRef)(function LexicalEditor(pro
     customEmojis = props.customEmojis,
     hiddenInputId = props.hiddenInputId;
   var classes = LexicalEditor_styles;
-
-  // useRef(null) is RefObject<T | null> on @types/react 19; the toolbar's JSX ref prop wants RefObject<T>
   var toolbarRef = (0,react.useRef)(null);
   var theme = useLexicalTheme(classes);
   var _useComponentPlugins = useComponentPlugins(plugins, customEmojis),
@@ -2413,4 +2411,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=614.078abe05.iframe.bundle.js.map
+//# sourceMappingURL=614.a07eefea.iframe.bundle.js.map

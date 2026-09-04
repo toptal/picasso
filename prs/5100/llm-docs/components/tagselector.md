@@ -46,7 +46,7 @@ Tag Selector Label
 |------|------|---------|-------------|
 | as | `ElementType` | - | The component used for the root node. Either a string to use a DOM element or a component. |
 | children | `ReactNode` | - | Text content of the `Tag` component |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Specify the icon which should be rendered inside Tag |
+| icon | `IconElement` | - | Specify the icon which should be rendered inside Tag |
 | disabled | `boolean` | - | Defines if `Tag` is disabled |
 | onDelete | `(() => void)` | - | A callback which is invoked after remove `Icon` is clicked  Please note that specifying this callback automatically adds remove `Icon` as children of the `Tag` |
 | variant | `"light-grey" \| "blue" \| "green" \| "yellow" \| "red"` | - | Variant of the `Tag` |

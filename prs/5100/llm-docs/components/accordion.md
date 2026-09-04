@@ -14,7 +14,7 @@ Accordions store information behind collapsible sections,
 | expanded | `boolean` | - | Define accordion content state, whether it should be collapsed or expanded |
 | defaultExpanded | `boolean` | `false` | Define accordion initial content state |
 | disabled | `boolean` | `false` | Whether the Accordion is disabled |
-| expandIcon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Customize icon indicating expanded status |
+| expandIcon | `IconElement` | - | Customize icon indicating expanded status |
 | borders | `"all" \| "middle" \| "none"` | `all` | Defines where the horizontal borders show |
 | onChange | `((event: ChangeEvent<{}>, expanded: boolean) => void)` | `() => {}` | Callback invoked when `Accordion` item is toggled |
 | transitionProps | `TransitionProps` | - | Animation lifecycle props. `timeout` (ms) sets the CSS height-transition duration (defaults to ~300ms); `onExited` fires after the collapse transition completes |

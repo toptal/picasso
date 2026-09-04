@@ -13,7 +13,7 @@ Tags are used to describe other topics, including textareas,
 |------|------|---------|-------------|
 | as | `ElementType` | - | The component used for the root node. Either a string to use a DOM element or a component. |
 | children | `ReactNode` | - | Text content of the `Tag` component |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Specify the icon which should be rendered inside Tag |
+| icon | `IconElement` | - | Specify the icon which should be rendered inside Tag |
 | disabled | `boolean` | - | Defines if `Tag` is disabled |
 | onDelete | `undefined: (() => void) \| undefined` | - | A callback which is invoked after remove `Icon` is clicked  Please note that specifying this callback automatically adds remove `Icon` as children of the `Tag` |
 | variant | `"light-grey" \| "blue" \| "green" \| "yellow" \| "red"` | `light-grey` | Variant of the `Tag` |
@@ -57,7 +57,7 @@ Used when you need toggable Tag
 | checked | `boolean` | `false` | Represents visual state of component |
 | **children** | `string` | - | Text content of the `Tag` component |
 | disabled | `boolean` | - | Defines if `Tag` is disabled |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Specify the icon which should be rendered inside Tag |
+| icon | `IconElement` | - | Specify the icon which should be rendered inside Tag |
 | onChange | `((checked: boolean) => void)` | - | Callback invoked when component is clicked |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |

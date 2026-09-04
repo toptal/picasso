@@ -6,14 +6,14 @@
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| **image** | `ReactElement<{ className?: string \| undefined; }, string \| JSXElementConstructor<any>>` | - | Adds <Icon /> above EmptyStatePage content |
+| **image** | `IconElement` | - | Adds <Icon /> above EmptyStatePage content |
 | title | `string` | - | Adds Title string below the main image |
 
 ### EmptyState.Collection
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Adds <Icon /> before EmptyStateCollection content |
+| icon | `IconElement` | - | Adds <Icon /> before EmptyStateCollection content |
 
 ## EmptyState.Page
 

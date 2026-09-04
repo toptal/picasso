@@ -13,7 +13,7 @@ A Button indicates a possible user action.
 | children | `ReactNode` | `null` | Content of Button component |
 | fullWidth | `boolean` | `false` | Take the full width of a container |
 | hovered | `boolean` | `false` | Set hovered style for the button |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
+| icon | `IconElement` | - | Add an `<Icon />` along Button's children |
 | iconPosition | `"left" \| "right"` | `left` | Icon can be positioned on the left or right |
 | loading | `boolean` | `false` | Shows a loading indicator and disables click events |
 | onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
@@ -36,7 +36,7 @@ A Button indicates a possible user action.
 | disabled | `boolean` | - | Disables button |
 | focused | `boolean` | - | Set focused style for the button |
 | hovered | `boolean` | - | Set hovered style for the button |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
+| icon | `IconElement` | - | Add an `<Icon />` along Button's children |
 | loading | `boolean` | - | Shows a loading indicator and disables click events |
 | onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
 | variant | `"primary" \| "flat" \| "transparent"` | `primary` | The variant to use |
@@ -54,7 +54,7 @@ A Button indicates a possible user action.
 | disabled | `boolean` | - | Disables button |
 | focused | `boolean` | - | Set focused style for the button |
 | hovered | `boolean` | - | Set hovered style for the button |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
+| icon | `IconElement` | - | Add an `<Icon />` along Button's children |
 | iconPosition | `"left" \| "right"` | `left` | Icon can be positioned on the left or right |
 | loading | `boolean` | - | Shows a loading indicator and disables click events |
 | onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |

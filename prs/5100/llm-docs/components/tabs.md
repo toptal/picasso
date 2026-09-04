@@ -11,7 +11,7 @@ Tabs allow to switch between content sections
 | disabled | `boolean` | `false` | If true, the tab will be disabled |
 | value | `TabsValueType` | - | You can provide your own value. Otherwise, we fallback to the child position index |
 | label | `ReactNode` | - | The label element |
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | The Icon element |
+| icon | `IconElement` | - | The Icon element |
 | avatar | `string \| null` | - | Image URL |
 | description | `string` | - | Description |
 | className | `string` | - | Classnames applied to root element |

@@ -32,7 +32,7 @@ A PageTopBar component
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| icon | `ReactElement<{ className?: string; }, string \| JSXElementConstructor<any>>` | - | Pass icon to be used as part of item |
+| icon | `IconElement` | - | Pass icon to be used as part of item |
 | selected | `boolean` | - | Highlights the item as selected |
 | as | `ElementType<MenuItemProps>` | - | Component name to render the menu item as |
 | onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
