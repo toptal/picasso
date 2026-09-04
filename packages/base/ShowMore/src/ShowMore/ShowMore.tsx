@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useMemo, useCallback, useState } from 'react'
+import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
-import Truncate from 'react-truncate'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
+import { isOverflown } from '@toptal/picasso-utils'
 import { ChevronRight16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { ButtonAction } from '@toptal/picasso-button'
@@ -49,6 +50,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   } = props
   const [shownMore, setShownMore] = useState(initialExpanded)
   const [needsTruncation, setNeedsTruncation] = useState(true)
+  const contentRef = useRef<HTMLSpanElement>(null)
   const content = useMemo(
     () =>
       typeof children === 'string'
@@ -56,18 +58,48 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         : children,
     [children]
   )
-  const handleNeedsTruncation = useCallback(
-    (truncated: boolean) => setNeedsTruncation(truncated),
-    [setNeedsTruncation]
-  )
+
+  useIsomorphicLayoutEffect(() => {
+    const element = contentRef.current
+
+    if (!element || shownMore) {
+      return
+    }
+
+    const updateNeedsTruncation = () => {
+      // Zero size means an unmeasurable environment (jsdom, display: none
+      // container) — keep the previous assumption instead of hiding the toggle
+      if (element.scrollHeight === 0) {
+        return
+      }
+
+      setNeedsTruncation(isOverflown(element))
+    }
+
+    updateNeedsTruncation()
+
+    if (typeof ResizeObserver === 'undefined') {
+      return
+    }
+
+    const observer = new ResizeObserver(updateNeedsTruncation)
+
+    observer.observe(element)
+
+    return () => observer.disconnect()
+  }, [shownMore, content, rows])
 
   const isContentVisible = rows !== 0 || shownMore
   const formattedContent = shownMore ? (
     content
   ) : (
-    <Truncate onTruncate={handleNeedsTruncation} lines={rows}>
+    <span
+      ref={contentRef}
+      className='overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] break-words'
+      style={{ WebkitLineClamp: rows }}
+    >
       {content}
-    </Truncate>
+    </span>
   )
 
   return (

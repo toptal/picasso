@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
 import { ChevronRight24 } from '@toptal/picasso-icons'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 const getJustifyContent = (hasArrows: boolean, hasDots: boolean) => {
   if (hasArrows && hasDots) {
@@ -57,20 +58,18 @@ const CarouselNavigation = ({
           <div
             {...getDotsProps()}
             data-testid={testIds.dots}
-            className={`
-              [&_.glider-dot]:w-[10px]
-              [&_.glider-dot]:h-[10px]
-              [&_.glider-dot]:bg-blue-500
-              [&_.glider-dot]:opacity-20
-
-              [&_.glider-dot.active]:bg-blue-500 [&_.glider-dot.active]:opacity-100
-
-              [&_.glider-dot:not(.active):hover]:opacity-100
-              [&_.glider-dot:not(.active):hover]:shadow-[0_0_0_2px_rgba(32,78,207,0.2)]
-              [&_.glider-dot:not(.active):hover]:transition-[box-shadow,opacity]
-              [&_.glider-dot:not(.active):hover]:duration-300
-              [&_.glider-dot:not(.active):hover]:ease-out
-            `}
+            className={twJoin(
+              '[&_.glider-dot]:w-[10px]',
+              '[&_.glider-dot]:h-[10px]',
+              '[&_.glider-dot]:bg-blue-500',
+              '[&_.glider-dot]:opacity-20',
+              '[&_.glider-dot.active]:bg-blue-500 [&_.glider-dot.active]:opacity-100',
+              '[&_.glider-dot:not(.active):hover]:opacity-100',
+              '[&_.glider-dot:not(.active):hover]:shadow-[0_0_0_2px_rgba(32,78,207,0.2)]',
+              '[&_.glider-dot:not(.active):hover]:transition-[box-shadow,opacity]',
+              '[&_.glider-dot:not(.active):hover]:duration-300',
+              '[&_.glider-dot:not(.active):hover]:ease-out'
+            )}
           />
         </div>
       )}

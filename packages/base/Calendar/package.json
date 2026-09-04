@@ -28,8 +28,8 @@
     "@toptal/picasso-shared": "workspace:*",
     "@toptal/picasso-typography": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",
-    "date-fns": "^2.30.0",
-    "react-day-picker": "^8.10.0"
+    "date-fns": "^4.1.0",
+    "react-day-picker": "^8.10.2"
   },
   "sideEffects": [
     "**/styles.ts",

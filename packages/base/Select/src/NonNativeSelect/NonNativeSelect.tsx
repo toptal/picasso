@@ -12,7 +12,7 @@ import {
 } from '@toptal/picasso-utils'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
-import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { SelectCaret } from '../SelectCaret'
 import { NonNativeSelectLoader } from '../NonNativeSelectLoader'
@@ -164,7 +164,7 @@ export const NonNativeSelect = documentable(
         <>
           <div
             {...rootProps}
-            className={twJoin(
+            className={twMerge(
               'w-[inherit] outline-0',
               layout === 'horizontal' && 'w-full'
             )}

@@ -46,6 +46,9 @@ patchedDependencies:
   '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0':
     hash: 3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a
     path: patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch
+  react-final-form-listeners@3.0.1:
+    hash: 267ee13c92b1d81c3016dd0b8d2ca4b7b95003e6479058644735ece6376f3e6e
+    path: patches/react-final-form-listeners@3.0.1.patch
   webpack@5.98.0:
     hash: e2c4e4364d7f63ce4220ac564a0eb0a6789525608c04a20b13e962e3eccec20c
     path: patches/webpack@5.98.0.patch
@@ -77,7 +80,7 @@ importers:
         version: 7.23.1
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@changesets/changelog-github':
         specifier: ^0.5.0
         version: 0.5.0(encoding@0.1.13)
@@ -423,9 +426,6 @@ importers:
       '@types/pngjs':
         specifier: ^6.0.5
         version: 6.0.5
-      '@types/react-truncate':
-        specifier: ^2.3.4
-        version: 2.3.4
       '@vercel/ncc':
         specifier: ^0.38.3
         version: 0.38.3
@@ -463,8 +463,8 @@ importers:
         specifier: ^1.12.0
         version: 1.12.0(cypress@13.6.0)
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       debounce:
         specifier: ^1.2.1
         version: 1.2.1
@@ -617,7 +617,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -902,12 +902,12 @@ importers:
       '@toptal/picasso-fade':
         specifier: workspace:*
         version: link:../Fade
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
-      '@toptal/picasso-utils':
-        specifier: workspace:*
-        version: link:../Utils
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -915,6 +915,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
@@ -976,7 +979,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-checkbox':
         specifier: workspace:*
         version: link:../Checkbox
@@ -1054,14 +1057,14 @@ importers:
         specifier: workspace:*
         version: link:../Utils
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-day-picker:
-        specifier: ^8.10.0
-        version: 8.10.0(date-fns@2.30.0)(react@18.2.0)
+        specifier: ^8.10.2
+        version: 8.10.2(date-fns@2.30.0)(react@18.2.0)
     devDependencies:
       '@toptal/picasso-provider':
         specifier: workspace:*
@@ -1105,7 +1108,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -1146,6 +1149,9 @@ importers:
 
   packages/base/Collapse:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
@@ -1155,9 +1161,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
@@ -1165,9 +1168,6 @@ importers:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      '@types/react-transition-group':
-        specifier: ^4.4.5
-        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/Container:
     dependencies:
@@ -1221,11 +1221,11 @@ importers:
         specifier: workspace:*
         version: link:../Utils
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       date-fns-tz:
-        specifier: ^2.0.0
-        version: 2.0.0(date-fns@2.30.0)
+        specifier: ^3.2.0
+        version: 3.2.0(date-fns@4.4.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1250,7 +1250,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -1396,25 +1396,28 @@ importers:
 
   packages/base/Fade:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      '@types/react-transition-group':
-        specifier: ^4.4.5
-        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/FileInput:
     dependencies:
@@ -1890,7 +1893,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -1997,8 +2000,8 @@ importers:
         specifier: ^2.5.1
         version: 2.5.1
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2180,6 +2183,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      react-helmet-async:
+        specifier: 3.0.0
+        version: 3.0.0(react@18.2.0)
     devDependencies:
       '@toptal/picasso-provider':
         specifier: workspace:*
@@ -2515,18 +2521,21 @@ importers:
       '@toptal/picasso-icons':
         specifier: workspace:*
         version: link:../Icons
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: workspace:*
         version: link:../Typography
+      '@toptal/picasso-utils':
+        specifier: workspace:*
+        version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-truncate:
-        specifier: ^2.4.0
-        version: 2.4.0(prop-types@15.8.1)(react@18.2.0)
     devDependencies:
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
@@ -2559,31 +2568,34 @@ importers:
 
   packages/base/Slide:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: workspace:*
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
-      '@types/react-transition-group':
-        specifier: ^4.4.5
-        version: 4.4.12(@types/react@17.0.39)
 
   packages/base/Slider:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -2651,7 +2663,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -2722,7 +2734,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-container':
         specifier: workspace:*
         version: link:../Container
@@ -2917,7 +2929,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -3318,11 +3330,11 @@ importers:
         specifier: ^3
         version: 3.0.0
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
       date-fns-tz:
-        specifier: ^2.0.0
-        version: 2.0.0(date-fns@2.30.0)
+        specifier: ^3.2.0
+        version: 3.2.0(date-fns@4.4.0)
       debounce:
         specifier: ^1.2.1
         version: 1.2.1
@@ -3333,17 +3345,14 @@ importers:
         specifier: ^1.7.8
         version: 1.7.8
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-content-loader:
         specifier: ^6.2.1
         version: 6.2.1(react@18.2.0)
-      react-day-picker:
-        specifier: ^8.10.0
-        version: 8.10.0(date-fns@2.30.0)(react@18.2.0)
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
@@ -3353,9 +3362,6 @@ importers:
       react-input-mask:
         specifier: ^3.0.0-alpha.2
         version: 3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-truncate:
-        specifier: ^2.4.0
-        version: 2.4.0(prop-types@15.8.1)(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3415,8 +3421,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       recharts:
-        specifier: ^2.12.3
-        version: 2.12.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^2.15.4
+        version: 2.15.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3549,11 +3555,11 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       final-form:
-        specifier: ^4.20.9
-        version: 4.20.9
+        specifier: ^5.0.1
+        version: 5.0.1
       final-form-arrays:
-        specifier: 3.0.2
-        version: 3.0.2(final-form@4.20.9)
+        specifier: ^4.0.1
+        version: 4.0.1(final-form@5.0.1)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3561,14 +3567,14 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-final-form:
-        specifier: ^6.5.9
-        version: 6.5.9(final-form@4.20.9)(react@18.2.0)
+        specifier: ^7.0.1
+        version: 7.0.1(final-form@5.0.1)(react@18.2.0)
       react-final-form-arrays:
-        specifier: ^3.1.4
-        version: 3.1.4(final-form-arrays@3.0.2(final-form@4.20.9))(final-form@4.20.9)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0)
+        specifier: ^5.0.0
+        version: 5.0.0(final-form-arrays@4.0.1(final-form@5.0.1))(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0)
       react-final-form-listeners:
-        specifier: ^1.0.3
-        version: 1.0.3(final-form@4.20.9)(prop-types@15.8.1)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0)
+        specifier: ^3.0.1
+        version: 3.0.1(patch_hash=267ee13c92b1d81c3016dd0b8d2ca4b7b95003e6479058644735ece6376f3e6e)(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3582,9 +3588,6 @@ importers:
       '@types/classnames':
         specifier: ^2.3.1
         version: 2.3.1
-      '@types/react-final-form-listeners':
-        specifier: ^1.0.0
-        version: 1.0.0
       type-fest:
         specifier: ^4.15.0
         version: 4.15.0
@@ -3617,14 +3620,14 @@ importers:
         specifier: ^2.5.1
         version: 2.5.1
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-helmet-async:
-        specifier: 2.0.3
-        version: 2.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.0
+        version: 3.0.0(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3738,9 +3741,6 @@ importers:
       '@emoji-mart/data':
         specifier: ^1.2.1
         version: 1.2.1
-      '@emoji-mart/react':
-        specifier: ^1.1.1
-        version: 1.1.1(emoji-mart@5.5.2)(react@18.2.0)
       '@lexical/html':
         specifier: 0.11.3
         version: 0.11.3(lexical@0.11.3)
@@ -3880,12 +3880,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tailwind-merge:
-        specifier: ^2.2.2
-        version: 2.3.0
+        specifier: ^3.6.0
+        version: 3.6.0
     devDependencies:
       '@toptal/picasso-tailwind':
         specifier: workspace:*
@@ -3922,8 +3919,8 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1
       notistack:
-        specifier: 3.0.1
-        version: 3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.0.2
+        version: 3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   packages/topkit-analytics-charts:
     dependencies:
@@ -3968,8 +3965,8 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
+        specifier: ^4.1.0
+        version: 4.4.0
 
 packages:
 
@@ -5200,12 +5197,6 @@ packages:
 
   '@emoji-mart/data@1.2.1':
     resolution: {integrity: sha512-no2pQMWiBy6gpBEiqGeU77/bFejDqUTRY7KX+0+iur13op3bqUsXdnwoZs6Xb1zbv0gAj5VvS1PWoUUckSr5Dw==}
-
-  '@emoji-mart/react@1.1.1':
-    resolution: {integrity: sha512-NMlFNeWgv1//uPsvLxvGQoIerPuVdXwK/EUek8OOkJ6wVOWPUizRBJU0hDqWZCOROVpfBgCemaC3m6jDOXi03g==}
-    peerDependencies:
-      emoji-mart: ^5.2
-      react: ^18.2.0
 
   '@emotion/cache@10.0.29':
     resolution: {integrity: sha512-fU2VtSVlHiF27empSbxi1O2JFdNWZO+2NFHfwO0pxgTep6Xa3uGb+3pVKfLww2l/IBGLNEZl5Xf/++A4wAYDYQ==}
@@ -7611,9 +7602,6 @@ packages:
   '@types/react-dom@18.0.0':
     resolution: {integrity: sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==}
 
-  '@types/react-final-form-listeners@1.0.0':
-    resolution: {integrity: sha512-DovKaDfBqBzPnThFV8mGXL4iAbMCObEFIPUkH7wbD/EN3jZEjpDuPibrqY+w4W1dzicO109YP1LT9KsDDxdYnw==}
-
   '@types/react-input-mask@3.0.0':
     resolution: {integrity: sha512-W8I2GRt1wkFgEJJ4dleSCw1ly2lL+pW71OPkJSz6G93V77io4ulSSnZyiyCv3uljmQDOr94NMbNr5V5hfkMaUg==}
 
@@ -7628,14 +7616,6 @@ packages:
 
   '@types/react-textarea-autosize@4.3.6':
     resolution: {integrity: sha512-cTf8tCem0c8A7CERYbTuF+bRFaqYu7N7HLCa6ZhUhDx8XnUsTpGx5udMWljt87JpciUKuUkImKPEsy6kcKhrcQ==}
-
-  '@types/react-transition-group@4.4.12':
-    resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
-    peerDependencies:
-      '@types/react': '17'
-
-  '@types/react-truncate@2.3.4':
-    resolution: {integrity: sha512-+ugDlho66dRn7Sw/lPkE/wlOi0KUIRwY2KOiUiehWjFf7EmiMDjMpHqrBhiLJfH2Z9EC+qRBHC9o7iZoEmmWQw==}
 
   '@types/react@17.0.39':
     resolution: {integrity: sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==}
@@ -9642,14 +9622,17 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  date-fns-tz@2.0.0:
-    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
+  date-fns-tz@3.2.0:
+    resolution: {integrity: sha512-sg8HqoTEulcbbbVXeg84u5UnlsQa8GS5QXMqjjYIhS4abEVVKIUwe0/l/UhrZdKaL/W5eWZNlbTeEIiOXTcsBQ==}
     peerDependencies:
-      date-fns: '>=2.0.0'
+      date-fns: ^3.0.0 || ^4.0.0
 
   date-fns@2.30.0:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
+
+  date-fns@4.4.0:
+    resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
 
   dateformat@3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
@@ -10793,13 +10776,14 @@ packages:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
 
-  final-form-arrays@3.0.2:
-    resolution: {integrity: sha512-TfO8aZNz3RrsZCDx8GHMQcyztDNpGxSSi9w4wpSNKlmv2PfFWVVM8P7Yj5tj4n0OWax+x5YwTLhT5BnqSlCi+w==}
+  final-form-arrays@4.0.1:
+    resolution: {integrity: sha512-aIGGN1ibtxxmRR4LsIEhSbWbUKyHAy9BCAUEcG19U1OpYqD1M9dU9MxgXHmGoM6JLegD4DEVKFLxJjI0q1VjhQ==}
     peerDependencies:
-      final-form: ^4.18.2
+      final-form: ^5.0.0
 
-  final-form@4.20.9:
-    resolution: {integrity: sha512-shA1X/7v8RmukWMNRHx0l7+Bm41hOivY78IvOiBrPVHjyWFIyqqIEMCz7yTVRc9Ea+EU4WkZ5r4MH6whSo5taw==}
+  final-form@5.0.1:
+    resolution: {integrity: sha512-Ohygw2lDgc2HNynfUu82Jp5U45+OLLeBQcwWbrex1IAbQw0uNaFMUbm5dhYCF6y7jcORgl5tg19/1zYxlJtLmg==}
+    engines: {node: '>=18'}
 
   finalhandler@1.3.1:
     resolution: {integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==}
@@ -13882,8 +13866,8 @@ packages:
     resolution: {integrity: sha512-uVFpKhj5MheNBJRTiMZ9pE/7hD1QTeEvugSJW/OmLzAp78PB5O6adfMNTvmfKhXBkvCzC+rqifWcVYpGFwTjnw==}
     engines: {node: '>=14.16'}
 
-  notistack@3.0.1:
-    resolution: {integrity: sha512-ntVZXXgSQH5WYfyU+3HfcXuKaapzAJ8fBLQ/G618rn3yvSzEbnOB8ZSOwhX+dAORy/lw+GC2N061JA0+gYWTVA==}
+  notistack@3.0.2:
+    resolution: {integrity: sha512-0R+/arLYbK5Hh7mEfR2adt0tyXJcCC9KkA2hc56FeWik2QN6Bm/S4uW+BjzDARsJth5u06nTjelSw/VSnB1YEA==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       react: ^18.2.0
@@ -15101,8 +15085,8 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
-  react-day-picker@8.10.0:
-    resolution: {integrity: sha512-mz+qeyrOM7++1NCb1ARXmkjMkzWVh2GL9YiPbRjKe0zHccvekk4HE+0MPOZOrosn8r8zTHIIeOUXTmXRqmkRmg==}
+  react-day-picker@8.10.2:
+    resolution: {integrity: sha512-LK68OTbHB3oJNhl9cA0qVizzp3o26w61YSjAFkYi67N86iro32wx86kSNeFU/hq+gI8m1yzWhnomMLfZ041RzQ==}
     peerDependencies:
       date-fns: ^2.28.0 || ^3.0.0
       react: ^18.2.0
@@ -15180,26 +15164,25 @@ packages:
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
-  react-final-form-arrays@3.1.4:
-    resolution: {integrity: sha512-siVFAolUAe29rMR6u8VwepoysUcUdh6MLV2OWnCtKpsPRUdT9VUgECjAPaVMAH2GROZNiVB9On1H9MMrm9gdpg==}
+  react-final-form-arrays@5.0.0:
+    resolution: {integrity: sha512-M7J73727AaK0YPJbvf/NiBKZrxnCiYZWSuRSHjg6iiA9+KrSuuRm5Y+8gLsah1ziVk4jH4eLK/Atl26LPkB1Dg==}
     peerDependencies:
-      final-form: ^4.15.0
-      final-form-arrays: '>=1.0.4'
+      final-form: ^5.0.1
+      final-form-arrays: ^4.0.1
       react: ^18.2.0
-      react-final-form: ^6.2.1
+      react-final-form: ^7.0.1
 
-  react-final-form-listeners@1.0.3:
-    resolution: {integrity: sha512-OrdCNxSS4JQS/EXD+R530kZKFqaPfa+WcXPgVro/h4BpaBDF/Ja+BtHyCzDezCIb5rWaGGdOJIj+tN2YdtvrXg==}
+  react-final-form-listeners@3.0.1:
+    resolution: {integrity: sha512-oJbPJsqDLs65oxMoo4kSkN7IbtjeqoVEkU7pPKjGnR/meDj83KDjsJj4aTnDCAbocxpjEcV30y+26CfMODFB/g==}
     peerDependencies:
-      final-form: '>=4.0.0'
-      prop-types: ^15.6.0
+      final-form: '>=5.0.0'
       react: ^18.2.0
-      react-final-form: '>=3.0.0'
+      react-final-form: '>=7.0.0'
 
-  react-final-form@6.5.9:
-    resolution: {integrity: sha512-x3XYvozolECp3nIjly+4QqxdjSSWfcnpGEL5K8OBT6xmGrq5kBqbA6+/tOqoom9NwqIPPbxPNsOViFlbKgowbA==}
+  react-final-form@7.0.1:
+    resolution: {integrity: sha512-8K1ITLecBI7F+jCxiMA/JI1amHT/+klQB+nhl5YFZu3R1sQftbiQk/UfwRDvE7ZxIqIvCf8nYLDQRrfwaDT3kQ==}
     peerDependencies:
-      final-form: ^4.20.4
+      final-form: ^5.0.0
       react: ^18.2.0
 
   react-focus-lock@2.6.0:
@@ -15213,11 +15196,10 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  react-helmet-async@2.0.3:
-    resolution: {integrity: sha512-7/X3ehSCbjCaIljWa39Bb7F1Y2JWM23FN80kLozx2TdgzUmxKDSLN6qu06NG0Srzm8ljGOjgk7r7CXeEOx4MPw==}
+  react-helmet-async@3.0.0:
+    resolution: {integrity: sha512-nA3IEZfXiclgrz4KLxAhqJqIfFDuvzQwlKwpdmzZIuC1KNSghDEIXmyU0TKtbM+NafnkICcwx8CECFrZ/sL/1w==}
     peerDependencies:
       react: ^18.2.0
-      react-dom: ^18.2.0
 
   react-hot-loader@4.13.1:
     resolution: {integrity: sha512-ZlqCfVRqDJmMXTulUGic4lN7Ic1SXgHAFw7y/Jb7t25GBgTR0fYAJ8uY4mrpxjRyWGWmqw77qJQGnYbzCvBU7g==}
@@ -15294,8 +15276,8 @@ packages:
   react-sizeme@3.0.2:
     resolution: {integrity: sha512-xOIAOqqSSmKlKFJLO3inBQBdymzDuXx4iuwkNcJmC96jeiOg5ojByvL+g3MW9LPEsojLbC6pf68zOfobK8IPlw==}
 
-  react-smooth@4.0.0:
-    resolution: {integrity: sha512-2NMXOBY1uVUQx1jBeENGA497HK20y6CPGYL1ZnJLeoQ8rrc3UfmOM82sRxtzpcoCkUMy4CS0RGylfuVhuFjBgg==}
+  react-smooth@4.0.4:
+    resolution: {integrity: sha512-gnGKTpYwqL0Iii09gHobNolvX4Kiq4PKx6eWBCYYix+8cdw+cGo3do906l1NBPKkSWx1DghC1dlWG9L2uGd61Q==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -15340,12 +15322,6 @@ packages:
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
-
-  react-truncate@2.4.0:
-    resolution: {integrity: sha512-3QW11/COYwi6iPUaunUhl06DW5NJBJD1WkmxW5YxqqUu6kvP+msB3jfoLg8WRbu57JqgebjVW8Lknw6T5/QZdA==}
-    peerDependencies:
-      prop-types: <= 15.x.x
-      react: ^18.2.0
 
   react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -15457,9 +15433,10 @@ packages:
   recharts-scale@0.4.5:
     resolution: {integrity: sha512-kivNFO+0OcUNu7jQquLXAxz1FIwZj8nrj+YkOKc5694NbjCvcT6aSZiIzNzd2Kul4o4rTto8QVR9lMNtxD4G1w==}
 
-  recharts@2.12.3:
-    resolution: {integrity: sha512-vE/F7wTlokf5mtCqVDJlVKelCjliLSJ+DJxj79XlMREm7gpV7ljwbrwE3CfeaoDlOaLX+6iwHaVRn9587YkwIg==}
+  recharts@2.15.4:
+    resolution: {integrity: sha512-UT/q6fwS3c1dHbXv2uFgYJ9BMFHu3fwnd7AYZaEQhXuYQ4hgsxLvsUXzGdKeZrW5xopzDCvuA2N41WJ88I7zIw==}
     engines: {node: '>=14'}
+    deprecated: 1.x and 2.x branches are no longer active. Bump to Recharts v3 to receive latest features and bugfixes. See https://github.com/recharts/recharts/wiki/3.0-migration-guide
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -16547,8 +16524,8 @@ packages:
     resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
     engines: {node: '>=10.0.0'}
 
-  tailwind-merge@2.3.0:
-    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+  tailwind-merge@3.6.0:
+    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
 
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
@@ -19163,7 +19140,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@base-ui/react@1.6.0(@types/react@17.0.39)(date-fns@2.30.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@base-ui/react@1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@base-ui/utils': 0.3.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -19174,7 +19151,7 @@ snapshots:
       use-sync-external-store: 1.6.0(react@18.2.0)
     optionalDependencies:
       '@types/react': 17.0.39
-      date-fns: 2.30.0
+      date-fns: 4.4.0
 
   '@base-ui/utils@0.3.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -19620,11 +19597,6 @@ snapshots:
       tslib: 2.8.1
 
   '@emoji-mart/data@1.2.1': {}
-
-  '@emoji-mart/react@1.1.1(emoji-mart@5.5.2)(react@18.2.0)':
-    dependencies:
-      emoji-mart: 5.5.2
-      react: 18.2.0
 
   '@emotion/cache@10.0.29':
     dependencies:
@@ -23633,10 +23605,6 @@ snapshots:
     dependencies:
       '@types/react': 17.0.39
 
-  '@types/react-final-form-listeners@1.0.0':
-    dependencies:
-      '@types/react': 17.0.39
-
   '@types/react-input-mask@3.0.0':
     dependencies:
       '@types/react': 17.0.39
@@ -23657,14 +23625,6 @@ snapshots:
       '@types/react': 17.0.39
 
   '@types/react-textarea-autosize@4.3.6':
-    dependencies:
-      '@types/react': 17.0.39
-
-  '@types/react-transition-group@4.4.12(@types/react@17.0.39)':
-    dependencies:
-      '@types/react': 17.0.39
-
-  '@types/react-truncate@2.3.4':
     dependencies:
       '@types/react': 17.0.39
 
@@ -26109,13 +26069,15 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  date-fns-tz@2.0.0(date-fns@2.30.0):
+  date-fns-tz@3.2.0(date-fns@4.4.0):
     dependencies:
-      date-fns: 2.30.0
+      date-fns: 4.4.0
 
   date-fns@2.30.0:
     dependencies:
       '@babel/runtime': 7.28.4
+
+  date-fns@4.4.0: {}
 
   dateformat@3.0.3: {}
 
@@ -27429,13 +27391,13 @@ snapshots:
     dependencies:
       to-regex-range: 5.0.1
 
-  final-form-arrays@3.0.2(final-form@4.20.9):
+  final-form-arrays@4.0.1(final-form@5.0.1):
     dependencies:
-      final-form: 4.20.9
+      final-form: 5.0.1
 
-  final-form@4.20.9:
+  final-form@5.0.1:
     dependencies:
-      '@babel/runtime': 7.28.4
+      '@babel/runtime': 7.29.2
 
   finalhandler@1.3.1:
     dependencies:
@@ -31482,7 +31444,7 @@ snapshots:
 
   normalize-url@8.0.0: {}
 
-  notistack@3.0.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  notistack@3.0.2(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       clsx: 1.2.1
       goober: 2.1.13(csstype@3.1.2)
@@ -32932,9 +32894,9 @@ snapshots:
     dependencies:
       react: 18.2.0
 
-  react-day-picker@8.10.0(date-fns@2.30.0)(react@18.2.0):
+  react-day-picker@8.10.2(date-fns@2.30.0)(react@18.2.0):
     dependencies:
-      date-fns: 2.30.0
+      date-fns: 4.4.0
       react: 18.2.0
 
   react-deprecate@0.1.0: {}
@@ -33040,26 +33002,25 @@ snapshots:
 
   react-fast-compare@3.2.2: {}
 
-  react-final-form-arrays@3.1.4(final-form-arrays@3.0.2(final-form@4.20.9))(final-form@4.20.9)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0):
+  react-final-form-arrays@5.0.0(final-form-arrays@4.0.1(final-form@5.0.1))(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
-      final-form: 4.20.9
-      final-form-arrays: 3.0.2(final-form@4.20.9)
+      '@babel/runtime': 7.29.2
+      final-form: 5.0.1
+      final-form-arrays: 4.0.1(final-form@5.0.1)
       react: 18.2.0
-      react-final-form: 6.5.9(final-form@4.20.9)(react@18.2.0)
+      react-final-form: 7.0.1(final-form@5.0.1)(react@18.2.0)
 
-  react-final-form-listeners@1.0.3(final-form@4.20.9)(prop-types@15.8.1)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0):
+  react-final-form-listeners@3.0.1(patch_hash=267ee13c92b1d81c3016dd0b8d2ca4b7b95003e6479058644735ece6376f3e6e)(final-form@5.0.1)(react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
-      final-form: 4.20.9
-      prop-types: 15.8.1
+      '@babel/runtime': 7.29.2
+      final-form: 5.0.1
       react: 18.2.0
-      react-final-form: 6.5.9(final-form@4.20.9)(react@18.2.0)
+      react-final-form: 7.0.1(final-form@5.0.1)(react@18.2.0)
 
-  react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0):
+  react-final-form@7.0.1(final-form@5.0.1)(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.28.4
-      final-form: 4.20.9
+      '@babel/runtime': 7.29.2
+      final-form: 5.0.1
       react: 18.2.0
 
   react-focus-lock@2.6.0(@types/react@17.0.39)(react@18.2.0):
@@ -33084,11 +33045,10 @@ snapshots:
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-helmet-async@2.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-helmet-async@3.0.0(react@18.2.0):
     dependencies:
       invariant: 2.2.4
       react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
@@ -33202,7 +33162,7 @@ snapshots:
       shallowequal: 1.1.0
       throttle-debounce: 3.0.1
 
-  react-smooth@4.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-smooth@4.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       fast-equals: 5.0.1
       prop-types: 15.8.1
@@ -33301,11 +33261,6 @@ snapshots:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-
-  react-truncate@2.4.0(prop-types@15.8.1)(react@18.2.0):
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
 
   react@18.2.0:
     dependencies:
@@ -33460,15 +33415,15 @@ snapshots:
     dependencies:
       decimal.js-light: 2.5.0
 
-  recharts@2.12.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  recharts@2.15.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       clsx: 2.1.1
       eventemitter3: 4.0.7
       lodash: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-is: 16.13.1
-      react-smooth: 4.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-is: 18.3.1
+      react-smooth: 4.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       recharts-scale: 0.4.5
       tiny-invariant: 1.3.1
       victory-vendor: 36.6.8
@@ -34802,9 +34757,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  tailwind-merge@2.3.0:
-    dependencies:
-      '@babel/runtime': 7.28.4
+  tailwind-merge@3.6.0: {}
 
   tailwindcss@4.2.1: {}
 

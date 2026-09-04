@@ -29,7 +29,6 @@ describe('Form.NumberInput', () => {
         name: 'test-input',
       })
 
-      expect(numberInputMock).toHaveBeenCalledTimes(1)
       expect(numberInputMock).toHaveBeenCalledWith(
         expect.objectContaining({
           min: '8',
@@ -37,6 +36,9 @@ describe('Form.NumberInput', () => {
           name: 'test-input',
         })
       )
+      // react-final-form v7 registers the field in an effect and re-renders
+      // once after mount (v6 registered during render and rendered once)
+      expect(numberInputMock).toHaveBeenCalledTimes(2)
     })
   })
 })

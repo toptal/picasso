@@ -1,126 +1,135 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useMemo, useState } from 'react'
-import { Transition } from 'react-transition-group'
+import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
+import {
+  getTransitionTimeouts,
+  useMultipleForwardRefs,
+  useTransitionStatus,
+} from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
-  /* Element that accepts ref */
+  /** Content to expand and collapse */
   children: ReactNode
-  /* Show the component; triggers the enter or exit states */
+  /** Show the content; toggling runs the enter or exit transition */
   in?: boolean
-  /* Trigger the transition on the first mount, regardless of the `in` prop. */
+  /** Run the enter transition when mounting with `in` already true */
   appear?: boolean
-  /* Unmount the component on exit */
+  /** Unmount the component once it has fully exited */
   unmountOnExit?: boolean
-  /* Callback fired when the component has entered */
+  /** Callback fired when the enter transition starts */
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
-const useCollapseLogic = (inProps: boolean) => {
-  const [height, setHeight] = useState<string>(inProps ? 'auto' : '0px')
-  const wrapperRef = React.useRef<HTMLDivElement>(null)
+export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
+  {
+    children,
+    className,
+    in: inProps = false,
+    timeout = 350,
+    unmountOnExit,
+    style,
+    appear,
+    'data-testid': dataTestId,
+    onEnter,
+    onExited,
+    ...rest
+  },
+  ref
+) {
+  const nodeRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const getCurrentHeight = () => wrapperRef.current?.clientHeight
-  const setHeightToCurrent = () => setHeight(`${getCurrentHeight()}px`)
-  const setHeightToZero = () => setHeight('0px')
-  const setHeightToAuto = () => setHeight('auto')
+  const status = useTransitionStatus({
+    in: inProps,
+    appear,
+    unmountOnExit,
+    timeout,
+    nodeRef,
+    onEnter,
+    onExited,
+  })
 
-  return {
-    height,
-    wrapperRef,
-    setHeightToCurrent,
-    setHeightToZero,
-    setHeightToAuto,
-  }
-}
+  const [height, setHeight] = useState(status === 'entered' ? 'auto' : '0px')
 
-export const Collapse = forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      children,
-      className,
-      in: inProps = false,
-      timeout = 350,
-      unmountOnExit,
-      style,
-      appear,
-      'data-testid': dataTestId,
-      onEnter,
-      onExited,
-      ...rest
-    },
-    ref
-  ) => {
-    const {
+  useIsomorphicLayoutEffect(() => {
+    const measured = () => `${wrapperRef.current?.clientHeight ?? 0}px`
+
+    if (status === 'entering') {
+      setHeight('0px')
+
+      const frame = requestAnimationFrame(() => setHeight(measured()))
+
+      return () => cancelAnimationFrame(frame)
+    }
+
+    if (status === 'entered') {
+      setHeight('auto')
+
+      return
+    }
+
+    if (status === 'exiting') {
+      setHeight(measured())
+
+      const frame = requestAnimationFrame(() => {
+        void nodeRef.current?.offsetHeight
+
+        setHeight('0px')
+      })
+
+      return () => cancelAnimationFrame(frame)
+    }
+
+    setHeight('0px')
+  }, [status])
+
+  const [appearing, setAppearing] = useState(Boolean(appear && inProps))
+
+  useIsomorphicLayoutEffect(() => {
+    if (status === 'exiting') {
+      setAppearing(false)
+    }
+  }, [status])
+
+  const combinedRef = useMultipleForwardRefs([ref, nodeRef])
+
+  const memoStyles = useMemo(() => {
+    const timeouts = getTransitionTimeouts(timeout)
+    const enterDuration = appearing ? timeouts.appear : timeouts.enter
+
+    return {
+      ...style,
+      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
       height,
-      wrapperRef,
-      setHeightToZero,
-      setHeightToAuto,
-      setHeightToCurrent,
-    } = useCollapseLogic(inProps)
-
-    // we need to add small delay as 'enter', 'entering' and 'exit', 'exiting'
-    // are triggered in the same time and React is batching them
-    const handleEntering = () => setTimeout(setHeightToCurrent, 50)
-    const handleExiting = () => setTimeout(setHeightToZero, 50)
-
-    const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
-      setHeightToZero()
-      onEnter?.(node, isAppearing)
     }
+  }, [timeout, inProps, appearing, height, style])
 
-    const handleExited = (node: HTMLElement) => {
-      setHeightToZero()
-      onExited?.(node)
-    }
-
-    const memoStyles = useMemo(() => {
-      return {
-        ...style,
-        transitionDuration: `${timeout}ms`,
-        height,
-      }
-    }, [timeout, height, style])
-
-    return (
-      <Transition
-        in={inProps}
-        appear={appear}
-        onEnter={handleEnter}
-        onEntering={handleEntering}
-        // we need to set height to 'auto' after transition is finished
-        // to support dynamic content inside Collapse
-        onEntered={setHeightToAuto}
-        onExit={setHeightToCurrent}
-        onExiting={handleExiting}
-        onExited={handleExited}
-        unmountOnExit={unmountOnExit}
-        timeout={timeout}
-        {...rest}
-      >
-        {state => {
-          return (
-            <div
-              className={twJoin([
-                'transition-[height] ease-in-out min-h-0',
-                state === 'exited' && !inProps && 'invisible',
-                state === 'entered' ? 'overflow-visible' : 'overflow-hidden',
-                className,
-              ])}
-              style={memoStyles}
-              data-testid={dataTestId}
-              ref={ref}
-            >
-              <div className='flex' ref={wrapperRef}>
-                <div className='w-full'>{children}</div>
-              </div>
-            </div>
-          )
-        }}
-      </Transition>
-    )
+  if (status === 'unmounted') {
+    return null
   }
-)
+
+  return (
+    <div
+      {...rest}
+      className={twMerge([
+        'transition-[height] ease-in-out min-h-0',
+        status === 'exited' && !inProps && 'invisible',
+        status === 'entered' ? 'overflow-visible' : 'overflow-hidden',
+        className,
+      ])}
+      style={memoStyles}
+      data-testid={dataTestId}
+      ref={combinedRef}
+    >
+      <div className='flex' ref={wrapperRef}>
+        <div className='w-full'>{children}</div>
+      </div>
+    </div>
+  )
+})
+
+Collapse.displayName = 'Collapse'
 
 export default Collapse

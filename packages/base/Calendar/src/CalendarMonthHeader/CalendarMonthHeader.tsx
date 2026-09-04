@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 import { useDayPicker, useNavigation } from 'react-day-picker'
-import isSameMonth from 'date-fns/isSameMonth'
+import { isSameMonth } from 'date-fns'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Typography } from '@toptal/picasso-typography'
 import { ChevronMinor24, BackMinor24 } from '@toptal/picasso-icons'

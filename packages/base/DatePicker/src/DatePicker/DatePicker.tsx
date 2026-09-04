@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 import type { BaseProps } from '@toptal/picasso-shared'
-import formatDate from 'date-fns/format'
+import { format as formatDate } from 'date-fns'
 import type { PopperHandle } from '@toptal/picasso-popper'
 import type { KeyboardEvent, ReactNode } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'

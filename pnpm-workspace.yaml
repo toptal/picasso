@@ -61,9 +61,21 @@ overrides:
   webpack-dev-middleware: '5.3.4'
   yaml: '2'
 
+# react-day-picker 8.x peers date-fns '^2.28.0 || ^3.0.0' and no 8.x release
+# admits v4, while @base-ui/react peers date-fns '^4.0.0'. The two cannot both
+# be satisfied, and Base UI wins: it is the primitive layer the kit is moving
+# to. react-day-picker v8 is verified to work on v4 — it imports date-fns only
+# through named barrel imports, and all 31 functions it uses are unchanged in
+# v4. This entry goes away with the react-day-picker v9+ migration [PF-2297]:
+# from 9.0.0 on, date-fns is a regular dependency of the package and not a peer at all.
+peerDependencyRules:
+  allowedVersions:
+    'react-day-picker>date-fns': '4'
+
 patchedDependencies:
   '@changesets/get-github-info@0.6.0': patches/@changesets__get-github-info@0.6.0.patch
   '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0': 'patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch'
+  react-final-form-listeners@3.0.1: patches/react-final-form-listeners@3.0.1.patch
   'webpack@5.98.0': 'patches/webpack@5.98.0.patch'
 resolvePeersFromWorkspaceRoot: true
 strictPeerDependencies: false
