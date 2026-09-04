@@ -1,5 +1,5 @@
 import type { RefObject } from 'react'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import useScrollableShades from './use-scrollable-shades'
 

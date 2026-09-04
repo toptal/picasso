@@ -166,6 +166,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - One top-level `describe('ComponentName', …)`; nest only for behavioral groupings, never 3+ deep.
 - Render through a local `renderComponent` helper that wraps `render()` from `@toptal/picasso-test-utils`.
 - Use user-centric queries (`getByRole`/`getByText`/`getByTestId`) with `userEvent` — no `fireEvent`, and no bare "renders without crashing" tests.
+- Test hooks with `renderHook` from `@testing-library/react` — never `@testing-library/react-hooks` (archived, peers React ≤ 17, needs the deprecated `react-test-renderer`).
 - Keep 2–3 shape snapshots per component; the rest are explicit assertions.
 - Responsive components run Happo at all breakpoints (`screenshotBreakpoints: true`); fix every Violation the a11y addon reports.
 

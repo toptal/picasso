@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 import { waitFor } from '@toptal/picasso-test-utils'
 
 import type { Item } from '../types'
