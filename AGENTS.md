@@ -35,6 +35,9 @@ pnpm test:unit -u                  # update jest snapshots
 pnpm test:unit -- <path|pattern>   # run a single file or pattern (jest CLI args after --)
 pnpm test:integration              # cypress component tests (headless)
 pnpm test:integration:open         # cypress in dev mode + watch build
+pnpm test:react19                  # jest against the standalone React 19 install in react19/
+pnpm typecheck:react19             # tsc against @types/react 19 (build stays on @types/react 17)
+pnpm test:integration:react19      # cypress component tests against React 19 (CYPRESS_REACT_19=1)
 pnpm test                          # unit + integration (CI parity, slow)
 
 pnpm changeset                     # REQUIRED on PRs that change package code
@@ -163,6 +166,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - One top-level `describe('ComponentName', …)`; nest only for behavioral groupings, never 3+ deep.
 - Render through a local `renderComponent` helper that wraps `render()` from `@toptal/picasso-test-utils`.
 - Use user-centric queries (`getByRole`/`getByText`/`getByTestId`) with `userEvent` — no `fireEvent`, and no bare "renders without crashing" tests.
+- Test hooks with `renderHook` from `@testing-library/react` — never `@testing-library/react-hooks` (archived, peers React ≤ 17, needs the deprecated `react-test-renderer`).
 - Keep 2–3 shape snapshots per component; the rest are explicit assertions.
 - Responsive components run Happo at all breakpoints (`screenshotBreakpoints: true`); fix every Violation the a11y addon reports.
 
@@ -175,6 +179,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 - **`TODO` / `FIXME` / `@deprecated`** comments must include a Jira ref — `[ABC-1234]` or the full `https://toptal-core.atlassian.net/browse/...` URL. The `todo-plz/ticket-ref` ESLint rule warns otherwise.
 - **Icons/pictograms:** drop SVG into `packages/base/Icons/src/Icon/svg/` (16×16 and 24×24 variants) or `packages/picasso-pictograms/src/Pictograms/svg/` (64×64), strokes expanded to fills, then `pnpm generate:icons` / `pnpm generate:pictograms`.
 - **Dependencies:** caret (`^`) for npm deps, exact for workspace deps; install with plain `pnpm install`.
+  - One deliberate exception: the root devDependency `@cypress/request` is pinned exactly at `3.0.9` so Cypress 14 dedupes onto it and its `qs` stays off the Dependency Review advisory list (3.0.10 pins a vulnerable `qs`). Drop the pin with Cypress 15+, whose request client resolves a patched `qs` on its own.
 - **CI is repo-wide:** touched files must pass `pnpm prettier --check` and ESLint (`pnpm lint:fix` autofixes most). A lint error _anywhere_ in the repo blocks the PR.
 
 ## Reference docs

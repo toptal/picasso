@@ -13,7 +13,7 @@ const VideoResponsive = (props: Props) => {
       xl: <Video16 {...props} />,
     },
     <Video24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default VideoResponsive

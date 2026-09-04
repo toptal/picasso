@@ -13,7 +13,7 @@ const MinusResponsive = (props: Props) => {
       xl: <Minus16 {...props} />,
     },
     <Minus24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MinusResponsive

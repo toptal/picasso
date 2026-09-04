@@ -1,7 +1,7 @@
 ---
 '@toptal/picasso-calendar': major
-'@toptal/picasso-date-picker': patch
-'@toptal/picasso': patch
+'@toptal/picasso-date-picker': major
+'@toptal/picasso': major
 ---
 
 ### Calendar
@@ -21,3 +21,7 @@ No other API or behavior change in any package. The
 `peerDependencyRules.allowedVersions` entry in `pnpm-workspace.yaml` silences
 the react-day-picker peer warning for development in this repository only —
 that file is not published, so it does not change what consumers install.
+
+### Picasso
+
+- major for `@toptal/picasso-date-picker` and the `@toptal/picasso` aggregate alongside Calendar: both install `@toptal/picasso-calendar`, so the same `react-day-picker@8` / `date-fns@^4` peer conflict reaches their consumers at install time, with the same resolution (move to `date-fns@^4`, or accept the peer warning until react-day-picker admits v4)

@@ -13,7 +13,7 @@ const BehanceResponsive = (props: Props) => {
       xl: <Behance16 {...props} />,
     },
     <Behance24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BehanceResponsive

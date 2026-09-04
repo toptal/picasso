@@ -45,7 +45,7 @@ const convertImageElement = (domNode: Node): null | DOMConversionOutput => {
   return null
 }
 
-export class ImageNode extends DecoratorNode<JSX.Element> {
+export class ImageNode extends DecoratorNode<React.ReactElement> {
   src: string
   alt?: string
 

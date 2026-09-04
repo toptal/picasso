@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import { getUseSelectPropsMock } from '../mocks'
 import useSearchChangeHandler from './use-search-change-handler'

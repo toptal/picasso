@@ -13,7 +13,7 @@ const ArrowLongLeftResponsive = (props: Props) => {
       xl: <ArrowLongLeft16 {...props} />,
     },
     <ArrowLongLeft24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ArrowLongLeftResponsive

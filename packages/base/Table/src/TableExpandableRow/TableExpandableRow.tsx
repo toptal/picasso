@@ -9,7 +9,9 @@ import { TableCell } from '../TableCell'
 
 const MAX_COL_SPAN = 100
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
+export interface Props
+  extends BaseProps,
+    Omit<HTMLAttributes<HTMLTableRowElement>, 'content'> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */
   children: ReactNode
   /** Collapsible content of `TableExpandableRow` */

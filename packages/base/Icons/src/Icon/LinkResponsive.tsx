@@ -13,7 +13,7 @@ const LinkResponsive = (props: Props) => {
       xl: <Link16 {...props} />,
     },
     <Link24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LinkResponsive

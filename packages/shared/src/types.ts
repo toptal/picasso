@@ -2,6 +2,9 @@ import type {
   CSSProperties,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ExoticComponent,
+  ReactElement,
+  Ref,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -23,6 +26,9 @@ export interface BaseProps {
   'data-testid'?: string
   'data-private'?: boolean | 'lipsum'
 }
+
+/** An `<Icon />`-like element the host decorates through `cloneElement` */
+export type IconElement = ReactElement<{ className?: string }>
 
 export interface JssProps {
   classes: Classes
@@ -71,9 +77,15 @@ export interface NamedComponent<P> {
 // have required fields (Page.Article, Breadcrumbs.Item, OverviewBlock).
 // Those sites broke the previous generic call-signature shape under the
 // TS 5.5 variance change.
+//
+// The call signature returns `ReturnType<ExoticComponent<P>>` instead of a
+// literal `ReactElement | null` so one declaration serves both type majors:
+// under @types/react 17 it resolves to `ReactElement | null`, which keeps the
+// interface a valid JSX element type, and under 19 to `ReactNode`, which is
+// what `forwardRef` components return there.
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (props: P & { [key: string]: any }): JSX.Element | null
+  (props: P & { [key: string]: any }): ReturnType<ExoticComponent<P>>
 }
 
 type BaseEnvironments = 'development' | 'staging' | 'production'
@@ -105,3 +117,10 @@ export interface TransitionProps {
   /* The duration for the transition, in milliseconds */
   timeout?: number | { enter?: number; exit?: number; appear?: number }
 }
+
+/** The single child Fade/Slide clone with transition classes, style and a ref */
+export type TransitionChild = ReactElement<{
+  className?: string
+  style?: CSSProperties
+  ref?: Ref<HTMLElement>
+}>

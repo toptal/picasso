@@ -13,7 +13,7 @@ const DoneResponsive = (props: Props) => {
       xl: <Done16 {...props} />,
     },
     <Done24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DoneResponsive

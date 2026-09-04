@@ -10,7 +10,7 @@ export type CalendarContainerProps = {
   isFlexible?: boolean
 }
 
-export type RenderRoot = (args: CalendarContainerProps) => JSX.Element
+export type RenderRoot = (args: CalendarContainerProps) => React.ReactElement
 
 const CalendarContainer = ({
   children,

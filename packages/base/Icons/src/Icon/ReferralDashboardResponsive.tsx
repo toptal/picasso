@@ -13,7 +13,7 @@ const ReferralDashboardResponsive = (props: Props) => {
       xl: <ReferralDashboard16 {...props} />,
     },
     <ReferralDashboard24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ReferralDashboardResponsive

@@ -13,7 +13,7 @@ const PencilResponsive = (props: Props) => {
       xl: <Pencil16 {...props} />,
     },
     <Pencil24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PencilResponsive

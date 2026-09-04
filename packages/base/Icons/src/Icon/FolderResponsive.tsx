@@ -13,7 +13,7 @@ const FolderResponsive = (props: Props) => {
       xl: <Folder16 {...props} />,
     },
     <Folder24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FolderResponsive

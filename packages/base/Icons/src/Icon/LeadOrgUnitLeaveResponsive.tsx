@@ -13,7 +13,7 @@ const LeadOrgUnitLeaveResponsive = (props: Props) => {
       xl: <LeadOrgUnitLeave16 {...props} />,
     },
     <LeadOrgUnitLeave24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LeadOrgUnitLeaveResponsive

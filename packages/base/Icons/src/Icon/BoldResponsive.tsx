@@ -13,7 +13,7 @@ const BoldResponsive = (props: Props) => {
       xl: <Bold16 {...props} />,
     },
     <Bold24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BoldResponsive

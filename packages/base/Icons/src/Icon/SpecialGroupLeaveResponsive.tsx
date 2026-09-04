@@ -13,7 +13,7 @@ const SpecialGroupLeaveResponsive = (props: Props) => {
       xl: <SpecialGroupLeave16 {...props} />,
     },
     <SpecialGroupLeave24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SpecialGroupLeaveResponsive

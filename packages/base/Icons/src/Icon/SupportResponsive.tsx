@@ -13,7 +13,7 @@ const SupportResponsive = (props: Props) => {
       xl: <Support16 {...props} />,
     },
     <Support24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SupportResponsive

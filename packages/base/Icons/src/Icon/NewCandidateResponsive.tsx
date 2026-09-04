@@ -13,7 +13,7 @@ const NewCandidateResponsive = (props: Props) => {
       xl: <NewCandidate16 {...props} />,
     },
     <NewCandidate24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default NewCandidateResponsive

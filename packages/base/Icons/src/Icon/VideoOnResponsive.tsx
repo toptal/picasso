@@ -13,7 +13,7 @@ const VideoOnResponsive = (props: Props) => {
       xl: <VideoOn16 {...props} />,
     },
     <VideoOn24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default VideoOnResponsive

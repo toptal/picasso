@@ -1,13 +1,12 @@
-import type { ReactElement } from 'react'
 import React from 'react'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
-import type { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps, IconElement } from '@toptal/picasso-shared'
 import { ButtonCircular } from '@toptal/picasso-button'
 
 type Props = BaseProps & {
   active?: boolean
   disabled?: boolean
-  icon: ReactElement
+  icon: IconElement
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   id?: string
 }

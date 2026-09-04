@@ -13,7 +13,7 @@ const BulletResponsive = (props: Props) => {
       xl: <Bullet16 {...props} />,
     },
     <Bullet24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BulletResponsive

@@ -13,7 +13,7 @@ const MoreResponsive = (props: Props) => {
       xl: <More16 {...props} />,
     },
     <More24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MoreResponsive

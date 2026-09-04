@@ -13,7 +13,7 @@ const PinResponsive = (props: Props) => {
       xl: <Pin16 {...props} />,
     },
     <Pin24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PinResponsive

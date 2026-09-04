@@ -11,9 +11,9 @@ export const useLabelOverlap = ({
   isTooltipRendered: boolean
 }) => {
   const [isPartiallyOverlapped, setIsPartiallyOverlapped] = useState(false)
-  const [valueLabels, setValueLabels] = useState<RefObject<HTMLSpanElement>[]>(
-    []
-  )
+  const [valueLabels, setValueLabels] = useState<
+    RefObject<HTMLSpanElement | null>[]
+  >([])
   const isRangeSlider = Array.isArray(value)
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const useLabelOverlap = ({
   ])
 
   const handleValueLabelOnRender = useCallback(
-    (index: number, labelRef: RefObject<HTMLSpanElement>) => {
+    (index: number, labelRef: RefObject<HTMLSpanElement | null>) => {
       setValueLabels(valLabels => {
         valLabels[index] = labelRef
 

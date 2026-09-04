@@ -1,6 +1,10 @@
 import React, { useRef } from 'react'
 import cx from 'classnames'
-import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
+import type {
+  BaseProps,
+  TransitionChild,
+  TransitionProps,
+} from '@toptal/picasso-shared'
 import {
   getElementRef,
   getTransitionTimeouts,
@@ -11,7 +15,7 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */
-  children: React.ReactElement
+  children: TransitionChild
   /* Show the component; triggers the enter or exit states */
   in: boolean
   /* Callback fired when the component has entered */

@@ -13,7 +13,7 @@ const LengthenParagraphTextResponsive = (props: Props) => {
       xl: <LengthenParagraphText16 {...props} />,
     },
     <LengthenParagraphText24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LengthenParagraphTextResponsive

@@ -13,7 +13,7 @@ const TransferResponsive = (props: Props) => {
       xl: <Transfer16 {...props} />,
     },
     <Transfer24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TransferResponsive

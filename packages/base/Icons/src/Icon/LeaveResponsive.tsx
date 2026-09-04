@@ -13,7 +13,7 @@ const LeaveResponsive = (props: Props) => {
       xl: <Leave16 {...props} />,
     },
     <Leave24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LeaveResponsive

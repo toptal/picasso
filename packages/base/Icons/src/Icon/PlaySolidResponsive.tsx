@@ -13,7 +13,7 @@ const PlaySolidResponsive = (props: Props) => {
       xl: <PlaySolid16 {...props} />,
     },
     <PlaySolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PlaySolidResponsive

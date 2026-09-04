@@ -80,7 +80,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
       ...rest
     } = props
 
-    const renderMenuButton = ({ isOpen }: { isOpen: boolean }) => {
+    const renderMenuButton = ({ open }: { open: boolean }) => {
       const menuButtonClassName = twMerge(
         createButtonGroupItemClassNames({
           active: menuButtonProps?.active,
@@ -96,7 +96,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
         menuButtonProps?.className
       )
 
-      const iconClassName = isOpen ? 'rotate-180' : ''
+      const iconClassName = open ? 'rotate-180' : ''
 
       const menuButton = (
         <Button
@@ -150,7 +150,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
           {children}
         </Button>
         <Dropdown content={menu} className={dropdownClassName}>
-          {({ isOpen }: { isOpen: boolean }) => renderMenuButton({ isOpen })}
+          {renderMenuButton}
         </Dropdown>
       </ButtonGroup>
     )

@@ -13,7 +13,7 @@ const FilterResponsive = (props: Props) => {
       xl: <Filter16 {...props} />,
     },
     <Filter24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FilterResponsive

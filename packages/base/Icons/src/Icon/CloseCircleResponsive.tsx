@@ -13,7 +13,7 @@ const CloseCircleResponsive = (props: Props) => {
       xl: <CloseCircle16 {...props} />,
     },
     <CloseCircle24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CloseCircleResponsive

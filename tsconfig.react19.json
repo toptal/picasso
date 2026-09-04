@@ -1,0 +1,47 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "incremental": false,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "typeRoots": [
+      "./react19/node_modules/@types",
+      "./node_modules/@types",
+      "./@types"
+    ],
+    "types": [
+      "node",
+      "jest",
+      "global",
+      "ap-style-title-case",
+      "hast-util-from-dom",
+      "react-deprecate",
+      "react-source-render"
+    ],
+    "paths": {
+      "react": ["./react19/node_modules/@types/react"],
+      "react/*": ["./react19/node_modules/@types/react/*"],
+      "react-dom": ["./react19/node_modules/@types/react-dom"],
+      "react-dom/*": ["./react19/node_modules/@types/react-dom/*"]
+    }
+  },
+  // The sanity test is the one test written against @types/react 19; `files`
+  // is not subject to `exclude`, so it is checked while the rest stay out.
+  "files": ["react19/sanity.test.tsx"],
+  "include": ["packages/*/src", "packages/base/*/src"],
+  "exclude": [
+    "**/test.tsx",
+    "**/*.test.tsx",
+    "**/test.ts",
+    "**/*.test.ts",
+    "**/__tests__",
+    "**/__testfixtures__",
+    "**/story",
+    "**/*.example.tsx",
+    "packages/picasso-codemod",
+    "packages/picasso-cypress-utils"
+  ]
+}

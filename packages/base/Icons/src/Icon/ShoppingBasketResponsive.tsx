@@ -13,7 +13,7 @@ const ShoppingBasketResponsive = (props: Props) => {
       xl: <ShoppingBasket16 {...props} />,
     },
     <ShoppingBasket24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ShoppingBasketResponsive

@@ -1,5 +1,5 @@
-import type { RenderResult } from '@testing-library/react-hooks'
-import { renderHook, act } from '@testing-library/react-hooks'
+import type { RenderHookResult } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 
 import type { Option } from '../../types'
 import useHighlightedIndex from './use-highlighted-index'
@@ -17,14 +17,15 @@ const disableOptions = (options: Option[], indicies: number[]) =>
     indicies.includes(index) ? { ...option, disabled: true } : option
   )
 
-const getHighlightIndex = (
-  result: RenderResult<ReturnType<typeof useHighlightedIndex>>
-) => result.current[0]
+type HighlightedIndexResult = RenderHookResult<
+  ReturnType<typeof useHighlightedIndex>,
+  { isOpen: boolean }
+>['result']
 
-const setHighlightedIndex = (
-  result: RenderResult<ReturnType<typeof useHighlightedIndex>>,
-  index: number
-) => result.current[1](index)
+const getHighlightIndex = (result: HighlightedIndexResult) => result.current[0]
+
+const setHighlightedIndex = (result: HighlightedIndexResult, index: number) =>
+  result.current[1](index)
 
 const renderUseHighlightedIndex = ({
   options,

@@ -13,7 +13,7 @@ const ImageResponsive = (props: Props) => {
       xl: <Image16 {...props} />,
     },
     <Image24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ImageResponsive

@@ -1,6 +1,5 @@
 import React, { StrictMode } from 'react'
-import { renderHook, act } from '@testing-library/react-hooks'
-import { render, act as actDom } from '@testing-library/react'
+import { renderHook, act, render, act as actDom } from '@testing-library/react'
 
 import type { UseTransitionStatusOptions } from '../use-transition-status'
 import useTransitionStatus, {

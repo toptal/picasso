@@ -41,7 +41,7 @@ export interface UseTransitionStatusOptions<T extends HTMLElement> {
   /** Resolve to `unmounted` once fully exited, so the caller can render nothing */
   unmountOnExit?: boolean
   /** The transitioning DOM element, passed to the lifecycle callbacks */
-  nodeRef: RefObject<T>
+  nodeRef: RefObject<T | null>
   /** Fired when the enter phase starts */
   onEnter?: (node: T, isAppearing: boolean) => void
   /** Fired right after the status flips to `entering` */

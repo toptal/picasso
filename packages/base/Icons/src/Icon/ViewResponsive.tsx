@@ -13,7 +13,7 @@ const ViewResponsive = (props: Props) => {
       xl: <View16 {...props} />,
     },
     <View24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ViewResponsive
