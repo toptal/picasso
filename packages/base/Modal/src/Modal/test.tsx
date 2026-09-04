@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import React, { useState } from 'react'
 import {
   render,
@@ -344,6 +345,66 @@ describe('Modal', () => {
       fireEvent.mouseDown(popup)
 
       expect(onMouseDown).toHaveBeenCalled()
+    })
+  })
+
+  describe('focus return', () => {
+    let outsideButton: HTMLButtonElement
+
+    const renderModal = (children: ReactNode) => {
+      render(
+        <Modal open onClose={() => {}}>
+          <TestModalContent>{children}</TestModalContent>
+        </Modal>
+      )
+
+      return screen.findByTestId('field')
+    }
+
+    beforeEach(() => {
+      outsideButton = document.createElement('button')
+      document.body.appendChild(outsideButton)
+    })
+
+    afterEach(() => {
+      cleanup()
+      outsideButton.remove()
+    })
+
+    it('returns focus to the first focusable element when it leaves the modal', async () => {
+      const field = await renderModal(<input data-testid='field' />)
+
+      outsideButton.focus()
+
+      expect(field).toHaveFocus()
+    })
+
+    it('skips hidden inputs', async () => {
+      const field = await renderModal(
+        <>
+          <input type='hidden' name='hiddenField' />
+          <input data-testid='field' />
+        </>
+      )
+
+      outsideButton.focus()
+
+      expect(field).toHaveFocus()
+    })
+
+    it('leaves focus inside an exempt popup', async () => {
+      await renderModal(<input data-testid='field' />)
+      render(
+        <div data-picasso-popper=''>
+          <Button>Popup action</Button>
+        </div>
+      )
+
+      const popupButton = screen.getByRole('button', { name: 'Popup action' })
+
+      popupButton.focus()
+
+      expect(popupButton).toHaveFocus()
     })
   })
 
