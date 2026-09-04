@@ -1,5 +1,15 @@
 # @toptal/picasso-avatar
 
+## 100.0.2
+
+### Patch Changes
+
+- [#5098](https://github.com/toptal/picasso/pull/5098) [`88c5b63`](https://github.com/toptal/picasso/commit/88c5b6320f5083972ccf9ec73092cb7cf331feaf) Thanks [@azebich](https://github.com/azebich)!
+
+### Avatar
+
+- remove the legacy `-webkit-optimize-contrast` image-rendering hint from image avatars — Chrome now aliases it to `crisp-edges`, which forces low-quality downscaling; photos use the browser's default high-quality resampling again
+
 ## 100.0.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 100.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-user-badge@100.0.2
+
 ## 100.0.2
 
 ### Patch Changes

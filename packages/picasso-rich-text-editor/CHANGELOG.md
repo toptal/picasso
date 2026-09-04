@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 100.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@100.0.3
+
 ## 100.0.5
 
 ### Patch Changes

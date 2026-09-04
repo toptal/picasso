@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-account-select",
-  "version": "100.0.2",
+  "version": "100.0.3",
   "description": "Toptal UI components library - AccountSelect",
   "publishConfig": {
     "access": "public"
