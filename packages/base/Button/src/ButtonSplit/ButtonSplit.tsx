@@ -150,7 +150,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
           {children}
         </Button>
         <Dropdown content={menu} className={dropdownClassName}>
-          {({ open }: { open: boolean }) => renderMenuButton({ open })}
+          {renderMenuButton}
         </Dropdown>
       </ButtonGroup>
     )

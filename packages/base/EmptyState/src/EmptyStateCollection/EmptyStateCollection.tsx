@@ -1,12 +1,13 @@
-import type { HTMLAttributes, ReactElement } from 'react'
+import type { HTMLAttributes } from 'react'
 import React, { forwardRef, cloneElement } from 'react'
+import type { IconElement } from '@toptal/picasso-shared'
 import { Search16 as Search } from '@toptal/picasso-icons'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Adds <Icon /> before EmptyStateCollection content */
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
 }
 
 export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(

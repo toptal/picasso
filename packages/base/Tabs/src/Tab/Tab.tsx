@@ -1,7 +1,11 @@
-import type { ReactNode, HTMLAttributes, ReactElement } from 'react'
+import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import { Tabs as BaseUITabs } from '@base-ui/react/tabs'
-import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type {
+  BaseProps,
+  TextLabelProps,
+  IconElement,
+} from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -28,7 +32,7 @@ export interface Props
   label?: ReactNode
 
   /** The Icon element */
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
 
   /** Image URL */
   avatar?: string | null

@@ -123,7 +123,7 @@ export default defineConfig({
         },
         resolve: {
           ...davinciResolve,
-          alias: { ...(davinciResolve?.alias ?? {}), ...react19Aliases },
+          alias: { ...davinciResolve.alias, ...react19Aliases },
         },
       },
     },

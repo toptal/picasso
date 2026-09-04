@@ -43,19 +43,15 @@ describe('RadioOptions', () => {
     it('renders radio with correct properties', () => {
       render(<>{RadioOptions({ options: optionGroups })}</>)
 
-      expect(renderedProps(RadioMock)[0]).toEqual(
-        expect.objectContaining({
-          value: 'and',
-          label: 'AND',
-        })
-      )
+      expect(renderedProps(RadioMock)[0]).toMatchObject({
+        value: 'and',
+        label: 'AND',
+      })
 
-      expect(renderedProps(RadioMock)[1]).toEqual(
-        expect.objectContaining({
-          value: 'or',
-          label: 'OR',
-        })
-      )
+      expect(renderedProps(RadioMock)[1]).toMatchObject({
+        value: 'or',
+        label: 'OR',
+      })
     })
   })
 
@@ -63,19 +59,15 @@ describe('RadioOptions', () => {
     it('renders radio with correct properties', () => {
       render(<>{RadioOptions({ options })}</>)
 
-      expect(renderedProps(RadioMock)[0]).toEqual(
-        expect.objectContaining({
-          value: 'and',
-          label: 'AND',
-        })
-      )
+      expect(renderedProps(RadioMock)[0]).toMatchObject({
+        value: 'and',
+        label: 'AND',
+      })
 
-      expect(renderedProps(RadioMock)[1]).toEqual(
-        expect.objectContaining({
-          value: 'or',
-          label: 'OR',
-        })
-      )
+      expect(renderedProps(RadioMock)[1]).toMatchObject({
+        value: 'or',
+        label: 'OR',
+      })
     })
   })
 })

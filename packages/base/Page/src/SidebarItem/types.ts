@@ -1,6 +1,10 @@
 import type { ElementType, ReactElement, ReactNode } from 'react'
 import type React from 'react'
-import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type {
+  BaseProps,
+  TextLabelProps,
+  IconElement,
+} from '@toptal/picasso-shared'
 import type { MenuItemAttributes, MenuItemProps } from '@toptal/picasso-menu'
 
 import type { VariantType } from '../PageSidebar/types'
@@ -11,7 +15,7 @@ import type {
 
 export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
   /** Highlights the item as selected */
   selected?: boolean
   /** Whether to render disabled item */

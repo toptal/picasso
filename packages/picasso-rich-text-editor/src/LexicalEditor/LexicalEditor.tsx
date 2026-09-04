@@ -1,4 +1,3 @@
-import type { RefObject } from 'react'
 import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { ListItemNode, ListNode } from '@lexical/list'
@@ -142,8 +141,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const classes = styles
 
-  // useRef(null) is RefObject<T | null> on @types/react 19; the toolbar's JSX ref prop wants RefObject<T>
-  const toolbarRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>
+  const toolbarRef = useRef<HTMLDivElement>(null)
 
   const theme = useLexicalTheme(classes)
 

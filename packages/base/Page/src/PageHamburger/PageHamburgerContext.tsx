@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react'
 import React, { createContext, useContext, useRef, useState } from 'react'
+import type { NullableRefObject } from '@toptal/picasso-utils'
 
 const noop = () => {}
 
 interface InternalHamburgerContextProps {
   hamburgerId: string
-  hamburgerRef?: React.RefObject<HTMLDivElement>
+  hamburgerRef?: NullableRefObject<HTMLDivElement>
   hasPageHamburger: boolean
   setHasPageHamburger: (val: boolean) => void
 }
@@ -31,10 +32,7 @@ export const PageHamburgerContextProvider = ({
   hamburgerId,
 }: Props) => {
   const [hasPageHamburger, setHasPageHamburger] = useState(false)
-  // useRef(null) is RefObject<T | null> on @types/react 19; the JSX ref prop wants RefObject<T>
-  const hamburgerRef = useRef<HTMLDivElement>(
-    null
-  ) as React.RefObject<HTMLDivElement>
+  const hamburgerRef = useRef<HTMLDivElement>(null)
 
   const context: InternalHamburgerContextProps = {
     hamburgerId,

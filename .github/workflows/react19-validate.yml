@@ -1,4 +1,4 @@
-# [PF-2262] Workstream E: run the unit and component test suites against React 19.
+# [PF-2262] React 19 support: run the unit and component test suites against React 19.
 #
 # The workspace runs React 18 (pnpm-workspace.yaml overrides); the standalone
 # react19/ install plus jest.react19.mjs map every react/react-dom/

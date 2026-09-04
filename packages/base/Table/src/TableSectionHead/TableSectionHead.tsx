@@ -1,6 +1,6 @@
-import type { ReactElement, HTMLAttributes, FunctionComponent } from 'react'
+import type { HTMLAttributes, FunctionComponent } from 'react'
 import React, { forwardRef } from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps, IconElement } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { TableSection, TableSectionContext } from '../Table'
@@ -14,7 +14,7 @@ export interface Props
   extends BaseProps,
     HTMLAttributes<HTMLTableSectionElement> {
   colSpan?: number
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
 }
 
 export const TableSectionHead: FunctionComponent<Props> = forwardRef<

@@ -1,4 +1,3 @@
-import type { RefObject } from 'react'
 import { createRef, useEffect, useMemo, useRef, useState } from 'react'
 import type { HierarchyPointNode } from 'd3-hierarchy'
 
@@ -13,8 +12,7 @@ const getDynamicNodes = (
 ): DynamicPointNode[] => {
   return nodes.map(node => {
     return Object.assign(node, {
-      // createRef is RefObject<T | null> on @types/react 19; PointNode's ref prop wants RefObject<T>
-      ref: createRef<SVGGElement>() as RefObject<SVGGElement>,
+      ref: createRef<SVGGElement>(),
       rect: {
         width: 0,
         height: 0,

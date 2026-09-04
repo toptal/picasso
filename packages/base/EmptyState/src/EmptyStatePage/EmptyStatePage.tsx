@@ -1,11 +1,12 @@
-import type { HTMLAttributes, ReactElement } from 'react'
+import type { HTMLAttributes } from 'react'
 import React, { forwardRef, cloneElement } from 'react'
+import type { IconElement } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Adds <Icon /> above EmptyStatePage content  */
-  image: ReactElement<{ className?: string }>
+  image: IconElement
   /** Adds Title string below the main image */
   title?: string
 }

@@ -66,6 +66,7 @@ export { default as sum } from './sum'
 export type { ReferenceObject } from './use-width-of'
 export { default as useMultipleForwardRefs } from './use-multiple-forward-refs'
 export { default as getElementRef } from './get-element-ref'
+export type { NullableRefObject } from './nullable-ref-object'
 export { usePageScrollLock } from './use-page-scroll-lock'
 export {
   default as useTransitionStatus,

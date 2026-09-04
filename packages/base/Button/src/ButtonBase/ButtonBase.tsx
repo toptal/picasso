@@ -1,5 +1,5 @@
 /* eslint-disable complexity */
-import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import type { ReactNode, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
@@ -7,6 +7,7 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
   TextLabelProps,
+  IconElement,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { Button as BaseUIButton } from '@base-ui/react/button'
@@ -30,7 +31,7 @@ export interface Props
   /** ClassName for the content */
   contentClassName?: string
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
@@ -51,7 +52,7 @@ const getClickHandler = (
 ): BaseUIButton.Props['onClick'] =>
   (loading ? noop : handler) as BaseUIButton.Props['onClick']
 
-const getIcon = ({ icon }: { icon?: ReactElement<{ className?: string }> }) => {
+const getIcon = ({ icon }: { icon?: IconElement }) => {
   if (!icon) {
     return undefined
   }

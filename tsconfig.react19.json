@@ -28,6 +28,8 @@
       "react-dom/*": ["./react19/node_modules/@types/react-dom/*"]
     }
   },
+  // The sanity test is the one test written against @types/react 19; `files`
+  // is not subject to `exclude`, so it is checked while the rest stay out.
   "files": ["react19/sanity.test.tsx"],
   "include": ["packages/*/src", "packages/base/*/src"],
   "exclude": [

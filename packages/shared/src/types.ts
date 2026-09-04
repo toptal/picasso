@@ -3,6 +3,8 @@ import type {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   ExoticComponent,
+  ReactElement,
+  Ref,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -24,6 +26,9 @@ export interface BaseProps {
   'data-testid'?: string
   'data-private'?: boolean | 'lipsum'
 }
+
+/** An `<Icon />`-like element the host decorates through `cloneElement` */
+export type IconElement = ReactElement<{ className?: string }>
 
 export interface JssProps {
   classes: Classes
@@ -112,3 +117,10 @@ export interface TransitionProps {
   /* The duration for the transition, in milliseconds */
   timeout?: number | { enter?: number; exit?: number; appear?: number }
 }
+
+/** The single child Fade/Slide clone with transition classes, style and a ref */
+export type TransitionChild = ReactElement<{
+  className?: string
+  style?: CSSProperties
+  ref?: Ref<HTMLElement>
+}>

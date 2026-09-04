@@ -1,6 +1,10 @@
-import type { ReactElement, MouseEventHandler } from 'react'
+import type { MouseEventHandler } from 'react'
 import React, { forwardRef } from 'react'
-import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type {
+  BaseProps,
+  TextLabelProps,
+  IconElement,
+} from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { Tag } from '../Tag'
@@ -16,7 +20,7 @@ export interface Props extends BaseProps, TextLabelProps {
   /** Defines if `Tag` is disabled */
   disabled?: boolean
   /** Specify the icon which should be rendered inside Tag */
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
   onClick?: ClickType
   /** Callback invoked when component is clicked */
   onChange?: (checked: boolean) => void

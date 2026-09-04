@@ -1,6 +1,6 @@
-import type { ReactElement, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import React from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps, IconElement } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -9,7 +9,7 @@ export interface Props extends BaseProps {
   /** Timeline row content */
   children: ReactNode
   /** Icon for the row between lines */
-  icon?: ReactElement<{ className?: string }>
+  icon?: IconElement
   /** Timeline row date */
   date?: string
   /** Whether to render a connector line after the row */
