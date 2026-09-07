@@ -1,7 +1,6 @@
 /* eslint-disable no-inline-styles/no-inline-styles */
 import React, { useEffect } from 'react'
 import data from '@emoji-mart/data'
-import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -69,7 +68,7 @@ export const RichTextEditorEmojiPicker = ({
         // and it wins, so clicks fall through the open picker to the editor
         className={twMerge(
           'absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none',
-          cx({ 'opacity-100 pointer-events-auto': showEmojiPicker })
+          showEmojiPicker && 'opacity-100 pointer-events-auto'
         )}
       >
         <EmojiMartPicker
