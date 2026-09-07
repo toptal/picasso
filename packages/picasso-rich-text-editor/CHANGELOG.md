@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 100.0.7
+
+### Patch Changes
+
+- [#5106](https://github.com/toptal/picasso/pull/5106) [`88194e3`](https://github.com/toptal/picasso/commit/88194e31b51e480bf747ef43f891331fcc532b81) Thanks [@vedrani](https://github.com/vedrani)!
+
+### RichTextEditor
+
+- fix the emoji picker ignoring every emoji click: the open picker kept `pointer-events: none`, so clicks fell through to the editor underneath and only closed the picker. Its hidden-state classes are now dropped while it is open, and picking an emoji inserts it again. Regression from the Tailwind migration in `v100`
+
 ## 100.0.6
 
 ### Patch Changes
