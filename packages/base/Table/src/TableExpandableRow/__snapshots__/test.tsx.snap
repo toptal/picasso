@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableExpandableRow renders collapsed 1`] = `
+<div>
+  <div
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+  >
+    <table
+      class="w-full border-collapse border-spacing"
+    >
+      <tbody>
+        <tr
+          class="border-0 border-solid border-b border-gray"
+        >
+          <td
+            class="h-10 py-2 border-none px-4"
+          >
+            <div
+              class="m-0 text-sm text-graphite font-inherit text-align"
+            >
+              Task
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`TableExpandableRow renders expanded 1`] = `
+<div>
+  <div
+    class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
+  >
+    <table
+      class="w-full border-collapse border-spacing"
+    >
+      <tbody>
+        <tr
+          class="border-0 border-solid border-b border-gray"
+        >
+          <td
+            class="h-10 py-2 border-none px-4"
+          >
+            <div
+              class="m-0 text-sm text-graphite font-inherit text-align"
+            >
+              Task
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-0 border-solid border-b border-gray"
+        >
+          <td
+            class="border-none h-auto p-0"
+            colspan="100"
+          >
+            <div
+              class="m-0 text-sm text-graphite font-inherit text-align"
+            >
+              <div
+                class="transition-[height] ease-in min-h overflow-visible"
+                style="transition-duration: 350ms; height: auto;"
+              >
+                <div
+                  class="flex"
+                >
+                  <div
+                    class="w-full"
+                  >
+                    <div>
+                      Expandable row content
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

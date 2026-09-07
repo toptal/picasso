@@ -142,6 +142,7 @@ const TableExpandableRowsExample = () => {
             key={id}
             content={<ExpandableContent />}
             expanded={expandedData[id]}
+            colSpan={6}
           >
             <Table.Cell>
               <Checkbox />
