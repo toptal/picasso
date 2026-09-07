@@ -6,6 +6,12 @@
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| **children** | `TransitionChild` | - | Element that accepts ref |
+| **in** | `boolean` | - | Show the component; toggling runs the enter or exit transition |
+| onEnter | `((node: HTMLElement, isAppearing: boolean) => void)` | - | Callback fired when the enter transition starts |
+| **direction** | `"up" \| "down" \| "left" \| "right"` | - | Direction in which the component will slide |
+| onExited | `((node: HTMLElement) => void)` | - | Callback fired when the exit transition settles |
+| timeout | `number \| { enter?: number; exit?: number; appear?: number \| undefined; } \| undefined` | `300` | The duration for the transition, in milliseconds; one value, or one per phase |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 

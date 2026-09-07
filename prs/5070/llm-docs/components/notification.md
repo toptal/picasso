@@ -11,7 +11,7 @@ Notification standard way to notify user about important information
 | **children** | `ReactNode` | - | Main content of the Notification |
 | onClose | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | - | Callback invoked when close button is clicked |
 | variant | `"red" \| "green" \| "white" \| "yellow"` | `yellow` | Style variant of Notification |
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Add <Icon /> before Notification content |
+| icon | `ReactElement<{ className?: string; color?: string; }, string \| JSXElementConstructor<any>> \| undefined` | - | Add <Icon /> before Notification content |
 | elevated | `boolean` | `false` | Enable elevated appearance for Notification |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
