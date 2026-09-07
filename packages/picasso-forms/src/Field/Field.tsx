@@ -23,11 +23,16 @@ export type FieldProps<TInputValue> = FinalFieldProps<
 > &
   TextLabelProps
 
+// The wrapped component's `children?: ReactNode` must not meet the render-prop
+// `children` below: @types/react 19 no longer lets a function pass as a
+// ReactNode. Distributive, so union props keep their variants.
+type WithoutChildren<T> = T extends unknown ? Omit<T, 'children'> : never
+
 export type Props<
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue
-> = TWrappedComponentProps &
-  FieldProps<TInputValue> & {
+> = WithoutChildren<TWrappedComponentProps> &
+  Omit<FieldProps<TInputValue>, 'children'> & {
     name: string
     type?: string
     label?: React.ReactNode

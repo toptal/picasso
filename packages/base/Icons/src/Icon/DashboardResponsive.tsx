@@ -13,7 +13,7 @@ const DashboardResponsive = (props: Props) => {
       xl: <Dashboard16 {...props} />,
     },
     <Dashboard24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DashboardResponsive

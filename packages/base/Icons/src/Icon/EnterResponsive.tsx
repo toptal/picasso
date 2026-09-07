@@ -13,7 +13,7 @@ const EnterResponsive = (props: Props) => {
       xl: <Enter16 {...props} />,
     },
     <Enter24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default EnterResponsive

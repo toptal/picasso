@@ -13,7 +13,7 @@ const PortfolioDesignerResponsive = (props: Props) => {
       xl: <PortfolioDesigner16 {...props} />,
     },
     <PortfolioDesigner24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PortfolioDesignerResponsive

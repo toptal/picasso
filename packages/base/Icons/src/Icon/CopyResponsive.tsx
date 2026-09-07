@@ -13,7 +13,7 @@ const CopyResponsive = (props: Props) => {
       xl: <Copy16 {...props} />,
     },
     <Copy24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CopyResponsive

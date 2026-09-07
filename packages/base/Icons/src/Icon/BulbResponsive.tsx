@@ -13,7 +13,7 @@ const BulbResponsive = (props: Props) => {
       xl: <Bulb16 {...props} />,
     },
     <Bulb24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BulbResponsive

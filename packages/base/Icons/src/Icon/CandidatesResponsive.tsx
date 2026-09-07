@@ -13,7 +13,7 @@ const CandidatesResponsive = (props: Props) => {
       xl: <Candidates16 {...props} />,
     },
     <Candidates24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CandidatesResponsive

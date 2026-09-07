@@ -13,7 +13,7 @@ const StarResponsive = (props: Props) => {
       xl: <Star16 {...props} />,
     },
     <Star24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default StarResponsive

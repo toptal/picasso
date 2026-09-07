@@ -248,7 +248,6 @@ exports[`Autocomplete static behavior renders 1`] = `
             class="[&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
             data-testid="autocomplete"
             type="text"
-            value=""
           />
           <div
             class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto invisible"
@@ -626,6 +625,5 @@ exports[`Autocomplete static behavior uses a custom popper container 1`] = `
   class="[&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
   data-testid="autocomplete"
   type="text"
-  value=""
 />
 `;

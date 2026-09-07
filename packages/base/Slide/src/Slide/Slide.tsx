@@ -1,100 +1,83 @@
 import React, { useRef } from 'react'
-import { Transition } from 'react-transition-group'
-import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
-import { useMultipleForwardRefs } from '@toptal/picasso-utils'
+import cx from 'classnames'
+import type {
+  BaseProps,
+  TransitionChild,
+  TransitionProps,
+} from '@toptal/picasso-shared'
+import {
+  getElementRef,
+  useMultipleForwardRefs,
+  useTransitionStatus,
+} from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-const transitionStyles = {
-  right: {
-    entering: { transform: 'none' },
-    entered: { transform: 'none' },
-    exiting: { transform: 'translateX(-100%)' },
-    exited: { transform: 'translateX(-100%)' },
-  },
-  left: {
-    entering: { transform: 'none' },
-    entered: { transform: 'none' },
-    exiting: { transform: 'translateX(100%)' },
-    exited: { transform: 'translateX(100%)' },
-  },
-  up: {
-    entering: { transform: 'none' },
-    entered: { transform: 'none' },
-    exiting: { transform: 'translateY(100%)' },
-    exited: { transform: 'translateY(100%)' },
-  },
-  down: {
-    entering: { transform: 'none' },
-    entered: { transform: 'none' },
-    exiting: { transform: 'translateY(-100%)' },
-    exited: { transform: 'translateY(-100%)' },
-  },
-} as const
+import type { SlideDirection } from './styles'
+import { createTranslateClassNames } from './styles'
 
 export interface Props extends TransitionProps, BaseProps {
-  /* Element that accepts ref */
-  children: React.ReactElement
-  /* Show the component; triggers the enter or exit states */
+  /** Element that accepts ref */
+  children: TransitionChild
+  /** Show the component; toggling runs the enter or exit transition */
   in: boolean
-  /* Callback fired when the component has entered */
+  /** Callback fired when the enter transition starts */
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
-  /* Direction in which the component will slide */
-  direction: 'up' | 'down' | 'left' | 'right'
+  /** Direction in which the component will slide */
+  direction: SlideDirection
 }
 
-export const Slide = React.forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      timeout = 300,
-      children,
-      in: inProp,
-      style,
-      onEnter,
-      onExited,
-      direction,
+const DEFAULT_TIMEOUT = 300
+
+export const Slide = React.forwardRef<HTMLDivElement, Props>(function Slide(
+  {
+    timeout = DEFAULT_TIMEOUT,
+    children,
+    in: inProp,
+    style,
+    onEnter,
+    onExited,
+    direction,
+  },
+  ref
+) {
+  const nodeRef = useRef<HTMLDivElement>(null)
+
+  const { status, duration } = useTransitionStatus({
+    in: inProp,
+    // Historical behavior: enter callbacks fire on mount-open, with no
+    // visible slide (the status flips pre-paint)
+    appear: true,
+    timeout,
+    nodeRef,
+    onEnter,
+    onExited,
+  })
+
+  const combinedRef = useMultipleForwardRefs([
+    ref,
+    nodeRef,
+    getElementRef<HTMLDivElement>(children),
+  ])
+
+  return React.cloneElement(children, {
+    className: twMerge(
+      // In Tailwind v4 this also covers the standalone `translate` property
+      'transition-transform',
+      children.props.className,
+      // behavior classes, not defaults — must stay after the child's className
+      cx(createTranslateClassNames(direction, inProp), {
+        invisible: status === 'exited' && !inProp,
+      })
+    ),
+    style: {
+      transitionDuration: `${duration}ms`,
+      ...style,
+      ...children.props.style,
     },
-    ref
-  ) => {
-    const nodeRef = useRef(null)
+    ref: combinedRef,
+  })
+})
 
-    const combinedRef = useMultipleForwardRefs([
-      ref,
-      nodeRef,
-      // TODO: come up with proper type for children.ref
-      // @ts-ignore
-      children.ref,
-    ])
-
-    return (
-      <Transition
-        appear
-        nodeRef={nodeRef}
-        in={inProp}
-        timeout={timeout}
-        onExited={onExited}
-        onEnter={onEnter}
-      >
-        {(
-          state: 'entering' | 'entered' | 'exiting' | 'exited',
-          childProps: {}
-        ) => {
-          return React.cloneElement(children, {
-            style: {
-              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-              transitionDuration: `${timeout}ms`,
-              ...transitionStyles[direction][state],
-              ...style,
-              ...children.props.style,
-            },
-            className: `transform-none transition-transform ${
-              children.props.className || ''
-            }`,
-            ref: combinedRef,
-            ...childProps,
-          })
-        }}
-      </Transition>
-    )
-  }
-)
+Slide.displayName = 'Slide'
 
 export default Slide

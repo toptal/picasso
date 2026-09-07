@@ -13,7 +13,7 @@ const ArrowSubdirectoryResponsive = (props: Props) => {
       xl: <ArrowSubdirectory16 {...props} />,
     },
     <ArrowSubdirectory24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ArrowSubdirectoryResponsive

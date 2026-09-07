@@ -1,0 +1,7 @@
+{
+  "name": "react-dom-19-shim",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.js",
+  "description": "react-dom 19 with an 18-prefixed version string, for @storybook/react@6.5's renderer sniff under STORYBOOK_REACT_19=1 — see index.js"
+}

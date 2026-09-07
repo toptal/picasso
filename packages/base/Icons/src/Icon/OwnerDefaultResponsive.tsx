@@ -13,7 +13,7 @@ const OwnerDefaultResponsive = (props: Props) => {
       xl: <OwnerDefault16 {...props} />,
     },
     <OwnerDefault24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OwnerDefaultResponsive

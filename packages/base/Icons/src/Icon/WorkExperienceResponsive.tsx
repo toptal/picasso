@@ -13,7 +13,7 @@ const WorkExperienceResponsive = (props: Props) => {
       xl: <WorkExperience16 {...props} />,
     },
     <WorkExperience24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default WorkExperienceResponsive

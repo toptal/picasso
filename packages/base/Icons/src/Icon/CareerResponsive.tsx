@@ -13,7 +13,7 @@ const CareerResponsive = (props: Props) => {
       xl: <Career16 {...props} />,
     },
     <Career24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CareerResponsive

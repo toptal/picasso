@@ -13,7 +13,7 @@ const FailedResponsive = (props: Props) => {
       xl: <Failed16 {...props} />,
     },
     <Failed24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FailedResponsive

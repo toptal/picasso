@@ -13,7 +13,7 @@ const UnlinkResponsive = (props: Props) => {
       xl: <Unlink16 {...props} />,
     },
     <Unlink24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default UnlinkResponsive

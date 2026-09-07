@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, waitFor } from '@toptal/picasso-test-utils'
+import { render, renderedProps, waitFor } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
@@ -131,12 +131,9 @@ describe('LexicalEditor', () => {
       renderLexicalEditor()
 
       await waitFor(() =>
-        expect(mockedLexicalTextLengthPlugin).toHaveBeenCalledWith(
-          {
-            onTextLengthChange,
-          },
-          {}
-        )
+        expect(renderedProps(mockedLexicalTextLengthPlugin)[0]).toEqual({
+          onTextLengthChange,
+        })
       )
     })
 
@@ -157,27 +154,21 @@ describe('LexicalEditor', () => {
     it('renders OnChangePlugin with correct props', () => {
       renderLexicalEditor()
 
-      expect(mockedOnChangePlugin).toHaveBeenCalledWith(
-        {
-          ignoreSelectionChange: true,
-          onChange: expect.any(Function),
-        },
-        {}
-      )
+      expect(renderedProps(mockedOnChangePlugin)[0]).toEqual({
+        ignoreSelectionChange: true,
+        onChange: expect.any(Function),
+      })
     })
 
     it('renders ToolbarPlugin with correct props', () => {
       renderLexicalEditor()
 
-      expect(mockedToolbarPlugin).toHaveBeenCalledWith(
-        {
-          id: 'id',
-          toolbarRef: {
-            current: null,
-          },
+      expect(renderedProps(mockedToolbarPlugin)[0]).toEqual({
+        id: 'id',
+        toolbarRef: {
+          current: null,
         },
-        {}
-      )
+      })
     })
   })
 
@@ -188,15 +179,12 @@ describe('LexicalEditor', () => {
         plugins: ['link'],
       })
 
-      expect(mockedToolbarPlugin).toHaveBeenCalledWith(
-        {
-          id: 'id',
-          toolbarRef: {
-            current: null,
-          },
+      expect(renderedProps(mockedToolbarPlugin)[0]).toEqual({
+        id: 'id',
+        toolbarRef: {
+          current: null,
         },
-        {}
-      )
+      })
     })
   })
 })

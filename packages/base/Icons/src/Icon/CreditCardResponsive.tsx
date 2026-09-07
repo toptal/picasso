@@ -13,7 +13,7 @@ const CreditCardResponsive = (props: Props) => {
       xl: <CreditCard16 {...props} />,
     },
     <CreditCard24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CreditCardResponsive

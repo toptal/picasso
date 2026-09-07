@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["start:storybook"],
       "port": 9001
+    },
+    {
+      "name": "storybook-react19",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["start:storybook:react19"],
+      "port": 9001
     }
   ]
 }

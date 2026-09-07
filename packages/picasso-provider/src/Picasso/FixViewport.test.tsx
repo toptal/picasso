@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, waitFor } from '@testing-library/react'
+import { cleanup, render, waitFor } from '@testing-library/react'
 import { HelmetProvider } from 'react-helmet-async'
 
 import FixViewport from './FixViewport'
@@ -18,6 +18,10 @@ const getViewportContent = () =>
 
 describe('FixViewport', () => {
   afterEach(() => {
+    // Unmount first: on React 19 the viewport meta is hoisted into `<head>`
+    // by React itself, so removing it by hand before unmount leaves React
+    // deleting a node that no longer has a parent.
+    cleanup()
     document
       .querySelectorAll('meta[name="viewport"]')
       .forEach(tag => tag.remove())

@@ -13,7 +13,7 @@ const ChevronRightResponsive = (props: Props) => {
       xl: <ChevronRight16 {...props} />,
     },
     <ChevronRight24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ChevronRightResponsive

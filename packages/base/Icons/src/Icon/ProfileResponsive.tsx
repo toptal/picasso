@@ -13,7 +13,7 @@ const ProfileResponsive = (props: Props) => {
       xl: <Profile16 {...props} />,
     },
     <Profile24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ProfileResponsive

@@ -26,7 +26,6 @@ exports[`Input renders icon in the beginning 1`] = `
         autocomplete="none"
         class="[&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
-        value=""
       />
     </div>
   </div>
@@ -59,7 +58,6 @@ exports[`Input renders icon in the end 1`] = `
         autocomplete="none"
         class="[&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
-        value=""
       />
     </div>
   </div>
@@ -169,7 +167,6 @@ exports[`Input shows counter for regular input 1`] = `
         autocomplete="none"
         class="[&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
-        value=""
       />
     </div>
   </div>

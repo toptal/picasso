@@ -13,7 +13,7 @@ const JobChangeResponsive = (props: Props) => {
       xl: <JobChange16 {...props} />,
     },
     <JobChange24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default JobChangeResponsive

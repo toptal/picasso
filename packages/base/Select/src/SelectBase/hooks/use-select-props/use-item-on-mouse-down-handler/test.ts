@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import useItemOnMouseDownHandler from './use-item-on-mouse-down-handler'
 

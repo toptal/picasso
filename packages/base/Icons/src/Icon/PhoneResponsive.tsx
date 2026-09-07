@@ -13,7 +13,7 @@ const PhoneResponsive = (props: Props) => {
       xl: <Phone16 {...props} />,
     },
     <Phone24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PhoneResponsive

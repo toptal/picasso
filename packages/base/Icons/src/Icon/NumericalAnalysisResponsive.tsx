@@ -13,7 +13,7 @@ const NumericalAnalysisResponsive = (props: Props) => {
       xl: <NumericalAnalysis16 {...props} />,
     },
     <NumericalAnalysis24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default NumericalAnalysisResponsive

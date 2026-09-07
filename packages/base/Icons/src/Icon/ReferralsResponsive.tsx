@@ -13,7 +13,7 @@ const ReferralsResponsive = (props: Props) => {
       xl: <Referrals16 {...props} />,
     },
     <Referrals24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ReferralsResponsive

@@ -13,7 +13,7 @@ const GrammarCheckResponsive = (props: Props) => {
       xl: <GrammarCheck16 {...props} />,
     },
     <GrammarCheck24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default GrammarCheckResponsive

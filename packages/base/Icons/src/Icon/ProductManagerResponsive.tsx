@@ -13,7 +13,7 @@ const ProductManagerResponsive = (props: Props) => {
       xl: <ProductManager16 {...props} />,
     },
     <ProductManager24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ProductManagerResponsive

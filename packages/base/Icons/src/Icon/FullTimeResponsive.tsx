@@ -13,7 +13,7 @@ const FullTimeResponsive = (props: Props) => {
       xl: <FullTime16 {...props} />,
     },
     <FullTime24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FullTimeResponsive

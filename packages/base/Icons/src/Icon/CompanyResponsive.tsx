@@ -13,7 +13,7 @@ const CompanyResponsive = (props: Props) => {
       xl: <Company16 {...props} />,
     },
     <Company24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CompanyResponsive

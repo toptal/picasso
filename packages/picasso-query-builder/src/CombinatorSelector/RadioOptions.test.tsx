@@ -1,6 +1,6 @@
 import React from 'react'
 import { Radio } from '@toptal/picasso-radio'
-import { render } from '@toptal/picasso-test-utils'
+import { render, renderedProps } from '@toptal/picasso-test-utils'
 import type { OptionGroup, Option } from 'react-querybuilder'
 
 import { RadioOptions } from './RadioOptions'
@@ -43,23 +43,15 @@ describe('RadioOptions', () => {
     it('renders radio with correct properties', () => {
       render(<>{RadioOptions({ options: optionGroups })}</>)
 
-      expect(RadioMock).toHaveBeenNthCalledWith(
-        1,
-        expect.objectContaining({
-          value: 'and',
-          label: 'AND',
-        }),
-        {}
-      )
+      expect(renderedProps(RadioMock)[0]).toMatchObject({
+        value: 'and',
+        label: 'AND',
+      })
 
-      expect(RadioMock).toHaveBeenNthCalledWith(
-        2,
-        expect.objectContaining({
-          value: 'or',
-          label: 'OR',
-        }),
-        {}
-      )
+      expect(renderedProps(RadioMock)[1]).toMatchObject({
+        value: 'or',
+        label: 'OR',
+      })
     })
   })
 
@@ -67,23 +59,15 @@ describe('RadioOptions', () => {
     it('renders radio with correct properties', () => {
       render(<>{RadioOptions({ options })}</>)
 
-      expect(RadioMock).toHaveBeenNthCalledWith(
-        1,
-        expect.objectContaining({
-          value: 'and',
-          label: 'AND',
-        }),
-        {}
-      )
+      expect(renderedProps(RadioMock)[0]).toMatchObject({
+        value: 'and',
+        label: 'AND',
+      })
 
-      expect(RadioMock).toHaveBeenNthCalledWith(
-        2,
-        expect.objectContaining({
-          value: 'or',
-          label: 'OR',
-        }),
-        {}
-      )
+      expect(renderedProps(RadioMock)[1]).toMatchObject({
+        value: 'or',
+        label: 'OR',
+      })
     })
   })
 })

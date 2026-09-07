@@ -145,7 +145,6 @@ exports[`Rating Thumbs renders default Stars 1`] = `
               id="stars-reset"
               name="stars"
               type="radio"
-              value=""
             />
           </div>
         </div>

@@ -30,10 +30,10 @@ type StyleProps = {
 
 interface InternalProps
   extends StandardProps,
-    HTMLAttributes<HTMLDivElement>,
+    Omit<HTMLAttributes<HTMLDivElement>, 'content' | 'children'>,
     StyleProps {
-  /** Anchor element that opens content on click */
-  children: ReactNode
+  /** Anchor element that opens content on click, or a render function receiving `{ open }` so the anchor can reflect the open state */
+  children: ReactNode | ((props: { open: boolean }) => ReactNode)
   /** Content element that opens when anchor is clicked */
   content: ReactNode
   /** The placement of the content element relative to anchor element. */
@@ -267,7 +267,7 @@ export const Dropdown: DropdownProps = forwardRef<
         )}
         onClick={disabled ? () => {} : handleAnchorClick}
       >
-        {typeof children === 'function' ? children({ isOpen }) : children}
+        {typeof children === 'function' ? children({ open: isOpen }) : children}
       </div>
 
       {(isOpen || keepMounted) && (

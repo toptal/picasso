@@ -13,7 +13,7 @@ const PlayerResponsive = (props: Props) => {
       xl: <Player16 {...props} />,
     },
     <Player24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PlayerResponsive

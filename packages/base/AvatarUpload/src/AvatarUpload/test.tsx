@@ -125,4 +125,31 @@ describe('AvatarUpload', () => {
       expect(dropzoneSvg).not.toBeInTheDocument()
     })
   })
+
+  describe('when disabled', () => {
+    it('shows the not-allowed cursor instead of the pointer one', () => {
+      const { getByTestId } = renderAvatarUpload({
+        disabled: true,
+        'data-testid': 'avatar-upload',
+      })
+
+      const avatarUpload = getByTestId('avatar-upload')
+
+      expect(avatarUpload).toHaveClass('cursor-no-drop')
+      expect(avatarUpload).not.toHaveClass('cursor-pointer')
+    })
+
+    it('keeps the not-allowed cursor when an avatar is already shown', () => {
+      const { getByTestId } = renderAvatarUpload({
+        disabled: true,
+        src: 'some-url',
+        'data-testid': 'avatar-upload',
+      })
+
+      const avatarUpload = getByTestId('avatar-upload')
+
+      expect(avatarUpload).toHaveClass('cursor-no-drop')
+      expect(avatarUpload).not.toHaveClass('cursor-default')
+    })
+  })
 })

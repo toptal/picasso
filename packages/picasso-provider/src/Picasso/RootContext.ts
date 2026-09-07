@@ -5,7 +5,7 @@ import type { TextLabelProps, EnvironmentType } from '../types'
 import type { BreakpointKeys } from './config'
 
 export interface RootContextProps extends TextLabelProps {
-  rootRef?: RefObject<HTMLDivElement>
+  rootRef?: RefObject<HTMLDivElement | null>
   hasTopBar: boolean
   setHasTopBar: (value: boolean) => void
   hasSidebar: boolean

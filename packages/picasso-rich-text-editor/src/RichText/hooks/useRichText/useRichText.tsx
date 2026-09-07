@@ -93,7 +93,7 @@ const componentMap: Record<string, FC> = {
 } as const
 
 const picassoMapper = (child: ReactNode): ReactNode => {
-  if (!isValidElement(child)) {
+  if (!isValidElement<{ children?: ReactNode[] }>(child)) {
     return child
   }
 
@@ -114,7 +114,9 @@ const useRichText = (value: ASTType): ReactNode[] | ReactNode => {
     }
 
     const isSingleChild = astChildren.length === 1
-    const reactElement = toH(createElement, value) as ReactElement
+    const reactElement = toH(createElement, value) as ReactElement<{
+      children: ReactNode[]
+    }>
 
     if (isSingleChild) {
       return picassoMapper(reactElement)

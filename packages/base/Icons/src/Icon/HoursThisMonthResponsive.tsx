@@ -13,7 +13,7 @@ const HoursThisMonthResponsive = (props: Props) => {
       xl: <HoursThisMonth16 {...props} />,
     },
     <HoursThisMonth24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default HoursThisMonthResponsive

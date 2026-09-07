@@ -86,7 +86,7 @@ export const useNodes = (
   horizontalMargin: number
 ): DynamicPointNode[] => {
   const [initialized, setInitializedState] = useState<boolean>(false)
-  const initialNodes = useRef<DynamicPointNode[] | undefined>()
+  const initialNodes = useRef<DynamicPointNode[] | undefined>(undefined)
 
   // we only need to prepare initial nodes once, on a first render
   if (!initialNodes.current) {

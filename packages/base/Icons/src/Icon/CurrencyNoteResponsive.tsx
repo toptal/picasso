@@ -13,7 +13,7 @@ const CurrencyNoteResponsive = (props: Props) => {
       xl: <CurrencyNote16 {...props} />,
     },
     <CurrencyNote24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CurrencyNoteResponsive

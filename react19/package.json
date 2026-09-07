@@ -1,0 +1,16 @@
+{
+  "name": "picasso-react19-harness",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Standalone React 19 install for `pnpm test:react19`, `pnpm typecheck:react19`, `pnpm test:integration:react19` and `STORYBOOK_REACT_19=1`, installed with `pnpm react19:install`. Deliberately not a pnpm workspace member; the header of jest.react19.mjs says why, and when it can go.",
+  "dependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0"
+  }
+}

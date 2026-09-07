@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { isValidElement } from 'react'
 
 /**
  * Extracts only the text contents of a ReactNode *recursively*.
@@ -24,7 +25,7 @@ export const getReactNodeTextContent = (node: ReactNode): string => {
         return node.map(getReactNodeTextContent).filter(Boolean).join(' ')
       }
 
-      if (node != null && 'props' in node) {
+      if (isValidElement<{ children?: ReactNode }>(node)) {
         return getReactNodeTextContent(node.props.children)
       }
 

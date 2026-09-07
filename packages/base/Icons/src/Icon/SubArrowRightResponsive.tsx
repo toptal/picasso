@@ -13,7 +13,7 @@ const SubArrowRightResponsive = (props: Props) => {
       xl: <SubArrowRight16 {...props} />,
     },
     <SubArrowRight24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SubArrowRightResponsive

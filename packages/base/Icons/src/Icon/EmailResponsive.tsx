@@ -13,7 +13,7 @@ const EmailResponsive = (props: Props) => {
       xl: <Email16 {...props} />,
     },
     <Email24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default EmailResponsive
