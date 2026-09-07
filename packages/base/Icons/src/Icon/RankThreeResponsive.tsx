@@ -13,7 +13,7 @@ const RankThreeResponsive = (props: Props) => {
       xl: <RankThree16 {...props} />,
     },
     <RankThree24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default RankThreeResponsive

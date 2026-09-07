@@ -13,7 +13,7 @@ const UiGuidelinesResponsive = (props: Props) => {
       xl: <UiGuidelines16 {...props} />,
     },
     <UiGuidelines24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default UiGuidelinesResponsive

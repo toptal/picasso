@@ -14,7 +14,8 @@ export type Component<T, P> = T & {
  *
  * @param component exotic component returned by `forwardRef`
  */
-export const documentable = <T, P>(component: T): Component<T, P> => component as Component<T, P>
+export const documentable = <T, P>(component: T): Component<T, P> =>
+  component as Component<T, P>
 
 /**
  * Wrapper around React.forwardRef that preserves genericity of the passed `Component`.
@@ -33,6 +34,13 @@ export const documentable = <T, P>(component: T): Component<T, P> => component a
 export const forwardRef = <P, T>(
   component: (props: P, ref: React.Ref<T>) => React.ReactElement | null
 ) =>
-  React.forwardRef(component) as unknown as (
+  // @types/react 19 phrases the render function's props as PropsWithoutRef<P>,
+  // which a bare generic P cannot satisfy; the runtime value is the same
+  React.forwardRef(
+    component as unknown as React.ForwardRefRenderFunction<
+      T,
+      React.PropsWithoutRef<P>
+    >
+  ) as unknown as (
     props: P & { ref?: React.Ref<T> }
   ) => React.ReactElement | null

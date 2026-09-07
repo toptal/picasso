@@ -13,12 +13,10 @@ export interface Props {
   environment?: EnvironmentType<'test' | 'temploy'>
 }
 
+type Icons = Awaited<ReturnType<typeof getIcons>>
+
 export const Favicon = ({ environment }: Props) => {
-  const [icons, setIcons] = useSafeState<{
-    icon16?: string
-    icon32?: string
-    icon180?: string
-  }>({})
+  const [icons, setIcons] = useSafeState<Icons | null>(null)
 
   const { environment: configEnvironment } = useAppConfig()
 
@@ -49,6 +47,13 @@ export const Favicon = ({ environment }: Props) => {
 
   if (resolvedEnvironment === 'test') {
     // do not load favicons in tests (e.g. in e2e)
+    return null
+  }
+
+  // React 19 decides whether a `<link>` can be hoisted into `<head>` when it
+  // mounts, and one mounted with an undefined `href` stays in the body for
+  // good — so the links wait for the asynchronously loaded icons.
+  if (!icons) {
     return null
   }
 

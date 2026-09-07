@@ -13,7 +13,7 @@ const SortResponsive = (props: Props) => {
       xl: <Sort16 {...props} />,
     },
     <Sort24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SortResponsive

@@ -13,7 +13,7 @@ const ControlResponsive = (props: Props) => {
       xl: <Control16 {...props} />,
     },
     <Control24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ControlResponsive

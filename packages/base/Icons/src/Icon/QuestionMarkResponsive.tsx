@@ -13,7 +13,7 @@ const QuestionMarkResponsive = (props: Props) => {
       xl: <QuestionMark16 {...props} />,
     },
     <QuestionMark24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default QuestionMarkResponsive

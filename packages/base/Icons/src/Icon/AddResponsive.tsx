@@ -13,7 +13,7 @@ const AddResponsive = (props: Props) => {
       xl: <Add16 {...props} />,
     },
     <Add24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AddResponsive

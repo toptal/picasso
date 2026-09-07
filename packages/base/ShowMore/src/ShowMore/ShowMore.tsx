@@ -87,6 +87,8 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     observer.observe(element)
 
     return () => observer.disconnect()
+    // `content` and `rows` are not read above: they are the re-measure
+    // triggers, since either changes what overflows
   }, [shownMore, content, rows])
 
   const isContentVisible = rows !== 0 || shownMore

@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react'
 
 interface UseOnScreenProps {
-  ref: React.RefObject<HTMLElement>
+  ref: React.RefObject<HTMLElement | null>
   root?: React.RefObject<HTMLElement>
   rootMargin?: string
   threshold?: number | number[]

@@ -19,7 +19,7 @@ export interface Props extends BaseProps {
 }
 
 const getMenuSelectedNode = (
-  menuRef: RefObject<HTMLDivElement>,
+  menuRef: RefObject<HTMLDivElement | null>,
   selectedIndex?: number | null
 ) =>
   typeof selectedIndex === 'number'
@@ -27,7 +27,7 @@ const getMenuSelectedNode = (
     : undefined
 
 export const scrollToSelection = (
-  menuRef: RefObject<HTMLDivElement>,
+  menuRef: RefObject<HTMLDivElement | null>,
   selectedIndex?: number | null
 ) => {
   const menuNode = menuRef.current

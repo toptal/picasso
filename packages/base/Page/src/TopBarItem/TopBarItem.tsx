@@ -2,8 +2,9 @@ import type {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
+  IconElement,
 } from '@toptal/picasso-shared'
-import type { ElementType, ReactElement } from 'react'
+import type { ElementType } from 'react'
 import React, { forwardRef, memo } from 'react'
 import type { MenuItemProps } from '@toptal/picasso-menu'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
@@ -13,7 +14,7 @@ import { SidebarItem } from '../SidebarItem'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** Pass icon to be used as part of item */
-  icon?: ReactElement
+  icon?: IconElement
   /** Highlights the item as selected */
   selected?: boolean
   /** Component name to render the menu item as */

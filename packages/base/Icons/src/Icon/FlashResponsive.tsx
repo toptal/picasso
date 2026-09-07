@@ -13,7 +13,7 @@ const FlashResponsive = (props: Props) => {
       xl: <Flash16 {...props} />,
     },
     <Flash24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FlashResponsive

@@ -13,7 +13,7 @@ const DragResponsive = (props: Props) => {
       xl: <Drag16 {...props} />,
     },
     <Drag24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DragResponsive

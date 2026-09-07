@@ -13,7 +13,7 @@ const LanguageResponsive = (props: Props) => {
       xl: <Language16 {...props} />,
     },
     <Language24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LanguageResponsive

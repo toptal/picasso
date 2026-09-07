@@ -13,7 +13,7 @@ const ProjectDiscoveryResponsive = (props: Props) => {
       xl: <ProjectDiscovery16 {...props} />,
     },
     <ProjectDiscovery24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ProjectDiscoveryResponsive

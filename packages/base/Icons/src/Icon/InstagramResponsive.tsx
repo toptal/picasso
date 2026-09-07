@@ -13,7 +13,7 @@ const InstagramResponsive = (props: Props) => {
       xl: <Instagram16 {...props} />,
     },
     <Instagram24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InstagramResponsive

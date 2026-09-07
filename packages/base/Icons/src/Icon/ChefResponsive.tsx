@@ -13,7 +13,7 @@ const ChefResponsive = (props: Props) => {
       xl: <Chef16 {...props} />,
     },
     <Chef24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ChefResponsive

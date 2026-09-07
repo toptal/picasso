@@ -32,7 +32,8 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
 
     useEffect(() => {
       const hasSelectedItem = React.Children.toArray(children).some(
-        child => React.isValidElement(child) && child.props.selected
+        child =>
+          React.isValidElement<SidebarItemProps>(child) && child.props.selected
       )
 
       if (hasSelectedItem && parentSidebarItemIndex !== undefined) {
@@ -41,7 +42,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     }, [parentSidebarItemIndex, setExpandedItemKey, children])
 
     const items = React.Children.map(children, (child, index) => {
-      if (React.isValidElement(child)) {
+      if (React.isValidElement<SidebarItemProps>(child)) {
         const itemProps: Partial<SidebarItemProps> = {
           variant,
           isSubMenu,

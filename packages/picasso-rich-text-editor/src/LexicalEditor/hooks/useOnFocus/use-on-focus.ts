@@ -6,7 +6,7 @@ import { noop } from '@toptal/picasso-utils'
 export const INTERNAL_DIALOG_ATTRIBUTE = 'data-rte-dialog'
 
 export type Props = {
-  internalRefs?: React.RefObject<HTMLDivElement>[]
+  internalRefs?: React.RefObject<HTMLDivElement | null>[]
   onFocus?: () => void
   onBlur?: () => void
 }
@@ -29,7 +29,7 @@ const isDialogElement = (element: Element) =>
 
 const isInternalElement = (
   e: React.FocusEvent<HTMLDivElement>,
-  internalRefs: React.RefObject<HTMLDivElement>[]
+  internalRefs: React.RefObject<HTMLDivElement | null>[]
 ) => {
   const focusElement = e.relatedTarget as Node | null
 

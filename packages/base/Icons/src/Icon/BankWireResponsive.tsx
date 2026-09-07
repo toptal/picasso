@@ -13,7 +13,7 @@ const BankWireResponsive = (props: Props) => {
       xl: <BankWire16 {...props} />,
     },
     <BankWire24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BankWireResponsive

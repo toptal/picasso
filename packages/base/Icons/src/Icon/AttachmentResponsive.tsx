@@ -13,7 +13,7 @@ const AttachmentResponsive = (props: Props) => {
       xl: <Attachment16 {...props} />,
     },
     <Attachment24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AttachmentResponsive

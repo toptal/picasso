@@ -13,7 +13,7 @@ const AsteriskSolidResponsive = (props: Props) => {
       xl: <AsteriskSolid16 {...props} />,
     },
     <AsteriskSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AsteriskSolidResponsive

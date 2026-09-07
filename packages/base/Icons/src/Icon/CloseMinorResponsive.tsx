@@ -13,7 +13,7 @@ const CloseMinorResponsive = (props: Props) => {
       xl: <CloseMinor16 {...props} />,
     },
     <CloseMinor24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CloseMinorResponsive

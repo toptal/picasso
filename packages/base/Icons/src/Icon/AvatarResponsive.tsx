@@ -13,7 +13,7 @@ const AvatarResponsive = (props: Props) => {
       xl: <Avatar16 {...props} />,
     },
     <Avatar24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AvatarResponsive

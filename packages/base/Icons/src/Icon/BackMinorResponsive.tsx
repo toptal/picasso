@@ -13,7 +13,7 @@ const BackMinorResponsive = (props: Props) => {
       xl: <BackMinor16 {...props} />,
     },
     <BackMinor24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BackMinorResponsive

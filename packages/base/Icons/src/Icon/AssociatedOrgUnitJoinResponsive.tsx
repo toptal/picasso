@@ -13,7 +13,7 @@ const AssociatedOrgUnitJoinResponsive = (props: Props) => {
       xl: <AssociatedOrgUnitJoin16 {...props} />,
     },
     <AssociatedOrgUnitJoin24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AssociatedOrgUnitJoinResponsive

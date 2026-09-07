@@ -1,4 +1,4 @@
-import React, { StrictMode, useEffect, useState } from 'react'
+import React, { StrictMode, useEffect, useId, useState } from 'react'
 import { version as reactDomVersion } from 'react-dom'
 import { render } from '@testing-library/react'
 
@@ -11,6 +11,20 @@ describe('react 19 test runtime', () => {
     expect(React.version).toMatch(/^19\./)
     expect(reactDomVersion).toMatch(/^19\./)
     expect(reactDomVersion).toBe(React.version)
+  })
+
+  it('rewrites useId output to the React 18 format the snapshots use', () => {
+    let id = ''
+
+    const Probe = () => {
+      id = useId()
+
+      return null
+    }
+
+    render(<Probe />)
+
+    expect(id).toMatch(/^:r[0-9a-z]*:$/)
   })
 
   it('renders and re-renders under StrictMode', () => {

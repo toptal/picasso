@@ -13,7 +13,7 @@ const MobileResponsive = (props: Props) => {
       xl: <Mobile16 {...props} />,
     },
     <Mobile24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MobileResponsive

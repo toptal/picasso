@@ -5,6 +5,8 @@ import { act, cleanup, render } from '@toptal/picasso-test-utils'
 import Collapse from './Collapse'
 
 const CONTENT_HEIGHT = 120
+// Collapse's default `timeout`
+const DEFAULT_TIMEOUT = 350
 // one mocked rAF frame — jest's fake timers schedule requestAnimationFrame
 // callbacks 16 ms apart
 const FRAME = 20
@@ -68,7 +70,7 @@ describe('Collapse', () => {
     expect(collapse).toHaveStyle({ height: `${CONTENT_HEIGHT}px` })
 
     act(() => {
-      jest.advanceTimersByTime(350)
+      jest.advanceTimersByTime(DEFAULT_TIMEOUT)
     })
 
     expect(collapse).toHaveStyle({ height: 'auto' })
@@ -102,7 +104,7 @@ describe('Collapse', () => {
     expect(collapse).toHaveStyle({ height: `${CONTENT_HEIGHT}px` })
 
     act(() => {
-      jest.advanceTimersByTime(350)
+      jest.advanceTimersByTime(DEFAULT_TIMEOUT)
     })
 
     expect(collapse).toHaveStyle({ height: 'auto' })
@@ -135,7 +137,7 @@ describe('Collapse', () => {
     expect(collapse).toHaveStyle({ height: '0px' })
 
     act(() => {
-      jest.advanceTimersByTime(350)
+      jest.advanceTimersByTime(DEFAULT_TIMEOUT)
     })
 
     expect(onExited).toHaveBeenCalledTimes(1)

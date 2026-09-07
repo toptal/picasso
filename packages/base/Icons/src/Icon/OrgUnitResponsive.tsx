@@ -13,7 +13,7 @@ const OrgUnitResponsive = (props: Props) => {
       xl: <OrgUnit16 {...props} />,
     },
     <OrgUnit24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OrgUnitResponsive

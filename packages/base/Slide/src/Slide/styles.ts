@@ -14,10 +14,8 @@ const shownClassByDirection: Record<SlideDirection, string> = {
   down: 'translate-y-0',
 }
 
-export const createStateClassNames = (
+export const createTranslateClassNames = (
   direction: SlideDirection,
-  { in: inProp, exited }: { in: boolean; exited: boolean }
-): string[] => [
-  inProp ? shownClassByDirection[direction] : hiddenClassByDirection[direction],
-  ...(exited ? ['invisible'] : []),
-]
+  shown: boolean
+): string =>
+  shown ? shownClassByDirection[direction] : hiddenClassByDirection[direction]

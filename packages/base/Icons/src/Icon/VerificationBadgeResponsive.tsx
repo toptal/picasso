@@ -13,7 +13,7 @@ const VerificationBadgeResponsive = (props: Props) => {
       xl: <VerificationBadge16 {...props} />,
     },
     <VerificationBadge24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default VerificationBadgeResponsive

@@ -13,7 +13,7 @@ const ShareScreenResponsive = (props: Props) => {
       xl: <ShareScreen16 {...props} />,
     },
     <ShareScreen24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ShareScreenResponsive

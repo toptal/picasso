@@ -13,7 +13,7 @@ const EyeHideResponsive = (props: Props) => {
       xl: <EyeHide16 {...props} />,
     },
     <EyeHide24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default EyeHideResponsive

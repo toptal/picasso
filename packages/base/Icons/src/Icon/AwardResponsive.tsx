@@ -13,7 +13,7 @@ const AwardResponsive = (props: Props) => {
       xl: <Award16 {...props} />,
     },
     <Award24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AwardResponsive

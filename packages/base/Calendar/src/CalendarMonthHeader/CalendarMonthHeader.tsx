@@ -20,7 +20,7 @@ interface RenderMonthHeaderProps {
 
 export type RenderMonthHeader = (
   args: RenderMonthHeaderProps
-) => JSX.Element | null
+) => React.ReactElement | null
 
 const CalendarMonthHeader = (props: RenderMonthHeaderProps) => {
   const {

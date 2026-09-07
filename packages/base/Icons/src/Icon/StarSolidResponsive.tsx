@@ -13,7 +13,7 @@ const StarSolidResponsive = (props: Props) => {
       xl: <StarSolid16 {...props} />,
     },
     <StarSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default StarSolidResponsive

@@ -13,7 +13,7 @@ const GuestsResponsive = (props: Props) => {
       xl: <Guests16 {...props} />,
     },
     <Guests24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default GuestsResponsive

@@ -13,7 +13,7 @@ const MultiResponsive = (props: Props) => {
       xl: <Multi16 {...props} />,
     },
     <Multi24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MultiResponsive

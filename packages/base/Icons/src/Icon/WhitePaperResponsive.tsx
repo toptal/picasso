@@ -13,7 +13,7 @@ const WhitePaperResponsive = (props: Props) => {
       xl: <WhitePaper16 {...props} />,
     },
     <WhitePaper24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default WhitePaperResponsive

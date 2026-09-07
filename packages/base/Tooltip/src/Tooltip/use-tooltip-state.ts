@@ -102,7 +102,9 @@ export const useTooltipState = ({
   // in this window belongs to the same gesture as the hover (which also triggers
   // a synchronous focus-open), so the trailing click must not read that transient
   // open and dismiss-then-latch it shut. Let hover win.
-  const openTimerRef = useRef<ReturnType<typeof setTimeout>>()
+  const openTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  )
 
   const touchOpenedRef = useRef(false)
 
@@ -112,7 +114,9 @@ export const useTooltipState = ({
 
   const moveStartRef = useRef<{ x: number; y: number } | null>(null)
   const followCursorHiddenRef = useRef(false)
-  const stopTimerRef = useRef<ReturnType<typeof setTimeout>>()
+  const stopTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     // Input-modality tracking feeds the pointer-focus veto in shouldHonorOpen

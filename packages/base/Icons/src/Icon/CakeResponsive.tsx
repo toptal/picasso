@@ -13,7 +13,7 @@ const CakeResponsive = (props: Props) => {
       xl: <Cake16 {...props} />,
     },
     <Cake24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CakeResponsive

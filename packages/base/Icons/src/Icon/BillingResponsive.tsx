@@ -13,7 +13,7 @@ const BillingResponsive = (props: Props) => {
       xl: <Billing16 {...props} />,
     },
     <Billing24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BillingResponsive

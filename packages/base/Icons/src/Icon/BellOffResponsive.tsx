@@ -13,7 +13,7 @@ const BellOffResponsive = (props: Props) => {
       xl: <BellOff16 {...props} />,
     },
     <BellOff24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BellOffResponsive
