@@ -93,7 +93,7 @@ Expandable row
 | expanded | `boolean` | `false` | Whether the row is in collapsed or expanded state |
 | colSpan | `number` | `100` | Number of columns the collapsible content spans |
 | stripeEven | `boolean` | `false` | Set a stripe even background for the row |
-| defaultExpanded | `boolean` | - | Skips the opening transition for a row already expanded on first render |
+| defaultExpanded | `boolean` | `false` | Skips the opening transition for a row already expanded on first render |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 

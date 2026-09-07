@@ -1572,11 +1572,6 @@ function RichTextEditorEmojiPicker_arrayWithHoles(r) { if (Array.isArray(r)) ret
 
 
 var TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker';
-var classes = {
-  emojiPicker: 'absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none',
-  activeOpacity: 'opacity-100',
-  activePointers: '[pointer-events:all]'
-};
 var handleEmojiPickerEscBehaviour = function (event, setShowEmojiPicker) {
   if (event.key === 'Escape') {
     setShowEmojiPicker(false);
@@ -1627,8 +1622,12 @@ var RichTextEditorEmojiPicker = function (_ref) {
       }),
       id: TRIGGER_EMOJI_PICKER_ID,
       disabled: disabled
-    }), /*#__PURE__*/(0,jsx_runtime.jsx)(Container/* default */.A, {
-      className: classnames_default()(classes.emojiPicker, showEmojiPicker && classes.activeOpacity, showEmojiPicker && classes.activePointers),
+    }), /*#__PURE__*/(0,jsx_runtime.jsx)(Container/* default */.A
+    // twMerge drops the hidden-state classes when open; leaving
+    // `pointer-events-none` in place would let stylesheet order decide,
+    // and it wins, so clicks fall through the open picker to the editor
+    , {
+      className: (0,twMerge/* twMerge */.QP)('absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none', showEmojiPicker && 'opacity-100 pointer-events-auto'),
       children: /*#__PURE__*/(0,jsx_runtime.jsx)((main_default()), {
         data: _15_native,
         custom: customEmojis,
@@ -2367,4 +2366,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=437.d1ca9d0f.iframe.bundle.js.map
+//# sourceMappingURL=437.781924d5.iframe.bundle.js.map
