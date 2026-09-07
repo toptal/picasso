@@ -13,6 +13,11 @@ import baseConfig from './jest.spec.mjs'
 // and `<rootDir>/react19/node_modules/...` is a deterministic location on
 // every machine (no hoisting involved).
 //
+// Needed only while the workspace itself installs React 18. Once the
+// workspace moves to React 19, `pnpm test:unit` is the React 19 run and this
+// file, `react19/` and `.storybook/react-dom-19-shim` can go — or be inverted
+// into a React 18 harness if 18 must stay validated.
+//
 // The mappings rewrite every react / react-dom / @testing-library import to
 // that install for this run only (@testing-library/react@16 is the first
 // line whose peers admit React 19; it needs @testing-library/dom@10).

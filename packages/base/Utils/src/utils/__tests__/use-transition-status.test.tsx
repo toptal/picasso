@@ -1,5 +1,6 @@
+/* eslint-disable max-lines-per-function */
 import React, { StrictMode } from 'react'
-import { renderHook, act, render, act as actDom } from '@testing-library/react'
+import { renderHook, act, render } from '@testing-library/react'
 
 import type { UseTransitionStatusOptions } from '../use-transition-status'
 import useTransitionStatus, {
@@ -19,11 +20,12 @@ const renderTransitionStatus = (
     ...options,
   }
 
-  const result = renderHook(props => useTransitionStatus(props), {
+  const { result, rerender } = renderHook(props => useTransitionStatus(props), {
     initialProps,
   })
+  const setIn = (inProp: boolean) => rerender({ ...initialProps, in: inProp })
 
-  return { ...result, nodeRef, initialProps }
+  return { result, nodeRef, setIn }
 }
 
 describe('getTransitionTimeouts', () => {
@@ -73,7 +75,7 @@ describe('useTransitionStatus', () => {
     it('is `exited` when mounted hidden', () => {
       const { result } = renderTransitionStatus({ in: false })
 
-      expect(result.current).toBe('exited')
+      expect(result.current.status).toBe('exited')
     })
 
     it('is `unmounted` when mounted hidden with `unmountOnExit`', () => {
@@ -82,7 +84,7 @@ describe('useTransitionStatus', () => {
         unmountOnExit: true,
       })
 
-      expect(result.current).toBe('unmounted')
+      expect(result.current.status).toBe('unmounted')
     })
 
     it('is `entered` when mounted shown without `appear`', () => {
@@ -94,7 +96,7 @@ describe('useTransitionStatus', () => {
         onEntered,
       })
 
-      expect(result.current).toBe('entered')
+      expect(result.current.status).toBe('entered')
 
       act(() => {
         jest.runAllTimers()
@@ -107,7 +109,7 @@ describe('useTransitionStatus', () => {
     it('is `entering` when mounted shown with `appear`', () => {
       const { result } = renderTransitionStatus({ in: true, appear: true })
 
-      expect(result.current).toBe('entering')
+      expect(result.current.status).toBe('entering')
     })
   })
 
@@ -131,7 +133,7 @@ describe('useTransitionStatus', () => {
       jest.runAllTimers()
     })
 
-    expect(result.current).toBe('entered')
+    expect(result.current.status).toBe('entered')
     expect(onEntered).toHaveBeenCalledWith(nodeRef.current, true)
   })
 
@@ -154,22 +156,22 @@ describe('useTransitionStatus', () => {
   it('runs the enter transition when `in` flips to true', () => {
     const onEnter = jest.fn()
     const onEntered = jest.fn()
-    const { result, rerender, nodeRef, initialProps } = renderTransitionStatus({
+    const { result, nodeRef, setIn } = renderTransitionStatus({
       in: false,
       onEnter,
       onEntered,
     })
 
-    rerender({ ...initialProps, in: true })
+    setIn(true)
 
-    expect(result.current).toBe('entering')
+    expect(result.current.status).toBe('entering')
     expect(onEnter).toHaveBeenCalledWith(nodeRef.current, false)
 
     act(() => {
       jest.runAllTimers()
     })
 
-    expect(result.current).toBe('entered')
+    expect(result.current.status).toBe('entered')
     expect(onEntered).toHaveBeenCalledWith(nodeRef.current, false)
   })
 
@@ -177,7 +179,7 @@ describe('useTransitionStatus', () => {
     const onExit = jest.fn()
     const onExiting = jest.fn()
     const onExited = jest.fn()
-    const { result, rerender, nodeRef, initialProps } = renderTransitionStatus({
+    const { result, nodeRef, setIn } = renderTransitionStatus({
       in: true,
       timeout: 300,
       onExit,
@@ -185,9 +187,9 @@ describe('useTransitionStatus', () => {
       onExited,
     })
 
-    rerender({ ...initialProps, in: false })
+    setIn(false)
 
-    expect(result.current).toBe('exiting')
+    expect(result.current.status).toBe('exiting')
     expect(onExit).toHaveBeenCalledWith(nodeRef.current)
     expect(onExiting).toHaveBeenCalledWith(nodeRef.current)
     expect(onExited).not.toHaveBeenCalled()
@@ -196,102 +198,102 @@ describe('useTransitionStatus', () => {
       jest.advanceTimersByTime(299)
     })
 
-    expect(result.current).toBe('exiting')
+    expect(result.current.status).toBe('exiting')
 
     act(() => {
       jest.advanceTimersByTime(1)
     })
 
-    expect(result.current).toBe('exited')
+    expect(result.current.status).toBe('exited')
     expect(onExited).toHaveBeenCalledTimes(1)
     expect(onExited).toHaveBeenCalledWith(nodeRef.current)
   })
 
   it('cancels the pending settle when `in` flips mid-transition', () => {
     const onExited = jest.fn()
-    const { result, rerender, initialProps } = renderTransitionStatus({
+    const { result, setIn } = renderTransitionStatus({
       in: true,
       timeout: 300,
       onExited,
     })
 
-    rerender({ ...initialProps, in: false })
+    setIn(false)
 
     act(() => {
       jest.advanceTimersByTime(100)
     })
 
-    rerender({ ...initialProps, in: true })
+    setIn(true)
 
     act(() => {
       jest.runAllTimers()
     })
 
-    expect(result.current).toBe('entered')
+    expect(result.current.status).toBe('entered')
     expect(onExited).not.toHaveBeenCalled()
   })
 
   it('uses per-phase durations from an object `timeout`', () => {
-    const { result, rerender, initialProps } = renderTransitionStatus({
+    const { result, setIn } = renderTransitionStatus({
       in: false,
       timeout: { enter: 100, exit: 200 },
     })
 
-    rerender({ ...initialProps, in: true })
+    setIn(true)
 
     act(() => {
       jest.advanceTimersByTime(99)
     })
 
-    expect(result.current).toBe('entering')
+    expect(result.current.status).toBe('entering')
 
     act(() => {
       jest.advanceTimersByTime(1)
     })
 
-    expect(result.current).toBe('entered')
+    expect(result.current.status).toBe('entered')
 
-    rerender({ ...initialProps, in: false })
+    setIn(false)
 
     act(() => {
       jest.advanceTimersByTime(199)
     })
 
-    expect(result.current).toBe('exiting')
+    expect(result.current.status).toBe('exiting')
 
     act(() => {
       jest.advanceTimersByTime(1)
     })
 
-    expect(result.current).toBe('exited')
+    expect(result.current.status).toBe('exited')
   })
 
   it('cycles through mount and unmount with `unmountOnExit`', () => {
     const onEnter = jest.fn()
     const onExited = jest.fn()
-    const { result, rerender, nodeRef, initialProps } = renderTransitionStatus({
+    const { result, nodeRef, setIn } = renderTransitionStatus({
       in: false,
       unmountOnExit: true,
       onEnter,
       onExited,
     })
 
-    expect(result.current).toBe('unmounted')
+    expect(result.current.status).toBe('unmounted')
 
-    rerender({ ...initialProps, in: true })
+    setIn(true)
 
-    expect(result.current).toBe('entering')
+    expect(result.current.status).toBe('entering')
     expect(onEnter).toHaveBeenCalledWith(nodeRef.current, false)
 
     act(() => {
       jest.runAllTimers()
     })
 
-    expect(result.current).toBe('entered')
+    expect(result.current.status).toBe('entered')
 
-    rerender({ ...initialProps, in: false })
+    setIn(false)
 
-    expect(result.current).toBe('exiting')
+    expect(result.current.status).toBe('exiting')
 
     act(() => {
       jest.runAllTimers()
@@ -299,55 +301,86 @@ describe('useTransitionStatus', () => {
 
     expect(onExited).toHaveBeenCalledTimes(1)
     expect(onExited).toHaveBeenCalledWith(nodeRef.current)
-    expect(result.current).toBe('unmounted')
-  })
-})
-
-describe('useTransitionStatus under StrictMode', () => {
-  beforeEach(() => {
-    jest.useFakeTimers()
+    expect(result.current.status).toBe('unmounted')
   })
 
-  afterEach(() => {
-    jest.useRealTimers()
-  })
-
-  // StrictMode replays the mount effect (setup -> cleanup -> setup); the
-  // cleanup cancels the pending settle timer, so the replay must reschedule
-  // it or an appear transition never leaves `entering`
-  it('settles an appear transition despite the double-invoked effect', () => {
-    const onEnter = jest.fn()
-    const onEntered = jest.fn()
-    const nodeRef = createNodeRef()
-
-    const Probe = () => {
-      const status = useTransitionStatus({
+  describe('duration', () => {
+    it('follows the phase: `appear` on the mount transition, `exit` while hiding, `enter` afterwards', () => {
+      const { result, setIn } = renderTransitionStatus({
         in: true,
         appear: true,
-        timeout: 300,
-        nodeRef,
-        onEnter,
-        onEntered,
+        timeout: { enter: 100, exit: 200, appear: 500 },
       })
 
-      return <div data-testid='status'>{status}</div>
-    }
+      expect(result.current.duration).toBe(500)
 
-    const { getByTestId } = render(
-      <StrictMode>
-        <Probe />
-      </StrictMode>
-    )
+      act(() => {
+        jest.runAllTimers()
+      })
+      setIn(false)
 
-    expect(getByTestId('status').textContent).toBe('entering')
-    expect(onEnter).toHaveBeenCalledTimes(1)
+      expect(result.current.duration).toBe(200)
 
-    actDom(() => {
-      jest.advanceTimersByTime(300)
+      act(() => {
+        jest.runAllTimers()
+      })
+      setIn(true)
+
+      expect(result.current.duration).toBe(100)
     })
 
-    expect(getByTestId('status').textContent).toBe('entered')
-    expect(onEntered).toHaveBeenCalledTimes(1)
-    expect(onEntered).toHaveBeenCalledWith(nodeRef.current, true)
+    it('spreads a numeric `timeout` over every phase', () => {
+      const { result, setIn } = renderTransitionStatus({
+        in: false,
+        timeout: 300,
+      })
+
+      expect(result.current.duration).toBe(300)
+
+      setIn(true)
+
+      expect(result.current.duration).toBe(300)
+    })
+  })
+
+  describe('under StrictMode', () => {
+    // StrictMode replays the mount effect (setup -> cleanup -> setup); the
+    // cleanup cancels the pending settle timer, so the replay must reschedule
+    // it or an appear transition never leaves `entering`
+    it('settles an appear transition despite the double-invoked effect', () => {
+      const onEnter = jest.fn()
+      const onEntered = jest.fn()
+      const nodeRef = createNodeRef()
+
+      const Probe = () => {
+        const { status } = useTransitionStatus({
+          in: true,
+          appear: true,
+          timeout: 300,
+          nodeRef,
+          onEnter,
+          onEntered,
+        })
+
+        return <div data-testid='status'>{status}</div>
+      }
+
+      const { getByTestId } = render(
+        <StrictMode>
+          <Probe />
+        </StrictMode>
+      )
+
+      expect(getByTestId('status').textContent).toBe('entering')
+      expect(onEnter).toHaveBeenCalledTimes(1)
+
+      act(() => {
+        jest.advanceTimersByTime(300)
+      })
+
+      expect(getByTestId('status').textContent).toBe('entered')
+      expect(onEntered).toHaveBeenCalledTimes(1)
+      expect(onEntered).toHaveBeenCalledWith(nodeRef.current, true)
+    })
   })
 })

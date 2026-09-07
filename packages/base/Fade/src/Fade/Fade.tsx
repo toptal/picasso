@@ -7,18 +7,17 @@ import type {
 } from '@toptal/picasso-shared'
 import {
   getElementRef,
-  getTransitionTimeouts,
   useMultipleForwardRefs,
   useTransitionStatus,
 } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
-  /* Element that accepts ref */
+  /** Element that accepts ref */
   children: TransitionChild
-  /* Show the component; triggers the enter or exit states */
+  /** Show the component; toggling runs the enter or exit transition */
   in: boolean
-  /* Callback fired when the component has entered */
+  /** Callback fired when the enter transition starts */
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
@@ -30,7 +29,7 @@ export const Fade = React.forwardRef<HTMLDivElement, Props>(function Fade(
 ) {
   const nodeRef = useRef<HTMLDivElement>(null)
 
-  const status = useTransitionStatus({
+  const { status, duration } = useTransitionStatus({
     in: inProp,
     // Historical behavior: enter callbacks fire on mount-open, with no
     // visible fade (the status flips pre-paint)
@@ -46,9 +45,6 @@ export const Fade = React.forwardRef<HTMLDivElement, Props>(function Fade(
     nodeRef,
     getElementRef<HTMLDivElement>(children),
   ])
-
-  const timeouts = getTransitionTimeouts(timeout)
-  const duration = inProp ? timeouts.enter : timeouts.exit
 
   return React.cloneElement(children, {
     className: twMerge(

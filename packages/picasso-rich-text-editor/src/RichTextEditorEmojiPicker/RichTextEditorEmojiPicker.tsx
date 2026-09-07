@@ -22,15 +22,6 @@ const classes = {
   activePointers: '[pointer-events:all]',
 }
 
-const handleEmojiPickerEscBehaviour = (
-  event: KeyboardEvent,
-  setShowEmojiPicker: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  if (event.key === 'Escape') {
-    setShowEmojiPicker(false)
-  }
-}
-
 export const RichTextEditorEmojiPicker = ({
   customEmojis,
   onInsertEmoji,
@@ -56,15 +47,18 @@ export const RichTextEditorEmojiPicker = ({
       return
     }
 
-    const handleKeyUp = (event: KeyboardEvent) =>
-      handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowEmojiPicker(false)
+      }
+    }
 
-    document.body.addEventListener('keyup', handleKeyUp)
+    document.body.addEventListener('keyup', closeOnEscape)
 
     return () => {
-      document.body.removeEventListener('keyup', handleKeyUp)
+      document.body.removeEventListener('keyup', closeOnEscape)
     }
-  }, [showEmojiPicker, setShowEmojiPicker])
+  }, [showEmojiPicker])
 
   return (
     <Container style={{ position: 'relative' }}>

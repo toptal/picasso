@@ -112,9 +112,9 @@ export type ColorType =
   | 'inherit'
 
 export interface TransitionProps {
-  /* Callback fired when the component has exited */
+  /** Callback fired when the exit transition settles */
   onExited?: (node: HTMLElement) => void
-  /* The duration for the transition, in milliseconds */
+  /** The duration for the transition, in milliseconds; one value, or one per phase */
   timeout?: number | { enter?: number; exit?: number; appear?: number }
 }
 

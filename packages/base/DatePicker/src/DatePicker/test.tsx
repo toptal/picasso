@@ -259,21 +259,8 @@ describe('DatePicker', () => {
       )
     })
 
-    it('should display date in given timezone', () => {
-      const { getByPlaceholderText } = renderDatePicker({
-        ...defaultProps,
-        timezone: FAR_EAST_TIMEZONE,
-        value: new Date(2020, 6, 24, 18),
-      })
-
-      expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
-        'value',
-        `Jul 25, 2020`
-      )
-    })
-
     it.each(MIDNIGHT_BOUNDARY_CASES)(
-      'should display date in given timezone across a midnight boundary ($label)',
+      'shows the day in the given timezone, not the UTC day ($label)',
       ({ date, timezone, expectedInputValue }) => {
         const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
@@ -550,7 +537,7 @@ describe('DatePicker', () => {
 
   describe('Calendar', () => {
     it.each(MIDNIGHT_BOUNDARY_CASES)(
-      'should display date in given timezone ($label)',
+      'marks the day in the given timezone as selected, not the UTC day ($label)',
       ({ date, timezone, expectedSelectedDate }) => {
         const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
@@ -565,7 +552,7 @@ describe('DatePicker', () => {
     )
 
     it.each(MIDNIGHT_BOUNDARY_CASES)(
-      'should display date in given timezone after day click ($label)',
+      'keeps the clicked day selected when reopened in the given timezone ($label)',
       async ({ date, timezone }) => {
         const { getByPlaceholderText, getByText } = renderDatePicker({
           ...defaultProps,

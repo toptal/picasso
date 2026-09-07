@@ -38,6 +38,7 @@ pnpm test:integration:open         # cypress in dev mode + watch build
 pnpm test:react19                  # jest against the standalone React 19 install in react19/
 pnpm typecheck:react19             # tsc against @types/react 19 (build stays on @types/react 17)
 pnpm test:integration:react19      # cypress component tests against React 19 (CYPRESS_REACT_19=1)
+pnpm start:storybook:react19       # storybook on http://localhost:9001 against the React 19 install (STORYBOOK_REACT_19=1)
 pnpm test                          # unit + integration (CI parity, slow)
 
 pnpm changeset                     # REQUIRED on PRs that change package code
@@ -130,6 +131,7 @@ Adding a new package: update `tsconfig.json` paths, `.storybook/main.js` aliases
 
 - **Compose with `twMerge(...)`** from `@toptal/picasso-tailwind-merge`, and put the **consumer `className` LAST** so it wins on conflicts.
 - **Conditionals: `twMerge(cx({ 'm-0': expanded }))`** — `cx` (from `classnames`) expresses branching/variant classes (object syntax or `cond && 'x'`), preferred over scattering `&&`/ternaries across `twMerge` args; `twMerge` resolves Tailwind conflicts. (`twMerge` takes no object syntax — that's `cx`'s job.) Plain `twMerge('a', 'b', className)` is fine when nothing branches.
+- **`twJoin` only when no two arguments can ever target the same CSS property** — it concatenates without resolving conflicts. The moment a conditional can collide with a base class, or a consumer `className` is in the list, use `twMerge`.
 - **State-driven styling uses `data-[…]:` variants** (`data-[checked]:bg-blue-500`, `data-[disabled]:opacity-50`). Read state from the DOM; don't mirror it into `useState` just to style it.
 - **Tokens over arbitrary values** — use Picasso token names (`text-graphite-800`, `shadow-2`, `p-4`). An `[arbitrary-value]` plus a `// TODO(tokens): …` comment is a last resort to raise with designers; never invent tokens.
 - **No `!important`.** If a utility won't win, walk the override ladder: don't-override → `data-[…]:` / `className` → `render` prop → (last resort) inline `style`. Reaching for `!important` means you skipped a rung.

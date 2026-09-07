@@ -13,19 +13,18 @@ const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
 
 // [PF-2262] React 19 validation mode: STORYBOOK_REACT_19=1 swaps the
-// preview's React for the standalone React 19 install in react19/ (own
-// lockfile, installed with `pnpm -C react19 install --ignore-workspace`;
-// jest.react19.mjs plays the same trick for unit tests — see its header for
-// why the harness must NOT be a workspace member). Normal runs are
-// byte-identical — every entry below is gated on the env var.
+// preview's React for the standalone React 19 install in react19/ — the same
+// install jest.react19.mjs uses; its header says why the harness must NOT be
+// a workspace member and when it can go. Normal runs are byte-identical —
+// every entry below is gated on the env var.
 const useReact19 = env.STORYBOOK_REACT_19 === '1'
 // Storybook's builder injects its own plain-key aliases
 // (`react`/`react-dom` → the workspace React 18 dirs,
 // builder-webpack5 iframe-webpack.config.js:202) — plain keys also shadow
 // `$`-exact ones, so we must overwrite the SAME keys. A plain directory
 // alias covers subpaths too (react/jsx-runtime, react-dom/client), which is
-// why react-dom points at a shim *package* that re-exports react-dom 19 with
-// a doctored version (storybook 6.5 sniffs `version.startsWith('18')`).
+// why react-dom points at a shim *package* rather than a directory — see
+// react-dom-19-shim/index.js for what the shim changes and why.
 const react19Aliases = useReact19
   ? {
       react: path.resolve(__dirname, '../react19/node_modules/react'),
@@ -186,7 +185,7 @@ module.exports = {
         config.cache && typeof config.cache === 'object'
           ? {
               ...config.cache,
-              version: useReact19 ? 'react19-standalone' : 'react18',
+              version: useReact19 ? 'react19' : 'react18',
             }
           : config.cache,
       node: {

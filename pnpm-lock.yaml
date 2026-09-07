@@ -1157,6 +1157,9 @@ importers:
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
