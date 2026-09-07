@@ -2,7 +2,7 @@ import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useEffect, useState } from 'react'
 import { Collapse } from '@toptal/picasso-collapse'
 import { type BaseProps } from '@toptal/picasso-shared'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { TableRow } from '../TableRow'
 import { TableCell } from '../TableCell'
@@ -29,18 +29,18 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
     {
       expanded = false,
       stripeEven = false,
+      defaultExpanded = false,
       colSpan = DEFAULT_COL_SPAN,
       ...props
     },
     ref
   ) {
-    const { children, content, defaultExpanded, className, style, ...rest } =
-      props
+    const { children, content, className, style, ...rest } = props
 
     // the row outlives `open` so it can animate closed; `open` flips one commit
     // after mounting so the height always has a zero to grow from
     const [mounted, setMounted] = useState(expanded)
-    const [open, setOpen] = useState(Boolean(expanded && defaultExpanded))
+    const [open, setOpen] = useState(expanded && defaultExpanded)
 
     useEffect(() => {
       if (!expanded) {
@@ -65,11 +65,11 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         </TableRow>
         {mounted && (
           <TableRow
-            className={twJoin(
-              className,
+            className={twMerge(
               stripeEven && 'bg-gray-200/[0.32]',
               // no hairline under a zero-height row
-              !open && 'border-b-0'
+              !open && 'border-b-0',
+              className
             )}
             style={style}
           >
