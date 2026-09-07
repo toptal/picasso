@@ -154270,9 +154270,6 @@ var Lexical = __webpack_require__("./node_modules/lexical/Lexical.js");
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./node_modules/@emoji-mart/data/sets/15/native.json
 var _15_native = __webpack_require__("./node_modules/@emoji-mart/data/sets/15/native.json");
-// EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__("./node_modules/classnames/index.js");
-var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 // EXTERNAL MODULE: ./packages/base/Container/dist-package/src/Container/Container.js
 var Container = __webpack_require__("./packages/base/Container/dist-package/src/Container/Container.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
@@ -154338,7 +154335,6 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-
 var TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker';
 var RichTextEditorEmojiPicker = function (_ref) {
   var customEmojis = _ref.customEmojis,
@@ -154393,9 +154389,7 @@ var RichTextEditorEmojiPicker = function (_ref) {
     // twMerge drops the hidden-state classes when open; leaving
     // `pointer-events-none` in place would let stylesheet order decide,
     // and it wins, so clicks fall through the open picker to the editor
-    className: (0,twMerge/* twMerge */.QP)('absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none', classnames_default()({
-      'opacity-100 pointer-events-auto': showEmojiPicker
-    }))
+    className: (0,twMerge/* twMerge */.QP)('absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none', showEmojiPicker && 'opacity-100 pointer-events-auto')
   }, /*#__PURE__*/react.createElement(RichTextEditorEmojiPicker_EmojiMartPicker, {
     data: _15_native,
     custom: customEmojis,
@@ -159035,4 +159029,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.a7681a76.iframe.bundle.js.map
+//# sourceMappingURL=main.f4216552.iframe.bundle.js.map
