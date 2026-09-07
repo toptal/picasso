@@ -13,7 +13,7 @@ const DesignerPencilResponsive = (props: Props) => {
       xl: <DesignerPencil16 {...props} />,
     },
     <DesignerPencil24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DesignerPencilResponsive

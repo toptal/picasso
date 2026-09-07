@@ -13,7 +13,7 @@ const TriangleLeftMinorSolidResponsive = (props: Props) => {
       xl: <TriangleLeftMinorSolid16 {...props} />,
     },
     <TriangleLeftMinorSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TriangleLeftMinorSolidResponsive

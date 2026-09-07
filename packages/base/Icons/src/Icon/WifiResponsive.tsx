@@ -13,7 +13,7 @@ const WifiResponsive = (props: Props) => {
       xl: <Wifi16 {...props} />,
     },
     <Wifi24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default WifiResponsive

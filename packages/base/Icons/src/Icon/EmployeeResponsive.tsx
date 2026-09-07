@@ -13,7 +13,7 @@ const EmployeeResponsive = (props: Props) => {
       xl: <Employee16 {...props} />,
     },
     <Employee24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default EmployeeResponsive

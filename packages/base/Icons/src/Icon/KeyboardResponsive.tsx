@@ -13,7 +13,7 @@ const KeyboardResponsive = (props: Props) => {
       xl: <Keyboard16 {...props} />,
     },
     <Keyboard24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default KeyboardResponsive

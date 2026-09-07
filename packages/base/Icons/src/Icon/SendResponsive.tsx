@@ -13,7 +13,7 @@ const SendResponsive = (props: Props) => {
       xl: <Send16 {...props} />,
     },
     <Send24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SendResponsive

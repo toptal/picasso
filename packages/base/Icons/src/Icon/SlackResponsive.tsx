@@ -13,7 +13,7 @@ const SlackResponsive = (props: Props) => {
       xl: <Slack16 {...props} />,
     },
     <Slack24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SlackResponsive

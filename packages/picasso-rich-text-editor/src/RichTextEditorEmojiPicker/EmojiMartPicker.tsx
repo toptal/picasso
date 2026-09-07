@@ -19,7 +19,9 @@ interface Props {
  *
  * `Picker` appends itself to the element passed as `ref` and is fed prop
  * changes through `update`, so it is constructed after the first commit and
- * updated on every commit after that.
+ * updated on every commit after that. An effect replay on the same instance
+ * (StrictMode, Fast Refresh) finds the picker still attached and updates it
+ * too, instead of constructing a second one.
  */
 const EmojiMartPicker = (props: Props) => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -34,13 +36,6 @@ const EmojiMartPicker = (props: Props) => {
 
     pickerRef.current.update(props)
   })
-
-  useEffect(
-    () => () => {
-      pickerRef.current = null
-    },
-    []
-  )
 
   return <div ref={containerRef} />
 }

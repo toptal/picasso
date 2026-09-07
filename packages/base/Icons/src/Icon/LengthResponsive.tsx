@@ -13,7 +13,7 @@ const LengthResponsive = (props: Props) => {
       xl: <Length16 {...props} />,
     },
     <Length24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LengthResponsive

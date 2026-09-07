@@ -13,7 +13,7 @@ const StopSolidResponsive = (props: Props) => {
       xl: <StopSolid16 {...props} />,
     },
     <StopSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default StopSolidResponsive

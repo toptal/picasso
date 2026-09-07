@@ -13,7 +13,7 @@ const CollapseResponsive = (props: Props) => {
       xl: <Collapse16 {...props} />,
     },
     <Collapse24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CollapseResponsive

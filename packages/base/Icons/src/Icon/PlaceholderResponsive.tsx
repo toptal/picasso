@@ -13,7 +13,7 @@ const PlaceholderResponsive = (props: Props) => {
       xl: <Placeholder16 {...props} />,
     },
     <Placeholder24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PlaceholderResponsive

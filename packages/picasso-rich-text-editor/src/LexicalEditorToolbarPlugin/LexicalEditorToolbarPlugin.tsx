@@ -14,6 +14,7 @@ import {
 import type { ChangeEvent } from 'react'
 import React, { useEffect, useReducer } from 'react'
 import { $createHeadingNode, $isHeadingNode } from '@lexical/rich-text'
+import type { NullableRefObject } from '@toptal/picasso-utils'
 
 import {
   registerLexicalEvents,
@@ -30,7 +31,7 @@ import { $isCodeBlockNode } from '../plugins/CodeBlockPlugin/nodes'
 
 type Props = {
   id: string
-  toolbarRef: React.RefObject<HTMLDivElement>
+  toolbarRef: NullableRefObject<HTMLDivElement>
   testIds?: {
     wrapper?: string
     editor?: string

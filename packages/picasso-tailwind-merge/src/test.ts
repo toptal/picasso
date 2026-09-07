@@ -62,7 +62,9 @@ describe('twMerge', () => {
     })
 
     it('passes unknown classes through untouched', () => {
-      expect(twMerge('min-h-auto dellay-225')).toBe('min-h-auto dellay-225')
+      expect(twMerge('min-h-auto not-a-utility')).toBe(
+        'min-h-auto not-a-utility'
+      )
     })
   })
 

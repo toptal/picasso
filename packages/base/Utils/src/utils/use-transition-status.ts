@@ -1,5 +1,6 @@
 import type { RefObject } from 'react'
 import { useRef, useState } from 'react'
+import type { TransitionProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 export type TransitionStatus =
@@ -9,9 +10,8 @@ export type TransitionStatus =
   | 'exited'
   | 'unmounted'
 
-export type TransitionTimeout =
-  | number
-  | { enter?: number; exit?: number; appear?: number }
+/** The `timeout` prop every transition component takes: one duration, or one per phase */
+export type TransitionTimeout = NonNullable<TransitionProps['timeout']>
 
 /**
  * Resolves a react-transition-group style `timeout` (number or object)
@@ -41,43 +41,73 @@ export interface UseTransitionStatusOptions<T extends HTMLElement> {
   /** Resolve to `unmounted` once fully exited, so the caller can render nothing */
   unmountOnExit?: boolean
   /** The transitioning DOM element, passed to the lifecycle callbacks */
-  nodeRef: RefObject<T>
+  nodeRef: RefObject<T | null>
   /** Fired when the enter phase starts */
   onEnter?: (node: T, isAppearing: boolean) => void
-  /** Fired right after the status flips to `entering` */
+  /** Fired right after `onEnter`, as the enter phase starts */
   onEntering?: (node: T, isAppearing: boolean) => void
   /** Fired when the enter transition settles */
   onEntered?: (node: T, isAppearing: boolean) => void
   /** Fired when the exit phase starts */
   onExit?: (node: T) => void
-  /** Fired right after the status flips to `exiting` */
+  /** Fired right after `onExit`, as the exit phase starts */
   onExiting?: (node: T) => void
   /** Fired when the exit transition settles */
   onExited?: (node: T) => void
 }
 
+export interface UseTransitionStatusResult {
+  /** Where the element is in its transition */
+  status: TransitionStatus
+  /** Duration of the running or upcoming phase in milliseconds, for the CSS `transition-duration` */
+  duration: number
+}
+
+interface TransitionState {
+  status: TransitionStatus
+  /** The mount transition is the `appear` one; the flag holds until the first exit */
+  isAppearing: boolean
+}
+
+type PendingSettle =
+  | { phase: 'enter'; isAppearing: boolean }
+  | { phase: 'exit' }
+
 /**
  * Drop-in replacement for react-transition-group's `<Transition>` state
  * machine. Settles on `setTimeout(timeout)` — not `transitionend` — so
  * callback timing is identical and fake timers drive it in jsdom tests.
+ * Returns the status together with the duration of the current phase, so
+ * the CSS transition and the settle timer never disagree.
  */
 const useTransitionStatus = <T extends HTMLElement>(
   options: UseTransitionStatusOptions<T>
-): TransitionStatus => {
-  const { in: inProp, appear = false, unmountOnExit = false, nodeRef } = options
+): UseTransitionStatusResult => {
+  const {
+    in: inProp,
+    appear = false,
+    unmountOnExit = false,
+    nodeRef,
+    timeout,
+  } = options
 
-  const [status, setStatus] = useState<TransitionStatus>(() => {
-    if (inProp) {
-      return appear ? 'exited' : 'entered'
+  const [{ status, isAppearing }, setTransition] = useState<TransitionState>(
+    () => {
+      if (inProp) {
+        return { status: appear ? 'exited' : 'entered', isAppearing: appear }
+      }
+
+      return {
+        status: unmountOnExit ? 'unmounted' : 'exited',
+        isAppearing: false,
+      }
     }
-
-    return unmountOnExit ? 'unmounted' : 'exited'
-  })
+  )
 
   // An unmounted element re-mounts at `exited` before entering
   // (render-phase derived state)
   if (inProp && status === 'unmounted') {
-    setStatus('exited')
+    setTransition(previous => ({ ...previous, status: 'exited' }))
   }
 
   // Read via ref so the transition effect re-runs only on `in` flips;
@@ -89,9 +119,7 @@ const useTransitionStatus = <T extends HTMLElement>(
   })
 
   const prevInRef = useRef<boolean | null>(null)
-  const pendingSettleRef = useRef<
-    { phase: 'enter'; isAppearing: boolean } | { phase: 'exit' } | null
-  >(null)
+  const pendingSettleRef = useRef<PendingSettle | null>(null)
 
   useIsomorphicLayoutEffect(() => {
     const prevIn = prevInRef.current
@@ -101,25 +129,25 @@ const useTransitionStatus = <T extends HTMLElement>(
 
     const timeouts = getTransitionTimeouts(optionsRef.current.timeout)
 
-    const scheduleEnterSettle = (isAppearing: boolean) =>
+    const scheduleEnterSettle = (appearing: boolean) =>
       setTimeout(
         () => {
           pendingSettleRef.current = null
-          setStatus('entered')
+          setTransition(previous => ({ ...previous, status: 'entered' }))
 
           const settledNode = nodeRef.current
 
           if (settledNode) {
-            optionsRef.current.onEntered?.(settledNode, isAppearing)
+            optionsRef.current.onEntered?.(settledNode, appearing)
           }
         },
-        isAppearing ? timeouts.appear : timeouts.enter
+        appearing ? timeouts.appear : timeouts.enter
       )
 
     const scheduleExitSettle = () =>
       setTimeout(() => {
         pendingSettleRef.current = null
-        setStatus('exited')
+        setTransition(previous => ({ ...previous, status: 'exited' }))
 
         const settledNode = nodeRef.current
 
@@ -156,21 +184,21 @@ const useTransitionStatus = <T extends HTMLElement>(
     const node = nodeRef.current
 
     const performEnter = () => {
-      const isAppearing = isInitialMount
+      const appearing = isInitialMount
 
       if (node) {
-        optionsRef.current.onEnter?.(node, isAppearing)
+        optionsRef.current.onEnter?.(node, appearing)
       }
 
-      setStatus('entering')
+      setTransition({ status: 'entering', isAppearing: appearing })
 
       if (node) {
-        optionsRef.current.onEntering?.(node, isAppearing)
+        optionsRef.current.onEntering?.(node, appearing)
       }
 
-      pendingSettleRef.current = { phase: 'enter', isAppearing }
+      pendingSettleRef.current = { phase: 'enter', isAppearing: appearing }
 
-      return scheduleEnterSettle(isAppearing)
+      return scheduleEnterSettle(appearing)
     }
 
     const performExit = () => {
@@ -178,7 +206,7 @@ const useTransitionStatus = <T extends HTMLElement>(
         optionsRef.current.onExit?.(node)
       }
 
-      setStatus('exiting')
+      setTransition({ status: 'exiting', isAppearing: false })
 
       if (node) {
         optionsRef.current.onExiting?.(node)
@@ -198,11 +226,15 @@ const useTransitionStatus = <T extends HTMLElement>(
   // Unmount one commit after `exited`, so `onExited` observes the node
   useIsomorphicLayoutEffect(() => {
     if (unmountOnExit && !inProp && status === 'exited') {
-      setStatus('unmounted')
+      setTransition(previous => ({ ...previous, status: 'unmounted' }))
     }
   }, [unmountOnExit, inProp, status])
 
-  return status
+  const timeouts = getTransitionTimeouts(timeout)
+  const enterDuration = isAppearing ? timeouts.appear : timeouts.enter
+  const duration = inProp ? enterDuration : timeouts.exit
+
+  return { status, duration }
 }
 
 export default useTransitionStatus

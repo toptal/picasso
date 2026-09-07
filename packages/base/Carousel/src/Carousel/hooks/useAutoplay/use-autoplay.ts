@@ -1,7 +1,7 @@
 import { useInterval, useOnScreen, useMouseEnter } from '@toptal/picasso-utils'
 
 type Props = {
-  wrapperRef: React.RefObject<HTMLDivElement>
+  wrapperRef: React.RefObject<HTMLDivElement | null>
   slideNext: () => void
   autoplay: boolean
   autoplayDelay: number

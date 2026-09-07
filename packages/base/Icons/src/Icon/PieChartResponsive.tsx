@@ -13,7 +13,7 @@ const PieChartResponsive = (props: Props) => {
       xl: <PieChart16 {...props} />,
     },
     <PieChart24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PieChartResponsive

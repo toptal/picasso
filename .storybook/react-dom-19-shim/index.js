@@ -4,6 +4,10 @@
 // (dist/esm/client/preview/render.js:111); the legacy branch calls
 // ReactDOM.render/unmountComponentAtNode, both removed in React 19, so the
 // sniff must land on the modern createRoot path.
+//
+// Delete this shim with the Storybook 7+ upgrade: it no longer sniffs the
+// version, so .storybook/main.js can alias react-dom straight at
+// react19/node_modules/react-dom.
 const reactDom = require('../../react19/node_modules/react-dom/index.js')
 
 module.exports = {

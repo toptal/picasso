@@ -43,7 +43,7 @@ const useCarousel = ({
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [isLastPage, setLastPage] = useState(false)
   const [isFirstPage, setFirstPage] = useState(!rewind)
-  const gliderRef = useRef<Glider<HTMLDivElement>>()
+  const gliderRef = useRef<Glider<HTMLDivElement> | undefined>(undefined)
 
   const handleOnAnimated = useCallback(() => {
     const currentSlide = gliderRef.current?.slide || 0

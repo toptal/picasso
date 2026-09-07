@@ -13,7 +13,7 @@ const VideoCallResponsive = (props: Props) => {
       xl: <VideoCall16 {...props} />,
     },
     <VideoCall24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default VideoCallResponsive

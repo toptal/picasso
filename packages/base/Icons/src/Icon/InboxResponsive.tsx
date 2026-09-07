@@ -13,7 +13,7 @@ const InboxResponsive = (props: Props) => {
       xl: <Inbox16 {...props} />,
     },
     <Inbox24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InboxResponsive

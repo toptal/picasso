@@ -13,7 +13,7 @@ const SleepResponsive = (props: Props) => {
       xl: <Sleep16 {...props} />,
     },
     <Sleep24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SleepResponsive

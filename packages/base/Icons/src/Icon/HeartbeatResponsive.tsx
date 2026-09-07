@@ -13,7 +13,7 @@ const HeartbeatResponsive = (props: Props) => {
       xl: <Heartbeat16 {...props} />,
     },
     <Heartbeat24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default HeartbeatResponsive

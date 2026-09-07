@@ -13,7 +13,7 @@ const LinkedinResponsive = (props: Props) => {
       xl: <Linkedin16 {...props} />,
     },
     <Linkedin24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LinkedinResponsive

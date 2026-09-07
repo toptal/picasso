@@ -26,7 +26,7 @@ export interface PrivateProps
   /** Style variant of Notification */
   variant?: VariantType
   /** Add <Icon /> before Notification content  */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string; color?: string }>
   /** Enable elevated appearance for Notification */
   elevated?: boolean
   testIds?: {

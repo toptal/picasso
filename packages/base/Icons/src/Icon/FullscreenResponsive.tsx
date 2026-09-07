@@ -13,7 +13,7 @@ const FullscreenResponsive = (props: Props) => {
       xl: <Fullscreen16 {...props} />,
     },
     <Fullscreen24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FullscreenResponsive

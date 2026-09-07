@@ -13,7 +13,7 @@ const UserResponsive = (props: Props) => {
       xl: <User16 {...props} />,
     },
     <User24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default UserResponsive

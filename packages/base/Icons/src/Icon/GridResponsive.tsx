@@ -13,7 +13,7 @@ const GridResponsive = (props: Props) => {
       xl: <Grid16 {...props} />,
     },
     <Grid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default GridResponsive

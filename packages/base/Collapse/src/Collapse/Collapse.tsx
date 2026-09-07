@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef, useMemo, useRef, useState } from 'react'
+import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import {
-  getTransitionTimeouts,
   useMultipleForwardRefs,
   useTransitionStatus,
 } from '@toptal/picasso-utils'
@@ -22,12 +22,14 @@ export interface Props extends TransitionProps, BaseProps {
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
+const DEFAULT_TIMEOUT = 350
+
 export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
   {
     children,
     className,
-    in: inProps = false,
-    timeout = 350,
+    in: inProp = false,
+    timeout = DEFAULT_TIMEOUT,
     unmountOnExit,
     style,
     appear,
@@ -41,8 +43,8 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
   const nodeRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const status = useTransitionStatus({
-    in: inProps,
+  const { status, duration } = useTransitionStatus({
+    in: inProp,
     appear,
     unmountOnExit,
     timeout,
@@ -53,25 +55,33 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
 
   const [height, setHeight] = useState(status === 'entered' ? 'auto' : '0px')
 
+  // `height: auto` cannot be animated, so every phase hands the browser two
+  // concrete pixel values to transition between
   useIsomorphicLayoutEffect(() => {
-    const measured = () => `${wrapperRef.current?.clientHeight ?? 0}px`
+    const contentHeight = () => `${wrapperRef.current?.clientHeight ?? 0}px`
 
     if (status === 'entering') {
+      // start from 0 and hand the measured height to the next frame, so the
+      // browser sees two distinct values rather than one final one
       setHeight('0px')
 
-      const frame = requestAnimationFrame(() => setHeight(measured()))
+      const frame = requestAnimationFrame(() => setHeight(contentHeight()))
 
       return () => cancelAnimationFrame(frame)
     }
 
     if (status === 'entered') {
+      // `auto` lets the content resize freely while expanded
       setHeight('auto')
 
       return
     }
 
     if (status === 'exiting') {
-      setHeight(measured())
+      // pin the measured height first and collapse a frame later; reading
+      // `offsetHeight` forces a reflow so the pinned value is committed
+      // before 0 replaces it, otherwise the browser skips the animation
+      setHeight(contentHeight())
 
       const frame = requestAnimationFrame(() => {
         void nodeRef.current?.offsetHeight
@@ -82,29 +92,16 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
       return () => cancelAnimationFrame(frame)
     }
 
+    // `exited` and `unmounted` stay collapsed
     setHeight('0px')
-  }, [status])
-
-  const [appearing, setAppearing] = useState(Boolean(appear && inProps))
-
-  useIsomorphicLayoutEffect(() => {
-    if (status === 'exiting') {
-      setAppearing(false)
-    }
   }, [status])
 
   const combinedRef = useMultipleForwardRefs([ref, nodeRef])
 
-  const memoStyles = useMemo(() => {
-    const timeouts = getTransitionTimeouts(timeout)
-    const enterDuration = appearing ? timeouts.appear : timeouts.enter
-
-    return {
-      ...style,
-      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
-      height,
-    }
-  }, [timeout, inProps, appearing, height, style])
+  const memoStyles = useMemo(
+    () => ({ ...style, transitionDuration: `${duration}ms`, height }),
+    [duration, height, style]
+  )
 
   if (status === 'unmounted') {
     return null
@@ -113,12 +110,17 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
   return (
     <div
       {...rest}
-      className={twMerge([
+      className={twMerge(
         'transition-[height] ease-in-out min-h-0',
-        status === 'exited' && !inProps && 'invisible',
-        status === 'entered' ? 'overflow-visible' : 'overflow-hidden',
-        className,
-      ])}
+        cx({
+          invisible: status === 'exited' && !inProp,
+          'overflow-visible': status === 'entered',
+          'overflow-hidden': status !== 'entered',
+        }),
+        // Collapse owns this root, unlike Fade and Slide which clone a child,
+        // so the consumer className wins over its overflow and visibility
+        className
+      )}
       style={memoStyles}
       data-testid={dataTestId}
       ref={combinedRef}
