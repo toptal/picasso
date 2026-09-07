@@ -8111,7 +8111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import { PageHelmet } from '../PageHelmet'\nimport PicassoBook from '~/.storybook/components/PicassoBook'\n\nconst componentDocs = PicassoBook.createComponentDocs(PageHelmet, 'Page.Helmet')\n\nconst chapter = PicassoBook.connectToPage(page =>\n  page\n    .createChapter('Page.Helmet', 'Manipulate with document head')\n    .addTextSection(\n      `\n      This component is a wrapper around react-helmet-async, you can use Page.Helmet as a drop-in replacement\n\n      <Page.Helmet>\n        <title>My custom title</title>\n      </Page.Helmet>\n    `\n    )\n    .addTextSection(\n      'ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.'\n    )\n    .addTextSection(\n      'Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).'\n    )\n    .addTextSection(\n      'If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' +\n        'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'\n    )\n)\n\nexport default {\n  chapter,\n  componentDocs,\n}\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import { PageHelmet } from '../PageHelmet'\nimport PicassoBook from '~/.storybook/components/PicassoBook'\n\nconst componentDocs = PicassoBook.createComponentDocs(PageHelmet, 'Page.Helmet')\n\nconst chapter = PicassoBook.connectToPage(page =>\n  page\n    .createChapter('Page.Helmet', 'Manipulate with document head')\n    .addTextSection(\n      `\n      This component is a wrapper around react-helmet-async, you can use Page.Helmet as a drop-in replacement\n\n      <Page.Helmet>\n        <title>My custom title</title>\n      </Page.Helmet>\n    `\n    )\n    .addTextSection(\n      'ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.'\n    )\n    .addTextSection(\n      'Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).'\n    )\n    .addTextSection(\n      'Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' +\n        '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' +\n        '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. React 17 and 18 are unchanged.'\n    )\n    .addTextSection(\n      'If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' +\n        'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'\n    )\n)\n\nexport default {\n  chapter,\n  componentDocs,\n}\n");
 
 /***/ }),
 
@@ -15702,7 +15702,7 @@ try {
     // @ts-ignore
     Amount.displayName = "Amount";
     // @ts-ignore
-    Amount.__docgenInfo = { "description": "", "displayName": "Amount", "props": { "amount": { "defaultValue": null, "description": "The amount to be formatted", "name": "amount", "required": true, "type": { "name": "string | number" } }, "currency": { "defaultValue": { value: "USD" }, "description": "Currency which need to be applied on the amount (ISO format) https://www.currency-iso.org/en/home/tables/table-a1.html", "name": "currency", "required": false, "type": { "name": "string | undefined" } }, "locale": { "defaultValue": { value: "en-US" }, "description": "Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else.", "name": "locale", "required": false, "type": { "name": "string | undefined" } }, "minimumFractionDigits": { "defaultValue": null, "description": "The minimum number of fraction digits to display", "name": "minimumFractionDigits", "required": false, "type": { "name": "number | undefined" } }, "maximumFractionDigits": { "defaultValue": null, "description": "The maximum number of fraction digits to display", "name": "maximumFractionDigits", "required": false, "type": { "name": "number | undefined" } }, "variant": { "defaultValue": null, "description": "Font variant for inner text", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"heading\"" }, { "value": "\"body\"" }] } }, "children": { "defaultValue": null, "description": "Text content", "name": "children", "required": false, "type": { "name": "ReactNode" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "color": { "defaultValue": null, "description": "Text color", "name": "color", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"red\"" }, { "value": "\"green\"" }, { "value": "\"yellow\"" }, { "value": "\"grey\"" }, { "value": "\"inherit\"" }, { "value": "\"light-grey\"" }, { "value": "\"grey-main-2\"" }, { "value": "\"dark-grey\"" }, { "value": "\"black\"" }, { "value": "\"light-blue\"" }] } }, "inline": { "defaultValue": { value: "true" }, "description": "Controls whether the Typography is inline or not", "name": "inline", "required": false, "type": { "name": "boolean | undefined" } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Size of the inner text", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }, { "value": "\"xsmall\"" }, { "value": "\"xlarge\"" }, { "value": "\"xxsmall\"" }] } }, "as": { "defaultValue": { value: "span" }, "description": "Rendered HTML markup", "name": "as", "required": false, "type": { "name": "ElementType<any> | undefined" } }, "align": { "defaultValue": null, "description": "Text align of the inner text", "name": "align", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"center\"" }, { "value": "\"justify\"" }] } }, "noWrap": { "defaultValue": null, "description": "Enable ellipsis for overflowing text", "name": "noWrap", "required": false, "type": { "name": "boolean | undefined" } }, "weight": { "defaultValue": null, "description": "Font weight of the inner text", "name": "weight", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"regular\"" }, { "value": "\"semibold\"" }] } }, "invert": { "defaultValue": null, "description": "Invert color", "name": "invert", "required": false, "type": { "name": "boolean | undefined" } }, "underline": { "defaultValue": null, "description": "Controls when the Typography should have an underline", "name": "underline", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"dashed\"" }, { "value": "\"solid\"" }] } }, "lineThrough": { "defaultValue": null, "description": "Controls when the Typography should have line through", "name": "lineThrough", "required": false, "type": { "name": "boolean | undefined" } } } };
+    Amount.__docgenInfo = { "description": "", "displayName": "Amount", "props": { "amount": { "defaultValue": null, "description": "The amount to be formatted", "name": "amount", "required": true, "type": { "name": "string | number" } }, "currency": { "defaultValue": { value: "USD" }, "description": "Currency which need to be applied on the amount (ISO format) https://www.currency-iso.org/en/home/tables/table-a1.html", "name": "currency", "required": false, "type": { "name": "string | undefined" } }, "locale": { "defaultValue": { value: "en-US" }, "description": "Locale identifiers are case-insensitive ASCII. However, it's conventional to use title case (first letter capitalized, successive letters lower case) for script code, upper case for region codes, and lower case for everything else.", "name": "locale", "required": false, "type": { "name": "string | undefined" } }, "minimumFractionDigits": { "defaultValue": null, "description": "The minimum number of fraction digits to display", "name": "minimumFractionDigits", "required": false, "type": { "name": "number | undefined" } }, "maximumFractionDigits": { "defaultValue": null, "description": "The maximum number of fraction digits to display", "name": "maximumFractionDigits", "required": false, "type": { "name": "number | undefined" } }, "variant": { "defaultValue": null, "description": "Font variant for inner text", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"heading\"" }, { "value": "\"body\"" }] } }, "children": { "defaultValue": null, "description": "Text content", "name": "children", "required": false, "type": { "name": "ReactNode" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "color": { "defaultValue": null, "description": "Text color", "name": "color", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"red\"" }, { "value": "\"green\"" }, { "value": "\"yellow\"" }, { "value": "\"grey\"" }, { "value": "\"inherit\"" }, { "value": "\"light-grey\"" }, { "value": "\"grey-main-2\"" }, { "value": "\"dark-grey\"" }, { "value": "\"black\"" }, { "value": "\"light-blue\"" }] } }, "inline": { "defaultValue": { value: "true" }, "description": "Controls whether the Typography is inline or not", "name": "inline", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Size of the inner text", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }, { "value": "\"xsmall\"" }, { "value": "\"xlarge\"" }, { "value": "\"xxsmall\"" }] } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "as": { "defaultValue": { value: "span" }, "description": "Rendered HTML markup", "name": "as", "required": false, "type": { "name": "ElementType<any> | undefined" } }, "align": { "defaultValue": null, "description": "Text align of the inner text", "name": "align", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"center\"" }, { "value": "\"justify\"" }] } }, "noWrap": { "defaultValue": null, "description": "Enable ellipsis for overflowing text", "name": "noWrap", "required": false, "type": { "name": "boolean | undefined" } }, "weight": { "defaultValue": null, "description": "Font weight of the inner text", "name": "weight", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"regular\"" }, { "value": "\"semibold\"" }] } }, "invert": { "defaultValue": null, "description": "Invert color", "name": "invert", "required": false, "type": { "name": "boolean | undefined" } }, "underline": { "defaultValue": null, "description": "Controls when the Typography should have an underline", "name": "underline", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"dashed\"" }, { "value": "\"solid\"" }] } }, "lineThrough": { "defaultValue": null, "description": "Controls when the Typography should have line through", "name": "lineThrough", "required": false, "type": { "name": "boolean | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -23007,7 +23007,7 @@ try {
     // @ts-ignore
     ButtonCheckbox.displayName = "ButtonCheckbox";
     // @ts-ignore
-    ButtonCheckbox.__docgenInfo = { "description": "", "displayName": "ButtonCheckbox", "props": { "children": { "defaultValue": null, "description": "Button text", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "The id of the input element", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when value is changed", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "checked": { "defaultValue": null, "description": "Show the control initially as checked", "name": "checked", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "focused": { "defaultValue": null, "description": "Set focused style for the button", "name": "focused", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } } } };
+    ButtonCheckbox.__docgenInfo = { "description": "", "displayName": "ButtonCheckbox", "props": { "children": { "defaultValue": null, "description": "Button text", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "The id of the input element", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when value is changed", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined" } }, "checked": { "defaultValue": null, "description": "Show the control initially as checked", "name": "checked", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "focused": { "defaultValue": null, "description": "Set focused style for the button", "name": "focused", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -23304,7 +23304,7 @@ try {
     // @ts-ignore
     ButtonControlLabel.displayName = "ButtonControlLabel";
     // @ts-ignore
-    ButtonControlLabel.__docgenInfo = { "description": "", "displayName": "ButtonControlLabel", "props": { "checked": { "defaultValue": null, "description": "Show the control initially as checked", "name": "checked", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "focused": { "defaultValue": null, "description": "Set focused style for the button", "name": "focused", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when value is changed", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined" } }, "children": { "defaultValue": null, "description": "Button text", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "id": { "defaultValue": null, "description": "The id of the input element", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "control": { "defaultValue": null, "description": "A control element. For instance, it can be be a Radio or a Checkbox", "name": "control", "required": true, "type": { "name": "ReactElement<Partial<Pick<Props, \"id\" | \"onChange\" | \"disabled\" | \"value\" | \"checked\">>, string | JSXElementConstructor<any>>" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    ButtonControlLabel.__docgenInfo = { "description": "", "displayName": "ButtonControlLabel", "props": { "checked": { "defaultValue": null, "description": "Show the control initially as checked", "name": "checked", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "focused": { "defaultValue": null, "description": "Set focused style for the button", "name": "focused", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when value is changed", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined" } }, "children": { "defaultValue": null, "description": "Button text", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "id": { "defaultValue": null, "description": "The id of the input element", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "control": { "defaultValue": null, "description": "A control element. For instance, it can be be a Radio or a Checkbox", "name": "control", "required": true, "type": { "name": "ReactElement<Partial<Pick<Props, \"id\" | \"onChange\" | \"checked\" | \"disabled\" | \"value\">>, string | JSXElementConstructor<any>>" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -23546,7 +23546,7 @@ try {
     // @ts-ignore
     ButtonRadio.displayName = "ButtonRadio";
     // @ts-ignore
-    ButtonRadio.__docgenInfo = { "description": "", "displayName": "ButtonRadio", "props": { "children": { "defaultValue": null, "description": "Button text", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "The id of the input element", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when value is changed", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "checked": { "defaultValue": null, "description": "Show the control initially as checked", "name": "checked", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "focused": { "defaultValue": null, "description": "Set focused style for the button", "name": "focused", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } } } };
+    ButtonRadio.__docgenInfo = { "description": "", "displayName": "ButtonRadio", "props": { "children": { "defaultValue": null, "description": "Button text", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "The id of the input element", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when value is changed", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined" } }, "checked": { "defaultValue": null, "description": "Show the control initially as checked", "name": "checked", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "focused": { "defaultValue": null, "description": "Set focused style for the button", "name": "focused", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -26146,10 +26146,12 @@ var componentDocs = PicassoBook/* default */.A.createComponentDocs(CheckboxGroup
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
-/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
-/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
-/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-transition-status.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-multiple-forward-refs.js");
+/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -26169,13 +26171,15 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
+
+var DEFAULT_TIMEOUT = 350;
 var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(function Collapse(_a, ref) {
   var children = _a.children,
     className = _a.className,
     _a$in = _a.in,
-    inProps = _a$in === void 0 ? false : _a$in,
+    inProp = _a$in === void 0 ? false : _a$in,
     _a$timeout = _a.timeout,
-    timeout = _a$timeout === void 0 ? 350 : _a$timeout,
+    timeout = _a$timeout === void 0 ? DEFAULT_TIMEOUT : _a$timeout,
     unmountOnExit = _a.unmountOnExit,
     style = _a.style,
     appear = _a.appear,
@@ -26185,39 +26189,49 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
     rest = __rest(_a, ["children", "className", "in", "timeout", "unmountOnExit", "style", "appear", 'data-testid', "onEnter", "onExited"]);
   var nodeRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   var wrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-  var status = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)({
-    in: inProps,
-    appear: appear,
-    unmountOnExit: unmountOnExit,
-    timeout: timeout,
-    nodeRef: nodeRef,
-    onEnter: onEnter,
-    onExited: onExited
-  });
+  var _useTransitionStatus = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)({
+      in: inProp,
+      appear: appear,
+      unmountOnExit: unmountOnExit,
+      timeout: timeout,
+      nodeRef: nodeRef,
+      onEnter: onEnter,
+      onExited: onExited
+    }),
+    status = _useTransitionStatus.status,
+    duration = _useTransitionStatus.duration;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(status === 'entered' ? 'auto' : '0px'),
     _useState2 = _slicedToArray(_useState, 2),
     height = _useState2[0],
     setHeight = _useState2[1];
-  (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* .useIsomorphicLayoutEffect */ .E)(function () {
-    var measured = function () {
+  // `height: auto` cannot be animated, so every phase hands the browser two
+  // concrete pixel values to transition between
+  (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_4__/* .useIsomorphicLayoutEffect */ .E)(function () {
+    var contentHeight = function () {
       var _a, _b;
       return `${(_b = (_a = wrapperRef.current) === null || _a === void 0 ? void 0 : _a.clientHeight) !== null && _b !== void 0 ? _b : 0}px`;
     };
     if (status === 'entering') {
+      // start from 0 and hand the measured height to the next frame, so the
+      // browser sees two distinct values rather than one final one
       setHeight('0px');
       var frame = requestAnimationFrame(function () {
-        return setHeight(measured());
+        return setHeight(contentHeight());
       });
       return function () {
         return cancelAnimationFrame(frame);
       };
     }
     if (status === 'entered') {
+      // `auto` lets the content resize freely while expanded
       setHeight('auto');
       return;
     }
     if (status === 'exiting') {
-      setHeight(measured());
+      // pin the measured height first and collapse a frame later; reading
+      // `offsetHeight` forces a reflow so the pinned value is committed
+      // before 0 replaces it, otherwise the browser skips the animation
+      setHeight(contentHeight());
       var _frame = requestAnimationFrame(function () {
         var _a;
         void ((_a = nodeRef.current) === null || _a === void 0 ? void 0 : _a.offsetHeight);
@@ -26227,31 +26241,28 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
         return cancelAnimationFrame(_frame);
       };
     }
+    // `exited` and `unmounted` stay collapsed
     setHeight('0px');
   }, [status]);
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(Boolean(appear && inProps)),
-    _useState4 = _slicedToArray(_useState3, 2),
-    appearing = _useState4[0],
-    setAppearing = _useState4[1];
-  (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_3__/* .useIsomorphicLayoutEffect */ .E)(function () {
-    if (status === 'exiting') {
-      setAppearing(false);
-    }
-  }, [status]);
-  var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)([ref, nodeRef]);
+  var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .A)([ref, nodeRef]);
   var memoStyles = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
-    var timeouts = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* .getTransitionTimeouts */ .g)(timeout);
-    var enterDuration = appearing ? timeouts.appear : timeouts.enter;
     return Object.assign(Object.assign({}, style), {
-      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
+      transitionDuration: `${duration}ms`,
       height: height
     });
-  }, [timeout, inProps, appearing, height, style]);
+  }, [duration, height, style]);
   if (status === 'unmounted') {
     return null;
   }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", Object.assign({}, rest, {
-    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__/* .twMerge */ .QP)(['transition-[height] ease-in-out min-h-0', status === 'exited' && !inProps && 'invisible', status === 'entered' ? 'overflow-visible' : 'overflow-hidden', className]),
+    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_6__/* .twMerge */ .QP)('transition-[height] ease-in-out min-h-0', classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+      invisible: status === 'exited' && !inProp,
+      'overflow-visible': status === 'entered',
+      'overflow-hidden': status !== 'entered'
+    }),
+    // Collapse owns this root, unlike Fade and Slide which clone a child,
+    // so the consumer className wins over its overflow and visibility
+    className),
     style: memoStyles,
     "data-testid": dataTestId,
     ref: combinedRef
@@ -26309,6 +26320,9 @@ var Collapse = __webpack_require__("./packages/base/Collapse/dist-package/src/Co
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
+// EXTERNAL MODULE: ./node_modules/classnames/index.js
+var classnames = __webpack_require__("./node_modules/classnames/index.js");
+var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js
 var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-transition-status.js
@@ -26335,13 +26349,15 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 
+
+var DEFAULT_TIMEOUT = 350;
 var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
   var children = _ref.children,
     className = _ref.className,
     _ref$in = _ref.in,
-    inProps = _ref$in === void 0 ? false : _ref$in,
+    inProp = _ref$in === void 0 ? false : _ref$in,
     _ref$timeout = _ref.timeout,
-    timeout = _ref$timeout === void 0 ? 350 : _ref$timeout,
+    timeout = _ref$timeout === void 0 ? DEFAULT_TIMEOUT : _ref$timeout,
     unmountOnExit = _ref.unmountOnExit,
     style = _ref.style,
     appear = _ref.appear,
@@ -26351,39 +26367,50 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
     rest = _objectWithoutProperties(_ref, _excluded);
   var nodeRef = (0,react.useRef)(null);
   var wrapperRef = (0,react.useRef)(null);
-  var status = (0,use_transition_status/* default */.A)({
-    in: inProps,
-    appear: appear,
-    unmountOnExit: unmountOnExit,
-    timeout: timeout,
-    nodeRef: nodeRef,
-    onEnter: onEnter,
-    onExited: onExited
-  });
+  var _useTransitionStatus = (0,use_transition_status/* default */.A)({
+      in: inProp,
+      appear: appear,
+      unmountOnExit: unmountOnExit,
+      timeout: timeout,
+      nodeRef: nodeRef,
+      onEnter: onEnter,
+      onExited: onExited
+    }),
+    status = _useTransitionStatus.status,
+    duration = _useTransitionStatus.duration;
   var _useState = (0,react.useState)(status === 'entered' ? 'auto' : '0px'),
     _useState2 = _slicedToArray(_useState, 2),
     height = _useState2[0],
     setHeight = _useState2[1];
+
+  // `height: auto` cannot be animated, so every phase hands the browser two
+  // concrete pixel values to transition between
   (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
-    var measured = function () {
+    var contentHeight = function () {
       var _wrapperRef$current$c, _wrapperRef$current;
       return `${(_wrapperRef$current$c = (_wrapperRef$current = wrapperRef.current) === null || _wrapperRef$current === void 0 ? void 0 : _wrapperRef$current.clientHeight) !== null && _wrapperRef$current$c !== void 0 ? _wrapperRef$current$c : 0}px`;
     };
     if (status === 'entering') {
+      // start from 0 and hand the measured height to the next frame, so the
+      // browser sees two distinct values rather than one final one
       setHeight('0px');
       var frame = requestAnimationFrame(function () {
-        return setHeight(measured());
+        return setHeight(contentHeight());
       });
       return function () {
         return cancelAnimationFrame(frame);
       };
     }
     if (status === 'entered') {
+      // `auto` lets the content resize freely while expanded
       setHeight('auto');
       return;
     }
     if (status === 'exiting') {
-      setHeight(measured());
+      // pin the measured height first and collapse a frame later; reading
+      // `offsetHeight` forces a reflow so the pinned value is committed
+      // before 0 replaces it, otherwise the browser skips the animation
+      setHeight(contentHeight());
       var _frame = requestAnimationFrame(function () {
         var _nodeRef$current;
         void ((_nodeRef$current = nodeRef.current) === null || _nodeRef$current === void 0 ? void 0 : _nodeRef$current.offsetHeight);
@@ -26393,31 +26420,29 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
         return cancelAnimationFrame(_frame);
       };
     }
+
+    // `exited` and `unmounted` stay collapsed
     setHeight('0px');
-  }, [status]);
-  var _useState3 = (0,react.useState)(Boolean(appear && inProps)),
-    _useState4 = _slicedToArray(_useState3, 2),
-    appearing = _useState4[0],
-    setAppearing = _useState4[1];
-  (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
-    if (status === 'exiting') {
-      setAppearing(false);
-    }
   }, [status]);
   var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef]);
   var memoStyles = (0,react.useMemo)(function () {
-    var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
-    var enterDuration = appearing ? timeouts.appear : timeouts.enter;
     return Object.assign({}, style, {
-      transitionDuration: `${inProps ? enterDuration : timeouts.exit}ms`,
+      transitionDuration: `${duration}ms`,
       height: height
     });
-  }, [timeout, inProps, appearing, height, style]);
+  }, [duration, height, style]);
   if (status === 'unmounted') {
     return null;
   }
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", Object.assign({}, rest, {
-    className: (0,twMerge/* twMerge */.QP)(['transition-[height] ease-in-out min-h-0', status === 'exited' && !inProps && 'invisible', status === 'entered' ? 'overflow-visible' : 'overflow-hidden', className]),
+    className: (0,twMerge/* twMerge */.QP)('transition-[height] ease-in-out min-h-0', classnames_default()({
+      invisible: status === 'exited' && !inProp,
+      'overflow-visible': status === 'entered',
+      'overflow-hidden': status !== 'entered'
+    }),
+    // Collapse owns this root, unlike Fade and Slide which clone a child,
+    // so the consumer className wins over its overflow and visibility
+    className),
     style: memoStyles,
     "data-testid": dataTestId,
     ref: combinedRef,
@@ -26437,7 +26462,7 @@ try {
     // @ts-ignore
     Collapse.displayName = "Collapse";
     // @ts-ignore
-    Collapse.__docgenInfo = { "description": "", "displayName": "Collapse", "props": { "children": { "defaultValue": null, "description": "Content to expand and collapse", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "in": { "defaultValue": null, "description": "Show the content; toggling runs the enter or exit transition", "name": "in", "required": false, "type": { "name": "boolean | undefined" } }, "appear": { "defaultValue": null, "description": "Run the enter transition when mounting with `in` already true", "name": "appear", "required": false, "type": { "name": "boolean | undefined" } }, "unmountOnExit": { "defaultValue": null, "description": "Unmount the component once it has fully exited", "name": "unmountOnExit", "required": false, "type": { "name": "boolean | undefined" } }, "onEnter": { "defaultValue": null, "description": "Callback fired when the enter transition starts", "name": "onEnter", "required": false, "type": { "name": "((node: HTMLElement, isAppearing: boolean) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Collapse.__docgenInfo = { "description": "", "displayName": "Collapse", "props": { "children": { "defaultValue": null, "description": "Content to expand and collapse", "name": "children", "required": true, "type": { "name": "ReactNode" } }, "in": { "defaultValue": null, "description": "Show the content; toggling runs the enter or exit transition", "name": "in", "required": false, "type": { "name": "boolean | undefined" } }, "appear": { "defaultValue": null, "description": "Run the enter transition when mounting with `in` already true", "name": "appear", "required": false, "type": { "name": "boolean | undefined" } }, "unmountOnExit": { "defaultValue": null, "description": "Unmount the component once it has fully exited", "name": "unmountOnExit", "required": false, "type": { "name": "boolean | undefined" } }, "onEnter": { "defaultValue": null, "description": "Callback fired when the enter transition starts", "name": "onEnter", "required": false, "type": { "name": "((node: HTMLElement, isAppearing: boolean) => void) | undefined" } }, "onExited": { "defaultValue": null, "description": "Callback fired when the exit transition settles", "name": "onExited", "required": false, "type": { "name": "((node: HTMLElement) => void) | undefined" } }, "timeout": { "defaultValue": { value: "350" }, "description": "The duration for the transition, in milliseconds; one value, or one per phase", "name": "timeout", "required": false, "type": { "name": "number | { enter?: number | undefined; exit?: number | undefined; appear?: number | undefined; } | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -27857,7 +27882,7 @@ try {
     // @ts-ignore
     DatePicker.displayName = "DatePicker";
     // @ts-ignore
-    DatePicker.__docgenInfo = { "description": "", "displayName": "DatePicker", "props": { "value": { "defaultValue": null, "description": "Date that will be selected in `DatePicker`", "name": "value", "required": false, "type": { "name": "DatePickerValue | undefined" } }, "onChange": { "defaultValue": null, "description": "Method that will be invoked with selected values", "name": "onChange", "required": true, "type": { "name": "(value: DatePickerValue) => void" } }, "onBlur": { "defaultValue": null, "description": "Invoked when user goes away from `DatePicker` input", "name": "onBlur", "required": false, "type": { "name": "(() => void) | undefined" } }, "range": { "defaultValue": { value: "false" }, "description": "Whether calendar supports single date selection or range", "name": "range", "required": false, "type": { "name": "boolean | undefined" } }, "minDate": { "defaultValue": null, "description": "Earliest date available for selection", "name": "minDate", "required": false, "type": { "name": "Date | undefined" } }, "maxDate": { "defaultValue": null, "description": "Latest date available for selection", "name": "maxDate", "required": false, "type": { "name": "Date | undefined" } }, "hideOnSelect": { "defaultValue": { value: "true" }, "description": "Whether calendar should be closed after date selection. True by default", "name": "hideOnSelect", "required": false, "type": { "name": "boolean | undefined" } }, "displayDateFormat": { "defaultValue": { value: "MMM d, yyyy" }, "description": "Date format that user will see in the input", "name": "displayDateFormat", "required": false, "type": { "name": "string | undefined" } }, "disableDays": { "defaultValue": null, "description": "Days to disable. e.g. Disable Sundays and Saturdays {dayOfWeek: [0, 6]}", "name": "disableDays", "required": false, "type": { "name": "{ dayOfWeek: number[]; } | undefined" } }, "disabledIntervals": { "defaultValue": null, "description": "Date range where selection is not allowed", "name": "disabledIntervals", "required": false, "type": { "name": "CalendarDateRange[] | undefined" } }, "editDateFormat": { "defaultValue": { value: "MM-dd-yyyy" }, "description": "Date format that user will see during manual input", "name": "editDateFormat", "required": false, "type": { "name": "string | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside `DatePicker`", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "autoComplete": { "defaultValue": { value: "off" }, "description": "Specify a value if want to enable browser autofill", "name": "autoComplete", "required": false, "type": { "name": "string | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate `DatePicker` status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "renderDay": { "defaultValue": null, "description": "Function to override default markup to show Date", "name": "renderDay", "required": false, "type": { "name": "RenderDay | undefined" } }, "weekStartsOn": { "defaultValue": null, "description": "Index of the first day of the week (0 - Sunday). Default is 1 - Monday", "name": "weekStartsOn", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "0" }, { "value": "1" }, { "value": "2" }, { "value": "3" }, { "value": "4" }, { "value": "5" }, { "value": "6" }] } }, "timezone": { "defaultValue": null, "description": "IANA timezone to display and edit date(s)", "name": "timezone", "required": false, "type": { "name": "string | undefined" } }, "parseInputValue": { "defaultValue": null, "description": "Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates", "name": "parseInputValue", "required": false, "type": { "name": "DatePickerInputCustomValueParser | undefined" } }, "popperProps": { "defaultValue": null, "description": "Additional data-* attrs for the inner Popper", "name": "popperProps", "required": false, "type": { "name": "{ [key: `data-${string}`]: unknown; } | undefined" } }, "footer": { "defaultValue": null, "description": "Adds a customized footer at the bottom of the calendar", "name": "footer", "required": false, "type": { "name": "ReactNode" } }, "footerBackgroundColor": { "defaultValue": null, "description": "Change the footer background color", "name": "footerBackgroundColor", "required": false, "type": { "name": "string | undefined" } }, "indicatedIntervals": { "defaultValue": null, "description": "Shows orange dot indicator in days between a date range", "name": "indicatedIntervals", "required": false, "type": { "name": "CalendarDateRange[] | undefined" } }, "numberOfMonths": { "defaultValue": { value: "1" }, "description": "Display more than one month at the same time", "name": "numberOfMonths", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "1" }, { "value": "2" }] } }, "dropdownNavigation": { "defaultValue": null, "description": "Display dropdown navigation between months and years (requires minDate and maxDate to be set)", "name": "dropdownNavigation", "required": false, "type": { "name": "boolean | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "The id of the `input` element.", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder for value", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "disabled": { "defaultValue": null, "description": "If true, the `Input` will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "name": { "defaultValue": null, "description": "Name attribute of the input element", "name": "name", "required": false, "type": { "name": "string | undefined" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "limit": { "defaultValue": null, "description": "Adds a counter of characters (ignored in combination with `counter: entered`)", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "Whether a multiline can be manually resized by the user, requires multiline prop to be set to true", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "rowsMax": { "defaultValue": null, "description": "Maximum number of rows to display when multiline option is set to true.", "name": "rowsMax", "required": false, "type": { "name": "string | number | undefined" } }, "startAdornment": { "defaultValue": null, "description": "Adds element at the start of the input - can't be used in combination with `iconPosition: start`", "name": "startAdornment", "required": false, "type": { "name": "ReactNode" } }, "endAdornment": { "defaultValue": null, "description": "Adds element at the end of the input - can't be used in combination with `iconPosition: end`", "name": "endAdornment", "required": false, "type": { "name": "ReactNode" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "counter": { "defaultValue": null, "description": "Type of the counter of characters", "name": "counter", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"entered\"" }, { "value": "\"remaining\"" }] } }, "outlineRef": { "defaultValue": null, "description": "Ref of the input outline", "name": "outlineRef", "required": false, "type": { "name": "Ref<HTMLElement> | undefined" } } } };
+    DatePicker.__docgenInfo = { "description": "", "displayName": "DatePicker", "props": { "value": { "defaultValue": null, "description": "Date that will be selected in `DatePicker`", "name": "value", "required": false, "type": { "name": "DatePickerValue | undefined" } }, "onChange": { "defaultValue": null, "description": "Method that will be invoked with selected values", "name": "onChange", "required": true, "type": { "name": "(value: DatePickerValue) => void" } }, "onBlur": { "defaultValue": null, "description": "Invoked when user goes away from `DatePicker` input", "name": "onBlur", "required": false, "type": { "name": "(() => void) | undefined" } }, "range": { "defaultValue": { value: "false" }, "description": "Whether calendar supports single date selection or range", "name": "range", "required": false, "type": { "name": "boolean | undefined" } }, "minDate": { "defaultValue": null, "description": "Earliest date available for selection", "name": "minDate", "required": false, "type": { "name": "Date | undefined" } }, "maxDate": { "defaultValue": null, "description": "Latest date available for selection", "name": "maxDate", "required": false, "type": { "name": "Date | undefined" } }, "hideOnSelect": { "defaultValue": { value: "true" }, "description": "Whether calendar should be closed after date selection. True by default", "name": "hideOnSelect", "required": false, "type": { "name": "boolean | undefined" } }, "displayDateFormat": { "defaultValue": { value: "MMM d, yyyy" }, "description": "Date format that user will see in the input", "name": "displayDateFormat", "required": false, "type": { "name": "string | undefined" } }, "disableDays": { "defaultValue": null, "description": "Days to disable. e.g. Disable Sundays and Saturdays {dayOfWeek: [0, 6]}", "name": "disableDays", "required": false, "type": { "name": "{ dayOfWeek: number[]; } | undefined" } }, "disabledIntervals": { "defaultValue": null, "description": "Date range where selection is not allowed", "name": "disabledIntervals", "required": false, "type": { "name": "CalendarDateRange[] | undefined" } }, "editDateFormat": { "defaultValue": { value: "MM-dd-yyyy" }, "description": "Date format that user will see during manual input", "name": "editDateFormat", "required": false, "type": { "name": "string | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside `DatePicker`", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "autoComplete": { "defaultValue": { value: "off" }, "description": "Specify a value if want to enable browser autofill", "name": "autoComplete", "required": false, "type": { "name": "string | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate `DatePicker` status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "renderDay": { "defaultValue": null, "description": "Function to override default markup to show Date", "name": "renderDay", "required": false, "type": { "name": "RenderDay | undefined" } }, "weekStartsOn": { "defaultValue": null, "description": "Index of the first day of the week (0 - Sunday). Default is 1 - Monday", "name": "weekStartsOn", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "0" }, { "value": "1" }, { "value": "2" }, { "value": "3" }, { "value": "4" }, { "value": "5" }, { "value": "6" }] } }, "timezone": { "defaultValue": null, "description": "IANA timezone to display and edit date(s)", "name": "timezone", "required": false, "type": { "name": "string | undefined" } }, "parseInputValue": { "defaultValue": null, "description": "Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates", "name": "parseInputValue", "required": false, "type": { "name": "DatePickerInputCustomValueParser | undefined" } }, "popperProps": { "defaultValue": null, "description": "Additional data-* attrs for the inner Popper", "name": "popperProps", "required": false, "type": { "name": "{ [key: `data-${string}`]: unknown; } | undefined" } }, "footer": { "defaultValue": null, "description": "Adds a customized footer at the bottom of the calendar", "name": "footer", "required": false, "type": { "name": "ReactNode" } }, "footerBackgroundColor": { "defaultValue": null, "description": "Change the footer background color", "name": "footerBackgroundColor", "required": false, "type": { "name": "string | undefined" } }, "indicatedIntervals": { "defaultValue": null, "description": "Shows orange dot indicator in days between a date range", "name": "indicatedIntervals", "required": false, "type": { "name": "CalendarDateRange[] | undefined" } }, "numberOfMonths": { "defaultValue": { value: "1" }, "description": "Display more than one month at the same time", "name": "numberOfMonths", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "1" }, { "value": "2" }] } }, "dropdownNavigation": { "defaultValue": null, "description": "Display dropdown navigation between months and years (requires minDate and maxDate to be set)", "name": "dropdownNavigation", "required": false, "type": { "name": "boolean | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "The id of the `input` element.", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder for value", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "disabled": { "defaultValue": null, "description": "If true, the `Input` will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "name": { "defaultValue": null, "description": "Name attribute of the input element", "name": "name", "required": false, "type": { "name": "string | undefined" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "limit": { "defaultValue": null, "description": "Adds a counter of characters (ignored in combination with `counter: entered`)", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "Whether a multiline can be manually resized by the user, requires multiline prop to be set to true", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "rowsMax": { "defaultValue": null, "description": "Maximum number of rows to display when multiline option is set to true.", "name": "rowsMax", "required": false, "type": { "name": "string | number | undefined" } }, "startAdornment": { "defaultValue": null, "description": "Adds element at the start of the input - can't be used in combination with `iconPosition: start`", "name": "startAdornment", "required": false, "type": { "name": "ReactNode" } }, "endAdornment": { "defaultValue": null, "description": "Adds element at the end of the input - can't be used in combination with `iconPosition: end`", "name": "endAdornment", "required": false, "type": { "name": "ReactNode" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "counter": { "defaultValue": null, "description": "Type of the counter of characters", "name": "counter", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"entered\"" }, { "value": "\"remaining\"" }] } }, "outlineRef": { "defaultValue": null, "description": "Ref of the input outline", "name": "outlineRef", "required": false, "type": { "name": "Ref<HTMLElement> | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -28212,7 +28237,7 @@ try {
     // @ts-ignore
     MonthSelect.displayName = "MonthSelect";
     // @ts-ignore
-    MonthSelect.__docgenInfo = { "description": "", "displayName": "MonthSelect", "props": { "from": { "defaultValue": null, "description": "a number of month select starts from. e.g. 5 for May", "name": "from", "required": false, "type": { "name": "number | undefined" } }, "to": { "defaultValue": null, "description": "a number of month select ends at. e.g. 11 for November", "name": "to", "required": false, "type": { "name": "number | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "Component ID", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder option which is selected by default", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `Select` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<{ name?: string | undefined; value: M extends true ? number[] : number; }>) => void) | undefined" } }, "status": { "defaultValue": null, "description": "Indicate whether `Select` is in `error`, `warning` or `default` state", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "If true, the 'Select' will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "value": { "defaultValue": null, "description": "Selected value", "name": "value", "required": false, "type": { "name": "number | number[] | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "loading": { "defaultValue": null, "description": "Shows the loading icon when options are loading", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } }, "multiple": { "defaultValue": null, "description": "Allow selecting multiple values", "name": "multiple", "required": false, "type": { "name": "boolean | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "disablePortal": { "defaultValue": null, "description": "Whether to render select options in portal. Should be disabled in Modals", "name": "disablePortal", "required": false, "type": { "name": "boolean | undefined" } }, "menuWidth": { "defaultValue": null, "description": "Width of the menu", "name": "menuWidth", "required": false, "type": { "name": "string | undefined" } }, "searchPlaceholder": { "defaultValue": null, "description": "Placeholder for search input", "name": "searchPlaceholder", "required": false, "type": { "name": "string | undefined" } }, "noOptionsText": { "defaultValue": null, "description": "Label to show when no options were found", "name": "noOptionsText", "required": false, "type": { "name": "string | undefined" } }, "renderOption": { "defaultValue": null, "description": "Callback responsible for rendering the option given the option and its index in the list of options", "name": "renderOption", "required": false, "type": { "name": "((option: Option<number>, index?: number | undefined) => ReactNode) | undefined" } }, "getDisplayValue": { "defaultValue": null, "description": "A function that takes a display value from the option item", "name": "getDisplayValue", "required": false, "type": { "name": "((option: Option<string | number> | null) => string) | undefined" } }, "native": { "defaultValue": null, "description": "Whether to render native browser select or not", "name": "native", "required": false, "type": { "name": "boolean | undefined" } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon which clears selected value", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "enableResetSearch": { "defaultValue": null, "description": "Whether to render reset icon which clears search input value", "name": "enableResetSearch", "required": false, "type": { "name": "boolean | undefined" } }, "searchThreshold": { "defaultValue": { value: "10" }, "description": "Defines the minimum options number to show the search", "name": "searchThreshold", "required": false, "type": { "name": "number | undefined" } }, "limit": { "defaultValue": { value: "200" }, "description": "Limits number of options to display on the list", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "enableAutofill": { "defaultValue": null, "description": "Specifies whether the autofill enabled or not, disabled by default", "name": "enableAutofill", "required": false, "type": { "name": "boolean | undefined" } }, "filterOptions": { "defaultValue": null, "description": "A function that is invoked during search. It takes an array of options and a search value and returns filtered options", "name": "filterOptions", "required": false, "type": { "name": "((options: Option<string | number>[], searchValue: string, getDisplayValue?: ((option: Option<string | number> | null) => string) | undefined) => Option<string | number>[]) | undefined" } } } };
+    MonthSelect.__docgenInfo = { "description": "", "displayName": "MonthSelect", "props": { "from": { "defaultValue": null, "description": "a number of month select starts from. e.g. 5 for May", "name": "from", "required": false, "type": { "name": "number | undefined" } }, "to": { "defaultValue": null, "description": "a number of month select ends at. e.g. 11 for November", "name": "to", "required": false, "type": { "name": "number | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "Component ID", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder option which is selected by default", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `Select` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<{ name?: string | undefined; value: M extends true ? number[] : number; }>) => void) | undefined" } }, "status": { "defaultValue": null, "description": "Indicate whether `Select` is in `error`, `warning` or `default` state", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "If true, the 'Select' will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "Selected value", "name": "value", "required": false, "type": { "name": "number | number[] | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "loading": { "defaultValue": null, "description": "Shows the loading icon when options are loading", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } }, "multiple": { "defaultValue": null, "description": "Allow selecting multiple values", "name": "multiple", "required": false, "type": { "name": "boolean | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "disablePortal": { "defaultValue": null, "description": "Whether to render select options in portal. Should be disabled in Modals", "name": "disablePortal", "required": false, "type": { "name": "boolean | undefined" } }, "menuWidth": { "defaultValue": null, "description": "Width of the menu", "name": "menuWidth", "required": false, "type": { "name": "string | undefined" } }, "searchPlaceholder": { "defaultValue": null, "description": "Placeholder for search input", "name": "searchPlaceholder", "required": false, "type": { "name": "string | undefined" } }, "noOptionsText": { "defaultValue": null, "description": "Label to show when no options were found", "name": "noOptionsText", "required": false, "type": { "name": "string | undefined" } }, "renderOption": { "defaultValue": null, "description": "Callback responsible for rendering the option given the option and its index in the list of options", "name": "renderOption", "required": false, "type": { "name": "((option: Option<number>, index?: number | undefined) => ReactNode) | undefined" } }, "getDisplayValue": { "defaultValue": null, "description": "A function that takes a display value from the option item", "name": "getDisplayValue", "required": false, "type": { "name": "((option: Option<string | number> | null) => string) | undefined" } }, "native": { "defaultValue": null, "description": "Whether to render native browser select or not", "name": "native", "required": false, "type": { "name": "boolean | undefined" } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon which clears selected value", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "enableResetSearch": { "defaultValue": null, "description": "Whether to render reset icon which clears search input value", "name": "enableResetSearch", "required": false, "type": { "name": "boolean | undefined" } }, "searchThreshold": { "defaultValue": { value: "10" }, "description": "Defines the minimum options number to show the search", "name": "searchThreshold", "required": false, "type": { "name": "number | undefined" } }, "limit": { "defaultValue": { value: "200" }, "description": "Limits number of options to display on the list", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "enableAutofill": { "defaultValue": null, "description": "Specifies whether the autofill enabled or not, disabled by default", "name": "enableAutofill", "required": false, "type": { "name": "boolean | undefined" } }, "filterOptions": { "defaultValue": null, "description": "A function that is invoked during search. It takes an array of options and a search value and returns filtered options", "name": "filterOptions", "required": false, "type": { "name": "((options: Option<string | number>[], searchValue: string, getDisplayValue?: ((option: Option<string | number> | null) => string) | undefined) => Option<string | number>[]) | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -28302,7 +28327,7 @@ try {
     // @ts-ignore
     YearSelect.displayName = "YearSelect";
     // @ts-ignore
-    YearSelect.__docgenInfo = { "description": "", "displayName": "YearSelect", "props": { "from": { "defaultValue": null, "description": "a year select starts from. e.g. 2017", "name": "from", "required": true, "type": { "name": "number" } }, "to": { "defaultValue": null, "description": "a year select ends at. e.g. 2019", "name": "to", "required": true, "type": { "name": "number" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "Component ID", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder option which is selected by default", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `Select` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<{ name?: string | undefined; value: M extends true ? number[] : number; }>) => void) | undefined" } }, "status": { "defaultValue": null, "description": "Indicate whether `Select` is in `error`, `warning` or `default` state", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "If true, the 'Select' will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "value": { "defaultValue": null, "description": "Selected value", "name": "value", "required": false, "type": { "name": "number | number[] | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "loading": { "defaultValue": null, "description": "Shows the loading icon when options are loading", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } }, "multiple": { "defaultValue": null, "description": "Allow selecting multiple values", "name": "multiple", "required": false, "type": { "name": "boolean | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "disablePortal": { "defaultValue": null, "description": "Whether to render select options in portal. Should be disabled in Modals", "name": "disablePortal", "required": false, "type": { "name": "boolean | undefined" } }, "menuWidth": { "defaultValue": null, "description": "Width of the menu", "name": "menuWidth", "required": false, "type": { "name": "string | undefined" } }, "searchPlaceholder": { "defaultValue": null, "description": "Placeholder for search input", "name": "searchPlaceholder", "required": false, "type": { "name": "string | undefined" } }, "noOptionsText": { "defaultValue": null, "description": "Label to show when no options were found", "name": "noOptionsText", "required": false, "type": { "name": "string | undefined" } }, "renderOption": { "defaultValue": null, "description": "Callback responsible for rendering the option given the option and its index in the list of options", "name": "renderOption", "required": false, "type": { "name": "((option: Option<number>, index?: number | undefined) => ReactNode) | undefined" } }, "getDisplayValue": { "defaultValue": null, "description": "A function that takes a display value from the option item", "name": "getDisplayValue", "required": false, "type": { "name": "((option: Option<string | number> | null) => string) | undefined" } }, "native": { "defaultValue": null, "description": "Whether to render native browser select or not", "name": "native", "required": false, "type": { "name": "boolean | undefined" } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon which clears selected value", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "enableResetSearch": { "defaultValue": null, "description": "Whether to render reset icon which clears search input value", "name": "enableResetSearch", "required": false, "type": { "name": "boolean | undefined" } }, "searchThreshold": { "defaultValue": { value: "10" }, "description": "Defines the minimum options number to show the search", "name": "searchThreshold", "required": false, "type": { "name": "number | undefined" } }, "limit": { "defaultValue": { value: "200" }, "description": "Limits number of options to display on the list", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "enableAutofill": { "defaultValue": null, "description": "Specifies whether the autofill enabled or not, disabled by default", "name": "enableAutofill", "required": false, "type": { "name": "boolean | undefined" } }, "filterOptions": { "defaultValue": null, "description": "A function that is invoked during search. It takes an array of options and a search value and returns filtered options", "name": "filterOptions", "required": false, "type": { "name": "((options: Option<string | number>[], searchValue: string, getDisplayValue?: ((option: Option<string | number> | null) => string) | undefined) => Option<string | number>[]) | undefined" } } } };
+    YearSelect.__docgenInfo = { "description": "", "displayName": "YearSelect", "props": { "from": { "defaultValue": null, "description": "a year select starts from. e.g. 2017", "name": "from", "required": true, "type": { "name": "number" } }, "to": { "defaultValue": null, "description": "a year select ends at. e.g. 2019", "name": "to", "required": true, "type": { "name": "number" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "id": { "defaultValue": null, "description": "Component ID", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder option which is selected by default", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `Select` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<{ name?: string | undefined; value: M extends true ? number[] : number; }>) => void) | undefined" } }, "status": { "defaultValue": null, "description": "Indicate whether `Select` is in `error`, `warning` or `default` state", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "If true, the 'Select' will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "Selected value", "name": "value", "required": false, "type": { "name": "number | number[] | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "loading": { "defaultValue": null, "description": "Shows the loading icon when options are loading", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } }, "multiple": { "defaultValue": null, "description": "Allow selecting multiple values", "name": "multiple", "required": false, "type": { "name": "boolean | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "disablePortal": { "defaultValue": null, "description": "Whether to render select options in portal. Should be disabled in Modals", "name": "disablePortal", "required": false, "type": { "name": "boolean | undefined" } }, "menuWidth": { "defaultValue": null, "description": "Width of the menu", "name": "menuWidth", "required": false, "type": { "name": "string | undefined" } }, "searchPlaceholder": { "defaultValue": null, "description": "Placeholder for search input", "name": "searchPlaceholder", "required": false, "type": { "name": "string | undefined" } }, "noOptionsText": { "defaultValue": null, "description": "Label to show when no options were found", "name": "noOptionsText", "required": false, "type": { "name": "string | undefined" } }, "renderOption": { "defaultValue": null, "description": "Callback responsible for rendering the option given the option and its index in the list of options", "name": "renderOption", "required": false, "type": { "name": "((option: Option<number>, index?: number | undefined) => ReactNode) | undefined" } }, "getDisplayValue": { "defaultValue": null, "description": "A function that takes a display value from the option item", "name": "getDisplayValue", "required": false, "type": { "name": "((option: Option<string | number> | null) => string) | undefined" } }, "native": { "defaultValue": null, "description": "Whether to render native browser select or not", "name": "native", "required": false, "type": { "name": "boolean | undefined" } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon which clears selected value", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "enableResetSearch": { "defaultValue": null, "description": "Whether to render reset icon which clears search input value", "name": "enableResetSearch", "required": false, "type": { "name": "boolean | undefined" } }, "searchThreshold": { "defaultValue": { value: "10" }, "description": "Defines the minimum options number to show the search", "name": "searchThreshold", "required": false, "type": { "name": "number | undefined" } }, "limit": { "defaultValue": { value: "200" }, "description": "Limits number of options to display on the list", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "enableAutofill": { "defaultValue": null, "description": "Specifies whether the autofill enabled or not, disabled by default", "name": "enableAutofill", "required": false, "type": { "name": "boolean | undefined" } }, "filterOptions": { "defaultValue": null, "description": "A function that is invoked during search. It takes an array of options and a search value and returns filtered options", "name": "filterOptions", "required": false, "type": { "name": "((options: Option<string | number>[], searchValue: string, getDisplayValue?: ((option: Option<string | number> | null) => string) | undefined) => Option<string | number>[]) | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -30745,19 +30770,19 @@ var Fade = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function F
     onEnter = _ref.onEnter,
     onExited = _ref.onExited;
   var nodeRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var status = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)({
-    in: inProp,
-    // Historical behavior: enter callbacks fire on mount-open, with no
-    // visible fade (the status flips pre-paint)
-    appear: true,
-    timeout: timeout,
-    nodeRef: nodeRef,
-    onEnter: onEnter,
-    onExited: onExited
-  });
+  var _useTransitionStatus = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)({
+      in: inProp,
+      // Historical behavior: enter callbacks fire on mount-open, with no
+      // visible fade (the status flips pre-paint)
+      appear: true,
+      timeout: timeout,
+      nodeRef: nodeRef,
+      onEnter: onEnter,
+      onExited: onExited
+    }),
+    status = _useTransitionStatus.status,
+    duration = _useTransitionStatus.duration;
   var combinedRef = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)([ref, nodeRef, (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)(children)]);
-  var timeouts = (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* .getTransitionTimeouts */ .g)(timeout);
-  var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(children, {
     className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__/* .twMerge */ .QP)('transition-opacity', children.props.className,
     // behavior classes, not defaults — must stay after the child's className
@@ -30851,19 +30876,19 @@ var Fade = /*#__PURE__*/react.forwardRef(function Fade(_ref, ref) {
     onEnter = _ref.onEnter,
     onExited = _ref.onExited;
   var nodeRef = (0,react.useRef)(null);
-  var status = (0,use_transition_status/* default */.A)({
-    in: inProp,
-    // Historical behavior: enter callbacks fire on mount-open, with no
-    // visible fade (the status flips pre-paint)
-    appear: true,
-    timeout: timeout,
-    nodeRef: nodeRef,
-    onEnter: onEnter,
-    onExited: onExited
-  });
+  var _useTransitionStatus = (0,use_transition_status/* default */.A)({
+      in: inProp,
+      // Historical behavior: enter callbacks fire on mount-open, with no
+      // visible fade (the status flips pre-paint)
+      appear: true,
+      timeout: timeout,
+      nodeRef: nodeRef,
+      onEnter: onEnter,
+      onExited: onExited
+    }),
+    status = _useTransitionStatus.status,
+    duration = _useTransitionStatus.duration;
   var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef, (0,get_element_ref/* default */.A)(children)]);
-  var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
-  var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react.cloneElement(children, {
     className: (0,twMerge/* twMerge */.QP)('transition-opacity', children.props.className,
     // behavior classes, not defaults — must stay after the child's className
@@ -30883,7 +30908,7 @@ try {
     // @ts-ignore
     Fade.displayName = "Fade";
     // @ts-ignore
-    Fade.__docgenInfo = { "description": "", "displayName": "Fade", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Fade.__docgenInfo = { "description": "", "displayName": "Fade", "props": { "children": { "defaultValue": null, "description": "Element that accepts ref", "name": "children", "required": true, "type": { "name": "TransitionChild" } }, "in": { "defaultValue": null, "description": "Show the component; toggling runs the enter or exit transition", "name": "in", "required": true, "type": { "name": "boolean" } }, "onEnter": { "defaultValue": null, "description": "Callback fired when the enter transition starts", "name": "onEnter", "required": false, "type": { "name": "((node: HTMLElement, isAppearing: boolean) => void) | undefined" } }, "onExited": { "defaultValue": null, "description": "Callback fired when the exit transition settles", "name": "onExited", "required": false, "type": { "name": "((node: HTMLElement) => void) | undefined" } }, "timeout": { "defaultValue": { value: "300" }, "description": "The duration for the transition, in milliseconds; one value, or one per phase", "name": "timeout", "required": false, "type": { "name": "number | { enter?: number | undefined; exit?: number | undefined; appear?: number | undefined; } | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -75903,7 +75928,7 @@ try {
     // @ts-ignore
     NumberInput.displayName = "NumberInput";
     // @ts-ignore
-    NumberInput.__docgenInfo = { "description": "", "displayName": "NumberInput", "props": { "value": { "defaultValue": { value: "0" }, "description": "Value of the `input` element.", "name": "value", "required": false, "type": { "name": "string | number | undefined" } }, "min": { "defaultValue": { value: "-Infinity" }, "description": "Minimum value for the `input` element", "name": "min", "required": false, "type": { "name": "string | number | undefined" } }, "max": { "defaultValue": null, "description": "Maximum value for the `input` element", "name": "max", "required": false, "type": { "name": "string | number | undefined" } }, "step": { "defaultValue": { value: "1" }, "description": "Next value of the `input` element will be calculated based on step", "name": "step", "required": false, "type": { "name": "string | number | undefined" } }, "enableChangeOnMouseWheel": { "defaultValue": null, "description": "Enable value change on mouse wheel", "name": "enableChangeOnMouseWheel", "required": false, "type": { "name": "boolean | undefined" } }, "hideControls": { "defaultValue": { value: "false" }, "description": "Should controls be hidden or not", "name": "hideControls", "required": false, "type": { "name": "boolean | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside NumberInput", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "disabled": { "defaultValue": null, "description": "Indicates whether component is in disabled state", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "onChange": { "defaultValue": { value: "() => {}" }, "description": "Callback invoked when `NumberInput` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate input status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "If true, `TextArea` would be resizable vertical", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "inputRef": { "defaultValue": null, "description": "Ref of the input element", "name": "inputRef", "required": false, "type": { "name": "Ref<HTMLInputElement> | undefined" } } } };
+    NumberInput.__docgenInfo = { "description": "", "displayName": "NumberInput", "props": { "value": { "defaultValue": { value: "0" }, "description": "Value of the `input` element.", "name": "value", "required": false, "type": { "name": "string | number | undefined" } }, "min": { "defaultValue": { value: "-Infinity" }, "description": "Minimum value for the `input` element", "name": "min", "required": false, "type": { "name": "string | number | undefined" } }, "max": { "defaultValue": null, "description": "Maximum value for the `input` element", "name": "max", "required": false, "type": { "name": "string | number | undefined" } }, "step": { "defaultValue": { value: "1" }, "description": "Next value of the `input` element will be calculated based on step", "name": "step", "required": false, "type": { "name": "string | number | undefined" } }, "enableChangeOnMouseWheel": { "defaultValue": null, "description": "Enable value change on mouse wheel", "name": "enableChangeOnMouseWheel", "required": false, "type": { "name": "boolean | undefined" } }, "hideControls": { "defaultValue": { value: "false" }, "description": "Should controls be hidden or not", "name": "hideControls", "required": false, "type": { "name": "boolean | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside NumberInput", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "disabled": { "defaultValue": null, "description": "Indicates whether component is in disabled state", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "onChange": { "defaultValue": { value: "() => {}" }, "description": "Callback invoked when `NumberInput` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate input status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "If true, `TextArea` would be resizable vertical", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "inputRef": { "defaultValue": null, "description": "Ref of the input element", "name": "inputRef", "required": false, "type": { "name": "Ref<HTMLInputElement> | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -78386,8 +78411,7 @@ var PageTopBar = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_typography__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .A, {
     invert: isDark
   }, title))));
-  // The width overrides come last so `twMerge` resolves them over the default
-  // `max-w`, in ascending precedence: default -> wide -> full.
+  // precedence: default -> wide -> full
   var innerClassName = (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_9__/* .twMerge */ .QP)('box-border flex items-center justify-between mx-auto my-0 h-[var(--header-height,3.5rem)]', 'max-w-[var(--content-width,75em)] py-0 px-[var(--content-padding-horizontal,1em)] md:px-[var(--content-padding-horizontal,2em)]', width === 'wide' && 'max-w-[var(--content-width-wide,90em)]', (fullWidth || width === 'full') && 'max-w-full');
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(PageTopBarContext.Provider, {
     value: {
@@ -80033,7 +80057,7 @@ try {
     // @ts-ignore
     PageAutocomplete.displayName = "PageAutocomplete";
     // @ts-ignore
-    PageAutocomplete.__docgenInfo = { "description": "", "displayName": "PageAutocomplete", "props": { "variant": { "defaultValue": { value: "dark" }, "description": "The variant to use", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"light\"" }, { "value": "\"dark\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder for value", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onFocus": { "defaultValue": null, "description": "Focus event handler", "name": "onFocus", "required": false, "type": { "name": "FocusEventHandler<HTMLInputElement> | undefined" } }, "onBlur": { "defaultValue": null, "description": "Blur event handler", "name": "onBlur", "required": false, "type": { "name": "FocusEventHandler<HTMLInputElement> | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `input` element value is changed", "name": "onChange", "required": false, "type": { "name": "((value: string, options: ChangedOptions) => void) | undefined" } }, "onKeyDown": { "defaultValue": null, "description": "Callback invoked when key is pressed", "name": "onKeyDown", "required": false, "type": { "name": "((event: KeyboardEvent<HTMLInputElement>, inputValue: string) => void) | undefined" } }, "onSelect": { "defaultValue": null, "description": "Callback invoked when selection changes", "name": "onSelect", "required": false, "type": { "name": "((item: Item, event: MouseEvent<Element, MouseEvent> | KeyboardEvent<Element>) => void) | undefined" } }, "status": { "defaultValue": null, "description": "Indicate `Autocomplete` status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "Whether a component is disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "value": { "defaultValue": null, "description": "The value of the selected option, required for a controlled component.", "name": "value", "required": true, "type": { "name": "string" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "loading": { "defaultValue": null, "description": "Shows the loading icon when options are loading", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } }, "options": { "defaultValue": null, "description": "List of options", "name": "options", "required": false, "type": { "name": "Item[] | null | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "menuWidth": { "defaultValue": null, "description": "Width of the menu", "name": "menuWidth", "required": false, "type": { "name": "string | undefined" } }, "noOptionsText": { "defaultValue": null, "description": "Label to show when no options were found (pass \"null\" to hide label completely)", "name": "noOptionsText", "required": false, "type": { "name": "string | null | undefined" } }, "renderOption": { "defaultValue": null, "description": "Callback responsible for rendering the option given the option and its index in the list of options", "name": "renderOption", "required": false, "type": { "name": "((option: Item, index: number) => ReactNode) | undefined" } }, "getDisplayValue": { "defaultValue": null, "description": "A function that takes a display value from the option item", "name": "getDisplayValue", "required": false, "type": { "name": "((item: Item | null) => string) | undefined" } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "popperContainer": { "defaultValue": null, "description": "DOM element that wraps the Popper", "name": "popperContainer", "required": false, "type": { "name": "HTMLElement | undefined" } }, "enableAutofill": { "defaultValue": null, "description": "Specifies whether the autofill enabled or not, disabled by default", "name": "enableAutofill", "required": false, "type": { "name": "boolean | undefined" } }, "inputComponent": { "defaultValue": null, "description": "Custom input component", "name": "inputComponent", "required": false, "type": { "name": "ComponentType<InputProps> | undefined" } }, "startAdornment": { "defaultValue": null, "description": "ReactNode for labels that will be used as start InputAdornment -", "name": "startAdornment", "required": false, "type": { "name": "ReactNode" } }, "endAdornment": { "defaultValue": null, "description": "ReactNode for labels that will be used as end InputAdornment -", "name": "endAdornment", "required": false, "type": { "name": "ReactNode" } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "otherOptionText": { "defaultValue": null, "description": "Text prefix for other option", "name": "otherOptionText", "required": false, "type": { "name": "string | undefined" } }, "renderOtherOption": { "defaultValue": null, "description": "Callback responsible for rendering the other option given the input's value", "name": "renderOtherOption", "required": false, "type": { "name": "((value: string) => ReactNode) | undefined" } }, "poweredByGoogle": { "defaultValue": null, "description": "Show the \"Powered By Google\" label", "name": "poweredByGoogle", "required": false, "type": { "name": "boolean | undefined" } }, "closeOnSelect": { "defaultValue": null, "description": "Whether to close popper upon selection", "name": "closeOnSelect", "required": false, "type": { "name": "boolean | undefined" } }, "onOtherOptionSelect": { "defaultValue": null, "description": "Callback invoked when other option selected", "name": "onOtherOptionSelect", "required": false, "type": { "name": "((value: string, event: MouseEvent<Element, MouseEvent> | KeyboardEvent<Element>) => void) | undefined" } }, "showOtherOption": { "defaultValue": null, "description": "Allow to show the other option in the list of options", "name": "showOtherOption", "required": false, "type": { "name": "boolean | undefined" } }, "getKey": { "defaultValue": null, "description": "Provide unique key for each option", "name": "getKey", "required": false, "type": { "name": "((item: Item) => string) | undefined" } }, "popperOptions": { "defaultValue": null, "description": "Options provided to the popper.js instance", "name": "popperOptions", "required": false, "type": { "name": "PopperOptions | undefined" } } } };
+    PageAutocomplete.__docgenInfo = { "description": "", "displayName": "PageAutocomplete", "props": { "variant": { "defaultValue": { value: "dark" }, "description": "The variant to use", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"light\"" }, { "value": "\"dark\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder for value", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onFocus": { "defaultValue": null, "description": "Focus event handler", "name": "onFocus", "required": false, "type": { "name": "FocusEventHandler<HTMLInputElement> | undefined" } }, "onBlur": { "defaultValue": null, "description": "Blur event handler", "name": "onBlur", "required": false, "type": { "name": "FocusEventHandler<HTMLInputElement> | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `input` element value is changed", "name": "onChange", "required": false, "type": { "name": "((value: string, options: ChangedOptions) => void) | undefined" } }, "onKeyDown": { "defaultValue": null, "description": "Callback invoked when key is pressed", "name": "onKeyDown", "required": false, "type": { "name": "((event: KeyboardEvent<HTMLInputElement>, inputValue: string) => void) | undefined" } }, "onSelect": { "defaultValue": null, "description": "Callback invoked when selection changes", "name": "onSelect", "required": false, "type": { "name": "((item: Item, event: MouseEvent<Element, MouseEvent> | KeyboardEvent<Element>) => void) | undefined" } }, "status": { "defaultValue": null, "description": "Indicate `Autocomplete` status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "Whether a component is disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "The value of the selected option, required for a controlled component.", "name": "value", "required": true, "type": { "name": "string" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "loading": { "defaultValue": null, "description": "Shows the loading icon when options are loading", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } }, "options": { "defaultValue": null, "description": "List of options", "name": "options", "required": false, "type": { "name": "Item[] | null | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "menuWidth": { "defaultValue": null, "description": "Width of the menu", "name": "menuWidth", "required": false, "type": { "name": "string | undefined" } }, "noOptionsText": { "defaultValue": null, "description": "Label to show when no options were found (pass \"null\" to hide label completely)", "name": "noOptionsText", "required": false, "type": { "name": "string | null | undefined" } }, "renderOption": { "defaultValue": null, "description": "Callback responsible for rendering the option given the option and its index in the list of options", "name": "renderOption", "required": false, "type": { "name": "((option: Item, index: number) => ReactNode) | undefined" } }, "getDisplayValue": { "defaultValue": null, "description": "A function that takes a display value from the option item", "name": "getDisplayValue", "required": false, "type": { "name": "((item: Item | null) => string) | undefined" } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "popperContainer": { "defaultValue": null, "description": "DOM element that wraps the Popper", "name": "popperContainer", "required": false, "type": { "name": "HTMLElement | undefined" } }, "enableAutofill": { "defaultValue": null, "description": "Specifies whether the autofill enabled or not, disabled by default", "name": "enableAutofill", "required": false, "type": { "name": "boolean | undefined" } }, "inputComponent": { "defaultValue": null, "description": "Custom input component", "name": "inputComponent", "required": false, "type": { "name": "ComponentType<InputProps> | undefined" } }, "startAdornment": { "defaultValue": null, "description": "ReactNode for labels that will be used as start InputAdornment -", "name": "startAdornment", "required": false, "type": { "name": "ReactNode" } }, "endAdornment": { "defaultValue": null, "description": "ReactNode for labels that will be used as end InputAdornment -", "name": "endAdornment", "required": false, "type": { "name": "ReactNode" } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "otherOptionText": { "defaultValue": null, "description": "Text prefix for other option", "name": "otherOptionText", "required": false, "type": { "name": "string | undefined" } }, "renderOtherOption": { "defaultValue": null, "description": "Callback responsible for rendering the other option given the input's value", "name": "renderOtherOption", "required": false, "type": { "name": "((value: string) => ReactNode) | undefined" } }, "poweredByGoogle": { "defaultValue": null, "description": "Show the \"Powered By Google\" label", "name": "poweredByGoogle", "required": false, "type": { "name": "boolean | undefined" } }, "closeOnSelect": { "defaultValue": null, "description": "Whether to close popper upon selection", "name": "closeOnSelect", "required": false, "type": { "name": "boolean | undefined" } }, "onOtherOptionSelect": { "defaultValue": null, "description": "Callback invoked when other option selected", "name": "onOtherOptionSelect", "required": false, "type": { "name": "((value: string, event: MouseEvent<Element, MouseEvent> | KeyboardEvent<Element>) => void) | undefined" } }, "showOtherOption": { "defaultValue": null, "description": "Allow to show the other option in the list of options", "name": "showOtherOption", "required": false, "type": { "name": "boolean | undefined" } }, "getKey": { "defaultValue": null, "description": "Provide unique key for each option", "name": "getKey", "required": false, "type": { "name": "((item: Item) => string) | undefined" } }, "popperOptions": { "defaultValue": null, "description": "Options provided to the popper.js instance", "name": "popperOptions", "required": false, "type": { "name": "PopperOptions | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -80783,7 +80807,7 @@ var chapter = PicassoBook/* default */.A.connectToPage(function (page) {
       <Page.Helmet>
         <title>My custom title</title>
       </Page.Helmet>
-    `).addTextSection('ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.').addTextSection('Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).').addTextSection('If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' + 'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).');
+    `).addTextSection('ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.').addTextSection('Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).').addTextSection('Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' + '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' + '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. React 17 and 18 are unchanged.').addTextSection('If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' + 'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).');
 });
 /* harmony default export */ const story = ({
   chapter: chapter,
@@ -81347,8 +81371,7 @@ var PageTopBar = /*#__PURE__*/(0,react.forwardRef)(function PageTopBar(_ref, ref
     })]
   });
 
-  // The width overrides come last so `twMerge` resolves them over the default
-  // `max-w`, in ascending precedence: default -> wide -> full.
+  // precedence: default -> wide -> full
   var innerClassName = (0,twMerge/* twMerge */.QP)('box-border flex items-center justify-between mx-auto my-0 h-[var(--header-height,3.5rem)]', 'max-w-[var(--content-width,75em)] py-0 px-[var(--content-padding-horizontal,1em)] md:px-[var(--content-padding-horizontal,2em)]', width === 'wide' && 'max-w-[var(--content-width-wide,90em)]', (fullWidth || width === 'full') && 'max-w-full');
   return /*#__PURE__*/(0,jsx_runtime.jsx)(PageTopBarContext.Provider, {
     value: {
@@ -83786,7 +83809,7 @@ try {
     // @ts-ignore
     PasswordInput.displayName = "PasswordInput";
     // @ts-ignore
-    PasswordInput.__docgenInfo = { "description": "", "displayName": "PasswordInput", "props": { "value": { "defaultValue": { value: "" }, "description": "Value of the `input` element.", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "disabled": { "defaultValue": null, "description": "Indicates whether component is in disabled state", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "onChange": { "defaultValue": { value: "() => {}" }, "description": "Callback invoked when `PasswordInput` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate input status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "If true, `TextArea` would be resizable vertical", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "inputRef": { "defaultValue": null, "description": "Ref of the input element", "name": "inputRef", "required": false, "type": { "name": "Ref<HTMLInputElement> | undefined" } } } };
+    PasswordInput.__docgenInfo = { "description": "", "displayName": "PasswordInput", "props": { "value": { "defaultValue": { value: "" }, "description": "Value of the `input` element.", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "disabled": { "defaultValue": null, "description": "Indicates whether component is in disabled state", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "onChange": { "defaultValue": { value: "() => {}" }, "description": "Callback invoked when `PasswordInput` changes its state.", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement>) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate input status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "If true, `TextArea` would be resizable vertical", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "inputRef": { "defaultValue": null, "description": "Ref of the input element", "name": "inputRef", "required": false, "type": { "name": "Ref<HTMLInputElement> | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -91897,6 +91920,8 @@ var ShowMore = /*#__PURE__*/(0,react.forwardRef)(function ShowMore(props, ref) {
     return function () {
       return observer.disconnect();
     };
+    // `content` and `rows` are not read above: they are the re-measure
+    // triggers, since either changes what overflows
   }, [shownMore, content, rows]);
   var isContentVisible = rows !== 0 || shownMore;
   var formattedContent = shownMore ? content : (/*#__PURE__*/react.createElement("span", {
@@ -92098,6 +92123,8 @@ var ShowMore = /*#__PURE__*/(0,react.forwardRef)(function ShowMore(props, ref) {
     return function () {
       return observer.disconnect();
     };
+    // `content` and `rows` are not read above: they are the re-measure
+    // triggers, since either changes what overflows
   }, [shownMore, content, rows]);
   var isContentVisible = rows !== 0 || shownMore;
   var formattedContent = shownMore ? content : /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
@@ -93161,8 +93188,6 @@ __webpack_require__.d(__webpack_exports__, {
   Slide: () => (/* reexport */ Slide_Slide)
 });
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
@@ -93177,13 +93202,6 @@ var get_element_ref = __webpack_require__("./packages/base/Utils/dist-package/sr
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 ;// ./packages/base/Slide/dist-package/src/Slide/styles.js
-
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 var hiddenClassByDirection = {
   right: '-translate-x-full',
   left: 'translate-x-full',
@@ -93196,19 +93214,10 @@ var shownClassByDirection = {
   up: 'translate-y-0',
   down: 'translate-y-0'
 };
-var createStateClassNames = function (direction, _ref) {
-  var inProp = _ref.in,
-    exited = _ref.exited;
-  return [inProp ? shownClassByDirection[direction] : hiddenClassByDirection[direction]].concat(_toConsumableArray(exited ? ['invisible'] : []));
+var createTranslateClassNames = function (direction, shown) {
+  return shown ? shownClassByDirection[direction] : hiddenClassByDirection[direction];
 };
 ;// ./packages/base/Slide/dist-package/src/Slide/Slide.js
-
-function Slide_toConsumableArray(r) { return Slide_arrayWithoutHoles(r) || Slide_iterableToArray(r) || Slide_unsupportedIterableToArray(r) || Slide_nonIterableSpread(); }
-function Slide_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function Slide_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return Slide_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? Slide_arrayLikeToArray(r, a) : void 0; } }
-function Slide_iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function Slide_arrayWithoutHoles(r) { if (Array.isArray(r)) return Slide_arrayLikeToArray(r); }
-function Slide_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 
 
 
@@ -93225,29 +93234,27 @@ var Slide = /*#__PURE__*/react.forwardRef(function Slide(_ref, ref) {
     onExited = _ref.onExited,
     direction = _ref.direction;
   var nodeRef = (0,react.useRef)(null);
-  var status = (0,use_transition_status/* default */.A)({
-    in: inProp,
-    // Historical behavior: enter callbacks fire on mount-open, with no
-    // visible slide (the status flips pre-paint)
-    appear: true,
-    timeout: timeout,
-    nodeRef: nodeRef,
-    onEnter: onEnter,
-    onExited: onExited
-  });
+  var _useTransitionStatus = (0,use_transition_status/* default */.A)({
+      in: inProp,
+      // Historical behavior: enter callbacks fire on mount-open, with no
+      // visible slide (the status flips pre-paint)
+      appear: true,
+      timeout: timeout,
+      nodeRef: nodeRef,
+      onEnter: onEnter,
+      onExited: onExited
+    }),
+    status = _useTransitionStatus.status,
+    duration = _useTransitionStatus.duration;
   var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef, (0,get_element_ref/* default */.A)(children)]);
-  var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
-  var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react.cloneElement(children, {
     className: (0,twMerge/* twMerge */.QP)(
     // In Tailwind v4 this also covers the standalone `translate` property
     'transition-transform', children.props.className,
-    // State classes stay after the child's className: behavior, not
-    // overridable defaults
-    classnames_default().apply(void 0, Slide_toConsumableArray(createStateClassNames(direction, {
-      in: inProp,
-      exited: status === 'exited' && !inProp
-    })))),
+    // behavior classes, not defaults — must stay after the child's className
+    classnames_default()(createTranslateClassNames(direction, inProp), {
+      invisible: status === 'exited' && !inProp
+    })),
     style: Object.assign(Object.assign({
       transitionDuration: `${duration}ms`
     }, style), children.props.style),
@@ -93289,8 +93296,6 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 
 "use strict";
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
@@ -93305,13 +93310,6 @@ var get_element_ref = __webpack_require__("./packages/base/Utils/dist-package/sr
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 ;// ./packages/base/Slide/src/Slide/styles.ts
-
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 var hiddenClassByDirection = {
   right: '-translate-x-full',
   left: 'translate-x-full',
@@ -93324,19 +93322,10 @@ var shownClassByDirection = {
   up: 'translate-y-0',
   down: 'translate-y-0'
 };
-var createStateClassNames = function (direction, _ref) {
-  var inProp = _ref.in,
-    exited = _ref.exited;
-  return [inProp ? shownClassByDirection[direction] : hiddenClassByDirection[direction]].concat(_toConsumableArray(exited ? ['invisible'] : []));
+var createTranslateClassNames = function (direction, shown) {
+  return shown ? shownClassByDirection[direction] : hiddenClassByDirection[direction];
 };
 ;// ./packages/base/Slide/src/Slide/Slide.tsx
-
-function Slide_toConsumableArray(r) { return Slide_arrayWithoutHoles(r) || Slide_iterableToArray(r) || Slide_unsupportedIterableToArray(r) || Slide_nonIterableSpread(); }
-function Slide_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function Slide_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return Slide_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? Slide_arrayLikeToArray(r, a) : void 0; } }
-function Slide_iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function Slide_arrayWithoutHoles(r) { if (Array.isArray(r)) return Slide_arrayLikeToArray(r); }
-function Slide_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 
 
 
@@ -93353,29 +93342,27 @@ var Slide = /*#__PURE__*/react.forwardRef(function Slide(_ref, ref) {
     onExited = _ref.onExited,
     direction = _ref.direction;
   var nodeRef = (0,react.useRef)(null);
-  var status = (0,use_transition_status/* default */.A)({
-    in: inProp,
-    // Historical behavior: enter callbacks fire on mount-open, with no
-    // visible slide (the status flips pre-paint)
-    appear: true,
-    timeout: timeout,
-    nodeRef: nodeRef,
-    onEnter: onEnter,
-    onExited: onExited
-  });
+  var _useTransitionStatus = (0,use_transition_status/* default */.A)({
+      in: inProp,
+      // Historical behavior: enter callbacks fire on mount-open, with no
+      // visible slide (the status flips pre-paint)
+      appear: true,
+      timeout: timeout,
+      nodeRef: nodeRef,
+      onEnter: onEnter,
+      onExited: onExited
+    }),
+    status = _useTransitionStatus.status,
+    duration = _useTransitionStatus.duration;
   var combinedRef = (0,use_multiple_forward_refs/* default */.A)([ref, nodeRef, (0,get_element_ref/* default */.A)(children)]);
-  var timeouts = (0,use_transition_status/* getTransitionTimeouts */.g)(timeout);
-  var duration = inProp ? timeouts.enter : timeouts.exit;
   return /*#__PURE__*/react.cloneElement(children, {
     className: (0,twMerge/* twMerge */.QP)(
     // In Tailwind v4 this also covers the standalone `translate` property
     'transition-transform', children.props.className,
-    // State classes stay after the child's className: behavior, not
-    // overridable defaults
-    classnames_default().apply(void 0, Slide_toConsumableArray(createStateClassNames(direction, {
-      in: inProp,
-      exited: status === 'exited' && !inProp
-    })))),
+    // behavior classes, not defaults — must stay after the child's className
+    classnames_default()(createTranslateClassNames(direction, inProp), {
+      invisible: status === 'exited' && !inProp
+    })),
     style: Object.assign({
       transitionDuration: `${duration}ms`
     }, style, children.props.style),
@@ -93388,7 +93375,7 @@ try {
     // @ts-ignore
     Slide.displayName = "Slide";
     // @ts-ignore
-    Slide.__docgenInfo = { "description": "", "displayName": "Slide", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Slide.__docgenInfo = { "description": "", "displayName": "Slide", "props": { "children": { "defaultValue": null, "description": "Element that accepts ref", "name": "children", "required": true, "type": { "name": "TransitionChild" } }, "in": { "defaultValue": null, "description": "Show the component; toggling runs the enter or exit transition", "name": "in", "required": true, "type": { "name": "boolean" } }, "onEnter": { "defaultValue": null, "description": "Callback fired when the enter transition starts", "name": "onEnter", "required": false, "type": { "name": "((node: HTMLElement, isAppearing: boolean) => void) | undefined" } }, "direction": { "defaultValue": null, "description": "Direction in which the component will slide", "name": "direction", "required": true, "type": { "name": "enum", "value": [{ "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"up\"" }, { "value": "\"down\"" }] } }, "onExited": { "defaultValue": null, "description": "Callback fired when the exit transition settles", "name": "onExited", "required": false, "type": { "name": "((node: HTMLElement) => void) | undefined" } }, "timeout": { "defaultValue": { value: "300" }, "description": "The duration for the transition, in milliseconds; one value, or one per phase", "name": "timeout", "required": false, "type": { "name": "number | { enter?: number | undefined; exit?: number | undefined; appear?: number | undefined; } | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -99349,7 +99336,7 @@ try {
     // @ts-ignore
     TagSelectorInput.displayName = "TagSelectorInput";
     // @ts-ignore
-    TagSelectorInput.__docgenInfo = { "description": "", "displayName": "TagSelectorInput", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "defaultValue": { "defaultValue": null, "description": "The default `input` element value. Use when the component is not controlled.", "name": "defaultValue", "required": false, "type": { "name": "string | undefined" } }, "id": { "defaultValue": null, "description": "The id of the `input` element.", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder for value", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `Input` changes its state", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void) | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate `Input` status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "If true, the `Input` will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "type": { "defaultValue": null, "description": "Type attribute of the Input element. It should be a valid HTML5 input type", "name": "type", "required": false, "type": { "name": "string | undefined" } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "name": { "defaultValue": null, "description": "Name attribute of the input element", "name": "name", "required": false, "type": { "name": "string | undefined" } }, "value": { "defaultValue": null, "description": "The value of the `input` element, required for a controlled component.", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "width": { "defaultValue": { value: "auto" }, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "limit": { "defaultValue": null, "description": "Adds a counter of characters (ignored in combination with `counter: entered`)", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "multiline": { "defaultValue": { value: "false" }, "description": "Whether `Input` should be rendered as `TextArea` or not", "name": "multiline", "required": false, "type": { "name": "boolean | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "Whether a multiline can be manually resized by the user, requires multiline prop to be set to true", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "rows": { "defaultValue": null, "description": "Specify rows amount for `TextArea`", "name": "rows", "required": false, "type": { "name": "string | number | undefined" } }, "rowsMax": { "defaultValue": null, "description": "Maximum number of rows to display when multiline option is set to true.", "name": "rowsMax", "required": false, "type": { "name": "string | number | undefined" } }, "startAdornment": { "defaultValue": null, "description": "Adds element at the start of the input - can't be used in combination with `iconPosition: start`", "name": "startAdornment", "required": false, "type": { "name": "ReactNode" } }, "endAdornment": { "defaultValue": null, "description": "Adds element at the end of the input - can't be used in combination with `iconPosition: end`", "name": "endAdornment", "required": false, "type": { "name": "ReactNode" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "counter": { "defaultValue": null, "description": "Type of the counter of characters", "name": "counter", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"entered\"" }, { "value": "\"remaining\"" }] } }, "outlineRef": { "defaultValue": null, "description": "Ref of the input outline", "name": "outlineRef", "required": false, "type": { "name": "Ref<HTMLElement> | undefined" } } } };
+    TagSelectorInput.__docgenInfo = { "description": "", "displayName": "TagSelectorInput", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "defaultValue": { "defaultValue": null, "description": "The default `input` element value. Use when the component is not controlled.", "name": "defaultValue", "required": false, "type": { "name": "string | undefined" } }, "id": { "defaultValue": null, "description": "The id of the `input` element.", "name": "id", "required": false, "type": { "name": "string | undefined" } }, "placeholder": { "defaultValue": null, "description": "Placeholder for value", "name": "placeholder", "required": false, "type": { "name": "string | undefined" } }, "onChange": { "defaultValue": null, "description": "Callback invoked when `Input` changes its state", "name": "onChange", "required": false, "type": { "name": "((event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void) | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate `Input` status", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"success\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "disabled": { "defaultValue": null, "description": "If true, the `Input` will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": { value: "medium" }, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "The value of the `input` element, required for a controlled component.", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "type": { "defaultValue": null, "description": "Type attribute of the Input element. It should be a valid HTML5 input type", "name": "type", "required": false, "type": { "name": "string | undefined" } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "name": { "defaultValue": null, "description": "Name attribute of the input element", "name": "name", "required": false, "type": { "name": "string | undefined" } }, "icon": { "defaultValue": null, "description": "Specify icon which should be rendered inside Input", "name": "icon", "required": false, "type": { "name": "ReactNode" } }, "iconPosition": { "defaultValue": null, "description": "Whether icon should be placed at the beginning or end of the `Input`", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"start\"" }, { "value": "\"end\"" }] } }, "width": { "defaultValue": { value: "auto" }, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "limit": { "defaultValue": null, "description": "Adds a counter of characters (ignored in combination with `counter: entered`)", "name": "limit", "required": false, "type": { "name": "number | undefined" } }, "multiline": { "defaultValue": { value: "false" }, "description": "Whether `Input` should be rendered as `TextArea` or not", "name": "multiline", "required": false, "type": { "name": "boolean | undefined" } }, "multilineResizable": { "defaultValue": null, "description": "Whether a multiline can be manually resized by the user, requires multiline prop to be set to true", "name": "multilineResizable", "required": false, "type": { "name": "boolean | undefined" } }, "rows": { "defaultValue": null, "description": "Specify rows amount for `TextArea`", "name": "rows", "required": false, "type": { "name": "string | number | undefined" } }, "rowsMax": { "defaultValue": null, "description": "Maximum number of rows to display when multiline option is set to true.", "name": "rowsMax", "required": false, "type": { "name": "string | number | undefined" } }, "startAdornment": { "defaultValue": null, "description": "Adds element at the start of the input - can't be used in combination with `iconPosition: start`", "name": "startAdornment", "required": false, "type": { "name": "ReactNode" } }, "endAdornment": { "defaultValue": null, "description": "Adds element at the end of the input - can't be used in combination with `iconPosition: end`", "name": "endAdornment", "required": false, "type": { "name": "ReactNode" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "counter": { "defaultValue": null, "description": "Type of the counter of characters", "name": "counter", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"entered\"" }, { "value": "\"remaining\"" }] } }, "outlineRef": { "defaultValue": null, "description": "Ref of the input outline", "name": "outlineRef", "required": false, "type": { "name": "Ref<HTMLElement> | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -100617,7 +100604,7 @@ try {
     // @ts-ignore
     TimePicker.displayName = "TimePicker";
     // @ts-ignore
-    TimePicker.__docgenInfo = { "description": "", "displayName": "TimePicker", "props": { "value": { "defaultValue": null, "description": "Time value that will be selected in TimePicker", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate whether `TimePicker` is in `error`, `warning` or `default` state", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "onChange": { "defaultValue": null, "description": "Called on input change", "name": "onChange", "required": false, "type": { "name": "((value: string) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "disabled": { "defaultValue": null, "description": "If true, the `Input` will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "name": { "defaultValue": null, "description": "Name attribute of the input element", "name": "name", "required": false, "type": { "name": "string | undefined" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "outlineRef": { "defaultValue": null, "description": "Ref of the input outline", "name": "outlineRef", "required": false, "type": { "name": "Ref<HTMLElement> | undefined" } } } };
+    TimePicker.__docgenInfo = { "description": "", "displayName": "TimePicker", "props": { "value": { "defaultValue": null, "description": "Time value that will be selected in TimePicker", "name": "value", "required": false, "type": { "name": "string | undefined" } }, "status": { "defaultValue": { value: "default" }, "description": "Indicate whether `TimePicker` is in `error`, `warning` or `default` state", "name": "status", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"error\"" }, { "value": "\"warning\"" }, { "value": "\"default\"" }] } }, "onChange": { "defaultValue": null, "description": "Called on input change", "name": "onChange", "required": false, "type": { "name": "((value: string) => void) | undefined" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "disabled": { "defaultValue": null, "description": "If true, the `Input` will be disabled", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Component size", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "autoFocus": { "defaultValue": null, "description": "If true, the input element will be focused during the first mount", "name": "autoFocus", "required": false, "type": { "name": "boolean | undefined" } }, "name": { "defaultValue": null, "description": "Name attribute of the input element", "name": "name", "required": false, "type": { "name": "string | undefined" } }, "width": { "defaultValue": null, "description": "Width of the component", "name": "width", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"full\"" }, { "value": "\"shrink\"" }, { "value": "\"auto\"" }] } }, "enableReset": { "defaultValue": null, "description": "Whether to render reset icon when there is a value in the input", "name": "enableReset", "required": false, "type": { "name": "boolean | undefined" } }, "resetVisibility": { "defaultValue": null, "description": "Controls when the reset button is visible. `hover` shows it only on hover/focus when the input has a value; `always` keeps it visible regardless of hover or content. Only applies when `enableReset` is true.", "name": "resetVisibility", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"hover\"" }, { "value": "\"always\"" }] } }, "onResetClick": { "defaultValue": null, "description": "Callback invoked when reset button was clicked", "name": "onResetClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "outlineRef": { "defaultValue": null, "description": "Ref of the input outline", "name": "outlineRef", "required": false, "type": { "name": "Ref<HTMLElement> | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -106030,7 +106017,7 @@ try {
     // @ts-ignore
     TypographyOverflow.displayName = "TypographyOverflow";
     // @ts-ignore
-    TypographyOverflow.__docgenInfo = { "description": "", "displayName": "TypographyOverflow", "props": { "children": { "defaultValue": null, "description": "A typography which can possibly overflow", "name": "children", "required": false, "type": { "name": "ReactNode" } }, "lines": { "defaultValue": null, "description": "Number of lines displayed", "name": "lines", "required": false, "type": { "name": "number | undefined" } }, "tooltipContent": { "defaultValue": null, "description": "A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used.", "name": "tooltipContent", "required": false, "type": { "name": "ReactNode" } }, "tooltipDelay": { "defaultValue": null, "description": "A delay in showing the tooltip when typography overflows.", "name": "tooltipDelay", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"short\"" }, { "value": "\"long\"" }] } }, "disableTooltip": { "defaultValue": null, "description": "Do not show tooltips for shorten content.", "name": "disableTooltip", "required": false, "type": { "name": "boolean | undefined" } }, "placement": { "defaultValue": null, "description": "Where should the tooltip be positioned", "name": "placement", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"top\"" }, { "value": "\"bottom\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"bottom-end\"" }, { "value": "\"bottom-start\"" }, { "value": "\"left-end\"" }, { "value": "\"left-start\"" }, { "value": "\"right-end\"" }, { "value": "\"right-start\"" }, { "value": "\"top-end\"" }, { "value": "\"top-start\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "variant": { "defaultValue": null, "description": "Font variant for inner text", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"heading\"" }, { "value": "\"body\"" }] } }, "color": { "defaultValue": null, "description": "Text color", "name": "color", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"red\"" }, { "value": "\"green\"" }, { "value": "\"yellow\"" }, { "value": "\"grey\"" }, { "value": "\"inherit\"" }, { "value": "\"light-grey\"" }, { "value": "\"grey-main-2\"" }, { "value": "\"dark-grey\"" }, { "value": "\"black\"" }, { "value": "\"light-blue\"" }] } }, "inline": { "defaultValue": null, "description": "Controls whether the Typography is inline or not", "name": "inline", "required": false, "type": { "name": "boolean | undefined" } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Size of the inner text", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }, { "value": "\"xsmall\"" }, { "value": "\"xlarge\"" }, { "value": "\"xxsmall\"" }] } }, "as": { "defaultValue": null, "description": "Rendered HTML markup", "name": "as", "required": false, "type": { "name": "ElementType<any> | undefined" } }, "align": { "defaultValue": null, "description": "Text align of the inner text", "name": "align", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"center\"" }, { "value": "\"justify\"" }] } }, "noWrap": { "defaultValue": null, "description": "Enable ellipsis for overflowing text", "name": "noWrap", "required": false, "type": { "name": "boolean | undefined" } }, "weight": { "defaultValue": null, "description": "Font weight of the inner text", "name": "weight", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"regular\"" }, { "value": "\"semibold\"" }] } }, "invert": { "defaultValue": null, "description": "Invert color", "name": "invert", "required": false, "type": { "name": "boolean | undefined" } }, "underline": { "defaultValue": null, "description": "Controls when the Typography should have an underline", "name": "underline", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"dashed\"" }, { "value": "\"solid\"" }] } }, "lineThrough": { "defaultValue": null, "description": "Controls when the Typography should have line through", "name": "lineThrough", "required": false, "type": { "name": "boolean | undefined" } } } };
+    TypographyOverflow.__docgenInfo = { "description": "", "displayName": "TypographyOverflow", "props": { "children": { "defaultValue": null, "description": "A typography which can possibly overflow", "name": "children", "required": false, "type": { "name": "ReactNode" } }, "lines": { "defaultValue": null, "description": "Number of lines displayed", "name": "lines", "required": false, "type": { "name": "number | undefined" } }, "tooltipContent": { "defaultValue": null, "description": "A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used.", "name": "tooltipContent", "required": false, "type": { "name": "ReactNode" } }, "tooltipDelay": { "defaultValue": null, "description": "A delay in showing the tooltip when typography overflows.", "name": "tooltipDelay", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"short\"" }, { "value": "\"long\"" }] } }, "disableTooltip": { "defaultValue": null, "description": "Do not show tooltips for shorten content.", "name": "disableTooltip", "required": false, "type": { "name": "boolean | undefined" } }, "placement": { "defaultValue": null, "description": "Where should the tooltip be positioned", "name": "placement", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"top\"" }, { "value": "\"bottom\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"bottom-end\"" }, { "value": "\"bottom-start\"" }, { "value": "\"left-end\"" }, { "value": "\"left-start\"" }, { "value": "\"right-end\"" }, { "value": "\"right-start\"" }, { "value": "\"top-end\"" }, { "value": "\"top-start\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "variant": { "defaultValue": null, "description": "Font variant for inner text", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"heading\"" }, { "value": "\"body\"" }] } }, "color": { "defaultValue": null, "description": "Text color", "name": "color", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"red\"" }, { "value": "\"green\"" }, { "value": "\"yellow\"" }, { "value": "\"grey\"" }, { "value": "\"inherit\"" }, { "value": "\"light-grey\"" }, { "value": "\"grey-main-2\"" }, { "value": "\"dark-grey\"" }, { "value": "\"black\"" }, { "value": "\"light-blue\"" }] } }, "inline": { "defaultValue": null, "description": "Controls whether the Typography is inline or not", "name": "inline", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Size of the inner text", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }, { "value": "\"xsmall\"" }, { "value": "\"xlarge\"" }, { "value": "\"xxsmall\"" }] } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "as": { "defaultValue": null, "description": "Rendered HTML markup", "name": "as", "required": false, "type": { "name": "ElementType<any> | undefined" } }, "align": { "defaultValue": null, "description": "Text align of the inner text", "name": "align", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"center\"" }, { "value": "\"justify\"" }] } }, "noWrap": { "defaultValue": null, "description": "Enable ellipsis for overflowing text", "name": "noWrap", "required": false, "type": { "name": "boolean | undefined" } }, "weight": { "defaultValue": null, "description": "Font weight of the inner text", "name": "weight", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"regular\"" }, { "value": "\"semibold\"" }] } }, "invert": { "defaultValue": null, "description": "Invert color", "name": "invert", "required": false, "type": { "name": "boolean | undefined" } }, "underline": { "defaultValue": null, "description": "Controls when the Typography should have an underline", "name": "underline", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"dashed\"" }, { "value": "\"solid\"" }] } }, "lineThrough": { "defaultValue": null, "description": "Controls when the Typography should have line through", "name": "lineThrough", "required": false, "type": { "name": "boolean | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -106361,7 +106348,6 @@ __webpack_require__.d(__webpack_exports__, {
   getResponsiveClasses: () => (/* reexport */ get_spacing_classes/* getResponsiveClasses */.XM),
   getSpacingClasses: () => (/* reexport */ get_spacing_classes/* getSpacingClasses */.CQ),
   getSpacingStyles: () => (/* reexport */ get_spacing_classes/* getSpacingStyles */.a$),
-  getTransitionTimeouts: () => (/* reexport */ use_transition_status/* getTransitionTimeouts */.g),
   gradients: () => (/* reexport */ src.gradients),
   isBoolean: () => (/* reexport */ is_boolean),
   isBrowser: () => (/* reexport */ is_browser/* default */.A),
@@ -108139,7 +108125,7 @@ var useMultipleForwardRefs = function (refs) {
     } finally {
       _iterator.f();
     }
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps -- the deps are the refs themselves, spread so each one is compared; the rule cannot see through a spread
   _toConsumableArray(refs));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useMultipleForwardRefs);
@@ -108258,9 +108244,9 @@ var useSafeState = function (initState) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   g: () => (/* binding */ getTransitionTimeouts)
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* unused harmony export getTransitionTimeouts */
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/react/index.js");
@@ -108297,6 +108283,8 @@ var getTransitionTimeouts = function (timeout) {
  * Drop-in replacement for react-transition-group's `<Transition>` state
  * machine. Settles on `setTimeout(timeout)` — not `transitionend` — so
  * callback timing is identical and fake timers drive it in jsdom tests.
+ * Returns the status together with the duration of the current phase, so
+ * the CSS transition and the settle timer never disagree.
  */
 var useTransitionStatus = function (options) {
   var inProp = options.in,
@@ -108304,20 +108292,33 @@ var useTransitionStatus = function (options) {
     appear = _options$appear === void 0 ? false : _options$appear,
     _options$unmountOnExi = options.unmountOnExit,
     unmountOnExit = _options$unmountOnExi === void 0 ? false : _options$unmountOnExi,
-    nodeRef = options.nodeRef;
+    nodeRef = options.nodeRef,
+    timeout = options.timeout;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(function () {
       if (inProp) {
-        return appear ? 'exited' : 'entered';
+        return {
+          status: appear ? 'exited' : 'entered',
+          isAppearing: appear
+        };
       }
-      return unmountOnExit ? 'unmounted' : 'exited';
+      return {
+        status: unmountOnExit ? 'unmounted' : 'exited',
+        isAppearing: false
+      };
     }),
     _useState2 = _slicedToArray(_useState, 2),
-    status = _useState2[0],
-    setStatus = _useState2[1];
+    _useState2$ = _useState2[0],
+    status = _useState2$.status,
+    isAppearing = _useState2$.isAppearing,
+    setTransition = _useState2[1];
   // An unmounted element re-mounts at `exited` before entering
   // (render-phase derived state)
   if (inProp && status === 'unmounted') {
-    setStatus('exited');
+    setTransition(function (previous) {
+      return Object.assign(Object.assign({}, previous), {
+        status: 'exited'
+      });
+    });
   }
   // Read via ref so the transition effect re-runs only on `in` flips;
   // timeout/callback changes must not restart a running transition
@@ -108332,22 +108333,30 @@ var useTransitionStatus = function (options) {
     var isInitialMount = prevIn === null;
     prevInRef.current = inProp;
     var timeouts = getTransitionTimeouts(optionsRef.current.timeout);
-    var scheduleEnterSettle = function (isAppearing) {
+    var scheduleEnterSettle = function (appearing) {
       return setTimeout(function () {
         var _a, _b;
         pendingSettleRef.current = null;
-        setStatus('entered');
+        setTransition(function (previous) {
+          return Object.assign(Object.assign({}, previous), {
+            status: 'entered'
+          });
+        });
         var settledNode = nodeRef.current;
         if (settledNode) {
-          (_b = (_a = optionsRef.current).onEntered) === null || _b === void 0 ? void 0 : _b.call(_a, settledNode, isAppearing);
+          (_b = (_a = optionsRef.current).onEntered) === null || _b === void 0 ? void 0 : _b.call(_a, settledNode, appearing);
         }
-      }, isAppearing ? timeouts.appear : timeouts.enter);
+      }, appearing ? timeouts.appear : timeouts.enter);
     };
     var scheduleExitSettle = function () {
       return setTimeout(function () {
         var _a, _b;
         pendingSettleRef.current = null;
-        setStatus('exited');
+        setTransition(function (previous) {
+          return Object.assign(Object.assign({}, previous), {
+            status: 'exited'
+          });
+        });
         var settledNode = nodeRef.current;
         if (settledNode) {
           (_b = (_a = optionsRef.current).onExited) === null || _b === void 0 ? void 0 : _b.call(_a, settledNode);
@@ -108376,26 +108385,32 @@ var useTransitionStatus = function (options) {
     var node = nodeRef.current;
     var performEnter = function () {
       var _a, _b, _c, _d;
-      var isAppearing = isInitialMount;
+      var appearing = isInitialMount;
       if (node) {
-        (_b = (_a = optionsRef.current).onEnter) === null || _b === void 0 ? void 0 : _b.call(_a, node, isAppearing);
+        (_b = (_a = optionsRef.current).onEnter) === null || _b === void 0 ? void 0 : _b.call(_a, node, appearing);
       }
-      setStatus('entering');
+      setTransition({
+        status: 'entering',
+        isAppearing: appearing
+      });
       if (node) {
-        (_d = (_c = optionsRef.current).onEntering) === null || _d === void 0 ? void 0 : _d.call(_c, node, isAppearing);
+        (_d = (_c = optionsRef.current).onEntering) === null || _d === void 0 ? void 0 : _d.call(_c, node, appearing);
       }
       pendingSettleRef.current = {
         phase: 'enter',
-        isAppearing: isAppearing
+        isAppearing: appearing
       };
-      return scheduleEnterSettle(isAppearing);
+      return scheduleEnterSettle(appearing);
     };
     var performExit = function () {
       var _a, _b, _c, _d;
       if (node) {
         (_b = (_a = optionsRef.current).onExit) === null || _b === void 0 ? void 0 : _b.call(_a, node);
       }
-      setStatus('exiting');
+      setTransition({
+        status: 'exiting',
+        isAppearing: false
+      });
       if (node) {
         (_d = (_c = optionsRef.current).onExiting) === null || _d === void 0 ? void 0 : _d.call(_c, node);
       }
@@ -108413,10 +108428,20 @@ var useTransitionStatus = function (options) {
   // Unmount one commit after `exited`, so `onExited` observes the node
   (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_2__/* .useIsomorphicLayoutEffect */ .E)(function () {
     if (unmountOnExit && !inProp && status === 'exited') {
-      setStatus('unmounted');
+      setTransition(function (previous) {
+        return Object.assign(Object.assign({}, previous), {
+          status: 'unmounted'
+        });
+      });
     }
   }, [unmountOnExit, inProp, status]);
-  return status;
+  var timeouts = getTransitionTimeouts(timeout);
+  var enterDuration = isAppearing ? timeouts.appear : timeouts.enter;
+  var duration = inProp ? enterDuration : timeouts.exit;
+  return {
+    status: status,
+    duration: duration
+  };
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useTransitionStatus);
 
@@ -114755,7 +114780,7 @@ try {
     // @ts-ignore
     SubmitButton.displayName = "SubmitButton";
     // @ts-ignore
-    SubmitButton.__docgenInfo = { "description": "", "displayName": "SubmitButton", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "title": { "defaultValue": null, "description": "HTML title of Button component", "name": "title", "required": false, "type": { "name": "string | undefined" } }, "onClick": { "defaultValue": null, "description": "Callback invoked when component is clicked", "name": "onClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | number | undefined" } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "icon": { "defaultValue": null, "description": "Add an `<Icon />` along Button's children", "name": "icon", "required": false, "type": { "name": "IconElement | undefined" } }, "fullWidth": { "defaultValue": null, "description": "Take the full width of a container", "name": "fullWidth", "required": false, "type": { "name": "boolean | undefined" } }, "iconPosition": { "defaultValue": null, "description": "Icon can be positioned on the left or right", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"left\"" }, { "value": "\"right\"" }] } }, "loading": { "defaultValue": null, "description": "Shows a loading indicator and disables click events", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } } } };
+    SubmitButton.__docgenInfo = { "description": "", "displayName": "SubmitButton", "props": { "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "title": { "defaultValue": null, "description": "HTML title of Button component", "name": "title", "required": false, "type": { "name": "string | undefined" } }, "onClick": { "defaultValue": null, "description": "Callback invoked when component is clicked", "name": "onClick", "required": false, "type": { "name": "((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void) | undefined" } }, "active": { "defaultValue": null, "description": "Show button in the active state (left mouse button down)", "name": "active", "required": false, "type": { "name": "boolean | undefined" } }, "disabled": { "defaultValue": null, "description": "Disables button", "name": "disabled", "required": false, "type": { "name": "boolean | undefined" } }, "hovered": { "defaultValue": null, "description": "Set hovered style for the button", "name": "hovered", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "A button can have different sizes", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }] } }, "value": { "defaultValue": null, "description": "HTML Value of Button component", "name": "value", "required": false, "type": { "name": "string | number | undefined" } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "icon": { "defaultValue": null, "description": "Add an `<Icon />` along Button's children", "name": "icon", "required": false, "type": { "name": "IconElement | undefined" } }, "fullWidth": { "defaultValue": null, "description": "Take the full width of a container", "name": "fullWidth", "required": false, "type": { "name": "boolean | undefined" } }, "iconPosition": { "defaultValue": null, "description": "Icon can be positioned on the left or right", "name": "iconPosition", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"left\"" }, { "value": "\"right\"" }] } }, "loading": { "defaultValue": null, "description": "Shows a loading indicator and disables click events", "name": "loading", "required": false, "type": { "name": "boolean | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -154250,6 +154275,8 @@ var classnames = __webpack_require__("./node_modules/classnames/index.js");
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 // EXTERNAL MODULE: ./packages/base/Container/dist-package/src/Container/Container.js
 var Container = __webpack_require__("./packages/base/Container/dist-package/src/Container/Container.js");
+// EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
+var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 // EXTERNAL MODULE: ./packages/picasso-rich-text-editor/dist-package/src/RichTextEditorButton/RichTextEditorButton.js
 var RichTextEditorButton = __webpack_require__("./packages/picasso-rich-text-editor/dist-package/src/RichTextEditorButton/RichTextEditorButton.js");
 // EXTERNAL MODULE: ./node_modules/emoji-mart/dist/main.js
@@ -154262,7 +154289,9 @@ var main = __webpack_require__("./node_modules/emoji-mart/dist/main.js");
  *
  * `Picker` appends itself to the element passed as `ref` and is fed prop
  * changes through `update`, so it is constructed after the first commit and
- * updated on every commit after that.
+ * updated on every commit after that. An effect replay on the same instance
+ * (StrictMode, Fast Refresh) finds the picker still attached and updates it
+ * too, instead of constructing a second one.
  */
 var EmojiMartPicker = function (props) {
   var containerRef = (0,react.useRef)(null);
@@ -154276,18 +154305,13 @@ var EmojiMartPicker = function (props) {
     }
     pickerRef.current.update(props);
   });
-  (0,react.useEffect)(function () {
-    return function () {
-      pickerRef.current = null;
-    };
-  }, []);
   return /*#__PURE__*/react.createElement("div", {
     ref: containerRef
   });
 };
 EmojiMartPicker.displayName = 'EmojiMartPicker';
 EmojiMartPicker.__docgenInfo = {
-  "description": "Renders emoji-mart's `Picker` custom element.\n\n`Picker` appends itself to the element passed as `ref` and is fed prop\nchanges through `update`, so it is constructed after the first commit and\nupdated on every commit after that.",
+  "description": "Renders emoji-mart's `Picker` custom element.\n\n`Picker` appends itself to the element passed as `ref` and is fed prop\nchanges through `update`, so it is constructed after the first commit and\nupdated on every commit after that. An effect replay on the same instance\n(StrictMode, Fast Refresh) finds the picker still attached and updates it\ntoo, instead of constructing a second one.",
   "methods": [],
   "displayName": "EmojiMartPicker"
 };
@@ -154314,17 +154338,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 var TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker';
-var classes = {
-  emojiPicker: 'absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none',
-  activeOpacity: 'opacity-100',
-  activePointers: '[pointer-events:all]'
-};
-var handleEmojiPickerEscBehaviour = function (event, setShowEmojiPicker) {
-  if (event.key === 'Escape') {
-    setShowEmojiPicker(false);
-  }
-};
 var RichTextEditorEmojiPicker = function (_ref) {
   var customEmojis = _ref.customEmojis,
     onInsertEmoji = _ref.onInsertEmoji,
@@ -154347,14 +154362,16 @@ var RichTextEditorEmojiPicker = function (_ref) {
     if (!showEmojiPicker) {
       return;
     }
-    var handleKeyUp = function (event) {
-      return handleEmojiPickerEscBehaviour(event, setShowEmojiPicker);
+    var closeOnEscape = function (event) {
+      if (event.key === 'Escape') {
+        setShowEmojiPicker(false);
+      }
     };
-    document.body.addEventListener('keyup', handleKeyUp);
+    document.body.addEventListener('keyup', closeOnEscape);
     return function () {
-      document.body.removeEventListener('keyup', handleKeyUp);
+      document.body.removeEventListener('keyup', closeOnEscape);
     };
-  }, [showEmojiPicker, setShowEmojiPicker]);
+  }, [showEmojiPicker]);
   return /*#__PURE__*/react.createElement(Container/* default */.A, {
     style: {
       position: 'relative'
@@ -154368,8 +154385,17 @@ var RichTextEditorEmojiPicker = function (_ref) {
     }, "\uD83D\uDE42"),
     id: TRIGGER_EMOJI_PICKER_ID,
     disabled: disabled
-  }), /*#__PURE__*/react.createElement(Container/* default */.A, {
-    className: classnames_default()(classes.emojiPicker, showEmojiPicker && classes.activeOpacity, showEmojiPicker && classes.activePointers)
+  }), /*#__PURE__*/react.createElement(Container/* default */.A
+  // twMerge drops the hidden-state classes when open; leaving
+  // `pointer-events-none` in place would let stylesheet order decide,
+  // and it wins, so clicks fall through the open picker to the editor
+  , {
+    // twMerge drops the hidden-state classes when open; leaving
+    // `pointer-events-none` in place would let stylesheet order decide,
+    // and it wins, so clicks fall through the open picker to the editor
+    className: (0,twMerge/* twMerge */.QP)('absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none', classnames_default()({
+      'opacity-100 pointer-events-auto': showEmojiPicker
+    }))
   }, /*#__PURE__*/react.createElement(RichTextEditorEmojiPicker_EmojiMartPicker, {
     data: _15_native,
     custom: customEmojis,
@@ -159009,4 +159035,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.a60880ca.iframe.bundle.js.map
+//# sourceMappingURL=main.a7681a76.iframe.bundle.js.map
