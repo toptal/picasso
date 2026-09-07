@@ -13,7 +13,7 @@ const OverlapResponsive = (props: Props) => {
       xl: <Overlap16 {...props} />,
     },
     <Overlap24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OverlapResponsive

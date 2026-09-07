@@ -13,7 +13,7 @@ const InfoResponsive = (props: Props) => {
       xl: <Info16 {...props} />,
     },
     <Info24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InfoResponsive

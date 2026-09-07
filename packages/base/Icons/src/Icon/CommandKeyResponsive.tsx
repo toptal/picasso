@@ -13,7 +13,7 @@ const CommandKeyResponsive = (props: Props) => {
       xl: <CommandKey16 {...props} />,
     },
     <CommandKey24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CommandKeyResponsive

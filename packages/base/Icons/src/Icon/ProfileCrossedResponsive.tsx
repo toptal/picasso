@@ -13,7 +13,7 @@ const ProfileCrossedResponsive = (props: Props) => {
       xl: <ProfileCrossed16 {...props} />,
     },
     <ProfileCrossed24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ProfileCrossedResponsive

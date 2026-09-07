@@ -13,7 +13,7 @@ const ArrowDropDownResponsive = (props: Props) => {
       xl: <ArrowDropDown16 {...props} />,
     },
     <ArrowDropDown24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ArrowDropDownResponsive

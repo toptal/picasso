@@ -13,7 +13,7 @@ const HomeResponsive = (props: Props) => {
       xl: <Home16 {...props} />,
     },
     <Home24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default HomeResponsive

@@ -14,7 +14,7 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso-utils'
-import type { LexicalEditor as LexicalEditorType } from 'lexical'
+import type { EditorState, LexicalEditor as LexicalEditorType } from 'lexical'
 import { $getRoot } from 'lexical'
 
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
@@ -141,7 +141,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const classes = styles
 
-  const toolbarRef = useRef<HTMLDivElement | null>(null)
+  const toolbarRef = useRef<HTMLDivElement>(null)
 
   const theme = useLexicalTheme(classes)
 
@@ -166,7 +166,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   )
 
   const handleChange = useCallback(
-    (editorState, editor) => {
+    (editorState: EditorState, editor: LexicalEditorType) => {
       editorState.read(() => {
         const root = $getRoot()
         const topLevelChildren = root.getChildren()

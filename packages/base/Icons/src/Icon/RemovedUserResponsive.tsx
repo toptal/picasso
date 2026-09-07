@@ -13,7 +13,7 @@ const RemovedUserResponsive = (props: Props) => {
       xl: <RemovedUser16 {...props} />,
     },
     <RemovedUser24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default RemovedUserResponsive

@@ -13,7 +13,7 @@ const TeamResponsive = (props: Props) => {
       xl: <Team16 {...props} />,
     },
     <Team24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TeamResponsive

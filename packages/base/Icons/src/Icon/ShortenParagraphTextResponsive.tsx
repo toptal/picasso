@@ -13,7 +13,7 @@ const ShortenParagraphTextResponsive = (props: Props) => {
       xl: <ShortenParagraphText16 {...props} />,
     },
     <ShortenParagraphText24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ShortenParagraphTextResponsive

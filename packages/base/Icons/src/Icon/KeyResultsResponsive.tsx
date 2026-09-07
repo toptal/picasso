@@ -13,7 +13,7 @@ const KeyResultsResponsive = (props: Props) => {
       xl: <KeyResults16 {...props} />,
     },
     <KeyResults24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default KeyResultsResponsive

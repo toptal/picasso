@@ -13,7 +13,7 @@ const CodeBlockResponsive = (props: Props) => {
       xl: <CodeBlock16 {...props} />,
     },
     <CodeBlock24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CodeBlockResponsive

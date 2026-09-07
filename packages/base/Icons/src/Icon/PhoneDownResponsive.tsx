@@ -13,7 +13,7 @@ const PhoneDownResponsive = (props: Props) => {
       xl: <PhoneDown16 {...props} />,
     },
     <PhoneDown24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PhoneDownResponsive

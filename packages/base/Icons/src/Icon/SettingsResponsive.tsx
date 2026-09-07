@@ -13,7 +13,7 @@ const SettingsResponsive = (props: Props) => {
       xl: <Settings16 {...props} />,
     },
     <Settings24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SettingsResponsive

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso-test-utils'
+import { render, renderedProps } from '@toptal/picasso-test-utils'
 import type { ComponentProps } from 'react'
 import { Typography } from '@toptal/picasso-typography'
 
@@ -51,9 +51,8 @@ describe('CombinatorSelector', () => {
       })
 
       expect(TypographyMock).toHaveBeenCalledTimes(1)
-      expect(TypographyMock).toHaveBeenCalledWith(
-        expect.objectContaining({ children: 'Query' }),
-        {}
+      expect(renderedProps(TypographyMock)).toContainEqual(
+        expect.objectContaining({ children: 'Query' })
       )
     })
   })
@@ -65,10 +64,6 @@ describe('CombinatorSelector', () => {
       })
 
       expect(TypographyMock).toHaveBeenCalledTimes(0)
-      expect(TypographyMock).not.toHaveBeenCalledWith(
-        expect.objectContaining({ children: 'Query' }),
-        {}
-      )
     })
   })
 })

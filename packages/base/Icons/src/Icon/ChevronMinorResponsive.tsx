@@ -13,7 +13,7 @@ const ChevronMinorResponsive = (props: Props) => {
       xl: <ChevronMinor16 {...props} />,
     },
     <ChevronMinor24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ChevronMinorResponsive

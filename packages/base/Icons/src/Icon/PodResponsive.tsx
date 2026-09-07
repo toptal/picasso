@@ -13,7 +13,7 @@ const PodResponsive = (props: Props) => {
       xl: <Pod16 {...props} />,
     },
     <Pod24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PodResponsive

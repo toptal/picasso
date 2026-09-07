@@ -13,7 +13,7 @@ const ReportResponsive = (props: Props) => {
       xl: <Report16 {...props} />,
     },
     <Report24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ReportResponsive

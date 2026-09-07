@@ -13,7 +13,7 @@ const UploadDocumentResponsive = (props: Props) => {
       xl: <UploadDocument16 {...props} />,
     },
     <UploadDocument24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default UploadDocumentResponsive

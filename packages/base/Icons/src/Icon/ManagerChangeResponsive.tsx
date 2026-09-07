@@ -13,7 +13,7 @@ const ManagerChangeResponsive = (props: Props) => {
       xl: <ManagerChange16 {...props} />,
     },
     <ManagerChange24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ManagerChangeResponsive

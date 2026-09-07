@@ -13,7 +13,7 @@ const MicrophoneOnResponsive = (props: Props) => {
       xl: <MicrophoneOn16 {...props} />,
     },
     <MicrophoneOn24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MicrophoneOnResponsive

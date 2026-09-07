@@ -13,7 +13,7 @@ const DribbleResponsive = (props: Props) => {
       xl: <Dribble16 {...props} />,
     },
     <Dribble24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DribbleResponsive

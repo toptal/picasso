@@ -13,7 +13,7 @@ const PreviewResponsive = (props: Props) => {
       xl: <Preview16 {...props} />,
     },
     <Preview24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PreviewResponsive

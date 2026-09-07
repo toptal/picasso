@@ -1,8 +1,8 @@
 /* eslint-disable no-inline-styles/no-inline-styles */
 import React, { useEffect } from 'react'
 import data from '@emoji-mart/data'
-import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import RichTextEditorButton from '../RichTextEditorButton'
 import EmojiMartPicker from './EmojiMartPicker'
@@ -15,21 +15,6 @@ interface Props {
 }
 
 const TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker'
-
-const classes = {
-  emojiPicker: 'absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none',
-  activeOpacity: 'opacity-100',
-  activePointers: '[pointer-events:all]',
-}
-
-const handleEmojiPickerEscBehaviour = (
-  event: KeyboardEvent,
-  setShowEmojiPicker: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  if (event.key === 'Escape') {
-    setShowEmojiPicker(false)
-  }
-}
 
 export const RichTextEditorEmojiPicker = ({
   customEmojis,
@@ -56,15 +41,18 @@ export const RichTextEditorEmojiPicker = ({
       return
     }
 
-    const handleKeyUp = (event: KeyboardEvent) =>
-      handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowEmojiPicker(false)
+      }
+    }
 
-    document.body.addEventListener('keyup', handleKeyUp)
+    document.body.addEventListener('keyup', closeOnEscape)
 
     return () => {
-      document.body.removeEventListener('keyup', handleKeyUp)
+      document.body.removeEventListener('keyup', closeOnEscape)
     }
-  }, [showEmojiPicker, setShowEmojiPicker])
+  }, [showEmojiPicker])
 
   return (
     <Container style={{ position: 'relative' }}>
@@ -75,10 +63,12 @@ export const RichTextEditorEmojiPicker = ({
         disabled={disabled}
       />
       <Container
-        className={cx(
-          classes.emojiPicker,
-          showEmojiPicker && classes.activeOpacity,
-          showEmojiPicker && classes.activePointers
+        // twMerge drops the hidden-state classes when open; leaving
+        // `pointer-events-none` in place would let stylesheet order decide,
+        // and it wins, so clicks fall through the open picker to the editor
+        className={twMerge(
+          'absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none',
+          showEmojiPicker && 'opacity-100 pointer-events-auto'
         )}
       >
         <EmojiMartPicker

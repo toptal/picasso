@@ -1,6 +1,6 @@
 import React from 'react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
-import { render } from '@toptal/picasso-test-utils'
+import { render, renderedProps } from '@toptal/picasso-test-utils'
 import { InputMultilineAdornment } from '@toptal/picasso-input-adornment'
 
 import { RichTextEditor } from './RichTextEditor'
@@ -77,22 +77,19 @@ describe('RichTextEditor', () => {
   it('renders active RichTextEditor', () => {
     renderRichTextEditor()
 
-    expect(mockedLexicalEditor).toHaveBeenCalledWith(
-      {
-        disabled: false,
-        id: 'test-editor',
-        onChange: expect.any(Function),
-        onFocus: expect.any(Function),
-        onBlur: expect.any(Function),
-        onTextLengthChange: handleCounterMessage,
-        placeholder: 'placeholder+1',
-        testIds: {
-          wrapper: 'wrapper-test-id-1',
-        },
-        autoFocus: false,
+    expect(renderedProps(mockedLexicalEditor)[0]).toEqual({
+      disabled: false,
+      id: 'test-editor',
+      onChange: expect.any(Function),
+      onFocus: expect.any(Function),
+      onBlur: expect.any(Function),
+      onTextLengthChange: handleCounterMessage,
+      placeholder: 'placeholder+1',
+      testIds: {
+        wrapper: 'wrapper-test-id-1',
       },
-      {}
-    )
+      autoFocus: false,
+    })
     expect(mockedUseCounter).toHaveBeenCalledWith({
       minLength: undefined,
       maxLength: undefined,
@@ -105,22 +102,19 @@ describe('RichTextEditor', () => {
     it('renders disabled RichTextEditor', () => {
       renderRichTextEditor({ disabled: true })
 
-      expect(mockedLexicalEditor).toHaveBeenCalledWith(
-        {
-          disabled: true,
-          id: 'test-editor',
-          onChange: expect.any(Function),
-          onFocus: expect.any(Function),
-          onBlur: expect.any(Function),
-          onTextLengthChange: handleCounterMessage,
-          placeholder: 'placeholder+1',
-          testIds: {
-            wrapper: 'wrapper-test-id-1',
-          },
-          autoFocus: false,
+      expect(renderedProps(mockedLexicalEditor)[0]).toEqual({
+        disabled: true,
+        id: 'test-editor',
+        onChange: expect.any(Function),
+        onFocus: expect.any(Function),
+        onBlur: expect.any(Function),
+        onTextLengthChange: handleCounterMessage,
+        placeholder: 'placeholder+1',
+        testIds: {
+          wrapper: 'wrapper-test-id-1',
         },
-        {}
-      )
+        autoFocus: false,
+      })
     })
   })
 
@@ -150,13 +144,10 @@ describe('RichTextEditor', () => {
           maxLengthMessage,
         })
 
-        expect(mockedInputMultilineAdornment).toHaveBeenCalledWith(
-          {
-            error: true,
-            children: 'COUNTER_MESSAGE+1',
-          },
-          {}
-        )
+        expect(renderedProps(mockedInputMultilineAdornment)[0]).toEqual({
+          error: true,
+          children: 'COUNTER_MESSAGE+1',
+        })
       })
     })
 
@@ -182,13 +173,10 @@ describe('RichTextEditor', () => {
           maxLengthMessage,
         })
 
-        expect(mockedInputMultilineAdornment).toHaveBeenCalledWith(
-          {
-            error: false,
-            children: 'COUNTER_MESSAGE+1',
-          },
-          {}
-        )
+        expect(renderedProps(mockedInputMultilineAdornment)[0]).toEqual({
+          error: false,
+          children: 'COUNTER_MESSAGE+1',
+        })
       })
     })
   })

@@ -157,7 +157,6 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
                 style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: absolute;"
                 tabindex="-1"
                 type="checkbox"
-                value=""
               />
             </span>
             <span
@@ -217,7 +216,6 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
                 style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: absolute;"
                 tabindex="-1"
                 type="checkbox"
-                value=""
               />
             </span>
             <span
@@ -251,6 +249,5 @@ exports[`Form.Checkbox when required prop is passed does not set "required" attr
   style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: absolute;"
   tabindex="-1"
   type="checkbox"
-  value=""
 />
 `;

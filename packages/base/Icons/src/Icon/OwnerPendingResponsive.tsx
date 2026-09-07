@@ -13,7 +13,7 @@ const OwnerPendingResponsive = (props: Props) => {
       xl: <OwnerPending16 {...props} />,
     },
     <OwnerPending24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OwnerPendingResponsive

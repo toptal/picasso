@@ -1,4 +1,5 @@
 import type { ReactElement, ReactNode } from 'react'
+import type { IconElement } from '@toptal/picasso-shared'
 import type { BadgeProps } from '@toptal/picasso-badge'
 import type { VariantOnlyProps } from '@toptal/picasso-tag'
 
@@ -12,7 +13,7 @@ export type SidebarBadgeProps = Omit<BadgeProps, 'size' | 'children'>
 
 export interface Props {
   compact?: boolean
-  icon?: ReactElement
+  icon?: IconElement
   badge?: SidebarBadgeProps
   tag?: SidebarTagProps
   children?: ReactNode

@@ -13,7 +13,7 @@ const FacebookResponsive = (props: Props) => {
       xl: <Facebook16 {...props} />,
     },
     <Facebook24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FacebookResponsive
