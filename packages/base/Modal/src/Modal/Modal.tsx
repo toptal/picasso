@@ -75,32 +75,22 @@ const focusFirstFocusableElement = (node: Element) => {
   node.querySelector<HTMLElement>(focusableElementsString)?.focus()
 }
 
-const isFocusInsideModal = (modalNode: Element) => {
-  const modalContainsFocusedElement = modalNode.contains(document.activeElement)
+// The incoming element is read off the focus event rather than from
+// `document.activeElement`, which has not moved yet during capture-phase
+// dispatch and would make both guards below test the outgoing element.
+const isFocusInsideModal = (modalNode: Element, focused: Node | null) =>
+  focused !== null && modalNode.contains(focused)
 
-  if (modalContainsFocusedElement) {
-    return true
-  }
-
-  return false
-}
-
-const isFocusInsideExemptPopup = () => {
-  const popupContainers = document.querySelectorAll(exemptPopupContainerString)
-
-  if (popupContainers.length === 0) {
+const isFocusInsideExemptPopup = (focused: Node | null) => {
+  if (focused === null) {
     return false
   }
 
-  const popupContainsFocusedElement = Array.from(popupContainers).some(
-    container => container.contains(document.activeElement)
+  const popupContainers = document.querySelectorAll(exemptPopupContainerString)
+
+  return Array.from(popupContainers).some(container =>
+    container.contains(focused)
   )
-
-  if (popupContainsFocusedElement) {
-    return true
-  }
-
-  return false
 }
 
 const generateKey = (() => {
@@ -152,7 +142,9 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
-    const handleDocumentFocus = () => {
+    const handleDocumentFocus = (event: FocusEvent) => {
+      const focused = (event.target as Node | null) ?? document.activeElement
+
       if (!rootRef?.current) {
         console.warn(
           'Modal is not rendered inside PicassoRoot, some things might not work as expected. Please open the Modal on mount using useEffect.'
@@ -167,11 +159,11 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         return
       }
 
-      if (isFocusInsideModal(modalRef.current)) {
+      if (isFocusInsideModal(modalRef.current, focused)) {
         return
       }
 
-      if (isFocusInsideExemptPopup()) {
+      if (isFocusInsideExemptPopup(focused)) {
         return
       }
 

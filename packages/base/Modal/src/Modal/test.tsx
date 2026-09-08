@@ -406,6 +406,25 @@ describe('Modal', () => {
 
       expect(popupButton).toHaveFocus()
     })
+
+    it('leaves focus inside an exempt popup before activeElement moves', async () => {
+      const field = await renderModal(<input data-testid='field' />)
+
+      render(
+        <div data-picasso-popper=''>
+          <Button>Popup action</Button>
+        </div>
+      )
+
+      const popupButton = screen.getByRole('button', { name: 'Popup action' })
+
+      // browsers can dispatch the capture-phase `focus` while
+      // `document.activeElement` still points at the outgoing element
+      ;(document.activeElement as HTMLElement | null)?.blur()
+      popupButton.dispatchEvent(new FocusEvent('focus'))
+
+      expect(field).not.toHaveFocus()
+    })
   })
 
   describe('page scroll lock', () => {
