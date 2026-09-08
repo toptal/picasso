@@ -1,5 +1,12 @@
 # Change Log
 
+## 100.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-rich-text-editor@100.0.8
+
 ## 100.0.7
 
 ### Patch Changes
