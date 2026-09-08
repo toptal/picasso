@@ -1,5 +1,15 @@
 # @toptal/picasso-modal
 
+## 100.1.3
+
+### Patch Changes
+
+- [#5103](https://github.com/toptal/picasso/pull/5103) [`192e04f`](https://github.com/toptal/picasso/commit/192e04f1626f8a02bf33f8ecbf93317a5f08ce22) Thanks [@azebich](https://github.com/azebich)!
+
+### Modal
+
+- return focus to the first focusable element even when a hidden input precedes it. `Select` and `Autocomplete` render one to carry the field `name`, so a modal starting with either let focus escape to the page behind it
+
 ## 100.1.2
 
 ### Patch Changes
