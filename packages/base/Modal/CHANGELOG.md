@@ -1,5 +1,16 @@
 # @toptal/picasso-modal
 
+## 100.1.4
+
+### Patch Changes
+
+- [#5110](https://github.com/toptal/picasso/pull/5110) [`b0758b8`](https://github.com/toptal/picasso/commit/b0758b8dc648046ca9fea0d6a6db7d6b70e57ffd) Thanks [@azebich](https://github.com/azebich)!
+
+### Modal
+
+- fix a `Select` or `Autocomplete` popup inside a `Modal` closing as soon as it opens. The focus trap read `document.activeElement`, which is still the outgoing element during capture-phase `focus` dispatch, so focus entering a popper portaled outside the modal looked like an escape and was pulled back
+- the trap did nothing in modals whose first focusable match was a hidden input, so it now applies where it previously did not
+
 ## 100.1.3
 
 ### Patch Changes

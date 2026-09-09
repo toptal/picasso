@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-prompt-modal",
-  "version": "100.0.5",
+  "version": "100.0.6",
   "description": "Toptal UI components library - PromptModal",
   "publishConfig": {
     "access": "public"
