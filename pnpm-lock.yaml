@@ -2916,15 +2916,9 @@ importers:
       '@toptal/picasso-utils':
         specifier: workspace:*
         version: link:../Utils
-      detect-browser:
-        specifier: ^5.3.0
-        version: 5.3.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-input-mask:
-        specifier: ^3.0.0-alpha.2
-        version: 3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@toptal/picasso-test-utils':
         specifier: workspace:*
@@ -3364,9 +3358,6 @@ importers:
       react-dropzone:
         specifier: ^14.2.3
         version: 14.2.3(react@18.2.0)
-      react-input-mask:
-        specifier: ^3.0.0-alpha.2
-        version: 3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       typescript:
         specifier: ^5.5.0
         version: 5.5.4
@@ -3389,9 +3380,6 @@ importers:
       '@types/glider-js':
         specifier: ^1.7.8
         version: 1.7.8
-      '@types/react-input-mask':
-        specifier: ^3.0.0
-        version: 3.0.0
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
@@ -7584,9 +7572,6 @@ packages:
 
   '@types/react-dom@18.0.0':
     resolution: {integrity: sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==}
-
-  '@types/react-input-mask@3.0.0':
-    resolution: {integrity: sha512-W8I2GRt1wkFgEJJ4dleSCw1ly2lL+pW71OPkJSz6G93V77io4ulSSnZyiyCv3uljmQDOr94NMbNr5V5hfkMaUg==}
 
   '@types/react-router-dom@5.3.3':
     resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
@@ -15187,12 +15172,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-
-  react-input-mask@3.0.0-alpha.2:
-    resolution: {integrity: sha512-9U7qL+mvDMOJcbOFPdt6Vj+zzmCMNnBjhhjGDrL8BGQmymgvMVKhu/oOVfAkl+5VWOsLr+G3EhZOmae5fBcAkA==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -23546,10 +23525,6 @@ snapshots:
       '@types/react': 17.0.39
 
   '@types/react-dom@18.0.0':
-    dependencies:
-      '@types/react': 17.0.39
-
-  '@types/react-input-mask@3.0.0':
     dependencies:
       '@types/react': 17.0.39
 
@@ -33007,14 +32982,6 @@ snapshots:
       source-map: 0.7.4
     optionalDependencies:
       '@types/react': 17.0.39
-
-  react-input-mask@3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      invariant: 2.2.4
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      warning: 4.0.3
 
   react-is@16.13.1: {}
 

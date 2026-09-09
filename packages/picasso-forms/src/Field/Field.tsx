@@ -13,6 +13,7 @@ import { detect } from 'detect-browser'
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
+import { assertFieldName } from './assert-field-name'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -95,6 +96,8 @@ const Field = <
     autoSaveIndicator,
     ...rest
   } = props
+
+  assertFieldName(name)
 
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()

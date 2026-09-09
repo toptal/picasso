@@ -27,11 +27,13 @@ export type {
   FieldInputProps,
 } from 'react-final-form'
 export { default as arrayMutators } from 'final-form-arrays'
-export { useFieldArray, FieldArray } from 'react-final-form-arrays'
+export { useFieldArray, FieldArray } from './FieldArray'
 export type {
+  FieldArrayMetaState,
   FieldArrayProps,
   FieldArrayRenderProps,
-} from 'react-final-form-arrays'
+  UseFieldArrayConfig,
+} from './FieldArray'
 export {
   OnChange,
   OnFocus,
