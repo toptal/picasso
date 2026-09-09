@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 100.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`b0758b8`](https://github.com/toptal/picasso/commit/b0758b8dc648046ca9fea0d6a6db7d6b70e57ffd)]:
+  - @toptal/picasso-modal@100.1.4
+
 ## 100.0.8
 
 ### Patch Changes
