@@ -418,8 +418,7 @@ describe('Modal', () => {
 
       const popupButton = screen.getByRole('button', { name: 'Popup action' })
 
-      // browsers can dispatch the capture-phase `focus` while
-      // `document.activeElement` still points at the outgoing element
+      // fake the browser order: capture-phase focus before activeElement moves
       ;(document.activeElement as HTMLElement | null)?.blur()
       popupButton.dispatchEvent(new FocusEvent('focus'))
 

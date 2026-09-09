@@ -75,9 +75,6 @@ const focusFirstFocusableElement = (node: Element) => {
   node.querySelector<HTMLElement>(focusableElementsString)?.focus()
 }
 
-// The incoming element is read off the focus event rather than from
-// `document.activeElement`, which has not moved yet during capture-phase
-// dispatch and would make both guards below test the outgoing element.
 const isFocusInsideModal = (modalNode: Element, focused: Node | null) =>
   focused !== null && modalNode.contains(focused)
 

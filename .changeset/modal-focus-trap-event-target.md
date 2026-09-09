@@ -4,4 +4,5 @@
 
 ### Modal
 
-- fix a `Select` or `Autocomplete` popup inside a modal closing the instant it opens. The focus trap read `document.activeElement`, which has not moved yet during the capture-phase `focus` dispatch, so focus landing in a popper portaled outside the modal looked like an escape and got pulled back. The incoming element is now read off the event
+- fix a `Select` or `Autocomplete` popup inside a `Modal` closing as soon as it opens. The focus trap read `document.activeElement`, which is still the outgoing element during capture-phase `focus` dispatch, so focus entering a popper portaled outside the modal looked like an escape and was pulled back
+- the trap did nothing in modals whose first focusable match was a hidden input, so it now applies where it previously did not
