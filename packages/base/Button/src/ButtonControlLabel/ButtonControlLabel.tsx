@@ -52,7 +52,15 @@ const ButtonControlLabel = ({
   return (
     <Button
       {...props}
-      className={twMerge('text-center', createSizeClassNames(size), className)}
+      className={twMerge(
+        'text-center',
+        createSizeClassNames(size),
+        // A label is not focusable, the Radio/Checkbox it wraps is. Button
+        // only ships `focus-visible`, which never matches an ancestor of the
+        // focused input, so this ring has to key off `focus-within`.
+        disabled ? '' : 'focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]',
+        className
+      )}
       variant='secondary'
       size={size}
       as='label'
