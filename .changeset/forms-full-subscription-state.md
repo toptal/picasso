@@ -1,0 +1,11 @@
+---
+'@toptal/picasso-forms': major
+---
+
+### Form
+
+- `useFormState`, `FormSpy` and a `Form` function child now report the form state the way a fully subscribed form actually has it: `initialValues` is a `Partial<FormValues>` and the state booleans and records (`submitting`, `dirty`, `dirtySinceLastSubmit`, `touched`, `dirtyFields`, …) are non-optional. final-form types every state key optional to model a narrow `subscription`, but the default subscription is every key, so the optionality was wrong for the common case and each call site defaulted it by hand. `active`, `error`, `submitError` and `submitErrors` stay optional: `undefined` there means no focused field and no error, which is an answer rather than a gap
+- `initialValues` is the one key of that state final-form leaves `undefined` — the form was given none — so it is filled with a shared empty object; the rest were already there and only the types change. Passing a `subscription` keeps both the optional types and the raw values, because an unsubscribed key being `undefined` is information worth keeping
+- the three surfaces are overloaded on `subscription`, so `useFormState<Values>()`, `<FormSpy<Values>>` and `<Form<Values>>` give the non-optional state, and the same call with a `subscription` gives the optional one. `FullFormState`, `FullFormSpyRenderProps` and `FullFormRenderProps` name those shapes for annotations; `FormState`, `FormSpyRenderProps` and `FormRenderProps` keep meaning the optional final-form shapes, and a function annotated with them still passes as a child
+- **not covered**: `form.getState()`. It comes off `FormApi`, which belongs to final-form, and typing it would mean wrapping `FormApi` itself — keep defaulting its keys. `Form`'s `render` prop is not covered either: it replaces this component's own rendering and reaches `react-final-form` untouched
+- the four form listeners `OnChange`, `OnFocus`, `OnBlur` and `ExternallyChanged` ship real types. `react-final-form-listeners@3.0.1` publishes its declarations at `dist/src/index.d.ts` while its `package.json` points `types` at `dist/index.d.ts`, so a consumer install resolved all four as `any`; they are now declared by this package, and `OnChange` takes the field's value type (`<OnChange<string> name='…'>`). `OnChangeProps`, `OnFocusProps`, `OnBlurProps` and `ExternallyChangedProps` are exported alongside

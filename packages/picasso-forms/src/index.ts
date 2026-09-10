@@ -13,11 +13,17 @@ export { FORM_ERROR, setIn } from 'final-form'
 export {
   useForm,
   useField,
-  useFormState,
-  FormSpy,
   Form as FinalForm,
   Field as FinalField,
 } from 'react-final-form'
+export { useFormState } from './FormState'
+export type {
+  FullFormRenderProps,
+  FullFormSpyRenderProps,
+  FullFormState,
+} from './FormState'
+export { FormSpy } from './FormSpy'
+export type { FormSpyProps } from './FormSpy'
 export type {
   FieldMetaState,
   FieldRenderProps,
@@ -34,12 +40,13 @@ export type {
   FieldArrayRenderProps,
   UseFieldArrayConfig,
 } from './FieldArray'
-export {
-  OnChange,
-  OnFocus,
-  ExternallyChanged,
-  OnBlur,
-} from 'react-final-form-listeners'
+export { OnChange, OnFocus, ExternallyChanged, OnBlur } from './FormListeners'
+export type {
+  ExternallyChangedProps,
+  OnBlurProps,
+  OnChangeProps,
+  OnFocusProps,
+} from './FormListeners'
 export { FieldRequirements } from '@toptal/picasso-form'
 
 // Picasso Forms exports

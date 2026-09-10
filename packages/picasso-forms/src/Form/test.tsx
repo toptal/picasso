@@ -1,5 +1,11 @@
 import React from 'react'
-import { fireEvent, render, waitFor, act } from '@toptal/picasso-test-utils'
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  act,
+} from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso-button'
 
@@ -238,6 +244,48 @@ describe('Form', () => {
       )
 
       consoleError.mockRestore()
+    })
+  })
+
+  describe('render props of a function child', () => {
+    it('reports an absent `initialValues` as an empty object', () => {
+      render(
+        <Form onSubmit={jest.fn()}>
+          {({ initialValues: formInitialValues }) => (
+            <span>{JSON.stringify(formInitialValues)}</span>
+          )}
+        </Form>
+      )
+
+      expect(screen.getByText('{}')).toBeInTheDocument()
+    })
+
+    it('fills the state booleans final-form subscribes to', () => {
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ test: 'value' }}>
+          {({ submitting, pristine, initialValues: formInitialValues }) => (
+            <span>{`${submitting} ${pristine} ${formInitialValues.test}`}</span>
+          )}
+        </Form>
+      )
+
+      expect(screen.getByText('false true value')).toBeInTheDocument()
+    })
+
+    it('leaves the keys an explicit subscription omits undefined', () => {
+      render(
+        <Form
+          onSubmit={jest.fn()}
+          initialValues={{ test: 'value' }}
+          subscription={{ submitting: true }}
+        >
+          {({ submitting, initialValues: formInitialValues }) => (
+            <span>{`${submitting} ${formInitialValues}`}</span>
+          )}
+        </Form>
+      )
+
+      expect(screen.getByText('false undefined')).toBeInTheDocument()
     })
   })
 })

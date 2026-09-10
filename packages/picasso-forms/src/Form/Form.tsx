@@ -1,11 +1,21 @@
-import type { ReactNode } from 'react'
+import type { ReactElement, ReactNode } from 'react'
 import React, { useMemo, useRef } from 'react'
-import type { FormProps as FinalFormProps } from 'react-final-form'
+import type {
+  FormProps as FinalFormProps,
+  FormRenderProps,
+} from 'react-final-form'
 import { Form as FinalForm } from 'react-final-form'
-import type { FormApi, SubmissionErrors, AnyObject } from 'final-form'
+import type {
+  FormApi,
+  FormSubscription,
+  SubmissionErrors,
+  AnyObject,
+} from 'final-form'
 import { getIn, setIn } from 'final-form'
 import { useNotifications } from '@toptal/picasso-notification'
 
+import type { FullFormRenderProps } from '../FormState'
+import { withFormStateDefaults } from '../FormState'
 import { createScrollToErrorDecorator } from '../utils'
 import type { Validators, FormContextProps } from './FormContext'
 import { FormContext, createFormContext } from './FormContext'
@@ -13,7 +23,7 @@ import type { Props as FormProps } from './FormRenderer'
 import FormRenderer from './FormRenderer'
 import { setActiveFieldTouched, setHasMultilineCounter } from './mutators'
 
-export type Props<T = AnyObject> = FinalFormProps<T> & {
+type PicassoFormProps = {
   disableScrollOnError?: boolean
   autoComplete?: HTMLFormElement['autocomplete']
   successSubmitMessage?: ReactNode
@@ -23,6 +33,21 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   labelWidth?: FormProps['labelWidth']
   className?: string
   'data-testid'?: string
+}
+
+type FormPropsBase<T> = Omit<FinalFormProps<T>, 'children' | 'subscription'> &
+  PicassoFormProps
+
+type FormChildren<RenderProps> = ((props: RenderProps) => ReactNode) | ReactNode
+
+/**
+ * Props of the default, fully subscribed form. A `subscription` narrows the
+ * render props a function child receives, which the overloads below carry.
+ */
+export type Props<T = AnyObject> = FormPropsBase<T> & {
+  /** Form-state keys to subscribe to; every key is subscribed when omitted */
+  subscription?: FormSubscription
+  children?: FormChildren<FullFormRenderProps<T>>
 }
 
 const getValidationErrors = (
@@ -50,7 +75,28 @@ const getValidationErrors = (
   return errors
 }
 
-export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
+/**
+ * A function child receives the keys a fully subscribed form actually has (see
+ * `useFormState`); `render` is not covered, because it replaces this
+ * component's own rendering and reaches `react-final-form` untouched.
+ */
+export function Form<T extends AnyObject = AnyObject>(
+  props: FormPropsBase<T> & {
+    subscription?: undefined
+    children?: FormChildren<FullFormRenderProps<T>>
+  }
+): ReactElement
+
+/** With a `subscription`, the unsubscribed keys are genuinely `undefined` and keep the optional types */
+export function Form<T extends AnyObject = AnyObject>(
+  props: FormPropsBase<T> & {
+    subscription: FormSubscription
+    children?: FormChildren<FormRenderProps<T>>
+  }
+): ReactElement
+
+// eslint-disable-next-line func-style -- an overloaded function needs a declaration
+export function Form<T extends AnyObject = AnyObject>(props: Props<T>) {
   const {
     autoComplete,
     children,
@@ -61,6 +107,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     decorators = [],
     mutators = {},
     validateOnBlur,
+    subscription,
     'data-testid': dataTestId,
     layout,
     labelWidth,
@@ -144,12 +191,19 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
               className={className}
             >
               {typeof children === 'function'
-                ? children(renderProps)
+                ? // Only the full subscription is defaulted, matching the
+                  // overloads above
+                  children(
+                    subscription === undefined
+                      ? withFormStateDefaults(renderProps)
+                      : (renderProps as FullFormRenderProps<T>)
+                  )
                 : children}
             </FormRenderer>
           )
         }}
         onSubmit={handleSubmit}
+        subscription={subscription}
         decorators={[...decorators, scrollToErrorDecorator]}
         mutators={{
           ...mutators,
