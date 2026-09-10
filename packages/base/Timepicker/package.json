@@ -25,9 +25,7 @@
     "@toptal/picasso-icons": "workspace:*",
     "@toptal/picasso-input": "workspace:*",
     "@toptal/picasso-outlined-input": "workspace:*",
-    "@toptal/picasso-utils": "workspace:*",
-    "detect-browser": "^5.3.0",
-    "react-input-mask": "^3.0.0-alpha.2"
+    "@toptal/picasso-utils": "workspace:*"
   },
   "sideEffects": [
     "**/styles.ts",

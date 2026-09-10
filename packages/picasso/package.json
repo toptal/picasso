@@ -118,8 +118,7 @@
     "detect-browser": "^5.3.0",
     "glider-js": "^1.7.8",
     "react-content-loader": "^6.2.1",
-    "react-dropzone": "^14.2.3",
-    "react-input-mask": "^3.0.0-alpha.2"
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "@babel/types": "^7.26.8",
@@ -128,7 +127,6 @@
     "@types/classnames": "^2.3.1",
     "@types/d3": "^7.4.0",
     "@types/glider-js": "^1.7.8",
-    "@types/react-input-mask": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
     "react-router-dom": "^5.3.4",
     "styled-components": "^6.1.1"

@@ -1,5 +1,11 @@
 import React from 'react'
-import { fireEvent, render, waitFor, act } from '@toptal/picasso-test-utils'
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  act,
+} from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso-button'
 
@@ -86,6 +92,20 @@ const renderTagSelectorWithInitialValue = (
 }
 
 const scrollToMock = scrollTo as jest.Mock
+
+// React 19 rethrows the errors of a render under `act()` as one AggregateError,
+// React 18 throws the error itself
+const catchRenderErrors = (renderComponent: () => unknown): Error[] => {
+  try {
+    renderComponent()
+  } catch (error) {
+    const { errors } = error as { errors?: Error[] }
+
+    return errors ?? [error as Error]
+  }
+
+  return []
+}
 
 describe('Form', () => {
   beforeEach(() => {
@@ -197,6 +217,75 @@ describe('Form', () => {
       })
 
       expect(onSubmit).toHaveBeenCalledWith(initialValues)
+    })
+  })
+
+  describe('when a field renders without a name', () => {
+    it('throws a descriptive error instead of failing inside final-form', () => {
+      // React also reports the thrown render error on the console
+      const consoleError = jest
+        .spyOn(console, 'error')
+        .mockImplementation(() => {})
+
+      const errors = catchRenderErrors(() =>
+        render(
+          <Form onSubmit={jest.fn()} initialValues={{ test: 'value' }}>
+            {/* the missing `name` compiles: react-final-form's FieldProps index
+                signature erases the required prop through forwardRef */}
+            <Form.Input placeholder='test input' />
+          </Form>
+        )
+      )
+
+      expect(errors.map(({ message }) => message)).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining('rendered without a `name`'),
+        ])
+      )
+
+      consoleError.mockRestore()
+    })
+  })
+
+  describe('render props of a function child', () => {
+    it('reports an absent `initialValues` as an empty object', () => {
+      render(
+        <Form onSubmit={jest.fn()}>
+          {({ initialValues: formInitialValues }) => (
+            <span>{JSON.stringify(formInitialValues)}</span>
+          )}
+        </Form>
+      )
+
+      expect(screen.getByText('{}')).toBeInTheDocument()
+    })
+
+    it('fills the state booleans final-form subscribes to', () => {
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ test: 'value' }}>
+          {({ submitting, pristine, initialValues: formInitialValues }) => (
+            <span>{`${submitting} ${pristine} ${formInitialValues.test}`}</span>
+          )}
+        </Form>
+      )
+
+      expect(screen.getByText('false true value')).toBeInTheDocument()
+    })
+
+    it('leaves the keys an explicit subscription omits undefined', () => {
+      render(
+        <Form
+          onSubmit={jest.fn()}
+          initialValues={{ test: 'value' }}
+          subscription={{ submitting: true }}
+        >
+          {({ submitting, initialValues: formInitialValues }) => (
+            <span>{`${submitting} ${formInitialValues}`}</span>
+          )}
+        </Form>
+      )
+
+      expect(screen.getByText('false undefined')).toBeInTheDocument()
     })
   })
 })
