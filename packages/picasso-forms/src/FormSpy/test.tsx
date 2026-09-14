@@ -4,6 +4,7 @@ import type { FormSpyRenderProps } from 'react-final-form'
 
 import { FormCompound as Form } from '../FormCompound'
 import type { FullFormSpyRenderProps } from '../FormState'
+import type { FormSpyWrapperProps } from './index'
 import { FormSpy } from './index'
 
 interface Values {
@@ -116,6 +117,50 @@ describe('FormSpy', () => {
       )
 
       expect(screen.getByText('{} true undefined')).toBeInTheDocument()
+    })
+
+    it('keeps the state non-optional at a leaf call', () => {
+      renderInForm(
+        <FormSpy<Values>>
+          {({ submitting, initialValues }) => {
+            const isSubmitting: boolean = submitting
+            const values: Partial<Values> = initialValues
+
+            return <span>{`${isSubmitting} ${JSON.stringify(values)}`}</span>
+          }}
+        </FormSpy>
+      )
+
+      expect(screen.getByText('false {}')).toBeInTheDocument()
+    })
+
+    it('accepts a wrapper forwarding a subscription it cannot resolve', () => {
+      // The case the catch-all overload exists for: `spyProps.subscription`
+      // is `FormSubscription | undefined`, and overload resolution does not
+      // distribute over that union
+      const LabelledSpy = <T,>({
+        label,
+        ...spyProps
+      }: FormSpyWrapperProps<T> & { label: string }) => (
+        <>
+          <span>{label}</span>
+          <FormSpy<T> {...spyProps} />
+        </>
+      )
+
+      renderInForm(
+        <LabelledSpy<Values> label='wrapped'>
+          {({ submitting }) => {
+            // @ts-expect-error a wrapper cannot promise its caller omitted `subscription`
+            const wrong: boolean = submitting
+
+            return <span>{`spy ${wrong}`}</span>
+          }}
+        </LabelledSpy>
+      )
+
+      expect(screen.getByText('wrapped')).toBeInTheDocument()
+      expect(screen.getByText('spy false')).toBeInTheDocument()
     })
 
     it('keeps the optional keys under an explicit subscription', () => {

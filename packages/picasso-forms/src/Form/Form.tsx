@@ -14,7 +14,7 @@ import type {
 import { getIn, setIn } from 'final-form'
 import { useNotifications } from '@toptal/picasso-notification'
 
-import type { FullFormRenderProps } from '../FormState'
+import type { DefaultFormValues, FullFormRenderProps } from '../FormState'
 import { withFormStateDefaults } from '../FormState'
 import { createScrollToErrorDecorator } from '../utils'
 import type { Validators, FormContextProps } from './FormContext'
@@ -44,10 +44,27 @@ type FormChildren<RenderProps> = ((props: RenderProps) => ReactNode) | ReactNode
  * Props of the default, fully subscribed form. A `subscription` narrows the
  * render props a function child receives, which the overloads below carry.
  */
-export type Props<T = AnyObject> = FormPropsBase<T> & {
+export type Props<T = DefaultFormValues> = FormPropsBase<T> & {
   /** Form-state keys to subscribe to; every key is subscribed when omitted */
   subscription?: FormSubscription
   children?: FormChildren<FullFormRenderProps<T>>
+}
+
+/** Props of the default, fully subscribed form, for annotating a wrapper that never forwards a `subscription`: declare `Omit<FullFormProps<T>, 'subscription'>` and the wrapper keeps the non-optional render props */
+export type FullFormProps<T = DefaultFormValues> = Props<T>
+
+/**
+ * Props for a component that wraps `Form` and forwards them on, including a
+ * `subscription` it cannot resolve. That is all such a wrapper can promise, so
+ * its function child receives the optional render props the catch-all overload
+ * delivers. Omitting `subscription` here is not enough to get the non-optional
+ * ones back — the `children` type carries them — so use `FullFormProps` above
+ * for a wrapper that never forwards one.
+ */
+export type FormWrapperProps<T = DefaultFormValues> = FormPropsBase<T> & {
+  /** Form-state keys to subscribe to; every key is subscribed when omitted */
+  subscription?: FormSubscription
+  children?: FormChildren<FormRenderProps<T>>
 }
 
 const getValidationErrors = (
@@ -80,7 +97,7 @@ const getValidationErrors = (
  * `useFormState`); `render` is not covered, because it replaces this
  * component's own rendering and reaches `react-final-form` untouched.
  */
-export function Form<T extends AnyObject = AnyObject>(
+export function Form<T extends AnyObject = DefaultFormValues>(
   props: FormPropsBase<T> & {
     subscription?: undefined
     children?: FormChildren<FullFormRenderProps<T>>
@@ -88,15 +105,25 @@ export function Form<T extends AnyObject = AnyObject>(
 ): ReactElement
 
 /** With a `subscription`, the unsubscribed keys are genuinely `undefined` and keep the optional types */
-export function Form<T extends AnyObject = AnyObject>(
+export function Form<T extends AnyObject = DefaultFormValues>(
   props: FormPropsBase<T> & {
     subscription: FormSubscription
     children?: FormChildren<FormRenderProps<T>>
   }
 ): ReactElement
 
+/**
+ * Last, so that the two above still bind: a wrapper forwarding props holds
+ * `FormSubscription | undefined`, which matches neither, and overload
+ * resolution does not distribute over that union. It cannot know whether its
+ * caller subscribes, so it receives the optional render props.
+ */
+export function Form<T extends AnyObject = DefaultFormValues>(
+  props: FormWrapperProps<T>
+): ReactElement
+
 // eslint-disable-next-line func-style -- an overloaded function needs a declaration
-export function Form<T extends AnyObject = AnyObject>(props: Props<T>) {
+export function Form<T extends AnyObject = DefaultFormValues>(props: Props<T>) {
   const {
     autoComplete,
     children,

@@ -14,6 +14,10 @@ import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
 import { assertFieldName } from './assert-field-name'
+import {
+  useClaimedFieldState,
+  useReleaseClaimedFieldState,
+} from './keep-field-state'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -99,6 +103,10 @@ const Field = <
 
   assertFieldName(name)
 
+  // Brackets `useField` below; remove both calls with the rest of the
+  // react-final-form 7.0.1 workaround (see the module)
+  const releaseClaimedFieldState = useClaimedFieldState(name)
+
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()
   const validators = useMemo(
@@ -123,6 +131,8 @@ const Field = <
     validateFields,
     value,
   })
+
+  useReleaseClaimedFieldState(releaseClaimedFieldState)
 
   const error = useFieldValidation({
     name,

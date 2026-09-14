@@ -23,7 +23,11 @@ export type {
   FullFormState,
 } from './FormState'
 export { FormSpy } from './FormSpy'
-export type { FormSpyProps } from './FormSpy'
+export type {
+  FormSpyProps,
+  FormSpyWrapperProps,
+  FullFormSpyProps,
+} from './FormSpy'
 export type {
   FieldMetaState,
   FieldRenderProps,
@@ -54,6 +58,7 @@ export { FieldRequirements } from '@toptal/picasso-form'
 export { FormCompound as Form } from './FormCompound'
 
 export { Form as FormNonCompound } from './Form'
+export type { FormWrapperProps, FullFormProps } from './Form'
 export { default as FieldWrapper } from './FieldWrapper'
 export { default as Autocomplete } from './Autocomplete'
 export { default as Input } from './Input'

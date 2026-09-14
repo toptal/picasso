@@ -1,6 +1,7 @@
 export { useFormState } from './use-form-state'
 export { withFormStateDefaults } from './full-form-state'
 export type {
+  DefaultFormValues,
   FullFormRenderProps,
   FullFormSpyRenderProps,
   FullFormState,

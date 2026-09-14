@@ -1,10 +1,10 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import React from 'react'
-import type { AnyObject, FormState, FormSubscription } from 'final-form'
+import type { FormState, FormSubscription } from 'final-form'
 import type { FormSpyRenderProps } from 'react-final-form'
 import { FormSpy as FinalFormSpy } from 'react-final-form'
 
-import type { FullFormSpyRenderProps } from '../FormState'
+import type { DefaultFormValues, FullFormSpyRenderProps } from '../FormState'
 import { withFormStateDefaults } from '../FormState'
 
 interface FormSpyBaseProps<FormValues> {
@@ -30,32 +30,65 @@ type NarrowSubscriptionSpyProps<FormValues> = FormSpyBaseProps<FormValues> & {
   subscription: FormSubscription
 } & FormSpyRenderableProps<FormSpyRenderProps<FormValues>>
 
-export type FormSpyProps<FormValues = AnyObject> =
+/** Props of a fully subscribed spy, for annotating a wrapper that never forwards a `subscription`: declare `Omit<FullFormSpyProps<T>, 'subscription'>` and the wrapper keeps the non-optional render props */
+export type FullFormSpyProps<FormValues = DefaultFormValues> =
+  FullSubscriptionSpyProps<FormValues>
+
+/**
+ * Props for a component that wraps `FormSpy` and forwards them on, including a
+ * `subscription` it cannot resolve. That is all such a wrapper can promise, so
+ * its function child receives the optional render props the catch-all overload
+ * delivers. Omitting `subscription` here is not enough to get the non-optional
+ * ones back — the `children` type carries them — so use `FullFormSpyProps`
+ * above for a wrapper that never forwards one.
+ */
+export type FormSpyWrapperProps<FormValues = DefaultFormValues> =
+  FormSpyBaseProps<FormValues> & {
+    /** Form-state keys to subscribe to; every key is subscribed when omitted */
+    subscription?: FormSubscription
+  } & FormSpyRenderableProps<FormSpyRenderProps<FormValues>>
+
+export type FormSpyProps<FormValues = DefaultFormValues> =
   | FullSubscriptionSpyProps<FormValues>
   | NarrowSubscriptionSpyProps<FormValues>
+
+/** Every shape the overloads accept, so the one implementation covers them all */
+type FormSpyImplementationProps<FormValues> =
+  | FormSpyProps<FormValues>
+  | FormSpyWrapperProps<FormValues>
 
 /**
  * `FormSpy` from `react-final-form`, handing its render props the keys a fully
  * subscribed form actually has (see `useFormState`). Overloaded on
  * `subscription` for the same reason the hook is.
  */
-export function FormSpy<FormValues = AnyObject>(
+export function FormSpy<FormValues = DefaultFormValues>(
   props: FullSubscriptionSpyProps<FormValues>
 ): ReactElement | null
 
 /** With a `subscription`, the unsubscribed keys are genuinely `undefined` and keep the optional types */
-export function FormSpy<FormValues = AnyObject>(
+export function FormSpy<FormValues = DefaultFormValues>(
   props: NarrowSubscriptionSpyProps<FormValues>
 ): ReactElement | null
 
+/**
+ * Last, so that the two above still bind: a wrapper forwarding props holds
+ * `FormSubscription | undefined`, which matches neither, and overload
+ * resolution does not distribute over that union. It cannot know whether its
+ * caller subscribes, so it receives the optional render props.
+ */
+export function FormSpy<FormValues = DefaultFormValues>(
+  props: FormSpyWrapperProps<FormValues>
+): ReactElement | null
+
 // eslint-disable-next-line func-style -- an overloaded function needs a declaration
-export function FormSpy<FormValues = AnyObject>({
+export function FormSpy<FormValues = DefaultFormValues>({
   children,
   component: Component,
   render,
   subscription,
   ...rest
-}: FormSpyProps<FormValues>) {
+}: FormSpyImplementationProps<FormValues>) {
   return (
     <FinalFormSpy<FormValues> subscription={subscription} {...rest}>
       {renderProps => {

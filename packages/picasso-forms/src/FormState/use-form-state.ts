@@ -1,8 +1,8 @@
-import type { AnyObject, FormState, FormSubscription } from 'final-form'
+import type { FormState, FormSubscription } from 'final-form'
 import type { UseFormStateParams } from 'react-final-form'
 import { useFormState as useFinalFormState } from 'react-final-form'
 
-import type { FullFormState } from './full-form-state'
+import type { DefaultFormValues, FullFormState } from './full-form-state'
 import { withFormStateDefaults } from './full-form-state'
 
 type FullSubscriptionParams<FormValues> = Omit<
@@ -27,21 +27,21 @@ type NarrowSubscriptionParams<FormValues> = Omit<
  * `subscription` whose presence is only known at runtime falls through to the
  * optional types.
  */
-export function useFormState<FormValues = AnyObject>(
+export function useFormState<FormValues = DefaultFormValues>(
   params?: FullSubscriptionParams<FormValues>
 ): FullFormState<FormValues>
 
 /** With a `subscription`, the unsubscribed keys are genuinely `undefined` and keep the optional types */
-export function useFormState<FormValues = AnyObject>(
+export function useFormState<FormValues = DefaultFormValues>(
   params: NarrowSubscriptionParams<FormValues>
 ): FormState<FormValues>
 
-export function useFormState<FormValues = AnyObject>(
+export function useFormState<FormValues = DefaultFormValues>(
   params: UseFormStateParams<FormValues>
 ): FormState<FormValues>
 
 // eslint-disable-next-line func-style -- an overloaded function needs a declaration
-export function useFormState<FormValues = AnyObject>(
+export function useFormState<FormValues = DefaultFormValues>(
   params?: UseFormStateParams<FormValues>
 ): FormState<FormValues> | FullFormState<FormValues> {
   const state = useFinalFormState<FormValues>(params)

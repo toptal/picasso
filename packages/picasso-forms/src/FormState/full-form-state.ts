@@ -2,6 +2,16 @@ import type { AnyObject, FormState } from 'final-form'
 import type { FormRenderProps, FormSpyRenderProps } from 'react-final-form'
 
 /**
+ * The default form values, spelled exactly as `react-final-form` spells it.
+ * Not final-form's `AnyObject`, which is an interface with a string index
+ * signature: `keyof` that is `string | number`, so `active` would widen to
+ * `string | number | undefined` and stop matching the `FormRenderProps` and
+ * `FormSpyRenderProps` this package also re-exports.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type DefaultFormValues = Record<string, any>
+
+/**
  * The form-state keys final-form leaves `undefined` under the full
  * subscription, because `undefined` is the answer rather than a gap: no field
  * is focused, and there is no form-level, submit or per-field submit error.
@@ -17,17 +27,15 @@ type WithFullSubscription<T> = Required<Omit<T, OptionalFormStateKey>> &
   Pick<T, Extract<OptionalFormStateKey, keyof T>>
 
 /** Form state as `useFormState` returns it without a `subscription` */
-export type FullFormState<FormValues = AnyObject> = WithFullSubscription<
-  FormState<FormValues>
->
+export type FullFormState<FormValues = DefaultFormValues> =
+  WithFullSubscription<FormState<FormValues>>
 
 /** Render props Picasso's `Form` passes to a function child without a `subscription` */
-export type FullFormRenderProps<FormValues = AnyObject> = WithFullSubscription<
-  FormRenderProps<FormValues>
->
+export type FullFormRenderProps<FormValues = DefaultFormValues> =
+  WithFullSubscription<FormRenderProps<FormValues>>
 
 /** Render props `FormSpy` passes to a function child without a `subscription` */
-export type FullFormSpyRenderProps<FormValues = AnyObject> =
+export type FullFormSpyRenderProps<FormValues = DefaultFormValues> =
   WithFullSubscription<FormSpyRenderProps<FormValues>>
 
 /**
