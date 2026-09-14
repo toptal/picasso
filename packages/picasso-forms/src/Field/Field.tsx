@@ -17,7 +17,7 @@ import { assertFieldName } from './assert-field-name'
 import {
   useClaimedFieldState,
   useReleaseClaimedFieldState,
-} from './keep-field-state'
+} from './use-claimed-field-state'
 
 const { composeValidators, required: requiredValidator } = validators
 

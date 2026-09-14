@@ -6,8 +6,21 @@
     "composite": false,
     "noEmit": true,
     "allowJs": true,
-    "types": ["jest", "node"]
+    "jsx": "react",
+    "typeRoots": [
+      "../node_modules/@types",
+      "../@types",
+      "../node_modules/@testing-library"
+    ],
+    "types": ["jest", "node", "jest-dom"]
   },
+  // Package tests carrying type-level assertions; `files` is not subject to
+  // the base `exclude`, which drops every other test file
+  "files": [
+    "../packages/picasso-forms/src/FormState/test.tsx",
+    "../packages/picasso-forms/src/FormListeners/test.tsx",
+    "../packages/picasso-forms/src/FieldArray/test.tsx"
+  ],
   "include": ["./**/*.test.ts", "./**/*.cjs"],
   "exclude": []
 }

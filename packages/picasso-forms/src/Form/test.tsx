@@ -1,16 +1,9 @@
 import React from 'react'
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  act,
-} from '@toptal/picasso-test-utils'
-import type { AnyObject } from 'final-form'
+import { fireEvent, render, waitFor, act } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso-button'
 
-import type { FormWrapperProps, FullFormProps, Props } from './Form'
+import type { Props } from './Form'
 import { FormCompound as Form } from '../FormCompound'
 import { scrollTo } from '../utils/scroll-to'
 
@@ -91,18 +84,6 @@ const renderTagSelectorWithInitialValue = (
     </Form>
   )
 }
-
-// Wrappers that forward props: `formProps.subscription` is
-// `FormSubscription | undefined`, which matches neither precise overload,
-// because overload resolution does not distribute over a union
-const InlineForm = <T extends AnyObject>(props: FormWrapperProps<T>) => (
-  <Form<T> {...props} />
-)
-
-// A wrapper that forwards no subscription keeps the non-optional render props
-const StrictForm = (props: Omit<FullFormProps, 'subscription'>) => (
-  <Form {...props} />
-)
 
 const scrollToMock = scrollTo as jest.Mock
 
@@ -257,81 +238,6 @@ describe('Form', () => {
       )
 
       consoleError.mockRestore()
-    })
-  })
-
-  // The type assertions below are not enforced by CI: no test file in this
-  // repo is type-checked. Run `tsc --noEmit` over this file to check them.
-  describe('render props of a function child', () => {
-    it('fills the state final-form subscribes to, and types it non-optional', () => {
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ test: 'value' }}>
-          {({ submitting, pristine, initialValues: formInitialValues }) => {
-            const isSubmitting: boolean = submitting
-            const values: Partial<AnyObject> = formInitialValues
-
-            return <span>{`${isSubmitting} ${pristine} ${values.test}`}</span>
-          }}
-        </Form>
-      )
-
-      expect(screen.getByText('false true value')).toBeInTheDocument()
-    })
-
-    it('reports an absent `initialValues` as an empty object', () => {
-      render(
-        <Form onSubmit={jest.fn()}>
-          {({ initialValues: formInitialValues }) => (
-            <span>{JSON.stringify(formInitialValues)}</span>
-          )}
-        </Form>
-      )
-
-      expect(screen.getByText('{}')).toBeInTheDocument()
-    })
-
-    it('leaves the keys an explicit subscription omits undefined', () => {
-      render(
-        <Form onSubmit={jest.fn()} subscription={{ submitting: true }}>
-          {({ submitting, initialValues: formInitialValues }) => {
-            // @ts-expect-error a literal subscription keeps `submitting` optional
-            const wrong: boolean = submitting
-
-            return <span>{`${wrong} ${formInitialValues}`}</span>
-          }}
-        </Form>
-      )
-
-      expect(screen.getByText('false undefined')).toBeInTheDocument()
-    })
-
-    it('accepts a wrapper forwarding a subscription it cannot resolve', () => {
-      render(
-        <InlineForm onSubmit={jest.fn()}>
-          {({ submitting }) => {
-            // @ts-expect-error a wrapper cannot promise its caller omitted `subscription`
-            const wrong: boolean = submitting
-
-            return <span>{`wrapped ${wrong}`}</span>
-          }}
-        </InlineForm>
-      )
-
-      expect(screen.getByText('wrapped false')).toBeInTheDocument()
-    })
-
-    it('keeps the state non-optional for a wrapper that forwards no subscription', () => {
-      render(
-        <StrictForm onSubmit={jest.fn()}>
-          {({ submitting }) => {
-            const isSubmitting: boolean = submitting
-
-            return <span>{`strict ${isSubmitting}`}</span>
-          }}
-        </StrictForm>
-      )
-
-      expect(screen.getByText('strict false')).toBeInTheDocument()
     })
   })
 })

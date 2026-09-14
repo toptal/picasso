@@ -1,11 +1,10 @@
 import type { AnyObject, FormState } from 'final-form'
-import type { FormRenderProps, FormSpyRenderProps } from 'react-final-form'
 
 /**
  * The default form values, spelled exactly as `react-final-form` spells it.
  * Not final-form's `AnyObject`, which is an interface with a string index
  * signature: `keyof` that is `string | number`, so `active` would widen to
- * `string | number | undefined` and stop matching the `FormRenderProps` and
+ * `string | number | undefined` and stop matching the `FormState` and
  * `FormSpyRenderProps` this package also re-exports.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,14 +28,6 @@ type WithFullSubscription<T> = Required<Omit<T, OptionalFormStateKey>> &
 /** Form state as `useFormState` returns it without a `subscription` */
 export type FullFormState<FormValues = DefaultFormValues> =
   WithFullSubscription<FormState<FormValues>>
-
-/** Render props Picasso's `Form` passes to a function child without a `subscription` */
-export type FullFormRenderProps<FormValues = DefaultFormValues> =
-  WithFullSubscription<FormRenderProps<FormValues>>
-
-/** Render props `FormSpy` passes to a function child without a `subscription` */
-export type FullFormSpyRenderProps<FormValues = DefaultFormValues> =
-  WithFullSubscription<FormSpyRenderProps<FormValues>>
 
 /**
  * One shared reference, so a form without `initialValues` does not hand every
@@ -62,7 +53,7 @@ export function withFormStateDefaults(state: AnyObject): AnyObject {
     return state
   }
 
-  // `react-final-form` exposes the state on its render props as
+  // `react-final-form` exposes the state `useFormState` returns through
   // non-configurable getters that read the live form state, so the default is
   // applied by copying descriptors: a spread would snapshot every value and
   // drop the laziness upstream keeps deliberately, and defining `initialValues`

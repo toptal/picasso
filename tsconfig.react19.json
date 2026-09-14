@@ -10,11 +10,13 @@
     "typeRoots": [
       "./react19/node_modules/@types",
       "./node_modules/@types",
-      "./@types"
+      "./@types",
+      "./node_modules/@testing-library"
     ],
     "types": [
       "node",
       "jest",
+      "jest-dom",
       "global",
       "ap-style-title-case",
       "hast-util-from-dom",
@@ -30,7 +32,14 @@
   },
   // The sanity test is the one test written against @types/react 19; `files`
   // is not subject to `exclude`, so it is checked while the rest stay out.
-  "files": ["react19/sanity.test.tsx"],
+  // Test files carrying type-level assertions that must stay true against
+  // @types/react 19 as well; `files` is not subject to `exclude`.
+  "files": [
+    "react19/sanity.test.tsx",
+    "packages/picasso-forms/src/FormState/test.tsx",
+    "packages/picasso-forms/src/FormListeners/test.tsx",
+    "packages/picasso-forms/src/FieldArray/test.tsx"
+  ],
   "include": ["packages/*/src", "packages/base/*/src"],
   "exclude": [
     "**/test.tsx",

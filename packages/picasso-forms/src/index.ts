@@ -13,21 +13,12 @@ export { FORM_ERROR, setIn } from 'final-form'
 export {
   useForm,
   useField,
+  FormSpy,
   Form as FinalForm,
   Field as FinalField,
 } from 'react-final-form'
 export { useFormState } from './FormState'
-export type {
-  FullFormRenderProps,
-  FullFormSpyRenderProps,
-  FullFormState,
-} from './FormState'
-export { FormSpy } from './FormSpy'
-export type {
-  FormSpyProps,
-  FormSpyWrapperProps,
-  FullFormSpyProps,
-} from './FormSpy'
+export type { FullFormState } from './FormState'
 export type {
   FieldMetaState,
   FieldRenderProps,
@@ -58,7 +49,6 @@ export { FieldRequirements } from '@toptal/picasso-form'
 export { FormCompound as Form } from './FormCompound'
 
 export { Form as FormNonCompound } from './Form'
-export type { FormWrapperProps, FullFormProps } from './Form'
 export { default as FieldWrapper } from './FieldWrapper'
 export { default as Autocomplete } from './Autocomplete'
 export { default as Input } from './Input'

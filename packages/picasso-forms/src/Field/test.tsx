@@ -33,6 +33,42 @@ const toggle = () => {
   fireEvent.click(screen.getByText('toggle'))
 }
 
+// Radios and checkboxes render react-final-form's `Field` instead of going
+// through Picasso's `Field`; the group above them is what holds the claim
+const ToggleableChildren = ({ children }: { children: React.ReactNode }) => {
+  const [mounted, setMounted] = useState(true)
+
+  return (
+    <>
+      {mounted && children}
+      <Button onClick={() => setMounted(current => !current)}>toggle</Button>
+    </>
+  )
+}
+
+// Seeds `c` with `form.change()` before the field mounts over it
+const SeededLater = () => {
+  const [mounted, setMounted] = useState(false)
+
+  return (
+    <Form onSubmit={jest.fn()} initialValues={{ c: 'initial' }}>
+      {({ form }) => (
+        <>
+          {mounted && <Form.Input name='c' placeholder='field' />}
+          <Button
+            onClick={() => {
+              form.change('c', '')
+              setMounted(true)
+            }}
+          >
+            seed
+          </Button>
+        </>
+      )}
+    </Form>
+  )
+}
+
 describe('Field', () => {
   describe('when a field unmounts and remounts', () => {
     it('keeps the value the user edited', () => {
@@ -55,28 +91,6 @@ describe('Field', () => {
 
   describe('when a field mounts over a value the form was already given', () => {
     it('keeps the seeded value instead of the initial one', () => {
-      const SeededLater = () => {
-        const [mounted, setMounted] = useState(false)
-
-        return (
-          <Form onSubmit={jest.fn()} initialValues={{ c: 'initial' }}>
-            {({ form }) => (
-              <>
-                {mounted && <Form.Input name='c' placeholder='field' />}
-                <Button
-                  onClick={() => {
-                    form.change('c', '')
-                    setMounted(true)
-                  }}
-                >
-                  seed
-                </Button>
-              </>
-            )}
-          </Form>
-        )
-      }
-
       render(<SeededLater />)
 
       fireEvent.click(screen.getByText('seed'))
@@ -112,6 +126,64 @@ describe('Field', () => {
       expect(formApi?.getState().values.a).toBeUndefined()
     })
   })
+
+  describe('when a radio or checkbox group remounts', () => {
+    it('keeps the radio the user selected in a group', () => {
+      let formApi: FormApi<{ r: string }> | undefined
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ r: 'a' }}>
+          {({ form }) => {
+            formApi = form
+
+            return (
+              <ToggleableChildren>
+                <Form.RadioGroup name='r'>
+                  <Form.Radio value='a' label='A' />
+                  <Form.Radio value='b' label='B' />
+                </Form.RadioGroup>
+              </ToggleableChildren>
+            )
+          }}
+        </Form>
+      )
+
+      fireEvent.click(screen.getByLabelText('B'))
+      toggle()
+      toggle()
+
+      expect(formApi?.getState().values.r).toBe('b')
+      expect(screen.getByLabelText('B')).toBeChecked()
+    })
+
+    it('keeps the checkbox the user toggled in a group', () => {
+      let formApi: FormApi<{ c: string[] }> | undefined
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ c: ['x'] }}>
+          {({ form }) => {
+            formApi = form
+
+            return (
+              <ToggleableChildren>
+                <Form.CheckboxGroup name='c'>
+                  <Form.Checkbox value='x' label='X' />
+                  <Form.Checkbox value='y' label='Y' />
+                </Form.CheckboxGroup>
+              </ToggleableChildren>
+            )
+          }}
+        </Form>
+      )
+
+      fireEvent.click(screen.getByLabelText('Y'))
+      toggle()
+      toggle()
+
+      expect(formApi?.getState().values.c).toEqual(['x', 'y'])
+    })
+  })
+
   describe('when a FieldArray drops an item', () => {
     it('shifts the remaining positional values instead of restoring a stale one', () => {
       render(
@@ -147,8 +219,8 @@ describe('Field', () => {
     })
   })
 
-  describe('when a field stays registered after unmounting', () => {
-    it('submits with a form-level error on the unmounted field', async () => {
+  describe('after a field unmounts', () => {
+    it('still lets a form-level error on the unmounted field block submit', async () => {
       const handleSubmit = jest.fn()
 
       render(
@@ -172,8 +244,8 @@ describe('Field', () => {
         fireEvent.click(screen.getByText('submit'))
       })
 
-      // the field is registered but has no element: the error blocks the
-      // submit and the scroll-to-error decorator finds nothing to scroll to
+      // nothing is registered for `a` any more; the form-level error still
+      // blocks the submit and the scroll-to-error decorator finds no element
       expect(handleSubmit).not.toHaveBeenCalled()
       expect(scrollTo).not.toHaveBeenCalled()
     })

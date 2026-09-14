@@ -1,14 +1,16 @@
 import type { MutableRefObject } from 'react'
 import { useEffect, useRef } from 'react'
 import { useForm } from 'react-final-form'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 type ReleaseRef = MutableRefObject<(() => void) | null>
 
 /**
  * Workaround for react-final-form 7.0.1 reseeding a field from `initialValues`
  * whenever it mounts and final-form holds no field state for it
- * (https://github.com/final-form/react-final-form/issues/1095, fixed by the
- * still-unreleased https://github.com/final-form/react-final-form/pull/1096).
+ * (https://github.com/final-form/react-final-form/issues/1095; a fix is
+ * proposed in the still-open
+ * https://github.com/final-form/react-final-form/pull/1096).
  *
  * final-form drops `state.fields[name]` once the last subscriber of a field
  * unregisters, `destroyOnUnregister` or not, so that branch also runs for a
@@ -18,26 +20,32 @@ type ReleaseRef = MutableRefObject<(() => void) | null>
  * by the initial one, while the form's *values* still hold the right one.
  *
  * So the field state is recreated from those values for exactly as long as
- * react-final-form's mount effect needs to see it, by registering a subscriber
- * that carries no subscription and no validator and releasing it in the next
- * effect. It must not outlive the mount: final-form clears a field's error and
+ * react-final-form's mount effect needs to see it: a subscriber that carries no
+ * subscription and no validator is registered in the layout phase and released
+ * in the next passive effect. React runs every layout effect of a commit
+ * before any passive effect, so the claim precedes that mount effect whether it
+ * belongs to this component's own `useField` or to a react-final-form `Field`
+ * rendered by a descendant (the radios of a `Form.RadioGroup`, the checkboxes
+ * of a `Form.CheckboxGroup`); and a descendant's passive effects run before
+ * its ancestor's, so the release follows it.
+ *
+ * The claim must not outlive the mount: final-form clears a field's error and
  * state only when the *last* subscriber unregisters, so a subscriber held for
  * the life of the form would strand the error of a field that unmounts — a
  * hidden `required` field would then block submit with nothing on screen to
  * explain it.
  *
- * Delete this file and its two calls in `Field` once a `react-final-form`
- * release contains #1096.
+ * TODO: [PF-2262] delete this file and its calls once a `react-final-form`
+ * release contains a fix for #1095.
  */
 export const useClaimedFieldState = (name: string): ReleaseRef => {
   const form = useForm()
   const release = useRef<(() => void) | null>(null)
 
-  // Declared before `useField` so this effect runs before the mount effect it
-  // exists to satisfy: effects run in the order their hooks are declared
-  useEffect(() => {
-    // `destroyOnUnregister` asks for exactly the behaviour this works around
-    if (form.destroyOnUnregister) {
+  useIsomorphicLayoutEffect(() => {
+    // `destroyOnUnregister` asks for exactly the behaviour this works around;
+    // a missing name is `assertFieldName`'s to report and has nothing to claim
+    if (!name || form.destroyOnUnregister) {
       return undefined
     }
 
@@ -53,7 +61,11 @@ export const useClaimedFieldState = (name: string): ReleaseRef => {
   return release
 }
 
-/** Releases the claim above, once react-final-form has registered the real field */
+/**
+ * Releases the claim above once react-final-form has registered the real
+ * field. A passive effect, so it runs after the mount effect of this
+ * component's `useField` and after those of any `Field` a descendant renders.
+ */
 export const useReleaseClaimedFieldState = (release: ReleaseRef) => {
   useEffect(() => {
     release.current?.()
