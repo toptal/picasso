@@ -356,6 +356,73 @@ describe('DatePicker', () => {
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
 
+    describe('when the value arrives after the input is focused', () => {
+      // A form library that registers its fields in an effect delivers the
+      // first value after mount, so a focused picker sees it late
+      it('shows a value that arrives while the empty input is focused', () => {
+        const { getByTestId, rerender } = render(
+          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
+        )
+        const input = getByTestId(testIds.input)
+
+        fireEvent.focus(input)
+
+        rerender(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={new Date(2020, 11, 24)}
+          />
+        )
+
+        expect(input).toHaveValue('12-24-2020')
+      })
+
+      it('keeps what the user has typed', () => {
+        const { getByTestId, rerender } = render(
+          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
+        )
+        const input = getByTestId(testIds.input)
+
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: '12-2' } })
+
+        rerender(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={new Date(2020, 11, 24)}
+          />
+        )
+
+        expect(input).toHaveValue('12-2')
+      })
+
+      it('keeps an input the user has cleared', () => {
+        const { getByTestId, rerender } = render(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={new Date(2020, 11, 24)}
+          />
+        )
+        const input = getByTestId(testIds.input)
+
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: '' } })
+
+        rerender(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={new Date(2020, 10, 2)}
+          />
+        )
+
+        expect(input).toHaveValue('')
+      })
+    })
+
     describe('when `range` property is set', () => {
       it('should resets value when input content removed', async () => {
         const { getByTestId } = renderDatePicker({

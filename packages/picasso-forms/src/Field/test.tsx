@@ -291,4 +291,124 @@ describe('Field', () => {
       expect(handleSubmit).toHaveBeenCalled()
     })
   })
+  describe('the field configuration final-form only applies once', () => {
+    // The claim creates the field entry, and final-form never re-applies a
+    // field's submit hooks, `data` or `validateFields` to an entry that
+    // already exists, so the claim has to carry them
+    it('formats a `formatOnBlur` field that was never focused', async () => {
+      const handleSubmit = jest.fn()
+
+      render(
+        <Form onSubmit={handleSubmit} initialValues={{ amount: '5.0' }}>
+          <Form.Input
+            name='amount'
+            formatOnBlur
+            format={value => Number(value).toFixed(2)}
+            placeholder='amount'
+          />
+          <Button type='submit'>submit</Button>
+        </Form>
+      )
+
+      await act(async () => {
+        fireEvent.click(screen.getByText('submit'))
+      })
+
+      expect(handleSubmit).toHaveBeenCalledWith(
+        { amount: '5.00' },
+        expect.anything(),
+        expect.anything()
+      )
+    })
+
+    it('formats a `formatOnBlur` field of a radio group', async () => {
+      const handleSubmit = jest.fn()
+
+      render(
+        <Form onSubmit={handleSubmit} initialValues={{ r: 'a' }}>
+          <Form.RadioGroup
+            name='r'
+            formatOnBlur
+            format={value => String(value).toUpperCase()}
+          >
+            <Form.Radio value='a' label='A' />
+            <Form.Radio value='b' label='B' />
+          </Form.RadioGroup>
+          <Button type='submit'>submit</Button>
+        </Form>
+      )
+
+      await act(async () => {
+        fireEvent.click(screen.getByText('submit'))
+      })
+
+      expect(handleSubmit).toHaveBeenCalledWith(
+        { r: 'A' },
+        expect.anything(),
+        expect.anything()
+      )
+    })
+
+    it("runs the field's `afterSubmit`", async () => {
+      const handleAfterSubmit = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
+          <Form.Input
+            name='a'
+            afterSubmit={handleAfterSubmit}
+            placeholder='field'
+          />
+          <Button type='submit'>submit</Button>
+        </Form>
+      )
+
+      await act(async () => {
+        fireEvent.click(screen.getByText('submit'))
+      })
+
+      expect(handleAfterSubmit).toHaveBeenCalled()
+    })
+
+    it("lets the field's `beforeSubmit` block the submit", async () => {
+      const handleSubmit = jest.fn()
+
+      render(
+        <Form onSubmit={handleSubmit} initialValues={{ a: 'x' }}>
+          <Form.Input name='a' beforeSubmit={() => false} placeholder='field' />
+          <Button type='submit'>submit</Button>
+        </Form>
+      )
+
+      await act(async () => {
+        fireEvent.click(screen.getByText('submit'))
+      })
+
+      expect(handleSubmit).not.toHaveBeenCalled()
+    })
+
+    it("passes the field's `data` to its state", () => {
+      let formApi: FormApi<{ a: string }> | undefined
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
+          {({ form }) => {
+            formApi = form
+
+            return (
+              <Form.Input
+                name='a'
+                data={{ tag: 'from-props' }}
+                placeholder='field'
+              />
+            )
+          }}
+        </Form>
+      )
+
+      expect(formApi?.getFieldState('a')?.data).toEqual(
+        expect.objectContaining({ tag: 'from-props' })
+      )
+    })
+  })
 })

@@ -9,7 +9,7 @@ import {
 } from '@toptal/picasso'
 import { PicassoBreakpoints } from '@toptal/picasso-provider'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
   const [value, setValue] = useState<DatePickerProps['value']>(
@@ -65,6 +65,32 @@ const TestAsyncExternalUpdateDatePicker = () => {
   )
 }
 
+// An autofocused picker whose value arrives after mount, the way a form
+// library that registers its fields in an effect delivers it
+const TestLateValueAutoFocusDatePicker = () => {
+  const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>(null)
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setDatepickerValue(new Date(2022, 4, 5)),
+      100
+    )
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <Container padded='medium'>
+      <DatePicker
+        autoFocus
+        testIds={{ input: 'date-picker-input' }}
+        value={datepickerValue}
+        onChange={setDatepickerValue}
+      />
+    </Container>
+  )
+}
+
 const component = 'DatePicker'
 
 describe('DatePicker', () => {
@@ -77,6 +103,14 @@ describe('DatePicker', () => {
       component,
       variant: 'autofocus',
     })
+  })
+
+  it('shows a value that arrives after autofocus', () => {
+    cy.mount(<TestLateValueAutoFocusDatePicker />)
+
+    cy.waitForCalendarOpen()
+
+    cy.getByTestId('date-picker-input').should('have.value', '05-05-2022')
   })
 
   it('renders range', () => {

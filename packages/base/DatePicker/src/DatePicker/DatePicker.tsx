@@ -166,6 +166,10 @@ export const DatePicker = ({
   const hideCalendar = () => setCalendarIsShown(false)
   const showCalendar = () => setCalendarIsShown(true)
 
+  // Whether the user has edited the input during the current focus, including
+  // clearing it. Only read inside the state updater, so it must not re-render
+  const hasTypedWhileFocused = useRef(false)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const popperRef = useRef<PopperHandle>(null)
   const calendarRef = useRef<HTMLDivElement>(null)
@@ -190,11 +194,21 @@ export const DatePicker = ({
 
   const updateInputValue = useCallback(
     ({ preventUpdateOnFocus }: { preventUpdateOnFocus?: boolean }) => {
-      if (preventUpdateOnFocus && isInputFocused) {
-        return
-      }
+      setInputValue(currentInputValue => {
+        // A focused input is protected from an incoming value because it may
+        // hold something the user is working on. An empty one they have not
+        // typed into during this focus holds nothing, and a value can arrive
+        // after focus: a form library that registers its fields in an effect
+        // delivers the first value after mount, so an autofocused picker was
+        // left showing an empty input while the calendar showed the date.
+        const hasSomethingToProtect =
+          currentInputValue !== EMPTY_INPUT_VALUE ||
+          hasTypedWhileFocused.current
 
-      setInputValue(() => {
+        if (preventUpdateOnFocus && isInputFocused && hasSomethingToProtect) {
+          return currentInputValue
+        }
+
         if (!value) {
           return EMPTY_INPUT_VALUE
         }
@@ -220,6 +234,7 @@ export const DatePicker = ({
 
   useEffect(() => {
     if (disabled) {
+      hasTypedWhileFocused.current = false
       setIsInputFocused(false)
     }
   }, [disabled])
@@ -254,6 +269,7 @@ export const DatePicker = ({
     hideCalendar()
     onBlur()
 
+    hasTypedWhileFocused.current = false
     setIsInputFocused(false)
   }
 
@@ -262,6 +278,7 @@ export const DatePicker = ({
   ) => {
     if (!isInsideDatePicker(event.target as Node)) {
       hideCalendar()
+      hasTypedWhileFocused.current = false
       setIsInputFocused(false)
     }
   }
@@ -279,6 +296,7 @@ export const DatePicker = ({
     }
 
     // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
+    hasTypedWhileFocused.current = true
     setInputValue(nextValue)
 
     if (!nextValue) {

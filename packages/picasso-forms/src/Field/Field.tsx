@@ -105,7 +105,14 @@ const Field = <
 
   // Brackets `useField` below; remove both calls with the rest of the
   // react-final-form 7.0.1 workaround (see the module)
-  const releaseClaimedFieldState = useClaimedFieldState(name)
+  const releaseClaimedFieldState = useClaimedFieldState(name, {
+    afterSubmit,
+    beforeSubmit,
+    data,
+    format,
+    formatOnBlur,
+    validateFields,
+  })
 
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()
@@ -144,11 +151,25 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
+  // `react-final-form@7` derives a checkbox's `checked` from `parse(value)`,
+  // where 6 used `format(value)`. `parse` is the DOM-to-state direction, so the
+  // documented pair — `format={value => value === 'true'}` with
+  // `parse={checked => (checked ? 'true' : 'false')}` — reads a stored
+  // `'false'` through `parse`, gets the truthy `'true'` back and renders an
+  // unchecked box as checked; clicking it then submits the wrong value. For a
+  // checkbox without its own `value` the field's `input.value` is already
+  // `format(value)`, so this restores the 6.x meaning. A checkbox that carries
+  // a `value` belongs to a group, where `checked` is array membership and
+  // upstream's semantics stand.
+  const shouldDeriveCheckedFromFormat =
+    type === 'checkbox' && value === undefined && format !== undefined
+
   const childProps: Record<string, unknown> = {
     id,
     status,
     ...rest,
     ...input,
+    ...(shouldDeriveCheckedFromFormat ? { checked: Boolean(input.value) } : {}),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       if (isFirefox && event?.target) {
