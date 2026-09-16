@@ -398,6 +398,132 @@ describe('DatePicker', () => {
         expect(input).toHaveValue('12-2')
       })
 
+      it('keeps an input the user emptied with nothing to delete', () => {
+        // The input is already empty when it takes focus, so pressing Delete
+        // changes nothing and fires no change event. It is still the user
+        // saying they want the field empty
+        const { getByTestId, rerender } = render(
+          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
+        )
+        const input = getByTestId(testIds.input)
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'Delete' })
+
+        rerender(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={new Date(2020, 11, 24)}
+          />
+        )
+
+        expect(input).toHaveValue('')
+      })
+
+      it('never concatenates a late value with what the user typed', () => {
+        // A value landing behind the caret would leave both dates in the
+        // field, and a custom parser can read that concatenation as a date
+        const parseInputValue = jest.fn()
+        const { getByTestId, rerender } = render(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={null}
+            parseInputValue={parseInputValue}
+          />
+        )
+        const input = getByTestId(testIds.input)
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: '0' })
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+
+        rerender(
+          <DatePicker
+            testIds={testIds}
+            onChange={() => {}}
+            value={new Date(2022, 4, 5)}
+            parseInputValue={parseInputValue}
+          />
+        )
+
+        expect(input).toHaveValue('09-30-2024')
+      })
+
+      it('commits the date the user typed, not the one that arrived late', () => {
+        // The Staff Portal sequence: an inline editor autofocuses, the user
+        // empties the field, the value lands, and the text they then type has
+        // to be the date the form receives
+        const handleChange = jest.fn()
+        const { getByTestId, rerender } = render(
+          <DatePicker testIds={testIds} onChange={handleChange} value={null} />
+        )
+        const input = getByTestId(testIds.input)
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'Delete' })
+
+        rerender(
+          <DatePicker
+            testIds={testIds}
+            onChange={handleChange}
+            value={new Date(2022, 4, 5)}
+          />
+        )
+
+        expect(input).toHaveValue('')
+
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+
+        expect(handleChange).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
+      })
+
+      it('commits the typed date when an autofocused picker fills late', () => {
+        // The Staff Portal shape: an inline editor autofocuses while the form
+        // value is still on its way, and the user starts by emptying the field
+        const handleCommit = jest.fn()
+        let deliverValue: (() => void) | undefined
+
+        const InlineEditor = () => {
+          const [value, setValue] = React.useState<Date | null>(null)
+
+          deliverValue = () => setValue(new Date(2022, 4, 5))
+
+          return (
+            <DatePicker
+              autoFocus
+              testIds={testIds}
+              value={value}
+              onChange={nextValue => {
+                setValue(nextValue as Date | null)
+                handleCommit(nextValue)
+              }}
+            />
+          )
+        }
+
+        const { getByTestId } = render(<InlineEditor />)
+        const input = getByTestId(testIds.input)
+
+        expect(input).toHaveFocus()
+
+        fireEvent.keyDown(input, { key: 'Delete' })
+
+        act(() => {
+          deliverValue?.()
+        })
+
+        expect(input).toHaveValue('')
+
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+        fireEvent.blur(input)
+
+        expect(handleCommit).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
+        // the whole field is what they typed, with no restored date in front
+        expect(input).toHaveValue('09-30-2024')
+      })
+
       it('keeps an input the user has cleared', () => {
         const { getByTestId, rerender } = render(
           <DatePicker
