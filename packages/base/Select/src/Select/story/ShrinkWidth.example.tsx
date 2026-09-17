@@ -4,7 +4,7 @@ import { SPACING_4 } from '@toptal/picasso-utils'
 import { Settings16 } from '@toptal/picasso-icons'
 
 const Example = () => {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>('1')
 
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     setValue(event.target.value)
@@ -17,7 +17,7 @@ const Example = () => {
           onChange={handleChange}
           options={OPTIONS}
           value={value}
-          placeholder='ID'
+          placeholder='Sort by'
           width='shrink'
         />
       </Container>
@@ -27,7 +27,7 @@ const Example = () => {
           options={OPTIONS}
           value={value}
           icon={<Settings16 />}
-          placeholder='ID'
+          placeholder='Sort by'
           width='shrink'
         />
       </Container>
@@ -36,10 +36,10 @@ const Example = () => {
 }
 
 const OPTIONS = [
-  { value: '1', text: '1' },
-  { value: '2', text: '2' },
-  { value: '3', text: '3' },
-  { value: '4', text: '4' },
+  { value: '1', text: 'Newest first' },
+  { value: '2', text: 'Oldest first' },
+  { value: '3', text: 'A-Z' },
+  { value: '4', text: 'Z-A' },
 ]
 
 export default Example

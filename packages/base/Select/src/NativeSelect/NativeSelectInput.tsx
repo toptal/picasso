@@ -26,8 +26,7 @@ export const NativeSelectInput = forwardRef<
            focus:bg-black/[.05] focus:rounded-none`,
           disabled && 'cursor-default',
           multiple ? 'h-auto' : '[&_option]:bg-white [&_optgroup]:bg-white',
-          className,
-          'pr-6' // From MUI, this rule is more specific and should override classname
+          className
         )}
         disabled={disabled}
         multiple={multiple}

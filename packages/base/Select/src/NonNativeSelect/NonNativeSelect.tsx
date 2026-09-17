@@ -124,6 +124,7 @@ export const NonNativeSelect = documentable(
         })
 
       const { layout } = useFieldsLayoutContext()
+      const isShrink = width === 'shrink'
 
       const searchInput = showSearch ? (
         <MenuItem
@@ -192,7 +193,14 @@ export const NonNativeSelect = documentable(
               className='pr-[1.625rem]'
               highlight={highlight}
               inputProps={{
-                size: 1, // let input to have smallest width by default for width:'shrink'
+                // `shrink` fits the value: `field-sizing` exactly, `size` where
+                // it is unsupported; `min-w-4` floors an empty field
+                size: isShrink
+                  ? (displayValue || placeholder || '').length || 1
+                  : 1,
+                className: isShrink
+                  ? 'field-sizing-content min-w-4'
+                  : undefined,
               }}
               size={size}
               role='textbox'
