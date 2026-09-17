@@ -530,6 +530,48 @@ describe('NonNativeSelect', () => {
       expect(selectInput.value).toBe(OPTIONS[0].text)
     })
   })
+
+  describe('width', () => {
+    it('fits a shrink field to the selected value', () => {
+      const { getByDisplayValue } = renderSelect({
+        options: OPTIONS,
+        value: 'val1',
+        width: 'shrink',
+      })
+
+      const input = getByDisplayValue('text1')
+
+      expect(input).toHaveAttribute('size', '5')
+      expect(input).toHaveClass('field-sizing-content')
+    })
+
+    it('fits an empty shrink field to the placeholder', () => {
+      const placeholder = 'Choose an option...'
+
+      const { getByPlaceholderText } = renderSelect({
+        options: OPTIONS,
+        placeholder,
+        width: 'shrink',
+      })
+
+      expect(getByPlaceholderText(placeholder)).toHaveAttribute(
+        'size',
+        String(placeholder.length)
+      )
+    })
+
+    it('leaves other widths to the field', () => {
+      const { getByDisplayValue } = renderSelect({
+        options: OPTIONS,
+        value: 'val1',
+      })
+
+      const input = getByDisplayValue('text1')
+
+      expect(input).toHaveAttribute('size', '1')
+      expect(input).not.toHaveClass('field-sizing-content')
+    })
+  })
 })
 
 describe('NonNativeSelect (multiple)', () => {

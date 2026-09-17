@@ -10,11 +10,13 @@ const renderNativeSelectPlaceholder = ({
   children = CHILDREN,
   emptySelectValue = '',
   disabled = false,
+  selected = false,
 }: Partial<Props> = {}) =>
   render(
     <NativeSelectPlaceholder
       emptySelectValue={emptySelectValue}
       disabled={disabled}
+      selected={selected}
     >
       {children}
     </NativeSelectPlaceholder>
@@ -39,5 +41,24 @@ describe('NativeSelectPlaceholder', () => {
     const { container } = renderNativeSelectPlaceholder({ disabled: true })
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('renders nothing when selected, disabled and without text', () => {
+    const { queryByRole } = renderNativeSelectPlaceholder({
+      children: null,
+      disabled: true,
+      selected: true,
+    })
+
+    expect(queryByRole('option')).not.toBeInTheDocument()
+  })
+
+  it('renders the reset row when selected and without text', () => {
+    const { getByRole } = renderNativeSelectPlaceholder({
+      children: null,
+      selected: true,
+    })
+
+    expect(getByRole('option')).toBeEnabled()
   })
 })
