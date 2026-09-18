@@ -166,6 +166,12 @@ export const DatePicker = ({
   const hideCalendar = () => setCalendarIsShown(false)
   const showCalendar = () => setCalendarIsShown(true)
 
+  // Whether the user has worked in the input during the current focus: a key
+  // press counts, not only a change event, because deleting from an already
+  // empty field changes nothing yet still says the field is theirs. Only read
+  // inside the state updater, so it must not re-render
+  const hasInteractedWhileFocused = useRef(false)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const popperRef = useRef<PopperHandle>(null)
   const calendarRef = useRef<HTMLDivElement>(null)
@@ -189,12 +195,42 @@ export const DatePicker = ({
   )
 
   const updateInputValue = useCallback(
-    ({ preventUpdateOnFocus }: { preventUpdateOnFocus?: boolean }) => {
-      if (preventUpdateOnFocus && isInputFocused) {
-        return
-      }
+    ({
+      trigger,
+      focused,
+    }: {
+      /** What changed: the incoming `value` or timezone, or the input's focus state */
+      trigger: 'value' | 'focus'
+      /** Whether the input has focus, by React state or by the DOM */
+      focused: boolean
+    }) => {
+      setInputValue(currentInputValue => {
+        if (focused) {
+          // A focused input is protected from an incoming value because it may
+          // hold something the user is working on. An empty one they have not
+          // touched during this focus holds nothing, and a value can arrive
+          // after focus: a form library that registers its fields in an effect
+          // delivers the first value after mount, so an autofocused picker was
+          // left showing an empty input while the calendar showed the date.
+          // Protecting too eagerly only leaves that input empty, which is what
+          // it did before; protecting too late overwrites what the user typed.
+          const hasSomethingToProtect =
+            currentInputValue !== EMPTY_INPUT_VALUE ||
+            hasInteractedWhileFocused.current
 
-      setInputValue(() => {
+          if (trigger === 'value' && hasSomethingToProtect) {
+            return currentInputValue
+          }
+
+          // A focus change only re-formats what the input already shows,
+          // between the edit and the display format. Filling an empty focused
+          // input is the value update's job, which guards it; done here it
+          // would land a value behind whatever the user has just cleared.
+          if (trigger === 'focus' && currentInputValue === EMPTY_INPUT_VALUE) {
+            return currentInputValue
+          }
+        }
+
         if (!value) {
           return EMPTY_INPUT_VALUE
         }
@@ -202,24 +238,35 @@ export const DatePicker = ({
         return formatInputValue(timezoneConvert(value, timezone))
       })
     },
-    [value, isInputFocused, timezone, formatInputValue]
+    [value, timezone, formatInputValue]
   )
 
-  // Keep the input value in sync with date value update
-  // Updating on incoming date value or timezone change
-  // Should not update when input is focused to prevent overriding it's value
+  // Keep the input value in sync with the date value, on an incoming value or
+  // a timezone change. Focus is read from the DOM as well as from React state:
+  // `autoFocus` focuses the input during the commit and the focus handler's
+  // state lands a render later, so the first value delivered after mount would
+  // otherwise meet an "unfocused" input. Read here, in an effect, never during
+  // render.
   useEffect(() => {
-    updateInputValue({ preventUpdateOnFocus: true })
+    updateInputValue({
+      trigger: 'value',
+      focused:
+        isInputFocused ||
+        (inputRef.current !== null &&
+          document.activeElement === inputRef.current),
+    })
   }, [value, timezone])
 
-  // Keep the input format in sync with its 'focus' state
-  // Updating on input focus state change
+  // Keep the input format in sync with its focus state: the edit format while
+  // focused, the display format otherwise. The state is the intent here (the
+  // focus and blur handlers decided), so the DOM is not consulted.
   useEffect(() => {
-    updateInputValue({ preventUpdateOnFocus: false })
+    updateInputValue({ trigger: 'focus', focused: isInputFocused })
   }, [isInputFocused])
 
   useEffect(() => {
     if (disabled) {
+      hasInteractedWhileFocused.current = false
       setIsInputFocused(false)
     }
   }, [disabled])
@@ -254,6 +301,7 @@ export const DatePicker = ({
     hideCalendar()
     onBlur()
 
+    hasInteractedWhileFocused.current = false
     setIsInputFocused(false)
   }
 
@@ -262,6 +310,7 @@ export const DatePicker = ({
   ) => {
     if (!isInsideDatePicker(event.target as Node)) {
       hideCalendar()
+      hasInteractedWhileFocused.current = false
       setIsInputFocused(false)
     }
   }
@@ -279,6 +328,7 @@ export const DatePicker = ({
     }
 
     // TODO: add char filtering (only number , `-` or ` ` allowed) in case if `parseInputValue` is not set
+    hasInteractedWhileFocused.current = true
     setInputValue(nextValue)
 
     if (!nextValue) {
@@ -323,6 +373,10 @@ export const DatePicker = ({
 
   const handleInputKeydown = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = event.key
+
+    // Before the branches below return: a deletion on an already empty input
+    // fires no change event, and it still means the field is the user's
+    hasInteractedWhileFocused.current = true
 
     if (key === 'Escape') {
       hideCalendar()
