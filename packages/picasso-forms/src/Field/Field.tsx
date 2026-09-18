@@ -151,16 +151,22 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
-  // `react-final-form@7` derives a checkbox's `checked` from `parse(value)`,
-  // where 6 used `format(value)`. `parse` is the DOM-to-state direction, so the
-  // documented pair — `format={value => value === 'true'}` with
-  // `parse={checked => (checked ? 'true' : 'false')}` — reads a stored
-  // `'false'` through `parse`, gets the truthy `'true'` back and renders an
-  // unchecked box as checked; clicking it then submits the wrong value. For a
-  // checkbox without its own `value` the field's `input.value` is already
-  // `format(value)`, so this restores the 6.x meaning. A checkbox that carries
-  // a `value` belongs to a group, where `checked` is array membership and
-  // upstream's semantics stand.
+  // `react-final-form@7.0.1` derives a checkbox's `checked` from `parse(value)`,
+  // where 6 and 7.0.0 used `format(value)`; upstream changed it on purpose
+  // (final-form/react-final-form#1074) for group values whose `parse` fixes
+  // their type. For a standalone checkbox `parse` is the wrong direction: the
+  // string-boolean pair `format={value => value === 'true'}` with
+  // `parse={checked => (checked ? 'true' : 'false')}` reads a stored `'false'`
+  // through `parse`, gets the truthy `'true'` back and renders an unchecked box
+  // as checked; clicking it then submits the wrong value. For a checkbox
+  // without its own `value` the field's `input.value` is already
+  // `format(value)`, so this restores the 6.x meaning: a deliberate divergence,
+  // kept until upstream settles that case. A checkbox that carries a `value`
+  // belongs to a group, where `checked` is array membership and upstream's
+  // semantics stand.
+  // TODO: [PF-2262] link the upstream issue for the string-boolean checkbox
+  // once it is filed; drop this block if a release derives `checked` from
+  // `format` again for a value-less checkbox
   const shouldDeriveCheckedFromFormat =
     type === 'checkbox' && value === undefined && format !== undefined
 

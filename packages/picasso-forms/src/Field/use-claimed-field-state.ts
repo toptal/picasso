@@ -65,6 +65,14 @@ const defaultFormat = (value: unknown) => (value === undefined ? '' : value)
  * hidden `required` field would then block submit with nothing on screen to
  * explain it.
  *
+ * The claim is also not re-established when a field's `data`, `defaultValue`
+ * or `initialValue` prop changes identity while mounted: react-final-form lists
+ * them as dependencies of its registration effect, so such a change unregisters
+ * and re-registers the field, and 7.0.1 reseeds it again. Picasso's wrappers
+ * forward those props unchanged, so a consumer passing a fresh object or array
+ * on every render re-registers the field on every render, with or without this
+ * module; that case keeps upstream's behaviour.
+ *
  * TODO: [PF-2262] delete this file and its calls once a `react-final-form`
  * release contains a fix for #1095.
  */
@@ -92,6 +100,10 @@ export const useClaimedFieldState = (
       () => {},
       {},
       {
+        // Only this field's own listeners are told, and there are none yet: the
+        // claim changes no value, so the form-wide notification final-form
+        // would otherwise send once per field mount has nothing to report
+        silent: true,
         // Mirrors react-final-form's own wrapper: flush `formatOnBlur` through
         // `format` before validation runs, then defer to the consumer's hook and
         // return its result, so returning `false` still blocks the submit
@@ -138,6 +150,8 @@ export const useClaimedFieldState = (
  * component's `useField` and after those of any `Field` a descendant renders.
  */
 export const useReleaseClaimedFieldState = (release: ReleaseRef) => {
+  // No dependency list on purpose: the claim above re-registers whenever
+  // `name` changes, and each of those claims must be released too
   useEffect(() => {
     release.current?.()
     release.current = null

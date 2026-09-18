@@ -57,9 +57,12 @@ describe('form listeners', () => {
   })
 
   describe('types', () => {
-    // Not enforced by CI: no test file in this repo is type-checked.
-    // `react-final-form-listeners@3.0.1` points `types` at a path it does not
-    // publish, so without these declarations every listener would be `any`.
+    // Type-checked by `pnpm typecheck:react19`: tsconfig.react19.json lists
+    // this file under `files` and builds the packages first. `pnpm typecheck`
+    // cannot resolve package imports without a build, so @types/react 17 is
+    // not checked. `react-final-form-listeners@3.0.1` points `types` at a path
+    // it does not publish, so without these declarations every listener would
+    // be `any`.
     it('types the listener props', () => {
       const typed = (
         <>

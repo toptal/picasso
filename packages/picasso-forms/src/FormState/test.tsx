@@ -22,28 +22,30 @@ const renderInForm = (
 
 describe('useFormState', () => {
   describe('without a subscription', () => {
-    it('reports an absent `initialValues` as an empty object', () => {
-      const Probe = () => {
-        const { initialValues } = useFormState<Values>()
-
-        return <span>{JSON.stringify(initialValues)}</span>
-      }
-
-      renderInForm(<Probe />)
-
-      expect(screen.getByText('{}')).toBeInTheDocument()
-    })
-
     it("passes the form's `initialValues` through", () => {
       const Probe = () => {
         const { initialValues } = useFormState<Values>()
 
-        return <span>{initialValues.firstName}</span>
+        return <span>{initialValues?.firstName}</span>
       }
 
       renderInForm(<Probe />, { firstName: 'Bruce' })
 
       expect(screen.getByText('Bruce')).toBeInTheDocument()
+    })
+
+    it('leaves an absent `initialValues` undefined, as final-form reports it', () => {
+      // The same answer a `FormSpy` child and `form.getState()` give, so a
+      // consumer reads `initialValues` one way through all three
+      const Probe = () => {
+        const { initialValues } = useFormState<Values>()
+
+        return <span>{String(initialValues)}</span>
+      }
+
+      renderInForm(<Probe />)
+
+      expect(screen.getByText('undefined')).toBeInTheDocument()
     })
 
     it('fills the state booleans final-form subscribes to', () => {
@@ -66,49 +68,6 @@ describe('useFormState', () => {
         )
       ).toBeInTheDocument()
     })
-
-    it('keeps the same empty `initialValues` across renders', () => {
-      const seen: unknown[] = []
-      const Probe = ({ label }: { label: string }) => {
-        seen.push(useFormState<Values>().initialValues)
-
-        return <span>{label}</span>
-      }
-
-      const { rerender } = render(
-        <Form onSubmit={jest.fn()}>
-          <Probe label='first' />
-        </Form>
-      )
-
-      rerender(
-        <Form onSubmit={jest.fn()}>
-          <Probe label='second' />
-        </Form>
-      )
-
-      expect(seen.length).toBeGreaterThan(1)
-      expect(new Set(seen).size).toBe(1)
-    })
-
-    it("keeps react-final-form's lazy state getters", () => {
-      // The defaults are applied by copying property descriptors: a spread
-      // would turn the getters upstream defines on purpose into snapshots
-      let descriptor: PropertyDescriptor | undefined
-
-      const Probe = () => {
-        descriptor = Object.getOwnPropertyDescriptor(
-          useFormState<Values>(),
-          'values'
-        )
-
-        return null
-      }
-
-      renderInForm(<Probe />)
-
-      expect(descriptor?.get).toBeDefined()
-    })
   })
 
   describe('with a subscription', () => {
@@ -130,16 +89,18 @@ describe('useFormState', () => {
   })
 
   describe('types', () => {
-    // Not enforced by CI: the repo's `tsconfig.jest.json` inherits the base
-    // `exclude`, so no test file is type-checked. Run
-    // `tsc --noEmit` over this file to check them.
+    // Type-checked by `pnpm typecheck:react19`: tsconfig.react19.json lists
+    // this file under `files` and builds the packages first. `pnpm typecheck`
+    // cannot resolve package imports without a build, so @types/react 17 is
+    // not checked.
     it('makes the subscribed keys non-optional without a subscription', () => {
       const Probe = () => {
         const state = useFormState<Values>()
-        const initialValues: Partial<Values> = state.initialValues
         const submitting: boolean = state.submitting
         const touched: Record<string, boolean> = state.touched
 
+        // @ts-expect-error `initialValues` stays optional: a form given none reports `undefined`
+        const initialValues: Partial<Values> = state.initialValues
         // @ts-expect-error `active` stays optional: no focused field is an answer
         const active: keyof Values = state.active
 
@@ -153,7 +114,7 @@ describe('useFormState', () => {
       renderInForm(<Probe />)
 
       expect(
-        screen.getByText('{"initialValues":{},"submitting":false,"touched":{}}')
+        screen.getByText('{"submitting":false,"touched":{}}')
       ).toBeInTheDocument()
     })
 

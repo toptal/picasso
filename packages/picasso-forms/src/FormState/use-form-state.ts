@@ -3,7 +3,6 @@ import type { UseFormStateParams } from 'react-final-form'
 import { useFormState as useFinalFormState } from 'react-final-form'
 
 import type { DefaultFormValues, FullFormState } from './full-form-state'
-import { withFormStateDefaults } from './full-form-state'
 
 type FullSubscriptionParams<FormValues> = Omit<
   UseFormStateParams<FormValues>,
@@ -16,11 +15,13 @@ type NarrowSubscriptionParams<FormValues> = Omit<
 > & { subscription: FormSubscription }
 
 /**
- * `useFormState` from `react-final-form`, returning the keys a fully
- * subscribed form actually has. Without a `subscription` the hook subscribes
- * to every key, so `initialValues` and the state booleans are always there and
- * are typed that way — final-form types them optional to model the narrow
- * subscription below, which made every call site default them by hand.
+ * `useFormState` from `react-final-form`, typed by what a fully subscribed
+ * form actually has. Without a `subscription` the hook subscribes to every
+ * key, so the state booleans and records are always there and are typed that
+ * way; final-form types them optional to model the narrow subscription below,
+ * which made every call site default them by hand. `initialValues` stays
+ * optional: a form given none reports `undefined`, exactly as `FormSpy` and
+ * `form.getState()` do. The runtime is upstream's, untouched.
  *
  * Overloads rather than one conditional type: they read at the call site, they
  * survive an explicit `useFormState<Values>()` type argument, and a
@@ -44,11 +45,5 @@ export function useFormState<FormValues = DefaultFormValues>(
 export function useFormState<FormValues = DefaultFormValues>(
   params?: UseFormStateParams<FormValues>
 ): FormState<FormValues> | FullFormState<FormValues> {
-  const state = useFinalFormState<FormValues>(params)
-
-  // Only the full subscription is defaulted: under a narrow one an undefined
-  // key means "not subscribed", which the optional types above keep saying.
-  return params?.subscription === undefined
-    ? withFormStateDefaults(state)
-    : state
+  return useFinalFormState<FormValues>(params)
 }

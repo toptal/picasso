@@ -46,12 +46,17 @@ export interface UseFieldArrayConfig<FieldValue = any> {
 
 // react-final-form-arrays@5 subscribes an array field to `length`, `value` and
 // `error` only, where 3 subscribed to every key, so `meta.dirty`,
-// `meta.touched`, … would read `undefined` after mount. The wrapper keeps the
-// full subscription consumers relied on; pass `subscription` to narrow it.
-const allFieldSubscription = fieldSubscriptionItems.reduce<FieldSubscription>(
-  (subscription, key) => ({ ...subscription, [key]: true }),
-  {}
-)
+// `meta.touched`, … would read `undefined` after mount. The wrappers keep the
+// full subscription consumers relied on. Upstream narrowed it after nested
+// arrays re-rendered on every field change (react-final-form-arrays#119), so a
+// long or deeply nested array pays for this default; pass `subscription` to
+// narrow it. The default moves to upstream's in the next major, once consumers
+// that read the extra meta subscribe to it explicitly.
+export const allFieldSubscription =
+  fieldSubscriptionItems.reduce<FieldSubscription>(
+    (subscription, key) => ({ ...subscription, [key]: true }),
+    {}
+  )
 
 /**
  * `useFieldArray` from `react-final-form-arrays`, typed by the array's item

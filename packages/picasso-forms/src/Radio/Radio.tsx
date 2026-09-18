@@ -19,8 +19,7 @@ const Radio = ({ name, ...rest }: Props) => {
   assertFieldName(fieldName)
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    <Field name={fieldName!} type='radio' value={rest.value}>
+    <Field name={fieldName} type='radio' value={rest.value}>
       {({ input }) => <PicassoRadio checked={input.checked} {...rest} />}
     </Field>
   )

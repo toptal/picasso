@@ -1,11 +1,12 @@
-import type { ComponentType, ReactNode } from 'react'
+import type { ComponentType, ReactElement, ReactNode } from 'react'
 import React from 'react'
+import { FieldArray as FinalFormFieldArray } from 'react-final-form-arrays'
 
 import type {
   FieldArrayRenderProps,
   UseFieldArrayConfig,
 } from './use-field-array'
-import { useFieldArray } from './use-field-array'
+import { allFieldSubscription } from './use-field-array'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface FieldArrayProps<FieldValue = any>
@@ -20,39 +21,31 @@ export interface FieldArrayProps<FieldValue = any>
   render?: (props: FieldArrayRenderProps<FieldValue>) => ReactNode
 }
 
+// Upstream's component behind Picasso's typed props. `react-final-form-arrays@5`
+// declares it as returning `ReactNode`, which `@types/react` 17 and 18 reject as
+// a JSX element type, and types the items as `any`; the runtime, including the
+// `children` / `render` / `component` dispatch, is upstream's.
+const TypedFinalFormFieldArray = FinalFormFieldArray as <FieldValue>(
+  props: FieldArrayProps<FieldValue>
+) => ReactElement | null
+
 /**
- * `FieldArray` from `react-final-form-arrays`, rendered through Picasso's
- * `useFieldArray` so the item type flows into the render props and the element
- * type-checks on every `@types/react` major: upstream 5 declares its component
- * as returning `ReactNode`, which `@types/react` 17 and 18 reject as a JSX
- * element type. Needs the `final-form-arrays` mutators on the `<Form>`.
+ * `FieldArray` from `react-final-form-arrays`, with the item type flowing into
+ * the render props and the array field subscribed to every state key by
+ * default, as `react-final-form-arrays@3` subscribed it; upstream 5 narrowed
+ * the default to `length`, `value` and `error`. Pass `subscription` to narrow
+ * it. Needs the `final-form-arrays` mutators on the `<Form>`.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const FieldArray = <FieldValue = any,>({
-  name,
-  children,
-  component: Component,
-  render,
-  ...config
-}: FieldArrayProps<FieldValue>) => {
-  const renderProps = useFieldArray<FieldValue>(name, config)
-
-  if (Component) {
-    return <Component {...renderProps} />
-  }
-
-  if (render) {
-    return <>{render(renderProps)}</>
-  }
-
-  if (typeof children !== 'function') {
-    throw new Error(
-      `FieldArray(${name}) needs a render function as children, a \`render\` prop or a \`component\` prop`
-    )
-  }
-
-  return <>{children(renderProps)}</>
-}
+  subscription = allFieldSubscription,
+  ...props
+}: FieldArrayProps<FieldValue>) => (
+  <TypedFinalFormFieldArray<FieldValue>
+    subscription={subscription}
+    {...props}
+  />
+)
 
 FieldArray.displayName = 'FieldArray'
 

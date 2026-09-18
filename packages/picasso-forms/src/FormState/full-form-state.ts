@@ -1,4 +1,4 @@
-import type { AnyObject, FormState } from 'final-form'
+import type { FormState } from 'final-form'
 
 /**
  * The default form values, spelled exactly as `react-final-form` spells it.
@@ -13,9 +13,16 @@ export type DefaultFormValues = Record<string, any>
 /**
  * The form-state keys final-form leaves `undefined` under the full
  * subscription, because `undefined` is the answer rather than a gap: no field
- * is focused, and there is no form-level, submit or per-field submit error.
+ * is focused, there is no form-level, submit or per-field submit error, and
+ * the form was given no `initialValues`. `FormSpy` and `form.getState()`
+ * report the same, so `initialValues` reads the same way through all three.
  */
-type OptionalFormStateKey = 'active' | 'error' | 'submitError' | 'submitErrors'
+type OptionalFormStateKey =
+  | 'active'
+  | 'error'
+  | 'initialValues'
+  | 'submitError'
+  | 'submitErrors'
 
 /**
  * `T` as a form subscribed to every key actually receives it. final-form types
@@ -28,41 +35,3 @@ type WithFullSubscription<T> = Required<Omit<T, OptionalFormStateKey>> &
 /** Form state as `useFormState` returns it without a `subscription` */
 export type FullFormState<FormValues = DefaultFormValues> =
   WithFullSubscription<FormState<FormValues>>
-
-/**
- * One shared reference, so a form without `initialValues` does not hand every
- * render a new object and invalidate consumer memoization keyed on it.
- */
-const EMPTY_INITIAL_VALUES = Object.freeze({})
-
-/**
- * Fills `initialValues` — the one key of a fully subscribed form state that is
- * `undefined` for a reason consumers read as data ("the form was given none")
- * rather than as absence. Every other key final-form already fills; the type
- * says so, and this only has to make the value match.
- */
-export function withFormStateDefaults<T extends AnyObject>(
-  state: T
-): WithFullSubscription<T>
-
-// Loose implementation signature: the overload above states the contract, and
-// no assertion can prove this narrowing to the compiler.
-// eslint-disable-next-line func-style -- an overloaded function needs a declaration
-export function withFormStateDefaults(state: AnyObject): AnyObject {
-  if (state.initialValues !== undefined) {
-    return state
-  }
-
-  // `react-final-form` exposes the state `useFormState` returns through
-  // non-configurable getters that read the live form state, so the default is
-  // applied by copying descriptors: a spread would snapshot every value and
-  // drop the laziness upstream keeps deliberately, and defining `initialValues`
-  // on top of a copied getter would throw.
-  return Object.defineProperties(
-    {},
-    {
-      ...Object.getOwnPropertyDescriptors(state),
-      initialValues: { value: EMPTY_INITIAL_VALUES, enumerable: true },
-    }
-  )
-}

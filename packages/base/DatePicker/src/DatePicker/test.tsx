@@ -421,6 +421,79 @@ describe('DatePicker', () => {
         expect(input).toHaveValue('')
       })
 
+      it('does not fill an emptied input when the focus state and the value land in one commit', () => {
+        // The mount sequence a test runner produces: `autoFocus` focuses the
+        // input during the commit, a Delete keypress lands before React's
+        // focus state has flushed, and the first value arrives in the same
+        // render as that flush. Focusing and delivering the value from one
+        // event handler puts both updates in one commit, as that mount does.
+        // A focus change may only re-format what the input already shows;
+        // filling it is the value update's job, and that one sees an input
+        // the user has claimed
+        const LateValueHarness = () => {
+          const [value, setValue] = React.useState<Date | null>(null)
+
+          return (
+            <>
+              <DatePicker testIds={testIds} onChange={() => {}} value={value} />
+              <button
+                type='button'
+                onClick={() => {
+                  document
+                    .querySelector<HTMLInputElement>(
+                      `[data-testid="${testIds.input}"]`
+                    )
+                    ?.focus()
+                  setValue(new Date(2020, 11, 24))
+                }}
+              >
+                deliver
+              </button>
+            </>
+          )
+        }
+
+        const { getByTestId, getByText } = render(<LateValueHarness />)
+        const input = getByTestId(testIds.input)
+
+        fireEvent.keyDown(input, { key: 'Delete' })
+        fireEvent.click(getByText('deliver'))
+
+        expect(input).toHaveFocus()
+        expect(input).toHaveValue('')
+      })
+
+      it("protects the user's input when the value arrives before React knows the input is focused", () => {
+        // `autoFocus` focuses the input during the commit and React's focus
+        // state follows a render later; in that window the DOM is the truth.
+        // jsdom cannot hold the window open, hence the stubbed `activeElement`
+        const { getByTestId, rerender } = render(
+          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
+        )
+        const input = getByTestId(testIds.input)
+
+        Object.defineProperty(document, 'activeElement', {
+          configurable: true,
+          get: () => input,
+        })
+
+        try {
+          fireEvent.keyDown(input, { key: 'Delete' })
+
+          rerender(
+            <DatePicker
+              testIds={testIds}
+              onChange={() => {}}
+              value={new Date(2020, 11, 24)}
+            />
+          )
+
+          expect(input).toHaveValue('')
+        } finally {
+          Reflect.deleteProperty(document, 'activeElement')
+        }
+      })
+
       it('never concatenates a late value with what the user typed', () => {
         // A value landing behind the caret would leave both dates in the
         // field, and a custom parser can read that concatenation as a date
