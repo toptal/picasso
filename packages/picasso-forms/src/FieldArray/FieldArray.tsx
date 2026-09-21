@@ -1,52 +1,23 @@
-import type { ComponentType, ReactElement, ReactNode } from 'react'
-import React from 'react'
+import type { ReactElement } from 'react'
 import { FieldArray as FinalFormFieldArray } from 'react-final-form-arrays'
 
-import type {
-  FieldArrayRenderProps,
-  UseFieldArrayConfig,
-} from './use-field-array'
-import { allFieldSubscription } from './use-field-array'
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface FieldArrayProps<FieldValue = any>
-  extends UseFieldArrayConfig<FieldValue> {
-  /** Name of the array in the form values */
-  name: string
-  /** Render function that receives the array `fields` (items and mutators) and `meta` */
-  children?: (props: FieldArrayRenderProps<FieldValue>) => ReactNode
-  /** Component rendered with the array `fields` and `meta` as props, instead of a render function */
-  component?: ComponentType<FieldArrayRenderProps<FieldValue>>
-  /** Render function, an alternative to a function child */
-  render?: (props: FieldArrayRenderProps<FieldValue>) => ReactNode
-}
-
-// Upstream's component behind Picasso's typed props. `react-final-form-arrays@5`
-// declares it as returning `ReactNode`, which `@types/react` 17 and 18 reject as
-// a JSX element type, and types the items as `any`; the runtime, including the
-// `children` / `render` / `component` dispatch, is upstream's.
-const TypedFinalFormFieldArray = FinalFormFieldArray as <FieldValue>(
-  props: FieldArrayProps<FieldValue>
-) => ReactElement | null
+import type { FieldArrayProps } from './types'
 
 /**
- * `FieldArray` from `react-final-form-arrays`, with the item type flowing into
- * the render props and the array field subscribed to every state key by
- * default, as `react-final-form-arrays@3` subscribed it; upstream 5 narrowed
- * the default to `length`, `value` and `error`. Pass `subscription` to narrow
- * it. Needs the `final-form-arrays` mutators on the `<Form>`.
+ * `FieldArray` from `react-final-form-arrays`, behind Picasso's typed props:
+ * upstream 5 declares the component as returning `ReactNode`, which
+ * `@types/react` 17 and 18 reject as a JSX element type, and types the items as
+ * `any`. The runtime is upstream's, including the `children` / `render` /
+ * `component` dispatch. The default subscription is upstream's (`length`,
+ * `value`, `error`); pass `subscription` to read other `meta` keys such as
+ * `submitError` or `touched`. Needs the `final-form-arrays` mutators on the
+ * `<Form>`.
  */
+// `any` is the item type react-final-form-arrays@3 defaulted to; a stricter
+// default would break every un-annotated `fields.value[i].prop`
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const FieldArray = <FieldValue = any,>({
-  subscription = allFieldSubscription,
-  ...props
-}: FieldArrayProps<FieldValue>) => (
-  <TypedFinalFormFieldArray<FieldValue>
-    subscription={subscription}
-    {...props}
-  />
-)
-
-FieldArray.displayName = 'FieldArray'
+export const FieldArray = FinalFormFieldArray as <FieldValue = any>(
+  props: FieldArrayProps<FieldValue>
+) => ReactElement | null
 
 export default FieldArray

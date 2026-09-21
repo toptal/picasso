@@ -86,24 +86,26 @@ describe('FieldArray', () => {
     expect(getSkills()).toEqual(['HTML5', 'JavaScript'])
   })
 
-  it('subscribes to the whole array meta by default', () => {
+  it("subscribes to upstream's default keys only, so other meta reads undefined", () => {
+    // `length`, `value` and `error`: react-final-form-arrays@5 narrowed the
+    // default after nested arrays re-rendered on every field change (#119)
     renderForm(
       <FieldArray<Skill> name='skills'>
         {({ meta }) => <span>{`pristine: ${String(meta.pristine)}`}</span>}
       </FieldArray>
     )
 
-    expect(screen.getByText('pristine: true')).toBeInTheDocument()
+    expect(screen.getByText('pristine: undefined')).toBeInTheDocument()
   })
 
-  it('narrows the meta to an explicit subscription', () => {
+  it('widens the meta to an explicit subscription', () => {
     renderForm(
-      <FieldArray<Skill> name='skills' subscription={{ value: true }}>
+      <FieldArray<Skill> name='skills' subscription={{ pristine: true }}>
         {({ meta }) => <span>{`pristine: ${String(meta.pristine)}`}</span>}
       </FieldArray>
     )
 
-    expect(screen.getByText('pristine: undefined')).toBeInTheDocument()
+    expect(screen.getByText('pristine: true')).toBeInTheDocument()
   })
 })
 

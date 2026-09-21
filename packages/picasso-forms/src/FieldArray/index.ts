@@ -1,8 +1,8 @@
 export { default, FieldArray } from './FieldArray'
-export type { FieldArrayProps } from './FieldArray'
 export { useFieldArray } from './use-field-array'
 export type {
   FieldArrayMetaState,
+  FieldArrayProps,
   FieldArrayRenderProps,
   UseFieldArrayConfig,
-} from './use-field-array'
+} from './types'
