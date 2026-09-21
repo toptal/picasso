@@ -28147,7 +28147,7 @@ var YearSelect = __webpack_require__("./packages/base/DateSelect/dist-package/sr
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 4 modules
+// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/forward-ref.js
 var forward_ref = __webpack_require__("./packages/base/Utils/dist-package/src/utils/forward-ref.js");
@@ -28269,7 +28269,7 @@ page.createChapter().addExample('MonthSelect/story/Default.example.tsx', 'Defaul
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 4 modules
+// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/forward-ref.js
 var forward_ref = __webpack_require__("./packages/base/Utils/dist-package/src/utils/forward-ref.js");
@@ -69487,7 +69487,7 @@ var Input = __webpack_require__("./packages/base/Input/dist-package/src/Input/In
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-has-multiline-counter.js
 var use_has_multiline_counter = __webpack_require__("./packages/shared/dist-package/src/hooks/use-has-multiline-counter.js");
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/disable-unsupported-props.js
 var disable_unsupported_props = __webpack_require__("./packages/base/Utils/dist-package/src/utils/disable-unsupported-props.js");
@@ -71544,7 +71544,7 @@ try {
     // @ts-ignore
     Logo.displayName = "Logo";
     // @ts-ignore
-    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"black\"" }, { "value": "\"default\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"default\"" }, { "value": "\"black\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -75695,7 +75695,7 @@ var NumberInputEndAdornment = __webpack_require__("./packages/base/NumberInput/d
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
 // EXTERNAL MODULE: ./packages/base/InputAdornment/dist-package/src/InputAdornment/InputAdornment.js
 var InputAdornment = __webpack_require__("./packages/base/InputAdornment/dist-package/src/InputAdornment/InputAdornment.js");
@@ -76011,142 +76011,8 @@ var react_textarea_autosize_browser_esm = __webpack_require__("./packages/base/O
 var bundle_mjs = __webpack_require__("./node_modules/tailwind-merge/dist/bundle-mjs.mjs");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
-;// ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js
-var spacingBySize = {
-  small: 'py-1 px-[0.625rem]',
-  medium: 'p-2',
-  large: 'p-3'
-};
-var heightClasses = {
-  singleline: {
-    small: 'h-6',
-    medium: 'h-8',
-    large: 'h-12'
-  },
-  multiline: 'h-auto'
-};
-var fontColorClass = {
-  default: 'text-black',
-  disabled: 'text-gray-500'
-};
-var cursorClass = {
-  default: 'cursor-[inherit]',
-  disabled: 'cursor-default'
-};
-var bgClasses = {
-  disabled: 'bg-gray-200',
-  dark: 'bg-[#081237]',
-  highlight: 'bg-yellow-100/60',
-  default: 'bg-white'
-};
-var widthClasses = {
-  full: 'w-full',
-  shrink: 'w-auto',
-  auto: 'w-[18.75rem]',
-  horizontal: 'w-full',
-  vertical: ''
-};
-var borderPseudoCoreClasses = ['after:content-[""]', 'after:inline-block', 'after:absolute', 'after:top-0', 'after:bottom-0', 'after:right-0', 'after:left-0', 'after:pointer-events-none', 'after:border-solid', 'after:rounded-sm'];
-var borderPseudoClassesByState = {
-  borderColor: {
-    dark: '',
-    default: ['after:border-gray-400', '[&:has(:focus)]:after:border-blue-500'],
-    disabled: 'after:border-gray-400',
-    error: ['after:border-red-500', '[&:has(:focus)]:after:border-red-500'],
-    warning: ['after:border-yellow-500', '[&:has(:focus)]:after:border-yellow-500'],
-    hoverWithoutFocus: 'hover:[&:not(:has(:focus))]:after:border-gray-600'
-  },
-  border: {
-    dark: 'after:border-none',
-    default: 'after:border',
-    disabled: '',
-    error: '',
-    warning: ''
-  },
-  shadow: {
-    dark: '[&:has(:focus)]:after:shadow-0',
-    default: ['[&:has(:focus)]:after:shadow-[0_0_0_3px]', '[&:has(:focus)]:after:shadow-blue-500/[.48]'],
-    disabled: '',
-    error: ['[&:has(:focus)]:after:shadow-[0_0_0_3px]', '[&:has(:focus)]:after:shadow-red-500/[.48]'],
-    warning: ['[&:has(:focus)]:after:shadow-[0_0_0_3px]', '[&:has(:focus)]:after:shadow-yellow-500/[.48]']
-  }
-};
-var rootBasicClasses = ['relative', 'text-black', 'inline-flex', 'gap-y-1', 'gap-x-2', 'items-center', 'rounded-sm', '[font-size:_unset]', 'group', 'text-nowrap'];
-var getHeightClasses = function (_ref) {
-  var size = _ref.size,
-    multiline = _ref.multiline;
-  return multiline ? heightClasses.multiline : heightClasses.singleline[size];
-};
-var getWidthClasses = function (_ref2) {
-  var width = _ref2.width,
-    layout = _ref2.layout;
-  return layout === 'horizontal' ? widthClasses.horizontal : widthClasses[width];
-};
-var getBackgroundColorClasses = function (_ref3) {
-  var isDark = _ref3.isDark,
-    disabled = _ref3.disabled,
-    highlight = _ref3.highlight;
-  if (disabled) {
-    return bgClasses.disabled;
-  }
-  if (isDark) {
-    return bgClasses.dark;
-  }
-  if (highlight === 'autofill') {
-    return bgClasses.highlight;
-  }
-  return bgClasses.default;
-};
-var getTextColorClass = function (disabled) {
-  return disabled ? fontColorClass.disabled : fontColorClass.default;
-};
-var getCursorClass = function (disabled) {
-  return disabled ? cursorClass.disabled : cursorClass.default;
-};
-var getClassForState = function (state, _ref4) {
-  var borderColor = _ref4.borderColor,
-    border = _ref4.border,
-    shadow = _ref4.shadow;
-  return [borderColor[state] || borderColor.default, border[state] || border.default, shadow[state] || shadow.default];
-};
-var borderPseudoElement = function (conditions) {
-  var disabled = conditions.disabled,
-    isDark = conditions.isDark,
-    isError = conditions.isError,
-    isWarning = conditions.isWarning;
-  var borderColor = borderPseudoClassesByState.borderColor;
-  var primaryState = isError ? 'error' : disabled ? 'disabled' : isDark ? 'dark' : isWarning ? 'warning' : 'default';
-  var hoverClass = !disabled && !isError && !isWarning ? borderColor.hoverWithoutFocus : '';
-  return [borderPseudoCoreClasses, getClassForState(primaryState, borderPseudoClassesByState), hoverClass];
-};
-var getRootClassName = function (_ref5) {
-  var size = _ref5.size,
-    width = _ref5.width,
-    type = _ref5.type,
-    layout = _ref5.layout,
-    isDark = _ref5.isDark,
-    multiline = _ref5.multiline,
-    highlight = _ref5.highlight,
-    disabled = _ref5.disabled,
-    isError = _ref5.isError,
-    isWarning = _ref5.isWarning;
-  return [rootBasicClasses, spacingBySize[size], getHeightClasses({
-    size: size,
-    multiline: multiline
-  }), getWidthClasses({
-    width: width,
-    layout: layout
-  }), getBackgroundColorClasses({
-    isDark: isDark,
-    disabled: disabled,
-    highlight: highlight
-  }), borderPseudoElement({
-    isDark: isDark,
-    disabled: disabled,
-    isError: isError,
-    isWarning: isWarning
-  }), getTextColorClass(disabled), getCursorClass(disabled), type === 'hidden' && 'hidden'];
-};
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js
+var stylesRoot = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js");
 ;// ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesInput.js
 var classesBySize = {
   small: 'text-xxs leading-4',
@@ -76346,7 +76212,7 @@ var OutlinedInput = /*#__PURE__*/(0,react.forwardRef)(function OutlinedInput(_a,
     type: type,
     inputProps: inputProps
   });
-  var rootClassName = getRootClassName({
+  var rootClassName = (0,stylesRoot/* getRootClassName */.wg)({
     size: size,
     width: width,
     type: type,
@@ -76422,6 +76288,153 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 
 /***/ }),
 
+/***/ "./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   eH: () => (/* binding */ spacingBySize),
+/* harmony export */   wg: () => (/* binding */ getRootClassName)
+/* harmony export */ });
+/* unused harmony exports heightClasses, fontColorClass, cursorClass, bgClasses, widthClasses, borderPseudoCoreClasses, borderPseudoClassesByState, rootBasicClasses, getHeightClasses, getWidthClasses, getBackgroundColorClasses */
+var spacingBySize = {
+  small: 'py-1 px-[0.625rem]',
+  medium: 'p-2',
+  large: 'p-3'
+};
+var heightClasses = {
+  singleline: {
+    small: 'h-6',
+    medium: 'h-8',
+    large: 'h-12'
+  },
+  multiline: 'h-auto'
+};
+var fontColorClass = {
+  default: 'text-black',
+  disabled: 'text-gray-500'
+};
+var cursorClass = {
+  default: 'cursor-[inherit]',
+  disabled: 'cursor-default'
+};
+var bgClasses = {
+  disabled: 'bg-gray-200',
+  dark: 'bg-[#081237]',
+  highlight: 'bg-yellow-100/60',
+  default: 'bg-white'
+};
+var widthClasses = {
+  full: 'w-full',
+  shrink: 'w-auto',
+  auto: 'w-[18.75rem]',
+  horizontal: 'w-full',
+  vertical: ''
+};
+var borderPseudoCoreClasses = ['after:content-[""]', 'after:inline-block', 'after:absolute', 'after:top-0', 'after:bottom-0', 'after:right-0', 'after:left-0', 'after:pointer-events-none', 'after:border-solid', 'after:rounded-sm'];
+var borderPseudoClassesByState = {
+  borderColor: {
+    dark: '',
+    default: ['after:border-gray-400', '[&:has(:focus)]:after:border-blue-500'],
+    disabled: 'after:border-gray-400',
+    error: ['after:border-red-500', '[&:has(:focus)]:after:border-red-500'],
+    warning: ['after:border-yellow-500', '[&:has(:focus)]:after:border-yellow-500'],
+    hoverWithoutFocus: 'hover:[&:not(:has(:focus))]:after:border-gray-600'
+  },
+  border: {
+    dark: 'after:border-none',
+    default: 'after:border',
+    disabled: '',
+    error: '',
+    warning: ''
+  },
+  shadow: {
+    dark: '[&:has(:focus)]:after:shadow-0',
+    default: ['[&:has(:focus)]:after:shadow-[0_0_0_3px]', '[&:has(:focus)]:after:shadow-blue-500/[.48]'],
+    disabled: '',
+    error: ['[&:has(:focus)]:after:shadow-[0_0_0_3px]', '[&:has(:focus)]:after:shadow-red-500/[.48]'],
+    warning: ['[&:has(:focus)]:after:shadow-[0_0_0_3px]', '[&:has(:focus)]:after:shadow-yellow-500/[.48]']
+  }
+};
+var rootBasicClasses = ['relative', 'text-black', 'inline-flex', 'gap-y-1', 'gap-x-2', 'items-center', 'rounded-sm', '[font-size:_unset]', 'group', 'text-nowrap'];
+var getHeightClasses = function (_ref) {
+  var size = _ref.size,
+    multiline = _ref.multiline;
+  return multiline ? heightClasses.multiline : heightClasses.singleline[size];
+};
+var getWidthClasses = function (_ref2) {
+  var width = _ref2.width,
+    layout = _ref2.layout;
+  return layout === 'horizontal' ? widthClasses.horizontal : widthClasses[width];
+};
+var getBackgroundColorClasses = function (_ref3) {
+  var isDark = _ref3.isDark,
+    disabled = _ref3.disabled,
+    highlight = _ref3.highlight;
+  if (disabled) {
+    return bgClasses.disabled;
+  }
+  if (isDark) {
+    return bgClasses.dark;
+  }
+  if (highlight === 'autofill') {
+    return bgClasses.highlight;
+  }
+  return bgClasses.default;
+};
+var getTextColorClass = function (disabled) {
+  return disabled ? fontColorClass.disabled : fontColorClass.default;
+};
+var getCursorClass = function (disabled) {
+  return disabled ? cursorClass.disabled : cursorClass.default;
+};
+var getClassForState = function (state, _ref4) {
+  var borderColor = _ref4.borderColor,
+    border = _ref4.border,
+    shadow = _ref4.shadow;
+  return [borderColor[state] || borderColor.default, border[state] || border.default, shadow[state] || shadow.default];
+};
+var borderPseudoElement = function (conditions) {
+  var disabled = conditions.disabled,
+    isDark = conditions.isDark,
+    isError = conditions.isError,
+    isWarning = conditions.isWarning;
+  var borderColor = borderPseudoClassesByState.borderColor;
+  var primaryState = isError ? 'error' : disabled ? 'disabled' : isDark ? 'dark' : isWarning ? 'warning' : 'default';
+  var hoverClass = !disabled && !isError && !isWarning ? borderColor.hoverWithoutFocus : '';
+  return [borderPseudoCoreClasses, getClassForState(primaryState, borderPseudoClassesByState), hoverClass];
+};
+var getRootClassName = function (_ref5) {
+  var size = _ref5.size,
+    width = _ref5.width,
+    type = _ref5.type,
+    layout = _ref5.layout,
+    isDark = _ref5.isDark,
+    multiline = _ref5.multiline,
+    highlight = _ref5.highlight,
+    disabled = _ref5.disabled,
+    isError = _ref5.isError,
+    isWarning = _ref5.isWarning;
+  return [rootBasicClasses, spacingBySize[size], getHeightClasses({
+    size: size,
+    multiline: multiline
+  }), getWidthClasses({
+    width: width,
+    layout: layout
+  }), getBackgroundColorClasses({
+    isDark: isDark,
+    disabled: disabled,
+    highlight: highlight
+  }), borderPseudoElement({
+    isDark: isDark,
+    disabled: disabled,
+    isError: isError,
+    isWarning: isWarning
+  }), getTextColorClass(disabled), getCursorClass(disabled), type === 'hidden' && 'hidden'];
+};
+
+/***/ }),
+
 /***/ "./packages/base/OutlinedInput/dist-package/src/index.js":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -76431,12 +76444,16 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  OutlinedInput: () => (/* reexport */ OutlinedInput/* default */.A)
+  OutlinedInput: () => (/* reexport */ OutlinedInput/* default */.A),
+  spacingBySize: () => (/* reexport */ stylesRoot/* spacingBySize */.eH)
 });
 
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js
+var stylesRoot = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js");
 ;// ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/index.js
+
 
 
 ;// ./packages/base/OutlinedInput/dist-package/src/index.js
@@ -83736,7 +83753,7 @@ var PasswordInput = __webpack_require__("./packages/base/PasswordInput/dist-pack
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
 // EXTERNAL MODULE: ./packages/base/InputAdornment/dist-package/src/InputAdornment/InputAdornment.js
 var InputAdornment = __webpack_require__("./packages/base/InputAdornment/dist-package/src/InputAdornment/InputAdornment.js");
@@ -87557,7 +87574,14 @@ function (props, ref) {
     getSearchInputProps = _useSelectProps.getSearchInputProps;
   var _useFieldsLayoutConte = (0,_toptal_picasso_form__WEBPACK_IMPORTED_MODULE_12__/* .useFieldsLayoutContext */ .cE)(),
     layout = _useFieldsLayoutConte.layout;
-  var isShrink = width === 'shrink';
+  // `shrink` fits the value: `field-sizing` exactly, `size` where it is
+  // unsupported; `min-w-4` floors an empty field
+  var inputProps = width === 'shrink' ? {
+    size: Math.max((displayValue || placeholder || '').length, 1),
+    className: 'field-sizing-content min-w-4'
+  } : {
+    size: 1
+  };
   var searchInput = showSearch ? (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_menu__WEBPACK_IMPORTED_MODULE_13__/* ["default"] */ .A, {
     as: 'div',
     nonSelectable: true,
@@ -87611,12 +87635,7 @@ function (props, ref) {
     defaultValue: undefined,
     className: 'pr-[1.625rem]',
     highlight: highlight,
-    inputProps: {
-      // `shrink` fits the value: `field-sizing` exactly, `size` where
-      // it is unsupported; `min-w-4` floors an empty field
-      size: isShrink ? (displayValue || placeholder || '').length || 1 : 1,
-      className: isShrink ? 'field-sizing-content min-w-4' : undefined
-    },
+    inputProps: inputProps,
     size: size,
     role: 'textbox',
     enableReset: enableReset ? selection.isSelected() : false,
@@ -88081,7 +88100,7 @@ var forward_ref = __webpack_require__("./packages/base/Utils/dist-package/src/ut
 var NonNativeSelect = __webpack_require__("./packages/base/Select/dist-package/src/NonNativeSelect/NonNativeSelect.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/noop.js
 var noop = __webpack_require__("./packages/base/Utils/dist-package/src/utils/noop.js");
@@ -88164,16 +88183,14 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 }
 ;// ./packages/base/Select/dist-package/src/NativeSelectPlaceholder/NativeSelectPlaceholder.js
 
-// Nothing to show once a value is selected unless it is the reset row or has text
 var NativeSelectPlaceholder = function (_ref) {
   var emptySelectValue = _ref.emptySelectValue,
     disabled = _ref.disabled,
-    selected = _ref.selected,
     children = _ref.children;
-  return selected && disabled && !children ? null : (/*#__PURE__*/react.createElement("option", {
+  return /*#__PURE__*/react.createElement("option", {
     disabled: disabled,
     value: emptySelectValue
-  }, children));
+  }, children);
 };
 NativeSelectPlaceholder.displayName = 'NativeSelectPlaceholder';
 NativeSelectPlaceholder.__docgenInfo = {
@@ -88234,6 +88251,20 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
     path: "packages/base/Select/dist-package/src/NativeSelect/NativeSelectInput.js"
   };
 }
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js
+var stylesRoot = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js");
+;// ./packages/base/Select/dist-package/src/NativeSelect/styles.js
+
+// The `select` fills a `p-0` field, so it carries the field's inset itself
+var getSelectClassName = function (_ref) {
+  var size = _ref.size,
+    selected = _ref.selected,
+    startAdornment = _ref.startAdornment,
+    endAdornment = _ref.endAdornment;
+  return ['w-full focus:bg-inheritColor', stylesRoot/* spacingBySize */.eH[size], 'pr-[1.625rem]',
+  // caret reserve, as in the non-native select
+  !selected && 'text-gray-600', startAdornment && 'pl-[2.5625rem]', endAdornment && 'pr-[3.5625rem]'];
+};
 ;// ./packages/base/Select/dist-package/src/NativeSelect/NativeSelect.js
 
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -88259,17 +88290,12 @@ var NativeSelect_rest = undefined && undefined.__rest || function (s, e) {
 
 
 
+
 var DEFAULT_EMPTY_ARRAY_VALUE = [];
 var classesByWidth = {
   full: 'w-full',
   shrink: 'w-auto',
   auto: ''
-};
-// The `select` fills a `p-0` field, so it carries `OutlinedInput`'s inset itself
-var classesBySize = {
-  small: 'py-1 pl-[0.625rem]',
-  medium: 'py-2 pl-2',
-  large: 'py-3 pl-3'
 };
 var NativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardRef */.R)(function (props, ref) {
   var className = props.className,
@@ -88347,11 +88373,12 @@ var NativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardR
   var endAdornment = selectEndAdornment && (/*#__PURE__*/react.createElement("div", {
     className: 'absolute right-[1.625rem]'
   }, selectEndAdornment));
-  var children = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(NativeSelectPlaceholder_NativeSelectPlaceholder, {
+  // The empty option is the placeholder, the reset row, or the empty state
+  var showEmptyOption = Boolean(placeholder || enableReset) || !selection.isSelected();
+  var children = /*#__PURE__*/react.createElement(react.Fragment, null, showEmptyOption && (/*#__PURE__*/react.createElement(NativeSelectPlaceholder_NativeSelectPlaceholder, {
     emptySelectValue: emptySelectValue,
-    disabled: !enableReset,
-    selected: selection.isSelected()
-  }, placeholder), /*#__PURE__*/react.createElement(NativeSelectOptions_NativeSelectOptions, {
+    disabled: !enableReset
+  }, placeholder)), /*#__PURE__*/react.createElement(NativeSelectOptions_NativeSelectOptions, {
     options: options,
     selection: selection,
     renderOption: renderOption,
@@ -88384,9 +88411,12 @@ var NativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardR
           disabled: disabled
         });
       },
-      className: (0,twMerge/* twMerge */.QP)('w-full focus:bg-inheritColor', classesBySize[size], 'pr-[1.625rem]',
-      // caret reserve, as in the non-native select
-      !selection.isSelected() && 'text-gray-600', /*#__PURE__*/react.isValidElement(startAdornment) && 'pl-[2.5625rem]', /*#__PURE__*/react.isValidElement(endAdornment) && 'pr-[3.5625rem]')
+      className: (0,twMerge/* twMerge */.QP)(getSelectClassName({
+        size: size,
+        selected: selection.isSelected(),
+        startAdornment: Boolean(startAdornment),
+        endAdornment: Boolean(endAdornment)
+      }))
     }
   }));
   return /*#__PURE__*/react.createElement("div", {
@@ -89697,7 +89727,7 @@ __webpack_require__.d(__webpack_exports__, {
   useSelectState: () => (/* reexport */ use_select_state/* default */.A)
 });
 
-// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 4 modules
+// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
 ;// ./packages/base/Select/dist-package/src/Select/index.js
 
@@ -89833,7 +89863,7 @@ var forward_ref = __webpack_require__("./packages/base/Utils/dist-package/src/ut
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/Search16.js
 var Search16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/Search16.js");
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
 // EXTERNAL MODULE: ./packages/base/Popper/dist-package/src/index.js + 5 modules
 var src = __webpack_require__("./packages/base/Popper/dist-package/src/index.js");
@@ -91268,7 +91298,15 @@ var NonNativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwa
     getSearchInputProps = _useSelectProps.getSearchInputProps;
   var _useFieldsLayoutConte = (0,FieldsLayoutContext/* useFieldsLayoutContext */.cE)(),
     layout = _useFieldsLayoutConte.layout;
-  var isShrink = width === 'shrink';
+
+  // `shrink` fits the value: `field-sizing` exactly, `size` where it is
+  // unsupported; `min-w-4` floors an empty field
+  var inputProps = width === 'shrink' ? {
+    size: Math.max((displayValue || placeholder || '').length, 1),
+    className: 'field-sizing-content min-w-4'
+  } : {
+    size: 1
+  };
   var searchInput = showSearch ? /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem/* default */.A, {
     as: "div",
     nonSelectable: true,
@@ -91327,12 +91365,7 @@ var NonNativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwa
         defaultValue: undefined,
         className: "pr-[1.625rem]",
         highlight: highlight,
-        inputProps: {
-          // `shrink` fits the value: `field-sizing` exactly, `size` where
-          // it is unsupported; `min-w-4` floors an empty field
-          size: isShrink ? (displayValue || placeholder || '').length || 1 : 1,
-          className: isShrink ? 'field-sizing-content min-w-4' : undefined
-        },
+        inputProps: inputProps,
         size: size,
         role: "textbox",
         enableReset: enableReset ? selection.isSelected() : false,
@@ -91463,18 +91496,17 @@ catch (__react_docgen_typescript_loader_error) { }
 ;// ./packages/base/Select/src/NativeSelectPlaceholder/NativeSelectPlaceholder.tsx
 
 
-// Nothing to show once a value is selected unless it is the reset row or has text
 var NativeSelectPlaceholder = function (_ref) {
   var emptySelectValue = _ref.emptySelectValue,
     disabled = _ref.disabled,
-    selected = _ref.selected,
     children = _ref.children;
-  return selected && disabled && !children ? null : /*#__PURE__*/(0,jsx_runtime.jsx)("option", {
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("option", {
     disabled: disabled,
     value: emptySelectValue,
     children: children
   });
 };
+NativeSelectPlaceholder.displayName = "NativeSelectPlaceholder";
 NativeSelectPlaceholder.displayName = 'NativeSelectPlaceholder';
 /* harmony default export */ const NativeSelectPlaceholder_NativeSelectPlaceholder = (NativeSelectPlaceholder);
 try {
@@ -91528,6 +91560,20 @@ try {
         STORYBOOK_REACT_CLASSES["packages/base/Select/src/NativeSelect/NativeSelectInput.tsx#NativeSelectInput"] = { docgenInfo: NativeSelectInput.__docgenInfo, name: "NativeSelectInput", path: "packages/base/Select/src/NativeSelect/NativeSelectInput.tsx#NativeSelectInput" };
 }
 catch (__react_docgen_typescript_loader_error) { }
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js
+var stylesRoot = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/stylesRoot.js");
+;// ./packages/base/Select/src/NativeSelect/styles.ts
+
+// The `select` fills a `p-0` field, so it carries the field's inset itself
+var getSelectClassName = function (_ref) {
+  var size = _ref.size,
+    selected = _ref.selected,
+    startAdornment = _ref.startAdornment,
+    endAdornment = _ref.endAdornment;
+  return ['w-full focus:bg-inheritColor', stylesRoot/* spacingBySize */.eH[size], 'pr-[1.625rem]',
+  // caret reserve, as in the non-native select
+  !selected && 'text-gray-600', startAdornment && 'pl-[2.5625rem]', endAdornment && 'pr-[3.5625rem]'];
+};
 ;// ./packages/base/Select/src/NativeSelect/NativeSelect.tsx
 
 var NativeSelect_excluded = ["className", "style", "width", "loading", "id", "icon", "iconPosition", "name", "renderOption", "placeholder", "disabled", "status", "multiple", "value", "size", "enableReset", "onChange", "options", "getDisplayValue", "menuWidth", "popperContainer", "enableAutofill", "autoComplete", "searchPlaceholder", "searchThreshold", "limit", "native", "testIds", "highlight", "enableResetSearch"];
@@ -91549,18 +91595,12 @@ function NativeSelect_objectWithoutPropertiesLoose(r, e) { if (null == r) return
 
 
 
+
 var NativeSelect_DEFAULT_EMPTY_ARRAY_VALUE = [];
 var NativeSelect_classesByWidth = {
   full: 'w-full',
   shrink: 'w-auto',
   auto: ''
-};
-
-// The `select` fills a `p-0` field, so it carries `OutlinedInput`'s inset itself
-var classesBySize = {
-  small: 'py-1 pl-[0.625rem]',
-  medium: 'py-2 pl-2',
-  large: 'py-3 pl-3'
 };
 var NativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardRef */.R)(function (props, ref) {
   var className = props.className,
@@ -91640,11 +91680,13 @@ var NativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardR
     className: "absolute right-[1.625rem]",
     children: selectEndAdornment
   });
+
+  // The empty option is the placeholder, the reset row, or the empty state
+  var showEmptyOption = Boolean(placeholder || enableReset) || !selection.isSelected();
   var children = /*#__PURE__*/(0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
-    children: [/*#__PURE__*/(0,jsx_runtime.jsx)(NativeSelectPlaceholder_NativeSelectPlaceholder, {
+    children: [showEmptyOption && /*#__PURE__*/(0,jsx_runtime.jsx)(NativeSelectPlaceholder_NativeSelectPlaceholder, {
       emptySelectValue: emptySelectValue,
       disabled: !enableReset,
-      selected: selection.isSelected(),
       children: placeholder
     }), /*#__PURE__*/(0,jsx_runtime.jsx)(NativeSelectOptions_NativeSelectOptions, {
       options: options,
@@ -91680,9 +91722,12 @@ var NativeSelect = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardR
           disabled: disabled
         });
       },
-      className: (0,twMerge/* twMerge */.QP)('w-full focus:bg-inheritColor', classesBySize[size], 'pr-[1.625rem]',
-      // caret reserve, as in the non-native select
-      !selection.isSelected() && 'text-gray-600', /*#__PURE__*/react.isValidElement(startAdornment) && 'pl-[2.5625rem]', /*#__PURE__*/react.isValidElement(endAdornment) && 'pr-[3.5625rem]')
+      className: (0,twMerge/* twMerge */.QP)(getSelectClassName({
+        size: size,
+        selected: selection.isSelected(),
+        startAdornment: Boolean(startAdornment),
+        endAdornment: Boolean(endAdornment)
+      }))
     }
   }));
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
@@ -99369,7 +99414,7 @@ var unsafe_error_log = __webpack_require__("./packages/base/Utils/dist-package/s
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__("./node_modules/classnames/index.js");
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
-// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 3 modules
+// EXTERNAL MODULE: ./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js + 2 modules
 var OutlinedInput = __webpack_require__("./packages/base/OutlinedInput/dist-package/src/OutlinedInput/OutlinedInput.js");
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
@@ -111409,7 +111454,7 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
     path: "packages/picasso-forms/dist-package/src/Input/Input.js"
   };
 }
-// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 4 modules
+// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
 // EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
@@ -148620,7 +148665,7 @@ var react = __webpack_require__("./node_modules/react/index.js");
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 // EXTERNAL MODULE: ./packages/base/Container/dist-package/src/Container/Container.js
 var Container = __webpack_require__("./packages/base/Container/dist-package/src/Container/Container.js");
-// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 4 modules
+// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
 ;// ./packages/picasso-query-builder/dist-package/src/utils/generate-select-options.js
 
@@ -150649,7 +150694,7 @@ try {
 catch (__react_docgen_typescript_loader_error) { }
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
-// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 4 modules
+// EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
 ;// ./packages/picasso-query-builder/src/utils/generate-select-options.ts
 
@@ -158802,4 +158847,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.347e549f.iframe.bundle.js.map
+//# sourceMappingURL=main.c47d9965.iframe.bundle.js.map
