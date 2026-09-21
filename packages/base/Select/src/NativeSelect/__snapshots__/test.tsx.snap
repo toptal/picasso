@@ -13,7 +13,7 @@ exports[`NativeSelect renders native select 1`] = `
       >
         <select
           aria-invalid="false"
-          class="appearance-none select-none rounded-none min-w focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 w-full focus:bg-inheritColor py-2 pl-2 pr-[1.625rem]"
+          class="appearance-none select-none rounded-none min-w focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden peer resize-none text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 w-full focus:bg-inheritColor p-2 pr-[1.625rem]"
           type="text"
         >
           <option
@@ -69,7 +69,7 @@ exports[`NativeSelect renders native select with the empty option enabled when e
       >
         <select
           aria-invalid="false"
-          class="appearance-none select-none rounded-none min-w focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 w-full focus:bg-inheritColor py-2 pl-2 pr-[1.625rem]"
+          class="appearance-none select-none rounded-none min-w focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden peer resize-none text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 w-full focus:bg-inheritColor p-2 pr-[1.625rem]"
           type="text"
         >
           <option

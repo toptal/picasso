@@ -20,6 +20,7 @@ import {
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import { NativeSelectInput } from './NativeSelectInput'
+import { getSelectClassName } from './styles'
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
@@ -30,13 +31,6 @@ const classesByWidth: Record<
   full: 'w-full',
   shrink: 'w-auto',
   auto: '',
-}
-
-// The `select` fills a `p-0` field, so it carries `OutlinedInput`'s inset itself
-const classesBySize: Record<Exclude<SelectProps['size'], undefined>, string> = {
-  small: 'py-1 pl-[0.625rem]',
-  medium: 'py-2 pl-2',
-  large: 'py-3 pl-3',
 }
 
 export const NativeSelect = documentable(
@@ -115,15 +109,20 @@ export const NativeSelect = documentable(
         <div className='absolute right-[1.625rem]'>{selectEndAdornment}</div>
       )
 
+      // The empty option is the placeholder, the reset row, or the empty state
+      const showEmptyOption =
+        Boolean(placeholder || enableReset) || !selection.isSelected()
+
       const children = (
         <>
-          <NativeSelectPlaceholder
-            emptySelectValue={emptySelectValue}
-            disabled={!enableReset}
-            selected={selection.isSelected()}
-          >
-            {placeholder}
-          </NativeSelectPlaceholder>
+          {showEmptyOption && (
+            <NativeSelectPlaceholder
+              emptySelectValue={emptySelectValue}
+              disabled={!enableReset}
+            >
+              {placeholder}
+            </NativeSelectPlaceholder>
+          )}
           <NativeSelectOptions
             options={options}
             selection={selection}
@@ -158,12 +157,12 @@ export const NativeSelect = documentable(
             type: undefined, // We render a select. We can ignore the type provided by the `Input`.
             IconComponent: () => <SelectCaret disabled={disabled} />,
             className: twMerge(
-              'w-full focus:bg-inheritColor',
-              classesBySize[size],
-              'pr-[1.625rem]', // caret reserve, as in the non-native select
-              !selection.isSelected() && 'text-gray-600',
-              React.isValidElement(startAdornment) && 'pl-[2.5625rem]',
-              React.isValidElement(endAdornment) && 'pr-[3.5625rem]'
+              getSelectClassName({
+                size,
+                selected: selection.isSelected(),
+                startAdornment: Boolean(startAdornment),
+                endAdornment: Boolean(endAdornment),
+              })
             ),
           }}
         />

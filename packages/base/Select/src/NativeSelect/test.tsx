@@ -4,6 +4,7 @@ import React from 'react'
 import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import { spacingBySize } from '@toptal/picasso-outlined-input'
 
 import { NativeSelect } from './NativeSelect'
 import type { SelectProps } from '../SelectBase'
@@ -128,7 +129,8 @@ describe('NativeSelect', () => {
       })
 
       expect(getByRole('combobox')).toHaveClass(
-        'py-1 pl-[0.625rem] pr-[1.625rem]'
+        spacingBySize.small,
+        'pr-[1.625rem]'
       )
     })
 

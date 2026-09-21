@@ -12,6 +12,7 @@ const TestSelect = ({
   options = OPTIONS,
   placeholder = 'Choose an option...',
   width = 'auto',
+  size,
   native = false,
   status,
   disabled = false,
@@ -34,6 +35,7 @@ const TestSelect = ({
       value={value}
       placeholder={placeholder}
       width={width}
+      size={size}
       multiple={multiple}
       native={native}
       status={status}
@@ -297,6 +299,29 @@ describe('Select', () => {
     getNativeOption(1).should('have.attr', 'aria-selected').and('match', /true/)
   })
 
+  it('insets native selects like non-native ones', () => {
+    cy.mount(
+      <>
+        {(['small', 'medium', 'large'] as const).map(size => (
+          <Container key={size} flex direction='row'>
+            <TestSelect size={size} value={OPTIONS[0].value} width='shrink' />
+            <TestSelect
+              size={size}
+              value={OPTIONS[0].value}
+              width='shrink'
+              native
+            />
+          </Container>
+        ))}
+      </>
+    )
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'sizes',
+    })
+  })
+
   it('sets background correctly to various select states', () => {
     cy.mount(
       <>
@@ -372,53 +397,6 @@ describe('Select', () => {
     })
   })
 
-  describe('with search input', () => {
-    it('focuses the input', () => {
-      cy.mount(
-        <TestSelect
-          searchThreshold={-1}
-          testIds={{ searchInput: 'search-input' }}
-        />
-      )
-
-      cy.getByTestId('select').click()
-      cy.getByTestId('select').find('input').should('be.focused')
-
-      cy.get('body').happoScreenshot({
-        component,
-        variant: 'with-search-input',
-      })
-
-      // focuses on the Search input by clicking on the input
-      cy.getByTestId('search-input').click('center')
-      cy.getByTestId('search-input').find('input').should('be.focused')
-
-      // focuses on by click on the input wrapper
-      cy.getByTestId('select').click()
-      cy.getByTestId('select').getByTestId('search-input').click('bottom')
-      cy.getByTestId('select')
-        .getByTestId('search-input')
-        .find('input')
-        .should('be.focused')
-
-      // focuses on by click on the search icon
-      cy.getByTestId('select').click()
-      cy.getByTestId('select')
-        .getByTestId('search-input')
-        .closest('[role="menuitem"]')
-        .click(20, 20)
-      cy.getByTestId('select')
-        .getByTestId('search-input')
-        .find('input')
-        .should('be.focused')
-
-      // focuses on by typing
-      cy.getByTestId('select').click()
-      cy.getByTestId('select').type('option')
-      cy.getByTestId('search-input').find('input').should('be.focused')
-    })
-  })
-
   // Based on screen height, select (scroll menu) has different styling
   // 250px was selected as a height that shrinks the select enough, 586+px is a
   // breakpoint that disables any extra styling
@@ -450,6 +428,53 @@ describe('Select', () => {
         })
       })
     })
+  })
+})
+
+describe('Select with search input', () => {
+  it('focuses the input', () => {
+    cy.mount(
+      <TestSelect
+        searchThreshold={-1}
+        testIds={{ searchInput: 'search-input' }}
+      />
+    )
+
+    cy.getByTestId('select').click()
+    cy.getByTestId('select').find('input').should('be.focused')
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'with-search-input',
+    })
+
+    // focuses on the Search input by clicking on the input
+    cy.getByTestId('search-input').click('center')
+    cy.getByTestId('search-input').find('input').should('be.focused')
+
+    // focuses on by click on the input wrapper
+    cy.getByTestId('select').click()
+    cy.getByTestId('select').getByTestId('search-input').click('bottom')
+    cy.getByTestId('select')
+      .getByTestId('search-input')
+      .find('input')
+      .should('be.focused')
+
+    // focuses on by click on the search icon
+    cy.getByTestId('select').click()
+    cy.getByTestId('select')
+      .getByTestId('search-input')
+      .closest('[role="menuitem"]')
+      .click(20, 20)
+    cy.getByTestId('select')
+      .getByTestId('search-input')
+      .find('input')
+      .should('be.focused')
+
+    // focuses on by typing
+    cy.getByTestId('select').click()
+    cy.getByTestId('select').type('option')
+    cy.getByTestId('search-input').find('input').should('be.focused')
   })
 })
 

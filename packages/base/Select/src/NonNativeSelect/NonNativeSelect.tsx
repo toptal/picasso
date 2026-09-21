@@ -124,7 +124,16 @@ export const NonNativeSelect = documentable(
         })
 
       const { layout } = useFieldsLayoutContext()
-      const isShrink = width === 'shrink'
+
+      // `shrink` fits the value: `field-sizing` exactly, `size` where it is
+      // unsupported; `min-w-4` floors an empty field
+      const inputProps =
+        width === 'shrink'
+          ? {
+              size: Math.max((displayValue || placeholder || '').length, 1),
+              className: 'field-sizing-content min-w-4',
+            }
+          : { size: 1 }
 
       const searchInput = showSearch ? (
         <MenuItem
@@ -192,16 +201,7 @@ export const NonNativeSelect = documentable(
               defaultValue={undefined}
               className='pr-[1.625rem]'
               highlight={highlight}
-              inputProps={{
-                // `shrink` fits the value: `field-sizing` exactly, `size` where
-                // it is unsupported; `min-w-4` floors an empty field
-                size: isShrink
-                  ? (displayValue || placeholder || '').length || 1
-                  : 1,
-                className: isShrink
-                  ? 'field-sizing-content min-w-4'
-                  : undefined,
-              }}
+              inputProps={inputProps}
               size={size}
               role='textbox'
               enableReset={enableReset ? selection.isSelected() : false}

@@ -5,4 +5,5 @@ import type { Props } from './types'
 export { default as OutlinedInput } from './OutlinedInput'
 export type OutlinedInputProps = OmitInternalProps<Props>
 export * from './OutlinedInput'
+export { spacingBySize } from './stylesRoot'
 export type { Status, BaseInputProps, InputProps, Size, Props } from './types'
