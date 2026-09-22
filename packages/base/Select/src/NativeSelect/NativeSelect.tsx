@@ -6,7 +6,7 @@ import {
   noop,
   useCombinedRefs,
 } from '@toptal/picasso-utils'
-import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { SelectCaret } from '../SelectCaret'
 import type { ValueType, SelectProps } from '../SelectBase'
@@ -20,6 +20,7 @@ import {
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
 import { NativeSelectInput } from './NativeSelectInput'
+import { getSelectClassName } from './styles'
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
@@ -108,14 +109,20 @@ export const NativeSelect = documentable(
         <div className='absolute right-[1.625rem]'>{selectEndAdornment}</div>
       )
 
+      // The empty option is the placeholder, the reset row, or the empty state
+      const showEmptyOption =
+        Boolean(placeholder || enableReset) || !selection.isSelected()
+
       const children = (
         <>
-          <NativeSelectPlaceholder
-            emptySelectValue={emptySelectValue}
-            disabled={!enableReset}
-          >
-            {placeholder}
-          </NativeSelectPlaceholder>
+          {showEmptyOption && (
+            <NativeSelectPlaceholder
+              emptySelectValue={emptySelectValue}
+              disabled={!enableReset}
+            >
+              {placeholder}
+            </NativeSelectPlaceholder>
+          )}
           <NativeSelectOptions
             options={options}
             selection={selection}
@@ -149,11 +156,13 @@ export const NativeSelect = documentable(
             children,
             type: undefined, // We render a select. We can ignore the type provided by the `Input`.
             IconComponent: () => <SelectCaret disabled={disabled} />,
-            className: twJoin(
-              'w-full p-2 focus:bg-inheritColor',
-              !selection.isSelected() && 'text-gray-600',
-              React.isValidElement(startAdornment) && 'pl-[2.5625rem]',
-              React.isValidElement(endAdornment) && 'pr-[3.5625rem]'
+            className: twMerge(
+              getSelectClassName({
+                size,
+                selected: selection.isSelected(),
+                startAdornment: Boolean(startAdornment),
+                endAdornment: Boolean(endAdornment),
+              })
             ),
           }}
         />

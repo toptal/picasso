@@ -28,7 +28,7 @@ const Example = () => {
           width='auto'
         />
       </Container>
-      <Container>
+      <Container right={SPACING_4}>
         <Form.Label>Reset enabled</Form.Label>
         <Select
           enableReset
@@ -37,6 +37,17 @@ const Example = () => {
           options={OPTIONS}
           value={value}
           placeholder='Choose an option...'
+          width='auto'
+        />
+      </Container>
+      <Container>
+        <Form.Label>Small, no placeholder</Form.Label>
+        <Select
+          native
+          size='small'
+          onChange={handleChange}
+          options={OPTIONS}
+          value={value}
           width='auto'
         />
       </Container>
