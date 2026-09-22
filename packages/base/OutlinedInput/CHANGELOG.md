@@ -1,5 +1,22 @@
 # @toptal/picasso-outlined-input
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5113](https://github.com/toptal/picasso/pull/5113) [`a8504e9`](https://github.com/toptal/picasso/commit/a8504e92704dd1d793dcf496a122e9f1b89c18a6) Thanks [@azebich](https://github.com/azebich)!
+
+### Select
+
+- inset the native select by `size` and reserve room for the caret, like every other field; it was a fixed `8px`. A native `width='shrink'` field grows by 4px
+- keep the end adornment's reserve on a native select; a leftover MUI `pr-6` rule overrode it and put the icon on the value
+- render the empty option only as the `placeholder`, the `enableReset` row, or the empty state; a native select without a placeholder no longer opens with a blank row
+- fit a `width='shrink'` field to its value instead of a single character; it no longer clips
+
+### OutlinedInput
+
+- export `spacingBySize`, the field inset per `size`
+
 ## 100.0.2
 
 ### Patch Changes

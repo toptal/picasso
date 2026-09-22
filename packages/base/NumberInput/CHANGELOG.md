@@ -1,5 +1,12 @@
 # @toptal/picasso-number-input
 
+## 100.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`a8504e9`](https://github.com/toptal/picasso/commit/a8504e92704dd1d793dcf496a122e9f1b89c18a6)]:
+  - @toptal/picasso-outlined-input@100.1.0
+
 ## 100.0.2
 
 ### Patch Changes
