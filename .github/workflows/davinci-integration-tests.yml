@@ -39,7 +39,7 @@ jobs:
         run: pnpm build:package
 
       - name: Cache built packages
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           # Explicit globs (no **) to avoid pnpm's workspace-symlink loops
           # under packages/<x>/node_modules/@toptal/<y> -> packages/<y>.
@@ -76,7 +76,7 @@ jobs:
       - uses: ./.github/actions/pnpm-install
 
       - name: Get cached packages
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             packages/*/dist-package
