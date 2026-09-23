@@ -26934,10 +26934,6 @@ var DatePicker = function (_a) {
   var showCalendar = function () {
     return setCalendarIsShown(true);
   };
-  // Whether the user has worked in the input during the current focus: a key
-  // press counts, not only a change event, because deleting from an already
-  // empty field changes nothing yet still says the field is theirs. Only read
-  // inside the state updater, so it must not re-render
   var hasInteractedWhileFocused = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(false);
   var inputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   var popperRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
@@ -26955,22 +26951,13 @@ var DatePicker = function (_a) {
       focused = _ref.focused;
     setInputValue(function (currentInputValue) {
       if (focused) {
-        // A focused input is protected from an incoming value because it may
-        // hold something the user is working on. An empty one they have not
-        // touched during this focus holds nothing, and a value can arrive
-        // after focus: a form library that registers its fields in an effect
-        // delivers the first value after mount, so an autofocused picker was
-        // left showing an empty input while the calendar showed the date.
-        // Protecting too eagerly only leaves that input empty, which is what
-        // it did before; protecting too late overwrites what the user typed.
+        // An empty, untouched input accepts a late value: react-final-form 7
+        // delivers the first one after an autofocused mount
         var hasSomethingToProtect = currentInputValue !== EMPTY_INPUT_VALUE || hasInteractedWhileFocused.current;
         if (trigger === 'value' && hasSomethingToProtect) {
           return currentInputValue;
         }
-        // A focus change only re-formats what the input already shows,
-        // between the edit and the display format. Filling an empty focused
-        // input is the value update's job, which guards it; done here it
-        // would land a value behind whatever the user has just cleared.
+        // A focus change only re-formats; filling is the value update's job
         if (trigger === 'focus' && currentInputValue === EMPTY_INPUT_VALUE) {
           return currentInputValue;
         }
@@ -26981,21 +26968,13 @@ var DatePicker = function (_a) {
       return formatInputValue((0,_utils__WEBPACK_IMPORTED_MODULE_5__/* .timezoneConvert */ .FU)(value, timezone));
     });
   }, [value, timezone, formatInputValue]);
-  // Keep the input value in sync with the date value, on an incoming value or
-  // a timezone change. Focus is read from the DOM as well as from React state:
-  // `autoFocus` focuses the input during the commit and the focus handler's
-  // state lands a render later, so the first value delivered after mount would
-  // otherwise meet an "unfocused" input. Read here, in an effect, never during
-  // render.
+  // Focus from the DOM too: after `autoFocus`, React's state lags a render
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     updateInputValue({
       trigger: 'value',
       focused: isInputFocused || inputRef.current !== null && document.activeElement === inputRef.current
     });
   }, [value, timezone]);
-  // Keep the input format in sync with its focus state: the edit format while
-  // focused, the display format otherwise. The state is the intent here (the
-  // focus and blur handlers decided), so the DOM is not consulted.
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     updateInputValue({
       trigger: 'focus',
@@ -27081,8 +27060,7 @@ var DatePicker = function (_a) {
   var handleInputKeydown = function (event) {
     var _a;
     var key = event.key;
-    // Before the branches below return: a deletion on an already empty input
-    // fires no change event, and it still means the field is the user's
+    // Before the early returns: Delete on an empty input fires no change event
     hasInteractedWhileFocused.current = true;
     if (key === 'Escape') {
       hideCalendar();
@@ -27666,11 +27644,6 @@ var DatePicker = function (_ref) {
   var showCalendar = function () {
     return setCalendarIsShown(true);
   };
-
-  // Whether the user has worked in the input during the current focus: a key
-  // press counts, not only a change event, because deleting from an already
-  // empty field changes nothing yet still says the field is theirs. Only read
-  // inside the state updater, so it must not re-render
   var hasInteractedWhileFocused = (0,react.useRef)(false);
   var inputRef = (0,react.useRef)(null);
   var popperRef = (0,react.useRef)(null);
@@ -27690,23 +27663,14 @@ var DatePicker = function (_ref) {
       focused = _ref2.focused;
     setInputValue(function (currentInputValue) {
       if (focused) {
-        // A focused input is protected from an incoming value because it may
-        // hold something the user is working on. An empty one they have not
-        // touched during this focus holds nothing, and a value can arrive
-        // after focus: a form library that registers its fields in an effect
-        // delivers the first value after mount, so an autofocused picker was
-        // left showing an empty input while the calendar showed the date.
-        // Protecting too eagerly only leaves that input empty, which is what
-        // it did before; protecting too late overwrites what the user typed.
+        // An empty, untouched input accepts a late value: react-final-form 7
+        // delivers the first one after an autofocused mount
         var hasSomethingToProtect = currentInputValue !== EMPTY_INPUT_VALUE || hasInteractedWhileFocused.current;
         if (trigger === 'value' && hasSomethingToProtect) {
           return currentInputValue;
         }
 
-        // A focus change only re-formats what the input already shows,
-        // between the edit and the display format. Filling an empty focused
-        // input is the value update's job, which guards it; done here it
-        // would land a value behind whatever the user has just cleared.
+        // A focus change only re-formats; filling is the value update's job
         if (trigger === 'focus' && currentInputValue === EMPTY_INPUT_VALUE) {
           return currentInputValue;
         }
@@ -27718,22 +27682,13 @@ var DatePicker = function (_ref) {
     });
   }, [value, timezone, formatInputValue]);
 
-  // Keep the input value in sync with the date value, on an incoming value or
-  // a timezone change. Focus is read from the DOM as well as from React state:
-  // `autoFocus` focuses the input during the commit and the focus handler's
-  // state lands a render later, so the first value delivered after mount would
-  // otherwise meet an "unfocused" input. Read here, in an effect, never during
-  // render.
+  // Focus from the DOM too: after `autoFocus`, React's state lags a render
   (0,react.useEffect)(function () {
     updateInputValue({
       trigger: 'value',
       focused: isInputFocused || inputRef.current !== null && document.activeElement === inputRef.current
     });
   }, [value, timezone]);
-
-  // Keep the input format in sync with its focus state: the edit format while
-  // focused, the display format otherwise. The state is the intent here (the
-  // focus and blur handlers decided), so the DOM is not consulted.
   (0,react.useEffect)(function () {
     updateInputValue({
       trigger: 'focus',
@@ -27822,8 +27777,7 @@ var DatePicker = function (_ref) {
   var handleInputKeydown = function (event) {
     var key = event.key;
 
-    // Before the branches below return: a deletion on an already empty input
-    // fires no change event, and it still means the field is the user's
+    // Before the early returns: Delete on an empty input fires no change event
     hasInteractedWhileFocused.current = true;
     if (key === 'Escape') {
       hideCalendar();
@@ -110869,33 +110823,14 @@ var final_form_arrays_cjs = __webpack_require__("./node_modules/final-form-array
 var react_final_form_arrays_cjs = __webpack_require__("./node_modules/react-final-form-arrays/dist/react-final-form-arrays.cjs.js");
 ;// ./packages/picasso-forms/dist-package/src/FieldArray/use-field-array.js
 
-/**
- * `useFieldArray` from `react-final-form-arrays`, typed by the array's item
- * type the way `react-final-form-arrays@3` typed it. Upstream 5 declares the
- * items as `any` and leaves `fields.update` out, although the hook binds every
- * `final-form-arrays` mutator (`update` included) to the field name at runtime.
- * The runtime is upstream's; only the signature is Picasso's.
- * The default subscription is upstream's: `length`, `value` and `error`.
- * Upstream narrowed it from every key after nested arrays re-rendered on every
- * field change (react-final-form-arrays#119), so `meta.dirty`, `meta.touched`,
- * `meta.submitError`, … read `undefined` unless `subscription` names them.
- */
+// Upstream 5 types the items as `any` and leaves out `fields.update`, which it
+// binds at runtime
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 var useFieldArray = react_final_form_arrays_cjs/* useFieldArray */.jz;
 ;// ./packages/picasso-forms/dist-package/src/FieldArray/FieldArray.js
 
-/**
- * `FieldArray` from `react-final-form-arrays`, behind Picasso's typed props:
- * upstream 5 declares the component as returning `ReactNode`, which
- * `@types/react` 17 and 18 reject as a JSX element type, and types the items as
- * `any`. The runtime is upstream's, including the `children` / `render` /
- * `component` dispatch. The default subscription is upstream's (`length`,
- * `value`, `error`); pass `subscription` to read other `meta` keys such as
- * `submitError` or `touched`. Needs the `final-form-arrays` mutators on the
- * `<Form>`.
- */
-// `any` is the item type react-final-form-arrays@3 defaulted to; a stricter
-// default would break every un-annotated `fields.value[i].prop`
+// Upstream 5 returns `ReactNode`, which `@types/react` 17 and 18 reject as a
+// JSX element, and types the items as `any`
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 var FieldArray = react_final_form_arrays_cjs/* FieldArray */.ED;
 /* harmony default export */ const FieldArray_FieldArray = ((/* unused pure expression or super */ null && (FieldArray)));
@@ -110903,13 +110838,8 @@ var FieldArray = react_final_form_arrays_cjs/* FieldArray */.ED;
 var react_final_form_listeners_cjs = __webpack_require__("./node_modules/react-final-form-listeners/dist/react-final-form-listeners.cjs.js");
 ;// ./packages/picasso-forms/dist-package/src/FormListeners/form-listeners.js
 
-// `react-final-form-listeners@3.0.1` publishes its declarations at
-// `dist/src/index.d.ts` while `package.json` still points `types` at
-// `dist/index.d.ts`, so a consumer install resolves the package untyped and
-// these four components reach consumers as `any` — `skipLibCheck` hides that
-// inside our own declarations. The pnpm patch corrects the path for this
-// build; declaring the components here is what puts real types in the
-// published package. Drop the casts once a release ships the corrected path.
+// react-final-form-listeners 3.0.1 points `types` at a file it does not
+// publish, so without these casts consumers get `any` (#51)
 var OnChange = react_final_form_listeners_cjs/* OnChange */.Yr;
 var OnBlur = react_final_form_listeners_cjs/* OnBlur */.R4;
 var OnFocus = react_final_form_listeners_cjs/* OnFocus */.gZ;
@@ -111248,19 +111178,6 @@ var validators = __webpack_require__("./packages/picasso-forms/dist-package/src/
 // EXTERNAL MODULE: ./packages/picasso-forms/dist-package/src/utils/use-field-validation/use-field-validation.js
 var use_field_validation = __webpack_require__("./packages/picasso-forms/dist-package/src/utils/use-field-validation/use-field-validation.js");
 ;// ./packages/picasso-forms/dist-package/src/Field/assert-field-name.js
-/**
- * Fails fast, in development builds, when a form field renders without a `name`.
- *
- * `react-final-form@7` reads a mounting field's initial value with
- * `getIn(initialValues, name)`; with `name` undefined that returns the whole
- * `initialValues` object, and the `form.change(undefined, …)` that follows
- * fails deep inside final-form with "Cannot call setIn() with undefined key".
- * The error thrown here names the actual mistake instead.
- *
- * An assertion function, so a caller's `name` narrows to `string` past this
- * call. Production builds skip the check and trust the name, as the callers did
- * before the check existed.
- */
 var assertFieldName = function (name) {
   if (false) {}
 };
@@ -111270,84 +111187,34 @@ var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-p
 
 
 
-// `react-final-form`'s own default, mirrored so the flush below formats a
-// missing value exactly as its `beforeSubmit` would
 var defaultFormat = function (value) {
   return value === undefined ? '' : value;
 };
 /**
- * Workaround for react-final-form 7.0.1 reseeding a field from `initialValues`
- * whenever it mounts and final-form holds no field state for it
- * (https://github.com/final-form/react-final-form/issues/1095; a fix is
- * proposed in the still-open
- * https://github.com/final-form/react-final-form/pull/1096).
+ * Works around react-final-form 7.0.1 reseeding a field from `initialValues` on
+ * every mount, since final-form drops field state on unmount (#1095).
  *
- * final-form drops `state.fields[name]` once the last subscriber of a field
- * unregisters, `destroyOnUnregister` or not, so that branch also runs for a
- * field that merely remounted (a conditional field, a wizard step, an
- * edit/preview toggle) and for a field mounting over a value the consumer
- * already wrote with `form.change()`. Either way the user's value is replaced
- * by the initial one, while the form's *values* still hold the right one.
+ * The claim is a throwaway subscriber registered in the layout phase, so before
+ * react-final-form's mount effect, and released right after it. It creates the
+ * field entry, so it carries the config final-form applies only on create;
+ * adding `initialValue` or `defaultValue` would reseed. Held longer, it would
+ * strand a hidden field's error.
  *
- * So the field state is recreated from those values for exactly as long as
- * react-final-form's mount effect needs to see it: a subscriber that carries no
- * subscription and no validator is registered in the layout phase and released
- * in the next passive effect. React runs every layout effect of a commit
- * before any passive effect, so the claim precedes that mount effect whether it
- * belongs to this component's own `useField` or to a react-final-form `Field`
- * rendered by a descendant (the radios of a `Form.RadioGroup`, the checkboxes
- * of a `Form.CheckboxGroup`); and a descendant's passive effects run before
- * its ancestor's, so the release follows it.
- *
- * The claim registers the field's `beforeSubmit`, `afterSubmit`, `data` and
- * `validateFields` because it is the call that creates the entry, and
- * final-form applies those four only then: for an entry that already exists it
- * re-applies `isEqual`, the validators, `initialValue` and `defaultValue`, but
- * never the submit hooks. Without them react-final-form's own registration adds
- * nothing, and its `beforeSubmit` — the wrapper that applies `format()` to a
- * `formatOnBlur` field at submit time — is silently dropped, so such a field
- * submits its raw value. `initialValue` and `defaultValue` are deliberately not
- * claimed: final-form re-applies them for the real registration, and seeding
- * them here is the reseed this module exists to prevent.
- *
- * The claim must not outlive the mount: final-form clears a field's error and
- * state only when the *last* subscriber unregisters, so a subscriber held for
- * the life of the form would strand the error of a field that unmounts — a
- * hidden `required` field would then block submit with nothing on screen to
- * explain it.
- *
- * The claim is also not re-established when a field's `data`, `defaultValue`
- * or `initialValue` prop changes identity while mounted: react-final-form lists
- * them as dependencies of its registration effect, so such a change unregisters
- * and re-registers the field, and 7.0.1 reseeds it again. Picasso's wrappers
- * forward those props unchanged, so a consumer passing a fresh object or array
- * on every render re-registers the field on every render, with or without this
- * module; that case keeps upstream's behaviour.
- *
- * TODO: [PF-2262] delete this file and its calls once a `react-final-form`
- * release contains a fix for #1095.
+ * TODO: [PF-2522] delete this file and its calls once upstream fixes #1095
  */
 var useClaimedFieldState = function (name, config) {
   var form = (0,react_final_form_cjs.useForm)();
   var release = (0,react.useRef)(null);
   var latest = (0,react.useRef)(config);
-  // Assigned while rendering so the layout effect below, and the hooks it
-  // registers, read the props of the render they belong to
   latest.current = config;
   (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
-    // `destroyOnUnregister` asks for exactly the behaviour this works around;
-    // a missing name is `assertFieldName`'s to report and has nothing to claim
+    // `destroyOnUnregister` asks for the reseed
     if (!name || form.destroyOnUnregister) {
       return undefined;
     }
     release.current = form.registerField(name, function () {}, {}, {
-      // Only this field's own listeners are told, and there are none yet: the
-      // claim changes no value, so the form-wide notification final-form
-      // would otherwise send once per field mount has nothing to report
       silent: true,
-      // Mirrors react-final-form's own wrapper: flush `formatOnBlur` through
-      // `format` before validation runs, then defer to the consumer's hook and
-      // return its result, so returning `false` still blocks the submit
+      // Mirrors react-final-form's own `beforeSubmit` wrapper
       beforeSubmit: function () {
         var _latest$current = latest.current,
           beforeSubmit = _latest$current.beforeSubmit,
@@ -111372,7 +111239,6 @@ var useClaimedFieldState = function (name, config) {
       data: latest.current.data,
       validateFields: latest.current.validateFields
     });
-    // Only reached if the field unmounts before the release effect below runs
     return function () {
       var _a;
       (_a = release.current) === null || _a === void 0 ? void 0 : _a.call(release);
@@ -111381,14 +111247,9 @@ var useClaimedFieldState = function (name, config) {
   }, [form, name]);
   return release;
 };
-/**
- * Releases the claim above once react-final-form has registered the real
- * field. A passive effect, so it runs after the mount effect of this
- * component's `useField` and after those of any `Field` a descendant renders.
- */
 var useReleaseClaimedFieldState = function (release) {
-  // No dependency list on purpose: the claim above re-registers whenever
-  // `name` changes, and each of those claims must be released too
+  // No dependency list: a `name` change re-claims, and that must be released
+  // too
   (0,react.useEffect)(function () {
     var _a;
     (_a = release.current) === null || _a === void 0 ? void 0 : _a.call(release);
@@ -111456,8 +111317,6 @@ var Field = function (props) {
     autoSaveIndicator = props.autoSaveIndicator,
     rest = Field_rest(props, ["type", "hint", "label", "required", 'data-testid', "renderFieldRequirements", "status", "afterSubmit", "allowNull", "beforeSubmit", "children", "data", "defaultValue", "format", "formatOnBlur", "initialValue", "isEqual", "name", "id", "parse", "subscription", "validate", "validateFields", "value", "autoSaveIndicator"]);
   assertFieldName(name);
-  // Brackets `useField` below; remove both calls with the rest of the
-  // react-final-form 7.0.1 workaround (see the module)
   var releaseClaimedFieldState = useClaimedFieldState(name, {
     afterSubmit: afterSubmit,
     beforeSubmit: beforeSubmit,
@@ -111491,6 +111350,7 @@ var Field = function (props) {
     }),
     meta = _useField.meta,
     input = _useField.input;
+  // After `useField`: effects run in order, so this releases after its mount
   useReleaseClaimedFieldState(releaseClaimedFieldState);
   var error = (0,use_field_validation/* default */.A)({
     name: name,
@@ -111499,22 +111359,11 @@ var Field = function (props) {
     shouldValidateOnSubmit: shouldValidateOnSubmit
   });
   var shouldHighlightAutofill = highlightAutofill && !meta.visited && meta.pristine && input.value;
-  // `react-final-form@7.0.1` derives a checkbox's `checked` from `parse(value)`,
-  // where 6 and 7.0.0 used `format(value)`; upstream changed it on purpose
-  // (final-form/react-final-form#1074) for group values whose `parse` fixes
-  // their type. For a standalone checkbox `parse` is the wrong direction: the
-  // string-boolean pair `format={value => value === 'true'}` with
-  // `parse={checked => (checked ? 'true' : 'false')}` reads a stored `'false'`
-  // through `parse`, gets the truthy `'true'` back and renders an unchecked box
-  // as checked; clicking it then submits the wrong value. For a checkbox
-  // without its own `value` the field's `input.value` is already
-  // `format(value)`, so this restores the 6.x meaning: a deliberate divergence,
-  // kept until upstream settles that case. A checkbox that carries a `value`
-  // belongs to a group, where `checked` is array membership and upstream's
-  // semantics stand.
-  // TODO: [PF-2262] link the upstream issue for the string-boolean checkbox
-  // once it is filed; drop this block if a release derives `checked` from
-  // `format` again for a value-less checkbox
+  // react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
+  // string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+  // Restore 6.x's `format(value)` for a standalone checkbox; groups keep
+  // upstream's.
+  // TODO: [PF-2522] drop when upstream derives it from `format` again
   var shouldDeriveCheckedFromFormat = type === 'checkbox' && value === undefined && format !== undefined;
   var childProps = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({
     id: id,
@@ -113934,19 +113783,6 @@ var useFieldValidation = function (_ref) {
 };
 /* harmony default export */ const use_field_validation = (useFieldValidation);
 ;// ./packages/picasso-forms/src/Field/assert-field-name.ts
-/**
- * Fails fast, in development builds, when a form field renders without a `name`.
- *
- * `react-final-form@7` reads a mounting field's initial value with
- * `getIn(initialValues, name)`; with `name` undefined that returns the whole
- * `initialValues` object, and the `form.change(undefined, …)` that follows
- * fails deep inside final-form with "Cannot call setIn() with undefined key".
- * The error thrown here names the actual mistake instead.
- *
- * An assertion function, so a caller's `name` narrows to `string` past this
- * call. Production builds skip the check and trust the name, as the callers did
- * before the check existed.
- */
 var assertFieldName = function (name) {
   if (false) {}
 };
@@ -113956,92 +113792,35 @@ var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-p
 
 
 
-
-/**
- * The parts of a field's configuration final-form reads only while it creates
- * the field entry, so the claim below has to carry them.
- */
-
-// `react-final-form`'s own default, mirrored so the flush below formats a
-// missing value exactly as its `beforeSubmit` would
 var defaultFormat = function (value) {
   return value === undefined ? '' : value;
 };
 
 /**
- * Workaround for react-final-form 7.0.1 reseeding a field from `initialValues`
- * whenever it mounts and final-form holds no field state for it
- * (https://github.com/final-form/react-final-form/issues/1095; a fix is
- * proposed in the still-open
- * https://github.com/final-form/react-final-form/pull/1096).
+ * Works around react-final-form 7.0.1 reseeding a field from `initialValues` on
+ * every mount, since final-form drops field state on unmount (#1095).
  *
- * final-form drops `state.fields[name]` once the last subscriber of a field
- * unregisters, `destroyOnUnregister` or not, so that branch also runs for a
- * field that merely remounted (a conditional field, a wizard step, an
- * edit/preview toggle) and for a field mounting over a value the consumer
- * already wrote with `form.change()`. Either way the user's value is replaced
- * by the initial one, while the form's *values* still hold the right one.
+ * The claim is a throwaway subscriber registered in the layout phase, so before
+ * react-final-form's mount effect, and released right after it. It creates the
+ * field entry, so it carries the config final-form applies only on create;
+ * adding `initialValue` or `defaultValue` would reseed. Held longer, it would
+ * strand a hidden field's error.
  *
- * So the field state is recreated from those values for exactly as long as
- * react-final-form's mount effect needs to see it: a subscriber that carries no
- * subscription and no validator is registered in the layout phase and released
- * in the next passive effect. React runs every layout effect of a commit
- * before any passive effect, so the claim precedes that mount effect whether it
- * belongs to this component's own `useField` or to a react-final-form `Field`
- * rendered by a descendant (the radios of a `Form.RadioGroup`, the checkboxes
- * of a `Form.CheckboxGroup`); and a descendant's passive effects run before
- * its ancestor's, so the release follows it.
- *
- * The claim registers the field's `beforeSubmit`, `afterSubmit`, `data` and
- * `validateFields` because it is the call that creates the entry, and
- * final-form applies those four only then: for an entry that already exists it
- * re-applies `isEqual`, the validators, `initialValue` and `defaultValue`, but
- * never the submit hooks. Without them react-final-form's own registration adds
- * nothing, and its `beforeSubmit` — the wrapper that applies `format()` to a
- * `formatOnBlur` field at submit time — is silently dropped, so such a field
- * submits its raw value. `initialValue` and `defaultValue` are deliberately not
- * claimed: final-form re-applies them for the real registration, and seeding
- * them here is the reseed this module exists to prevent.
- *
- * The claim must not outlive the mount: final-form clears a field's error and
- * state only when the *last* subscriber unregisters, so a subscriber held for
- * the life of the form would strand the error of a field that unmounts — a
- * hidden `required` field would then block submit with nothing on screen to
- * explain it.
- *
- * The claim is also not re-established when a field's `data`, `defaultValue`
- * or `initialValue` prop changes identity while mounted: react-final-form lists
- * them as dependencies of its registration effect, so such a change unregisters
- * and re-registers the field, and 7.0.1 reseeds it again. Picasso's wrappers
- * forward those props unchanged, so a consumer passing a fresh object or array
- * on every render re-registers the field on every render, with or without this
- * module; that case keeps upstream's behaviour.
- *
- * TODO: [PF-2262] delete this file and its calls once a `react-final-form`
- * release contains a fix for #1095.
+ * TODO: [PF-2522] delete this file and its calls once upstream fixes #1095
  */
 var useClaimedFieldState = function (name, config) {
   var form = (0,react_final_form_cjs.useForm)();
   var release = (0,react.useRef)(null);
   var latest = (0,react.useRef)(config);
-
-  // Assigned while rendering so the layout effect below, and the hooks it
-  // registers, read the props of the render they belong to
   latest.current = config;
   (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
-    // `destroyOnUnregister` asks for exactly the behaviour this works around;
-    // a missing name is `assertFieldName`'s to report and has nothing to claim
+    // `destroyOnUnregister` asks for the reseed
     if (!name || form.destroyOnUnregister) {
       return undefined;
     }
     release.current = form.registerField(name, function () {}, {}, {
-      // Only this field's own listeners are told, and there are none yet: the
-      // claim changes no value, so the form-wide notification final-form
-      // would otherwise send once per field mount has nothing to report
       silent: true,
-      // Mirrors react-final-form's own wrapper: flush `formatOnBlur` through
-      // `format` before validation runs, then defer to the consumer's hook and
-      // return its result, so returning `false` still blocks the submit
+      // Mirrors react-final-form's own `beforeSubmit` wrapper
       beforeSubmit: function () {
         var _latest$current = latest.current,
           beforeSubmit = _latest$current.beforeSubmit,
@@ -114066,8 +113845,6 @@ var useClaimedFieldState = function (name, config) {
       data: latest.current.data,
       validateFields: latest.current.validateFields
     });
-
-    // Only reached if the field unmounts before the release effect below runs
     return function () {
       var _release$current;
       (_release$current = release.current) === null || _release$current === void 0 ? void 0 : _release$current.call(release);
@@ -114076,15 +113853,9 @@ var useClaimedFieldState = function (name, config) {
   }, [form, name]);
   return release;
 };
-
-/**
- * Releases the claim above once react-final-form has registered the real
- * field. A passive effect, so it runs after the mount effect of this
- * component's `useField` and after those of any `Field` a descendant renders.
- */
 var useReleaseClaimedFieldState = function (release) {
-  // No dependency list on purpose: the claim above re-registers whenever
-  // `name` changes, and each of those claims must be released too
+  // No dependency list: a `name` change re-claims, and that must be released
+  // too
   (0,react.useEffect)(function () {
     var _release$current2;
     (_release$current2 = release.current) === null || _release$current2 === void 0 ? void 0 : _release$current2.call(release);
@@ -114153,9 +113924,6 @@ var Field = function (props) {
     autoSaveIndicator = props.autoSaveIndicator,
     rest = _objectWithoutProperties(props, _excluded);
   assertFieldName(name);
-
-  // Brackets `useField` below; remove both calls with the rest of the
-  // react-final-form 7.0.1 workaround (see the module)
   var releaseClaimedFieldState = useClaimedFieldState(name, {
     afterSubmit: afterSubmit,
     beforeSubmit: beforeSubmit,
@@ -114189,6 +113957,8 @@ var Field = function (props) {
     }),
     meta = _useField.meta,
     input = _useField.input;
+
+  // After `useField`: effects run in order, so this releases after its mount
   useReleaseClaimedFieldState(releaseClaimedFieldState);
   var error = use_field_validation({
     name: name,
@@ -114198,22 +113968,11 @@ var Field = function (props) {
   });
   var shouldHighlightAutofill = highlightAutofill && !meta.visited && meta.pristine && input.value;
 
-  // `react-final-form@7.0.1` derives a checkbox's `checked` from `parse(value)`,
-  // where 6 and 7.0.0 used `format(value)`; upstream changed it on purpose
-  // (final-form/react-final-form#1074) for group values whose `parse` fixes
-  // their type. For a standalone checkbox `parse` is the wrong direction: the
-  // string-boolean pair `format={value => value === 'true'}` with
-  // `parse={checked => (checked ? 'true' : 'false')}` reads a stored `'false'`
-  // through `parse`, gets the truthy `'true'` back and renders an unchecked box
-  // as checked; clicking it then submits the wrong value. For a checkbox
-  // without its own `value` the field's `input.value` is already
-  // `format(value)`, so this restores the 6.x meaning: a deliberate divergence,
-  // kept until upstream settles that case. A checkbox that carries a `value`
-  // belongs to a group, where `checked` is array membership and upstream's
-  // semantics stand.
-  // TODO: [PF-2262] link the upstream issue for the string-boolean checkbox
-  // once it is filed; drop this block if a release derives `checked` from
-  // `format` again for a value-less checkbox
+  // react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
+  // string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+  // Restore 6.x's `format(value)` for a standalone checkbox; groups keep
+  // upstream's.
+  // TODO: [PF-2522] drop when upstream derives it from `format` again
   var shouldDeriveCheckedFromFormat = type === 'checkbox' && value === undefined && format !== undefined;
   var childProps = Object.assign({
     id: id,
@@ -115162,21 +114921,9 @@ var react_final_form_cjs = __webpack_require__("./node_modules/react-final-form/
 
 
 /**
- * `useFormState` from `react-final-form`, typed by what a fully subscribed
- * form actually has. Without a `subscription` the hook subscribes to every
- * key, so the state booleans and records are always there and are typed that
- * way; final-form types them optional to model the narrow subscription below,
- * which made every call site default them by hand. `initialValues` stays
- * optional: a form given none reports `undefined`, exactly as `FormSpy` and
- * `form.getState()` do. The runtime is upstream's, untouched.
- *
- * Overloads rather than one conditional type: they read at the call site, they
- * survive an explicit `useFormState<Values>()` type argument, and a
- * `subscription` whose presence is only known at runtime falls through to the
- * optional types.
+ * Without a `subscription` every key is subscribed, so the booleans and records
+ * are non-optional; `initialValues` stays optional, as in `FormSpy`
  */
-
-/** With a `subscription`, the unsubscribed keys are genuinely `undefined` and keep the optional types */
 
 // eslint-disable-next-line func-style -- an overloaded function needs a declaration
 function useFormState(params) {
@@ -159480,4 +159227,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.e43295d2.iframe.bundle.js.map
+//# sourceMappingURL=main.89dc59f4.iframe.bundle.js.map
