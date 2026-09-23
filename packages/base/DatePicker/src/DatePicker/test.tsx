@@ -356,6 +356,186 @@ describe('DatePicker', () => {
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
     })
 
+    describe('when the value arrives after the input is focused', () => {
+      const renderLatePicker = (props: Partial<Props> = {}) => {
+        const baseProps = { testIds, onChange: () => {}, value: null, ...props }
+        const { getByTestId, rerender } = render(<DatePicker {...baseProps} />)
+
+        return {
+          input: getByTestId(testIds.input),
+          deliver: (value: Date) =>
+            rerender(<DatePicker {...baseProps} value={value} />),
+        }
+      }
+
+      it('shows a value that arrives while the empty input is focused', () => {
+        const { input, deliver } = renderLatePicker()
+
+        fireEvent.focus(input)
+        deliver(new Date(2020, 11, 24))
+
+        expect(input).toHaveValue('12-24-2020')
+      })
+
+      it('keeps what the user has typed', () => {
+        const { input, deliver } = renderLatePicker()
+
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: '12-2' } })
+        deliver(new Date(2020, 11, 24))
+
+        expect(input).toHaveValue('12-2')
+      })
+
+      it('keeps an input the user emptied with nothing to delete', () => {
+        const { input, deliver } = renderLatePicker()
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'Delete' })
+        deliver(new Date(2020, 11, 24))
+
+        expect(input).toHaveValue('')
+      })
+
+      it('does not fill an emptied input when the focus state and the value land in one commit', () => {
+        // One click handler focuses the input and delivers the value, so both
+        // updates share a commit, as they do during an autofocused mount
+        const LateValueHarness = () => {
+          const [value, setValue] = React.useState<Date | null>(null)
+
+          return (
+            <>
+              <DatePicker testIds={testIds} onChange={() => {}} value={value} />
+              <button
+                type='button'
+                onClick={() => {
+                  document
+                    .querySelector<HTMLInputElement>(
+                      `[data-testid="${testIds.input}"]`
+                    )
+                    ?.focus()
+                  setValue(new Date(2020, 11, 24))
+                }}
+              >
+                deliver
+              </button>
+            </>
+          )
+        }
+
+        const { getByTestId, getByText } = render(<LateValueHarness />)
+        const input = getByTestId(testIds.input)
+
+        fireEvent.keyDown(input, { key: 'Delete' })
+        fireEvent.click(getByText('deliver'))
+
+        expect(input).toHaveFocus()
+        expect(input).toHaveValue('')
+      })
+
+      it("protects the user's input when the value arrives before React knows the input is focused", () => {
+        // Right after `autoFocus` the DOM has focus and React's state does
+        // not yet; jsdom cannot hold that window open, hence the stub
+        const { input, deliver } = renderLatePicker()
+
+        Object.defineProperty(document, 'activeElement', {
+          configurable: true,
+          get: () => input,
+        })
+
+        try {
+          fireEvent.keyDown(input, { key: 'Delete' })
+          deliver(new Date(2020, 11, 24))
+
+          expect(input).toHaveValue('')
+        } finally {
+          Reflect.deleteProperty(document, 'activeElement')
+        }
+      })
+
+      it('never concatenates a late value with what the user typed', () => {
+        const { input, deliver } = renderLatePicker({
+          parseInputValue: jest.fn(),
+        })
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: '0' })
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+        deliver(new Date(2022, 4, 5))
+
+        expect(input).toHaveValue('09-30-2024')
+      })
+
+      it('commits the date the user typed, not the one that arrived late', () => {
+        const handleChange = jest.fn()
+        const { input, deliver } = renderLatePicker({ onChange: handleChange })
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'Delete' })
+        deliver(new Date(2022, 4, 5))
+
+        expect(input).toHaveValue('')
+
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+
+        expect(handleChange).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
+      })
+
+      it('commits the typed date when an autofocused picker fills late', () => {
+        const handleCommit = jest.fn()
+        let deliverValue: (() => void) | undefined
+
+        const InlineEditor = () => {
+          const [value, setValue] = React.useState<Date | null>(null)
+
+          deliverValue = () => setValue(new Date(2022, 4, 5))
+
+          return (
+            <DatePicker
+              autoFocus
+              testIds={testIds}
+              value={value}
+              onChange={nextValue => {
+                setValue(nextValue as Date | null)
+                handleCommit(nextValue)
+              }}
+            />
+          )
+        }
+
+        const { getByTestId } = render(<InlineEditor />)
+        const input = getByTestId(testIds.input)
+
+        expect(input).toHaveFocus()
+
+        fireEvent.keyDown(input, { key: 'Delete' })
+
+        act(() => {
+          deliverValue?.()
+        })
+
+        expect(input).toHaveValue('')
+
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+        fireEvent.blur(input)
+
+        expect(handleCommit).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
+        expect(input).toHaveValue('09-30-2024')
+      })
+
+      it('keeps an input the user has cleared', () => {
+        const { input, deliver } = renderLatePicker({
+          value: new Date(2020, 11, 24),
+        })
+
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: '' } })
+        deliver(new Date(2020, 10, 2))
+
+        expect(input).toHaveValue('')
+      })
+    })
+
     describe('when `range` property is set', () => {
       it('should resets value when input content removed', async () => {
         const { getByTestId } = renderDatePicker({
