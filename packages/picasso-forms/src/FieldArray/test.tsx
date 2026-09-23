@@ -87,8 +87,6 @@ describe('FieldArray', () => {
   })
 
   it("subscribes to upstream's default keys only, so other meta reads undefined", () => {
-    // `length`, `value` and `error`: react-final-form-arrays@5 narrowed the
-    // default after nested arrays re-rendered on every field change (#119)
     renderForm(
       <FieldArray<Skill> name='skills'>
         {({ meta }) => <span>{`pristine: ${String(meta.pristine)}`}</span>}
@@ -107,19 +105,19 @@ describe('FieldArray', () => {
 
     expect(screen.getByText('pristine: true')).toBeInTheDocument()
   })
-})
 
-describe('useFieldArray', () => {
-  it('returns the fields of the named array, typed by the item', () => {
-    const Skills = () => {
-      const { fields } = useFieldArray<Skill>('skills')
-      const names = fields.value.map(skill => skill.name).join(', ')
+  describe('useFieldArray', () => {
+    it('returns the fields of the named array, typed by the item', () => {
+      const Skills = () => {
+        const { fields } = useFieldArray<Skill>('skills')
+        const names = fields.value.map(skill => skill.name).join(', ')
 
-      return <span>{`${names} (${fields.length})`}</span>
-    }
+        return <span>{`${names} (${fields.length})`}</span>
+      }
 
-    renderForm(<Skills />)
+      renderForm(<Skills />)
 
-    expect(screen.getByText('HTML, CSS (2)')).toBeInTheDocument()
+      expect(screen.getByText('HTML, CSS (2)')).toBeInTheDocument()
+    })
   })
 })

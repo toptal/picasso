@@ -103,8 +103,6 @@ const Field = <
 
   assertFieldName(name)
 
-  // Brackets `useField` below; remove both calls with the rest of the
-  // react-final-form 7.0.1 workaround (see the module)
   const releaseClaimedFieldState = useClaimedFieldState(name, {
     afterSubmit,
     beforeSubmit,
@@ -139,6 +137,7 @@ const Field = <
     value,
   })
 
+  // After `useField`: effects run in order, so this releases after its mount
   useReleaseClaimedFieldState(releaseClaimedFieldState)
 
   const error = useFieldValidation({
@@ -151,22 +150,11 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
-  // `react-final-form@7.0.1` derives a checkbox's `checked` from `parse(value)`,
-  // where 6 and 7.0.0 used `format(value)`; upstream changed it on purpose
-  // (final-form/react-final-form#1074) for group values whose `parse` fixes
-  // their type. For a standalone checkbox `parse` is the wrong direction: the
-  // string-boolean pair `format={value => value === 'true'}` with
-  // `parse={checked => (checked ? 'true' : 'false')}` reads a stored `'false'`
-  // through `parse`, gets the truthy `'true'` back and renders an unchecked box
-  // as checked; clicking it then submits the wrong value. For a checkbox
-  // without its own `value` the field's `input.value` is already
-  // `format(value)`, so this restores the 6.x meaning: a deliberate divergence,
-  // kept until upstream settles that case. A checkbox that carries a `value`
-  // belongs to a group, where `checked` is array membership and upstream's
-  // semantics stand.
-  // TODO: [PF-2262] link the upstream issue for the string-boolean checkbox
-  // once it is filed; drop this block if a release derives `checked` from
-  // `format` again for a value-less checkbox
+  // react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
+  // string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+  // Restore 6.x's `format(value)` for a standalone checkbox; groups keep
+  // upstream's.
+  // TODO: [PF-2522] drop when upstream derives it from `format` again
   const shouldDeriveCheckedFromFormat =
     type === 'checkbox' && value === undefined && format !== undefined
 

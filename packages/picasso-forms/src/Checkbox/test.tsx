@@ -95,8 +95,6 @@ describe('Form.Checkbox', () => {
     ).toBeInTheDocument()
   })
   describe('when `format` and `parse` map the value to a string', () => {
-    // `react-final-form@7` derives `checked` from `parse`, where 6 used
-    // `format`; Picasso keeps the 6.x meaning for a checkbox without a `value`
     const renderStringCheckbox = (initialValue: string) => {
       const onSubmit = jest.fn()
 

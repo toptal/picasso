@@ -35,8 +35,6 @@ describe('useFormState', () => {
     })
 
     it('leaves an absent `initialValues` undefined, as final-form reports it', () => {
-      // The same answer a `FormSpy` child and `form.getState()` give, so a
-      // consumer reads `initialValues` one way through all three
       const Probe = () => {
         const { initialValues } = useFormState<Values>()
 
@@ -89,10 +87,8 @@ describe('useFormState', () => {
   })
 
   describe('types', () => {
-    // Type-checked by `pnpm typecheck:react19`: tsconfig.react19.json lists
-    // this file under `files` and builds the packages first. `pnpm typecheck`
-    // cannot resolve package imports without a build, so @types/react 17 is
-    // not checked.
+    // Type-checked by `pnpm typecheck:react19`, which lists this file in
+    // tsconfig.react19.json's `files`
     it('makes the subscribed keys non-optional without a subscription', () => {
       const Probe = () => {
         const state = useFormState<Values>()

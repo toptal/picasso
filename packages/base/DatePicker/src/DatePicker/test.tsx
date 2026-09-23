@@ -357,79 +357,49 @@ describe('DatePicker', () => {
     })
 
     describe('when the value arrives after the input is focused', () => {
-      // A form library that registers its fields in an effect delivers the
-      // first value after mount, so a focused picker sees it late
+      const renderLatePicker = (props: Partial<Props> = {}) => {
+        const baseProps = { testIds, onChange: () => {}, value: null, ...props }
+        const { getByTestId, rerender } = render(<DatePicker {...baseProps} />)
+
+        return {
+          input: getByTestId(testIds.input),
+          deliver: (value: Date) =>
+            rerender(<DatePicker {...baseProps} value={value} />),
+        }
+      }
+
       it('shows a value that arrives while the empty input is focused', () => {
-        const { getByTestId, rerender } = render(
-          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
-        )
-        const input = getByTestId(testIds.input)
+        const { input, deliver } = renderLatePicker()
 
         fireEvent.focus(input)
-
-        rerender(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={new Date(2020, 11, 24)}
-          />
-        )
+        deliver(new Date(2020, 11, 24))
 
         expect(input).toHaveValue('12-24-2020')
       })
 
       it('keeps what the user has typed', () => {
-        const { getByTestId, rerender } = render(
-          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
-        )
-        const input = getByTestId(testIds.input)
+        const { input, deliver } = renderLatePicker()
 
         fireEvent.focus(input)
         fireEvent.change(input, { target: { value: '12-2' } })
-
-        rerender(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={new Date(2020, 11, 24)}
-          />
-        )
+        deliver(new Date(2020, 11, 24))
 
         expect(input).toHaveValue('12-2')
       })
 
       it('keeps an input the user emptied with nothing to delete', () => {
-        // The input is already empty when it takes focus, so pressing Delete
-        // changes nothing and fires no change event. It is still the user
-        // saying they want the field empty
-        const { getByTestId, rerender } = render(
-          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
-        )
-        const input = getByTestId(testIds.input)
+        const { input, deliver } = renderLatePicker()
 
         fireEvent.focus(input)
         fireEvent.keyDown(input, { key: 'Delete' })
-
-        rerender(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={new Date(2020, 11, 24)}
-          />
-        )
+        deliver(new Date(2020, 11, 24))
 
         expect(input).toHaveValue('')
       })
 
       it('does not fill an emptied input when the focus state and the value land in one commit', () => {
-        // The mount sequence a test runner produces: `autoFocus` focuses the
-        // input during the commit, a Delete keypress lands before React's
-        // focus state has flushed, and the first value arrives in the same
-        // render as that flush. Focusing and delivering the value from one
-        // event handler puts both updates in one commit, as that mount does.
-        // A focus change may only re-format what the input already shows;
-        // filling it is the value update's job, and that one sees an input
-        // the user has claimed
+        // One click handler focuses the input and delivers the value, so both
+        // updates share a commit, as they do during an autofocused mount
         const LateValueHarness = () => {
           const [value, setValue] = React.useState<Date | null>(null)
 
@@ -464,13 +434,9 @@ describe('DatePicker', () => {
       })
 
       it("protects the user's input when the value arrives before React knows the input is focused", () => {
-        // `autoFocus` focuses the input during the commit and React's focus
-        // state follows a render later; in that window the DOM is the truth.
-        // jsdom cannot hold the window open, hence the stubbed `activeElement`
-        const { getByTestId, rerender } = render(
-          <DatePicker testIds={testIds} onChange={() => {}} value={null} />
-        )
-        const input = getByTestId(testIds.input)
+        // Right after `autoFocus` the DOM has focus and React's state does
+        // not yet; jsdom cannot hold that window open, hence the stub
+        const { input, deliver } = renderLatePicker()
 
         Object.defineProperty(document, 'activeElement', {
           configurable: true,
@@ -479,14 +445,7 @@ describe('DatePicker', () => {
 
         try {
           fireEvent.keyDown(input, { key: 'Delete' })
-
-          rerender(
-            <DatePicker
-              testIds={testIds}
-              onChange={() => {}}
-              value={new Date(2020, 11, 24)}
-            />
-          )
+          deliver(new Date(2020, 11, 24))
 
           expect(input).toHaveValue('')
         } finally {
@@ -495,55 +454,25 @@ describe('DatePicker', () => {
       })
 
       it('never concatenates a late value with what the user typed', () => {
-        // A value landing behind the caret would leave both dates in the
-        // field, and a custom parser can read that concatenation as a date
-        const parseInputValue = jest.fn()
-        const { getByTestId, rerender } = render(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={null}
-            parseInputValue={parseInputValue}
-          />
-        )
-        const input = getByTestId(testIds.input)
+        const { input, deliver } = renderLatePicker({
+          parseInputValue: jest.fn(),
+        })
 
         fireEvent.focus(input)
         fireEvent.keyDown(input, { key: '0' })
         fireEvent.change(input, { target: { value: '09-30-2024' } })
-
-        rerender(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={new Date(2022, 4, 5)}
-            parseInputValue={parseInputValue}
-          />
-        )
+        deliver(new Date(2022, 4, 5))
 
         expect(input).toHaveValue('09-30-2024')
       })
 
       it('commits the date the user typed, not the one that arrived late', () => {
-        // The Staff Portal sequence: an inline editor autofocuses, the user
-        // empties the field, the value lands, and the text they then type has
-        // to be the date the form receives
         const handleChange = jest.fn()
-        const { getByTestId, rerender } = render(
-          <DatePicker testIds={testIds} onChange={handleChange} value={null} />
-        )
-        const input = getByTestId(testIds.input)
+        const { input, deliver } = renderLatePicker({ onChange: handleChange })
 
         fireEvent.focus(input)
         fireEvent.keyDown(input, { key: 'Delete' })
-
-        rerender(
-          <DatePicker
-            testIds={testIds}
-            onChange={handleChange}
-            value={new Date(2022, 4, 5)}
-          />
-        )
+        deliver(new Date(2022, 4, 5))
 
         expect(input).toHaveValue('')
 
@@ -553,8 +482,6 @@ describe('DatePicker', () => {
       })
 
       it('commits the typed date when an autofocused picker fills late', () => {
-        // The Staff Portal shape: an inline editor autofocuses while the form
-        // value is still on its way, and the user starts by emptying the field
         const handleCommit = jest.fn()
         let deliverValue: (() => void) | undefined
 
@@ -593,30 +520,17 @@ describe('DatePicker', () => {
         fireEvent.blur(input)
 
         expect(handleCommit).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
-        // the whole field is what they typed, with no restored date in front
         expect(input).toHaveValue('09-30-2024')
       })
 
       it('keeps an input the user has cleared', () => {
-        const { getByTestId, rerender } = render(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={new Date(2020, 11, 24)}
-          />
-        )
-        const input = getByTestId(testIds.input)
+        const { input, deliver } = renderLatePicker({
+          value: new Date(2020, 11, 24),
+        })
 
         fireEvent.focus(input)
         fireEvent.change(input, { target: { value: '' } })
-
-        rerender(
-          <DatePicker
-            testIds={testIds}
-            onChange={() => {}}
-            value={new Date(2020, 10, 2)}
-          />
-        )
+        deliver(new Date(2020, 10, 2))
 
         expect(input).toHaveValue('')
       })

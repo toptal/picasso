@@ -3,12 +3,45 @@ import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 import type { FormApi } from 'final-form'
 import arrayMutators from 'final-form-arrays'
+import { useForm } from 'react-final-form'
 
 import { FormCompound as Form } from '../FormCompound'
 import { FieldArray } from '../FieldArray'
 import { scrollTo } from '../utils/scroll-to'
 
 jest.mock('../utils/scroll-to', () => ({ scrollTo: jest.fn() }))
+
+type FormProps = React.ComponentProps<typeof Form>
+
+const renderForm = (
+  ui: React.ReactNode,
+  props: Omit<Partial<FormProps>, 'onSubmit'> = {}
+) => {
+  const handleSubmit = jest.fn()
+  const formRef: { current?: FormApi } = {}
+  const CaptureForm = () => {
+    formRef.current = useForm()
+
+    return null
+  }
+
+  render(
+    <Form onSubmit={handleSubmit} {...props}>
+      <CaptureForm />
+      {ui}
+      <Button type='submit'>submit</Button>
+    </Form>
+  )
+
+  return {
+    handleSubmit,
+    getForm: () => formRef.current,
+    submit: () =>
+      act(async () => {
+        fireEvent.click(screen.getByText('submit'))
+      }),
+  }
+}
 
 const ToggleableInput = ({
   name,
@@ -33,8 +66,10 @@ const toggle = () => {
   fireEvent.click(screen.getByText('toggle'))
 }
 
-// Radios and checkboxes render react-final-form's `Field` instead of going
-// through Picasso's `Field`; the group above them is what holds the claim
+const editField = (value: string) => {
+  fireEvent.change(screen.getByPlaceholderText('field'), { target: { value } })
+}
+
 const ToggleableChildren = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(true)
 
@@ -46,7 +81,6 @@ const ToggleableChildren = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-// Seeds `c` with `form.change()` before the field mounts over it
 const SeededLater = () => {
   const [mounted, setMounted] = useState(false)
 
@@ -72,16 +106,9 @@ const SeededLater = () => {
 describe('Field', () => {
   describe('when a field unmounts and remounts', () => {
     it('keeps the value the user edited', () => {
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
-          <ToggleableInput name='a' />
-        </Form>
-      )
+      renderForm(<ToggleableInput name='a' />, { initialValues: { a: 'x' } })
 
-      fireEvent.change(screen.getByPlaceholderText('field'), {
-        target: { value: 'y' },
-      })
-
+      editField('y')
       toggle()
       toggle()
 
@@ -101,112 +128,78 @@ describe('Field', () => {
 
   describe('when the form sets `destroyOnUnregister`', () => {
     it('drops the value on unmount, as final-form does without the workaround', () => {
-      let formApi: FormApi<{ a: string }> | undefined
-
-      render(
-        <Form
-          destroyOnUnregister
-          onSubmit={jest.fn()}
-          initialValues={{ a: 'x' }}
-        >
-          {({ form }) => {
-            formApi = form
-
-            return <ToggleableInput name='a' />
-          }}
-        </Form>
-      )
-
-      fireEvent.change(screen.getByPlaceholderText('field'), {
-        target: { value: 'y' },
+      const { getForm } = renderForm(<ToggleableInput name='a' />, {
+        destroyOnUnregister: true,
+        initialValues: { a: 'x' },
       })
 
+      editField('y')
       toggle()
 
-      expect(formApi?.getState().values.a).toBeUndefined()
+      expect(getForm()?.getState().values.a).toBeUndefined()
     })
   })
 
   describe('when a radio or checkbox group remounts', () => {
     it('keeps the radio the user selected in a group', () => {
-      let formApi: FormApi<{ r: string }> | undefined
-
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ r: 'a' }}>
-          {({ form }) => {
-            formApi = form
-
-            return (
-              <ToggleableChildren>
-                <Form.RadioGroup name='r'>
-                  <Form.Radio value='a' label='A' />
-                  <Form.Radio value='b' label='B' />
-                </Form.RadioGroup>
-              </ToggleableChildren>
-            )
-          }}
-        </Form>
+      const { getForm } = renderForm(
+        <ToggleableChildren>
+          <Form.RadioGroup name='r'>
+            <Form.Radio value='a' label='A' />
+            <Form.Radio value='b' label='B' />
+          </Form.RadioGroup>
+        </ToggleableChildren>,
+        { initialValues: { r: 'a' } }
       )
 
       fireEvent.click(screen.getByLabelText('B'))
       toggle()
       toggle()
 
-      expect(formApi?.getState().values.r).toBe('b')
+      expect(getForm()?.getState().values.r).toBe('b')
       expect(screen.getByLabelText('B')).toBeChecked()
     })
 
     it('keeps the checkbox the user toggled in a group', () => {
-      let formApi: FormApi<{ c: string[] }> | undefined
-
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ c: ['x'] }}>
-          {({ form }) => {
-            formApi = form
-
-            return (
-              <ToggleableChildren>
-                <Form.CheckboxGroup name='c'>
-                  <Form.Checkbox value='x' label='X' />
-                  <Form.Checkbox value='y' label='Y' />
-                </Form.CheckboxGroup>
-              </ToggleableChildren>
-            )
-          }}
-        </Form>
+      const { getForm } = renderForm(
+        <ToggleableChildren>
+          <Form.CheckboxGroup name='c'>
+            <Form.Checkbox value='x' label='X' />
+            <Form.Checkbox value='y' label='Y' />
+          </Form.CheckboxGroup>
+        </ToggleableChildren>,
+        { initialValues: { c: ['x'] } }
       )
 
       fireEvent.click(screen.getByLabelText('Y'))
       toggle()
       toggle()
 
-      expect(formApi?.getState().values.c).toEqual(['x', 'y'])
+      expect(getForm()?.getState().values.c).toEqual(['x', 'y'])
     })
   })
 
   describe('when a FieldArray drops an item', () => {
     it('shifts the remaining positional values instead of restoring a stale one', () => {
-      render(
-        <Form
-          onSubmit={jest.fn()}
-          mutators={{ ...arrayMutators }}
-          initialValues={{ items: [{ label: 'one' }, { label: 'two' }] }}
-        >
-          <FieldArray<{ label: string }> name='items'>
-            {({ fields }) => (
-              <>
-                {fields.map((fieldName, index) => (
-                  <Form.Input
-                    key={fieldName}
-                    name={`${fieldName}.label`}
-                    placeholder={`item-${index}`}
-                  />
-                ))}
-                <Button onClick={() => fields.remove(0)}>remove first</Button>
-              </>
-            )}
-          </FieldArray>
-        </Form>
+      renderForm(
+        <FieldArray<{ label: string }> name='items'>
+          {({ fields }) => (
+            <>
+              {fields.map((fieldName, index) => (
+                <Form.Input
+                  key={fieldName}
+                  name={`${fieldName}.label`}
+                  placeholder={`item-${index}`}
+                />
+              ))}
+              <Button onClick={() => fields.remove(0)}>remove first</Button>
+            </>
+          )}
+        </FieldArray>,
+        {
+          mutators: { ...arrayMutators },
+          initialValues: { items: [{ label: 'one' }, { label: 'two' }] },
+        }
       )
 
       expect(screen.getByPlaceholderText('item-0')).toHaveValue('one')
@@ -221,98 +214,57 @@ describe('Field', () => {
 
   describe('after a field unmounts', () => {
     it('still lets a form-level error on the unmounted field block submit', async () => {
-      const handleSubmit = jest.fn()
-
-      render(
-        <Form
-          onSubmit={handleSubmit}
-          initialValues={{ a: 'x' }}
-          validate={values => (values.a === 'y' ? { a: 'not y' } : {})}
-        >
-          <ToggleableInput name='a' />
-          <Button type='submit'>submit</Button>
-        </Form>
+      const { handleSubmit, submit } = renderForm(
+        <ToggleableInput name='a' />,
+        {
+          initialValues: { a: 'x' },
+          validate: values => (values.a === 'y' ? { a: 'not y' } : {}),
+        }
       )
 
-      fireEvent.change(screen.getByPlaceholderText('field'), {
-        target: { value: 'y' },
-      })
-
+      editField('y')
       toggle()
+      await submit()
 
-      await act(async () => {
-        fireEvent.click(screen.getByText('submit'))
-      })
-
-      // nothing is registered for `a` any more; the form-level error still
-      // blocks the submit and the scroll-to-error decorator finds no element
       expect(handleSubmit).not.toHaveBeenCalled()
       expect(scrollTo).not.toHaveBeenCalled()
     })
 
     it('leaves `getRegisteredFields` as final-form reports it', () => {
-      let formApi: FormApi<{ a: string }> | undefined
-
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
-          {({ form }) => {
-            formApi = form
-
-            return <ToggleableInput name='a' />
-          }}
-        </Form>
-      )
+      const { getForm } = renderForm(<ToggleableInput name='a' />, {
+        initialValues: { a: 'x' },
+      })
 
       toggle()
 
-      // the claim is released as soon as the field has mounted, so nothing
-      // outlives the field itself
-      expect(formApi?.getRegisteredFields()).not.toContain('a')
+      expect(getForm()?.getRegisteredFields()).not.toContain('a')
     })
 
     it('does not let a hidden required field block submit', async () => {
-      const handleSubmit = jest.fn()
-
-      render(
-        <Form onSubmit={handleSubmit}>
-          <ToggleableInput name='a' required />
-          <Button type='submit'>submit</Button>
-        </Form>
+      const { handleSubmit, submit } = renderForm(
+        <ToggleableInput name='a' required />
       )
 
       toggle()
+      await submit()
 
-      await act(async () => {
-        fireEvent.click(screen.getByText('submit'))
-      })
-
-      // final-form clears a field's error only when its last subscriber goes,
-      // so a claim held past the mount would strand this one
       expect(handleSubmit).toHaveBeenCalled()
     })
   })
-  describe('the field configuration final-form only applies once', () => {
-    // The claim creates the field entry, and final-form never re-applies a
-    // field's submit hooks, `data` or `validateFields` to an entry that
-    // already exists, so the claim has to carry them
-    it('formats a `formatOnBlur` field that was never focused', async () => {
-      const handleSubmit = jest.fn()
 
-      render(
-        <Form onSubmit={handleSubmit} initialValues={{ amount: '5.0' }}>
-          <Form.Input
-            name='amount'
-            formatOnBlur
-            format={value => Number(value).toFixed(2)}
-            placeholder='amount'
-          />
-          <Button type='submit'>submit</Button>
-        </Form>
+  describe('the field configuration final-form only applies once', () => {
+    it('formats a `formatOnBlur` field that was never focused', async () => {
+      const { handleSubmit, submit } = renderForm(
+        <Form.Input
+          name='amount'
+          formatOnBlur
+          format={(value: unknown) => Number(value).toFixed(2)}
+          placeholder='amount'
+        />,
+        { initialValues: { amount: '5.0' } }
       )
 
-      await act(async () => {
-        fireEvent.click(screen.getByText('submit'))
-      })
+      await submit()
 
       expect(handleSubmit).toHaveBeenCalledWith(
         { amount: '5.00' },
@@ -322,25 +274,19 @@ describe('Field', () => {
     })
 
     it('formats a `formatOnBlur` field of a radio group', async () => {
-      const handleSubmit = jest.fn()
-
-      render(
-        <Form onSubmit={handleSubmit} initialValues={{ r: 'a' }}>
-          <Form.RadioGroup
-            name='r'
-            formatOnBlur
-            format={value => String(value).toUpperCase()}
-          >
-            <Form.Radio value='a' label='A' />
-            <Form.Radio value='b' label='B' />
-          </Form.RadioGroup>
-          <Button type='submit'>submit</Button>
-        </Form>
+      const { handleSubmit, submit } = renderForm(
+        <Form.RadioGroup
+          name='r'
+          formatOnBlur
+          format={value => String(value).toUpperCase()}
+        >
+          <Form.Radio value='a' label='A' />
+          <Form.Radio value='b' label='B' />
+        </Form.RadioGroup>,
+        { initialValues: { r: 'a' } }
       )
 
-      await act(async () => {
-        fireEvent.click(screen.getByText('submit'))
-      })
+      await submit()
 
       expect(handleSubmit).toHaveBeenCalledWith(
         { r: 'A' },
@@ -351,62 +297,42 @@ describe('Field', () => {
 
     it("runs the field's `afterSubmit`", async () => {
       const handleAfterSubmit = jest.fn()
-
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
-          <Form.Input
-            name='a'
-            afterSubmit={handleAfterSubmit}
-            placeholder='field'
-          />
-          <Button type='submit'>submit</Button>
-        </Form>
+      const { submit } = renderForm(
+        <Form.Input
+          name='a'
+          afterSubmit={handleAfterSubmit}
+          placeholder='field'
+        />,
+        { initialValues: { a: 'x' } }
       )
 
-      await act(async () => {
-        fireEvent.click(screen.getByText('submit'))
-      })
+      await submit()
 
       expect(handleAfterSubmit).toHaveBeenCalled()
     })
 
     it("lets the field's `beforeSubmit` block the submit", async () => {
-      const handleSubmit = jest.fn()
-
-      render(
-        <Form onSubmit={handleSubmit} initialValues={{ a: 'x' }}>
-          <Form.Input name='a' beforeSubmit={() => false} placeholder='field' />
-          <Button type='submit'>submit</Button>
-        </Form>
+      const { handleSubmit, submit } = renderForm(
+        <Form.Input name='a' beforeSubmit={() => false} placeholder='field' />,
+        { initialValues: { a: 'x' } }
       )
 
-      await act(async () => {
-        fireEvent.click(screen.getByText('submit'))
-      })
+      await submit()
 
       expect(handleSubmit).not.toHaveBeenCalled()
     })
 
     it("passes the field's `data` to its state", () => {
-      let formApi: FormApi<{ a: string }> | undefined
-
-      render(
-        <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
-          {({ form }) => {
-            formApi = form
-
-            return (
-              <Form.Input
-                name='a'
-                data={{ tag: 'from-props' }}
-                placeholder='field'
-              />
-            )
-          }}
-        </Form>
+      const { getForm } = renderForm(
+        <Form.Input
+          name='a'
+          data={{ tag: 'from-props' }}
+          placeholder='field'
+        />,
+        { initialValues: { a: 'x' } }
       )
 
-      expect(formApi?.getFieldState('a')?.data).toEqual(
+      expect(getForm()?.getFieldState('a')?.data).toEqual(
         expect.objectContaining({ tag: 'from-props' })
       )
     })

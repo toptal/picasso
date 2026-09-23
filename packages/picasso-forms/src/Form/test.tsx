@@ -216,7 +216,6 @@ describe('Form', () => {
 
   describe('when a field renders without a name', () => {
     it('throws a descriptive error instead of failing inside final-form', () => {
-      // React also reports the thrown render error on the console
       const consoleError = jest
         .spyOn(console, 'error')
         .mockImplementation(() => {})
@@ -224,8 +223,6 @@ describe('Form', () => {
       const errors = catchRenderErrors(() =>
         render(
           <Form onSubmit={jest.fn()} initialValues={{ test: 'value' }}>
-            {/* the missing `name` compiles: react-final-form's FieldProps index
-                signature erases the required prop through forwardRef */}
             <Form.Input placeholder='test input' />
           </Form>
         )

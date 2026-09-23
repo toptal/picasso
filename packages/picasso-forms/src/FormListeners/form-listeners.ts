@@ -37,13 +37,8 @@ export interface ExternallyChangedProps {
   children: (externallyChanged: boolean) => ReactNode
 }
 
-// `react-final-form-listeners@3.0.1` publishes its declarations at
-// `dist/src/index.d.ts` while `package.json` still points `types` at
-// `dist/index.d.ts`, so a consumer install resolves the package untyped and
-// these four components reach consumers as `any` — `skipLibCheck` hides that
-// inside our own declarations. The pnpm patch corrects the path for this
-// build; declaring the components here is what puts real types in the
-// published package. Drop the casts once a release ships the corrected path.
+// react-final-form-listeners 3.0.1 points `types` at a file it does not
+// publish, so without these casts consumers get `any` (#51)
 export const OnChange = UntypedOnChange as <
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   FieldValue = any

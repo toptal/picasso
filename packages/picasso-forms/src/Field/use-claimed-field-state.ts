@@ -6,10 +6,6 @@ import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 type ReleaseRef = MutableRefObject<(() => void) | null>
 
-/**
- * The parts of a field's configuration final-form reads only while it creates
- * the field entry, so the claim below has to carry them.
- */
 export type ClaimedFieldConfig = Pick<
   UseFieldConfig,
   | 'afterSubmit'
@@ -20,61 +16,19 @@ export type ClaimedFieldConfig = Pick<
   | 'validateFields'
 >
 
-// `react-final-form`'s own default, mirrored so the flush below formats a
-// missing value exactly as its `beforeSubmit` would
 const defaultFormat = (value: unknown) => (value === undefined ? '' : value)
 
 /**
- * Workaround for react-final-form 7.0.1 reseeding a field from `initialValues`
- * whenever it mounts and final-form holds no field state for it
- * (https://github.com/final-form/react-final-form/issues/1095; a fix is
- * proposed in the still-open
- * https://github.com/final-form/react-final-form/pull/1096).
+ * Works around react-final-form 7.0.1 reseeding a field from `initialValues` on
+ * every mount, since final-form drops field state on unmount (#1095).
  *
- * final-form drops `state.fields[name]` once the last subscriber of a field
- * unregisters, `destroyOnUnregister` or not, so that branch also runs for a
- * field that merely remounted (a conditional field, a wizard step, an
- * edit/preview toggle) and for a field mounting over a value the consumer
- * already wrote with `form.change()`. Either way the user's value is replaced
- * by the initial one, while the form's *values* still hold the right one.
+ * The claim is a throwaway subscriber registered in the layout phase, so before
+ * react-final-form's mount effect, and released right after it. It creates the
+ * field entry, so it carries the config final-form applies only on create;
+ * adding `initialValue` or `defaultValue` would reseed. Held longer, it would
+ * strand a hidden field's error.
  *
- * So the field state is recreated from those values for exactly as long as
- * react-final-form's mount effect needs to see it: a subscriber that carries no
- * subscription and no validator is registered in the layout phase and released
- * in the next passive effect. React runs every layout effect of a commit
- * before any passive effect, so the claim precedes that mount effect whether it
- * belongs to this component's own `useField` or to a react-final-form `Field`
- * rendered by a descendant (the radios of a `Form.RadioGroup`, the checkboxes
- * of a `Form.CheckboxGroup`); and a descendant's passive effects run before
- * its ancestor's, so the release follows it.
- *
- * The claim registers the field's `beforeSubmit`, `afterSubmit`, `data` and
- * `validateFields` because it is the call that creates the entry, and
- * final-form applies those four only then: for an entry that already exists it
- * re-applies `isEqual`, the validators, `initialValue` and `defaultValue`, but
- * never the submit hooks. Without them react-final-form's own registration adds
- * nothing, and its `beforeSubmit` — the wrapper that applies `format()` to a
- * `formatOnBlur` field at submit time — is silently dropped, so such a field
- * submits its raw value. `initialValue` and `defaultValue` are deliberately not
- * claimed: final-form re-applies them for the real registration, and seeding
- * them here is the reseed this module exists to prevent.
- *
- * The claim must not outlive the mount: final-form clears a field's error and
- * state only when the *last* subscriber unregisters, so a subscriber held for
- * the life of the form would strand the error of a field that unmounts — a
- * hidden `required` field would then block submit with nothing on screen to
- * explain it.
- *
- * The claim is also not re-established when a field's `data`, `defaultValue`
- * or `initialValue` prop changes identity while mounted: react-final-form lists
- * them as dependencies of its registration effect, so such a change unregisters
- * and re-registers the field, and 7.0.1 reseeds it again. Picasso's wrappers
- * forward those props unchanged, so a consumer passing a fresh object or array
- * on every render re-registers the field on every render, with or without this
- * module; that case keeps upstream's behaviour.
- *
- * TODO: [PF-2262] delete this file and its calls once a `react-final-form`
- * release contains a fix for #1095.
+ * TODO: [PF-2522] delete this file and its calls once upstream fixes #1095
  */
 export const useClaimedFieldState = (
   name: string,
@@ -84,13 +38,10 @@ export const useClaimedFieldState = (
   const release = useRef<(() => void) | null>(null)
   const latest = useRef(config)
 
-  // Assigned while rendering so the layout effect below, and the hooks it
-  // registers, read the props of the render they belong to
   latest.current = config
 
   useIsomorphicLayoutEffect(() => {
-    // `destroyOnUnregister` asks for exactly the behaviour this works around;
-    // a missing name is `assertFieldName`'s to report and has nothing to claim
+    // `destroyOnUnregister` asks for the reseed
     if (!name || form.destroyOnUnregister) {
       return undefined
     }
@@ -100,13 +51,8 @@ export const useClaimedFieldState = (
       () => {},
       {},
       {
-        // Only this field's own listeners are told, and there are none yet: the
-        // claim changes no value, so the form-wide notification final-form
-        // would otherwise send once per field mount has nothing to report
         silent: true,
-        // Mirrors react-final-form's own wrapper: flush `formatOnBlur` through
-        // `format` before validation runs, then defer to the consumer's hook and
-        // return its result, so returning `false` still blocks the submit
+        // Mirrors react-final-form's own `beforeSubmit` wrapper
         beforeSubmit: () => {
           const {
             beforeSubmit,
@@ -134,7 +80,6 @@ export const useClaimedFieldState = (
       }
     )
 
-    // Only reached if the field unmounts before the release effect below runs
     return () => {
       release.current?.()
       release.current = null
@@ -144,14 +89,9 @@ export const useClaimedFieldState = (
   return release
 }
 
-/**
- * Releases the claim above once react-final-form has registered the real
- * field. A passive effect, so it runs after the mount effect of this
- * component's `useField` and after those of any `Field` a descendant renders.
- */
 export const useReleaseClaimedFieldState = (release: ReleaseRef) => {
-  // No dependency list on purpose: the claim above re-registers whenever
-  // `name` changes, and each of those claims must be released too
+  // No dependency list: a `name` change re-claims, and that must be released
+  // too
   useEffect(() => {
     release.current?.()
     release.current = null
