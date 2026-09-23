@@ -9,7 +9,7 @@ import {
 } from '@toptal/picasso'
 import { PicassoBreakpoints } from '@toptal/picasso-provider'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
   const [value, setValue] = useState<DatePickerProps['value']>(
@@ -65,6 +65,63 @@ const TestAsyncExternalUpdateDatePicker = () => {
   )
 }
 
+// An autofocused picker whose value arrives after mount, the way a form
+// library that registers its fields in an effect delivers it
+const TestLateValueAutoFocusDatePicker = () => {
+  const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>(null)
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setDatepickerValue(new Date(2022, 4, 5)),
+      100
+    )
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <Container padded='medium'>
+      <DatePicker
+        autoFocus
+        testIds={{ input: 'date-picker-input' }}
+        value={datepickerValue}
+        onChange={setDatepickerValue}
+      />
+    </Container>
+  )
+}
+
+// An inline editor that autofocuses while its value is still on its way. The
+// value is delivered by a window event so the test controls whether it lands
+// before or after the user touches the field
+const TestLateValueInlineEditor = () => {
+  const [value, setValue] = useState<DatePickerValue>(null)
+  const [committed, setCommitted] = useState('')
+
+  useEffect(() => {
+    const deliver = () => setValue(new Date(2022, 4, 5))
+
+    window.addEventListener('deliver-date', deliver)
+
+    return () => window.removeEventListener('deliver-date', deliver)
+  }, [])
+
+  return (
+    <Container padded='medium'>
+      <DatePicker
+        autoFocus
+        testIds={{ input: 'date-picker-input' }}
+        value={value}
+        onChange={nextValue => {
+          setValue(nextValue)
+          setCommitted(nextValue ? nextValue.toISOString() : '')
+        }}
+      />
+      <div data-testid='committed'>{committed}</div>
+    </Container>
+  )
+}
+
 const component = 'DatePicker'
 
 describe('DatePicker', () => {
@@ -77,6 +134,40 @@ describe('DatePicker', () => {
       component,
       variant: 'autofocus',
     })
+  })
+
+  it('shows a value that arrives after autofocus', () => {
+    cy.mount(<TestLateValueAutoFocusDatePicker />)
+
+    cy.waitForCalendarOpen()
+
+    cy.getByTestId('date-picker-input').should('have.value', '05-05-2022')
+  })
+
+  it('commits the typed date when the value lands after the user clears', () => {
+    cy.mount(<TestLateValueInlineEditor />)
+
+    cy.getByTestId('date-picker-input').should('have.focus')
+
+    // Cypress types synthetically, so this clear still fires a change event;
+    // the case where it does not, a delete on an already empty field, is a
+    // unit test. What this covers is the whole flow in a real browser: the
+    // caret, the late value, and the date the form ends up with
+    cy.getByTestId('date-picker-input').type('{selectall}{del}')
+
+    // dispatched on `window` rather than through a control, so that delivering
+    // the value cannot move focus or count as a click away from the picker
+    // eslint-disable-next-line promise/catch-or-return
+    cy.window().then(win => {
+      win.dispatchEvent(new Event('deliver-date'))
+
+      return cy.getByTestId('date-picker-input').should('have.value', '')
+    })
+
+    cy.getByTestId('date-picker-input').type('09-30-2024')
+
+    cy.getByTestId('committed').should('contain', '2024-09-30')
+    cy.getByTestId('date-picker-input').should('have.value', '09-30-2024')
   })
 
   it('renders range', () => {

@@ -13,6 +13,11 @@ import { detect } from 'detect-browser'
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
+import { assertFieldName } from './assert-field-name'
+import {
+  useClaimedFieldState,
+  useReleaseClaimedFieldState,
+} from './use-claimed-field-state'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -96,6 +101,17 @@ const Field = <
     ...rest
   } = props
 
+  assertFieldName(name)
+
+  const releaseClaimedFieldState = useClaimedFieldState(name, {
+    afterSubmit,
+    beforeSubmit,
+    data,
+    format,
+    formatOnBlur,
+    validateFields,
+  })
+
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()
   const validators = useMemo(
@@ -121,6 +137,9 @@ const Field = <
     value,
   })
 
+  // After `useField`: effects run in order, so this releases after its mount
+  useReleaseClaimedFieldState(releaseClaimedFieldState)
+
   const error = useFieldValidation({
     name,
     meta,
@@ -131,11 +150,20 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
+  // react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
+  // string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+  // Restore 6.x's `format(value)` for a standalone checkbox; groups keep
+  // upstream's.
+  // TODO: [PF-2522] drop when upstream derives it from `format` again
+  const shouldDeriveCheckedFromFormat =
+    type === 'checkbox' && value === undefined && format !== undefined
+
   const childProps: Record<string, unknown> = {
     id,
     status,
     ...rest,
     ...input,
+    ...(shouldDeriveCheckedFromFormat ? { checked: Boolean(input.value) } : {}),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       if (isFirefox && event?.target) {
