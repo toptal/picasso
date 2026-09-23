@@ -1,12 +1,9 @@
-import type { MutableRefObject } from 'react'
 import { useEffect, useRef } from 'react'
 import type { UseFieldConfig } from 'react-final-form'
 import { useForm } from 'react-final-form'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
-type ReleaseRef = MutableRefObject<(() => void) | null>
-
-export type ClaimedFieldConfig = Pick<
+type ClaimedFieldConfig = Pick<
   UseFieldConfig,
   | 'afterSubmit'
   | 'beforeSubmit'
@@ -23,18 +20,23 @@ const defaultFormat = (value: unknown) => (value === undefined ? '' : value)
  * every mount, since final-form drops field state on unmount (#1095).
  *
  * The claim is a throwaway subscriber registered in the layout phase, so before
- * react-final-form's mount effect, and released right after it. It creates the
- * field entry, so it carries the config final-form applies only on create;
- * adding `initialValue` or `defaultValue` would reseed. Held longer, it would
- * strand a hidden field's error.
+ * react-final-form's mount effect, and released in the next passive effect,
+ * right after it. That holds when this runs after react-final-form's hook in
+ * the same component, or in a parent of the component that calls it. The claim
+ * creates the field entry, so it carries the config final-form applies only on
+ * create; adding `initialValue` or `defaultValue` would reseed. Held longer, it
+ * would strand a hidden field's error.
  *
- * TODO: [PF-2522] delete this file and its calls once upstream fixes #1095
+ * TODO: [PF-2522] delete this file and the wrappers that call it once upstream
+ * fixes #1095
  */
 export const useClaimedFieldState = (
   name: string,
-  config: ClaimedFieldConfig
-): ReleaseRef => {
-  const form = useForm()
+  config: ClaimedFieldConfig,
+  // Upstream's hook, named in the error thrown outside a `Form`
+  hookName = 'useField'
+) => {
+  const form = useForm(hookName)
   const release = useRef<(() => void) | null>(null)
   const latest = useRef(config)
 
@@ -86,10 +88,6 @@ export const useClaimedFieldState = (
     }
   }, [form, name])
 
-  return release
-}
-
-export const useReleaseClaimedFieldState = (release: ReleaseRef) => {
   // No dependency list: a `name` change re-claims, and that must be released
   // too
   useEffect(() => {
