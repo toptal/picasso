@@ -5,7 +5,7 @@ import type {
   ElementType,
   ReactElement,
 } from 'react'
-import React, { forwardRef, useRef } from 'react'
+import React, { cloneElement, forwardRef, useRef } from 'react'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
   BaseProps,
@@ -18,7 +18,11 @@ import { ChevronMinor16, CheckMinor16 } from '@toptal/picasso-icons'
 import { Paper } from '@toptal/picasso-paper'
 import { Popper } from '@toptal/picasso-popper'
 import { Link } from '@toptal/picasso-link'
-import { ClickAwayListener, toTitleCase } from '@toptal/picasso-utils'
+import {
+  ClickAwayListener,
+  toTitleCase,
+  useCombinedRefs,
+} from '@toptal/picasso-utils'
 import type { AvatarProps, Avatar } from '@toptal/picasso-avatar'
 
 import { useMenuItem } from './hooks'
@@ -61,6 +65,8 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
+
+type ItemKeyboardEvent = Parameters<NonNullable<Props['onKeyDown']>>[0]
 
 const getFontColor = ({
   variant,
@@ -136,19 +142,66 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     value,
     onClick,
     onMouseEnter,
+    onKeyDown,
     icon,
     avatar,
     tabIndex: tabIndexProp,
     ...rest
   } = props
 
+  const itemRef = useCombinedRefs<HTMLElement>(ref)
   const anchorRef = useRef<HTMLDivElement>(null)
   const titleCase = useTitleCase(propTitleCase)
-  const { isOpened, onItemClick, onItemMouseEnter, onAwayClick } = useMenuItem({
+  const {
+    isOpened,
+    isOpenedWithKeyboard,
+    onItemClick,
+    onItemMouseEnter,
+    onAwayClick,
+    openMenuWithKeyboard,
+    closeMenu,
+  } = useMenuItem({
     menu,
     onClick,
     onMouseEnter,
   })
+
+  const handleKeyDown = (event: ItemKeyboardEvent) => {
+    onKeyDown?.(event)
+
+    if (
+      event.defaultPrevented ||
+      disabled ||
+      event.target !== event.currentTarget
+    ) {
+      return
+    }
+
+    const isActivationKey = event.key === 'Enter' || event.key === ' '
+
+    if (menu && (isActivationKey || event.key === 'ArrowRight')) {
+      event.preventDefault()
+      openMenuWithKeyboard()
+
+      return
+    }
+
+    if (isActivationKey) {
+      event.preventDefault()
+      event.currentTarget.click()
+    }
+  }
+
+  const handleSubmenuKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.defaultPrevented || event.key !== 'ArrowLeft') {
+      return
+    }
+
+    event.preventDefault()
+    closeMenu()
+    itemRef.current?.focus()
+  }
+
   const highlighted = selected || isOpened
   const isLink = as === Link && rest.href
   const Component: React.ElementType = isLink ? 'a' : as || 'li'
@@ -164,7 +217,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   return (
     <>
       <Component
-        ref={ref}
+        ref={itemRef}
         role={role}
         tabIndex={tabIndex}
         // replace Picasso Link with Anchor to not applying Picasso
@@ -185,6 +238,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
         disabled={disabled}
         onClick={onItemClick}
         onMouseEnter={onItemMouseEnter}
+        onKeyDown={handleKeyDown}
         style={style}
         value={value}
         {...rest}
@@ -249,7 +303,14 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>
-            <Paper className='max-h-[14.75rem] overflow-y-auto'>{menu}</Paper>
+            <Paper
+              className='max-h-[14.75rem] overflow-y-auto'
+              onKeyDown={handleSubmenuKeyDown}
+            >
+              {isOpenedWithKeyboard
+                ? cloneElement(menu, { autoFocus: true })
+                : menu}
+            </Paper>
           </ClickAwayListener>
         </Popper>
       )}
