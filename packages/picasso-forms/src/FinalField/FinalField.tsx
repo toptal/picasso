@@ -4,7 +4,7 @@ import type { FieldProps } from 'react-final-form'
 import { Field as FinalFormField } from 'react-final-form'
 import { documentable, forwardRef } from '@toptal/picasso-utils'
 
-import { useClaimedFieldState } from './use-claimed-field-state'
+import { useKeptFieldState } from './keep-field-state'
 
 /** react-final-form's `Field`, keeping its value when it remounts */
 export const FinalField = documentable(
@@ -19,7 +19,7 @@ export const FinalField = documentable(
       props: FieldProps<FieldValue, T, FormValues>,
       ref: Ref<T>
     ) => {
-      useClaimedFieldState(props.name, props)
+      useKeptFieldState(props.name, props)
 
       return <FinalFormField<FieldValue, T, FormValues> {...props} ref={ref} />
     }

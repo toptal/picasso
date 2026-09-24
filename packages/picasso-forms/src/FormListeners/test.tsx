@@ -1,5 +1,7 @@
-import React from 'react'
-import { fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import React, { useState } from 'react'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import type { FormApi } from 'final-form'
+import { useForm } from 'react-final-form'
 
 import { FormCompound as Form } from '../FormCompound'
 import { ExternallyChanged, OnBlur, OnChange, OnFocus } from './index'
@@ -13,6 +15,24 @@ const renderWithListener = (listener: React.ReactNode) =>
   )
 
 const getInput = () => screen.getByPlaceholderText('First name')
+
+const Toggleable = ({ children }: { children: React.ReactNode }) => {
+  const [mounted, setMounted] = useState(true)
+
+  return (
+    <>
+      {mounted && children}
+      <button type='button' onClick={() => setMounted(current => !current)}>
+        toggle
+      </button>
+    </>
+  )
+}
+
+const remount = () => {
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+}
 
 describe('form listeners', () => {
   it('OnChange reports the new and the previous value', () => {
@@ -54,6 +74,52 @@ describe('form listeners', () => {
     )
 
     expect(screen.getByText('false')).toBeInTheDocument()
+  })
+
+  describe('when the listener remounts', () => {
+    it('OnChange placed before its field does not fire again', () => {
+      const handleChange = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: 'Bruce' }}>
+          <Toggleable>
+            <OnChange<string> name='firstName'>{handleChange}</OnChange>
+            <Form.Input name='firstName' placeholder='First name' />
+          </Toggleable>
+        </Form>
+      )
+
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      handleChange.mockClear()
+      remount()
+
+      expect(handleChange).not.toHaveBeenCalled()
+    })
+
+    it("OnChange alone keeps the field's value", () => {
+      const formRef: { current?: FormApi } = {}
+      const CaptureForm = () => {
+        formRef.current = useForm()
+
+        return null
+      }
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: 'Bruce' }}>
+          <CaptureForm />
+          <Toggleable>
+            <OnChange<string> name='firstName'>{jest.fn()}</OnChange>
+          </Toggleable>
+        </Form>
+      )
+
+      act(() => {
+        formRef.current?.change('firstName', 'Clark')
+      })
+      remount()
+
+      expect(formRef.current?.getState().values.firstName).toBe('Clark')
+    })
   })
 
   describe('types', () => {

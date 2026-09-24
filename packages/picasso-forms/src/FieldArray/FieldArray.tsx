@@ -2,7 +2,7 @@ import type { ReactElement } from 'react'
 import React from 'react'
 import { FieldArray as FinalFormFieldArray } from 'react-final-form-arrays'
 
-import { useClaimedFieldState } from '../FinalField/use-claimed-field-state'
+import { useKeptFieldState } from '../FinalField/keep-field-state'
 import type { FieldArrayProps } from './types'
 
 // Upstream 5 returns `ReactNode`, which `@types/react` 17 and 18 reject as a
@@ -16,7 +16,7 @@ const TypedFinalFormFieldArray = FinalFormFieldArray as <FieldValue>(
 export const FieldArray = <FieldValue = any,>(
   props: FieldArrayProps<FieldValue>
 ) => {
-  useClaimedFieldState(props.name, {}, 'useFieldArray')
+  useKeptFieldState(props.name, {}, 'useFieldArray')
 
   return <TypedFinalFormFieldArray<FieldValue> {...props} />
 }
