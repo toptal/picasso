@@ -17,6 +17,14 @@ const useDrilldownMenu = () => {
     setActiveItemKey(undefined)
   }, [])
 
+  const handleItemOpen = useCallback((key: string) => {
+    setActiveItemKey(key)
+  }, [])
+
+  const handleItemClose = useCallback(() => {
+    setActiveItemKey(undefined)
+  }, [])
+
   const context = useMemo(
     (): MenuContextProps => ({
       variant: 'drilldown',
@@ -24,8 +32,17 @@ const useDrilldownMenu = () => {
       onItemMouseEnter: handleItemMouseEnter,
       onMenuMouseLeave: handleMenuMouseLeave,
       onAwayClick: handleAwayClick,
+      onItemOpen: handleItemOpen,
+      onItemClose: handleItemClose,
     }),
-    [activeItemKey, handleItemMouseEnter, handleMenuMouseLeave, handleAwayClick]
+    [
+      activeItemKey,
+      handleItemMouseEnter,
+      handleMenuMouseLeave,
+      handleAwayClick,
+      handleItemOpen,
+      handleItemClose,
+    ]
   )
 
   return {
