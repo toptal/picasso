@@ -91,8 +91,9 @@ Expandable row
 | **children** | `ReactNode` | - | Should be valid `<tr>` children such as `Table.Cell`. |
 | **content** | `ReactNode` | - | Collapsible content of `TableExpandableRow` |
 | expanded | `boolean` | `false` | Whether the row is in collapsed or expanded state |
+| colSpan | `number` | `100` | Number of columns the collapsible content spans |
 | stripeEven | `boolean` | `false` | Set a stripe even background for the row |
-| defaultExpanded | `boolean` | - | Makes the row appear without transition when it is expanded the very first time |
+| defaultExpanded | `boolean` | `false` | Skips the opening transition for a row already expanded on first render |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 
@@ -930,6 +931,7 @@ const TableExpandableRowsExample = () => {
             key={id}
             content={<ExpandableContent />}
             expanded={expandedData[id]}
+            colSpan={6}
           >
             <Table.Cell>
               <Checkbox />
