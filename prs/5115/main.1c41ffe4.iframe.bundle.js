@@ -110832,6 +110832,10 @@ var defaultFormat = function (value) {
   return value === undefined ? '' : value;
 };
 var holds = new WeakMap();
+var bareClaims = new WeakMap();
+var hasCreateConfig = function (config) {
+  return Boolean(config.afterSubmit || config.beforeSubmit || config.data || config.formatOnBlur || config.validateFields);
+};
 var releaseHold = function (form, name, only) {
   var pending = holds.get(form);
   var release = pending === null || pending === void 0 ? void 0 : pending.get(name);
@@ -110877,13 +110881,24 @@ var useClaim = function (form, name, config) {
   var latest = (0,react.useRef)(config);
   latest.current = config;
   (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
+    var _a, _b;
     // So the claim, not the hold, creates the entry with the field's config
     releaseHold(form, name);
     // `destroyOnUnregister` asks for the reseed
     if (!name || form.destroyOnUnregister) {
       return undefined;
     }
-    release.current = form.registerField(name, noop, {}, {
+    var bare = !hasCreateConfig(latest.current);
+    var byName = (_a = bareClaims.get(form)) !== null && _a !== void 0 ? _a : new Map();
+    var sameName = (_b = byName.get(name)) !== null && _b !== void 0 ? _b : new Set();
+    // A claim without that config, such as a listener's or a group child's,
+    // gives way to one with it, whatever order they register in
+    if (!bare) {
+      Array.from(sameName).forEach(function (releaseBare) {
+        return releaseBare();
+      });
+    }
+    var unregister = form.registerField(name, noop, {}, {
       silent: true,
       // Mirrors react-final-form's own `beforeSubmit` wrapper
       beforeSubmit: function () {
@@ -110910,11 +110925,21 @@ var useClaim = function (form, name, config) {
       data: latest.current.data,
       validateFields: latest.current.validateFields
     });
-    return function () {
-      var _a;
-      (_a = release.current) === null || _a === void 0 ? void 0 : _a.call(release);
-      release.current = null;
+    var released = false;
+    var releaseClaim = function () {
+      if (!released) {
+        released = true;
+        sameName.delete(releaseClaim);
+        unregister();
+      }
     };
+    if (bare) {
+      sameName.add(releaseClaim);
+      byName.set(name, sameName);
+      bareClaims.set(form, byName);
+    }
+    release.current = releaseClaim;
+    return releaseClaim;
   }, [form, name]);
   // No dependency list: a `name` change re-claims, and that must be released
   // too
@@ -110925,22 +110950,17 @@ var useClaim = function (form, name, config) {
   });
 };
 /**
- * Works around react-final-form 7.0.1 losing a field's stored value whenever
- * the field mounts while final-form holds no state for it: after every
- * remount, since final-form drops that state on unmount, and on a mount over a
- * value set with `form.change()`. Two things go wrong, and each has a fix:
+ * Works around react-final-form 7.0.1 losing a field's stored value when the
+ * field mounts while final-form holds no state for it, as after every remount:
  *
  * - The first render is built from `initialValues`, and an array's shows no
- *   items. The hold, a silent subscriber registered during render, lets it
- *   read final-form's field state. It is released at commit, or in a promise
- *   callback for a render that never commits, and tracked per form and name
- *   so a render React repeats reuses it.
- * - The mount effect writes `initialValues` back over the stored value
- *   (#1095). The claim, a silent subscriber registered at commit, holds the
- *   state until right after that effect. It creates the field entry, so it
- *   carries the config final-form applies only on create; adding
- *   `initialValue` or `defaultValue` would reseed. Held longer, it would
- *   strand a hidden field's error.
+ *   items. The hold, registered during render and released at commit, lets
+ *   that render, and the children rendered with it, read the field state.
+ * - The mount effect writes `initialValues` back (#1095). The claim,
+ *   registered at commit and released right after that effect, prevents it.
+ *   It creates the field entry, so it carries the config final-form applies
+ *   only on create; `initialValue` or `defaultValue` would reseed, and holding
+ *   it longer would strand a hidden field's error.
  *
  * TODO: [PF-2522] drop the hold once react-final-form's first render reads the
  * stored value, the claim once upstream fixes #1095, and this file with both
@@ -110971,7 +110991,7 @@ var keepFieldState = function (useHook, hookName) {
 
 
 /** react-final-form's `Field`, keeping its value when it remounts */
-var FinalField = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardRef */.R)(function (props, ref) {
+var FinalField = (0,forward_ref/* documentable */.m)((0,forward_ref/* forwardRef */.R)(function FinalField(props, ref) {
   useKeptFieldState(props.name, props);
   return /*#__PURE__*/react.createElement(react_final_form_cjs.Field, Object.assign({}, props, {
     ref: ref
@@ -111035,8 +111055,6 @@ var react_final_form_listeners_cjs = __webpack_require__("./node_modules/react-f
 
 
 
-// Each listener registers react-final-form's `Field`, so it keeps the field's
-// state the same way a field does
 var keepListenerFieldState = function (Listener, displayName) {
   var KeptListener = function (props) {
     useKeptFieldState(props.name);
@@ -113918,6 +113936,10 @@ var defaultFormat = function (value) {
   return value === undefined ? '' : value;
 };
 var holds = new WeakMap();
+var bareClaims = new WeakMap();
+var hasCreateConfig = function (config) {
+  return Boolean(config.afterSubmit || config.beforeSubmit || config.data || config.formatOnBlur || config.validateFields);
+};
 var releaseHold = function (form, name, only) {
   var pending = holds.get(form);
   var release = pending === null || pending === void 0 ? void 0 : pending.get(name);
@@ -113966,6 +113988,7 @@ var useClaim = function (form, name, config) {
   var latest = (0,react.useRef)(config);
   latest.current = config;
   (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
+    var _bareClaims$get, _byName$get;
     // So the claim, not the hold, creates the entry with the field's config
     releaseHold(form, name);
 
@@ -113973,7 +113996,18 @@ var useClaim = function (form, name, config) {
     if (!name || form.destroyOnUnregister) {
       return undefined;
     }
-    release.current = form.registerField(name, noop, {}, {
+    var bare = !hasCreateConfig(latest.current);
+    var byName = (_bareClaims$get = bareClaims.get(form)) !== null && _bareClaims$get !== void 0 ? _bareClaims$get : new Map();
+    var sameName = (_byName$get = byName.get(name)) !== null && _byName$get !== void 0 ? _byName$get : new Set();
+
+    // A claim without that config, such as a listener's or a group child's,
+    // gives way to one with it, whatever order they register in
+    if (!bare) {
+      Array.from(sameName).forEach(function (releaseBare) {
+        return releaseBare();
+      });
+    }
+    var unregister = form.registerField(name, noop, {}, {
       silent: true,
       // Mirrors react-final-form's own `beforeSubmit` wrapper
       beforeSubmit: function () {
@@ -114000,39 +114034,44 @@ var useClaim = function (form, name, config) {
       data: latest.current.data,
       validateFields: latest.current.validateFields
     });
-    return function () {
-      var _release$current;
-      (_release$current = release.current) === null || _release$current === void 0 ? void 0 : _release$current.call(release);
-      release.current = null;
+    var released = false;
+    var releaseClaim = function () {
+      if (!released) {
+        released = true;
+        sameName.delete(releaseClaim);
+        unregister();
+      }
     };
+    if (bare) {
+      sameName.add(releaseClaim);
+      byName.set(name, sameName);
+      bareClaims.set(form, byName);
+    }
+    release.current = releaseClaim;
+    return releaseClaim;
   }, [form, name]);
 
   // No dependency list: a `name` change re-claims, and that must be released
   // too
   (0,react.useEffect)(function () {
-    var _release$current2;
-    (_release$current2 = release.current) === null || _release$current2 === void 0 ? void 0 : _release$current2.call(release);
+    var _release$current;
+    (_release$current = release.current) === null || _release$current === void 0 ? void 0 : _release$current.call(release);
     release.current = null;
   });
 };
 
 /**
- * Works around react-final-form 7.0.1 losing a field's stored value whenever
- * the field mounts while final-form holds no state for it: after every
- * remount, since final-form drops that state on unmount, and on a mount over a
- * value set with `form.change()`. Two things go wrong, and each has a fix:
+ * Works around react-final-form 7.0.1 losing a field's stored value when the
+ * field mounts while final-form holds no state for it, as after every remount:
  *
  * - The first render is built from `initialValues`, and an array's shows no
- *   items. The hold, a silent subscriber registered during render, lets it
- *   read final-form's field state. It is released at commit, or in a promise
- *   callback for a render that never commits, and tracked per form and name
- *   so a render React repeats reuses it.
- * - The mount effect writes `initialValues` back over the stored value
- *   (#1095). The claim, a silent subscriber registered at commit, holds the
- *   state until right after that effect. It creates the field entry, so it
- *   carries the config final-form applies only on create; adding
- *   `initialValue` or `defaultValue` would reseed. Held longer, it would
- *   strand a hidden field's error.
+ *   items. The hold, registered during render and released at commit, lets
+ *   that render, and the children rendered with it, read the field state.
+ * - The mount effect writes `initialValues` back (#1095). The claim,
+ *   registered at commit and released right after that effect, prevents it.
+ *   It creates the field entry, so it carries the config final-form applies
+ *   only on create; `initialValue` or `defaultValue` would reseed, and holding
+ *   it longer would strand a hidden field's error.
  *
  * TODO: [PF-2522] drop the hold once react-final-form's first render reads the
  * stored value, the claim once upstream fixes #1095, and this file with both
@@ -159421,4 +159460,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.a5e3452c.iframe.bundle.js.map
+//# sourceMappingURL=main.1c41ffe4.iframe.bundle.js.map
