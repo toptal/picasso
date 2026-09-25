@@ -10,13 +10,8 @@ export type {
   Config,
 } from 'final-form'
 export { FORM_ERROR, setIn } from 'final-form'
-export {
-  useForm,
-  useField,
-  FormSpy,
-  Form as FinalForm,
-  Field as FinalField,
-} from 'react-final-form'
+export { useForm, FormSpy, Form as FinalForm } from 'react-final-form'
+export { FinalField, useField } from './FinalField'
 export { useFormState } from './FormState'
 export type { FullFormState } from './FormState'
 export type {
