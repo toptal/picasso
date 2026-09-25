@@ -4,7 +4,6 @@ import type {
   FieldProps as FinalFieldProps,
   FieldRenderProps,
 } from 'react-final-form'
-import { useField } from 'react-final-form'
 import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
 import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 import type { TextLabelProps } from '@toptal/picasso-shared'
@@ -13,11 +12,8 @@ import { detect } from 'detect-browser'
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
+import { useField } from '../FinalField'
 import { assertFieldName } from './assert-field-name'
-import {
-  useClaimedFieldState,
-  useReleaseClaimedFieldState,
-} from './use-claimed-field-state'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -103,15 +99,6 @@ const Field = <
 
   assertFieldName(name)
 
-  const releaseClaimedFieldState = useClaimedFieldState(name, {
-    afterSubmit,
-    beforeSubmit,
-    data,
-    format,
-    formatOnBlur,
-    validateFields,
-  })
-
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()
   const validators = useMemo(
@@ -136,9 +123,6 @@ const Field = <
     validateFields,
     value,
   })
-
-  // After `useField`: effects run in order, so this releases after its mount
-  useReleaseClaimedFieldState(releaseClaimedFieldState)
 
   const error = useFieldValidation({
     name,
