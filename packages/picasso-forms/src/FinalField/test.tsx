@@ -17,7 +17,6 @@ const renderForm = (children: React.ReactNode) =>
 
 const TAGGED = { tag: 'tagged' }
 
-// Keeps the value it first renders with, as an uncontrolled editor does
 const FirstValue = ({ value }: { value: unknown }) => {
   const [first] = useState(value)
 

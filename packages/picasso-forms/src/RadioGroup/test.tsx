@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import type { FormApi } from 'final-form'
 import { Field as FinalFormField, useForm } from 'react-final-form'
 
+import { FinalField } from '../FinalField'
 import Radio from '../Radio'
 import { Form } from '../Form'
 import type { Props } from './RadioGroup'
@@ -36,7 +37,6 @@ const Toggleable = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-// Keeps the value it first renders with
 const FirstValue = ({ value }: { value: unknown }) => {
   const [first] = useState(value)
 
@@ -56,8 +56,25 @@ describe('RadioGroup', () => {
     expect(getByText('Radio Group Label')).toBeInTheDocument()
   })
 
-  // A grouped `Radio` renders react-final-form's own `Field`, which the group's
-  // field state has to cover while it renders
+  it('keeps its `beforeSubmit` when a `FinalField` renders the radio', async () => {
+    const handleSubmit = jest.fn()
+
+    render(
+      <Form onSubmit={handleSubmit} initialValues={{ choice: 'a' }}>
+        <RadioGroup name='choice' beforeSubmit={() => false}>
+          <FinalField name='choice' type='radio' value='a' component='input' />
+        </RadioGroup>
+        <button type='submit'>submit</button>
+      </Form>
+    )
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'submit' }))
+    })
+
+    expect(handleSubmit).not.toHaveBeenCalled()
+  })
+
   it("renders a radio's stored choice on its first render after a remount", () => {
     const formRef: { current?: FormApi } = {}
     const CaptureForm = () => {

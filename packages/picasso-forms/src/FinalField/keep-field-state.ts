@@ -23,6 +23,16 @@ type FieldHook = (name: string, config?: any) => unknown
 const noop = () => {}
 const defaultFormat = (value: unknown) => (value === undefined ? '' : value)
 const holds = new WeakMap<FormApi, Map<string, Release>>()
+const bareClaims = new WeakMap<FormApi, Map<string, Set<Release>>>()
+
+const hasCreateConfig = (config: KeptFieldConfig) =>
+  Boolean(
+    config.afterSubmit ||
+      config.beforeSubmit ||
+      config.data ||
+      config.formatOnBlur ||
+      config.validateFields
+  )
 
 const releaseHold = (form: FormApi, name: string, only?: Release) => {
   const pending = holds.get(form)
@@ -84,7 +94,17 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
       return undefined
     }
 
-    release.current = form.registerField(
+    const bare = !hasCreateConfig(latest.current)
+    const byName = bareClaims.get(form) ?? new Map<string, Set<Release>>()
+    const sameName = byName.get(name) ?? new Set<Release>()
+
+    // A claim without that config, such as a listener's or a group child's,
+    // gives way to one with it, whatever order they register in
+    if (!bare) {
+      Array.from(sameName).forEach(releaseBare => releaseBare())
+    }
+
+    const unregister = form.registerField(
       name,
       noop,
       {},
@@ -117,11 +137,24 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
         validateFields: latest.current.validateFields,
       }
     )
-
-    return () => {
-      release.current?.()
-      release.current = null
+    let released = false
+    const releaseClaim = () => {
+      if (!released) {
+        released = true
+        sameName.delete(releaseClaim)
+        unregister()
+      }
     }
+
+    if (bare) {
+      sameName.add(releaseClaim)
+      byName.set(name, sameName)
+      bareClaims.set(form, byName)
+    }
+
+    release.current = releaseClaim
+
+    return releaseClaim
   }, [form, name])
 
   // No dependency list: a `name` change re-claims, and that must be released
@@ -133,22 +166,17 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
 }
 
 /**
- * Works around react-final-form 7.0.1 losing a field's stored value whenever
- * the field mounts while final-form holds no state for it: after every
- * remount, since final-form drops that state on unmount, and on a mount over a
- * value set with `form.change()`. Two things go wrong, and each has a fix:
+ * Works around react-final-form 7.0.1 losing a field's stored value when the
+ * field mounts while final-form holds no state for it, as after every remount:
  *
  * - The first render is built from `initialValues`, and an array's shows no
- *   items. The hold, a silent subscriber registered during render, lets it
- *   read final-form's field state. It is released at commit, or in a promise
- *   callback for a render that never commits, and tracked per form and name
- *   so a render React repeats reuses it.
- * - The mount effect writes `initialValues` back over the stored value
- *   (#1095). The claim, a silent subscriber registered at commit, holds the
- *   state until right after that effect. It creates the field entry, so it
- *   carries the config final-form applies only on create; adding
- *   `initialValue` or `defaultValue` would reseed. Held longer, it would
- *   strand a hidden field's error.
+ *   items. The hold, registered during render and released at commit, lets
+ *   that render, and the children rendered with it, read the field state.
+ * - The mount effect writes `initialValues` back (#1095). The claim,
+ *   registered at commit and released right after that effect, prevents it.
+ *   It creates the field entry, so it carries the config final-form applies
+ *   only on create; `initialValue` or `defaultValue` would reseed, and holding
+ *   it longer would strand a hidden field's error.
  *
  * TODO: [PF-2522] drop the hold once react-final-form's first render reads the
  * stored value, the claim once upstream fixes #1095, and this file with both
@@ -156,7 +184,6 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
 export const useKeptFieldState = (
   name: string,
   config: KeptFieldConfig = {},
-  // Upstream's hook, named in the error thrown outside a `Form`
   hookName = 'useField'
 ) => {
   const form = useForm(hookName)

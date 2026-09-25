@@ -40,8 +40,6 @@ export interface ExternallyChangedProps {
   children: (externallyChanged: boolean) => ReactNode
 }
 
-// Each listener registers react-final-form's `Field`, so it keeps the field's
-// state the same way a field does
 const keepListenerFieldState = <Props extends { name: string }>(
   Listener: ComponentType<Props>,
   displayName: string

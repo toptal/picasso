@@ -76,6 +76,28 @@ describe('form listeners', () => {
     expect(screen.getByText('false')).toBeInTheDocument()
   })
 
+  it("OnChange placed before its field keeps the field's `beforeSubmit`", async () => {
+    const handleSubmit = jest.fn()
+
+    render(
+      <Form onSubmit={handleSubmit} initialValues={{ firstName: 'Bruce' }}>
+        <OnChange<string> name='firstName'>{jest.fn()}</OnChange>
+        <Form.Input
+          name='firstName'
+          beforeSubmit={() => false}
+          placeholder='First name'
+        />
+        <button type='submit'>submit</button>
+      </Form>
+    )
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'submit' }))
+    })
+
+    expect(handleSubmit).not.toHaveBeenCalled()
+  })
+
   describe('when the listener remounts', () => {
     it('OnChange placed before its field does not fire again', () => {
       const handleChange = jest.fn()

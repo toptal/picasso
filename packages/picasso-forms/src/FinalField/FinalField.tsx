@@ -8,22 +8,17 @@ import { useKeptFieldState } from './keep-field-state'
 
 /** react-final-form's `Field`, keeping its value when it remounts */
 export const FinalField = documentable(
-  forwardRef(
-    <
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      FieldValue = any,
-      T extends HTMLElement = HTMLElement,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      FormValues = Record<string, any>
-    >(
-      props: FieldProps<FieldValue, T, FormValues>,
-      ref: Ref<T>
-    ) => {
-      useKeptFieldState(props.name, props)
+  forwardRef(function FinalField<
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    FieldValue = any,
+    T extends HTMLElement = HTMLElement,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    FormValues = Record<string, any>
+  >(props: FieldProps<FieldValue, T, FormValues>, ref: Ref<T>) {
+    useKeptFieldState(props.name, props)
 
-      return <FinalFormField<FieldValue, T, FormValues> {...props} ref={ref} />
-    }
-  )
+    return <FinalFormField<FieldValue, T, FormValues> {...props} ref={ref} />
+  })
 )
 
 FinalField.displayName = 'FinalField'

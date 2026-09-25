@@ -57,7 +57,6 @@ const Toggleable = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-// Keeps the value it first renders with, as an uncontrolled editor does
 const FirstValue = ({ value }: { value: unknown }) => {
   const [first] = useState(value)
 
