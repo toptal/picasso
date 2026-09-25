@@ -13,7 +13,7 @@ const useInterval = ({
   delay,
   isPaused = false,
 }: UseIntervalOptions) => {
-  const intervalId = useRef<NodeJS.Timeout>()
+  const intervalId = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const pauseInterval = useCallback(() => {
     if (intervalId.current) {

@@ -13,7 +13,7 @@ const CanceledResponsive = (props: Props) => {
       xl: <Canceled16 {...props} />,
     },
     <Canceled24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CanceledResponsive

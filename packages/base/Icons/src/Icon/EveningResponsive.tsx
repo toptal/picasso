@@ -13,7 +13,7 @@ const EveningResponsive = (props: Props) => {
       xl: <Evening16 {...props} />,
     },
     <Evening24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default EveningResponsive

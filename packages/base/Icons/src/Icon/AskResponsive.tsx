@@ -13,7 +13,7 @@ const AskResponsive = (props: Props) => {
       xl: <Ask16 {...props} />,
     },
     <Ask24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AskResponsive

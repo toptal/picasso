@@ -13,7 +13,7 @@ const RankTwoResponsive = (props: Props) => {
       xl: <RankTwo16 {...props} />,
     },
     <RankTwo24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default RankTwoResponsive

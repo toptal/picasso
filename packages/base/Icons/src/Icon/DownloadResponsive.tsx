@@ -13,7 +13,7 @@ const DownloadResponsive = (props: Props) => {
       xl: <Download16 {...props} />,
     },
     <Download24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DownloadResponsive

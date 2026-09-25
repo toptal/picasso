@@ -4,7 +4,6 @@ import type {
   FieldProps as FinalFieldProps,
   FieldRenderProps,
 } from 'react-final-form'
-import { useField } from 'react-final-form'
 import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
 import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 import type { TextLabelProps } from '@toptal/picasso-shared'
@@ -13,6 +12,8 @@ import { detect } from 'detect-browser'
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
+import { useField } from '../FinalField'
+import { assertFieldName } from './assert-field-name'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -23,11 +24,16 @@ export type FieldProps<TInputValue> = FinalFieldProps<
 > &
   TextLabelProps
 
+// The wrapped component's `children?: ReactNode` must not meet the render-prop
+// `children` below: @types/react 19 no longer lets a function pass as a
+// ReactNode. Distributive, so union props keep their variants.
+type WithoutChildren<T> = T extends unknown ? Omit<T, 'children'> : never
+
 export type Props<
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue
-> = TWrappedComponentProps &
-  FieldProps<TInputValue> & {
+> = WithoutChildren<TWrappedComponentProps> &
+  Omit<FieldProps<TInputValue>, 'children'> & {
     name: string
     type?: string
     label?: React.ReactNode
@@ -91,6 +97,8 @@ const Field = <
     ...rest
   } = props
 
+  assertFieldName(name)
+
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()
   const validators = useMemo(
@@ -126,11 +134,20 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
+  // react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
+  // string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+  // Restore 6.x's `format(value)` for a standalone checkbox; groups keep
+  // upstream's.
+  // TODO: [PF-2522] drop when upstream derives it from `format` again
+  const shouldDeriveCheckedFromFormat =
+    type === 'checkbox' && value === undefined && format !== undefined
+
   const childProps: Record<string, unknown> = {
     id,
     status,
     ...rest,
     ...input,
+    ...(shouldDeriveCheckedFromFormat ? { checked: Boolean(input.value) } : {}),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       if (isFirefox && event?.target) {

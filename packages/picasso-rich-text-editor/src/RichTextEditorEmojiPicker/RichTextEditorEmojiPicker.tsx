@@ -1,11 +1,11 @@
 /* eslint-disable no-inline-styles/no-inline-styles */
 import React, { useEffect } from 'react'
 import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
 import { Container } from '@toptal/picasso-container'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import RichTextEditorButton from '../RichTextEditorButton'
+import EmojiMartPicker from './EmojiMartPicker'
 import type { CustomEmojiGroup, Emoji } from '../plugins/EmojiPlugin'
 
 interface Props {
@@ -15,15 +15,6 @@ interface Props {
 }
 
 const TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker'
-
-const handleEmojiPickerEscBehaviour = (
-  event: KeyboardEvent,
-  setShowEmojiPicker: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  if (event.key === 'Escape') {
-    setShowEmojiPicker(false)
-  }
-}
 
 export const RichTextEditorEmojiPicker = ({
   customEmojis,
@@ -50,16 +41,18 @@ export const RichTextEditorEmojiPicker = ({
       return
     }
 
-    document.body.addEventListener('keyup', event => {
-      handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
-    })
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowEmojiPicker(false)
+      }
+    }
+
+    document.body.addEventListener('keyup', closeOnEscape)
 
     return () => {
-      document.body.removeEventListener('keyup', event => {
-        handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
-      })
+      document.body.removeEventListener('keyup', closeOnEscape)
     }
-  }, [showEmojiPicker, setShowEmojiPicker])
+  }, [showEmojiPicker])
 
   return (
     <Container style={{ position: 'relative' }}>
@@ -78,11 +71,11 @@ export const RichTextEditorEmojiPicker = ({
           showEmojiPicker && 'opacity-100 pointer-events-auto'
         )}
       >
-        <Picker
+        <EmojiMartPicker
           data={data}
           custom={customEmojis}
           onEmojiSelect={handleEmojiInsert}
-          onClickOutside={showEmojiPicker && closePicker}
+          onClickOutside={showEmojiPicker ? closePicker : undefined}
         />
       </Container>
     </Container>

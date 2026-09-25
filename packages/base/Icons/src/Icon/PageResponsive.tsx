@@ -13,7 +13,7 @@ const PageResponsive = (props: Props) => {
       xl: <Page16 {...props} />,
     },
     <Page24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PageResponsive

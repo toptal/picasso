@@ -13,7 +13,7 @@ const NightResponsive = (props: Props) => {
       xl: <Night16 {...props} />,
     },
     <Night24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default NightResponsive

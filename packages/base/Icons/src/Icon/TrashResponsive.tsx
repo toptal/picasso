@@ -13,7 +13,7 @@ const TrashResponsive = (props: Props) => {
       xl: <Trash16 {...props} />,
     },
     <Trash24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TrashResponsive

@@ -13,7 +13,7 @@ const SubfunctionResponsive = (props: Props) => {
       xl: <Subfunction16 {...props} />,
     },
     <Subfunction24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SubfunctionResponsive

@@ -13,7 +13,7 @@ const CloseResponsive = (props: Props) => {
       xl: <Close16 {...props} />,
     },
     <Close24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CloseResponsive

@@ -13,7 +13,7 @@ const SingleResponsive = (props: Props) => {
       xl: <Single16 {...props} />,
     },
     <Single24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SingleResponsive

@@ -13,7 +13,7 @@ const OverviewResponsive = (props: Props) => {
       xl: <Overview16 {...props} />,
     },
     <Overview24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OverviewResponsive

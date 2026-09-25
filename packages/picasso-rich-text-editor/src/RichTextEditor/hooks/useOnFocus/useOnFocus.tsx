@@ -6,7 +6,7 @@ import type { ActionsType } from '../../store'
 type Props = {
   autoFocus: boolean
   editorRef: React.RefObject<HTMLDivElement>
-  toolbarRef: React.RefObject<HTMLDivElement>
+  toolbarRef: React.RefObject<HTMLDivElement | null>
   wrapperRef: React.RefObject<HTMLDivElement>
   onFocus: () => void
   onBlur: () => void

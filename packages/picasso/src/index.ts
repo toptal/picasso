@@ -237,7 +237,13 @@ export type {
   ValueType as SelectValueType,
 } from '@toptal/picasso-select'
 export { BaseProps } from '@toptal/picasso-shared'
-export type { ColorType, SizeType, SpacingType } from '@toptal/picasso-shared'
+export type {
+  ColorType,
+  IconElement,
+  SizeType,
+  SpacingType,
+  TransitionChild,
+} from '@toptal/picasso-shared'
 export { ShowMore } from '@toptal/picasso-show-more'
 export type { ShowMoreProps } from '@toptal/picasso-show-more'
 export { SkeletonLoader } from '@toptal/picasso-skeleton-loader'

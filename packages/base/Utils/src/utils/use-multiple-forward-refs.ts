@@ -31,6 +31,7 @@ const useMultipleForwardRefs = <T>(refs: ForwardedRef<T>[]) =>
         forwardRef(ref, refValue)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- the deps are the refs themselves, spread so each one is compared; the rule cannot see through a spread
     [...refs]
   )
 

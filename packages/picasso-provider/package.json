@@ -24,13 +24,13 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "react": ">=17.0.0 < 19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "typescript": "^5.5.0"
   },
   "dependencies": {
     "classnames": "^2.5.1",
-    "notistack": "3.0.1",
-    "react-helmet-async": "2.0.3"
+    "notistack": "3.0.2",
+    "react-helmet-async": "3.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.1.2",

@@ -38,7 +38,8 @@
     "@toptal/picasso-tooltip": "workspace:*",
     "@toptal/picasso-typography": "workspace:*",
     "@toptal/picasso-user-badge": "workspace:*",
-    "@toptal/picasso-utils": "workspace:*"
+    "@toptal/picasso-utils": "workspace:*",
+    "react-helmet-async": "3.0.0"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -47,10 +48,10 @@
   "peerDependencies": {
     "@toptal/picasso-tailwind-merge": "workspace:^",
     "@toptal/picasso-provider": "workspace:^",
-    "react-dom": ">=17.0.0 < 19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-skeleton-loader": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "workspace:*",

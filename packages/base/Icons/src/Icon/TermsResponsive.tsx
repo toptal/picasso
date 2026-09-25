@@ -13,7 +13,7 @@ const TermsResponsive = (props: Props) => {
       xl: <Terms16 {...props} />,
     },
     <Terms24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TermsResponsive

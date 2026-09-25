@@ -13,7 +13,7 @@ const BoxResponsive = (props: Props) => {
       xl: <Box16 {...props} />,
     },
     <Box24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BoxResponsive

@@ -13,7 +13,7 @@ const CheckSolidResponsive = (props: Props) => {
       xl: <CheckSolid16 {...props} />,
     },
     <CheckSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CheckSolidResponsive

@@ -13,7 +13,7 @@ const ThumbsDownResponsive = (props: Props) => {
       xl: <ThumbsDown16 {...props} />,
     },
     <ThumbsDown24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ThumbsDownResponsive

@@ -26,7 +26,7 @@ const ${name}Responsive = (props: Props) => {
       xl: <${name}16 {...props} />,
     },
     <${name}24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ${name}Responsive

@@ -13,7 +13,7 @@ const ExclamationSolidResponsive = (props: Props) => {
       xl: <ExclamationSolid16 {...props} />,
     },
     <ExclamationSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ExclamationSolidResponsive

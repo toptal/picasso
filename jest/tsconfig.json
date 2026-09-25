@@ -1,0 +1,13 @@
+{
+  // The repo-level tsconfig.jest.json inherits the base `exclude`, which drops
+  // every *.test.ts, so the React-compat tests get their own small project.
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": true,
+    "allowJs": true,
+    "types": ["jest", "node"]
+  },
+  "include": ["./**/*.test.ts", "./**/*.cjs"],
+  "exclude": []
+}

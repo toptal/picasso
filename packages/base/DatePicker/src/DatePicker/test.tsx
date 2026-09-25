@@ -14,6 +14,105 @@ const testIds = {
 
 const FAR_EAST_TIMEZONE = 'Asia/Tokyo'
 const NEW_YORK_TIMEZONE = 'America/New_York'
+const SHANGHAI_TIMEZONE = 'Asia/Shanghai'
+const LOS_ANGELES_TIMEZONE = 'America/Los_Angeles'
+
+/**
+ * Both sides of the midnight boundary for the offsets the component realistically
+ * meets, including both DST states of the two zones that observe it. Tests run
+ * under `TZ=UTC`, so every case is one where the UTC date and the target zone's
+ * date disagree — the situation that makes a date land on the wrong day.
+ *
+ * Each literal carries the offset the zone genuinely has at that instant. Getting
+ * that wrong does not fail the test, it silently moves the case off the boundary
+ * it is meant to probe, so keep literal and zone in step when editing.
+ */
+const MIDNIGHT_BOUNDARY_CASES = [
+  {
+    label: 'Tokyo +09:00, just after midnight',
+    date: '2020-06-25T00:00:00+09:00',
+    timezone: FAR_EAST_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'Tokyo +09:00, one second before midnight',
+    date: '2020-06-24T23:59:59+09:00',
+    timezone: FAR_EAST_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'Shanghai +08:00, just after midnight',
+    date: '2020-06-25T00:00:00+08:00',
+    timezone: SHANGHAI_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'Shanghai +08:00, one second before midnight',
+    date: '2020-06-24T23:59:59+08:00',
+    timezone: SHANGHAI_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'Los Angeles -08:00 (PST), just after midnight',
+    date: '2020-01-25T00:00:00-08:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jan 25, 2020',
+  },
+  {
+    label: 'Los Angeles -08:00 (PST), one second before midnight',
+    date: '2020-01-24T23:59:59-08:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jan 24, 2020',
+  },
+  {
+    label: 'Los Angeles -07:00 (PDT), just after midnight',
+    date: '2020-06-25T00:00:00-07:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'Los Angeles -07:00 (PDT), one second before midnight',
+    date: '2020-06-24T23:59:59-07:00',
+    timezone: LOS_ANGELES_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'New York -04:00 (EDT), just after midnight',
+    date: '2020-06-25T00:00:00-04:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jun 25, 2020',
+  },
+  {
+    label: 'New York -04:00 (EDT), one second before midnight',
+    date: '2020-06-24T23:59:59-04:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jun 24, 2020',
+  },
+  {
+    label: 'New York -05:00 (EST), just after midnight',
+    date: '2020-01-25T00:00:00-05:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '25',
+    expectedInputValue: 'Jan 25, 2020',
+  },
+  {
+    label: 'New York -05:00 (EST), one second before midnight',
+    date: '2020-01-24T23:59:59-05:00',
+    timezone: NEW_YORK_TIMEZONE,
+    expectedSelectedDate: '24',
+    expectedInputValue: 'Jan 24, 2020',
+  },
+]
 
 // eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
@@ -160,18 +259,21 @@ describe('DatePicker', () => {
       )
     })
 
-    it('should display date in given timezone', () => {
-      const { getByPlaceholderText } = renderDatePicker({
-        ...defaultProps,
-        timezone: FAR_EAST_TIMEZONE,
-        value: new Date(2020, 6, 24, 18),
-      })
+    it.each(MIDNIGHT_BOUNDARY_CASES)(
+      'shows the day in the given timezone, not the UTC day ($label)',
+      ({ date, timezone, expectedInputValue }) => {
+        const { getByPlaceholderText } = renderDatePicker({
+          ...defaultProps,
+          timezone,
+          value: new Date(date),
+        })
 
-      expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
-        'value',
-        `Jul 25, 2020`
-      )
-    })
+        expect(getByPlaceholderText(defaultProps.placeholder)).toHaveAttribute(
+          'value',
+          expectedInputValue
+        )
+      }
+    )
 
     it('should work within interval', () => {
       const MIN_DATE = new Date(2020, 6, 10)
@@ -252,6 +354,186 @@ describe('DatePicker', () => {
       // check max edge
       fireEvent.change(input, { target: { value: '07-25-2020' } })
       expect(handleChange).toHaveBeenCalledWith(new Date(2020, 6, 25))
+    })
+
+    describe('when the value arrives after the input is focused', () => {
+      const renderLatePicker = (props: Partial<Props> = {}) => {
+        const baseProps = { testIds, onChange: () => {}, value: null, ...props }
+        const { getByTestId, rerender } = render(<DatePicker {...baseProps} />)
+
+        return {
+          input: getByTestId(testIds.input),
+          deliver: (value: Date) =>
+            rerender(<DatePicker {...baseProps} value={value} />),
+        }
+      }
+
+      it('shows a value that arrives while the empty input is focused', () => {
+        const { input, deliver } = renderLatePicker()
+
+        fireEvent.focus(input)
+        deliver(new Date(2020, 11, 24))
+
+        expect(input).toHaveValue('12-24-2020')
+      })
+
+      it('keeps what the user has typed', () => {
+        const { input, deliver } = renderLatePicker()
+
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: '12-2' } })
+        deliver(new Date(2020, 11, 24))
+
+        expect(input).toHaveValue('12-2')
+      })
+
+      it('keeps an input the user emptied with nothing to delete', () => {
+        const { input, deliver } = renderLatePicker()
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'Delete' })
+        deliver(new Date(2020, 11, 24))
+
+        expect(input).toHaveValue('')
+      })
+
+      it('does not fill an emptied input when the focus state and the value land in one commit', () => {
+        // One click handler focuses the input and delivers the value, so both
+        // updates share a commit, as they do during an autofocused mount
+        const LateValueHarness = () => {
+          const [value, setValue] = React.useState<Date | null>(null)
+
+          return (
+            <>
+              <DatePicker testIds={testIds} onChange={() => {}} value={value} />
+              <button
+                type='button'
+                onClick={() => {
+                  document
+                    .querySelector<HTMLInputElement>(
+                      `[data-testid="${testIds.input}"]`
+                    )
+                    ?.focus()
+                  setValue(new Date(2020, 11, 24))
+                }}
+              >
+                deliver
+              </button>
+            </>
+          )
+        }
+
+        const { getByTestId, getByText } = render(<LateValueHarness />)
+        const input = getByTestId(testIds.input)
+
+        fireEvent.keyDown(input, { key: 'Delete' })
+        fireEvent.click(getByText('deliver'))
+
+        expect(input).toHaveFocus()
+        expect(input).toHaveValue('')
+      })
+
+      it("protects the user's input when the value arrives before React knows the input is focused", () => {
+        // Right after `autoFocus` the DOM has focus and React's state does
+        // not yet; jsdom cannot hold that window open, hence the stub
+        const { input, deliver } = renderLatePicker()
+
+        Object.defineProperty(document, 'activeElement', {
+          configurable: true,
+          get: () => input,
+        })
+
+        try {
+          fireEvent.keyDown(input, { key: 'Delete' })
+          deliver(new Date(2020, 11, 24))
+
+          expect(input).toHaveValue('')
+        } finally {
+          Reflect.deleteProperty(document, 'activeElement')
+        }
+      })
+
+      it('never concatenates a late value with what the user typed', () => {
+        const { input, deliver } = renderLatePicker({
+          parseInputValue: jest.fn(),
+        })
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: '0' })
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+        deliver(new Date(2022, 4, 5))
+
+        expect(input).toHaveValue('09-30-2024')
+      })
+
+      it('commits the date the user typed, not the one that arrived late', () => {
+        const handleChange = jest.fn()
+        const { input, deliver } = renderLatePicker({ onChange: handleChange })
+
+        fireEvent.focus(input)
+        fireEvent.keyDown(input, { key: 'Delete' })
+        deliver(new Date(2022, 4, 5))
+
+        expect(input).toHaveValue('')
+
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+
+        expect(handleChange).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
+      })
+
+      it('commits the typed date when an autofocused picker fills late', () => {
+        const handleCommit = jest.fn()
+        let deliverValue: (() => void) | undefined
+
+        const InlineEditor = () => {
+          const [value, setValue] = React.useState<Date | null>(null)
+
+          deliverValue = () => setValue(new Date(2022, 4, 5))
+
+          return (
+            <DatePicker
+              autoFocus
+              testIds={testIds}
+              value={value}
+              onChange={nextValue => {
+                setValue(nextValue as Date | null)
+                handleCommit(nextValue)
+              }}
+            />
+          )
+        }
+
+        const { getByTestId } = render(<InlineEditor />)
+        const input = getByTestId(testIds.input)
+
+        expect(input).toHaveFocus()
+
+        fireEvent.keyDown(input, { key: 'Delete' })
+
+        act(() => {
+          deliverValue?.()
+        })
+
+        expect(input).toHaveValue('')
+
+        fireEvent.change(input, { target: { value: '09-30-2024' } })
+        fireEvent.blur(input)
+
+        expect(handleCommit).toHaveBeenLastCalledWith(new Date(2024, 8, 30))
+        expect(input).toHaveValue('09-30-2024')
+      })
+
+      it('keeps an input the user has cleared', () => {
+        const { input, deliver } = renderLatePicker({
+          value: new Date(2020, 11, 24),
+        })
+
+        fireEvent.focus(input)
+        fireEvent.change(input, { target: { value: '' } })
+        deliver(new Date(2020, 10, 2))
+
+        expect(input).toHaveValue('')
+      })
     })
 
     describe('when `range` property is set', () => {
@@ -434,24 +716,8 @@ describe('DatePicker', () => {
   })
 
   describe('Calendar', () => {
-    it.each([
-      {
-        date: '2020-06-25T00:00:00+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-        expectedSelectedDate: '25',
-      },
-      {
-        date: '2020-06-24T23:59:59+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-        expectedSelectedDate: '24',
-      },
-      {
-        date: '2020-06-25T00:00:00-05:00',
-        timezone: NEW_YORK_TIMEZONE,
-        expectedSelectedDate: '25',
-      },
-    ])(
-      'should display date in given timezone',
+    it.each(MIDNIGHT_BOUNDARY_CASES)(
+      'marks the day in the given timezone as selected, not the UTC day ($label)',
       ({ date, timezone, expectedSelectedDate }) => {
         const { getByPlaceholderText } = renderDatePicker({
           ...defaultProps,
@@ -465,21 +731,8 @@ describe('DatePicker', () => {
       }
     )
 
-    it.each([
-      {
-        date: '2020-06-25T00:00:00+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-      },
-      {
-        date: '2020-06-24T23:59:59+09:00',
-        timezone: FAR_EAST_TIMEZONE,
-      },
-      {
-        date: '2020-06-25T00:00:00-05:00',
-        timezone: NEW_YORK_TIMEZONE,
-      },
-    ])(
-      'should display date in given timezone after day click',
+    it.each(MIDNIGHT_BOUNDARY_CASES)(
+      'keeps the clicked day selected when reopened in the given timezone ($label)',
       async ({ date, timezone }) => {
         const { getByPlaceholderText, getByText } = renderDatePicker({
           ...defaultProps,
