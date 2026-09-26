@@ -28,9 +28,13 @@ const useOnFocus = ({
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLDivElement>) => {
       const focusElement = e.relatedTarget as Node
-      const isInternalElement = internalRefs.some(
-        ref => ref.current && ref.current.contains(focusElement)
-      )
+      // a click on a non-focusable spot inside, e.g. the emoji picker, focuses
+      // this wrapper itself
+      const isInternalElement =
+        e.currentTarget.contains(focusElement) ||
+        internalRefs.some(
+          ref => ref.current && ref.current.contains(focusElement)
+        )
 
       if (isInternalElement) {
         return
