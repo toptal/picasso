@@ -41,4 +41,37 @@ describe('EmojiPlugin', () => {
     cy.get(editorSelector).should('contain.text', `hello ${emoji}`)
     cy.getByTestId(resultContainerTestId).should('contain.text', emoji)
   })
+
+  it('stays open on a click between emojis', () => {
+    cy.mount(<Editor {...defaultProps} plugins={[<EmojiPlugin />]} />)
+
+    cy.get(editorSelector).click()
+    cy.get(editorSelector).type('hello ')
+    cy.get(emojiTriggerSelector).realClick()
+    cy.get('em-emoji-picker').parent().parent().should('be.visible')
+
+    // the gap can't take focus, so the click focuses the editor's wrapper
+    cy.get('em-emoji-picker')
+      .shadow()
+      .find('.row')
+      .first()
+      .realClick({ position: 'right' })
+
+    cy.get('em-emoji-picker').parent().parent().should('be.visible')
+  })
+
+  it('opens with one click in a new editor once emoji-mart has loaded', () => {
+    const openPicker = () => {
+      cy.mount(<Editor {...defaultProps} plugins={[<EmojiPlugin />]} />)
+      cy.get(editorSelector).click()
+      cy.get(editorSelector).type('hello ')
+      cy.get(emojiTriggerSelector).realClick()
+      cy.get('em-emoji-picker').parent().parent().should('be.visible')
+    }
+
+    openPicker()
+    // with emoji-mart loaded, the new picker is created during the toggle's
+    // click, and emoji-mart must not treat that click as outside
+    openPicker()
+  })
 })

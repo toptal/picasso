@@ -5,10 +5,12 @@ import useOnFocus from './use-on-focus'
 let mockEvent: React.FocusEvent<HTMLDivElement>
 
 const getFocusEvent = (
-  relatedTarget: HTMLElement = document.createElement('div')
+  relatedTarget: HTMLElement = document.createElement('div'),
+  currentTarget: HTMLElement = document.createElement('div')
 ) =>
   ({
     relatedTarget,
+    currentTarget,
   } as unknown as React.FocusEvent<HTMLDivElement>)
 
 describe('useOnFocus', () => {
@@ -71,6 +73,25 @@ describe('useOnFocus', () => {
         expect(result.current.focused).toBe(true)
         expect(onBlur).toHaveBeenCalledTimes(0)
       })
+    })
+  })
+
+  describe('when handleBlur is called and the focus moves to the element it is attached to', () => {
+    it('does not set `focused` to false', () => {
+      const onBlur = jest.fn()
+      const wrapper = document.createElement('div')
+      const { result } = renderHook(() => useOnFocus({ onBlur }))
+
+      act(() => {
+        result.current.handleFocus(mockEvent)
+      })
+
+      act(() => {
+        result.current.handleBlur(getFocusEvent(wrapper, wrapper))
+      })
+
+      expect(result.current.focused).toBe(true)
+      expect(onBlur).toHaveBeenCalledTimes(0)
     })
   })
 })
