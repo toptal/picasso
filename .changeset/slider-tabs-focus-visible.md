@@ -1,0 +1,13 @@
+---
+'@toptal/picasso-slider': patch
+'@toptal/picasso-tabs': patch
+---
+
+### Slider
+
+- show a focus shadow on a keyboard-focused thumb
+
+### Tabs
+
+- show a focus indicator on a keyboard-focused tab
+- skip disabled tabs when moving focus with the arrow, Home and End keys

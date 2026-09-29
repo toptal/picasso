@@ -92,6 +92,23 @@ const rootClassesByOrientation = (selected: boolean) => ({
   ],
 })
 
+// Tabs root clips overflow, so horizontal focus is drawn on a widened `::after`
+const getFocusClasses = (
+  orientation: 'horizontal' | 'vertical',
+  variant: 'scrollable' | 'fullWidth'
+) =>
+  orientation === 'vertical'
+    ? 'focus-visible:inset-shadow-[0_0_0_3px] focus-visible:inset-shadow-blue-500/48'
+    : [
+        'after:absolute after:content-[""] after:top-0 after:bottom-1 after:-z-1',
+        'after:rounded-t-sm after:pointer-events-none',
+        variant === 'fullWidth'
+          ? 'after:inset-x-0'
+          : 'after:-inset-x-1 first-of-type:after:left-0',
+        'focus-visible:opacity-100 focus-visible:after:bg-gray-100',
+        'focus-visible:after:inset-shadow-[0_-2px_0_0] focus-visible:after:inset-shadow-gray-500',
+      ]
+
 const classesByVariant = {
   scrollable: 'shrink-0 max-w-[264px]',
   fullWidth: 'shrink grow basis-0',
@@ -147,6 +164,7 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
           icon && isHorizontal && 'min-h-0 pr-6',
           'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
           'border-0 cursor-pointer inline-flex outline-hidden',
+          getFocusClasses(orientation, variant),
           'items-center select-none align-middle appearance-none',
           'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
           'normal-case whitespace-normal leading-4',

@@ -1,6 +1,7 @@
 import type { ReactNode, ForwardedRef } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import { Tabs as BaseUITabs } from '@base-ui/react/tabs'
+import type { BaseUIEvent } from '@base-ui/react/types'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { toReactEvent } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -74,6 +75,54 @@ const horizontalIndicatorClasses = [
   'transition-[translate,width] duration-300 ease-in-out',
 ]
 
+type GetTargetIndex = (index: number, count: number) => number
+
+const next: GetTargetIndex = (index, count) => (index + 1) % count
+const previous: GetTargetIndex = (index, count) => (index - 1 + count) % count
+const first: GetTargetIndex = () => 0
+const last: GetTargetIndex = (_, count) => count - 1
+
+const targetIndexByKey: Record<
+  'horizontal' | 'vertical',
+  Partial<Record<string, GetTargetIndex>>
+> = {
+  horizontal: { ArrowLeft: previous, ArrowRight: next, Home: first, End: last },
+  vertical: { ArrowUp: previous, ArrowDown: next, Home: first, End: last },
+}
+
+// Base UI keeps disabled tabs in keyboard navigation; skip them instead
+const focusEnabledTab = (
+  event: BaseUIEvent<React.KeyboardEvent<HTMLDivElement>>,
+  orientation: 'horizontal' | 'vertical'
+) => {
+  const getTargetIndex = targetIndexByKey[orientation][event.key]
+
+  if (
+    !getTargetIndex ||
+    event.altKey ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.shiftKey
+  ) {
+    return
+  }
+
+  const tabs = Array.from(
+    event.currentTarget.querySelectorAll<HTMLElement>(
+      '[role="tab"]:not([aria-disabled="true"])'
+    )
+  )
+  const index = tabs.findIndex(tab => tab === event.target)
+
+  if (index === -1) {
+    return
+  }
+
+  event.preventDefault()
+  event.preventBaseUIHandler()
+  tabs[getTargetIndex(index, tabs.length)].focus()
+}
+
 const withFallbackValue = (children: ReactNode): ReactNode => {
   let index = -1
 
@@ -144,6 +193,7 @@ const Tabs = forwardRef(
           >
             <BaseUITabs.List
               className={twJoin('relative flex', isVertical && 'flex-col')}
+              onKeyDown={event => focusEnabledTab(event, orientation)}
             >
               {withFallbackValue(children)}
               {!isVertical && (
