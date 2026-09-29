@@ -71,7 +71,7 @@ describe('EmojiPlugin', () => {
 
     openPicker()
     // with emoji-mart loaded, the new picker is created during the toggle's
-    // click, and emoji-mart must not treat that click as outside
+    // click, which must not close it
     openPicker()
   })
 })

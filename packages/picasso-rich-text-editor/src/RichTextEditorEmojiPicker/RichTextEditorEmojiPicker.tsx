@@ -1,5 +1,14 @@
 /* eslint-disable no-inline-styles/no-inline-styles */
-import React, { lazy, Suspense, useCallback, useEffect, useRef } from 'react'
+import type { ReactNode } from 'react'
+import React, {
+  Component,
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Container } from '@toptal/picasso-container'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -9,6 +18,22 @@ import type { CustomEmojiGroup, Emoji } from '../plugins/EmojiPlugin'
 // loaded on the first open; its own Suspense keeps the load from suspending the
 // whole editor
 const EmojiMartPicker = lazy(() => import('./EmojiMartPicker'))
+
+// renders nothing if emoji-mart fails to load, so the editor keeps its value
+class LoadErrorBoundary extends Component<
+  { children: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false }
+
+  static getDerivedStateFromError() {
+    return { failed: true }
+  }
+
+  render() {
+    return this.state.failed ? null : this.props.children
+  }
+}
 
 interface Props {
   customEmojis?: CustomEmojiGroup[]
@@ -23,9 +48,9 @@ export const RichTextEditorEmojiPicker = ({
   onInsertEmoji,
   disabled,
 }: Props) => {
-  const [showEmojiPicker, setShowEmojiPicker] = React.useState(false)
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   // kept after the first open, so closing only hides emoji-mart
-  const [pickerMounted, setPickerMounted] = React.useState(false)
+  const [pickerMounted, setPickerMounted] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
 
   const handleEmojiPickerClick = () => {
@@ -34,18 +59,6 @@ export const RichTextEditorEmojiPicker = ({
   }
 
   // stable, so re-renders push no props into emoji-mart
-  const closePicker = useCallback((event: MouseEvent) => {
-    // the toggle handles its own clicks, which emoji-mart reports as outside
-    if (
-      event.target instanceof Node &&
-      rootRef.current?.contains(event.target)
-    ) {
-      return
-    }
-
-    setShowEmojiPicker(false)
-  }, [])
-
   const handleEmojiInsert = useCallback(
     (emoji: Emoji) => {
       onInsertEmoji(emoji)
@@ -65,10 +78,23 @@ export const RichTextEditorEmojiPicker = ({
       }
     }
 
+    // handled here rather than by emoji-mart, so it also works while emoji-mart
+    // loads; clicks on the toggle and in the picker land inside the root
+    const closeOnClickOutside = (event: MouseEvent) => {
+      if (
+        event.target instanceof Node &&
+        !rootRef.current?.contains(event.target)
+      ) {
+        setShowEmojiPicker(false)
+      }
+    }
+
     document.body.addEventListener('keyup', closeOnEscape)
+    document.addEventListener('click', closeOnClickOutside)
 
     return () => {
       document.body.removeEventListener('keyup', closeOnEscape)
+      document.removeEventListener('click', closeOnClickOutside)
     }
   }, [showEmojiPicker])
 
@@ -90,13 +116,14 @@ export const RichTextEditorEmojiPicker = ({
         )}
       >
         {pickerMounted && (
-          <Suspense fallback={null}>
-            <EmojiMartPicker
-              custom={customEmojis}
-              onEmojiSelect={handleEmojiInsert}
-              onClickOutside={closePicker}
-            />
-          </Suspense>
+          <LoadErrorBoundary>
+            <Suspense fallback={null}>
+              <EmojiMartPicker
+                custom={customEmojis}
+                onEmojiSelect={handleEmojiInsert}
+              />
+            </Suspense>
+          </LoadErrorBoundary>
         )}
       </Container>
     </Container>

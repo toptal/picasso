@@ -35,7 +35,7 @@ describe('EmojiMartPicker', () => {
   it('pushes only changed props into the mounted picker', () => {
     const update = jest.spyOn(Picker.prototype, 'update')
     const custom: CustomEmojiGroup[] = []
-    const onClickOutside = jest.fn()
+    const onNextEmojiSelect = jest.fn()
     const { rerender } = render(
       <EmojiMartPicker custom={custom} onEmojiSelect={onEmojiSelect} />
     )
@@ -46,15 +46,11 @@ describe('EmojiMartPicker', () => {
     expect(update).not.toHaveBeenCalled()
 
     rerender(
-      <EmojiMartPicker
-        custom={custom}
-        onEmojiSelect={onEmojiSelect}
-        onClickOutside={onClickOutside}
-      />
+      <EmojiMartPicker custom={custom} onEmojiSelect={onNextEmojiSelect} />
     )
 
     expect(update).toHaveBeenCalledTimes(1)
-    expect(update).toHaveBeenCalledWith({ onClickOutside })
+    expect(update).toHaveBeenCalledWith({ onEmojiSelect: onNextEmojiSelect })
 
     update.mockRestore()
   })

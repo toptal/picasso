@@ -35,17 +35,6 @@ const findPicker = (container: HTMLElement) =>
     return picker
   })
 
-// emoji-mart listens for outside clicks once it has rendered
-const findListeningPicker = async (container: HTMLElement) => {
-  const picker = await findPicker(container)
-
-  await waitFor(() =>
-    expect(picker.shadowRoot?.querySelector('#root')).toBeInTheDocument()
-  )
-
-  return picker
-}
-
 // wrapper > EmojiMartPicker's div > em-emoji-picker
 const getWrapper = (picker: Element) => picker.parentElement?.parentElement
 
@@ -86,27 +75,25 @@ describe('RichTextEditorEmojiPicker', () => {
     expect(picker).toBeInTheDocument()
   })
 
-  it('closes the picker on a click outside it', async () => {
+  it('closes the picker on a click outside it, even while emoji-mart loads', async () => {
     const { container } = renderEmojiPicker()
 
     openPicker()
-
-    const picker = await findListeningPicker(container)
-
     fireEvent.click(document.body)
+
+    const picker = await findPicker(container)
 
     expect(getWrapper(picker)).toHaveClass('opacity-0', 'pointer-events-none')
   })
 
-  it('reopens from the toggle while emoji-mart listens for outside clicks', async () => {
+  it('stays open on a click inside the picker', async () => {
     const { container } = renderEmojiPicker()
 
     openPicker()
 
-    const picker = await findListeningPicker(container)
+    const picker = await findPicker(container)
 
-    openPicker()
-    openPicker()
+    fireEvent.click(picker)
 
     expect(getWrapper(picker)).toHaveClass('opacity-100', 'pointer-events-auto')
   })

@@ -9,8 +9,6 @@ interface Props {
   custom?: CustomEmojiGroup[]
   /** Called with the picked emoji when a selection is made */
   onEmojiSelect: (emoji: Emoji) => void
-  /** Called with the click event when a click lands outside the picker */
-  onClickOutside?: (event: MouseEvent) => void
 }
 
 // emoji-mart re-applies every key passed to `update` and rebuilds its grid for

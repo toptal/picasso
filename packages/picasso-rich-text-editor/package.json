@@ -71,7 +71,11 @@
     "@types/jsdom": "^21.1.7",
     "jsdom": "^26.1.0"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./dist-package/src/eager.js",
+    "./dist-package/src/LexicalEditor/LexicalEditor.js",
+    "./dist-package/src/RichTextEditorEmojiPicker/EmojiMartPicker.js"
+  ],
   "exports": {
     ".": "./dist-package/src/index.js",
     "./utils": "./dist-package/src/utils/index.js",

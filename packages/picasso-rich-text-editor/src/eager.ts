@@ -1,3 +1,3 @@
-import {} from './LexicalEditor/LexicalEditor'
-import {} from './RichTextEditorEmojiPicker/EmojiMartPicker'
+import './LexicalEditor/LexicalEditor'
+import './RichTextEditorEmojiPicker/EmojiMartPicker'
 export * from './index'
