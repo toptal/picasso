@@ -28,9 +28,10 @@
 
 ```tsx
 import React, { useState } from 'react'
-import type { Field, OptionGroup } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
+  type Field,
+  type OptionGroup,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'
@@ -313,9 +314,10 @@ export default Example
 ```tsx
 /* eslint-disable max-lines */
 import React, { useState } from 'react'
-import type { Field, OptionGroup } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
+  type Field,
+  type OptionGroup,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'
@@ -706,9 +708,10 @@ export default Example
 
 ```tsx
 import React, { useState } from 'react'
-import type { Field, OptionGroup } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
+  type Field,
+  type OptionGroup,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 
@@ -1640,10 +1643,10 @@ export default Example
 
 ```tsx
 import React, { useState } from 'react'
-import type { Field } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
   defaultOperators,
+  type Field,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import type { DefaultOperator, RuleType } from 'react-querybuilder'
@@ -1735,9 +1738,10 @@ Providing a validator function on the rule level. Field level validation is work
 
 ```tsx
 import React, { useState } from 'react'
-import type { RuleType, ValidationResult } from '@toptal/picasso-query-builder'
 import {
   QueryBuilder,
+  type RuleType,
+  type ValidationResult,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Typography } from '@toptal/picasso'

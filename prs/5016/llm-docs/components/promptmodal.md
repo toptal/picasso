@@ -24,6 +24,7 @@ Predefined modal for short prompts that asks user for input.
 | onOpen | `(() => void)` | - | Callback executed when modal is being opened |
 | container | `ContainerValue` | - | A node, or a function that returns node. The container will have the portal children appended to it. |
 | hideBackdrop | `boolean` | - | If `true`, the backdrop is not rendered |
+| forceRenderBackdrop | `boolean` | - | If `true`, the backdrop is rendered even when nested in another dialog |
 | align | `"top" \| "centered"` | - | Position of the modal relative to the browser's viewport |
 | transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) |
 | paperProps | `HTMLAttributes<HTMLDivElement>` | - | used for specifying aria attributes, changing role, or customizing styles |

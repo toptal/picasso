@@ -18,16 +18,12 @@ The wrapper and the root component.
 | loadFonts | `boolean` | `true` | Whether to load fonts file to the page |
 | loadFavicon | `boolean` | `true` | Whether to specify favicons in the head |
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
-| reset | `boolean` | `true` | Whether to apply Picasso CSS reset |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
 | fixViewport | `boolean` | `true` | Whether to load viewport fix or not |
-| preventPageWidthChangeOnScrollbar | `boolean` | `true` | Whether to load scrollbar page jump fix or not |
 | notificationContainer | `HTMLElement` | - | Notification DOMNode for createPortal |
 | RootComponent | `ForwardRefExoticComponent<PicassoRootNodeProps & RefAttributes<HTMLDivElement>>` | `PicassoRootNode` | Component that is used to render root node |
 | disableHelmet | `boolean` | - | Disables usage of `<HelmetProvider>` component from `react-helmet-async` package |
 | disableTransitions | `boolean` | - | Disables transitions for components like Loader, to make testing easier |
-| disableClassNamePrefix | `boolean` | - | Disables unique prefix for styles class names |
-| injectFirst | `boolean` | - | By default, the styles are injected last in the <head> element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Picasso's styles, set this prop. |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### PicassoLight
@@ -52,15 +48,9 @@ utility components/providers:
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | environment | `"development" \| "staging" \| "production" \| "test" \| "temploy"` | `development` | current environment |
-| reset | `boolean` | `true` | Whether to apply Picasso CSS reset |
 | responsive | `boolean` | `true` | Sets a minimum width of the page |
-| preventPageWidthChangeOnScrollbar | `boolean` | - | Whether to load scrollbar page jump fix or not |
-| notificationContainer | `HTMLElement` | - | Notification DOMNode for createPortal |
 | RootComponent | `ForwardRefExoticComponent<PicassoRootNodeProps & RefAttributes<HTMLDivElement>>` | `PicassoRootNode` | Component that is used to render root node |
-| disableHelmet | `boolean` | - | Disables usage of `<HelmetProvider>` component from `react-helmet-async` package |
 | disableTransitions | `boolean` | - | Disables transitions for components like Loader, to make testing easier |
-| disableClassNamePrefix | `boolean` | - | Disables unique prefix for styles class names |
-| injectFirst | `boolean` | `true` | By default, the styles are injected last in the <head> element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Picasso's styles, set this prop. |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
@@ -73,11 +63,7 @@ import { default as Picasso, SPACING_12 } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
 
 const App = () => (
-  <Picasso
-    loadFavicon={false}
-    fixViewport={false}
-    preventPageWidthChangeOnScrollbar={false}
-  >
+  <Picasso loadFavicon={false} fixViewport={false}>
     <Page>
       <Page.TopBar title='App Page' />
       <Page.Content>
@@ -193,55 +179,9 @@ const Content = () => (
 
 const Index = () => (
   <div id='root'>
-    <Picasso
-      responsive={false}
-      loadFavicon={false}
-      fixViewport={false}
-      preventPageWidthChangeOnScrollbar={false}
-    >
+    <Picasso responsive={false} loadFavicon={false} fixViewport={false}>
       <Example />
     </Picasso>
-  </div>
-)
-
-export default Index
-```
-
-### ClassNames Prefix Disabled
-
-```tsx
-import React from 'react'
-// In actual application you can simply do
-// import Picasso from '@toptal/picasso-provider'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { default as Picasso, SPACING_12 } from '@toptal/picasso-provider'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Page, Container } from '@toptal/picasso'
-
-const App = () => (
-  <Picasso disableClassNamePrefix preventPageWidthChangeOnScrollbar={false}>
-    <Page>
-      <Page.TopBar title='App Page' />
-      <Page.Content>
-        <Page.Article>
-          <Container
-            flex
-            justifyContent='center'
-            top={SPACING_12}
-            style={{ height: '14rem' }}
-          >
-            Your application goes here
-          </Container>
-        </Page.Article>
-      </Page.Content>
-      <Page.Footer />
-    </Page>
-  </Picasso>
-)
-
-const Index = () => (
-  <div id='root'>
-    <App />
   </div>
 )
 

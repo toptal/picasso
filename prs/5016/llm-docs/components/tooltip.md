@@ -22,12 +22,15 @@ Tooltips display informative text when users hover over, focus on, or tap an ele
 | compact | `boolean` | - | Show a compact tooltip |
 | followCursor | `boolean` | `false` | If `true`, the tooltip follow the cursor over the wrapped element. This prop exists in material-ui@5+ |
 | maxWidth | `"none" \| "default"` | `default` | Max width of a tooltip |
+| onTransitionExiting | `(() => void)` | - | Called when the tooltip close transition starts |
+| onTransitionExited | `(() => void)` | - | Called after the tooltip close transition finishes |
 | tooltipRef | `Ref<HTMLDivElement>` | - | Tooltip div ref |
 | container | `ContainerValue` | - | A node, or a function that returns node. The container will have the portal children appended to it. |
 | offset | `OffsetType` | `{
         left: SPACING_0,
         top: SPACING_0,
       }` | Offset to allow shifting tooltip's position from left and top. |
+| testIds | `{ anchor?: string; }` | - | Testids of the `Tooltip` internal elements |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 

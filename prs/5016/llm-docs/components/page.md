@@ -1,6 +1,6 @@
 # Page
 
-A Page component
+A Page component.
 
 ## Props
 
@@ -95,6 +95,18 @@ A Page component
 | onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
 | popperContainer | `HTMLElement` | - | DOM element that wraps the Popper |
 | popperOptions | `PopperOptions` | - | Options provided to the popper.js instance |
+
+## Customizing layout
+
+Content width, padding and header height are set as CSS variables on the `Page`
+root, so you can override them per page through `className` (it wins by the
+cascade) — e.g. `<Page className="[--content-width:80em]" />` widens the content
+column.
+
+ * `--content-width` — max width of default content
+ * `--content-width-wide` — max width when `width="wide"`
+ * `--content-padding-horizontal` — horizontal content side padding
+ * `--header-height` — `Page.TopBar` height
 
 ### Default
 
