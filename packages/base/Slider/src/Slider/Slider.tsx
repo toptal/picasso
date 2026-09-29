@@ -159,8 +159,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'group/thumb flex justify-center items-center w-[19px] h-[19px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-transparent bg-clip-padding',
     'outline-0 transition-shadow cursor-pointer',
-    // Base UI focuses the thumb's inner range input, not the thumb itself
-    'has-[:focus-visible]:shadow-[0_0_0_3px] has-[:focus-visible]:shadow-blue-500/48',
+    // Base UI focuses the inner range input, not the thumb
+    'has-[:focus-visible]:shadow-[0_0_0_0.1875rem] has-[:focus-visible]:shadow-blue-500/48',
     isThumbHidden && 'hidden'
   )
 

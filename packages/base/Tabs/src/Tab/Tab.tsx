@@ -92,13 +92,13 @@ const rootClassesByOrientation = (selected: boolean) => ({
   ],
 })
 
-// Tabs root clips overflow, so horizontal focus is drawn on a widened `::after`
+// Tabs root clips overflow, so horizontal focus uses a widened `::after`
 const getFocusClasses = (
   orientation: 'horizontal' | 'vertical',
   variant: 'scrollable' | 'fullWidth'
 ) =>
   orientation === 'vertical'
-    ? 'focus-visible:inset-shadow-[0_0_0_3px] focus-visible:inset-shadow-blue-500/48'
+    ? 'focus-visible:inset-shadow-[0_0_0_0.1875rem] focus-visible:inset-shadow-blue-500/48'
     : [
         'after:absolute after:content-[""] after:top-0 after:bottom-1 after:-z-1',
         'after:rounded-t-sm after:pointer-events-none',
@@ -106,7 +106,7 @@ const getFocusClasses = (
           ? 'after:inset-x-0'
           : 'after:-inset-x-1 first-of-type:after:left-0',
         'focus-visible:opacity-100 focus-visible:after:bg-gray-100',
-        'focus-visible:after:inset-shadow-[0_-2px_0_0] focus-visible:after:inset-shadow-gray-500',
+        'focus-visible:after:inset-shadow-[0_-0.125rem_0_0] focus-visible:after:inset-shadow-gray-500',
       ]
 
 const classesByVariant = {

@@ -90,7 +90,7 @@ const targetIndexByKey: Record<
   vertical: { ArrowUp: previous, ArrowDown: next, Home: first, End: last },
 }
 
-// Base UI keeps disabled tabs in keyboard navigation; skip them instead
+// Base UI's keyboard navigation doesn't skip disabled tabs
 const focusEnabledTab = (
   event: BaseUIEvent<React.KeyboardEvent<HTMLDivElement>>,
   orientation: 'horizontal' | 'vertical'

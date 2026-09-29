@@ -34,7 +34,7 @@ exports[`Slider renders 1`] = `
             style="position: relative; height: inherit; inset-inline-start: 0; width: calc(0% - 9.5px);"
           />
           <div
-            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-transparent bg-clip outline-0 transition-shadow cursor-pointer has-[:focus-visible]:shadow-[0_0_0_3px] has-[:focus-visible]:shadow-blue"
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-transparent bg-clip outline-0 transition-shadow cursor-pointer has-[:focus-visible]:shadow-[0_0_0_0.1875rem] has-[:focus-visible]:shadow-blue"
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r1:"
@@ -103,7 +103,7 @@ exports[`Slider with initial value 1`] = `
             style="position: relative; height: inherit; inset-inline-start: 0; width: calc(4% - 9.5px);"
           />
           <div
-            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-transparent bg-clip outline-0 transition-shadow cursor-pointer has-[:focus-visible]:shadow-[0_0_0_3px] has-[:focus-visible]:shadow-blue"
+            class="group/thumb flex justify-center items-center w-[19px] h-[19px] rounded-[50%] bg-blue border-[2px] border-solid border-transparent bg-clip outline-0 transition-shadow cursor-pointer has-[:focus-visible]:shadow-[0_0_0_0.1875rem] has-[:focus-visible]:shadow-blue"
             data-index="0"
             data-orientation="horizontal"
             id="base-ui-:r9:"

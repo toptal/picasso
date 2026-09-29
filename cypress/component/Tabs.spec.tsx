@@ -8,15 +8,12 @@ const component = 'Tabs'
 
 const getAvatarSrc = loadAvatarFixture()
 
-// blue-500 at 48%, serialized as rgba() or oklab()
+// blue-500/48, serialized as rgba() or oklab()
 const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px inset/
 const FOCUS_BAR = / 0px -2px 0px 0px inset/
-// gray-100
-const FOCUS_BACKGROUND = /^rgb\(243, 244, 246\)$/
-// `shadow-1`
-const SELECTED_SHADOW = /0\.08\) 0px 0px 8px 0px$/
+const GRAY_100 = 'rgb(243, 244, 246)'
+const SHADOW_1 = /0\.08\) 0px 0px 8px 0px$/
 
-// horizontal tabs draw focus on `::after` so it isn't clipped
 const toShowFocus =
   (orientation: 'horizontal' | 'vertical', expected = true) =>
   ($el: JQuery<HTMLElement>) => {
@@ -26,7 +23,7 @@ const toShowFocus =
       return
     }
 
-    toHaveStyle('backgroundColor', FOCUS_BACKGROUND, {
+    toHaveStyle('backgroundColor', GRAY_100, {
       expected,
       pseudo: '::after',
     })($el)
@@ -35,12 +32,15 @@ const toShowFocus =
 
 const renderTabs = (
   orientation: 'horizontal' | 'vertical',
-  disabledTabs: string[] = []
+  {
+    disabledTabs = [],
+    variant,
+  }: { disabledTabs?: string[]; variant?: 'fullWidth' } = {}
 ) =>
   cy.mount(
     <>
       <button>Before</button>
-      <Tabs value={0} orientation={orientation}>
+      <Tabs value={0} orientation={orientation} variant={variant}>
         {['First', 'Second', 'Third', 'Fourth'].map(label => (
           <Tabs.Tab
             key={label}
@@ -88,7 +88,7 @@ const testKeyboardFocus = ({
   })
 
   it(`skips disabled tabs with arrow keys in ${orientation} orientation`, () => {
-    renderTabs(orientation, ['Second', 'Fourth'])
+    renderTabs(orientation, { disabledTabs: ['Second', 'Fourth'] })
 
     cy.contains('Before').realClick()
     cy.realPress('Tab')
@@ -230,6 +230,23 @@ describe('Tabs', () => {
       previousKey: 'ArrowUp',
     })
 
+    it('keeps horizontal focus style inside the tabs row', () => {
+      const pseudo = '::after'
+
+      renderTabs('horizontal')
+      cy.contains('[role=tab]', 'First').should(
+        toHaveStyle('left', '0px', { pseudo })
+      )
+      cy.contains('[role=tab]', 'Second').should(
+        toHaveStyle('left', '-4px', { pseudo })
+      )
+
+      renderTabs('horizontal', { variant: 'fullWidth' })
+      cy.contains('[role=tab]', 'Fourth')
+        .should(toHaveStyle('left', '0px', { pseudo }))
+        .and(toHaveStyle('right', '0px', { pseudo }))
+    })
+
     it('keeps selected tab elevation in vertical orientation', () => {
       renderTabs('vertical')
 
@@ -239,7 +256,7 @@ describe('Tabs', () => {
       cy.contains('[role=tab]', 'First')
         .should('have.focus')
         .and(toShowFocus('vertical'))
-        .and(toHaveStyle('boxShadow', SELECTED_SHADOW))
+        .and(toHaveStyle('boxShadow', SHADOW_1))
     })
   })
 })

@@ -34,10 +34,10 @@ const renderLabel = (value: number | number[]) => {
 
 const component = 'Slider'
 
-// blue-500 at 48%, serialized as rgba() or oklab()
+// blue-500/48, serialized as rgba() or oklab()
 const FOCUS_SHADOW = / 0\.48\) 0px 0px 0px 3px$/
 
-// Base UI hides the pointer focus ring via `focus({ focusVisible })`
+// Base UI needs it to hide the ring on mouse focus
 const supportsFocusVisibleOption = () => {
   let supported = false
 
