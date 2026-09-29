@@ -55,6 +55,8 @@ jobs:
       contents: read
       id-token: write
     needs: [build-packages]
+    # a shard takes under 10 minutes; a hung run would otherwise hold it 6 hours
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
