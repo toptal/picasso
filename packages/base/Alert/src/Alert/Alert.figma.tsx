@@ -21,7 +21,7 @@ const sharedAlertProps = {
 
 // No CTAs
 figma.connect(Alert, ALERT_URL, {
-  variant: { 'CTA Primary': 'false', 'CTA Secondary': 'false' },
+  variant: { 'CTA Primary': false, 'CTA Secondary': false },
   props: sharedAlertProps,
   example: ({ variant, onClose }) => (
     <Alert variant={variant} onClose={onClose}>
@@ -32,7 +32,7 @@ figma.connect(Alert, ALERT_URL, {
 
 // Primary CTA only
 figma.connect(Alert, ALERT_URL, {
-  variant: { 'CTA Primary': 'true', 'CTA Secondary': 'false' },
+  variant: { 'CTA Primary': true, 'CTA Secondary': false },
   props: sharedAlertProps,
   example: ({ variant, onClose }) => (
     <Alert
@@ -47,7 +47,7 @@ figma.connect(Alert, ALERT_URL, {
 
 // Secondary CTA only
 figma.connect(Alert, ALERT_URL, {
-  variant: { 'CTA Primary': 'false', 'CTA Secondary': 'true' },
+  variant: { 'CTA Primary': false, 'CTA Secondary': true },
   props: sharedAlertProps,
   example: ({ variant, onClose }) => (
     <Alert
@@ -62,7 +62,7 @@ figma.connect(Alert, ALERT_URL, {
 
 // Both CTAs
 figma.connect(Alert, ALERT_URL, {
-  variant: { 'CTA Primary': 'true', 'CTA Secondary': 'true' },
+  variant: { 'CTA Primary': true, 'CTA Secondary': true },
   props: sharedAlertProps,
   example: ({ variant, onClose }) => (
     <Alert
