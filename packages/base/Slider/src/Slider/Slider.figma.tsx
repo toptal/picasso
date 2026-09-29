@@ -1,4 +1,5 @@
 import figma from '@figma/code-connect'
+import React from 'react'
 import { Slider } from '@toptal/picasso'
 
 figma.connect(

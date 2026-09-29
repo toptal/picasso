@@ -5,16 +5,20 @@ import { Input, Form, Search16 } from '@toptal/picasso'
 const INPUT_FIELD_URL =
   'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=18377-1525'
 
-// Figma "State: Filled", "State: Focus", "State: Hover", "State: Prefilled"
-// produce the same code as "State: Default" and are not listed separately.
-// "State: Error Focus" produces the same code as "State: Error".
-// "Icon Right" maps to icon + iconPosition='end'; shown here via "Icon Left" (start).
-// Other Variant values (Select, Number, Currency, Tags) map to separate Picasso components.
+// Figma "State" maps to props: Disabled → disabled, Error → status + field
+// error. Filled, Focus, Hover and Prefilled produce the same code as Default.
+// React Input takes a single icon, so "Icon Right" wins when both are on.
+// Other Variant values (Select, Number, Currency, Tags) map to separate
+// Picasso components.
 
-// ─── Vertical ───────────────────────────────────────────────────────────────
+// ─── Vertical ─────────────────────────────────────────────────────────────────
 
 figma.connect(Input, INPUT_FIELD_URL, {
-  variant: { Orientation: 'Vertical', Variant: 'Text Field', State: 'Default' },
+  variant: {
+    Orientation: 'Vertical',
+    Variant: 'Text Field',
+    'Icon Right': false,
+  },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
     size: figma.enum('Size', {
@@ -22,19 +26,28 @@ figma.connect(Input, INPUT_FIELD_URL, {
       Medium: 'medium',
       Large: 'large',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
+    status: figma.enum('State', { Error: 'error' }),
+    error: figma.enum('State', { Error: 'Error message' }),
     icon: figma.boolean('Icon Left', {
       true: <Search16 />,
       false: undefined,
     }),
+    iconPosition: figma.boolean('Icon Left', {
+      true: 'start',
+      false: undefined,
+    }),
   },
-  example: ({ hint, size, icon }) => (
+  example: ({ hint, size, disabled, status, error, icon, iconPosition }) => (
     <Form>
-      <Form.Field hint={hint}>
+      <Form.Field hint={hint} error={error}>
         <Form.Label>Label</Form.Label>
         <Input
           size={size}
+          disabled={disabled}
+          status={status}
           icon={icon}
-          iconPosition='start'
+          iconPosition={iconPosition}
           placeholder='Placeholder'
         />
       </Form.Field>
@@ -46,7 +59,7 @@ figma.connect(Input, INPUT_FIELD_URL, {
   variant: {
     Orientation: 'Vertical',
     Variant: 'Text Field',
-    State: 'Disabled',
+    'Icon Right': true,
   },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
@@ -55,44 +68,34 @@ figma.connect(Input, INPUT_FIELD_URL, {
       Medium: 'medium',
       Large: 'large',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
+    status: figma.enum('State', { Error: 'error' }),
+    error: figma.enum('State', { Error: 'Error message' }),
   },
-  example: ({ hint, size }) => (
+  example: ({ hint, size, disabled, status, error }) => (
     <Form>
-      <Form.Field hint={hint}>
+      <Form.Field hint={hint} error={error}>
         <Form.Label>Label</Form.Label>
-        <Input size={size} disabled placeholder='Placeholder' />
+        <Input
+          size={size}
+          disabled={disabled}
+          status={status}
+          icon={<Search16 />}
+          iconPosition='end'
+          placeholder='Placeholder'
+        />
       </Form.Field>
     </Form>
   ),
 })
 
-figma.connect(Input, INPUT_FIELD_URL, {
-  variant: { Orientation: 'Vertical', Variant: 'Text Field', State: 'Error' },
-  props: {
-    hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
-    size: figma.enum('Size', {
-      Small: 'small',
-      Medium: 'medium',
-      Large: 'large',
-    }),
-  },
-  example: ({ hint, size }) => (
-    <Form>
-      <Form.Field hint={hint} error='Error message'>
-        <Form.Label>Label</Form.Label>
-        <Input size={size} status='error' placeholder='Placeholder' />
-      </Form.Field>
-    </Form>
-  ),
-})
-
-// ─── Horizontal ─────────────────────────────────────────────────────────────
+// ─── Horizontal ───────────────────────────────────────────────────────────────
 
 figma.connect(Input, INPUT_FIELD_URL, {
   variant: {
     Orientation: 'Horizontal',
     Variant: 'Text Field',
-    State: 'Default',
+    'Icon Right': false,
   },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
@@ -101,19 +104,28 @@ figma.connect(Input, INPUT_FIELD_URL, {
       Medium: 'medium',
       Large: 'large',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
+    status: figma.enum('State', { Error: 'error' }),
+    error: figma.enum('State', { Error: 'Error message' }),
     icon: figma.boolean('Icon Left', {
       true: <Search16 />,
       false: undefined,
     }),
+    iconPosition: figma.boolean('Icon Left', {
+      true: 'start',
+      false: undefined,
+    }),
   },
-  example: ({ hint, size, icon }) => (
+  example: ({ hint, size, disabled, status, error, icon, iconPosition }) => (
     <Form layout='horizontal'>
-      <Form.Field hint={hint}>
+      <Form.Field hint={hint} error={error}>
         <Form.Label>Label</Form.Label>
         <Input
           size={size}
+          disabled={disabled}
+          status={status}
           icon={icon}
-          iconPosition='start'
+          iconPosition={iconPosition}
           placeholder='Placeholder'
         />
       </Form.Field>
@@ -125,7 +137,7 @@ figma.connect(Input, INPUT_FIELD_URL, {
   variant: {
     Orientation: 'Horizontal',
     Variant: 'Text Field',
-    State: 'Disabled',
+    'Icon Right': true,
   },
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
@@ -134,36 +146,22 @@ figma.connect(Input, INPUT_FIELD_URL, {
       Medium: 'medium',
       Large: 'large',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
+    status: figma.enum('State', { Error: 'error' }),
+    error: figma.enum('State', { Error: 'Error message' }),
   },
-  example: ({ hint, size }) => (
+  example: ({ hint, size, disabled, status, error }) => (
     <Form layout='horizontal'>
-      <Form.Field hint={hint}>
+      <Form.Field hint={hint} error={error}>
         <Form.Label>Label</Form.Label>
-        <Input size={size} disabled placeholder='Placeholder' />
-      </Form.Field>
-    </Form>
-  ),
-})
-
-figma.connect(Input, INPUT_FIELD_URL, {
-  variant: {
-    Orientation: 'Horizontal',
-    Variant: 'Text Field',
-    State: 'Error',
-  },
-  props: {
-    hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
-    size: figma.enum('Size', {
-      Small: 'small',
-      Medium: 'medium',
-      Large: 'large',
-    }),
-  },
-  example: ({ hint, size }) => (
-    <Form layout='horizontal'>
-      <Form.Field hint={hint} error='Error message'>
-        <Form.Label>Label</Form.Label>
-        <Input size={size} status='error' placeholder='Placeholder' />
+        <Input
+          size={size}
+          disabled={disabled}
+          status={status}
+          icon={<Search16 />}
+          iconPosition='end'
+          placeholder='Placeholder'
+        />
       </Form.Field>
     </Form>
   ),

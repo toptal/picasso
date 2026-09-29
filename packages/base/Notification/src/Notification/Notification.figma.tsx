@@ -1,4 +1,5 @@
 import figma from '@figma/code-connect'
+import React from 'react'
 import { Notification } from '@toptal/picasso'
 
 const NOTIFICATION_URL =

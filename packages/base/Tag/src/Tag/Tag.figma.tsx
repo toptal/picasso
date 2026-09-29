@@ -1,4 +1,5 @@
 import figma from '@figma/code-connect'
+import React from 'react'
 import { Tag, Badge } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso-icons'
 
@@ -14,6 +15,7 @@ const RECT_URL =
 // ─── Tag Outlined ─────────────────────────────────────────────────────────────
 // "With Edit" and "With Edit and Remove" layouts have no React equivalent:
 // Tag has no onEdit prop — not wired up.
+// Figma "State: Disabled" → disabled on every layout; Hover has no React prop.
 // Figma "Style" → React "variant": Secondary → 'light-grey' (property renamed + value changed).
 
 figma.connect(Tag, OUTLINED_URL, {
@@ -26,8 +28,13 @@ figma.connect(Tag, OUTLINED_URL, {
       Yellow: 'yellow',
       Green: 'green',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
   },
-  example: ({ variant }) => <Tag variant={variant}>Label</Tag>,
+  example: ({ variant, disabled }) => (
+    <Tag variant={variant} disabled={disabled}>
+      Label
+    </Tag>
+  ),
 })
 
 figma.connect(Tag, OUTLINED_URL, {
@@ -40,9 +47,10 @@ figma.connect(Tag, OUTLINED_URL, {
       Yellow: 'yellow',
       Green: 'green',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
   },
-  example: ({ variant }) => (
-    <Tag variant={variant} icon={<Settings16 />}>
+  example: ({ variant, disabled }) => (
+    <Tag variant={variant} disabled={disabled} icon={<Settings16 />}>
       Label
     </Tag>
   ),
@@ -58,9 +66,10 @@ figma.connect(Tag, OUTLINED_URL, {
       Yellow: 'yellow',
       Green: 'green',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
   },
-  example: ({ variant }) => (
-    <Tag variant={variant} onDelete={() => {}}>
+  example: ({ variant, disabled }) => (
+    <Tag variant={variant} disabled={disabled} onDelete={() => {}}>
       Label
     </Tag>
   ),
@@ -76,9 +85,14 @@ figma.connect(Tag, OUTLINED_URL, {
       Yellow: 'yellow',
       Green: 'green',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
   },
-  example: ({ variant }) => (
-    <Tag variant={variant} endAdornment={<Tag.Connection>0</Tag.Connection>}>
+  example: ({ variant, disabled }) => (
+    <Tag
+      variant={variant}
+      disabled={disabled}
+      endAdornment={<Tag.Connection>0</Tag.Connection>}
+    >
       Label
     </Tag>
   ),
@@ -94,10 +108,12 @@ figma.connect(Tag, OUTLINED_URL, {
       Yellow: 'yellow',
       Green: 'green',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
   },
-  example: ({ variant }) => (
+  example: ({ variant, disabled }) => (
     <Tag
       variant={variant}
+      disabled={disabled}
       icon={<Settings16 />}
       endAdornment={<Tag.Connection>0</Tag.Connection>}
     >
@@ -116,27 +132,14 @@ figma.connect(Tag, OUTLINED_URL, {
       Yellow: 'yellow',
       Green: 'green',
     }),
+    disabled: figma.enum('State', { Disabled: true }),
   },
-  example: ({ variant }) => (
-    <Tag variant={variant} endAdornment={<Badge content={1} size='medium' />}>
-      Label
-    </Tag>
-  ),
-})
-
-figma.connect(Tag, OUTLINED_URL, {
-  variant: { State: 'Disabled' },
-  props: {
-    variant: figma.enum('Style', {
-      Blue: 'blue',
-      Secondary: 'light-grey',
-      Red: 'red',
-      Yellow: 'yellow',
-      Green: 'green',
-    }),
-  },
-  example: ({ variant }) => (
-    <Tag variant={variant} disabled>
+  example: ({ variant, disabled }) => (
+    <Tag
+      variant={variant}
+      disabled={disabled}
+      endAdornment={<Badge content={1} size='medium' />}
+    >
       Label
     </Tag>
   ),

@@ -1,4 +1,5 @@
 import figma from '@figma/code-connect'
+import React from 'react'
 import { Avatar, UserBadge } from '@toptal/picasso'
 
 figma.connect(

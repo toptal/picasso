@@ -11,7 +11,7 @@ const CAROUSEL_URL =
 figma.connect(Carousel, CAROUSEL_URL, {
   variant: { Variant: 'Pagination + Arrows' },
   example: () => (
-    <Carousel>
+    <Carousel hasDots hasArrows>
       <div>Slide 1</div>
       <div>Slide 2</div>
       <div>Slide 3</div>
@@ -22,7 +22,7 @@ figma.connect(Carousel, CAROUSEL_URL, {
 figma.connect(Carousel, CAROUSEL_URL, {
   variant: { Variant: 'Pagination Only' },
   example: () => (
-    <Carousel hasArrows={false}>
+    <Carousel hasDots>
       <div>Slide 1</div>
       <div>Slide 2</div>
       <div>Slide 3</div>
@@ -33,7 +33,7 @@ figma.connect(Carousel, CAROUSEL_URL, {
 figma.connect(Carousel, CAROUSEL_URL, {
   variant: { Variant: 'Arrows Only' },
   example: () => (
-    <Carousel hasDots={false}>
+    <Carousel hasArrows>
       <div>Slide 1</div>
       <div>Slide 2</div>
       <div>Slide 3</div>
