@@ -66,7 +66,7 @@ try {
     // @ts-ignore
     EmojiMartPicker.displayName = "EmojiMartPicker";
     // @ts-ignore
-    EmojiMartPicker.__docgenInfo = { "description": "Renders emoji-mart's `Picker` with the native emoji set. Keep every\nemoji-mart import in this module, so they all load lazily with it.\n\n`Picker` appends itself to the `ref` element, so it is constructed after the\nfirst commit and fed changed props through `update` after that; an effect\nreplay (StrictMode, Fast Refresh) finds it already constructed.", "displayName": "EmojiMartPicker", "props": { "custom": { "defaultValue": null, "description": "Additional groups of custom emojis appended to the picker", "name": "custom", "required": false, "type": { "name": "CustomEmojiGroup[] | undefined" } }, "onEmojiSelect": { "defaultValue": null, "description": "Called with the picked emoji when a selection is made", "name": "onEmojiSelect", "required": true, "type": { "name": "(emoji: Emoji) => void" } }, "onClickOutside": { "defaultValue": null, "description": "Called with the click event when a click lands outside the picker", "name": "onClickOutside", "required": false, "type": { "name": "((event: MouseEvent) => void) | undefined" } } } };
+    EmojiMartPicker.__docgenInfo = { "description": "Renders emoji-mart's `Picker` with the native emoji set. Keep every\nemoji-mart import in this module, so they all load lazily with it.\n\n`Picker` appends itself to the `ref` element, so it is constructed after the\nfirst commit and fed changed props through `update` after that; an effect\nreplay (StrictMode, Fast Refresh) finds it already constructed.", "displayName": "EmojiMartPicker", "props": { "custom": { "defaultValue": null, "description": "Additional groups of custom emojis appended to the picker", "name": "custom", "required": false, "type": { "name": "CustomEmojiGroup[] | undefined" } }, "onEmojiSelect": { "defaultValue": null, "description": "Called with the picked emoji when a selection is made", "name": "onEmojiSelect", "required": true, "type": { "name": "(emoji: Emoji) => void" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -77,4 +77,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=634.ecd12447.iframe.bundle.js.map
+//# sourceMappingURL=634.6c1f9147.iframe.bundle.js.map
