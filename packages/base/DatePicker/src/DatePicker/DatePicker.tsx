@@ -155,6 +155,9 @@ export const DatePicker = ({
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
+  // What effects read before React re-renders with the new focus state;
+  // `null` until a focus handler has run
+  const latestInputFocus = useRef<boolean | null>(null)
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
   const [calendarValue, setCalendarValue] =
     useState<DateOrDateRangeType | null>(null)
@@ -165,6 +168,11 @@ export const DatePicker = ({
 
   const hideCalendar = () => setCalendarIsShown(false)
   const showCalendar = () => setCalendarIsShown(true)
+
+  const setInputFocused = (focused: boolean) => {
+    latestInputFocus.current = focused
+    setIsInputFocused(focused)
+  }
 
   const hasInteractedWhileFocused = useRef(false)
 
@@ -226,12 +234,14 @@ export const DatePicker = ({
     [value, timezone, formatInputValue]
   )
 
-  // Focus from the DOM too: after `autoFocus`, React's state lags a render
+  // Until a focus handler runs, the focus comes from the DOM: after
+  // `autoFocus`, React's state lags a render. Not after: a click outside
+  // unfocuses the picker without always moving the DOM focus
   useEffect(() => {
     updateInputValue({
       trigger: 'value',
       focused:
-        isInputFocused ||
+        latestInputFocus.current ??
         (inputRef.current !== null &&
           document.activeElement === inputRef.current),
     })
@@ -244,7 +254,7 @@ export const DatePicker = ({
   useEffect(() => {
     if (disabled) {
       hasInteractedWhileFocused.current = false
-      setIsInputFocused(false)
+      setInputFocused(false)
     }
   }, [disabled])
 
@@ -279,7 +289,7 @@ export const DatePicker = ({
     onBlur()
 
     hasInteractedWhileFocused.current = false
-    setIsInputFocused(false)
+    setInputFocused(false)
   }
 
   const handleCalendarClickOutside = (
@@ -288,7 +298,7 @@ export const DatePicker = ({
     if (!isInsideDatePicker(event.target as Node)) {
       hideCalendar()
       hasInteractedWhileFocused.current = false
-      setIsInputFocused(false)
+      setInputFocused(false)
     }
   }
 
@@ -394,7 +404,7 @@ export const DatePicker = ({
 
     inputProps?.onClick?.(event)
     showCalendar()
-    setIsInputFocused(true)
+    setInputFocused(true)
   }
 
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = event => {
@@ -404,7 +414,7 @@ export const DatePicker = ({
 
     inputProps?.onFocus?.(event)
     showCalendar()
-    setIsInputFocused(true)
+    setInputFocused(true)
   }
 
   const handleResetClick = (

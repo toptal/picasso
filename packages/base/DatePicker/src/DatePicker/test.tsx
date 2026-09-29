@@ -534,6 +534,30 @@ describe('DatePicker', () => {
 
         expect(input).toHaveValue('')
       })
+
+      it('shows a value that arrives after a click outside left the input focused', () => {
+        const { input, deliver } = renderLatePicker({
+          value: new Date(2020, 11, 24),
+        })
+
+        act(() => {
+          input.focus()
+        })
+        // Arms the click-away listener the calendar mounts with
+        act(() => {
+          jest.advanceTimersByTime(0)
+        })
+        // jsdom keeps the focus on a click, as a browser does when the
+        // pressed element prevents its `mousedown` default
+        fireEvent.click(document.body)
+
+        expect(input).toHaveFocus()
+        expect(input).toHaveValue('Dec 24, 2020')
+
+        deliver(new Date(2021, 0, 5))
+
+        expect(input).toHaveValue('Jan 5, 2021')
+      })
     })
 
     describe('when `range` property is set', () => {

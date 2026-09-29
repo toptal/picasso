@@ -118,6 +118,49 @@ describe('form listeners', () => {
       expect(handleChange).not.toHaveBeenCalled()
     })
 
+    it('OnChange does not fire again for a field that started as null', () => {
+      const handleChange = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: null }}>
+          <Toggleable>
+            <OnChange<string | null> name='firstName'>{handleChange}</OnChange>
+            <Form.Input name='firstName' placeholder='First name' />
+          </Toggleable>
+        </Form>
+      )
+
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      handleChange.mockClear()
+      remount()
+
+      expect(handleChange).not.toHaveBeenCalled()
+    })
+
+    it('OnChange alone reports changes from the stored value for a field that started as null', () => {
+      const handleChange = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: null }}>
+          <Form.Input name='firstName' placeholder='First name' />
+          <Toggleable>
+            <OnChange<string | null> name='firstName'>{handleChange}</OnChange>
+          </Toggleable>
+        </Form>
+      )
+
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      handleChange.mockClear()
+      remount()
+
+      expect(handleChange).not.toHaveBeenCalled()
+
+      fireEvent.change(getInput(), { target: { value: 'Diana' } })
+
+      expect(handleChange).toHaveBeenCalledTimes(1)
+      expect(handleChange).toHaveBeenCalledWith('Diana', 'Clark')
+    })
+
     it("OnChange alone keeps the field's value", () => {
       const formRef: { current?: FormApi } = {}
       const CaptureForm = () => {
