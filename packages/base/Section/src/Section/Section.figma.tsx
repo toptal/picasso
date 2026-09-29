@@ -5,7 +5,12 @@ import { Section, Button, ButtonCircular } from '@toptal/picasso'
 const SECTION_HEAD_URL =
   'https://www.figma.com/design/0zTTN9YKOABPGLQ4NsyEW5/Product-Library-v2.0?node-id=273-12085'
 
+// Button / ButtonCircular appear only inside the "Buttons" mapping, which the
+// parser does not scan for imports — list them explicitly.
 figma.connect(Section, SECTION_HEAD_URL, {
+  imports: [
+    "import { Section, Button, ButtonCircular } from '@toptal/picasso'",
+  ],
   props: {
     titleSize: figma.enum('Heading', {
       Small: 'small',

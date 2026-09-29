@@ -8,6 +8,8 @@ const INPUT_FIELD_URL =
 // Figma "State" maps to props: Disabled → disabled, Error → status + field
 // error. Filled, Focus, Hover and Prefilled produce the same code as Default.
 // React Input takes a single icon, so "Icon Right" wins when both are on.
+// Search16 inside the "Icon Left" mapping is not auto-imported by the
+// parser, hence the explicit imports on those connections.
 // Other Variant values (Select, Number, Currency, Tags) map to separate
 // Picasso components.
 
@@ -19,6 +21,7 @@ figma.connect(Input, INPUT_FIELD_URL, {
     Variant: 'Text Field',
     'Icon Right': false,
   },
+  imports: ["import { Input, Form, Search16 } from '@toptal/picasso'"],
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
     size: figma.enum('Size', {
@@ -97,6 +100,7 @@ figma.connect(Input, INPUT_FIELD_URL, {
     Variant: 'Text Field',
     'Icon Right': false,
   },
+  imports: ["import { Input, Form, Search16 } from '@toptal/picasso'"],
   props: {
     hint: figma.boolean('Show Hint', { true: 'Hint text', false: undefined }),
     size: figma.enum('Size', {
