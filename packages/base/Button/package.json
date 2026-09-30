@@ -57,6 +57,6 @@
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
     "src",
-    "!src/**/*.figma.tsx"
+    "!src/**/*.figma.ts"
   ]
 }

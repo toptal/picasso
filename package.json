@@ -95,7 +95,7 @@
     "@changesets/cli": "^2.29.7",
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
-    "@figma/code-connect": "^1.4.7",
+    "@figma/code-connect": "^2.0.1",
     "@nx/js": "22.7.5",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",

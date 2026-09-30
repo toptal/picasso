@@ -64,9 +64,8 @@ jobs:
         if: steps.token.outputs.present == 'true'
         uses: ./.github/actions/pnpm-install
 
-      # No build step: the parser reads *.figma.tsx statically and produces the
-      # same snippets without built packages (only the "view source" link is
-      # left empty instead of pointing at uncommitted dist-package files).
+      # No build step: *.figma.ts template files are published as they are,
+      # without parsing the components or needing built packages.
       - name: Validate Code Connect (dry run)
         if: steps.token.outputs.present == 'true' && github.event_name == 'pull_request'
         run: pnpm exec figma connect publish --dry-run --exit-on-unreadable-files --skip-update-check

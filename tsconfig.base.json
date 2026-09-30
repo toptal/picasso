@@ -19,7 +19,7 @@
   },
   "include": ["src"],
   "exclude": [
-    "**/*.figma.tsx",
+    "**/*.figma.ts",
     "**/test.tsx",
     "**/*.test.tsx",
     "**/__testfixtures__",
