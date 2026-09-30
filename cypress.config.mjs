@@ -46,11 +46,12 @@ export default defineConfig({
     ...davinciConfig.component,
     // Cypress 14 validates this as a number; `null` used to mean "no retries"
     retries: { openMode: 0, runMode: 2 },
-    // davinci-qa runs every spec in one tab (experimentalSingleTabRunMode); on
-    // Cypress 14's Chromium the renderer ran out of memory around the 27th spec
-    // and Cypress hung instead of failing. Freeing memory between tests keeps
-    // the single-tab speed without the crash.
-    experimentalMemoryManagement: true,
+    // On Cypress 14, shards hung right after a spec compiled. Both 14-only
+    // suspects are off: the renderer leak piling up in davinci-qa's single tab
+    // (cypress-io/cypress#34226, fixed in 15.19, which needs webpack-dev-server
+    // 5) and the per-spec recompile of the new just-in-time compile default
+    experimentalSingleTabRunMode: false,
+    justInTimeCompile: false,
     setupNodeEvents: (on, config) => {
       davinciConfig.component.setupNodeEvents(on, config)
 
