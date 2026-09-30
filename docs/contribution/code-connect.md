@@ -22,15 +22,21 @@ Code Connect links Figma design components to React code so designers see real c
 
 ### Publishing
 
+Publishing is automated by the [Figma Code Connect workflow](../../.github/workflows/figma-code-connect.yml):
+
+- **Pull requests** that touch `packages/**/src/**` or `figma.config.json` run `figma connect publish --dry-run`, which validates every mapping against the Figma library.
+- **Pushes to `master`** with the same paths publish the snippets to Figma Dev Mode.
+- It can also be run manually from the Actions tab (`workflow_dispatch`).
+
+The workflow needs the `FIGMA_ACCESS_TOKEN` repository secret (scopes: `File content: Read` and `Code Connect: Write`). Without it the job is skipped with a warning.
+
+To run it locally, enter the token at a hidden prompt so it never lands in your shell history:
+
 ```bash
-FIGMA_ACCESS_TOKEN=<your-token> npx figma connect publish
+( read -rs 'FIGMA_ACCESS_TOKEN?Figma token: ' && echo && export FIGMA_ACCESS_TOKEN && npx figma connect publish --dry-run )
 ```
 
-Run this whenever `.figma.tsx` files change. You can also dry-run first:
-
-```bash
-FIGMA_ACCESS_TOKEN=<your-token> npx figma connect publish --dry-run
-```
+Drop `--dry-run` to publish, or use `npx figma connect unpublish` (optionally with `-f <file>`) to remove published snippets.
 
 ### Setting up the Figma MCP server in Claude Code
 

@@ -1,0 +1,76 @@
+name: Figma Code Connect
+# Keeps the Code Connect snippets shown in Figma Dev Mode in sync with the
+# components. Pull requests that touch a component only validate the mappings
+# (dry run); pushes to master publish them to the Figma library.
+#
+# Requires the FIGMA_ACCESS_TOKEN repository secret: a Figma personal access
+# token with "File content: Read" and "Code Connect: Write" scopes, owned by an
+# account with edit access to the Product Library file.
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'packages/**/src/**'
+      - 'figma.config.json'
+      - '.github/workflows/figma-code-connect.yml'
+  pull_request:
+    paths:
+      - 'packages/**/src/**'
+      - 'figma.config.json'
+      - '.github/workflows/figma-code-connect.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Never cancel a publish midway; superseded PR dry runs can be cancelled.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  code-connect:
+    name: ${{ github.event_name == 'pull_request' && 'Validate Code Connect' || 'Publish Code Connect' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+    steps:
+      - name: Check for Figma token
+        id: token
+        run: |
+          if [ -z "$FIGMA_ACCESS_TOKEN" ]; then
+            echo "::warning::FIGMA_ACCESS_TOKEN is not available (missing secret or fork PR), skipping Code Connect."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out code
+        if: steps.token.outputs.present == 'true'
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+
+      - name: Set up Node.js
+        if: steps.token.outputs.present == 'true'
+        # Same as actions/setup-node@v6.1
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
+        with:
+          node-version: 22.20.0
+
+      - name: Install dependencies
+        if: steps.token.outputs.present == 'true'
+        uses: ./.github/actions/pnpm-install
+
+      # No build step: the parser reads *.figma.tsx statically and produces the
+      # same snippets without built packages (only the "view source" link is
+      # left empty instead of pointing at uncommitted dist-package files).
+      - name: Validate Code Connect (dry run)
+        if: steps.token.outputs.present == 'true' && github.event_name == 'pull_request'
+        run: pnpm exec figma connect publish --dry-run --exit-on-unreadable-files --skip-update-check
+
+      - name: Publish Code Connect to Figma
+        if: steps.token.outputs.present == 'true' && github.event_name != 'pull_request'
+        run: pnpm exec figma connect publish --exit-on-unreadable-files --skip-update-check
