@@ -34,7 +34,7 @@ export interface UseFieldArrayConfig<FieldValue = any> {
   defaultValue?: FieldValue[]
   /** Items the array starts from; also its pristine reference */
   initialValue?: FieldValue[]
-  /** Compares two arrays to decide whether the field is dirty; `===` by default */
+  /** Compares two arrays to decide whether the field is dirty; by default, the same items in the same order */
   isEqual?: (a: FieldValue[], b: FieldValue[]) => boolean
   /** Field-state keys to subscribe to; defaults to `length`, `value` and `error` */
   subscription?: FieldSubscription

@@ -3,12 +3,15 @@ import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
-import { isOverflown } from '@toptal/picasso-utils'
 import { ChevronRight16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { ButtonAction } from '@toptal/picasso-button'
 
 import { replaceLineBreaksWithTags } from './utils'
+
+// The scroll and client sizes are rounded separately; a clamped line is far
+// taller than this
+const ROUNDING_TOLERANCE = 1
 
 export interface Props extends BaseProps {
   /** Content of the component */
@@ -67,13 +70,19 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     }
 
     const updateNeedsTruncation = () => {
-      // Zero size means an unmeasurable environment (jsdom, display: none
-      // container) — keep the previous assumption instead of hiding the toggle
-      if (element.scrollHeight === 0) {
+      // Zero width means an unmeasurable environment (jsdom, display: none
+      // container) — keep the previous assumption instead of hiding the
+      // toggle. Empty content still has its container's width
+      if (element.clientWidth === 0) {
         return
       }
 
-      setNeedsTruncation(isOverflown(element))
+      // The layout box, unlike `getBoundingClientRect()`, ignores transforms
+      // such as a popup's scale-in
+      setNeedsTruncation(
+        element.scrollHeight - element.clientHeight > ROUNDING_TOLERANCE ||
+          element.scrollWidth - element.clientWidth > ROUNDING_TOLERANCE
+      )
     }
 
     updateNeedsTruncation()

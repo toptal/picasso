@@ -2532,9 +2532,6 @@ importers:
       '@toptal/picasso-typography':
         specifier: workspace:*
         version: link:../Typography
-      '@toptal/picasso-utils':
-        specifier: workspace:*
-        version: link:../Utils
       react:
         specifier: ^18.2.0
         version: 18.2.0

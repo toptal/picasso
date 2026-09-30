@@ -1,8 +1,8 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react'
-import { createElement, useRef } from 'react'
+import { createElement, Fragment, useRef, useState } from 'react'
+import type { FormApi } from 'final-form'
 import { useForm } from 'react-final-form'
 import {
-  ExternallyChanged as UntypedExternallyChanged,
   OnBlur as UntypedOnBlur,
   OnFocus as UntypedOnFocus,
 } from 'react-final-form-listeners'
@@ -57,12 +57,27 @@ const keepListenerFieldState = <Props extends { name: string }>(
   return KeptListener
 }
 
+// The value a listener compares the first change against. react-final-form
+// 7.0.1 renders an `allowNull` field whose initial value is `null` as `null`
+// on its first render, whatever the form stores, so a remount would look like
+// a change from `null`
+// TODO: [PF-2522] drop once react-final-form's first render reads the stored
+// value, and use react-final-form-listeners' `OnChange` again
+const getStartingValue = <Value>(
+  form: FormApi,
+  name: string,
+  renderedValue: Value
+): Value => {
+  const stored = form.getFieldState(name)
+  const isForcedToNull =
+    renderedValue === null && stored?.initial === null && stored.value !== null
+
+  // What react-final-form renders for a field without `format`
+  return isForcedToNull ? stored.value ?? '' : renderedValue
+}
+
 // react-final-form-listeners' `OnChange`, except that it starts from the value
-// the form stores: react-final-form 7.0.1 renders an `allowNull` field whose
-// initial value is `null` as `null` on its first render, so a remount reported
-// the stored value as a change from `null`
-// TODO: [PF-2522] use react-final-form-listeners' `OnChange` again once
-// react-final-form's first render reads the stored value
+// the form stores
 export const OnChange = <
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   FieldValue = any
@@ -79,16 +94,7 @@ export const OnChange = <
 
   useIsomorphicLayoutEffect(() => {
     if (!previous.current) {
-      const stored = form.getFieldState(name)
-      const isForcedToNull =
-        input.value === null &&
-        stored?.initial === null &&
-        stored.value !== null
-
-      previous.current = {
-        // What react-final-form renders for a field without `format`
-        value: isForcedToNull ? stored.value ?? '' : input.value,
-      }
+      previous.current = { value: getStartingValue(form, name, input.value) }
 
       return
     }
@@ -116,7 +122,35 @@ export const OnFocus = keepListenerFieldState(UntypedOnFocus, 'OnFocus') as (
   props: OnFocusProps
 ) => ReactElement | null
 
-export const ExternallyChanged = keepListenerFieldState(
-  UntypedExternallyChanged,
-  'ExternallyChanged'
-) as (props: ExternallyChangedProps) => ReactElement | null
+// react-final-form-listeners 1's `ExternallyChanged`, the one Picasso shipped
+// with react-final-form 6: version 3 ignores the first change after it mounts,
+// so a value that changes once from outside would never be reported
+export const ExternallyChanged = ({
+  name,
+  children,
+}: ExternallyChangedProps): ReactElement => {
+  const form = useForm('ExternallyChanged')
+  const { input, meta } = useField(name, {
+    allowNull: true,
+    subscription: { active: true, value: true },
+  })
+  const [externallyChanged, setExternallyChanged] = useState(false)
+  const previous = useRef<{ value: unknown } | null>(null)
+
+  useIsomorphicLayoutEffect(() => {
+    if (!previous.current) {
+      previous.current = { value: getStartingValue(form, name, input.value) }
+
+      return
+    }
+
+    if (!Object.is(input.value, previous.current.value)) {
+      previous.current.value = input.value
+      setExternallyChanged(!meta.active)
+    }
+  })
+
+  return createElement(Fragment, null, children(externallyChanged))
+}
+
+ExternallyChanged.displayName = 'ExternallyChanged'
