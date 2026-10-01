@@ -11,23 +11,32 @@ exports[`TimePicker renders 1`] = `
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg"
+        class="bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg pointer-fine:[&::-webkit-calendar-picker"
         step="60"
         type="time"
         value="21:00"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto pointer-events"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto"
       >
-        <svg
-          class="fill-current inline-block text-inherit h-[1em] align-[-.125em] bg-white absolute right-[0.625rem] pointer-events m-0 select-none grow shrink basis-0"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
+        <button
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          aria-label="Choose time"
+          class="absolute right-[0.625rem] flex m-0 p-0 border-none bg-white text-inherit select-none cursor-pointer disabled:cursor-default pointer-events pointer-fine:pointer-events"
+          tabindex="-1"
+          type="button"
         >
-          <path
-            d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM7 8H4V7h3V2h1v6H7Z"
-          />
-        </svg>
+          <svg
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM7 8H4V7h3V2h1v6H7Z"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
