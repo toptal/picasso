@@ -18,4 +18,4 @@ export default {
     environment
   )} productName='Picasso'/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

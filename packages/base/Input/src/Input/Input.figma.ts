@@ -14,6 +14,10 @@ const hint = figma.selectedInstance.getBoolean('Show Hint', {
   true: 'Hint text',
   false: undefined,
 })
+const label = figma.selectedInstance.getBoolean('Show Label')
+  ? `
+    <Form.Label>Label</Form.Label>`
+  : ''
 const size = figma.selectedInstance.getEnum('Size', {
   Small: 'small',
   Medium: 'medium',
@@ -34,7 +38,7 @@ const icon = iconPosition
   ? figma.helpers.react.jsxElement('<Search16 />')
   : undefined
 
-export default isTextField
+export default (isTextField
   ? {
       id: 'Input',
       imports: [
@@ -49,8 +53,7 @@ export default isTextField
   <Form.Field${figma.helpers.react.renderProp(
     'hint',
     hint
-  )}${figma.helpers.react.renderProp('error', error)}>
-    <Form.Label>Label</Form.Label>
+  )}${figma.helpers.react.renderProp('error', error)}>${label}
     <Input${figma.helpers.react.renderProp(
       'size',
       size
@@ -77,4 +80,4 @@ export default isTextField
       // Select, Number, With Char Counter, Currency and Tags are separate
       // Picasso components, not variants of Input
       example: figma.code`// Not mapped: this Input Field variant is a separate Picasso component (Select, NumberInput, ...)`,
-    }
+    }) satisfies CodeConnectTemplate

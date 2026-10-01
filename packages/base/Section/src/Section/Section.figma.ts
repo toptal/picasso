@@ -22,7 +22,7 @@ const actions = figma.selectedInstance.getEnum('Buttons', {
     "<ButtonCircular variant='flat' icon={<Settings16 />} />"
   ),
   Mixed: figma.helpers.react.jsxElement(
-    "<Button size='small' variant='secondary'>\n          Action\n        </Button>"
+    "<>\n          <Button size='small' variant='secondary'>\n            Action\n          </Button>\n          <ButtonCircular variant='flat' icon={<Settings16 />} />\n        </>"
   ),
 })
 
@@ -39,4 +39,4 @@ export default {
     subtitle
   )}${figma.helpers.react.renderProp('actions', actions)}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

@@ -19,4 +19,4 @@ export default {
     : figma.code`<Note>
   <Note.Content>Custom slot content</Note.Content>
 </Note>`,
-}
+} satisfies CodeConnectTemplate

@@ -23,4 +23,4 @@ export default {
             </Button>
           </ApplicationUpdateNotification.Actions>)}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

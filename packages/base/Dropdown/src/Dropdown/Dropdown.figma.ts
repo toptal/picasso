@@ -15,4 +15,4 @@ export default {
         Open Dropdown
         <Dropdown.Arrow />
       </Dropdown>`,
-}
+} satisfies CodeConnectTemplate

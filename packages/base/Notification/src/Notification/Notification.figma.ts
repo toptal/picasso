@@ -9,18 +9,38 @@ const variant = figma.selectedInstance.getEnum('Variant', {
   Success: 'green',
   Error: 'red',
 })
+// Only the Default variant has the CTA buttons
+const actions =
+  variant === 'white'
+    ? [
+        figma.selectedInstance.getBoolean('CTA Action 1') &&
+          '    <Button.Action>Action</Button.Action>',
+        figma.selectedInstance.getBoolean('CTA Action 2') &&
+          '    <Button.Action>Action</Button.Action>',
+      ].filter(Boolean)
+    : []
 
 export default {
   id: 'Notification',
-  imports: ["import { Notification } from '@toptal/picasso'"],
-  example:
-    variant === 'white'
-      ? figma.code`<Notification variant='white' onClose={() => {}}>
+  imports: [
+    actions.length
+      ? "import { Button, Notification } from '@toptal/picasso'"
+      : "import { Notification } from '@toptal/picasso'",
+  ],
+  example: actions.length
+    ? figma.code`<Notification${figma.helpers.react.renderProp(
+        'variant',
+        variant
+      )} onClose={() => {}}>
   Notification message
-  <Notification.Actions>Actions go here</Notification.Actions>
+  <Notification.Actions>
+${actions.join('\n')}
+  </Notification.Actions>
 </Notification>`
-      : figma.code`<Notification${figma.helpers.react.renderProp(
-          'variant',
-          variant
-        )}>Notification message</Notification>`,
-}
+    : figma.code`<Notification${figma.helpers.react.renderProp(
+        'variant',
+        variant
+      )} onClose={() => {}}>
+  Notification message
+</Notification>`,
+} satisfies CodeConnectTemplate

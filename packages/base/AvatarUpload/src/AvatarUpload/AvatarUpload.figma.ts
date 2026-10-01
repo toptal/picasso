@@ -30,4 +30,4 @@ export default {
     status
   )} onDropAccepted={() => { }}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

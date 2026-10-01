@@ -39,7 +39,7 @@ const imported = [
   .filter(Boolean)
   .join(', ')
 
-export default layout === 'With Edit' || layout === 'With Edit and Remove'
+export default (layout === 'With Edit' || layout === 'With Edit and Remove'
   ? {
       id: 'Tag',
       imports: [],
@@ -64,4 +64,4 @@ export default layout === 'With Edit' || layout === 'With Edit and Remove'
   Label
 </Tag>`,
       metadata: { nestable: true },
-    }
+    }) satisfies CodeConnectTemplate

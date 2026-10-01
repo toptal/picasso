@@ -28,7 +28,7 @@ const examples: Record<string, ReturnType<typeof figma.code>> = {
 }
 const example = examples[String(variant)]
 
-export default example
+export default (example
   ? {
       id: 'OverviewBlock.Group',
       imports: ["import { OverviewBlock } from '@toptal/picasso'"],
@@ -39,4 +39,4 @@ export default example
       imports: [],
       // "Slots" holds designer-defined content, so there is no representative snippet
       example: figma.code`// Not mapped: slot content is designer-defined`,
-    }
+    }) satisfies CodeConnectTemplate

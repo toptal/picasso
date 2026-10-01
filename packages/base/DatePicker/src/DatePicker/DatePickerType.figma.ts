@@ -16,4 +16,4 @@ export default {
     dropdownNavigation
   )} onChange={() => { }}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

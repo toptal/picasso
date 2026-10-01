@@ -22,4 +22,4 @@ export default {
     disabled
   )}${figma.helpers.react.renderProp('status', status)}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

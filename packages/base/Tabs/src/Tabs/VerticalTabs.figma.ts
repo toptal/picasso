@@ -12,4 +12,4 @@ export default {
         <Tabs.Tab label='Label'/>
         <Tabs.Tab label='Label'/>
       </Tabs>`,
-}
+} satisfies CodeConnectTemplate

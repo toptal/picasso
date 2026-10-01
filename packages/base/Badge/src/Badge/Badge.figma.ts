@@ -22,4 +22,4 @@ export default {
     variant
   )}${figma.helpers.react.renderProp('size', size)} content={42}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

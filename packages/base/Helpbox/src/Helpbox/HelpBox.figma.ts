@@ -24,4 +24,4 @@ export default {
       <Helpbox.Content>Content</Helpbox.Content>
     </Helpbox>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

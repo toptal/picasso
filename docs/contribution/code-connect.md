@@ -189,13 +189,13 @@ Where Figma property names, values, or semantics differ from the React API, this
 
 Figma "Tag Filled" has no direct React counterpart — `Tag` is always outlined (`bg-white`). The closest component is `Tag.Checkable`, where `checked=true` renders a green (high contrast) tag and `checked=false` renders a light-grey (low contrast) tag.
 
-| Figma property | Figma values                                           | React prop | React values | Notes                                                           |
-| -------------- | ------------------------------------------------------ | ---------- | ------------ | --------------------------------------------------------------- |
-| `Style`        | `High Contrast`                                        | `checked`  | `true`       | Maps to `Tag.Checkable` green variant                           |
-| `Style`        | `Low Contrast`                                         | `checked`  | `false`      | Maps to `Tag.Checkable` light-grey variant                      |
-| `Layout`       | `Basic` / `With Icon`                                  | structural | `icon` prop  | Two connections, one per layout                                 |
-| `Layout`       | `With Connection` / `With Badge` / `With Icon + Badge` | —          | —            | Not mapped; `Tag.Checkable` has no `endAdornment` prop          |
-| `Layout`       | `With Indicator + Icon`                                | —          | —            | Not mapped; no React component combines `indicator` with `icon` |
+| Figma property | Figma values                                           | React prop  | React values | Notes                                                                                                          |
+| -------------- | ------------------------------------------------------ | ----------- | ------------ | -------------------------------------------------------------------------------------------------------------- |
+| `Style`        | `High Contrast`                                        | `checked`   | `true`       | Maps to `Tag.Checkable` green variant                                                                          |
+| `Style`        | `Low Contrast`                                         | `checked`   | `false`      | Maps to `Tag.Checkable` light-grey variant                                                                     |
+| `Layout`       | `Basic` / `With Icon`                                  | structural  | `icon` prop  | `With Icon` adds `icon`                                                                                        |
+| `Layout`       | `With Connection` / `With Badge` / `With Icon + Badge` | —           | —            | Rendered without the badge or connection, with a comment saying so; `Tag.Checkable` has no `endAdornment` prop |
+| `Layout`       | `With Indicator + Icon`                                | `icon` prop | —            | Rendered with the icon only, with a comment saying so; `Tag.Checkable` has no `indicator` prop                 |
 
 ### Tag Rectangle
 
@@ -220,7 +220,7 @@ The Figma "Input Field" `Text Field` variant maps to `<Input />` wrapped in `<Fo
 | `Icon Left`    | `true` / `false`                                                | `icon` + `iconPosition='start'`                       | Connections with `Icon Right: false`                                                         |
 | `Icon Right`   | `true` / `false`                                                | `icon` + `iconPosition='end'`                         | Separate connections with `Icon Right: true`; wins when both are on — `Input` takes one icon |
 | `Show Hint`    | `true` / `false`                                                | `hint` on `Form.Field`                                | Mapped via `getBoolean`                                                                      |
-| `Show Label`   | `true` / `false`                                                | `Form.Label` child                                    | Not mapped — `Form.Label` is always rendered in examples (required for accessibility)        |
+| `Show Label`   | `true` / `false`                                                | `Form.Label` child                                    | Mapped via `getBoolean`                                                                      |
 | `Variant`      | `Select` / `Number` / `With Char Counter` / `Currency` / `Tags` | —                                                     | Not mapped; separate Picasso components                                                      |
 | Layout         | Separate component sets (Vertical / Horizontal)                 | `layout` on `Form`                                    | Vertical → `<Form>` (default); Horizontal → `<Form layout='horizontal'>`                     |
 
@@ -232,7 +232,7 @@ Unlike the old parser, templates run as JavaScript in Figma, so conditionals, in
 
 When a Figma variant has no Picasso equivalent, return a template whose example says so (`// Not mapped: …`). Otherwise that variant renders whichever snippet the code falls through to.
 
-Template files are excluded from `tsconfig.base.json` because they import the `figma` module, which only exists inside Figma. `pnpm typecheck:figma` typechecks them against the types the CLI ships (`tsconfig.figma.json`), and the Code Connect workflow runs it on every pull request that touches a template.
+Template files are excluded from `tsconfig.base.json` because they import the `figma` module, which only exists inside Figma. `pnpm typecheck:figma` typechecks them against the types the CLI ships (`tsconfig.figma.json`), and each default export ends with `satisfies CodeConnectTemplate` (declared in `figma-template.d.ts`) so a missing or misspelled `id`, `imports` or `example` fails the check, and the Code Connect workflow runs it on every pull request that touches a template.
 
 ### Storybook integration is not compatible with Picasso's story format
 

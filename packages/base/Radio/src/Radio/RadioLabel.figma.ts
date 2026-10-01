@@ -16,4 +16,4 @@ export default {
     disabled
   )} onChange={() => { }}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

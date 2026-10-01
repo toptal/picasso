@@ -8,4 +8,4 @@ export default {
   id: 'Calendar',
   imports: ["import { Calendar } from '@toptal/picasso'"],
   example: figma.code`<Calendar disableDays={{ dayOfWeek: [0, 6] }} onChange={() => { }}/>`,
-}
+} satisfies CodeConnectTemplate

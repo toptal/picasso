@@ -15,4 +15,4 @@ export default {
     <Button>Confirm</Button>
   </Modal.Actions>
 </Modal>`,
-}
+} satisfies CodeConnectTemplate

@@ -31,6 +31,8 @@ const indicator = isSolid
       'Blue Light': 'light-blue',
     })
 
+const content = figma.selectedInstance.getString('Content')
+
 export default {
   id: 'Tag.Rectangular',
   imports: ["import { Tag } from '@toptal/picasso'"],
@@ -40,6 +42,6 @@ export default {
   )}${figma.helpers.react.renderProp(
     'indicator',
     indicator
-  )}>Label</Tag.Rectangular>`,
+  )}>${content}</Tag.Rectangular>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

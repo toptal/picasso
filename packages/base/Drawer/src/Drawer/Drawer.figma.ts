@@ -22,4 +22,4 @@ export default {
         Drawer content
       </Drawer>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

@@ -10,4 +10,4 @@ export default {
   example: figma.code`<EmptyState.Collection>
         No items for selected search criteria.
       </EmptyState.Collection>`,
-}
+} satisfies CodeConnectTemplate

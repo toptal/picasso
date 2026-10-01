@@ -14,4 +14,4 @@ export default {
     showPercentage
   )}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

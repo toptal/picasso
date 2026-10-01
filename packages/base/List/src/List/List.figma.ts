@@ -35,4 +35,4 @@ export default {
         <List.Item>List item three</List.Item>
       </List>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

@@ -40,4 +40,4 @@ export default {
         ${figma.helpers.react.renderChildren(children)}
       </Button>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

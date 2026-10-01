@@ -28,4 +28,4 @@ export default {
     indeterminate
   )} onChange={() => { }}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

@@ -25,4 +25,4 @@ export default {
     size
   )}${figma.helpers.react.renderProp('value', value)}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

@@ -20,4 +20,4 @@ export default {
     size
   )} src='https://example.com/avatar.jpg' name='John Doe'/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

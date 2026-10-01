@@ -15,4 +15,4 @@ export default {
       : size === 'Extreme'
       ? figma.code`<Pagination activePage={5} totalPages={20} siblingCount={2} onPageChange={() => {}} />`
       : figma.code`<Pagination activePage={1} totalPages={10} onPageChange={() => {}} />`,
-}
+} satisfies CodeConnectTemplate

@@ -21,4 +21,4 @@ export default {
     numberOfMonths
   )}${figma.helpers.react.renderProp('footer', footer)} onChange={() => { }}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

@@ -10,27 +10,32 @@ const checked = figma.selectedInstance.getEnum('Style', {
   'High Contrast': true,
   'Low Contrast': false,
 })
-const layout = figma.selectedInstance.getPropertyValue('Layout')
-const hasIcon = layout === 'With Icon'
+const hasIcon = figma.selectedInstance.getEnum('Layout', {
+  'With Icon': true,
+  'With Icon + Badge': true,
+  'With Indicator + Icon': true,
+})
+// Tag.Checkable has no endAdornment or indicator, so these parts are left out
+const missing = figma.selectedInstance.getEnum('Layout', {
+  'With Icon + Badge': 'badge',
+  'With Badge': 'badge',
+  'With Connection': 'connection',
+  'With Indicator + Icon': 'indicator',
+})
 
-export default layout === 'Basic' || hasIcon
-  ? {
-      id: 'Tag.Checkable',
-      imports: [
-        hasIcon
-          ? "import { Settings16, Tag } from '@toptal/picasso'"
-          : "import { Tag } from '@toptal/picasso'",
-      ],
-      example: figma.code`<Tag.Checkable${figma.helpers.react.renderProp(
-        'checked',
-        checked
-      )}${hasIcon ? ' icon={<Settings16 />}' : ''} onChange={() => {}}>
+export default {
+  id: 'Tag.Checkable',
+  imports: [
+    hasIcon
+      ? "import { Settings16, Tag } from '@toptal/picasso'"
+      : "import { Tag } from '@toptal/picasso'",
+  ],
+  example: figma.code`${
+    missing ? `// Tag.Checkable has no ${missing}; it is left out\n` : ''
+  }<Tag.Checkable${figma.helpers.react.renderProp('checked', checked)}${
+    hasIcon ? ' icon={<Settings16 />}' : ''
+  } onChange={() => {}}>
   Label
 </Tag.Checkable>`,
-      metadata: { nestable: true },
-    }
-  : {
-      id: 'Tag.Checkable',
-      imports: [],
-      example: figma.code`// Not mapped: Tag.Checkable has no endAdornment or indicator`,
-    }
+  metadata: { nestable: true },
+} satisfies CodeConnectTemplate

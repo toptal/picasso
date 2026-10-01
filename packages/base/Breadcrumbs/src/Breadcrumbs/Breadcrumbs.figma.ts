@@ -30,4 +30,4 @@ export default {
   example: figma.code`<Breadcrumbs>
 ${items.join('\n')}
 </Breadcrumbs>`,
-}
+} satisfies CodeConnectTemplate

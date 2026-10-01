@@ -40,4 +40,4 @@ export default {
   Alert message
 </Alert>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

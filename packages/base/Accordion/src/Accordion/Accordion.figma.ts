@@ -28,4 +28,4 @@ export default {
       <Accordion.Summary>Summary</Accordion.Summary>
     </Accordion>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

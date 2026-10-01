@@ -10,4 +10,4 @@ export default {
   example: figma.code`<Tooltip content='Tooltip text' compact>
         <span>Hover me</span>
       </Tooltip>`,
-}
+} satisfies CodeConnectTemplate

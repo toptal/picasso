@@ -8,4 +8,4 @@ export default {
   id: 'Slider',
   imports: ["import { Slider } from '@toptal/picasso'"],
   example: figma.code`<Slider value={[20, 80]} onChange={() => { }} tooltip='on'/>`,
-}
+} satisfies CodeConnectTemplate

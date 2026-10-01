@@ -24,4 +24,4 @@ export default {
   <div>Slide 2</div>
   <div>Slide 3</div>
 </Carousel>`,
-}
+} satisfies CodeConnectTemplate

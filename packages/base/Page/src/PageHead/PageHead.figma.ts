@@ -21,4 +21,4 @@ export default {
         </PageHead.Main>
       </PageHead>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

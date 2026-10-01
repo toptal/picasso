@@ -8,4 +8,4 @@ export default {
   id: 'DatePicker',
   imports: ["import { DatePicker } from '@toptal/picasso'"],
   example: figma.code`<DatePicker range value={undefined} onChange={() => { }}/>`,
-}
+} satisfies CodeConnectTemplate

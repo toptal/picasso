@@ -29,7 +29,7 @@ const templates: Record<
 }
 const template = templates[String(variant)]
 
-export default template
+export default (template
   ? {
       ...template,
       imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
@@ -39,4 +39,4 @@ export default template
       imports: [],
       // Stepper and Pagination have no SkeletonLoader equivalent
       example: figma.code`// Not mapped: no SkeletonLoader equivalent for this variant`,
-    }
+    }) satisfies CodeConnectTemplate

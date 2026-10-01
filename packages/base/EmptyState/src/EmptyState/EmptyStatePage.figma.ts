@@ -25,4 +25,4 @@ export default {
     : figma.code`<EmptyState.Page image={<Search16 />} title='Empty State Headline'>
   Add an optional description with more context on the empty state.
 </EmptyState.Page>`,
-}
+} satisfies CodeConnectTemplate

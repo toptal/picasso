@@ -8,4 +8,4 @@ export default {
   id: 'QueryBuilder',
   imports: ["import { QueryBuilder } from '@toptal/picasso-query-builder'"],
   example: figma.code`<QueryBuilder fields={[]} query={{ combinator: 'and', rules: [] }} onQueryChange={() => { }}/>`,
-}
+} satisfies CodeConnectTemplate

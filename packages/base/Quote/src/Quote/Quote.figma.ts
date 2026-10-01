@@ -8,4 +8,4 @@ export default {
   id: 'Quote',
   imports: ["import { Quote } from '@toptal/picasso'"],
   example: figma.code`<Quote>Quoted text goes here.</Quote>`,
-}
+} satisfies CodeConnectTemplate

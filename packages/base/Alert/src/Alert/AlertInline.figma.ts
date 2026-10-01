@@ -19,4 +19,4 @@ export default {
     variant
   )}>Alert message</Alert.Inline>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

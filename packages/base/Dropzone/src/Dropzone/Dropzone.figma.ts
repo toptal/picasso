@@ -16,4 +16,4 @@ export default {
     disabled
   )}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

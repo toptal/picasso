@@ -15,4 +15,4 @@ export default {
   imports: ["import { Loader } from '@toptal/picasso'"],
   example: figma.code`<Loader${figma.helpers.react.renderProp('size', size)}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

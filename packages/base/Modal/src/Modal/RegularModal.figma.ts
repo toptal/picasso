@@ -12,19 +12,28 @@ const size = figma.selectedInstance.getEnum('Size', {
   lg: 'large',
   xl: 'xlarge',
 })
+const hasActions = figma.selectedInstance.getBoolean('Footer Actions')
 
 export default {
   id: 'Modal',
-  imports: ["import { Button, Modal } from '@toptal/picasso'"],
+  imports: [
+    hasActions
+      ? "import { Button, Modal } from '@toptal/picasso'"
+      : "import { Modal } from '@toptal/picasso'",
+  ],
   example: figma.code`<Modal open${figma.helpers.react.renderProp(
     'size',
     size
   )} onClose={() => {}}>
   <Modal.Title>Title</Modal.Title>
-  <Modal.Content>Modal content</Modal.Content>
+  <Modal.Content>Modal content</Modal.Content>${
+    hasActions
+      ? `
   <Modal.Actions>
     <Button variant='secondary'>Cancel</Button>
     <Button>Confirm</Button>
-  </Modal.Actions>
+  </Modal.Actions>`
+      : ''
+  }
 </Modal>`,
-}
+} satisfies CodeConnectTemplate

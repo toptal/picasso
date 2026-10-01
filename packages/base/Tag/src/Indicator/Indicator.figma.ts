@@ -21,4 +21,4 @@ export default {
     color
   )}/>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

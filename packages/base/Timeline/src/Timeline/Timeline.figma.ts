@@ -25,4 +25,4 @@ export default {
     icon
   )} hasConnector={false}>Content</Timeline.Row>
 </Timeline>`,
-}
+} satisfies CodeConnectTemplate

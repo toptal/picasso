@@ -10,4 +10,4 @@ export default {
   example: figma.code`<Drawer open title='Drawer title' onClose={() => { }}>
         Drawer content
       </Drawer>`,
-}
+} satisfies CodeConnectTemplate

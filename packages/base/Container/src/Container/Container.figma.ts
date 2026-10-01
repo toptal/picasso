@@ -21,4 +21,4 @@ export default {
     variant
   )}>Content</Container>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

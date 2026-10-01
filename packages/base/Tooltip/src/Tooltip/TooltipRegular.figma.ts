@@ -21,4 +21,4 @@ export default {
         <span>Hover me</span>
       </Tooltip>`,
   metadata: { nestable: true },
-}
+} satisfies CodeConnectTemplate

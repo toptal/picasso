@@ -23,4 +23,4 @@ export default {
           </Table.Row>
         </Table.Body>
       </Table>`,
-}
+} satisfies CodeConnectTemplate
