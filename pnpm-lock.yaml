@@ -2887,9 +2887,15 @@ importers:
       '@toptal/picasso-input':
         specifier: workspace:*
         version: link:../Input
+      '@toptal/picasso-input-adornment':
+        specifier: workspace:*
+        version: link:../InputAdornment
       '@toptal/picasso-outlined-input':
         specifier: workspace:*
         version: link:../OutlinedInput
+      '@toptal/picasso-popper':
+        specifier: workspace:*
+        version: link:../Popper
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
