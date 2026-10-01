@@ -6,19 +6,33 @@ import figma from 'figma'
 
 const variant = figma.selectedInstance.getPropertyValue('Variant')
 
-const examples: Record<string, ReturnType<typeof figma.code>> = {
-  Square: figma.code`<SkeletonLoader.Media variant='image' width={80} height={80} />`,
-  Circle: figma.code`<SkeletonLoader.Media variant='image' circle width={80} height={80} />`,
-  Button: figma.code`<SkeletonLoader.Button />`,
-  'Text Line': figma.code`<SkeletonLoader.Typography rows={1} />`,
+const templates: Record<
+  string,
+  { id: string; example: ReturnType<typeof figma.code> }
+> = {
+  Square: {
+    id: 'SkeletonLoader.Media',
+    example: figma.code`<SkeletonLoader.Media variant='image' width={80} height={80} />`,
+  },
+  Circle: {
+    id: 'SkeletonLoader.Media',
+    example: figma.code`<SkeletonLoader.Media variant='image' circle width={80} height={80} />`,
+  },
+  Button: {
+    id: 'SkeletonLoader.Button',
+    example: figma.code`<SkeletonLoader.Button />`,
+  },
+  'Text Line': {
+    id: 'SkeletonLoader.Typography',
+    example: figma.code`<SkeletonLoader.Typography rows={1} />`,
+  },
 }
-const example = examples[String(variant)]
+const template = templates[String(variant)]
 
-export default example
+export default template
   ? {
-      id: 'SkeletonLoader.Media',
+      ...template,
       imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
-      example,
     }
   : {
       id: 'SkeletonLoader.Media',

@@ -69,6 +69,7 @@ export default isTextField
       )} placeholder='Placeholder' />
   </Form.Field>
 </Form>`,
+      metadata: { nestable: true },
     }
   : {
       id: 'Input',

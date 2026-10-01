@@ -41,4 +41,5 @@ export default {
     'indicator',
     indicator
   )}>Label</Tag.Rectangular>`,
+  metadata: { nestable: true },
 }

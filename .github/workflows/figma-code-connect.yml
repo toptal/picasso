@@ -15,12 +15,14 @@ on:
       - '**/*.figma.ts'
       - 'figma.config.json'
       - 'tsconfig.figma.json'
+      - 'package.json'
       - '.github/workflows/figma-code-connect.yml'
   pull_request:
     paths:
       - '**/*.figma.ts'
       - 'figma.config.json'
       - 'tsconfig.figma.json'
+      - 'package.json'
       - '.github/workflows/figma-code-connect.yml'
   workflow_dispatch:
 

@@ -27,6 +27,7 @@ export default layout === 'Basic' || hasIcon
       )}${hasIcon ? ' icon={<Settings16 />}' : ''} onChange={() => {}}>
   Label
 </Tag.Checkable>`,
+      metadata: { nestable: true },
     }
   : {
       id: 'Tag.Checkable',

@@ -63,4 +63,5 @@ export default layout === 'With Edit' || layout === 'With Edit and Remove'
       )}${figma.helpers.react.renderProp('endAdornment', endAdornment)}>
   Label
 </Tag>`,
+      metadata: { nestable: true },
     }
