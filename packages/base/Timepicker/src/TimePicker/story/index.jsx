@@ -30,3 +30,13 @@ page
     },
     'base/Timepicker'
   )
+  .addExample(
+    'TimePicker/story/ColumnLabels.example.tsx',
+    {
+      title: 'Column labels',
+      description:
+        'Use `hourLabel` and `minuteLabel` to rename the columns of the time dropdown',
+      takeScreenshot: false,
+    },
+    'base/Timepicker'
+  )
