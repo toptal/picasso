@@ -1,6 +1,7 @@
 import { useFieldArray as useFinalFormFieldArray } from 'react-final-form-arrays'
 
 import { keepFieldState } from '../FinalField/keep-field-state'
+import { defaultIsEqual } from './default-is-equal'
 import type { FieldArrayRenderProps, UseFieldArrayConfig } from './types'
 
 /** react-final-form-arrays' `useFieldArray`, keeping the items when it remounts */
@@ -14,5 +15,6 @@ export const useFieldArray = keepFieldState(
     name: string,
     config?: UseFieldArrayConfig<FieldValue>
   ) => FieldArrayRenderProps<FieldValue>,
-  'useFieldArray'
+  'useFieldArray',
+  defaultIsEqual
 )

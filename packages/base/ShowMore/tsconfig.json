@@ -8,7 +8,6 @@
     { "path": "../../shared" },
     { "path": "../Button" },
     { "path": "../Icons" },
-    { "path": "../Typography" },
-    { "path": "../Utils" }
+    { "path": "../Typography" }
   ]
 }

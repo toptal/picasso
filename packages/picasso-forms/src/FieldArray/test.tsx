@@ -44,6 +44,14 @@ const PushButton = ({
   </button>
 )
 
+const PopButton = ({
+  fields,
+}: Pick<FieldArrayRenderProps<Skill>, 'fields'>) => (
+  <button type='button' onClick={() => fields.pop()}>
+    pop
+  </button>
+)
+
 const Toggleable = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(true)
 
@@ -65,6 +73,14 @@ const FirstValue = ({ value }: { value: unknown }) => {
 
 const pushAndRemount = () => {
   fireEvent.click(screen.getByRole('button', { name: 'push' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+}
+
+// Stores an array equal to the initial one item by item, but a new array
+const pushPopAndRemount = () => {
+  fireEvent.click(screen.getByRole('button', { name: 'push' }))
+  fireEvent.click(screen.getByRole('button', { name: 'pop' }))
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 }
@@ -187,6 +203,26 @@ describe('FieldArray', () => {
     expect(screen.getByRole('status')).toHaveTextContent('3')
   })
 
+  it('reports equal items as pristine on its first render after a remount', () => {
+    renderForm(
+      <Toggleable>
+        <FieldArray<Skill> name='skills' subscription={{ pristine: true }}>
+          {({ fields, meta }) => (
+            <>
+              <FirstValue value={meta.pristine} />
+              <PushButton fields={fields} />
+              <PopButton fields={fields} />
+            </>
+          )}
+        </FieldArray>
+      </Toggleable>
+    )
+
+    pushPopAndRemount()
+
+    expect(screen.getByRole('status')).toHaveTextContent('true')
+  })
+
   describe('useFieldArray', () => {
     it('returns the fields of the named array, typed by the item', () => {
       const Skills = () => {
@@ -257,6 +293,32 @@ describe('FieldArray', () => {
       pushAndRemount()
 
       expect(screen.getByRole('status')).toHaveTextContent('3')
+    })
+
+    it('reports equal items as pristine on the first render after a remount', () => {
+      const Skills = () => {
+        const { fields, meta } = useFieldArray<Skill>('skills', {
+          subscription: { pristine: true },
+        })
+
+        return (
+          <>
+            <FirstValue value={meta.pristine} />
+            <PushButton fields={fields} />
+            <PopButton fields={fields} />
+          </>
+        )
+      }
+
+      renderForm(
+        <Toggleable>
+          <Skills />
+        </Toggleable>
+      )
+
+      pushPopAndRemount()
+
+      expect(screen.getByRole('status')).toHaveTextContent('true')
     })
   })
 })

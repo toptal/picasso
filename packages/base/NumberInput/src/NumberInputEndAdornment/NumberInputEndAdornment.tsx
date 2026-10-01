@@ -29,7 +29,7 @@ export interface Props extends BaseProps {
   /** Component size */
   size?: Size
   /** Ref of the input element */
-  inputRef: RefObject<HTMLInputElement>
+  inputRef: RefObject<HTMLInputElement | null>
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

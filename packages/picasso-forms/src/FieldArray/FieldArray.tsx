@@ -3,6 +3,7 @@ import React from 'react'
 import { FieldArray as FinalFormFieldArray } from 'react-final-form-arrays'
 
 import { useKeptFieldState } from '../FinalField/keep-field-state'
+import { defaultIsEqual } from './default-is-equal'
 import type { FieldArrayProps } from './types'
 
 // Upstream 5 returns `ReactNode`, which `@types/react` 17 and 18 reject as a
@@ -16,7 +17,11 @@ const TypedFinalFormFieldArray = FinalFormFieldArray as <FieldValue>(
 export const FieldArray = <FieldValue = any,>(
   props: FieldArrayProps<FieldValue>
 ) => {
-  useKeptFieldState(props.name, {}, 'useFieldArray')
+  useKeptFieldState(
+    props.name,
+    { isEqual: props.isEqual ?? defaultIsEqual },
+    'useFieldArray'
+  )
 
   return <TypedFinalFormFieldArray<FieldValue> {...props} />
 }
