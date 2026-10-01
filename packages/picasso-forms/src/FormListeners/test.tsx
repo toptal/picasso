@@ -34,6 +34,44 @@ const remount = () => {
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 }
 
+const renderWithExternallyChanged = (
+  initialValues: Record<string, unknown>,
+  { toggleable = false } = {}
+) => {
+  const formRef: { current?: FormApi } = {}
+  const CaptureForm = () => {
+    formRef.current = useForm()
+
+    return null
+  }
+  const listener = (
+    <ExternallyChanged name='firstName'>
+      {externallyChanged => (
+        <span data-testid='externally-changed'>
+          {String(externallyChanged)}
+        </span>
+      )}
+    </ExternallyChanged>
+  )
+
+  render(
+    <Form onSubmit={jest.fn()} initialValues={initialValues}>
+      <CaptureForm />
+      <Form.Input name='firstName' placeholder='First name' />
+      {toggleable ? <Toggleable>{listener}</Toggleable> : listener}
+    </Form>
+  )
+
+  return {
+    changeFromOutside: (value: unknown) =>
+      act(() => {
+        formRef.current?.change('firstName', value)
+      }),
+    getExternallyChanged: () =>
+      screen.getByTestId('externally-changed').textContent,
+  }
+}
+
 describe('form listeners', () => {
   it('OnChange reports the new and the previous value', () => {
     const handleChange = jest.fn()
@@ -76,6 +114,26 @@ describe('form listeners', () => {
     expect(screen.getByText('false')).toBeInTheDocument()
   })
 
+  it('ExternallyChanged reports the first change made away from the field', () => {
+    const { changeFromOutside, getExternallyChanged } =
+      renderWithExternallyChanged({ firstName: 'Bruce' })
+
+    changeFromOutside('Clark')
+
+    expect(getExternallyChanged()).toBe('true')
+  })
+
+  it('ExternallyChanged does not report a change made in the field', () => {
+    const { getExternallyChanged } = renderWithExternallyChanged({
+      firstName: 'Bruce',
+    })
+
+    fireEvent.focus(getInput())
+    fireEvent.change(getInput(), { target: { value: 'Clark' } })
+
+    expect(getExternallyChanged()).toBe('false')
+  })
+
   it("OnChange placed before its field keeps the field's `beforeSubmit`", async () => {
     const handleSubmit = jest.fn()
 
@@ -116,6 +174,65 @@ describe('form listeners', () => {
       remount()
 
       expect(handleChange).not.toHaveBeenCalled()
+    })
+
+    it('OnChange does not fire again for a field that started as null', () => {
+      const handleChange = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: null }}>
+          <Toggleable>
+            <OnChange<string | null> name='firstName'>{handleChange}</OnChange>
+            <Form.Input name='firstName' placeholder='First name' />
+          </Toggleable>
+        </Form>
+      )
+
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      handleChange.mockClear()
+      remount()
+
+      expect(handleChange).not.toHaveBeenCalled()
+    })
+
+    it('OnChange alone reports changes from the stored value for a field that started as null', () => {
+      const handleChange = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: null }}>
+          <Form.Input name='firstName' placeholder='First name' />
+          <Toggleable>
+            <OnChange<string | null> name='firstName'>{handleChange}</OnChange>
+          </Toggleable>
+        </Form>
+      )
+
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      handleChange.mockClear()
+      remount()
+
+      expect(handleChange).not.toHaveBeenCalled()
+
+      fireEvent.change(getInput(), { target: { value: 'Diana' } })
+
+      expect(handleChange).toHaveBeenCalledTimes(1)
+      expect(handleChange).toHaveBeenCalledWith('Diana', 'Clark')
+    })
+
+    it('ExternallyChanged does not report the remount of a field that started as null', () => {
+      const { changeFromOutside, getExternallyChanged } =
+        renderWithExternallyChanged({ firstName: null }, { toggleable: true })
+
+      fireEvent.focus(getInput())
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      fireEvent.blur(getInput())
+      remount()
+
+      expect(getExternallyChanged()).toBe('false')
+
+      changeFromOutside('Diana')
+
+      expect(getExternallyChanged()).toBe('true')
     })
 
     it("OnChange alone keeps the field's value", () => {

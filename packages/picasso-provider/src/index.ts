@@ -57,3 +57,8 @@ export * from './utils'
 export * from './Picasso/config'
 
 export { default as Favicon } from './Favicon'
+
+// Rendering this re-export keeps a helmet on the same react-helmet-async
+// instance as the `<HelmetProvider>` that `<Picasso>` renders
+export { Helmet } from 'react-helmet-async'
+export type { HelmetProps } from 'react-helmet-async'

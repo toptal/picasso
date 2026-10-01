@@ -186,4 +186,19 @@ describe('Dropdown', () => {
       expect(getByRole('presentation')).toHaveClass('mt-4')
     })
   })
+
+  // Last, so the popper it opens leaves the snapshots' generated ids alone
+  it('passes the open state to a function child, also as the deprecated `isOpen`', () => {
+    const renderAnchor = jest.fn(({ open }: { open: boolean }) =>
+      open ? 'Close Dropdown' : 'Open Dropdown'
+    )
+    const { getByText } = render(
+      <Dropdown content={<div>Content</div>}>{renderAnchor}</Dropdown>
+    )
+
+    fireEvent.click(getByText('Open Dropdown'))
+
+    expect(getByText('Close Dropdown')).toBeInTheDocument()
+    expect(renderAnchor).toHaveBeenLastCalledWith({ open: true, isOpen: true })
+  })
 })

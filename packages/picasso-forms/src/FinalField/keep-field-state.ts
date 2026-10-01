@@ -194,16 +194,21 @@ export const useKeptFieldState = (
 
 /**
  * Wraps a react-final-form field hook with `useKeptFieldState`, which must
- * hold before the hook's first render and claim after its mount effect
+ * hold before the hook's first render and claim after its mount effect.
+ * `defaultIsEqual` is the hook's own default, which the hold must agree with
  */
 export const keepFieldState = <Hook extends FieldHook>(
   useHook: Hook,
-  hookName: string
+  hookName: string,
+  defaultIsEqual?: KeptFieldConfig['isEqual']
 ) =>
   function useKeptField(name: string, config?: KeptFieldConfig) {
     const form = useForm(hookName)
 
-    hold(form, name, config ?? {})
+    hold(form, name, {
+      ...config,
+      isEqual: config?.isEqual ?? defaultIsEqual,
+    })
 
     const field = useHook(name, config)
 

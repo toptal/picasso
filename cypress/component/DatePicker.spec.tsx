@@ -122,8 +122,36 @@ const TestLateValueInlineEditor = () => {
   )
 }
 
+// A picker whose value changes after a click outside it that left the focus
+// on its input, as a press on another field's reset button does
+const TestValueAfterClickAwayDatePicker = () => {
+  const [value, setValue] = useState<DatePickerValue>(new Date(2020, 11, 24))
+
+  useEffect(() => {
+    const deliver = () => setValue(new Date(2021, 0, 5))
+
+    window.addEventListener('deliver-date', deliver)
+
+    return () => window.removeEventListener('deliver-date', deliver)
+  }, [])
+
+  return (
+    <Container padded='medium'>
+      <DatePicker
+        testIds={{ input: 'date-picker-input' }}
+        value={value}
+        onChange={setValue}
+      />
+      <button type='button' onMouseDown={event => event.preventDefault()}>
+        keep focus
+      </button>
+    </Container>
+  )
+}
+
 const component = 'DatePicker'
 
+// eslint-disable-next-line max-lines-per-function
 describe('DatePicker', () => {
   it('renders autofocus', () => {
     cy.mount(<TestDatePicker autoFocus />)
@@ -168,6 +196,29 @@ describe('DatePicker', () => {
 
     cy.getByTestId('committed').should('contain', '2024-09-30')
     cy.getByTestId('date-picker-input').should('have.value', '09-30-2024')
+  })
+
+  it('shows a value that changes after a click outside left the input focused', () => {
+    cy.mount(<TestValueAfterClickAwayDatePicker />)
+
+    cy.getByTestId('date-picker-input').click()
+    cy.waitForCalendarOpen()
+
+    // a real pointer press, so the prevented `mousedown` keeps the focus
+    cy.contains('button', 'keep focus').realClick()
+
+    cy.getByTestId('date-picker-input')
+      .should('have.focus')
+      .and('have.value', 'Dec 24, 2020')
+
+    // eslint-disable-next-line promise/catch-or-return
+    cy.window().then(win => {
+      win.dispatchEvent(new Event('deliver-date'))
+
+      return cy
+        .getByTestId('date-picker-input')
+        .should('have.value', 'Jan 5, 2021')
+    })
   })
 
   it('renders range', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { RenderResult } from '@toptal/picasso-test-utils'
-import { render, fireEvent } from '@toptal/picasso-test-utils'
+import { render, fireEvent, within } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './ShowMore'
@@ -140,6 +140,59 @@ describe('ShowMore', () => {
       })
 
       expect(container).toMatchSnapshot()
+    })
+  })
+
+  describe('when the content can be measured', () => {
+    const stubLayout = (box: {
+      width: number
+      height: number
+      scrollHeight: number
+    }) => {
+      jest
+        .spyOn(Element.prototype, 'clientWidth', 'get')
+        .mockReturnValue(box.width)
+      jest
+        .spyOn(Element.prototype, 'scrollWidth', 'get')
+        .mockReturnValue(box.width)
+      jest
+        .spyOn(Element.prototype, 'clientHeight', 'get')
+        .mockReturnValue(box.height)
+      jest
+        .spyOn(Element.prototype, 'scrollHeight', 'get')
+        .mockReturnValue(box.scrollHeight)
+    }
+
+    afterEach(() => {
+      jest.restoreAllMocks()
+    })
+
+    it('shows the toggle when the content overflows', () => {
+      stubLayout({ width: 300, height: 88, scrollHeight: 132 })
+
+      const { container } = renderShowMore({ children: 'Long text' })
+
+      expect(within(container).getByText('Show more')).toBeInTheDocument()
+    })
+
+    it('hides the toggle for empty content', () => {
+      stubLayout({ width: 300, height: 0, scrollHeight: 0 })
+
+      const { container } = renderShowMore({ children: '' })
+
+      expect(within(container).queryByText('Show more')).not.toBeInTheDocument()
+    })
+
+    it('hides the toggle for content that fits while a transform scales it', () => {
+      stubLayout({ width: 300, height: 44, scrollHeight: 44 })
+      // A popup's scale-in: the rendered rect is smaller than the layout box
+      jest
+        .spyOn(Element.prototype, 'getBoundingClientRect')
+        .mockReturnValue({ width: 225, height: 33 } as DOMRect)
+
+      const { container } = renderShowMore({ children: 'Two lines of text' })
+
+      expect(within(container).queryByText('Show more')).not.toBeInTheDocument()
     })
   })
 })
