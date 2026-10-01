@@ -50,14 +50,15 @@ Authenticate by opening the printed URL in a browser.
 
 ## File structure
 
-Each `.figma.ts` file lives alongside the component it connects and holds one Figma component. Components connected to several Figma components get a numbered suffix:
+Each `.figma.ts` file lives alongside the component it connects and holds one Figma component. It is named after that Figma component, so a code component connected to several Figma components gets one file per Figma component:
 
 ```
 packages/base/Accordion/src/Accordion/Accordion.figma.ts
-packages/base/Alert/src/Alert/Alert.figma.ts
-packages/base/Alert/src/Alert/Alert_1.figma.ts
-packages/base/Input/src/Input/Input.figma.ts        ← Text Area (multiline Input)
-packages/base/Tag/src/Tag/Tag.figma.ts
+packages/base/Alert/src/Alert/AlertBlock.figma.ts          ← Figma "Alert Block"
+packages/base/Alert/src/Alert/AlertInline.figma.ts         ← Figma "Alert Inline"
+packages/base/Tag/src/Tag/TagOutlined.figma.ts             ← Figma "Tag Outlined"
+packages/base/Tag/src/Tag/TagFilled.figma.ts               ← Figma "Tag Filled"
+packages/base/Tag/src/Tag/TagRectangle.figma.ts            ← Figma "Tag Rectangle"
 ```
 
 The header comments (`// url=`, `// source=`, `// component=`) tell Figma which node the file connects and which code component to link to.
@@ -227,9 +228,11 @@ The Figma "Input Field" `Text Field` variant maps to `<Input />` wrapped in `<Fo
 
 ### Template files are plain JavaScript
 
-Unlike the old parser, templates run as JavaScript in Figma, so conditionals, intermediate variables and computed props work. The migrated files still branch per Figma variant (`// Branch per variant`) where the old files used variant-filtered connections; they can be simplified when touched.
+Unlike the old parser, templates run as JavaScript in Figma, so conditionals, intermediate variables and computed props work. Map each Figma property with `getEnum()` / `getBoolean()` and let `figma.helpers.react.renderProp()` drop props that resolve to `undefined`, instead of writing one branch per variant.
 
-Template files are excluded from `tsconfig.base.json` (they import the `figma` module, which only exists inside Figma). For editor autocomplete, `@figma/code-connect/figma-types` provides its types.
+When a Figma variant has no Picasso equivalent, return a template whose example says so (`// Not mapped: …`). Otherwise that variant renders whichever snippet the code falls through to.
+
+Template files are excluded from `tsconfig.base.json` because they import the `figma` module, which only exists inside Figma. `pnpm typecheck:figma` typechecks them against the types the CLI ships (`tsconfig.figma.json`), and the Code Connect workflow runs it on every pull request that touches a template.
 
 ### Storybook integration is not compatible with Picasso's story format
 

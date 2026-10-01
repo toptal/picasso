@@ -4,36 +4,19 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const hasContent =
+  figma.selectedInstance.getPropertyValue('Variant') === 'Content'
 
-let template
-
-if (figma.selectedInstance.getPropertyValue('Variant') === 'Content') {
-  template = {
-    id: 'Note',
-    imports: ["import { Note } from '@toptal/picasso'"],
-    example: figma.code`<Note>
-      <Note.Title>Title</Note.Title>
-      <Note.Subtitle>Subtitle</Note.Subtitle>
-      <Note.Content>Content</Note.Content>
-    </Note>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Slot') {
-  template = {
-    id: 'Note',
-    imports: ["import { Note } from '@toptal/picasso'"],
-    example: figma.code`<Note>
-      <Note.Content>Custom slot content</Note.Content>
-    </Note>`,
-  }
-} else {
-  template = {
-    id: 'Note',
-    imports: ["import { Note } from '@toptal/picasso'"],
-    example: figma.code`<Note>
-      <Note.Content>Custom slot content</Note.Content>
-    </Note>`,
-  }
+export default {
+  id: 'Note',
+  imports: ["import { Note } from '@toptal/picasso'"],
+  example: hasContent
+    ? figma.code`<Note>
+  <Note.Title>Title</Note.Title>
+  <Note.Subtitle>Subtitle</Note.Subtitle>
+  <Note.Content>Content</Note.Content>
+</Note>`
+    : figma.code`<Note>
+  <Note.Content>Custom slot content</Note.Content>
+</Note>`,
 }
-
-export default template

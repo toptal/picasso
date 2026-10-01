@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": true,
+    "typeRoots": ["./node_modules"],
+    "types": ["@figma/code-connect/figma-types"]
+  },
+  "include": ["packages/**/*.figma.ts"],
+  "exclude": ["**/node_modules", "**/dist-package"]
+}

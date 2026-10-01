@@ -4,130 +4,30 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const count =
+  figma.selectedInstance.getEnum('# of items', {
+    '2 items': 2,
+    '3 items': 3,
+    '4 items': 4,
+    '5 items': 5,
+  }) ?? 3
+const hasCurrent =
+  figma.selectedInstance.getPropertyValue('Style') === 'Current'
 
-let template
+const parents = ['Home', 'Section', 'Subsection', 'Detail', 'Page']
+  .slice(0, hasCurrent ? count - 1 : count)
+  .map(
+    label =>
+      `  <Breadcrumbs.Item as={Link} href='#' variant='action' active={false}>${label}</Breadcrumbs.Item>`
+  )
+const items = hasCurrent
+  ? [...parents, '  <Breadcrumbs.Item active>Current Page</Breadcrumbs.Item>']
+  : parents
 
-if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Current' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '2 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active>Current Page</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Current' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '3 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active>Current Page</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Current' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '4 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Subsection</Breadcrumbs.Item>
-      <Breadcrumbs.Item active>Current Page</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Current' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '5 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Subsection</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Detail</Breadcrumbs.Item>
-      <Breadcrumbs.Item active>Current Page</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Parents' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '2 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Parents' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '3 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Subsection</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Parents' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '4 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Subsection</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Detail</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Style') === 'Parents' &&
-  figma.selectedInstance.getPropertyValue('# of items') === '5 items'
-) {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Subsection</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Detail</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Page</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
-} else {
-  template = {
-    id: 'Breadcrumbs',
-    imports: ["import { Breadcrumbs } from '@toptal/picasso'"],
-    example: figma.code`<Breadcrumbs>
-      <Breadcrumbs.Item active={false}>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Section</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Subsection</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Detail</Breadcrumbs.Item>
-      <Breadcrumbs.Item active={false}>Page</Breadcrumbs.Item>
-    </Breadcrumbs>`,
-  }
+export default {
+  id: 'Breadcrumbs',
+  imports: ["import { Breadcrumbs, Link } from '@toptal/picasso'"],
+  example: figma.code`<Breadcrumbs>
+${items.join('\n')}
+</Breadcrumbs>`,
 }
-
-export default template

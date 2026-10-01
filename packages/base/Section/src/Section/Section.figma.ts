@@ -7,6 +7,7 @@ import figma from 'figma'
 const titleSize = figma.selectedInstance.getEnum('Heading', {
   Small: 'small',
   Medium: 'medium',
+  // Section titles come in small and medium only
   Large: 'medium',
 })
 const subtitle = figma.selectedInstance.getEnum('Subheading', {
@@ -18,7 +19,7 @@ const actions = figma.selectedInstance.getEnum('Buttons', {
     "<Button size='small' variant='secondary'>\n          Action\n        </Button>"
   ),
   Circle: figma.helpers.react.jsxElement(
-    "<ButtonCircular variant='flat' icon={<span />} />"
+    "<ButtonCircular variant='flat' icon={<Settings16 />} />"
   ),
   Mixed: figma.helpers.react.jsxElement(
     "<Button size='small' variant='secondary'>\n          Action\n        </Button>"
@@ -28,7 +29,7 @@ const actions = figma.selectedInstance.getEnum('Buttons', {
 export default {
   id: 'Section',
   imports: [
-    "import { Section, Button, ButtonCircular } from '@toptal/picasso'",
+    "import { Section, Button, ButtonCircular, Settings16 } from '@toptal/picasso'",
   ],
   example: figma.code`<Section title='Section Title'${figma.helpers.react.renderProp(
     'titleSize',

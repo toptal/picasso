@@ -4,37 +4,23 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const variant = figma.selectedInstance.getEnum('Variant', {
+  Default: 'white',
+  Success: 'green',
+  Error: 'red',
+})
 
-let template
-
-if (figma.selectedInstance.getPropertyValue('Variant') === 'Default') {
-  template = {
-    id: 'Notification',
-    imports: ["import { Notification } from '@toptal/picasso'"],
-    example: figma.code`<Notification variant='white' onClose={() => { }}>
-      Notification message
-      <Notification.Actions>Actions go here</Notification.Actions>
-    </Notification>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Success') {
-  template = {
-    id: 'Notification',
-    imports: ["import { Notification } from '@toptal/picasso'"],
-    example: figma.code`<Notification variant='green'>Notification message</Notification>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Error') {
-  template = {
-    id: 'Notification',
-    imports: ["import { Notification } from '@toptal/picasso'"],
-    example: figma.code`<Notification variant='red'>Notification message</Notification>`,
-  }
-} else {
-  template = {
-    id: 'Notification',
-    imports: ["import { Notification } from '@toptal/picasso'"],
-    example: figma.code`<Notification variant='red'>Notification message</Notification>`,
-  }
+export default {
+  id: 'Notification',
+  imports: ["import { Notification } from '@toptal/picasso'"],
+  example:
+    variant === 'white'
+      ? figma.code`<Notification variant='white' onClose={() => {}}>
+  Notification message
+  <Notification.Actions>Actions go here</Notification.Actions>
+</Notification>`
+      : figma.code`<Notification${figma.helpers.react.renderProp(
+          'variant',
+          variant
+        )}>Notification message</Notification>`,
 }
-
-export default template

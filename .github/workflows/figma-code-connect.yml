@@ -1,7 +1,7 @@
 name: Figma Code Connect
 # Keeps the Code Connect snippets shown in Figma Dev Mode in sync with the
-# components. Pull requests that touch a component only validate the mappings
-# (dry run); pushes to master publish them to the Figma library.
+# *.figma.ts templates. Pull requests that touch a template typecheck and
+# validate them (dry run); pushes to master publish them to the Figma library.
 #
 # Requires the FIGMA_ACCESS_TOKEN repository secret: a Figma personal access
 # token with "File content: Read" and "Code Connect: Write" scopes, owned by an
@@ -12,13 +12,15 @@ on:
     branches:
       - master
     paths:
-      - 'packages/**/src/**'
+      - '**/*.figma.ts'
       - 'figma.config.json'
+      - 'tsconfig.figma.json'
       - '.github/workflows/figma-code-connect.yml'
   pull_request:
     paths:
-      - 'packages/**/src/**'
+      - '**/*.figma.ts'
       - 'figma.config.json'
+      - 'tsconfig.figma.json'
       - '.github/workflows/figma-code-connect.yml'
   workflow_dispatch:
 
@@ -38,6 +40,22 @@ jobs:
     env:
       FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
     steps:
+      - name: Check out code
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+
+      - name: Set up Node.js
+        # Same as actions/setup-node@v6.1
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
+        with:
+          node-version: 22.20.0
+
+      - name: Install dependencies
+        uses: ./.github/actions/pnpm-install
+
+      - name: Typecheck templates
+        run: pnpm typecheck:figma
+
       - name: Check for Figma token
         id: token
         run: |
@@ -47,22 +65,6 @@ jobs:
           else
             echo "present=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Check out code
-        if: steps.token.outputs.present == 'true'
-        # Same as actions/checkout@v5
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
-
-      - name: Set up Node.js
-        if: steps.token.outputs.present == 'true'
-        # Same as actions/setup-node@v6.1
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
-        with:
-          node-version: 22.20.0
-
-      - name: Install dependencies
-        if: steps.token.outputs.present == 'true'
-        uses: ./.github/actions/pnpm-install
 
       # No build step: *.figma.ts template files are published as they are,
       # without parsing the components or needing built packages.

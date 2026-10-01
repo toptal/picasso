@@ -4,41 +4,25 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const icon = figma.selectedInstance.getEnum('Variant', {
+  Icon: figma.helpers.react.jsxElement('<Check16 />'),
+})
 
-let template
-
-if (figma.selectedInstance.getPropertyValue('Variant') === 'Bullet') {
-  template = {
-    id: 'Timeline',
-    imports: ["import { Timeline } from '@toptal/picasso'"],
-    example: figma.code`<Timeline>
-      <Timeline.Row>Content</Timeline.Row>
-      <Timeline.Row hasConnector={false}>Content</Timeline.Row>
-    </Timeline>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Icon') {
-  template = {
-    id: 'Timeline',
-    imports: ["import { Timeline } from '@toptal/picasso'"],
-    example: figma.code`<Timeline>
-      <Timeline.Row icon={<span />}>Content</Timeline.Row>
-      <Timeline.Row icon={<span />} hasConnector={false}>
-        Content
-      </Timeline.Row>
-    </Timeline>`,
-  }
-} else {
-  template = {
-    id: 'Timeline',
-    imports: ["import { Timeline } from '@toptal/picasso'"],
-    example: figma.code`<Timeline>
-      <Timeline.Row icon={<span />}>Content</Timeline.Row>
-      <Timeline.Row icon={<span />} hasConnector={false}>
-        Content
-      </Timeline.Row>
-    </Timeline>`,
-  }
+export default {
+  id: 'Timeline',
+  imports: [
+    icon
+      ? "import { Check16, Timeline } from '@toptal/picasso'"
+      : "import { Timeline } from '@toptal/picasso'",
+  ],
+  example: figma.code`<Timeline>
+  <Timeline.Row${figma.helpers.react.renderProp(
+    'icon',
+    icon
+  )}>Content</Timeline.Row>
+  <Timeline.Row${figma.helpers.react.renderProp(
+    'icon',
+    icon
+  )} hasConnector={false}>Content</Timeline.Row>
+</Timeline>`,
 }
-
-export default template

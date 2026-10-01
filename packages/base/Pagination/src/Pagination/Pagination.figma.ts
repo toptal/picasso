@@ -4,34 +4,15 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const size = figma.selectedInstance.getPropertyValue('Size')
 
-let template
-
-if (figma.selectedInstance.getPropertyValue('Size') === 'Compact') {
-  template = {
-    id: 'Pagination',
-    imports: ["import { Pagination } from '@toptal/picasso'"],
-    example: figma.code`<Pagination variant='compact' activePage={1} onPageChange={() => { }}/>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Size') === 'Simple') {
-  template = {
-    id: 'Pagination',
-    imports: ["import { Pagination } from '@toptal/picasso'"],
-    example: figma.code`<Pagination activePage={1} totalPages={10} onPageChange={() => { }}/>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Size') === 'Extreme') {
-  template = {
-    id: 'Pagination',
-    imports: ["import { Pagination } from '@toptal/picasso'"],
-    example: figma.code`<Pagination activePage={5} totalPages={20} siblingCount={2} onPageChange={() => { }}/>`,
-  }
-} else {
-  template = {
-    id: 'Pagination',
-    imports: ["import { Pagination } from '@toptal/picasso'"],
-    example: figma.code`<Pagination activePage={5} totalPages={20} siblingCount={2} onPageChange={() => { }}/>`,
-  }
+export default {
+  id: 'Pagination',
+  imports: ["import { Pagination } from '@toptal/picasso'"],
+  example:
+    size === 'Compact'
+      ? figma.code`<Pagination variant='compact' activePage={1} onPageChange={() => {}} />`
+      : size === 'Extreme'
+      ? figma.code`<Pagination activePage={5} totalPages={20} siblingCount={2} onPageChange={() => {}} />`
+      : figma.code`<Pagination activePage={1} totalPages={10} onPageChange={() => {}} />`,
 }
-
-export default template

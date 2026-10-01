@@ -4,56 +4,24 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const hasDots = figma.selectedInstance.getEnum('Variant', {
+  'Pagination + Arrows': true,
+  'Pagination Only': true,
+})
+const hasArrows = figma.selectedInstance.getEnum('Variant', {
+  'Pagination + Arrows': true,
+  'Arrows Only': true,
+})
 
-let template
-
-if (
-  figma.selectedInstance.getPropertyValue('Variant') === 'Pagination + Arrows'
-) {
-  template = {
-    id: 'Carousel',
-    imports: ["import { Carousel } from '@toptal/picasso'"],
-    example: figma.code`<Carousel hasDots hasArrows>
-      <div>Slide 1</div>
-      <div>Slide 2</div>
-      <div>Slide 3</div>
-    </Carousel>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Variant') === 'Pagination Only'
-) {
-  template = {
-    id: 'Carousel',
-    imports: ["import { Carousel } from '@toptal/picasso'"],
-    example: figma.code`<Carousel hasDots>
-      <div>Slide 1</div>
-      <div>Slide 2</div>
-      <div>Slide 3</div>
-    </Carousel>`,
-  }
-} else if (
-  figma.selectedInstance.getPropertyValue('Variant') === 'Arrows Only'
-) {
-  template = {
-    id: 'Carousel',
-    imports: ["import { Carousel } from '@toptal/picasso'"],
-    example: figma.code`<Carousel hasArrows>
-      <div>Slide 1</div>
-      <div>Slide 2</div>
-      <div>Slide 3</div>
-    </Carousel>`,
-  }
-} else {
-  template = {
-    id: 'Carousel',
-    imports: ["import { Carousel } from '@toptal/picasso'"],
-    example: figma.code`<Carousel hasArrows>
-      <div>Slide 1</div>
-      <div>Slide 2</div>
-      <div>Slide 3</div>
-    </Carousel>`,
-  }
+export default {
+  id: 'Carousel',
+  imports: ["import { Carousel } from '@toptal/picasso'"],
+  example: figma.code`<Carousel${figma.helpers.react.renderProp(
+    'hasDots',
+    hasDots
+  )}${figma.helpers.react.renderProp('hasArrows', hasArrows)}>
+  <div>Slide 1</div>
+  <div>Slide 2</div>
+  <div>Slide 3</div>
+</Carousel>`,
 }
-
-export default template

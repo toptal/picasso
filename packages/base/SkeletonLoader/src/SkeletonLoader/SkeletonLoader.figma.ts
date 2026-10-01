@@ -4,40 +4,25 @@
 
 import figma from 'figma'
 
-// Branch per variant; no default, else first.
+const variant = figma.selectedInstance.getPropertyValue('Variant')
 
-let template
-
-if (figma.selectedInstance.getPropertyValue('Variant') === 'Square') {
-  template = {
-    id: 'SkeletonLoader.Media',
-    imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
-    example: figma.code`<SkeletonLoader.Media variant='image' width={80} height={80}/>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Circle') {
-  template = {
-    id: 'SkeletonLoader.Media',
-    imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
-    example: figma.code`<SkeletonLoader.Media variant='image' circle width={80} height={80}/>`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Button') {
-  template = {
-    id: 'SkeletonLoader.Button',
-    imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
-    example: figma.code`<SkeletonLoader.Button />`,
-  }
-} else if (figma.selectedInstance.getPropertyValue('Variant') === 'Text Line') {
-  template = {
-    id: 'SkeletonLoader.Typography',
-    imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
-    example: figma.code`<SkeletonLoader.Typography rows={1}/>`,
-  }
-} else {
-  template = {
-    id: 'SkeletonLoader.Typography',
-    imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
-    example: figma.code`<SkeletonLoader.Typography rows={1}/>`,
-  }
+const examples: Record<string, ReturnType<typeof figma.code>> = {
+  Square: figma.code`<SkeletonLoader.Media variant='image' width={80} height={80} />`,
+  Circle: figma.code`<SkeletonLoader.Media variant='image' circle width={80} height={80} />`,
+  Button: figma.code`<SkeletonLoader.Button />`,
+  'Text Line': figma.code`<SkeletonLoader.Typography rows={1} />`,
 }
+const example = examples[String(variant)]
 
-export default template
+export default example
+  ? {
+      id: 'SkeletonLoader.Media',
+      imports: ["import { SkeletonLoader } from '@toptal/picasso'"],
+      example,
+    }
+  : {
+      id: 'SkeletonLoader.Media',
+      imports: [],
+      // Stepper and Pagination have no SkeletonLoader equivalent
+      example: figma.code`// Not mapped: no SkeletonLoader equivalent for this variant`,
+    }
