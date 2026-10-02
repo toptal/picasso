@@ -59,6 +59,7 @@
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk pnpm test:unit",
     "test:unit:watch": "pnpm test:unit --watch",
     "typecheck": "tsc --noEmit",
+    "typecheck:figma": "tsc -p tsconfig.figma.json",
     "generate:llm-docs": "node bin/generate-docs.mjs"
   },
   "lint-staged": {
@@ -95,6 +96,7 @@
     "@changesets/cli": "^2.29.7",
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
+    "@figma/code-connect": "^2.0.1",
     "@nx/js": "22.7.5",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",
