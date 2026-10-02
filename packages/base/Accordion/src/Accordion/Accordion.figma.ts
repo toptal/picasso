@@ -8,6 +8,8 @@ const expanded = figma.selectedInstance.getEnum('Expanded', {
   True: true,
   False: false,
 })
+// Accordion has no per-side border: 'middle' draws a separator only between
+// stacked accordions, which is how the top and bottom border variants are used
 const borders = figma.selectedInstance.getEnum('Borders', {
   'No Borders': 'none',
   'With Borders': 'all',

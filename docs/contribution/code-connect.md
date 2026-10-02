@@ -120,13 +120,13 @@ Where Figma property names, values, or semantics differ from the React API, this
 
 ### Accordion
 
-| Figma property | Figma values         | React prop | React values     | Notes                                                      |
-| -------------- | -------------------- | ---------- | ---------------- | ---------------------------------------------------------- |
-| `Expanded`     | `True` / `False`     | `expanded` | `true` / `false` | Case difference only                                       |
-| `Borders`      | `No Borders`         | `borders`  | `'none'`         |                                                            |
-| `Borders`      | `With Borders`       | `borders`  | `'all'`          |                                                            |
-| `Borders`      | `With Bottom Border` | `borders`  | `'middle'`       | Approximate — React has no per-side border control         |
-| `Borders`      | `With Top Border`    | `borders`  | `'middle'`       | Same approximation; Figma has 4 border states, React has 3 |
+| Figma property | Figma values         | React prop | React values     | Notes                                                                                                                                    |
+| -------------- | -------------------- | ---------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `Expanded`     | `True` / `False`     | `expanded` | `true` / `false` | Case difference only                                                                                                                     |
+| `Borders`      | `No Borders`         | `borders`  | `'none'`         |                                                                                                                                          |
+| `Borders`      | `With Borders`       | `borders`  | `'all'`          |                                                                                                                                          |
+| `Borders`      | `With Bottom Border` | `borders`  | `'middle'`       | Approximate — React has no per-side border; `'middle'` draws a separator only between stacked accordions, so a lone accordion shows none |
+| `Borders`      | `With Top Border`    | `borders`  | `'middle'`       | Same approximation; Figma has 4 border states, React has 3                                                                               |
 
 ### Alert
 
