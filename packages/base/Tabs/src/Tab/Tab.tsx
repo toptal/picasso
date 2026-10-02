@@ -104,8 +104,8 @@ const getFocusClasses = (
         'after:rounded-t-sm after:pointer-events-none',
         variant === 'fullWidth'
           ? 'after:inset-x-0'
-          : 'after:-inset-x-1 first-of-type:after:left-0',
-        'focus-visible:opacity-100 focus-visible:after:bg-gray-100',
+          : 'after:-inset-x-1 first-of-type:after:left-0 last-of-type:after:right-0',
+        'focus-visible:not-data-disabled:opacity-100 focus-visible:after:bg-gray-100',
         'focus-visible:after:inset-shadow-[0_-0.125rem_0_0] focus-visible:after:inset-shadow-gray-500',
       ]
 

@@ -55,11 +55,9 @@ const renderTabs = (
 const testKeyboardFocus = ({
   orientation,
   nextKey,
-  previousKey,
 }: {
   orientation: 'horizontal' | 'vertical'
   nextKey: 'ArrowRight' | 'ArrowDown'
-  previousKey: 'ArrowLeft' | 'ArrowUp'
 }) => {
   it(`shows focus style on keyboard focus in ${orientation} orientation`, () => {
     renderTabs(orientation)
@@ -73,6 +71,7 @@ const testKeyboardFocus = ({
       .and('have.attr', 'aria-selected', 'false')
       .and(toMatchFocusVisible(true))
       .and(toShowFocus(orientation))
+      .and(toHaveStyle('opacity', '1'))
   })
 
   it(`does not show focus style on mouse focus in ${orientation} orientation`, () => {
@@ -87,21 +86,18 @@ const testKeyboardFocus = ({
     cy.contains('[role=tab]', 'Second').should(toShowFocus(orientation, false))
   })
 
-  it(`skips disabled tabs with arrow keys in ${orientation} orientation`, () => {
-    renderTabs(orientation, { disabledTabs: ['Second', 'Fourth'] })
+  it(`keeps a disabled tab dimmed on keyboard focus in ${orientation} orientation`, () => {
+    renderTabs(orientation, { disabledTabs: ['Second'] })
 
     cy.contains('Before').realClick()
     cy.realPress('Tab')
     cy.realPress(nextKey)
-    cy.contains('[role=tab]', 'Third').should('have.focus')
-    cy.realPress(nextKey)
-    cy.contains('[role=tab]', 'First').should('have.focus')
-    cy.realPress(previousKey)
-    cy.contains('[role=tab]', 'Third').should('have.focus')
-    cy.realPress('Home')
-    cy.contains('[role=tab]', 'First').should('have.focus')
-    cy.realPress('End')
-    cy.contains('[role=tab]', 'Third').should('have.focus')
+
+    cy.contains('[role=tab]', 'Second')
+      .should('have.focus')
+      .and('have.attr', 'aria-disabled', 'true')
+      .and(toShowFocus(orientation))
+      .and(toHaveStyle('opacity', '0.5'))
   })
 }
 
@@ -219,16 +215,8 @@ describe('Tabs', () => {
   })
 
   describe('when tab is focused', () => {
-    testKeyboardFocus({
-      orientation: 'horizontal',
-      nextKey: 'ArrowRight',
-      previousKey: 'ArrowLeft',
-    })
-    testKeyboardFocus({
-      orientation: 'vertical',
-      nextKey: 'ArrowDown',
-      previousKey: 'ArrowUp',
-    })
+    testKeyboardFocus({ orientation: 'horizontal', nextKey: 'ArrowRight' })
+    testKeyboardFocus({ orientation: 'vertical', nextKey: 'ArrowDown' })
 
     it('keeps horizontal focus style inside the tabs row', () => {
       const pseudo = '::after'
@@ -239,6 +227,9 @@ describe('Tabs', () => {
       )
       cy.contains('[role=tab]', 'Second').should(
         toHaveStyle('left', '-4px', { pseudo })
+      )
+      cy.contains('[role=tab]', 'Fourth').should(
+        toHaveStyle('right', '0px', { pseudo })
       )
 
       renderTabs('horizontal', { variant: 'fullWidth' })

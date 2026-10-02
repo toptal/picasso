@@ -10,4 +10,3 @@
 ### Tabs
 
 - show a focus indicator on a keyboard-focused tab
-- skip disabled tabs when moving focus with the arrow, Home and End keys
