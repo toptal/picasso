@@ -47,11 +47,11 @@ both were invisible to CI and caught only by humans clicking a preview deploy.
 - **Popups (Select, Dropdown, Menu, Tooltip, DatePicker, Modal, Drawer) render
   asynchronously, in portals** attached to the Picasso root — they used to
   render inline.
-- **React 16 is dropped; the React 19 cap lift ships separately.** The
+- **React 16 is dropped; the React 19 cap lift ships separately.** v100's
   `react`/`react-dom` peer range is `>=17.0.0 < 19.0.0` — the floor rose to
-  React 17 because `@base-ui/react` requires `^17 || ^18 || ^19`. The
-  modernization removes the blockers to React 19, but lifting the `< 19.0.0`
-  cap (once validated) is tracked separately in PF-2262.
+  React 17 because `@base-ui/react` requires `^17 || ^18 || ^19`. The release
+  after v100 lifts the cap (PF-2262);
+  [migration-to-react-19.md](./migration-to-react-19.md) covers that upgrade.
 
 > ### 🏆 Golden rule
 >
