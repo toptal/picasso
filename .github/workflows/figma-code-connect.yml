@@ -39,8 +39,6 @@ jobs:
     name: ${{ github.event_name == 'pull_request' && 'Validate Code Connect' || 'Publish Code Connect' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
     steps:
       - name: Check out code
         # Same as actions/checkout@v5
@@ -58,8 +56,15 @@ jobs:
       - name: Typecheck templates
         run: pnpm typecheck:figma
 
+      # Offline, needs no token, so it also runs on fork PRs: fails when a
+      # template's header is missing or malformed.
+      - name: Parse templates
+        run: pnpm exec figma connect parse --exit-on-unreadable-files --skip-update-check -o /dev/null
+
       - name: Check for Figma token
         id: token
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: |
           if [ -z "$FIGMA_ACCESS_TOKEN" ]; then
             echo "::warning::FIGMA_ACCESS_TOKEN is not available (missing secret or fork PR), skipping Code Connect."
@@ -72,8 +77,12 @@ jobs:
       # without parsing the components or needing built packages.
       - name: Validate Code Connect (dry run)
         if: steps.token.outputs.present == 'true' && github.event_name == 'pull_request'
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: pnpm exec figma connect publish --dry-run --exit-on-unreadable-files --skip-update-check
 
       - name: Publish Code Connect to Figma
         if: steps.token.outputs.present == 'true' && github.event_name != 'pull_request'
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: pnpm exec figma connect publish --exit-on-unreadable-files --skip-update-check

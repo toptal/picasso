@@ -6,7 +6,7 @@ Code Connect links Figma design components to React code so designers see real c
 
 ### Prerequisites
 
-- `@figma/code-connect` is installed at the workspace root (already in `node_modules`).
+- `@figma/code-connect` is a dev dependency at the workspace root, so `pnpm install` provides the `figma` CLI.
 - `figma.config.json` is at the repo root with:
   ```json
   {
@@ -18,25 +18,27 @@ Code Connect links Figma design components to React code so designers see real c
   }
   ```
   Connections are [template files](https://developers.figma.com/docs/code-connect/template-files/) (`.figma.ts`). The React parser (`.figma.tsx` with `figma.connect()`) stopped being maintained on 17 August 2026, and Code Connect CLI 2.0 only accepts it in `figma connect migrate` and `figma connect unpublish`.
-- A Figma personal access token from [figma.com/settings](https://www.figma.com/settings) with `File content` read scope.
+- A Figma personal access token from [figma.com/settings](https://www.figma.com/settings) with the `File content: Read` and `Code Connect: Write` scopes. Figma tokens expire after at most 90 days, so expect to renew it.
 
 ### Publishing
 
 Publishing is automated by the [Figma Code Connect workflow](../../.github/workflows/figma-code-connect.yml):
 
-- **Pull requests** that touch `packages/**/src/**` or `figma.config.json` run `figma connect publish --dry-run`, which validates every mapping against the Figma library.
+- **Pull requests** that touch a `*.figma.ts` template, `figma.config.json`, `tsconfig.figma.json`, the root `package.json` or the workflow itself typecheck the templates (`pnpm typecheck:figma`), parse them (`figma connect parse`, which fails on a template with a missing or malformed header) and then run `figma connect publish --dry-run`, which checks every template against the Figma library.
 - **Pushes to `master`** with the same paths publish the snippets to Figma Dev Mode.
 - It can also be run manually from the Actions tab (`workflow_dispatch`).
 
-The workflow needs the `FIGMA_ACCESS_TOKEN` repository secret (scopes: `File content: Read` and `Code Connect: Write`). Without it the job is skipped with a warning.
+The dry run and the publish need the `FIGMA_ACCESS_TOKEN` repository secret, a token with the scopes listed above. The secret is only passed to the steps that call Figma. Without it (missing secret, or a pull request from a fork) those steps are skipped with a warning; the typecheck and parse steps still run.
 
-To run it locally, enter the token at a hidden prompt so it never lands in your shell history:
+The token expires after at most 90 days. When it does, the dry run fails with a `403`: renew the token and update the secret. This check only guards the Dev Mode snippets, so it is not a required check, and a failure caused by an expired token should not block merging unrelated work.
+
+To run it locally, enter the token at a hidden prompt so it never lands in your shell history (works in both bash and zsh):
 
 ```bash
-( read -rs 'FIGMA_ACCESS_TOKEN?Figma token: ' && echo && export FIGMA_ACCESS_TOKEN && npx figma connect publish --dry-run )
+( printf 'Figma token: ' && read -rs FIGMA_ACCESS_TOKEN && echo && export FIGMA_ACCESS_TOKEN && pnpm exec figma connect publish --dry-run )
 ```
 
-Drop `--dry-run` to publish, or use `npx figma connect unpublish` (optionally with `-f <file>`) to remove published snippets.
+Drop `--dry-run` to publish, or run `pnpm exec figma connect unpublish` (optionally with `-f <file>`) to remove published snippets.
 
 ### Setting up the Figma MCP server in Claude Code
 
@@ -69,41 +71,48 @@ The following Picasso packages have no corresponding component in the Figma desi
 
 **Distinct components — candidates for future Figma design work:**
 
-| Picasso package     | Notes                                                                                                                                                                                                                                                                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AccountSelect       | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Amount              | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Autocomplete        | Dropdown exists in Figma but Autocomplete is distinct                                                                                                                                                                                                                                                                                    |
-| DateSelect          | Likely falls under Figma's "Date Picker" but has no own entry                                                                                                                                                                                                                                                                            |
-| FileInput           | Likely under Forms, no own Figma entry                                                                                                                                                                                                                                                                                                   |
-| Grid                | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Image               | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Input (single-line) | The Text Area (multiline) Figma components are connected via `Input.figma.ts`; the single-line Input has no dedicated Figma component                                                                                                                                                                                                    |
-| Link                | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Logo                | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Menu                | No Figma counterpart (Dropdown exists but Menu is distinct)                                                                                                                                                                                                                                                                              |
-| NumberInput         | Likely under Forms, no own Figma entry                                                                                                                                                                                                                                                                                                   |
-| PasswordInput       | Likely under Forms, no own Figma entry                                                                                                                                                                                                                                                                                                   |
-| PromptModal         | Modals exist in Figma, this variant does not                                                                                                                                                                                                                                                                                             |
-| Select              | Likely under Dropdown, no own Figma entry                                                                                                                                                                                                                                                                                                |
-| ShowMore            | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Tagselector         | Tags exist in Figma, Tagselector does not                                                                                                                                                                                                                                                                                                |
-| Timepicker          | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| TreeView            | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
-| Typography          | A [typography docs frame](https://www.figma.com/design/NcWffgzHm32CgC2HcMVuXq/Product-Library--Copy-?node-id=16113-27757) exists but it is a static showcase (`FRAME` type), not a `COMPONENT_SET`. Code Connect requires a component set with variant properties (`Type`, `Size`, `Weight`) before a `.figma.ts` file can be published. |
-| TypographyOverflow  | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Picasso package    | Notes                                                                                                                                                                                                                                                                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AccountSelect      | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Amount             | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Autocomplete       | Dropdown exists in Figma but Autocomplete is distinct                                                                                                                                                                                                                                                                                    |
+| DateSelect         | Likely falls under Figma's "Date Picker" but has no own entry                                                                                                                                                                                                                                                                            |
+| FileInput          | Likely under Forms, no own Figma entry                                                                                                                                                                                                                                                                                                   |
+| Grid               | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Image              | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Link               | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Logo               | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Menu               | No Figma counterpart (Dropdown exists but Menu is distinct)                                                                                                                                                                                                                                                                              |
+| NumberInput        | Likely under Forms, no own Figma entry                                                                                                                                                                                                                                                                                                   |
+| PasswordInput      | Likely under Forms, no own Figma entry                                                                                                                                                                                                                                                                                                   |
+| PromptModal        | Modals exist in Figma, this variant does not                                                                                                                                                                                                                                                                                             |
+| Select             | Likely under Dropdown, no own Figma entry                                                                                                                                                                                                                                                                                                |
+| ShowMore           | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Tagselector        | Tags exist in Figma, Tagselector does not                                                                                                                                                                                                                                                                                                |
+| Timepicker         | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| TreeView           | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
+| Typography         | A [typography docs frame](https://www.figma.com/design/NcWffgzHm32CgC2HcMVuXq/Product-Library--Copy-?node-id=16113-27757) exists but it is a static showcase (`FRAME` type), not a `COMPONENT_SET`. Code Connect requires a component set with variant properties (`Type`, `Size`, `Weight`) before a `.figma.ts` file can be published. |
+| TypographyOverflow | No Figma counterpart                                                                                                                                                                                                                                                                                                                     |
 
 **Top-level packages also absent from Figma:**
 
-| Package                    | Notes                |
-| -------------------------- | -------------------- |
-| `picasso-charts`           | No Figma counterpart |
-| `picasso-rich-text-editor` | No Figma counterpart |
-| `topkit-analytics-charts`  | No Figma counterpart |
+| Package                   | Notes                |
+| ------------------------- | -------------------- |
+| `topkit-analytics-charts` | No Figma counterpart |
 
 **Internal / utility packages (not expected to have Figma representations):**
 
 Backdrop, Collapse, Fade, FormLabel, FormLayout, InputAdornment, ModalContext, OutlinedInput, Paper, Popper, Slide, Step (sub-component of Stepper), Test-Utils, Utils
+
+## Figma components not mapped yet
+
+These exist in the Product Library v2.0 but have no `.figma.ts` template yet, so Dev Mode shows no snippet for them:
+
+| Figma component                                 | Picasso counterpart                               | Notes                                                                                                                                                                                |
+| ----------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Text Area Input                                 | `Input` with `multiline`                          | The single-line `Input` is mapped through the "Input Field" `Text Field` variant (`Input.figma.ts`); the multiline one is not                                                        |
+| Charts Bar / Charts Bar Axis / Charts Line Axis | `picasso-charts` (`BarChart`, `LineChart`)        |                                                                                                                                                                                      |
+| Icons                                           | `@toptal/picasso-icons` (`<Name>16` / `<Name>24`) | Picasso ships 308 icons in two sizes. Mapping them needs either one template per icon or a shared template that derives the component name from the Figma icon name; not decided yet |
 
 ## Prop mismatches per component
 
@@ -121,12 +130,12 @@ Where Figma property names, values, or semantics differ from the React API, this
 
 ### Alert
 
-| Figma property  | Figma values                        | React prop          | React values                                | Notes                                                                                                |
-| --------------- | ----------------------------------- | ------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `Color`         | `Red` / `Yellow` / `Green` / `Blue` | `variant`           | `'red'` / `'yellow'` / `'green'` / `'blue'` | Property renamed                                                                                     |
-| `Close Button`  | `true` / `false`                    | `onClose`           | `() => {}` / `undefined`                    | Figma boolean → React callback; static parser cannot express a real handler                          |
-| `CTA Primary`   | `true` / `false`                    | `actions.primary`   | object / omitted                            | Two Figma booleans combine into one React `actions` object — requires 4 variant-filtered connections |
-| `CTA Secondary` | `true` / `false`                    | `actions.secondary` | object / omitted                            | Same as above                                                                                        |
+| Figma property  | Figma values                        | React prop          | React values                                | Notes                                                                     |
+| --------------- | ----------------------------------- | ------------------- | ------------------------------------------- | ------------------------------------------------------------------------- |
+| `Color`         | `Red` / `Yellow` / `Green` / `Blue` | `variant`           | `'red'` / `'yellow'` / `'green'` / `'blue'` | Property renamed                                                          |
+| `Close Button`  | `true` / `false`                    | `onClose`           | `() => {}` / `undefined`                    | Figma boolean → React callback; the snippet uses a placeholder `() => {}` |
+| `CTA Primary`   | `true` / `false`                    | `actions.primary`   | object / omitted                            | Two Figma booleans build one React `actions` object                       |
+| `CTA Secondary` | `true` / `false`                    | `actions.secondary` | object / omitted                            | Same as above                                                             |
 
 ### Avatar
 
@@ -146,19 +155,19 @@ Where Figma property names, values, or semantics differ from the React API, this
 
 ### Breadcrumbs
 
-| Figma property | Figma values          | React equivalent                       | Notes                                                                                                 |
-| -------------- | --------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `Style`        | `Current`             | `active` on last `BreadcrumbsItem`     | No single prop — structural: the last item gets `active`, all others get `active={false}`             |
-| `Style`        | `Parents`             | all `active={false}`                   | All items are navigation links, none is the active page                                               |
-| `# of items`   | `2 items` – `5 items` | number of `<BreadcrumbsItem>` children | Structural difference, not a prop; requires 8 variant-filtered connections (4 item counts × 2 styles) |
+| Figma property | Figma values          | React equivalent                       | Notes                                                                                     |
+| -------------- | --------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Style`        | `Current`             | `active` on last `BreadcrumbsItem`     | No single prop — structural: the last item gets `active`, all others get `active={false}` |
+| `Style`        | `Parents`             | all `active={false}`                   | All items are navigation links, none is the active page                                   |
+| `# of items`   | `2 items` – `5 items` | number of `<BreadcrumbsItem>` children | Structural difference, not a prop; the template renders that many items                   |
 
 ### Carousel
 
-| Figma property | Figma values          | React prop              | React values    | Notes                                                                                 |
-| -------------- | --------------------- | ----------------------- | --------------- | ------------------------------------------------------------------------------------- |
-| `Variant`      | `Pagination + Arrows` | `hasDots` + `hasArrows` | `true` / `true` | One Figma string encodes two React booleans — requires 3 variant-filtered connections |
-| `Variant`      | `Pagination Only`     | `hasDots`               | `true`          | Both props default to `false`, so each enabled control is set explicitly              |
-| `Variant`      | `Arrows Only`         | `hasArrows`             | `true`          | Same as above                                                                         |
+| Figma property | Figma values          | React prop              | React values    | Notes                                                                    |
+| -------------- | --------------------- | ----------------------- | --------------- | ------------------------------------------------------------------------ |
+| `Variant`      | `Pagination + Arrows` | `hasDots` + `hasArrows` | `true` / `true` | One Figma value sets two React booleans                                  |
+| `Variant`      | `Pagination Only`     | `hasDots`               | `true`          | Both props default to `false`, so each enabled control is set explicitly |
+| `Variant`      | `Arrows Only`         | `hasArrows`             | `true`          | Same as above                                                            |
 
 ### Container
 
@@ -168,22 +177,15 @@ Where Figma property names, values, or semantics differ from the React API, this
 | `Color`        | `Gray`                                        | `variant`  | `'grey'`                                                | Spelling difference (`Gray` vs `grey`)                    |
 | `Show 🔁 Slot` | `true` / `false`                              | —          | —                                                       | Not mapped; design-only placeholder toggle, no React prop |
 
-### Icons
-
-| Figma property      | Notes                                                                                                 |
-| ------------------- | ----------------------------------------------------------------------------------------------------- |
-| `Size`              | `16` / `24` mapped to React component names via `variant: { Size: '16' }` / `variant: { Size: '24' }` |
-| 162 unmatched icons | Country flags, role icons, and brand icons in Figma have no matching React component — not wired up   |
-
 ### Tag Outlined
 
-| Figma property | Figma values                                                                                        | React prop | React values                                                 | Notes                                                             |
-| -------------- | --------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------ | ----------------------------------------------------------------- |
-| `Style`        | `Blue` / `Secondary` / `Red` / `Yellow` / `Green`                                                   | `variant`  | `'blue'` / `'light-grey'` / `'red'` / `'yellow'` / `'green'` | Property renamed; `Secondary` → `'light-grey'`                    |
-| `State`        | `Disabled`                                                                                          | `disabled` | `true`                                                       | Mapped via `getEnum('State', { Disabled: true })` on every layout |
-| `State`        | `Enabled` / `Hover`                                                                                 | —          | —                                                            | Browser interaction states; no React prop                         |
-| `Layout`       | `Basic` / `With Icon` / `With Remove` / `With Connection` / `With Icon & Connection` / `With Badge` | structural | props: `icon`, `onDelete`, `endAdornment`                    | Each layout variant has a dedicated connection                    |
-| `Layout`       | `With Edit` / `With Edit and Remove`                                                                | —          | —                                                            | Not mapped; `Tag` has no `onEdit` prop                            |
+| Figma property | Figma values                                                                                        | React prop | React values                                                 | Notes                                             |
+| -------------- | --------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------ | ------------------------------------------------- |
+| `Style`        | `Blue` / `Secondary` / `Red` / `Yellow` / `Green`                                                   | `variant`  | `'blue'` / `'light-grey'` / `'red'` / `'yellow'` / `'green'` | Property renamed; `Secondary` → `'light-grey'`    |
+| `State`        | `Disabled`                                                                                          | `disabled` | `true`                                                       | Mapped via `getEnum('State', { Disabled: true })` |
+| `State`        | `Enabled` / `Hover`                                                                                 | —          | —                                                            | Browser interaction states; no React prop         |
+| `Layout`       | `Basic` / `With Icon` / `With Remove` / `With Connection` / `With Icon & Connection` / `With Badge` | structural | props: `icon`, `onDelete`, `endAdornment`                    | `Layout` decides which of these props render      |
+| `Layout`       | `With Edit` / `With Edit and Remove`                                                                | —          | —                                                            | Not mapped; `Tag` has no `onEdit` prop            |
 
 ### Tag Filled
 
@@ -201,8 +203,8 @@ Figma "Tag Filled" has no direct React counterpart — `Tag` is always outlined 
 
 | Figma property        | Figma values                                                                                   | React prop  | React values                                                                                                         | Notes                                                                      |
 | --------------------- | ---------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `Style`               | `Solid`                                                                                        | `variant`   | see Status mapping below                                                                                             | Separate connection for this style                                         |
-| `Style`               | `Indicators`                                                                                   | `indicator` | see Status mapping below                                                                                             | Separate connection; `variant` and `indicator` are mutually exclusive      |
+| `Style`               | `Solid`                                                                                        | `variant`   | see Status mapping below                                                                                             | `Style` decides whether `Status` sets `variant` or `indicator`             |
+| `Style`               | `Indicators`                                                                                   | `indicator` | see Status mapping below                                                                                             | `variant` and `indicator` are mutually exclusive                           |
 | `Status` (Solid)      | `Positive` / `Dark` / `Light` / `Negative` / `Blue Light` / `Warning` / `Blue` / `Blue Darker` | `variant`   | `'green'` / `'dark-grey'` / `'light-grey'` / `'red'` / `'light-blue'` / `'yellow'` / `'blue-main'` / `'blue-darker'` |                                                                            |
 | `Status` (Indicators) | `Positive` / `Dark` / `Negative` / `Warning` / `Blue` / `Blue Darker` / `Blue Light`           | `indicator` | `'green'` / `'grey-darker'` / `'red'` / `'yellow'` / `'blue'` / `'blue-darker'` / `'light-blue'`                     | `Dark` → `'grey-darker'` (Indicator type) vs `'dark-grey'` (Solid variant) |
 | `Status` (Indicators) | `Light`                                                                                        | —           | —                                                                                                                    | Not mapped; `Light` only appears in `Solid` style                          |
@@ -211,40 +213,38 @@ Figma "Tag Filled" has no direct React counterpart — `Tag` is always outlined 
 
 The Figma "Input Field" `Text Field` variant maps to `<Input />` wrapped in `<Form.Field>` and `<Form.Label>`. The wrapper is required — `Input` has no `label` or `hint` prop of its own.
 
-| Figma property | Figma values                                                    | React equivalent                                      | Notes                                                                                        |
-| -------------- | --------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `Orientation`  | `Vertical` / `Horizontal`                                       | `layout` on `Form`                                    | Vertical → `<Form>`; Horizontal → `<Form layout='horizontal'>`                               |
-| `State`        | `Default` / `Filled` / `Hover` / `Focus` / `Prefilled`          | no prop                                               | Browser interaction states; same code as `Default`                                           |
-| `State`        | `Disabled`                                                      | `disabled` on `Input`                                 | Mapped via `getEnum('State', …)`                                                             |
-| `State`        | `Error`                                                         | `status='error'` on `Input` + `error` on `Form.Field` | Mapped via `getEnum('State', …)`                                                             |
-| `Icon Left`    | `true` / `false`                                                | `icon` + `iconPosition='start'`                       | Connections with `Icon Right: false`                                                         |
-| `Icon Right`   | `true` / `false`                                                | `icon` + `iconPosition='end'`                         | Separate connections with `Icon Right: true`; wins when both are on — `Input` takes one icon |
-| `Show Hint`    | `true` / `false`                                                | `hint` on `Form.Field`                                | Mapped via `getBoolean`                                                                      |
-| `Show Label`   | `true` / `false`                                                | `Form.Label` child                                    | Mapped via `getBoolean`                                                                      |
-| `Variant`      | `Select` / `Number` / `With Char Counter` / `Currency` / `Tags` | —                                                     | Not mapped; separate Picasso components                                                      |
-| Layout         | Separate component sets (Vertical / Horizontal)                 | `layout` on `Form`                                    | Vertical → `<Form>` (default); Horizontal → `<Form layout='horizontal'>`                     |
+| Figma property | Figma values                                                    | React equivalent                                      | Notes                                                                    |
+| -------------- | --------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------ |
+| `Orientation`  | `Vertical` / `Horizontal`                                       | `layout` on `Form`                                    | Vertical → `<Form>`; Horizontal → `<Form layout='horizontal'>`           |
+| `State`        | `Default` / `Filled` / `Hover` / `Focus` / `Prefilled`          | no prop                                               | Browser interaction states; same code as `Default`                       |
+| `State`        | `Disabled`                                                      | `disabled` on `Input`                                 | Mapped via `getEnum('State', …)`                                         |
+| `State`        | `Error`                                                         | `status='error'` on `Input` + `error` on `Form.Field` | Mapped via `getEnum('State', …)`                                         |
+| `Icon Left`    | `true` / `false`                                                | `icon` + `iconPosition='start'`                       | Mapped via `getBoolean`                                                  |
+| `Icon Right`   | `true` / `false`                                                | `icon` + `iconPosition='end'`                         | Wins when both are on, because `Input` takes one icon                    |
+| `Show Hint`    | `true` / `false`                                                | `hint` on `Form.Field`                                | Mapped via `getBoolean`                                                  |
+| `Show Label`   | `true` / `false`                                                | `Form.Label` child                                    | Mapped via `getBoolean`                                                  |
+| `Variant`      | `Select` / `Number` / `With Char Counter` / `Currency` / `Tags` | —                                                     | Not mapped; separate Picasso components                                  |
+| Layout         | Separate component sets (Vertical / Horizontal)                 | `layout` on `Form`                                    | Vertical → `<Form>` (default); Horizontal → `<Form layout='horizontal'>` |
 
 ## Known limitations
 
 ### Template files are plain JavaScript
 
-Unlike the old parser, templates run as JavaScript in Figma, so conditionals, intermediate variables and computed props work. Map each Figma property with `getEnum()` / `getBoolean()` and let `figma.helpers.react.renderProp()` drop props that resolve to `undefined`, instead of writing one branch per variant.
+Templates run as JavaScript inside Figma, so conditionals, intermediate variables and computed props work. Map each Figma property with `getEnum()` / `getBoolean()` and let `figma.helpers.react.renderProp()` drop props that resolve to `undefined`, instead of writing one branch per variant.
 
 When a Figma variant has no Picasso equivalent, return a template whose example says so (`// Not mapped: …`). Otherwise that variant renders whichever snippet the code falls through to.
 
-Template files are excluded from `tsconfig.base.json` because they import the `figma` module, which only exists inside Figma. `pnpm typecheck:figma` typechecks them against the types the CLI ships (`tsconfig.figma.json`), and each default export ends with `satisfies CodeConnectTemplate` (declared in `figma-template.d.ts`) so a missing or misspelled `id`, `imports` or `example` fails the check, and the Code Connect workflow runs it on every pull request that touches a template.
+Templates import the `figma` module, which only exists inside Figma, so `tsconfig.base.json` excludes them. They are typechecked separately:
+
+- `pnpm typecheck:figma` checks them against the types the CLI ships, using `tsconfig.figma.json`.
+- Each default export ends with `satisfies CodeConnectTemplate` (declared in `figma-template.d.ts`), so a missing or misspelled `id`, `imports` or `example` is a type error.
+- The Code Connect workflow runs this typecheck on every pull request that touches a template.
 
 ### Storybook integration is not compatible with Picasso's story format
 
-Figma Code Connect offers a [Storybook integration](https://developers.figma.com/docs/code-connect/storybook/) where Code Connect config lives inside the story file via `parameters.design` instead of in a separate Code Connect file. This would eliminate duplication between stories and Code Connect snippets.
+Figma also offers a [Storybook integration](https://developers.figma.com/docs/code-connect/storybook/), where the Figma link lives in each story (`parameters.design`) and the story becomes the snippet. That would avoid writing examples twice, once as stories and once as templates.
 
-It does not work in this repo for two reasons:
-
-1. **Story files are excluded from TypeScript compilation.** `tsconfig.base.json` excludes `**/story`, so any Code Connect file that imports from a story file gets a `TS6307` error.
-
-2. **Stories use the PicassoBook format, not CSF.** The Figma Storybook integration requires [Component Story Format (CSF)](https://storybook.js.org/docs/writing-stories) with `export default { component, parameters }`. Picasso stories use a custom `PicassoBook` API and are not in CSF format.
-
-Adopting the Storybook integration would require migrating stories to CSF and removing `**/story` from the tsconfig excludes — a separate project.
+We do not use it, because it only reads stories written in [Component Story Format (CSF)](https://storybook.js.org/docs/writing-stories) (`export default { component, parameters }`). Picasso stories use the custom `PicassoBook` API instead. Using the integration would mean migrating every story to CSF first, which is a separate project.
 
 ### Figma copy files vs. original library file
 
@@ -314,9 +314,9 @@ Adding these to `ColorType` in `@toptal/picasso-shared` would close the gap.
 
 ## Troubleshooting
 
-| Symptom                                | Cause                                                | Fix                                                                            |
-| -------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `No files found` on publish            | Glob in `figma.config.json` does not match the files | Use `**/*.figma.ts`                                                            |
-| CLI asks to migrate parser-based files | A `.figma.tsx` file with `figma.connect()` was added | Write a `.figma.ts` template instead, or run `figma connect migrate -f <file>` |
-| Published but not showing in Dev Mode  | Connected to a copy file, not the original           | Re-publish against the original library file node IDs                          |
-| `403` from Figma REST API              | Token missing or expired                             | Export `FIGMA_ACCESS_TOKEN` with a valid token                                 |
+| Symptom                                | Cause                                                  | Fix                                                                            |
+| -------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `No files found` on publish            | Glob in `figma.config.json` does not match the files   | Use `**/*.figma.ts`                                                            |
+| CLI asks to migrate parser-based files | A `.figma.tsx` file with `figma.connect()` was added   | Write a `.figma.ts` template instead, or run `figma connect migrate -f <file>` |
+| Published but not showing in Dev Mode  | Connected to a copy file, not the original             | Re-publish against the original library file node IDs                          |
+| `403` from Figma REST API              | Token missing or expired (tokens last 90 days at most) | Renew the token; in CI, update the `FIGMA_ACCESS_TOKEN` repository secret      |
