@@ -22,7 +22,7 @@ exports[`Tab Tab disabled tab 1`] = `
           <button
             aria-disabled="true"
             aria-selected="false"
-            class="opacity-50 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none shrink-0 max-w text-gray pointer-events min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-50 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none shrink-0 max-w text-gray pointer-events min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden after:absolute after:content-[""] after:top-0 after:bottom-1 after:-z after:rounded-t after:pointer-events after:-inset-x first-of-type:after:left last-of-type:after:right focus-visible:not-data-disabled:opacity focus-visible:after:bg-gray focus-visible:after:inset-shadow-[0_ focus-visible:after:inset-shadow-gray items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-activation-direction="none"
             data-disabled=""
             data-orientation="horizontal"
@@ -70,7 +70,7 @@ exports[`Tab Tab renders 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden after:absolute after:content-[""] after:top-0 after:bottom-1 after:-z after:rounded-t after:pointer-events after:-inset-x first-of-type:after:left last-of-type:after:right focus-visible:not-data-disabled:opacity focus-visible:after:bg-gray focus-visible:after:inset-shadow-[0_ focus-visible:after:inset-shadow-gray items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-activation-direction="none"
             data-orientation="horizontal"
             id="base-ui-:r0:"
@@ -117,7 +117,7 @@ exports[`Tab Tab tab with icon 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-h pr-6 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-70 m-0 [&:not(:last-of-type)]:mr p-0 pb-[0.4375rem] text-center bg-transparent z-10 rounded-none text-inheritColor shrink-0 max-w min-h pr-6 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden after:absolute after:content-[""] after:top-0 after:bottom-1 after:-z after:rounded-t after:pointer-events after:-inset-x first-of-type:after:left last-of-type:after:right focus-visible:not-data-disabled:opacity focus-visible:after:bg-gray focus-visible:after:inset-shadow-[0_ focus-visible:after:inset-shadow-gray items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-activation-direction="none"
             data-orientation="horizontal"
             id="base-ui-:r2:"

@@ -2,10 +2,104 @@ import React from 'react'
 import { Tabs } from '@toptal/picasso'
 
 import { loadAvatarFixture } from '../support/fixtures'
+import { toHaveStyle, toMatchFocusVisible } from '../support/focus'
 
 const component = 'Tabs'
 
 const getAvatarSrc = loadAvatarFixture()
+
+// blue-500/48, serialized as rgba() or oklab()
+const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px inset/
+const FOCUS_BAR = / 0px -2px 0px 0px inset/
+const GRAY_100 = 'rgb(243, 244, 246)'
+const SHADOW_1 = /0\.08\) 0px 0px 8px 0px$/
+
+const toShowFocus =
+  (orientation: 'horizontal' | 'vertical', expected = true) =>
+  ($el: JQuery<HTMLElement>) => {
+    if (orientation === 'vertical') {
+      toHaveStyle('boxShadow', FOCUS_RING, { expected })($el)
+
+      return
+    }
+
+    toHaveStyle('backgroundColor', GRAY_100, {
+      expected,
+      pseudo: '::after',
+    })($el)
+    toHaveStyle('boxShadow', FOCUS_BAR, { expected, pseudo: '::after' })($el)
+  }
+
+const renderTabs = (
+  orientation: 'horizontal' | 'vertical',
+  {
+    disabledTabs = [],
+    variant,
+  }: { disabledTabs?: string[]; variant?: 'fullWidth' } = {}
+) =>
+  cy.mount(
+    <>
+      <button>Before</button>
+      <Tabs value={0} orientation={orientation} variant={variant}>
+        {['First', 'Second', 'Third', 'Fourth'].map(label => (
+          <Tabs.Tab
+            key={label}
+            label={label}
+            disabled={disabledTabs.includes(label)}
+          />
+        ))}
+      </Tabs>
+    </>
+  )
+
+const testKeyboardFocus = ({
+  orientation,
+  nextKey,
+}: {
+  orientation: 'horizontal' | 'vertical'
+  nextKey: 'ArrowRight' | 'ArrowDown'
+}) => {
+  it(`shows focus style on keyboard focus in ${orientation} orientation`, () => {
+    renderTabs(orientation)
+
+    cy.contains('Before').realClick()
+    cy.realPress('Tab')
+    cy.realPress(nextKey)
+
+    cy.contains('[role=tab]', 'Second')
+      .should('have.focus')
+      .and('have.attr', 'aria-selected', 'false')
+      .and(toMatchFocusVisible(true))
+      .and(toShowFocus(orientation))
+      .and(toHaveStyle('opacity', '1'))
+  })
+
+  it(`does not show focus style on mouse focus in ${orientation} orientation`, () => {
+    renderTabs(orientation)
+
+    cy.contains('[role=tab]', 'Second').realClick()
+
+    cy.contains('[role=tab]', 'Second')
+      .should('have.focus')
+      .and(toMatchFocusVisible(false))
+    cy.waitForTransitionsToSettle('[role=tab]')
+    cy.contains('[role=tab]', 'Second').should(toShowFocus(orientation, false))
+  })
+
+  it(`keeps a disabled tab dimmed on keyboard focus in ${orientation} orientation`, () => {
+    renderTabs(orientation, { disabledTabs: ['Second'] })
+
+    cy.contains('Before').realClick()
+    cy.realPress('Tab')
+    cy.realPress(nextKey)
+
+    cy.contains('[role=tab]', 'Second')
+      .should('have.focus')
+      .and('have.attr', 'aria-disabled', 'true')
+      .and(toShowFocus(orientation))
+      .and(toHaveStyle('opacity', '0.5'))
+  })
+}
 
 describe('Tabs', () => {
   describe('with vertical orientation', () => {
@@ -117,6 +211,43 @@ describe('Tabs', () => {
 
         cy.get('img').should('not.exist')
       })
+    })
+  })
+
+  describe('when tab is focused', () => {
+    testKeyboardFocus({ orientation: 'horizontal', nextKey: 'ArrowRight' })
+    testKeyboardFocus({ orientation: 'vertical', nextKey: 'ArrowDown' })
+
+    it('keeps horizontal focus style inside the tabs row', () => {
+      const pseudo = '::after'
+
+      renderTabs('horizontal')
+      cy.contains('[role=tab]', 'First').should(
+        toHaveStyle('left', '0px', { pseudo })
+      )
+      cy.contains('[role=tab]', 'Second').should(
+        toHaveStyle('left', '-4px', { pseudo })
+      )
+      cy.contains('[role=tab]', 'Fourth').should(
+        toHaveStyle('right', '0px', { pseudo })
+      )
+
+      renderTabs('horizontal', { variant: 'fullWidth' })
+      cy.contains('[role=tab]', 'Fourth')
+        .should(toHaveStyle('left', '0px', { pseudo }))
+        .and(toHaveStyle('right', '0px', { pseudo }))
+    })
+
+    it('keeps selected tab elevation in vertical orientation', () => {
+      renderTabs('vertical')
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.contains('[role=tab]', 'First')
+        .should('have.focus')
+        .and(toShowFocus('vertical'))
+        .and(toHaveStyle('boxShadow', SHADOW_1))
     })
   })
 })
