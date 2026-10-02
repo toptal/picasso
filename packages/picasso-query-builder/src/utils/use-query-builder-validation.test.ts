@@ -199,4 +199,30 @@ describe('useQueryBuilderValidation', () => {
       })
     })
   })
+
+  describe('when query rules have no ids yet', () => {
+    it('validates every rule', () => {
+      const { result } = renderHook(() =>
+        useQueryBuilderValidation({
+          fields,
+          query: {
+            combinator: 'and',
+            rules: [
+              { field: 'field1', value: '', operator: 'equal' },
+              { field: 'field2', value: 'should be this', operator: 'equal' },
+            ],
+          },
+        })
+      )
+
+      const { validationErrors, queryBuilderValid } = result.current
+
+      expect(queryBuilderValid).toBe(false)
+      expect(Object.values(validationErrors)).toEqual([
+        true,
+        { valid: false, reasons: ['some message'] },
+        true,
+      ])
+    })
+  })
 })

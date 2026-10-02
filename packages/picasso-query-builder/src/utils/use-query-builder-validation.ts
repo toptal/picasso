@@ -5,7 +5,7 @@ import type {
   RuleValidator,
   ValidationResult,
 } from 'react-querybuilder'
-import { isRuleGroup } from 'react-querybuilder'
+import { isRuleGroup, prepareRuleGroup } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'
 
@@ -82,8 +82,11 @@ const useQueryBuilderValidation = ({ fields, query }: Props) => {
     )
   }, [fields])
 
+  // the consumer's query may not have ids yet (react-querybuilder adds them
+  // on mount), and results are keyed by id, so add the missing ones first
   const validationErrors: ValidatorResult = useMemo(
-    () => (query ? validateQuery(query, fieldValidatorMap) : {}),
+    () =>
+      query ? validateQuery(prepareRuleGroup(query), fieldValidatorMap) : {},
     [query, fieldValidatorMap]
   )
 
