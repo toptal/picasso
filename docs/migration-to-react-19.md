@@ -101,7 +101,7 @@ v100 was. Packages on the `100.x` line skip `101`, which
 
 The shared major doesn't mean every package breaks. At the time of writing, the
 release plan without the re-baseline (`pnpm changeset status` on the feature
-branch) moves 90 packages:
+branch) moves 88 packages:
 
 - **66 take a major of their own.** The majors come from date-fns 4 (Calendar,
   DatePicker and the `@toptal/picasso` aggregate), final-form 5
@@ -110,10 +110,8 @@ branch) moves 90 packages:
   so its major moves them too.
 - **22 carry only minor changes**, among them `@toptal/picasso-provider`,
   `-shared`, `-utils`, `-test-utils`, `-charts` and `@topkit/analytics-charts`.
-- **2 carry only a patch**: `@toptal/picasso-tailwind` and
-  `@toptal/base-tailwind`, whose type declarations no longer name a Tailwind 3
-  type.
-- `@toptal/picasso-cypress-utils` has no changes of its own.
+- `@toptal/picasso-tailwind`, `@toptal/base-tailwind` and
+  `@toptal/picasso-cypress-utils` have no changes of their own.
 
 A `^100` range doesn't reach the release, in your manifests or in topkit's peers
 ([Step 1](#step-1-bump-picasso-and-topkit-together)).
