@@ -13,7 +13,7 @@ const CriticalResponsive = (props: Props) => {
       xl: <Critical16 {...props} />,
     },
     <Critical24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CriticalResponsive

@@ -13,7 +13,7 @@ const TwitterResponsive = (props: Props) => {
       xl: <Twitter16 {...props} />,
     },
     <Twitter24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TwitterResponsive

@@ -13,7 +13,7 @@ const ShieldResponsive = (props: Props) => {
       xl: <Shield16 {...props} />,
     },
     <Shield24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ShieldResponsive

@@ -13,7 +13,7 @@ const ListUnorderedResponsive = (props: Props) => {
       xl: <ListUnordered16 {...props} />,
     },
     <ListUnordered24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ListUnorderedResponsive

@@ -13,7 +13,7 @@ const ImageGalleryResponsive = (props: Props) => {
       xl: <ImageGallery16 {...props} />,
     },
     <ImageGallery24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ImageGalleryResponsive

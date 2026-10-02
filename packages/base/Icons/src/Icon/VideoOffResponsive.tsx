@@ -13,7 +13,7 @@ const VideoOffResponsive = (props: Props) => {
       xl: <VideoOff16 {...props} />,
     },
     <VideoOff24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default VideoOffResponsive

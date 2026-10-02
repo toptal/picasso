@@ -6,6 +6,11 @@ import './styles.css'
 
 import Picasso from '@toptal/picasso-provider'
 
+if (process.env.STORYBOOK_REACT_19 === '1') {
+  // eslint-disable-next-line no-console
+  console.log('[react19] preview running on React', React.version)
+}
+
 const baseViewportCheckpoints = getCheckpoints()
 const BASE_VIEWPORTS = {
   'extra-small': {

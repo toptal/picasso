@@ -32,7 +32,9 @@ export interface Props extends BaseProps {
   /** The id of the input element */
   id?: string
   /** A control element. For instance, it can be be a Radio or a Checkbox */
-  control: ReactElement
+  control: ReactElement<
+    Partial<Pick<Props, 'id' | 'checked' | 'value' | 'onChange' | 'disabled'>>
+  >
 }
 
 const ButtonControlLabel = ({

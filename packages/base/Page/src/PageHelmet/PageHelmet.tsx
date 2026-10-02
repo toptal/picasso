@@ -1,9 +1,7 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import type { HelmetProps } from 'react-helmet-async'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Helmet } from 'react-helmet-async'
+import type { HelmetProps } from '@toptal/picasso-provider'
+import { Helmet } from '@toptal/picasso-provider'
 
 export interface Props extends HelmetProps {
   /** content that goes to the document head */

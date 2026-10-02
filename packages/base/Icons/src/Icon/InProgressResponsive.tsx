@@ -13,7 +13,7 @@ const InProgressResponsive = (props: Props) => {
       xl: <InProgress16 {...props} />,
     },
     <InProgress24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InProgressResponsive

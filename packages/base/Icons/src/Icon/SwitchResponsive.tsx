@@ -13,7 +13,7 @@ const SwitchResponsive = (props: Props) => {
       xl: <Switch16 {...props} />,
     },
     <Switch24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SwitchResponsive

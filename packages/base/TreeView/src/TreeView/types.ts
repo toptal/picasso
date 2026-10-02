@@ -1,5 +1,5 @@
-import type { RefObject } from 'react'
 import type React from 'react'
+import type { NullableRefObject } from '@toptal/picasso-utils'
 import type { HierarchyPointNode } from 'd3-hierarchy'
 import type { ZoomBehavior } from 'd3-zoom'
 
@@ -22,7 +22,7 @@ export interface TreeNodeInterface {
 }
 
 export type DynamicPointNode = HierarchyPointNode<TreeNodeInterface> & {
-  ref: RefObject<SVGGElement>
+  ref: NullableRefObject<SVGGElement>
   rect: {
     width: number
     height: number

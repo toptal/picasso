@@ -13,7 +13,7 @@ const ExclamationResponsive = (props: Props) => {
       xl: <Exclamation16 {...props} />,
     },
     <Exclamation24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ExclamationResponsive

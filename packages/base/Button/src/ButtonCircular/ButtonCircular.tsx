@@ -1,10 +1,11 @@
-import type { ReactElement, MouseEvent, ElementType } from 'react'
+import type { MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type {
   BaseProps,
   ButtonOrAnchorProps,
   OverridableComponent,
+  IconElement,
 } from '@toptal/picasso-shared'
 
 import { ButtonBase } from '../ButtonBase'
@@ -24,7 +25,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: IconElement
   /** Shows a loading indicator and disables click events */
   loading?: boolean
   /** Callback invoked when component is clicked */

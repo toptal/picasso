@@ -13,7 +13,7 @@ const PortfolioFinanceResponsive = (props: Props) => {
       xl: <PortfolioFinance16 {...props} />,
     },
     <PortfolioFinance24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PortfolioFinanceResponsive

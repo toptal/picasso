@@ -13,7 +13,7 @@ const CallMissedResponsive = (props: Props) => {
       xl: <CallMissed16 {...props} />,
     },
     <CallMissed24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CallMissedResponsive

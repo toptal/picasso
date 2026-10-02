@@ -13,7 +13,7 @@ const PauseResponsive = (props: Props) => {
       xl: <Pause16 {...props} />,
     },
     <Pause24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PauseResponsive

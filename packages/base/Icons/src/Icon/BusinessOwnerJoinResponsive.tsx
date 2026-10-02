@@ -13,7 +13,7 @@ const BusinessOwnerJoinResponsive = (props: Props) => {
       xl: <BusinessOwnerJoin16 {...props} />,
     },
     <BusinessOwnerJoin24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BusinessOwnerJoinResponsive

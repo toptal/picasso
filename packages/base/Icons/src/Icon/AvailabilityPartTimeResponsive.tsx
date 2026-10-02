@@ -13,7 +13,7 @@ const AvailabilityPartTimeResponsive = (props: Props) => {
       xl: <AvailabilityPartTime16 {...props} />,
     },
     <AvailabilityPartTime24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AvailabilityPartTimeResponsive

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@toptal/picasso-container'
 import { NumberInput } from '@toptal/picasso-number-input'
 import { Typography } from '@toptal/picasso-typography'
-import { render } from '@toptal/picasso-test-utils'
+import { render, renderedProps } from '@toptal/picasso-test-utils'
 import type { ComponentProps } from 'react'
 
 import { RangeInput } from './'
@@ -43,18 +43,16 @@ describe('RangeInput', () => {
         max: 1000,
       })
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           value: 0,
-        }),
-        {}
+        })
       )
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           value: 100,
-        }),
-        {}
+        })
       )
     })
   })
@@ -74,18 +72,16 @@ describe('RangeInput', () => {
         },
       })
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           status: 'error',
-        }),
-        {}
+        })
       )
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           status: 'default',
-        }),
-        {}
+        })
       )
     })
   })
@@ -102,18 +98,16 @@ describe('RangeInput', () => {
         validation: { reasons: [undefined, 'Invalid to value'], valid: false },
       })
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           status: 'default',
-        }),
-        {}
+        })
       )
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           status: 'error',
-        }),
-        {}
+        })
       )
     })
   })
@@ -133,18 +127,16 @@ describe('RangeInput', () => {
         },
       })
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           status: 'error',
-        }),
-        {}
+        })
       )
 
-      expect(NumberInputMock).toHaveBeenCalledWith(
+      expect(renderedProps(NumberInputMock)).toContainEqual(
         expect.objectContaining({
           status: 'error',
-        }),
-        {}
+        })
       )
     })
   })

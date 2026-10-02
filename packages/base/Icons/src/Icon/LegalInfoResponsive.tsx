@@ -13,7 +13,7 @@ const LegalInfoResponsive = (props: Props) => {
       xl: <LegalInfo16 {...props} />,
     },
     <LegalInfo24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LegalInfoResponsive

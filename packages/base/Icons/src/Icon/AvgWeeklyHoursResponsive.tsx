@@ -13,7 +13,7 @@ const AvgWeeklyHoursResponsive = (props: Props) => {
       xl: <AvgWeeklyHours16 {...props} />,
     },
     <AvgWeeklyHours24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AvgWeeklyHoursResponsive

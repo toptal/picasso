@@ -22,6 +22,13 @@ const chapter = PicassoBook.connectToPage(page =>
       'Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).'
     )
     .addTextSection(
+      'Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' +
+        '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' +
+        '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. Helmets no longer merge either: ' +
+        'a parent `titleTemplate` or `defaultTitle` does not apply to a nested helmet, duplicate tags stay, and a ' +
+        '`<script>` without `async` does not run. React 17 and 18 are unchanged.'
+    )
+    .addTextSection(
       'If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' +
         'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'
     )

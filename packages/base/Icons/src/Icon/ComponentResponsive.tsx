@@ -13,7 +13,7 @@ const ComponentResponsive = (props: Props) => {
       xl: <Component16 {...props} />,
     },
     <Component24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ComponentResponsive

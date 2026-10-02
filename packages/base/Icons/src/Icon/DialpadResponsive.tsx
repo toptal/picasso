@@ -13,7 +13,7 @@ const DialpadResponsive = (props: Props) => {
       xl: <Dialpad16 {...props} />,
     },
     <Dialpad24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default DialpadResponsive

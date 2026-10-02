@@ -1,0 +1,55 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "incremental": false,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "typeRoots": [
+      "./react19/node_modules/@types",
+      "./node_modules/@types",
+      "./@types",
+      "./node_modules/@testing-library"
+    ],
+    "types": [
+      "node",
+      "jest",
+      "jest-dom",
+      "global",
+      "ap-style-title-case",
+      "hast-util-from-dom",
+      "react-deprecate",
+      "react-source-render"
+    ],
+    "paths": {
+      "react": ["./react19/node_modules/@types/react"],
+      "react/*": ["./react19/node_modules/@types/react/*"],
+      "react-dom": ["./react19/node_modules/@types/react-dom"],
+      "react-dom/*": ["./react19/node_modules/@types/react-dom/*"]
+    }
+  },
+  // `files` is not subject to `exclude`: the React 19 sanity test and the tests
+  // carrying type-level assertions are checked here, every other test stays out
+  "files": [
+    "react19/sanity.test.tsx",
+    "packages/picasso-forms/src/FormState/test.tsx",
+    "packages/picasso-forms/src/FormListeners/test.tsx",
+    "packages/picasso-forms/src/FieldArray/test.tsx",
+    "packages/picasso-forms/src/FinalField/test.tsx"
+  ],
+  "include": ["packages/*/src", "packages/base/*/src"],
+  "exclude": [
+    "**/test.tsx",
+    "**/*.test.tsx",
+    "**/test.ts",
+    "**/*.test.ts",
+    "**/__tests__",
+    "**/__testfixtures__",
+    "**/story",
+    "**/*.example.tsx",
+    "packages/picasso-codemod",
+    "packages/picasso-cypress-utils"
+  ]
+}

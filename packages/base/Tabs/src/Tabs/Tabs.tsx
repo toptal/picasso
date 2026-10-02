@@ -159,6 +159,6 @@ const Tabs = forwardRef(
   }
 ) as <V extends TabsValueType = TabsValueType>(
   props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
-) => JSX.Element
+) => React.ReactElement
 
 export default Tabs

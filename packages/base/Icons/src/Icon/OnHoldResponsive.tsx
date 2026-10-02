@@ -13,7 +13,7 @@ const OnHoldResponsive = (props: Props) => {
       xl: <OnHold16 {...props} />,
     },
     <OnHold24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OnHoldResponsive

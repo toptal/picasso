@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-link",
-  "version": "100.0.1",
+  "version": "101.0.0",
   "description": "Toptal UI components library - Link",
   "publishConfig": {
     "access": "public"
@@ -33,7 +33,7 @@
     "@toptal/picasso-tailwind-merge": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-provider": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

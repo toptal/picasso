@@ -13,7 +13,7 @@ const LayersResponsive = (props: Props) => {
       xl: <Layers16 {...props} />,
     },
     <Layers24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LayersResponsive

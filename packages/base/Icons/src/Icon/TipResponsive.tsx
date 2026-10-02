@@ -13,7 +13,7 @@ const TipResponsive = (props: Props) => {
       xl: <Tip16 {...props} />,
     },
     <Tip24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TipResponsive

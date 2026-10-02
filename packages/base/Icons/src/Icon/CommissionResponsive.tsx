@@ -13,7 +13,7 @@ const CommissionResponsive = (props: Props) => {
       xl: <Commission16 {...props} />,
     },
     <Commission24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CommissionResponsive

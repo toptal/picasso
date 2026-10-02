@@ -13,7 +13,7 @@ const ObjectiveResponsive = (props: Props) => {
       xl: <Objective16 {...props} />,
     },
     <Objective24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ObjectiveResponsive

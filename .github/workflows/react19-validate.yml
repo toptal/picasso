@@ -1,0 +1,92 @@
+# [PF-2262] React 19 support: run the unit and component test suites against React 19.
+#
+# The workspace runs React 18 (pnpm-workspace.yaml overrides); the standalone
+# react19/ install plus jest.react19.mjs map every react/react-dom/
+# @testing-library import to React 19 for this run only. See jest.react19.mjs
+# for the wiring and jest/react-compat/README.md for how one snapshot set
+# serves both React majors.
+name: React 19 Validate
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+      - 'feature/**'
+    types:
+      - synchronize
+      - opened
+      - reopened
+      - ready_for_review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  react19-unit:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Unit tests on React 19
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+
+      - name: Set up Node.js
+        # Same as actions/setup-node@v6.1
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
+        with:
+          node-version: 22.20.0
+
+      - name: Install Dependencies
+        uses: ./.github/actions/pnpm-install
+
+      - name: Jest Tests on React 19
+        run: pnpm test:react19 --maxWorkers=4 --ci
+
+      - name: Type check against @types/react 19
+        run: pnpm typecheck:react19
+
+  react19-component:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Component tests on React 19
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        index: [0, 1, 2]
+    # davinci-qa's parallelization plugin reads these to split the specs
+    env:
+      GROUP_INDEX: ${{ matrix.index }}
+      PARALLEL_GROUPS: ${{ strategy.job-total }}
+
+    steps:
+      - name: Checkout
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+
+      - name: Set up Node.js
+        # Same as actions/setup-node@v6.1
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
+        with:
+          node-version: 22.20.0
+
+      - name: Install Dependencies
+        uses: ./.github/actions/pnpm-install
+
+      # The script installs the React 19 harness, builds the packages and runs
+      # cypress with CYPRESS_REACT_19=1; the action caches the Cypress binary
+      # and keeps screenshots of failures. No Happo keys, so no screenshots are
+      # uploaded — this job is about behavior, the React 18 run owns visuals.
+      - name: Component tests on React 19
+        uses: ./.github/actions/integration-tests
+        with:
+          command: test:integration:react19

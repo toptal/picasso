@@ -1,13 +1,16 @@
 import type {
   ReactNode,
-  ReactElement,
   ElementType,
   MouseEvent,
   AnchorHTMLAttributes,
   HTMLAttributes,
 } from 'react'
 import React, { forwardRef } from 'react'
-import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type {
+  BaseProps,
+  TextLabelProps,
+  IconElement,
+} from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
@@ -26,7 +29,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** Text content of the `Tag` component */
   children?: ReactNode
   /** Specify the icon which should be rendered inside Tag */
-  icon?: ReactElement
+  icon?: IconElement
   /** Defines if `Tag` is disabled */
   disabled?: boolean
   /** A callback which is invoked after remove `Icon` is clicked

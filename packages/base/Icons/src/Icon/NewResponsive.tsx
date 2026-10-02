@@ -13,7 +13,7 @@ const NewResponsive = (props: Props) => {
       xl: <New16 {...props} />,
     },
     <New24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default NewResponsive

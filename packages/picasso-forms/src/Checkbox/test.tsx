@@ -1,5 +1,6 @@
 import React from 'react'
-import { render } from '@toptal/picasso-test-utils'
+import { act, fireEvent, render } from '@toptal/picasso-test-utils'
+import { Button } from '@toptal/picasso-button'
 
 import type { FormConfigProps } from '../FormConfig'
 import { FormCompound as Form } from '../FormCompound'
@@ -92,5 +93,56 @@ describe('Form.Checkbox', () => {
     expect(
       getByRole('checkbox', { name: 'The Checkbox Label' })
     ).toBeInTheDocument()
+  })
+  describe('when `format` and `parse` map the value to a string', () => {
+    const renderStringCheckbox = (initialValue: string) => {
+      const onSubmit = jest.fn()
+
+      const api = render(
+        <Form onSubmit={onSubmit} initialValues={{ relocation: initialValue }}>
+          <Checkbox
+            name='relocation'
+            label='Considers relocation'
+            format={value => value === 'true'}
+            parse={checked => (checked ? 'true' : 'false')}
+          />
+          <Button type='submit'>Submit</Button>
+        </Form>
+      )
+
+      return { ...api, onSubmit }
+    }
+
+    it('renders a stored "false" unchecked', () => {
+      const { getByRole } = renderStringCheckbox('false')
+
+      expect(
+        getByRole('checkbox', { name: 'Considers relocation' })
+      ).not.toBeChecked()
+    })
+
+    it('renders a stored "true" checked', () => {
+      const { getByRole } = renderStringCheckbox('true')
+
+      expect(
+        getByRole('checkbox', { name: 'Considers relocation' })
+      ).toBeChecked()
+    })
+
+    it('submits the value the user ticked', async () => {
+      const { getByRole, getByText, onSubmit } = renderStringCheckbox('false')
+
+      fireEvent.click(getByRole('checkbox', { name: 'Considers relocation' }))
+
+      await act(async () => {
+        fireEvent.click(getByText('Submit'))
+      })
+
+      expect(onSubmit).toHaveBeenCalledWith(
+        { relocation: 'true' },
+        expect.anything(),
+        expect.anything()
+      )
+    })
   })
 })

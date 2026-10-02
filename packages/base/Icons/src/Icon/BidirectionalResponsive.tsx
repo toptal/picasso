@@ -13,7 +13,7 @@ const BidirectionalResponsive = (props: Props) => {
       xl: <Bidirectional16 {...props} />,
     },
     <Bidirectional24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BidirectionalResponsive

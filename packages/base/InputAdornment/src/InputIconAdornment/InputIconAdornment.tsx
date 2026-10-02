@@ -13,10 +13,13 @@ export interface Props {
 
 const InputIconAdornment = (props: Props) => {
   const { position, disabled, icon } = props
-  const styledIcon = React.cloneElement(icon as ReactElement, {
-    className: 'grow shrink basis-0', // fix for IE11
-    role: 'presentation',
-  })
+  const styledIcon = React.cloneElement(
+    icon as ReactElement<{ className?: string; role?: string }>,
+    {
+      className: 'grow shrink basis-0', // fix for IE11
+      role: 'presentation',
+    }
+  )
 
   return (
     <InputAdornment

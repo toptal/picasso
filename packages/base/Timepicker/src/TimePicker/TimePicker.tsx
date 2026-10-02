@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import InputMask from 'react-input-mask'
-import { detect } from 'detect-browser'
 import { Input } from '@toptal/picasso-input'
 import { Time16 } from '@toptal/picasso-icons'
 import type { InputProps } from '@toptal/picasso-input'
@@ -78,18 +76,6 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     }
   }
 
-  const browser = detect()
-  const isSafari = browser?.name === 'safari'
-  const startsWithTwo = value && value[0] === '2'
-
-  const inputMask = [
-    /[0-2]/,
-    startsWithTwo ? /[0-3]/ : /[0-9]/,
-    ':',
-    /[0-5]/,
-    /[0-9]/,
-  ]
-
   const icon = (
     <Time16
       classes={{
@@ -102,36 +88,6 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
 
   const inputPropClassName = `-mr-[8px] [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
     [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
-
-  if (isSafari) {
-    return (
-      <Input
-        type='text'
-        readOnly
-        iconPosition='end'
-        icon={icon}
-        width={width}
-        status={status}
-        className={inputClassName}
-        highlight={highlight}
-        size={size}
-        inputProps={{
-          className: inputPropClassName,
-          ...rest,
-        }}
-        startAdornment={
-          <InputMask
-            mask={inputMask}
-            alwaysShowMask
-            maskPlaceholder='-'
-            value={value}
-            onChange={onChange}
-            className={'text-sm border-none p-0 m-0 outline-hidden'}
-          />
-        }
-      />
-    )
-  }
 
   return (
     <Input

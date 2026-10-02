@@ -13,7 +13,7 @@ const ChatResponsive = (props: Props) => {
       xl: <Chat16 {...props} />,
     },
     <Chat24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ChatResponsive

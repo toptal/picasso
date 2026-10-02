@@ -14,11 +14,18 @@ export const PICASSO_TW_FONT_SIZES = [
   'text-button-large',
 ]
 
+// The 0-24 boxShadow scale from @toptal/picasso-tailwind (0-5 BASE design, 6-24 legacy MUI v4 elevations)
+export const PICASSO_TW_SHADOWS = Array.from(
+  { length: 25 },
+  (_, index) => `shadow-${index}`
+)
+
 export const CONFIG = {
   extend: {
     classGroups: {
       'font-size': [...PICASSO_TW_FONT_SIZES, 'font-inherit-size'],
       'font-weight': ['font-regular', 'font-semibold', 'font-inherit-weight'],
+      shadow: PICASSO_TW_SHADOWS,
       'text-alignment': [
         'text-align-inherit',
         'text-left',

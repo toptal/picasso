@@ -13,7 +13,7 @@ const PresenterModeResponsive = (props: Props) => {
       xl: <PresenterMode16 {...props} />,
     },
     <PresenterMode24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PresenterModeResponsive

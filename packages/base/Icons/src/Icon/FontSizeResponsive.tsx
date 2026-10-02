@@ -13,7 +13,7 @@ const FontSizeResponsive = (props: Props) => {
       xl: <FontSize16 {...props} />,
     },
     <FontSize24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FontSizeResponsive

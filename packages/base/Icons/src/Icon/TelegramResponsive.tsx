@@ -13,7 +13,7 @@ const TelegramResponsive = (props: Props) => {
       xl: <Telegram16 {...props} />,
     },
     <Telegram24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TelegramResponsive
