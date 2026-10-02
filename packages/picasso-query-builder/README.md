@@ -26,7 +26,7 @@ The following peer dependencies are required:
 
 ### React compatibility
 
-This package requires `react >= 18`, unlike the rest of the Picasso packages,
+This package requires React 18 or 19, unlike the rest of the Picasso packages,
 which also support React 17. The floor comes from `react-querybuilder` v7.1+
 (the library this package wraps), whose internals depend on `react-redux` v9
 and therefore React 18. Consumers still on React 17 must stay on the previous
