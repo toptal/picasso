@@ -7,7 +7,7 @@ export const generateSelectOptions = (options?: OptionList) => {
 
     options.forEach(option => {
       groupOptions[option.label] = option.options.map(subOption => ({
-        value: subOption.name,
+        value: subOption.value ?? subOption.name,
         text: subOption.label,
       }))
     })
@@ -17,9 +17,9 @@ export const generateSelectOptions = (options?: OptionList) => {
 
   if (Array.isArray(options)) {
     return options.map(option => ({
-      value: option.name,
+      value: option.value ?? option.name,
       text: option.label,
-      tooltip: option.tooltip,
+      tooltip: option.tooltip as string | undefined,
     }))
   }
 
