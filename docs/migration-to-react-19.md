@@ -96,20 +96,23 @@ change fails, React is the cause.
 
 ### Versions in the release
 
-At the time of writing, the release plan (`pnpm changeset status` on the feature
+Every Picasso package ships as `102.0.0`, re-baselined to one version the way
+v100 was. Packages on the `100.x` line skip `101`, which
+`@toptal/picasso-calendar`, `-date-picker` and `-switch` already shipped.
+
+The shared major doesn't mean every package breaks. At the time of writing, the
+release plan without the re-baseline (`pnpm changeset status` on the feature
 branch) moves 88 packages:
 
-- **66 take a major.** Most go to `101.0.0`; `@toptal/picasso-calendar`,
-  `-date-picker` and `-switch` go to `102.0.0`. The majors come from date-fns 4
-  (Calendar, DatePicker and the `@toptal/picasso` aggregate), final-form 5
+- **66 take a major of their own.** The majors come from date-fns 4 (Calendar,
+  DatePicker and the `@toptal/picasso` aggregate), final-form 5
   (`@toptal/picasso-forms`) and tailwind-merge 3.
   `@toptal/picasso-tailwind-merge` is a peer of nearly every component package,
   so its major moves them too.
-- **22 take a minor** on the `100.x` line, among them
-  `@toptal/picasso-provider`, `-shared`, `-utils`, `-test-utils`, `-charts` and
-  `@topkit/analytics-charts`.
+- **22 carry only minor changes**, among them `@toptal/picasso-provider`,
+  `-shared`, `-utils`, `-test-utils`, `-charts` and `@topkit/analytics-charts`.
 - `@toptal/picasso-tailwind`, `@toptal/base-tailwind` and
-  `@toptal/picasso-cypress-utils` don't change.
+  `@toptal/picasso-cypress-utils` have no changes of their own.
 
 A `^100` range doesn't reach the release, in your manifests or in topkit's peers
 ([Step 1](#step-1-bump-picasso-and-topkit-together)).
