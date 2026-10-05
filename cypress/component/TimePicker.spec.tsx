@@ -14,45 +14,33 @@ const TestTimePicker = (props: Partial<TimePickerProps>) => {
 
 const component = 'TimePicker'
 
-const openPicker = () => cy.get('button[aria-label="Choose time"]').click()
+const openList = () => cy.get('button[aria-label="Choose time"]').click()
 
 describe('TimePicker', () => {
-  describe('when the clock button is clicked', () => {
-    it('renders the hour and minute columns', () => {
-      cy.mount(<TestTimePicker />)
+  describe('when minuteStep is provided and the clock button is clicked', () => {
+    it('renders the list of times', () => {
+      cy.mount(<TestTimePicker minuteStep={15} />)
 
-      openPicker()
+      openList()
 
-      cy.get('[role="dialog"]').should('be.visible')
+      cy.get('[role="listbox"]').should('be.visible')
       cy.get('body').happoScreenshot({
         component,
-        variant: 'columns',
+        variant: 'time-list',
       })
     })
   })
 
-  describe('when column labels are provided', () => {
-    it('renders them above the columns', () => {
-      cy.mount(<TestTimePicker hourLabel='Std' minuteLabel='Min' />)
+  describe('when a time is clicked', () => {
+    it('updates the field and closes the list', () => {
+      cy.mount(<TestTimePicker minuteStep={15} />)
 
-      openPicker()
+      openList()
+      // The labels follow the 12/24-hour setting of the machine running the test
+      cy.contains('[role="option"]', /^(19:15|07:15 PM)$/).click()
 
-      cy.get('[role="listbox"][aria-label="Std"]').should('be.visible')
-      cy.get('body').happoScreenshot({
-        component,
-        variant: 'column-labels',
-      })
-    })
-  })
-
-  describe('when a minute is clicked', () => {
-    it('updates the field', () => {
-      cy.mount(<TestTimePicker />)
-
-      openPicker()
-      cy.get('[role="listbox"][aria-label="Minute"]').contains('45').click()
-
-      cy.get('input[type="time"]').should('have.value', '18:45')
+      cy.get('input[type="time"]').should('have.value', '19:15')
+      cy.get('[role="listbox"]').should('not.exist')
     })
   })
 })

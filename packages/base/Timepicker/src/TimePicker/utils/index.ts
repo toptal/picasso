@@ -2,9 +2,9 @@ export { getHourCycle } from './get-hour-cycle'
 export type { HourCycle } from './get-hour-cycle'
 export {
   VALID_TIME_REGEX,
-  formatTime,
   getCurrentTime,
-  padTimePart,
+  getNearestOptionIndex,
+  getTimeOptions,
   parseTime,
 } from './time'
-export type { Time } from './time'
+export type { Time, TimeOption } from './time'

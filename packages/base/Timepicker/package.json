@@ -25,6 +25,7 @@
     "@toptal/picasso-icons": "workspace:*",
     "@toptal/picasso-input": "workspace:*",
     "@toptal/picasso-input-adornment": "workspace:*",
+    "@toptal/picasso-menu": "workspace:*",
     "@toptal/picasso-outlined-input": "workspace:*",
     "@toptal/picasso-popper": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",

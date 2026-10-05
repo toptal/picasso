@@ -31,11 +31,11 @@ page
     'base/Timepicker'
   )
   .addExample(
-    'TimePicker/story/ColumnLabels.example.tsx',
+    'TimePicker/story/MinuteStep.example.tsx',
     {
-      title: 'Column labels',
+      title: 'Minute step',
       description:
-        'Use `hourLabel` and `minuteLabel` to rename the columns of the time dropdown',
+        'Pass `minuteStep` to replace the browser time picker with a list of times at that interval. Any other time can still be typed',
       takeScreenshot: false,
     },
     'base/Timepicker'

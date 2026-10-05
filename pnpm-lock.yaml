@@ -2890,6 +2890,9 @@ importers:
       '@toptal/picasso-input-adornment':
         specifier: workspace:*
         version: link:../InputAdornment
+      '@toptal/picasso-menu':
+        specifier: workspace:*
+        version: link:../Menu
       '@toptal/picasso-outlined-input':
         specifier: workspace:*
         version: link:../OutlinedInput
