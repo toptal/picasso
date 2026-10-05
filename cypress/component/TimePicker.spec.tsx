@@ -14,7 +14,6 @@ const TestTimePicker = (props: Partial<TimePickerProps>) => {
 
 const component = 'TimePicker'
 const list = '[role="listbox"]'
-const amPmProbe = '-webkit-datetime-edit-ampm-field'
 
 const openList = () => {
   cy.get('button[aria-label="Choose time"]').click()
@@ -29,7 +28,7 @@ const forceHourCycle = (hourCycle: 12 | 24) =>
     Object.defineProperty(win.HTMLInputElement.prototype, 'offsetHeight', {
       configurable: true,
       get(this: HTMLInputElement) {
-        if (this.className.includes(amPmProbe)) {
+        if (this.dataset.probedSegment === 'ampm') {
           return hourCycle === 12 ? win.innerHeight : 0
         }
 

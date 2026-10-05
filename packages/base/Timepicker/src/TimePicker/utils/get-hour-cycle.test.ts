@@ -6,10 +6,10 @@ const mockNativeFieldLayout = (renderedSegments: string[]) => {
   jest
     .spyOn(HTMLElement.prototype, 'offsetHeight', 'get')
     .mockImplementation(function (this: HTMLElement) {
-      const isStretched = renderedSegments.some(segment =>
-        // eslint-disable-next-line no-invalid-this
-        this.className.includes(`::-webkit-datetime-edit-${segment}-field`)
-      )
+      // eslint-disable-next-line no-invalid-this
+      const { probedSegment } = this.dataset
+      const isStretched =
+        probedSegment !== undefined && renderedSegments.includes(probedSegment)
 
       return isStretched ? PROBE_HEIGHT : 17
     })

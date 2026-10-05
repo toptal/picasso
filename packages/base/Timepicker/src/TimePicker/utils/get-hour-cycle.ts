@@ -1,21 +1,29 @@
 export type HourCycle = 12 | 24
 
+type Segment = 'hour' | 'ampm'
+
 const PROBE_CLASS_NAME =
   'fixed top-0 left-0 invisible pointer-events-none h-auto p-0 border-0'
 
 // A stretched segment makes the whole field taller, which tells whether the browser rendered it
-const SEGMENT_CLASS_NAMES = {
+const SEGMENT_CLASS_NAMES: Record<Segment, string> = {
   hour: '[&::-webkit-datetime-edit-hour-field]:inline-block [&::-webkit-datetime-edit-hour-field]:h-[6.25rem]',
   ampm: '[&::-webkit-datetime-edit-ampm-field]:inline-block [&::-webkit-datetime-edit-ampm-field]:h-[6.25rem]',
 }
 
-const measureProbe = (segmentClassName = '') => {
+const measureProbe = (segment?: Segment) => {
   const probe = document.createElement('input')
 
   probe.type = 'time'
   probe.tabIndex = -1
   probe.setAttribute('aria-hidden', 'true')
-  probe.className = `${PROBE_CLASS_NAME} ${segmentClassName}`
+  probe.className = PROBE_CLASS_NAME
+
+  if (segment) {
+    probe.className += ` ${SEGMENT_CLASS_NAMES[segment]}`
+    // Lets tests tell the probes apart without depending on their styling classes
+    probe.dataset.probedSegment = segment
+  }
 
   document.body.appendChild(probe)
 
@@ -34,8 +42,8 @@ const getNativeFieldHourCycle = (): HourCycle | undefined => {
   }
 
   const stretchedHeight = measureProbe() * 2
-  const rendersSegment = (segment: keyof typeof SEGMENT_CLASS_NAMES) =>
-    measureProbe(SEGMENT_CLASS_NAMES[segment]) > stretchedHeight
+  const rendersSegment = (segment: Segment) =>
+    measureProbe(segment) > stretchedHeight
 
   if (!rendersSegment('hour')) {
     return undefined
