@@ -1,5 +1,19 @@
 # @toptal/picasso-slider
 
+## 100.0.3
+
+### Patch Changes
+
+- [#5118](https://github.com/toptal/picasso/pull/5118) [`632ad80`](https://github.com/toptal/picasso/commit/632ad80f3e1fa7df8615c89d0ed7a5369099252a) Thanks [@azebich](https://github.com/azebich)!
+
+### Slider
+
+- show a focus shadow on a keyboard-focused thumb
+
+### Tabs
+
+- show a focus indicator on a keyboard-focused tab
+
 ## 100.0.2
 
 ### Patch Changes

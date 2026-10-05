@@ -1,5 +1,13 @@
 # Change Log
 
+## 100.0.11
+
+### Patch Changes
+
+- Updated dependencies [[`632ad80`](https://github.com/toptal/picasso/commit/632ad80f3e1fa7df8615c89d0ed7a5369099252a)]:
+  - @toptal/picasso-slider@100.0.3
+  - @toptal/picasso-tabs@100.0.4
+
 ## 100.0.10
 
 ### Patch Changes
