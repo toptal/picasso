@@ -11,8 +11,7 @@ Time Picker component
 | value | `string` | - | Time value that will be selected in TimePicker |
 | status | `"error" \| "warning" \| "default"` | `default` | Indicate whether `TimePicker` is in `error`, `warning` or `default` state |
 | onChange | `((value: string) => void)` | - | Called on input change |
-| hourLabel | `string` | `Hour` | Label of the hour column in the time dropdown |
-| minuteLabel | `string` | `Minute` | Label of the minute column in the time dropdown |
+| minuteStep | `5 \| 10 \| 15 \| 20 \| 30 \| 60` | - | Interval in minutes between the times offered in a dropdown list. When omitted, the browser's own time picker is used |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 | size | `"small" \| "medium" \| "large"` | - | Component size |
@@ -68,26 +67,25 @@ const Example = () => {
 export default Example
 ```
 
-### Column labels
+### Minute step
 
-Use `hourLabel` and `minuteLabel` to rename the columns of the time dropdown
+Pass `minuteStep` to replace the browser time picker with a list of times at that interval. Any other time can still be typed
 
 ```tsx
 import React, { useState } from 'react'
 import { TimePicker } from '@toptal/picasso'
 
-const ColumnLabelsExample = () => {
+const MinuteStepExample = () => {
   const [timepickerValue, setTimepickerValue] = useState<string>('09:30')
 
   return (
     <TimePicker
       onChange={setTimepickerValue}
       value={timepickerValue}
-      hourLabel='Std'
-      minuteLabel='Min'
+      minuteStep={15}
     />
   )
 }
 
-export default ColumnLabelsExample
+export default MinuteStepExample
 ```
