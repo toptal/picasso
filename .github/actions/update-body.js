@@ -10,15 +10,10 @@ try {
     return
   }
 
-  const {
-    number: prNumber,
-    body: oldBody,
-    head: { ref: branch },
-  } = context.payload.pull_request
-  const pullRequestBranch = context.payload.pull_request.head.ref
+  const { number: prNumber, body: oldBody } = context.payload.pull_request
 
   const searchString = '- Temploy'
-  const replacementString = `- [Temploy](https://picasso.toptal.net/${branch})`
+  const replacementString = `- [Temploy](https://toptal.github.io/picasso/prs/${prNumber}/)`
 
   if (oldBody.includes(searchString) && !oldBody.includes(replacementString)) {
     const newBody = oldBody.replace(searchString, replacementString)
