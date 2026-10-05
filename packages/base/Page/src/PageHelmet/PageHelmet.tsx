@@ -1,19 +1,80 @@
 import type { ReactNode } from 'react'
-import React from 'react'
+import React, {
+  Children,
+  isValidElement,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import type { HelmetProps } from '@toptal/picasso-provider'
 import { Helmet } from '@toptal/picasso-provider'
+import { isReact19OrNewer } from '@toptal/picasso-utils'
+
+import type { TitleEntry } from './title-registry'
+import { register, resolveTitle, subscribe, update } from './title-registry'
 
 export interface Props extends HelmetProps {
   /** content that goes to the document head */
   children?: ReactNode
 }
 
-export const PageHelmet = (props: Props): React.ReactElement => {
+// A `<title>` child is the helmet's title, as react-helmet-async reads it
+const splitTitleChild = (children: ReactNode) => {
+  let title: string | undefined
+  const otherChildren = Children.toArray(children).filter(child => {
+    if (
+      isValidElement<{ children?: ReactNode }>(child) &&
+      child.type === 'title'
+    ) {
+      title = Children.toArray(child.props.children).join('')
+
+      return false
+    }
+
+    return true
+  })
+
+  return { title, otherChildren }
+}
+
+const PlainPageHelmet = (props: Props): React.ReactElement => {
   const { children, ...rest } = props
 
   return <Helmet {...rest}>{children}</Helmet>
 }
 
-PageHelmet.displayName = 'PageHelmet'
+// On React 19, react-helmet-async renders each helmet's own `<title>` for
+// React to hoist, so a layout's `titleTemplate` never reached a page's
+// `title`. The helmets merge their titles here instead, and only one renders
+const MergingPageHelmet = (props: Props): React.ReactElement => {
+  const {
+    children,
+    title: titleProp,
+    titleTemplate,
+    defaultTitle,
+    ...rest
+  } = props
+  const { title: childTitle, otherChildren } = splitTitleChild(children)
+  const title = titleProp ?? childTitle
+  const [entry] = useState<TitleEntry>(() => ({}))
+  const [, rerender] = useReducer((count: number) => count + 1, 0)
+
+  useEffect(() => subscribe(rerender), [])
+  useEffect(() => {
+    update(entry, { title, titleTemplate, defaultTitle })
+  }, [entry, title, titleTemplate, defaultTitle])
+  useEffect(() => register(entry), [entry])
+
+  return (
+    <Helmet {...rest} title={resolveTitle(entry)}>
+      {otherChildren}
+    </Helmet>
+  )
+}
+
+PlainPageHelmet.displayName = 'PageHelmet'
+MergingPageHelmet.displayName = 'PageHelmet'
+
+export const PageHelmet = isReact19OrNewer ? MergingPageHelmet : PlainPageHelmet
 
 export default PageHelmet

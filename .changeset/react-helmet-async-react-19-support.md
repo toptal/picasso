@@ -12,3 +12,4 @@
 ### Page
 
 - render `Page.Helmet` through the `Helmet` that `@toptal/picasso-provider` exports instead of importing `react-helmet-async` itself. The import was never declared, so it resolved to whatever copy the consumer happened to hoist — or to none at all — and a copy other than the provider's threw on React 17 and 18. `Page.Helmet` now always shares the provider's instance
+- on React 19, `Page.Helmet` keeps merging titles across helmets, as react-helmet-async does on React 17 and 18: the innermost `title`, formatted with the innermost `titleTemplate`, or else the innermost `defaultTitle`, and only one `<title>` renders. So a layout's `<Page.Helmet titleTemplate='%s | Toptal' />` still formats a page's `<Page.Helmet title='Overview' />`. Other head tags don't merge on React 19

@@ -84,7 +84,7 @@ change fails, React is the cause.
 | `notistack`                                              | **Yes**: exactly `3.0.2`                            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
 | picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                      | Nothing extra                          | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
 | date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | npm and yarn: an override. pnpm: nothing            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: helmets stop merging          | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
+| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: only titles merge             | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
 | Patches and overrides keyed on old versions              | **Yes**                                             | Yes                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
 | tailwind-merge 3                                         | Review your class overrides                         | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
 | Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
@@ -220,7 +220,7 @@ git grep -n -E '\.defaultProps[[:space:]]*=' -- '*.ts' '*.tsx' '*.js' '*.jsx'
 git grep -n -E "react-dom/test-utils|ReactDOM\.(render|hydrate|unmountComponentAtNode)\(|findDOMNode\(|react-hot-loader" -- '*.ts' '*.tsx' '*.js' '*.jsx'
 # test files with Symbol placeholders that mocks may render (Step 14)
 git grep -l "Symbol('" -- '*.test.ts' '*.test.tsx' | wc -l
-# helmet title templates, which stop applying (Step 11)
+# helmet title templates, which apply on React 19 only through Page.Helmet (Step 11)
 git grep -n 'titleTemplate' -- '*.ts' '*.tsx'
 ```
 
@@ -958,18 +958,18 @@ Staff Portal's #16704 sets these as `overrides`:
 
 ### Step 11. Handle Picasso's React 19 limitations
 
-1. **Helmets stop merging.** On React 19, react-helmet-async 3 renders real
-   elements for React to hoist, and `<HelmetProvider>` becomes a passthrough. A
-   parent's `titleTemplate` or `defaultTitle` no longer applies to a nested
-   helmet, duplicate `<title>` and `<meta>` tags stay, `onChangeClientState`
+1. **Only titles merge, and only through `Page.Helmet`.** On React 19,
+   react-helmet-async 3 renders real elements for React to hoist, and
+   `<HelmetProvider>` becomes a passthrough. `Page.Helmet` still merges titles:
+   the innermost `title`, formatted with the innermost `titleTemplate`, or else
+   the innermost `defaultTitle`. So Client Portal's
+   `titleTemplate='%s | Toptal: Exclusive access to top talent'` in `BaseLayout`
+   and `PreOnboardingLayout` still formats its pages'
+   `<Page.Helmet title='Overview' />`. A `<Helmet>` rendered directly doesn't
+   take part. Otherwise duplicate `<meta>` tags stay, `onChangeClientState`
    never fires, a `<script>` child without `async` doesn't run, the SSR
    `context` stays empty, and `prioritizeSeoTags`, `helmetData` and `canUseDOM`
-   do nothing. `htmlAttributes` and `bodyAttributes` keep working. Build full
-   titles where you render them. Client Portal sets
-   `titleTemplate='%s | Toptal: Exclusive access to top talent'` in `BaseLayout`
-   and `PreOnboardingLayout` while its pages render
-   `<Page.Helmet title='Overview' />`, so its titles lose that suffix on React
-   19 until the template is replaced.
+   do nothing. `htmlAttributes` and `bodyAttributes` keep working.
 2. **A `<link>` whose `href` arrives late stays in the body.** React 19 decides
    whether a `<link>` can be hoisted into `<head>` when the element mounts. One
    mounted with an undefined `href` renders in place and stays there after the
@@ -1195,8 +1195,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 **In Picasso, after the release**, from the
 [#5070 review](https://toptal-core.atlassian.net/wiki/spaces/PF/pages/6455296029/PF-2262+-+React+19+PR+5070+Review+Findings+and+Action+Items):
 
-- `Page.Helmet` doesn't merge helmets on React 19, so you build full titles
-  yourself.
 - Charts need the `react-is` override on React 19.
 - Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,
   as upstream does. Which behavior Picasso settles on is still open.
