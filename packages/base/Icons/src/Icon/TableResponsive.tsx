@@ -13,7 +13,7 @@ const TableResponsive = (props: Props) => {
       xl: <Table16 {...props} />,
     },
     <Table24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TableResponsive

@@ -113,7 +113,9 @@ const useFallbackId = (idProp?: string): string | undefined => {
   return idProp ?? fallbackId
 }
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+export interface Props
+  extends BaseProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'content'> {
   /** Trigger element for tooltip */
   children: ReactNode
   /** Content to be rendered inside tooltip */

@@ -13,7 +13,7 @@ const ResourcesResponsive = (props: Props) => {
       xl: <Resources16 {...props} />,
     },
     <Resources24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ResourcesResponsive

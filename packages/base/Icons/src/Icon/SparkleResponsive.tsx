@@ -13,7 +13,7 @@ const SparkleResponsive = (props: Props) => {
       xl: <Sparkle16 {...props} />,
     },
     <Sparkle24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SparkleResponsive

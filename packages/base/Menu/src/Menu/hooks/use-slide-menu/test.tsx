@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 
 import useSlideMenu from './use-slide-menu'
 import type { MenuContextProps } from '../../MenuContext'

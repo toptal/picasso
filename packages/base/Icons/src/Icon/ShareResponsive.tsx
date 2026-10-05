@@ -13,7 +13,7 @@ const ShareResponsive = (props: Props) => {
       xl: <Share16 {...props} />,
     },
     <Share24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ShareResponsive

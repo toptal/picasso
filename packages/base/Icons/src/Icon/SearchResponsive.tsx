@@ -13,7 +13,7 @@ const SearchResponsive = (props: Props) => {
       xl: <Search16 {...props} />,
     },
     <Search24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SearchResponsive

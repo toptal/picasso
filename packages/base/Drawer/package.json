@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-drawer",
-  "version": "100.1.1",
+  "version": "101.0.0",
   "description": "Toptal UI components library - Drawer",
   "publishConfig": {
     "access": "public"
@@ -38,7 +38,7 @@
     "@toptal/picasso-provider": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-tailwind-merge": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

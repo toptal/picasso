@@ -103,6 +103,9 @@ export const DynamicOptionsAutocompleteExample = () => {
 }
 
 const openAutocompleteWithTab = () => {
+  // `.tab()` does not retry, and React 19 commits the mount asynchronously,
+  // so make sure the field is in the DOM before asking for the next tab stop
+  cy.getByTestId(testIds.input).should('exist')
   cy.get('body').tab()
 }
 

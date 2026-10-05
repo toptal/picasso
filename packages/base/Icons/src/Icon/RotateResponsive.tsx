@@ -13,7 +13,7 @@ const RotateResponsive = (props: Props) => {
       xl: <Rotate16 {...props} />,
     },
     <Rotate24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default RotateResponsive

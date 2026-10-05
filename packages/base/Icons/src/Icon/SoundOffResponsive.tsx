@@ -13,7 +13,7 @@ const SoundOffResponsive = (props: Props) => {
       xl: <SoundOff16 {...props} />,
     },
     <SoundOff24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SoundOffResponsive

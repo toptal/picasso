@@ -13,7 +13,7 @@ const Cpu2Responsive = (props: Props) => {
       xl: <Cpu216 {...props} />,
     },
     <Cpu224 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default Cpu2Responsive

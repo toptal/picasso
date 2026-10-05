@@ -13,7 +13,7 @@ const TimeResponsive = (props: Props) => {
       xl: <Time16 {...props} />,
     },
     <Time24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TimeResponsive

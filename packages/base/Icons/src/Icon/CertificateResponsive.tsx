@@ -13,7 +13,7 @@ const CertificateResponsive = (props: Props) => {
       xl: <Certificate16 {...props} />,
     },
     <Certificate24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CertificateResponsive

@@ -6,7 +6,7 @@ import { zoom as d3zoom, select, zoomIdentity } from 'd3'
 export interface UseZoomArguments<
   ZoomRefElement extends ZoomedElementBaseType
 > {
-  rootRef: RefObject<ZoomRefElement>
+  rootRef: RefObject<ZoomRefElement | null>
   scaleExtent: [number, number]
   center?: { x: number; y: number }
   initialScale?: number

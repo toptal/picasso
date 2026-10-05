@@ -13,7 +13,7 @@ const WorkingResponsive = (props: Props) => {
       xl: <Working16 {...props} />,
     },
     <Working24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default WorkingResponsive

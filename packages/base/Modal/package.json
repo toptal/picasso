@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-modal",
-  "version": "100.1.4",
+  "version": "101.0.0",
   "description": "Toptal UI components library - Modal",
   "publishConfig": {
     "access": "public"
@@ -38,7 +38,7 @@
   ],
   "peerDependencies": {
     "@toptal/picasso-provider": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-tailwind-merge": "workspace:^"
   },

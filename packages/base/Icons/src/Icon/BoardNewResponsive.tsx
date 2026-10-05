@@ -13,7 +13,7 @@ const BoardNewResponsive = (props: Props) => {
       xl: <BoardNew16 {...props} />,
     },
     <BoardNew24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BoardNewResponsive

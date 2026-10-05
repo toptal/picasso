@@ -13,7 +13,7 @@ const ConfluenceResponsive = (props: Props) => {
       xl: <Confluence16 {...props} />,
     },
     <Confluence24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ConfluenceResponsive

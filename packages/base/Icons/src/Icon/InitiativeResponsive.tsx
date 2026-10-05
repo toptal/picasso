@@ -13,7 +13,7 @@ const InitiativeResponsive = (props: Props) => {
       xl: <Initiative16 {...props} />,
     },
     <Initiative24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InitiativeResponsive

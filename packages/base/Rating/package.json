@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-rating",
-  "version": "100.0.1",
+  "version": "101.0.0",
   "description": "Toptal UI components library - Rating",
   "publishConfig": {
     "access": "public"
@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@toptal/picasso-tailwind-merge": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

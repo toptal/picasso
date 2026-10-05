@@ -13,7 +13,7 @@ const BackspaceResponsive = (props: Props) => {
       xl: <Backspace16 {...props} />,
     },
     <Backspace24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BackspaceResponsive

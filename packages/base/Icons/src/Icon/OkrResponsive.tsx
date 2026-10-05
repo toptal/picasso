@@ -13,7 +13,7 @@ const OkrResponsive = (props: Props) => {
       xl: <Okr16 {...props} />,
     },
     <Okr24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default OkrResponsive

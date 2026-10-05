@@ -13,7 +13,7 @@ const InTransitResponsive = (props: Props) => {
       xl: <InTransit16 {...props} />,
     },
     <InTransit24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InTransitResponsive

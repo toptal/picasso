@@ -13,7 +13,7 @@ const PlusResponsive = (props: Props) => {
       xl: <Plus16 {...props} />,
     },
     <Plus24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PlusResponsive

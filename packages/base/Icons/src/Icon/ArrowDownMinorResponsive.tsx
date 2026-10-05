@@ -13,7 +13,7 @@ const ArrowDownMinorResponsive = (props: Props) => {
       xl: <ArrowDownMinor16 {...props} />,
     },
     <ArrowDownMinor24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ArrowDownMinorResponsive

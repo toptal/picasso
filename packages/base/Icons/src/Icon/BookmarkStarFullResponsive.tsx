@@ -13,7 +13,7 @@ const BookmarkStarFullResponsive = (props: Props) => {
       xl: <BookmarkStarFull16 {...props} />,
     },
     <BookmarkStarFull24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BookmarkStarFullResponsive

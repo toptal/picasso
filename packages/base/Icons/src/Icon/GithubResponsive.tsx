@@ -13,7 +13,7 @@ const GithubResponsive = (props: Props) => {
       xl: <Github16 {...props} />,
     },
     <Github24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default GithubResponsive

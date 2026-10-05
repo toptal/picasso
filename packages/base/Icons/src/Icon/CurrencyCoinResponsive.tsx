@@ -13,7 +13,7 @@ const CurrencyCoinResponsive = (props: Props) => {
       xl: <CurrencyCoin16 {...props} />,
     },
     <CurrencyCoin24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CurrencyCoinResponsive

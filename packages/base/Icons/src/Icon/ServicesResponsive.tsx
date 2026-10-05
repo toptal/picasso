@@ -13,7 +13,7 @@ const ServicesResponsive = (props: Props) => {
       xl: <Services16 {...props} />,
     },
     <Services24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ServicesResponsive

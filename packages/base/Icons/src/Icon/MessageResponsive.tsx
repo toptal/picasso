@@ -13,7 +13,7 @@ const MessageResponsive = (props: Props) => {
       xl: <Message16 {...props} />,
     },
     <Message24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MessageResponsive

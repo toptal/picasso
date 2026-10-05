@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import useMenu from './use-menu'
 import useMenuVariant from '../use-menu-variant'

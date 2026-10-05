@@ -13,7 +13,7 @@ const SkillsResponsive = (props: Props) => {
       xl: <Skills16 {...props} />,
     },
     <Skills24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default SkillsResponsive

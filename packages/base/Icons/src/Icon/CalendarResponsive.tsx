@@ -13,7 +13,7 @@ const CalendarResponsive = (props: Props) => {
       xl: <Calendar16 {...props} />,
     },
     <Calendar24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default CalendarResponsive

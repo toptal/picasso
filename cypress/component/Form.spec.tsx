@@ -289,6 +289,26 @@ const DisabledFieldsExample = () => {
   )
 }
 
+// Remount of a conditional field, the react-final-form 7.0.1 reseed scenario
+const ToggleFieldExample = () => {
+  const [visible, setVisible] = useState(true)
+
+  return (
+    <Form onSubmit={noop} initialValues={{ nickname: 'initial' }}>
+      {visible && <Form.Input name='nickname' label='Nickname' id='nickname' />}
+      <Container top='small'>
+        <Form.Input
+          name='mode'
+          label='Mode'
+          id='mode'
+          data-testid='toggle-field'
+          onFocus={() => setVisible(current => !current)}
+        />
+      </Container>
+    </Form>
+  )
+}
+
 const component = 'Form'
 
 describe('Form', () => {
@@ -346,5 +366,19 @@ describe('Form', () => {
       component,
       variant: 'disabled',
     })
+  })
+  it('keeps an edited value when the field unmounts and remounts', () => {
+    cy.mount(<ToggleFieldExample />)
+
+    cy.get('#nickname').clear()
+    cy.get('#nickname').type('edited')
+
+    // focusing the second field toggles the first one off, then on again
+    cy.get('#mode').focus()
+    cy.get('#nickname').should('not.exist')
+    cy.get('#mode').blur()
+    cy.get('#mode').focus()
+
+    cy.get('#nickname').should('have.value', 'edited')
   })
 })

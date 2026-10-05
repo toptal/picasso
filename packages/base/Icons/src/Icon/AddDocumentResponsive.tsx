@@ -13,7 +13,7 @@ const AddDocumentResponsive = (props: Props) => {
       xl: <AddDocument16 {...props} />,
     },
     <AddDocument24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AddDocumentResponsive

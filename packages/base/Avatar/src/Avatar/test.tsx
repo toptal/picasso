@@ -52,6 +52,8 @@ describe('Avatar', () => {
 
   it('renders with logo', () => {
     const { getAllByRole } = renderAvatar({
+      // an `<img>` only gets the `img` role once it has an accessible name
+      alt: 'Photo alt text',
       src: 'foobar',
       size: 'medium',
       showEmblem: true,
@@ -61,7 +63,11 @@ describe('Avatar', () => {
   })
 
   it('renders without logo', () => {
-    const { getAllByRole } = renderAvatar({ src: 'foobar', size: 'small' })
+    const { getAllByRole } = renderAvatar({
+      alt: 'Photo alt text',
+      src: 'foobar',
+      size: 'small',
+    })
 
     expect(getAllByRole('img')).toHaveLength(1)
   })

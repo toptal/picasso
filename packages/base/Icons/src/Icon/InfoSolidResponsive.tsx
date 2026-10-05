@@ -13,7 +13,7 @@ const InfoSolidResponsive = (props: Props) => {
       xl: <InfoSolid16 {...props} />,
     },
     <InfoSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default InfoSolidResponsive

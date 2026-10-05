@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import type { ComponentProps } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { List } from '@toptal/picasso-list'
-import { render } from '@toptal/picasso-test-utils'
+import { render, renderedProps } from '@toptal/picasso-test-utils'
 
 import { ValidationErrors } from './'
 
@@ -90,17 +90,15 @@ describe('ValidationErrors', () => {
       expect(ListMock).toHaveBeenCalledTimes(1)
 
       expect(ListItemMock).toHaveBeenCalledTimes(2)
-      expect(ListItemMock).toHaveBeenCalledWith(
+      expect(renderedProps(ListItemMock)).toContainEqual(
         expect.objectContaining({
           children: 'reason1',
-        }),
-        {}
+        })
       )
-      expect(ListItemMock).toHaveBeenCalledWith(
+      expect(renderedProps(ListItemMock)).toContainEqual(
         expect.objectContaining({
           children: 'reason2',
-        }),
-        {}
+        })
       )
     })
   })
