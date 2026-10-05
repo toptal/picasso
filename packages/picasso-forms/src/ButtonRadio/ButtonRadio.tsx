@@ -1,26 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import type { ButtonRadioProps } from '@toptal/picasso-button'
 import { ButtonRadio as PicassoButtonRadio } from '@toptal/picasso-button'
-import { Field } from 'react-final-form'
 
-import { RadioGroupContext } from '../RadioGroup'
-import { assertFieldName } from '../Field/assert-field-name'
+import { useRadioChecked } from '../Radio/use-radio-checked'
 
 export type Props = ButtonRadioProps & {
   name?: string
 }
 
 const ButtonRadio = ({ name, ...rest }: Props) => {
-  const groupName = useContext(RadioGroupContext)
-  const fieldName = name || groupName
+  const checked = useRadioChecked(name, rest.value)
 
-  assertFieldName(fieldName)
-
-  return (
-    <Field name={fieldName} type='radio' value={rest.value}>
-      {({ input }) => <PicassoButtonRadio checked={input.checked} {...rest} />}
-    </Field>
-  )
+  return <PicassoButtonRadio checked={checked} {...rest} />
 }
 
 ButtonRadio.displayName = 'ButtonRadio'
