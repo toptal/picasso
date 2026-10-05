@@ -168,6 +168,41 @@ describe('DatePicker', () => {
     expect(tooltip).toBeInTheDocument()
   })
 
+  describe('when Tab moves the focus into the calendar', () => {
+    it('closes the calendar and calls `onBlur` once the focus leaves it', () => {
+      const onBlur = jest.fn()
+      const { getByRole, getByTestId, queryByTestId } = render(
+        <>
+          <DatePicker
+            testIds={testIds}
+            value={null}
+            onChange={() => {}}
+            onBlur={onBlur}
+          />
+          <button type='button'>After the picker</button>
+        </>
+      )
+      const input = getByTestId(testIds.input)
+
+      act(() => {
+        input.focus()
+      })
+      fireEvent.keyDown(input, { key: 'Tab' })
+
+      expect(getByTestId(testIds.calendar)).toContainElement(
+        document.activeElement as HTMLElement
+      )
+      expect(onBlur).not.toHaveBeenCalled()
+
+      act(() => {
+        getByRole('button', { name: 'After the picker' }).focus()
+      })
+
+      expect(queryByTestId(testIds.calendar)).not.toBeInTheDocument()
+      expect(onBlur).toHaveBeenCalledTimes(1)
+    })
+  })
+
   describe('Input', () => {
     it('should display date in default displayDateFormat', () => {
       const { getByPlaceholderText } = renderDatePicker()
