@@ -61,35 +61,6 @@ const getValidators = (required: boolean, validate?: any) => {
 
 const isFirefox = detect()?.name === 'firefox'
 
-/**
- * react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
- * string-boolean `format`/`parse` pair renders a stored `'false'` checked.
- * This restores 6.x's `format(value)` for a standalone checkbox; groups keep
- * upstream's. react-final-form formats the value for us, except with
- * `formatOnBlur` until the blur, and for an `allowNull` field holding `null`.
- * TODO: [PF-2522] drop when upstream derives it from `format` again
- */
-const getCheckedFromFormat = ({
-  type,
-  value,
-  format,
-  formatOnBlur,
-  allowNull,
-  name,
-  inputValue,
-}: Pick<
-  FinalFieldProps<unknown, FieldRenderProps<unknown>>,
-  'type' | 'value' | 'format' | 'formatOnBlur' | 'allowNull' | 'name'
-> & { inputValue: unknown }) => {
-  if (type !== 'checkbox' || value !== undefined || format === undefined) {
-    return undefined
-  }
-
-  const isFormatted = !formatOnBlur && !(allowNull && inputValue === null)
-
-  return Boolean(isFormatted ? inputValue : format(inputValue, name))
-}
-
 const Field = <
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
@@ -163,22 +134,11 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
-  const checkedFromFormat = getCheckedFromFormat({
-    type,
-    value,
-    format,
-    formatOnBlur,
-    allowNull,
-    name,
-    inputValue: input.value,
-  })
-
   const childProps: Record<string, unknown> = {
     id,
     status,
     ...rest,
     ...input,
-    ...(checkedFromFormat === undefined ? {} : { checked: checkedFromFormat }),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       if (isFirefox && event?.target) {

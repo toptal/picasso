@@ -537,13 +537,13 @@ Client Portal both hits were false positives: a prop named
 The search can't see a field that passes `meta` to a helper, as recording-audits
 does with `fieldArrayError(meta)`, so check those helpers too.
 
-**Checkboxes with a custom `format`.** `Form.Checkbox`, `Form.ButtonCheckbox`
-and `Form.Switch` keep version 6's `checked` for a checkbox without its own
-`value`. react-final-form 7.0.1 derives `checked` from `parse` instead, which
-renders a stored `'false'` as checked. Group checkboxes, radios, and checkboxes
-built on `FinalField` or `useField` follow upstream, so re-check their `format`
-and `parse` pairs. Staff Portal tested its relocation fields, which store
-`'true'` and `'false'`.
+**Checkboxes with a custom `format`.** A checkbox without its own `value` keeps
+version 6's `checked`: `Form.Checkbox`, `Form.ButtonCheckbox`, `Form.Switch`,
+and checkboxes built on `FinalField` or `useField`. react-final-form 7.0.1
+derives `checked` from `parse` instead, which renders a stored `'false'` as
+checked. Group checkboxes and radios follow upstream, which compares the stored
+value with their own `value`, so re-check their `format` and `parse` pairs.
+Staff Portal tested its relocation fields, which store `'true'` and `'false'`.
 
 **Listeners keep their old behavior.** `ExternallyChanged` reports every change
 made while its field isn't focused, including the first one after mount, as
@@ -1193,8 +1193,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 **In Picasso, after the release**, from the
 [#5070 review](https://toptal-core.atlassian.net/wiki/spaces/PF/pages/6455296029/PF-2262+-+React+19+PR+5070+Review+Findings+and+Action+Items):
 
-- Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,
-  as upstream does. Which behavior Picasso settles on is still open.
 - Fade and Slide replace the child's own `transition-*` (and, for Slide,
   `translate-*`) utilities.
 - The forms remount workaround
