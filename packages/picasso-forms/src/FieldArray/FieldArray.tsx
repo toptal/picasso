@@ -19,7 +19,12 @@ export const FieldArray = <FieldValue = any,>(
 ): React.ReactElement => {
   useKeptFieldState(
     props.name,
-    { isEqual: props.isEqual ?? defaultIsEqual },
+    {
+      isEqual: props.isEqual ?? defaultIsEqual,
+      initialValue: props.initialValue,
+      defaultValue: props.defaultValue,
+      seedsFirstRender: true,
+    },
     'useFieldArray'
   )
 

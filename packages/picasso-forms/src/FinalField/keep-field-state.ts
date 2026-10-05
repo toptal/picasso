@@ -11,11 +11,23 @@ type KeptFieldConfig = Pick<
   | 'afterSubmit'
   | 'beforeSubmit'
   | 'data'
+  | 'defaultValue'
   | 'format'
   | 'formatOnBlur'
+  | 'initialValue'
   | 'isEqual'
   | 'validateFields'
 >
+
+type HoldConfig = KeptFieldConfig & {
+  /** Seed an empty field's first render with its own `initialValue` or `defaultValue` */
+  seedsFirstRender?: boolean
+}
+
+interface KeepOptions extends Pick<HoldConfig, 'seedsFirstRender'> {
+  /** The hook's own `isEqual` default, which the hold must agree with */
+  defaultIsEqual?: KeptFieldConfig['isEqual']
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type FieldHook = (name: string, config?: any) => unknown
@@ -51,29 +63,8 @@ const releaseHold = (form: FormApi, name: string, only?: Release) => {
   release()
 }
 
-const hold = (form: FormApi, name: string, config: KeptFieldConfig) => {
-  if (!name || form.destroyOnUnregister || form.getFieldState(name)) {
-    return
-  }
-
-  // The config that shapes the field state without running validation or
-  // writing a value
-  const release = form.registerField(
-    name,
-    noop,
-    {},
-    { silent: true, data: config.data, isEqual: config.isEqual }
-  )
-  const { value, initial } = form.getFieldState(name) ?? {}
-
-  // Nothing stored: upstream's first render, a field `initialValue` included,
-  // is already right
-  if (value === undefined && initial === undefined) {
-    release()
-
-    return
-  }
-
+// Ends a hold at commit, or after a render that never commits
+const keepUntilCommit = (form: FormApi, name: string, release: Release) => {
   const pending = holds.get(form) ?? new Map<string, Release>()
 
   pending.set(name, release)
@@ -92,6 +83,60 @@ const hold = (form: FormApi, name: string, config: KeptFieldConfig) => {
   // Jest's fake timers stop
   // eslint-disable-next-line promise/catch-or-return
   Promise.resolve().then(() => releaseHold(form, name, release))
+}
+
+// react-final-form-arrays shows no items until it registers, so an array the
+// form holds nothing for gets the value it is about to register with. `silent`
+// tells no other subscriber, so nothing else renders during this render
+const seedFirstRender = (
+  form: FormApi,
+  name: string,
+  { data, isEqual, initialValue, defaultValue }: HoldConfig
+) => {
+  if (initialValue === undefined && defaultValue === undefined) {
+    return undefined
+  }
+
+  return form.registerField(
+    name,
+    noop,
+    {},
+    { silent: true, data, isEqual, initialValue, defaultValue }
+  )
+}
+
+const hold = (form: FormApi, name: string, config: HoldConfig) => {
+  if (!name || form.destroyOnUnregister || form.getFieldState(name)) {
+    return
+  }
+
+  // The config that shapes the field state without running validation or
+  // writing a value
+  const release = form.registerField(
+    name,
+    noop,
+    {},
+    { silent: true, data: config.data, isEqual: config.isEqual }
+  )
+  const { value, initial } = form.getFieldState(name) ?? {}
+
+  if (value !== undefined || initial !== undefined) {
+    keepUntilCommit(form, name, release)
+
+    return
+  }
+
+  // Nothing stored: upstream's first render, a field `initialValue` included,
+  // is already right, except an array's
+  release()
+
+  const seeded = config.seedsFirstRender
+    ? seedFirstRender(form, name, config)
+    : undefined
+
+  if (seeded) {
+    keepUntilCommit(form, name, seeded)
+  }
 }
 
 const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
@@ -200,7 +245,7 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
  */
 export const useKeptFieldState = (
   name: string,
-  config: KeptFieldConfig = {},
+  config: HoldConfig = {},
   hookName = 'useField'
 ) => {
   const form = useForm(hookName)
@@ -211,13 +256,12 @@ export const useKeptFieldState = (
 
 /**
  * Wraps a react-final-form field hook with `useKeptFieldState`, which must
- * hold before the hook's first render and claim after its mount effect.
- * `defaultIsEqual` is the hook's own default, which the hold must agree with
+ * hold before the hook's first render and claim after its mount effect
  */
 export const keepFieldState = <Hook extends FieldHook>(
   useHook: Hook,
   hookName: string,
-  defaultIsEqual?: KeptFieldConfig['isEqual']
+  { defaultIsEqual, seedsFirstRender }: KeepOptions = {}
 ) =>
   function useKeptField(name: string, config?: KeptFieldConfig) {
     const form = useForm(hookName)
@@ -225,6 +269,7 @@ export const keepFieldState = <Hook extends FieldHook>(
     hold(form, name, {
       ...config,
       isEqual: config?.isEqual ?? defaultIsEqual,
+      seedsFirstRender,
     })
 
     const field = useHook(name, config)

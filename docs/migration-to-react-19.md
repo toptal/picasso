@@ -501,9 +501,8 @@ git grep -n -E "from 'react-final-form(-arrays|-listeners)?'" -- '*.ts' '*.tsx'
 ```
 
 The workaround doesn't cover a field whose `data`, `defaultValue` or
-`initialValue` prop changes identity while it's mounted, and an array seeded
-only by its own `initialValue` or `defaultValue` still shows its items from the
-second render. Forms with `destroyOnUnregister` behave as before. Removing the
+`initialValue` prop changes identity while it's mounted. Forms with
+`destroyOnUnregister` behave as before. Removing the
 workaround is tracked in
 [PF-2522](https://toptal-core.atlassian.net/browse/PF-2522).
 
@@ -1201,8 +1200,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 - Charts need the `react-is` override on React 19.
 - Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,
   as upstream does. Which behavior Picasso settles on is still open.
-- An array seeded only by its own `initialValue` or `defaultValue` shows its
-  items from the second render.
 - Fade and Slide replace the child's own `transition-*` (and, for Slide,
   `translate-*`) utilities.
 - The forms remount workaround

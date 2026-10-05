@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react'
 import { fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import arrayMutators from 'final-form-arrays'
@@ -11,6 +12,8 @@ interface Skill {
 }
 
 const initialValues = { skills: [{ name: 'HTML' }, { name: 'CSS' }] }
+// For an array the form holds nothing for
+const languages = [{ name: 'Croatian' }]
 
 const renderForm = (children: React.ReactNode) =>
   render(
@@ -184,6 +187,19 @@ describe('FieldArray', () => {
     expect(screen.getByRole('status')).toHaveTextContent('2')
   })
 
+  it.each(['initialValue', 'defaultValue'] as const)(
+    'renders the items of its own `%s` on its first render',
+    seed => {
+      renderForm(
+        <FieldArray<Skill> name='languages' {...{ [seed]: languages }}>
+          {({ fields }) => <FirstValue value={fields.length} />}
+        </FieldArray>
+      )
+
+      expect(screen.getByRole('status')).toHaveTextContent('1')
+    }
+  )
+
   it('renders the stored items on its first render after a remount', () => {
     renderForm(
       <Toggleable>
@@ -270,6 +286,20 @@ describe('FieldArray', () => {
       renderForm(<Skills />)
 
       expect(screen.getByRole('status')).toHaveTextContent('2')
+    })
+
+    it('renders the items of its own `initialValue` on the first render', () => {
+      const Languages = () => {
+        const { fields } = useFieldArray<Skill>('languages', {
+          initialValue: languages,
+        })
+
+        return <FirstValue value={fields.length} />
+      }
+
+      renderForm(<Languages />)
+
+      expect(screen.getByRole('status')).toHaveTextContent('1')
     })
 
     it('renders the stored items on the first render after a remount', () => {
