@@ -25,7 +25,8 @@ const isLabelActivationClick = (event?: React.MouseEvent) => {
 }
 
 const useClickHandler = <T extends ValueType, M extends boolean = false>({
-  selectState: { isOpen, canOpen, open, close, setFilterOptionsValue },
+  selectProps: { disabled },
+  selectState: { getIsOpen, open, close, setFilterOptionsValue },
 }: UseSelectProps<T, M>) =>
   useCallback(
     (event?: React.MouseEvent) => {
@@ -33,14 +34,16 @@ const useClickHandler = <T extends ValueType, M extends boolean = false>({
         return
       }
 
-      if (canOpen) {
+      // Read now rather than from the last render: the search input's blur
+      // runs in the same task as the click and may have closed the popup
+      if (getIsOpen()) {
+        close()
+      } else if (!disabled) {
         setFilterOptionsValue(EMPTY_INPUT_VALUE)
         open()
-      } else if (isOpen) {
-        close()
       }
     },
-    [isOpen, canOpen, open, close, setFilterOptionsValue]
+    [getIsOpen, disabled, open, close, setFilterOptionsValue]
   )
 
 export default useClickHandler

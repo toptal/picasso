@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import { useState, useCallback, useEffect, useMemo } from 'react'
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import type {
   Option,
@@ -103,10 +103,17 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     isOpen,
   })
 
+  // For handlers that run in the same task as an `open` or `close`, before
+  // the re-render: a click right after a blur closed the popup
+  const latestIsOpen = useRef(isOpen)
+  const getIsOpen = useCallback(() => latestIsOpen.current, [])
+
   const close = useCallback(() => {
+    latestIsOpen.current = false
     setOpen(false)
   }, [])
   const open = useCallback(() => {
+    latestIsOpen.current = true
     setOpen(true)
   }, [])
 
@@ -126,6 +133,7 @@ const useSelectState = (props: Props): UseSelectStateOutput => {
     canOpen,
     open,
     close,
+    getIsOpen,
     highlightedIndex,
     closeOnEnter: !multiple,
     setHighlightedIndex,
