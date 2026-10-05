@@ -10,7 +10,7 @@ const ValidationErrors = ({
 }: {
   validationResult: Record<string, ValidationResult | boolean>
   validationErrorsTestId?: string
-}) => {
+}): React.ReactElement | null => {
   const validationErrors = useMemo(
     () =>
       Object.keys(validationResult)

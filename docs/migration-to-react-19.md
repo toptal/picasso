@@ -78,20 +78,20 @@ change fails, React is the cause.
 
 ### Do you need to act?
 
-| Change                                                   | On React 18                                         | On React 19                                           | Step                                                                                                        |
-| -------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Picasso and topkit versions                              | **Yes**: bump them together                         | Yes                                                   | [1](#step-1-bump-picasso-and-topkit-together)                                                               |
-| `notistack`                                              | **Yes**: exactly `3.0.2`                            | No                                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                      | Nothing extra                                         | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
-| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | npm and yarn: an override. pnpm: nothing            | No                                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: helmets stop merging                         | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| Patches and overrides keyed on old versions              | **Yes**                                             | Yes                                                   | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| tailwind-merge 3                                         | Review your class overrides                         | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
-| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
-| ShowMore, TimePicker, RichTextEditor                     | Maybe: tests that relied on the old DOM             | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
-| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | **Yes**: a `react-is` override                        | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| Types                                                    | No                                                  | **Yes**: `@types/react` 19; keep `skipLibCheck: true` | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
-| Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19                | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
+| Change                                                   | On React 18                                         | On React 19                            | Step                                                                                                        |
+| -------------------------------------------------------- | --------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Picasso and topkit versions                              | **Yes**: bump them together                         | Yes                                    | [1](#step-1-bump-picasso-and-topkit-together)                                                               |
+| `notistack`                                              | **Yes**: exactly `3.0.2`                            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                      | Nothing extra                          | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
+| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | npm and yarn: an override. pnpm: nothing            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: helmets stop merging          | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
+| Patches and overrides keyed on old versions              | **Yes**                                             | Yes                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| tailwind-merge 3                                         | Review your class overrides                         | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| ShowMore, TimePicker, RichTextEditor                     | Maybe: tests that relied on the old DOM             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | **Yes**: a `react-is` override         | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
+| Types                                                    | No                                                  | **Yes**: `@types/react` 19             | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
+| Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19 | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
 
 ### Versions in the release
 
@@ -101,7 +101,7 @@ v100 was. Packages on the `100.x` line skip `101`, which
 
 The shared major doesn't mean every package breaks. At the time of writing, the
 release plan without the re-baseline (`pnpm changeset status` on the feature
-branch) moves 88 packages:
+branch) moves 90 packages:
 
 - **66 take a major of their own.** The majors come from date-fns 4 (Calendar,
   DatePicker and the `@toptal/picasso` aggregate), final-form 5
@@ -110,8 +110,10 @@ branch) moves 88 packages:
   so its major moves them too.
 - **22 carry only minor changes**, among them `@toptal/picasso-provider`,
   `-shared`, `-utils`, `-test-utils`, `-charts` and `@topkit/analytics-charts`.
-- `@toptal/picasso-tailwind`, `@toptal/base-tailwind` and
-  `@toptal/picasso-cypress-utils` have no changes of their own.
+- **2 carry only a patch**: `@toptal/picasso-tailwind` and
+  `@toptal/base-tailwind`, whose type declarations no longer name a Tailwind 3
+  type.
+- `@toptal/picasso-cypress-utils` has no changes of its own.
 
 A `^100` range doesn't reach the release, in your manifests or in topkit's peers
 ([Step 1](#step-1-bump-picasso-and-topkit-together)).
@@ -985,12 +987,11 @@ Staff Portal's #16704 sets these as `overrides`:
    `PaymentsRateTableRow` and `BudgetDetails`. The span now receives that class,
    so check Happo for the `%` and `$` adornments.
 5. **Types.**
-   - Picasso's published declarations are still built against `@types/react` 17,
-     so a component without an explicit return type is declared as returning the
-     global `JSX.Element`. With `@types/react` 19 and `skipLibCheck: false`,
-     that reports `TS2503: Cannot find namespace 'JSX'`. With
-     `skipLibCheck: true`, the usual setting, those return types resolve to
-     `any`.
+   - Picasso's published declarations compile against `@types/react` 19 with
+     `skipLibCheck: false`, and CI checks that they keep doing so. Two
+     dependencies' declarations don't: `react-dropzone` uses the global `JSX`
+     namespace, and `react-final-form` imports its `package.json`, which needs
+     `resolveJsonModule`. Keep `skipLibCheck: true` if your app compiles them.
    - A variable typed as a bare `ReactElement` has `unknown` props on React 19,
      so it no longer satisfies `icon?: ReactElement<{ className?: string }>`.
      Type it as `IconElement` from `@toptal/picasso`, or pass the JSX inline.
@@ -1204,7 +1205,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 - `Page.Helmet` doesn't merge helmets on React 19, so you build full titles
   yourself.
 - Charts need the `react-is` override on React 19.
-- The published `.d.ts` files still use the global `JSX` namespace.
 - Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,
   as upstream does. Which behavior Picasso settles on is still open.
 - An array seeded only by its own `initialValue` or `defaultValue` shows its

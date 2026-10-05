@@ -20,7 +20,13 @@ export interface Props {
   }
 }
 
-const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
+const FileListItem = ({
+  file,
+  index,
+  disabled,
+  onRemove,
+  testIds,
+}: Props): React.ReactElement => {
   const {
     uploading,
     progress,

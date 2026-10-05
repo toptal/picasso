@@ -6,7 +6,7 @@ interface Props {
   disabled?: boolean
 }
 
-const SelectCaret = ({ disabled }: Props) => {
+const SelectCaret = ({ disabled }: Props): React.ReactElement => {
   return (
     <DropdownArrows16
       className={twMerge(

@@ -11,7 +11,7 @@ export type Props = TagSelectorProps &
   FieldProps<TagSelectorProps['value']> &
   FieldLabelProps
 
-export const TagSelector = (props: Props) => {
+export const TagSelector = (props: Props): React.ReactElement => {
   const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (

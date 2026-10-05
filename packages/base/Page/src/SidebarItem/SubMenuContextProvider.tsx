@@ -22,7 +22,7 @@ export const SubMenuContextProvider = ({
   children,
   parentMenu,
   parentSidebarItemIndex,
-}: Props) => (
+}: Props): React.ReactElement => (
   <Context.Provider
     value={{
       isSubMenu: true,

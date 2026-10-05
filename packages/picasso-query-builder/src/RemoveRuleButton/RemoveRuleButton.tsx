@@ -8,7 +8,7 @@ export const RemoveRuleButton = ({
   className,
   disabled,
   context: { testIds },
-}: ActionWithRulesProps) => {
+}: ActionWithRulesProps): React.ReactElement => {
   return (
     <ButtonCircular
       variant='flat'

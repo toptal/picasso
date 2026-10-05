@@ -28,7 +28,10 @@ export interface Props {
   isOpened: boolean
 }
 
-export const ParentItemContextProvider = ({ children, isOpened }: Props) => {
+export const ParentItemContextProvider = ({
+  children,
+  isOpened,
+}: Props): React.ReactElement => {
   const [countItemsWithBadgeOrTag, updateCount] = useState(0)
 
   const isIndicatorVisible = countItemsWithBadgeOrTag > 0 && !isOpened

@@ -15,7 +15,7 @@ export type RatingStarsProps = PicassoRatingStarsProps &
   FieldProps<PicassoRatingStarsProps['value']> &
   FieldLabelProps
 
-const Stars = (props: RatingStarsProps) => {
+const Stars = (props: RatingStarsProps): React.ReactElement => {
   const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (
@@ -60,7 +60,7 @@ export type RatingThumbsProps = PicassoRatingThumbsProps &
 const thumbsRequired = (value: boolean | undefined) =>
   value == null ? validators.required(null) : undefined
 
-const Thumbs = (props: RatingThumbsProps) => {
+const Thumbs = (props: RatingThumbsProps): React.ReactElement => {
   const {
     required,
     validate,

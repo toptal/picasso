@@ -52,6 +52,10 @@ jobs:
       - name: Type check against @types/react 19
         run: pnpm typecheck:react19
 
+      # Reuses the build the type check made
+      - name: Check the published declarations against @types/react 19
+        run: pnpm typecheck:react19:declarations
+
   react19-component:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Component tests on React 19

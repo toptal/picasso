@@ -47,7 +47,7 @@ const getMultilineLabel = ({
   return `${formatCharacters(charsTillLimit)} entered`
 }
 
-const InputLimitAdornment = (props: Props) => {
+const InputLimitAdornment = (props: Props): React.ReactElement => {
   const { multiline, charsLength, counter, limit, testIds } = props
 
   const charsTillLimit = getCharsTillLimit(charsLength, counter, limit)

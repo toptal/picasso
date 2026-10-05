@@ -167,7 +167,7 @@ export const LineChart = ({
   getXAxisTicks = getChartTicks,
   getYAxisTicks = defaultGetYAxisTicks,
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const {
     data,
     lineConfig: lines,

@@ -11,7 +11,7 @@ export const NonNativeSelectLimitFooter = ({
   totalCount,
   limit,
   'data-testid': dataTestId,
-}: Props) => {
+}: Props): React.ReactElement | null => {
   return limit < totalCount ? (
     <MenuItem
       data-testid={dataTestId}

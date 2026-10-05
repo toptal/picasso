@@ -11,7 +11,7 @@ export interface Props {
   icon?: ReactNode
 }
 
-const InputIconAdornment = (props: Props) => {
+const InputIconAdornment = (props: Props): React.ReactElement => {
   const { position, disabled, icon } = props
   const styledIcon = React.cloneElement(
     icon as ReactElement<{ className?: string; role?: string }>,

@@ -10,7 +10,7 @@ export interface Props extends StandardProps {
   onClick: (page: number) => void
 }
 
-const PaginationButton = (props: Props) => {
+const PaginationButton = (props: Props): React.ReactElement => {
   const { page, activePage, disabled, onClick, className } = props
   const isActive = page === activePage
 

@@ -10,7 +10,7 @@ export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   }
 }
 
-const ButtonRadio = ({ testIds, ...rest }: Props) => {
+const ButtonRadio = ({ testIds, ...rest }: Props): React.ReactElement => {
   return (
     <ButtonControlLabel
       {...rest}

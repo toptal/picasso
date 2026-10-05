@@ -66,7 +66,7 @@ const Field = <
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
   props: Props<TWrappedComponentProps, TInputValue>
-) => {
+): React.ReactElement => {
   const {
     type,
     hint,

@@ -30,7 +30,7 @@ const TimelineRow = ({
   hasConnector = true,
   'data-testid': dataTestId,
   testIds = {},
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Container
       data-testid={dataTestId}

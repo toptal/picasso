@@ -13,7 +13,7 @@ export interface Props extends BaseProps {
   children: ReactNode
 }
 
-export const Rotate180 = (props: Props) => {
+export const Rotate180 = (props: Props): React.ReactElement => {
   const { children, style, className, on, ...rest } = props
 
   const childProps = {

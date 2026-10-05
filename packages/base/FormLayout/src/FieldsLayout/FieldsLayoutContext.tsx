@@ -32,7 +32,7 @@ export const FieldsLayoutContextProvider = ({
   layout = 'vertical',
   labelWidth = DEFAULT_LABEL_WIDTH_SIZE,
   children,
-}: FieldsLayoutContextProviderProps) => {
+}: FieldsLayoutContextProviderProps): React.ReactElement => {
   const isSmallScreen = useBreakpoint(['sm', 'xs'])
 
   const value = useMemo(

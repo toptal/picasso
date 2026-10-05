@@ -46,7 +46,7 @@ const Picasso = ({
   titleCase,
   disableHelmet,
   disableTransitions,
-}: PicassoProps) => {
+}: PicassoProps): React.ReactElement => {
   if (!responsive) {
     PicassoBreakpoints.disableMobileBreakpoints()
   }

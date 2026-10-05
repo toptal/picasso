@@ -4,7 +4,7 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type Props = HTMLAttributes<HTMLDivElement>
 
-const OverviewBlockRow = (props: Props) => {
+const OverviewBlockRow = (props: Props): React.ReactElement => {
   const { className, ...rest } = props
 
   return (

@@ -8,7 +8,10 @@ type Props = {
   disabled?: boolean
 }
 
-export const RadioOptions = ({ options, disabled }: Props) => {
+export const RadioOptions = ({
+  options,
+  disabled,
+}: Props): React.ReactElement[] | null => {
   if (isOptionGroupArray(options)) {
     return options.map(option => (
       <optgroup key={option.label} label={option.label}>

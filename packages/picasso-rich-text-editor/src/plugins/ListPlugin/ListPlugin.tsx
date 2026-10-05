@@ -4,7 +4,7 @@ import { TabIndentationPlugin } from '@lexical/react/LexicalTabIndentationPlugin
 
 import EditorMaxIndentLevelPlugin from '../EditorMaxIndentLevelPlugin'
 
-const ListPlugin = () => (
+const ListPlugin = (): React.ReactElement => (
   <>
     <LexicalListPlugin />
     <TabIndentationPlugin />

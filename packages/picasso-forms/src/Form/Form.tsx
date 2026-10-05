@@ -50,7 +50,9 @@ const getValidationErrors = (
   return errors
 }
 
-export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
+export const Form = <T extends AnyObject = AnyObject>(
+  props: Props<T>
+): React.ReactElement => {
   const {
     autoComplete,
     children,

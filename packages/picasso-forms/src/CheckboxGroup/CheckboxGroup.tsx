@@ -12,7 +12,7 @@ import CheckboxGroupContext from './CheckboxGroupContext'
 type ValueType = string[] | undefined
 export type Props = CheckboxGroupProps & FieldProps<ValueType> & FieldLabelProps
 
-export const CheckboxGroup = (props: Props) => {
+export const CheckboxGroup = (props: Props): React.ReactElement => {
   const {
     children,
     titleCase,

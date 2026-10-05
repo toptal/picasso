@@ -17,7 +17,7 @@ export const RichText = ({
   style,
   className,
   'data-testid': dataTestId,
-}: Props) => {
+}: Props): React.ReactElement => {
   const richText = useRichText(value)
 
   return (

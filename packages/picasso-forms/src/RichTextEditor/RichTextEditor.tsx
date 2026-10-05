@@ -26,7 +26,7 @@ export type Props = RichTextEditorProps &
 
 type InternalProps = RichTextEditorProps & { value: string }
 
-export const RichTextEditor = (props: Props) => {
+export const RichTextEditor = (props: Props): React.ReactElement => {
   const {
     onChange,
     onFocus,

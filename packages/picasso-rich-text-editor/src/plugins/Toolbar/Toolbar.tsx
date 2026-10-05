@@ -14,7 +14,11 @@ const Context = createContext<ContextValue>({
   setPortalEl: () => {},
 })
 
-export const ToolbarProvider = ({ children }: { children: ReactNode }) => {
+export const ToolbarProvider = ({
+  children,
+}: {
+  children: ReactNode
+}): React.ReactElement => {
   const [portalEl, setPortalEl] = useState<HTMLElement | null>(null)
 
   return (

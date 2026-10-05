@@ -8,7 +8,7 @@ export interface Props extends HelmetProps {
   children?: ReactNode
 }
 
-export const PageHelmet = (props: Props) => {
+export const PageHelmet = (props: Props): React.ReactElement => {
   const { children, ...rest } = props
 
   return <Helmet {...rest}>{children}</Helmet>

@@ -46,7 +46,7 @@ export const List = ({
   variant = DEFAULT_VARIANT,
   start = 1,
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const { children, className, styleType, 'data-testid': testId } = props
   const { level } = useListContext()
 

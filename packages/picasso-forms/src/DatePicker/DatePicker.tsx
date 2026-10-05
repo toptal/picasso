@@ -14,7 +14,7 @@ export type Props = FormDatePickerProps &
   FieldProps<DatePickerProps['value']> &
   FieldLabelProps
 
-export const DatePicker = (props: Props) => {
+export const DatePicker = (props: Props): React.ReactElement => {
   const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (

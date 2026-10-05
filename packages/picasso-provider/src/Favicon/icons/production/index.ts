@@ -1,11 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import icon16 from './production-16x16.png'
+import icon16Url from './production-16x16.png'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import icon32 from './production-32x32.png'
+import icon32Url from './production-32x32.png'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import icon180 from './production-180x180.png'
+import icon180Url from './production-180x180.png'
 
-export { icon16, icon32, icon180 }
+// Typed here, so the published declarations don't import the images, which
+// consumers have no module declaration for
+export const icon16: string = icon16Url
+export const icon32: string = icon32Url
+export const icon180: string = icon180Url

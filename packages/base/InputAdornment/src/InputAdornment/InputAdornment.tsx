@@ -15,7 +15,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   'data-testid'?: string
 }
 
-const InputAdornment = (props: Props) => {
+const InputAdornment = (props: Props): React.ReactElement => {
   const {
     className,
     style,

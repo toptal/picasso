@@ -16,7 +16,7 @@ const BarChartLabel = ({
   viewBox,
   getBarLabelColor,
   ...restProps
-}: Props) => {
+}: Props): React.ReactElement => {
   const width = viewBox?.width ?? 0
   const xPosition = viewBox?.x ?? 0
   const yPosition = viewBox?.y ?? 0

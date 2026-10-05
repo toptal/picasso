@@ -73,7 +73,7 @@ export const Drawer = ({
   onClose = () => {},
   width = 'regular',
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const {
     children,
     open,

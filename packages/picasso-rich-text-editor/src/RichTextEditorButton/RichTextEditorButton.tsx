@@ -17,7 +17,7 @@ const RichTextEditorButton = ({
   onClick = () => {},
   className,
   ...rest
-}: Props) => (
+}: Props): React.ReactElement => (
   <ButtonCircular
     variant='flat'
     onClick={onClick}

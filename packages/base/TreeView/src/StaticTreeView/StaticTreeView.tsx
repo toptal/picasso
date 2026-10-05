@@ -28,7 +28,7 @@ const StaticTreeView = ({
     variant: DEFAULT_VARIANT,
   },
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const { data, renderNode } = props
 
   const { direction = DEFAULT_DIRECTION, variant = DEFAULT_VARIANT } =

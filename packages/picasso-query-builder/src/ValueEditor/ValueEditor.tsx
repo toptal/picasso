@@ -38,7 +38,7 @@ export const ValueEditor = ({
   fieldData,
   validation,
   context = {},
-}: QueryBuilderValueEditorProps) => {
+}: QueryBuilderValueEditorProps): React.ReactElement => {
   const valueEditorTestId = context?.testIds?.valueEditor
 
   const { touched, handleTouched } = useHandleTouched({

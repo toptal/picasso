@@ -17,7 +17,7 @@ export const TableSortableCell = ({
   onSortClick,
   align = 'inherit',
   ...rest
-}: Props) => {
+}: Props): React.ReactElement => {
   const Icon = sortDirection === 'desc' ? ArrowLongDown16 : ArrowLongUp16
 
   return (

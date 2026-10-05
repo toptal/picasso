@@ -57,7 +57,10 @@ export interface Props extends BaseProps {
   hovered?: boolean
 }
 
-export const DropzoneSvg = ({ size = 'small', ...props }: Props) => {
+export const DropzoneSvg = ({
+  size = 'small',
+  ...props
+}: Props): React.ReactElement => {
   const {
     disabled,
     error,

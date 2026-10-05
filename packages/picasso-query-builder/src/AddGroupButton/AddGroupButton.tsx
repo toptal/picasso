@@ -11,7 +11,7 @@ export const AddGroupButton = ({
   disabled,
   context,
   level,
-}: Props) => {
+}: Props): React.ReactElement | null => {
   const { maxDepth, resetSubmitButtonClicked, testIds } = context || {}
 
   if (!maxDepth || level >= maxDepth) {

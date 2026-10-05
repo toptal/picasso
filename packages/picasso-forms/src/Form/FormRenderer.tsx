@@ -7,7 +7,7 @@ export interface Props extends FormProps {
   setActiveFieldTouched: () => void
   validateOnBlur?: boolean
 }
-export const FormRenderer = (props: Props) => {
+export const FormRenderer = (props: Props): React.ReactElement => {
   const { onSubmit, setActiveFieldTouched, children, validateOnBlur, ...rest } =
     props
 

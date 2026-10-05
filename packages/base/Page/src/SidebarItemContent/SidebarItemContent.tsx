@@ -128,7 +128,7 @@ const ExpandedItemContent = (
   )
 }
 
-const SidebarItemContent = (props: Props) => {
+const SidebarItemContent = (props: Props): React.ReactElement => {
   const {
     children,
     titleCase: propsTitleCase,

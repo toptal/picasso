@@ -14,7 +14,7 @@ export const CombinatorSelector = ({
   disabled,
   className,
   level,
-}: Omit<CombinatorSelectorProps, 'schema'>) => {
+}: Omit<CombinatorSelectorProps, 'schema'>): React.ReactElement => {
   return (
     <Container
       flex

@@ -8,7 +8,7 @@ export type Props = ButtonRadioProps & {
   name?: string
 }
 
-const ButtonRadio = ({ name, ...rest }: Props) => {
+const ButtonRadio = ({ name, ...rest }: Props): React.ReactElement => {
   const checked = useRadioChecked(name, rest.value)
 
   return <PicassoButtonRadio checked={checked} {...rest} />

@@ -44,7 +44,7 @@ const NativeSelectOptions = ({
   renderOption,
   getItemProps,
   selection,
-}: Props) => {
+}: Props): React.ReactElement => {
   if (isOptionsType(options)) {
     return renderOptions({ options, getItemProps, renderOption, selection })
   }

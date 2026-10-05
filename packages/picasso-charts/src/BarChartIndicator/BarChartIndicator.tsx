@@ -8,7 +8,7 @@ export type Props = {
   label: string
 }
 
-const BarChartIndicator = ({ color, label }: Props) => (
+const BarChartIndicator = ({ color, label }: Props): React.ReactElement => (
   <>
     <Rectangle
       width={INDICATOR_SIZE}

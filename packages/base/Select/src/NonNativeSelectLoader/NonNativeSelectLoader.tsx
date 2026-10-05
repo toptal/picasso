@@ -7,7 +7,9 @@ import { SelectOptions } from '../SelectOptions'
 
 interface Props extends BaseProps {}
 
-export const NonNativeSelectLoader = ({ 'data-testid': dataTestId }: Props) => {
+export const NonNativeSelectLoader = ({
+  'data-testid': dataTestId,
+}: Props): React.ReactElement => {
   return (
     <SelectOptions data-testid={dataTestId}>
       <Container padded='small'>

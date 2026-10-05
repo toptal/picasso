@@ -31,7 +31,10 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   }
 }
 
-export const Avatar = ({ size = 'xsmall', ...props }: Props) => {
+export const Avatar = ({
+  size = 'xsmall',
+  ...props
+}: Props): React.ReactElement => {
   const {
     alt,
     src,

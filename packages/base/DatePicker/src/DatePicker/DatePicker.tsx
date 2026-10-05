@@ -120,7 +120,7 @@ export const DatePicker = ({
   status = 'default',
   numberOfMonths = 1,
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const {
     onChange,
     onResetClick,

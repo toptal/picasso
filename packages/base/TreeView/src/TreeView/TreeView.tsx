@@ -46,7 +46,7 @@ export const TreeView = ({
   scaleCoefficient = 0.5,
   showZoom = true,
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const { data, renderNode } = props
 
   const { direction = DEFAULT_DIRECTION, variant = DEFAULT_VARIANT } =

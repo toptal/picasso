@@ -7,7 +7,7 @@ export const CloneGroupButton = ({
   className,
   disabled,
   context: { testIds },
-}: ActionWithRulesProps) => {
+}: ActionWithRulesProps): React.ReactElement => {
   return (
     <Button
       className={className}

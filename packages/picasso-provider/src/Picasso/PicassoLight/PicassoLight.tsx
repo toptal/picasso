@@ -21,7 +21,7 @@ const PicassoLight = ({
   RootComponent = PicassoRootNode,
   titleCase,
   disableTransitions,
-}: PicassoLightProps) => {
+}: PicassoLightProps): React.ReactElement => {
   if (!responsive) {
     PicassoBreakpoints.disableMobileBreakpoints()
   }

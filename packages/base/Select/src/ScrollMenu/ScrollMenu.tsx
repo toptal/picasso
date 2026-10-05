@@ -53,7 +53,7 @@ const preventClick = (e: React.MouseEvent) => {
   e.preventDefault()
 }
 
-const ScrollMenu = ({ role = 'menu', ...props }: Props) => {
+const ScrollMenu = ({ role = 'menu', ...props }: Props): React.ReactElement => {
   const {
     selectedIndex,
     onBlur,

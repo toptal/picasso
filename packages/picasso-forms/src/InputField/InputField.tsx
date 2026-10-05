@@ -38,7 +38,7 @@ const InputField = <
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
   props: FieldProps<TWrappedComponentProps, TInputValue>
-) => {
+): React.ReactElement => {
   const { name, children, enableReset, onResetClick, ...rest } = props
 
   const { meta, input } = useField<TInputValue, HTMLInputElement>(name)
