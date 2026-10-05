@@ -12,6 +12,7 @@
 - add `getElementRef`, which reads an element's ref from where the running React major stores it: `props.ref` on React 19 and newer, where `element.ref` is deprecated and warns on every access, and `element.ref` on React 17 and 18, where dev builds warn on `props.ref` instead
 - switch `ClickAwayListener` to `getElementRef` and `useMultipleForwardRefs` instead of its own `element.ref` cast and hand-rolled ref forwarding, so DatePicker, Dropdown and MenuItem inherit the version-aware read (behavior unchanged)
 - make `useMultipleForwardRefs` run the cleanup a React 19 callback ref returns instead of calling the ref again with `null`, so a cleanup ref passed through Fade, Slide, Collapse, Backdrop or `ClickAwayListener` works as it does on a plain element. React 17 and 18 are unchanged
+- export `isReact19OrNewer`, the check `getElementRef` and `useMultipleForwardRefs` branch on, for code that has to handle refs differently on React 19
 
 ### Fade
 

@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
-import React, { forwardRef } from 'react'
+import type { Ref } from 'react'
+import React, { createRef, forwardRef } from 'react'
 import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
@@ -11,6 +12,8 @@ import type { Props } from './Autocomplete'
 import { Autocomplete } from './Autocomplete'
 
 jest.mock('ap-style-title-case')
+
+const isReact19OrNewer = Number.parseInt(React.version, 10) >= 19
 
 const testOptions = [
   { text: 'Belarus', value: 'BY' },
@@ -164,6 +167,33 @@ describe('Autocomplete', () => {
       const input = getByTestId('custom-input')
 
       expect(input).not.toBeNull()
+    })
+
+    it('passes its ref to a custom input that takes `ref` as a prop where React does', () => {
+      const consoleLog = jest.spyOn(console, 'log').mockImplementation(() => {})
+      const autocompleteRef = createRef<HTMLInputElement>()
+      // React 19 hands a function component its `ref` as a prop
+      const CustomInput = ({ ref }: { ref?: Ref<HTMLInputElement> }) => (
+        <input ref={ref} data-testid='custom-input' />
+      )
+
+      try {
+        const { getByTestId } = render(
+          <Autocomplete
+            ref={autocompleteRef}
+            value=''
+            inputComponent={CustomInput as Props['inputComponent']}
+          />
+        )
+
+        expect(autocompleteRef.current).toBe(
+          isReact19OrNewer ? getByTestId('custom-input') : null
+        )
+        // React 17 and 18 drop the ref and say why
+        expect(consoleLog.mock.calls.length > 0).toBe(!isReact19OrNewer)
+      } finally {
+        consoleLog.mockRestore()
+      }
     })
 
     it('shows default no options text when no options are available', () => {

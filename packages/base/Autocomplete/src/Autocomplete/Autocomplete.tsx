@@ -19,7 +19,7 @@ import { Container } from '@toptal/picasso-container'
 import { Loader } from '@toptal/picasso-loader'
 import { Popper } from '@toptal/picasso-popper'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import { unsafeErrorLog } from '@toptal/picasso-utils'
+import { isReact19OrNewer, unsafeErrorLog } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
@@ -176,10 +176,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const inputRef = useRef<HTMLInputElement | null>(null)
     let ref: Ref<HTMLInputElement> | undefined = customRef || inputRef
 
-    if (inputComponent && !isForwardRef(inputComponent)) {
+    // React 19 passes a function component its `ref` as a prop; React 17 and
+    // 18 pass it only to a `forwardRef` component
+    if (inputComponent && !isReact19OrNewer && !isForwardRef(inputComponent)) {
       ref = undefined
       unsafeErrorLog(
-        'You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. This is not supported and may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.'
+        'You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. On React 17 and 18 it then does not receive the input ref, which may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.'
       )
     }
 

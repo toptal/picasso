@@ -158,9 +158,10 @@ files it changed.
 The release also adds helpers for code that has to run on both React majors:
 `renderedProps` in `@toptal/picasso/test-utils`
 ([Step 14](#step-14-update-the-tests-for-react-19)), `getElementRef`
-([Step 13](#step-13-fix-the-react-19-runtime-breaks)) and `NullableRefObject`
-([Step 11](#step-11-handle-picassos-react-19-limitations)) in
-`@toptal/picasso/utils`, and the `IconElement` type in `@toptal/picasso`.
+([Step 13](#step-13-fix-the-react-19-runtime-breaks)), `NullableRefObject`
+([Step 11](#step-11-handle-picassos-react-19-limitations)) and
+`isReact19OrNewer` in `@toptal/picasso/utils`, and the `IconElement` type in
+`@toptal/picasso`.
 
 ## Before you start
 
@@ -996,8 +997,6 @@ Staff Portal's #16704 sets these as `overrides`:
    - `useRef<T>(null)` returns `RefObject<T | null>`. `NullableRefObject<T>`
      from `@toptal/picasso/utils` names that type for refs that are both read
      and passed to `ref`.
-6. **Autocomplete's `inputComponent`** rejects React 19 components that take
-   `ref` as a prop. It's a pre-existing bug, still open after the release.
 
 ### Step 12. Fix the React 19 types
 
@@ -1213,8 +1212,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 - Fade and Slide skip their callbacks when the child takes no ref, replace the
   child's own `transition-*` (and, for Slide, `translate-*`) utilities, and need
   a boolean `in`.
-- Autocomplete's `inputComponent` rejects React 19 components that take `ref` as
-  a prop.
 - The forms remount workaround
   ([PF-2522](https://toptal-core.atlassian.net/browse/PF-2522)) has no upstream
   fix to wait for: react-final-form's `allowNull` initializer is still on
