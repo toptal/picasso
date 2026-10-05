@@ -1,4 +1,10 @@
-import { toReactEvent, toReactChangeEvent } from './'
+import { createElement, Fragment } from 'react'
+
+import {
+  cloneElementUnlessFragment,
+  toReactEvent,
+  toReactChangeEvent,
+} from './'
 
 describe('toReactEvent', () => {
   const makeNativeChangeEvent = (target: HTMLInputElement): Event => {
@@ -181,5 +187,36 @@ describe('toReactChangeEvent', () => {
     toReactChangeEvent<HTMLInputElement>(nativeEvent)
 
     expect(consoleWarnSpy).not.toHaveBeenCalled()
+  })
+})
+
+describe('cloneElementUnlessFragment', () => {
+  it('adds the props to an element', () => {
+    const element = createElement('span', { className: 'icon' })
+
+    expect(
+      cloneElementUnlessFragment(element, { title: 'Search' }).props
+    ).toEqual({ className: 'icon', title: 'Search' })
+  })
+
+  it('leaves a Fragment as it is', () => {
+    const fragment = createElement(Fragment, null, '%')
+
+    expect(
+      cloneElementUnlessFragment(fragment, {
+        className: 'grow',
+      } as Record<string, unknown>)
+    ).toBe(fragment)
+  })
+
+  it('keeps the key it is given on a Fragment', () => {
+    const fragment = createElement(Fragment, null, '%')
+    const clone = cloneElementUnlessFragment(fragment, {
+      className: 'grow',
+      key: 'icon',
+    } as Record<string, unknown>)
+
+    expect(clone.key).toBe('icon')
+    expect(clone.props).toEqual({ children: '%' })
   })
 })

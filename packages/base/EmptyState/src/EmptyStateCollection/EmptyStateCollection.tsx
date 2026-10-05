@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react'
-import React, { forwardRef, cloneElement } from 'react'
+import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import type { IconElement } from '@toptal/picasso-shared'
 import { Search16 as Search } from '@toptal/picasso-icons'
 import { Container } from '@toptal/picasso-container'
@@ -20,7 +21,7 @@ export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(
     }
 
     const iconElement = icon ? (
-      cloneElement(icon, iconProps)
+      cloneElementUnlessFragment(icon, iconProps)
     ) : (
       <Search {...iconProps} />
     )

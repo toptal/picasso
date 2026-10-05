@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react'
-import React, { forwardRef, cloneElement } from 'react'
+import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import type { IconElement } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
@@ -30,7 +31,9 @@ export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
           bottom='medium'
           flex
         >
-          {cloneElement(image, { className: 'w-[8rem] h-[8rem]' })}
+          {cloneElementUnlessFragment(image, {
+            className: 'w-[8rem] h-[8rem]',
+          })}
         </Container>
         {title && (
           <Container bottom='xsmall'>

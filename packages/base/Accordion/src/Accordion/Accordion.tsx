@@ -15,7 +15,11 @@ import type {
   TransitionProps,
   IconElement,
 } from '@toptal/picasso-shared'
-import { toReactEvent, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
+import {
+  cloneElementUnlessFragment,
+  toReactEvent,
+  useIsomorphicLayoutEffect,
+} from '@toptal/picasso-shared'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { ButtonAction } from '@toptal/picasso-button'
 
@@ -91,7 +95,7 @@ const decorateWithExpandIconClasses = (
   expandIcon: IconElement,
   classes: string
 ) =>
-  React.cloneElement(expandIcon, {
+  cloneElementUnlessFragment(expandIcon, {
     // Some components overwrite the icon color when disabled
     // That's why we need to apply the disabled state to the icon itself,
     // instead of the ButtonAction wrapper

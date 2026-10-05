@@ -981,12 +981,7 @@ Staff Portal's #16704 sets these as `overrides`:
    `react-is` that matches React 19, because recharts ships `react-is` 18. Add
    an override: Staff Portal pins `react-is` to 19.2.8, and Client Portal's
    spend chart needs the same.
-4. **Fragments take no props.** Components that clone a `className` into a
-   child, such as `InputIconAdornment`, fail when that child is a Fragment.
-   Staff Portal changed `icon={<>%</>}` to `icon={<span>%</span>}` in
-   `PaymentsRateTableRow` and `BudgetDetails`. The span now receives that class,
-   so check Happo for the `%` and `$` adornments.
-5. **Types.**
+4. **Types.**
    - Picasso's published declarations compile against `@types/react` 19 with
      `skipLibCheck: false`, and CI checks that they keep doing so. Two
      dependencies' declarations don't: `react-dropzone` uses the global `JSX`
@@ -1095,9 +1090,9 @@ These are real bugs on React 19, not test noise.
   silently, so those props arrive `undefined`. Move the defaults into the
   parameter list.
 - **A Fragment takes no props.** Don't `cloneElement` props into one. Staff
-  Portal's `DetailedListItemContent` now skips Fragments; for Picasso's
-  `InputIconAdornment`, see
-  [Step 11](#step-11-handle-picassos-react-19-limitations).
+  Portal's `DetailedListItemContent` now skips Fragments, as Picasso's
+  components do with an `icon`, `image` or `expandIcon` they style, so
+  `icon={<>%</>}` renders as on React 18.
 - **Reading `element.ref` warns.** React 19 keeps an element's ref in
   `props.ref` and warns on every `element.ref` read, while React 18 warns on
   `props.ref`. If your components read a child's ref, for example to merge it
