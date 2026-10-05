@@ -168,6 +168,19 @@ describe('DatePicker', () => {
     expect(tooltip).toBeInTheDocument()
   })
 
+  it('shows the date as it is for a timezone the browser does not know', () => {
+    const { getByTestId } = render(
+      <DatePicker
+        testIds={testIds}
+        value={new Date('2020-06-25T12:00:00Z')}
+        timezone='Invalid/Zone'
+        onChange={() => {}}
+      />
+    )
+
+    expect(getByTestId(testIds.input)).toHaveValue('Jun 25, 2020')
+  })
+
   describe('when Tab moves the focus into the calendar', () => {
     it('closes the calendar and calls `onBlur` once the focus leaves it', () => {
       const onBlur = jest.fn()
