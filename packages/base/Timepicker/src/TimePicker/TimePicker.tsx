@@ -47,7 +47,7 @@ export interface Props
   minuteStep?: 5 | 10 | 15 | 20 | 30 | 60
 }
 
-const NATIVE_PICKER_CLASS_NAME = `-mr-[8px] [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
+const NATIVE_PICKER_CLASS_NAME = `-mr-2 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
     [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
 
 // With a time list, devices with a mouse open the list and touch devices keep their native picker
