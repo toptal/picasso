@@ -28,7 +28,7 @@ const forceHourCycle = (hourCycle: 12 | 24) =>
     Object.defineProperty(win.HTMLInputElement.prototype, 'offsetHeight', {
       configurable: true,
       get(this: HTMLInputElement) {
-        if (this.dataset.probedSegment === 'ampm') {
+        if (this.getAttribute('data-testid') === 'time-picker-probe-ampm') {
           return hourCycle === 12 ? win.innerHeight : 0
         }
 

@@ -21,8 +21,7 @@ const measureProbe = (segment?: Segment) => {
 
   if (segment) {
     probe.className += ` ${SEGMENT_CLASS_NAMES[segment]}`
-    // Lets tests tell the probes apart without depending on their styling classes
-    probe.dataset.probedSegment = segment
+    probe.setAttribute('data-testid', `time-picker-probe-${segment}`)
   }
 
   document.body.appendChild(probe)

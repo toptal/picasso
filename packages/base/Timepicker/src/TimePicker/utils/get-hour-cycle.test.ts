@@ -7,9 +7,10 @@ const mockNativeFieldLayout = (renderedSegments: string[]) => {
     .spyOn(HTMLElement.prototype, 'offsetHeight', 'get')
     .mockImplementation(function (this: HTMLElement) {
       // eslint-disable-next-line no-invalid-this
-      const { probedSegment } = this.dataset
-      const isStretched =
-        probedSegment !== undefined && renderedSegments.includes(probedSegment)
+      const testId = this.getAttribute('data-testid')
+      const isStretched = renderedSegments.some(
+        segment => testId === `time-picker-probe-${segment}`
+      )
 
       return isStretched ? PROBE_HEIGHT : 17
     })
