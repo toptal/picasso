@@ -208,4 +208,29 @@ describe('Fade', () => {
     expect(getByTestId('child-div')).toHaveClass('p-4')
     expect(getByTestId('child-div')).toHaveClass('transition-opacity')
   })
+
+  it("fades over a `transition-*` utility of the child's", () => {
+    const { getByTestId } = render(
+      <Fade in={true}>
+        <SomeChildComponent className='transition-colors' />
+      </Fade>
+    )
+
+    expect(getByTestId('child-div')).toHaveClass('transition-opacity')
+    expect(getByTestId('child-div')).not.toHaveClass('transition-colors')
+  })
+
+  it.each(['transition', 'transition-all'])(
+    "keeps the child's `%s`, which animates opacity too",
+    transition => {
+      const { getByTestId } = render(
+        <Fade in={true}>
+          <SomeChildComponent className={transition} />
+        </Fade>
+      )
+
+      expect(getByTestId('child-div')).toHaveClass(transition)
+      expect(getByTestId('child-div')).not.toHaveClass('transition-opacity')
+    }
+  )
 })

@@ -580,9 +580,11 @@ react-transition-group.
   or `null` when the child takes no ref, so their node parameter is typed
   `HTMLElement | null`. If you read `onEnter`'s first argument as `isAppearing`,
   read the second one.
-- Fade and Slide have a known limitation: a `transition-*` utility on the child
-  replaces their own transition, and on Slide so does a `translate-*` utility
-  along the slide axis.
+- Fade's and Slide's own transition replaces a `transition-*` utility on the
+  child, so they always animate. A broad `transition` or `transition-all` on the
+  child stays. On Slide, a `translate-*` utility on the child along the slide
+  axis applies while the child is shown, and gives way to the slide's offset
+  while it's hidden.
 - Expect a few visual diffs on accordions and expandable content. Client
   Portal's two Happo diffs are still under review; the first suspect is the
   `RejectedTalents` accordion in `TalentsSection`, built on the rewritten
@@ -1193,8 +1195,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 **In Picasso, after the release**, from the
 [#5070 review](https://toptal-core.atlassian.net/wiki/spaces/PF/pages/6455296029/PF-2262+-+React+19+PR+5070+Review+Findings+and+Action+Items):
 
-- Fade and Slide replace the child's own `transition-*` (and, for Slide,
-  `translate-*`) utilities.
 - The forms remount workaround
   ([PF-2522](https://toptal-core.atlassian.net/browse/PF-2522)) has no upstream
   fix to wait for: react-final-form's `allowNull` initializer is still on

@@ -12,6 +12,8 @@ import {
 } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
+import { createTransitionClassName } from './styles'
+
 export interface Props extends TransitionProps, BaseProps {
   /** Element that accepts ref */
   children: TransitionChild
@@ -50,10 +52,9 @@ export const Fade = React.forwardRef<HTMLDivElement, Props>(function Fade(
 
   return React.cloneElement(children, {
     className: twMerge(
-      'transition-opacity',
       children.props.className,
       // behavior classes, not defaults — must stay after the child's className
-      cx({
+      cx(createTransitionClassName(children.props.className), {
         'opacity-0': !inProp,
         invisible: status === 'exited' && !inProp,
       })

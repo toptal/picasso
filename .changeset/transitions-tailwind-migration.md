@@ -23,7 +23,7 @@
 - the shown state no longer forces inline `opacity: 1`, so a child's own `opacity-*` class now applies while visible (previously it was overridden while shown)
 - express the hidden state via the `invisible` and `opacity-0` classes instead of inline `visibility`/`opacity` styles, and merge the child's `className` via `twMerge`
 - the object form of `timeout` now sets the CSS transition duration correctly per direction, including a distinct `appear` duration for the mount transition (previously it produced an invalid inline value)
-- known limitation: a `transition-*` utility on the child replaces Fade's `transition-opacity`, so the fade no longer animates
+- a `transition-*` utility on the child gives way to Fade's `transition-opacity`, so the fade always animates. A child's `transition` or `transition-all` stays, since it animates opacity too
 
 ### Slide
 
@@ -31,7 +31,8 @@
 - `onEnter`/`onExited` now receive the transitioning DOM node, or `null` for a child that takes no ref, and `in` is read by its truthiness, exactly as described for Fade above
 - express the hidden state via `translate-*` and `invisible` classes instead of inline `transform`/`visibility` styles, so a child's own inline `transform` is preserved while sliding and `transitionend` listeners observe `propertyName: 'translate'`
 - the object form of `timeout` now sets the CSS transition duration correctly per direction, including a distinct `appear` duration for the mount transition (previously it produced an invalid inline value)
-- known limitations: the same as Fade's, with `transition-transform` in place of `transition-opacity`, and a `translate-*` utility on the child along the slide axis is also replaced by Slide's position classes, so position such a child through a wrapper
+- a `transition-*` utility on the child gives way to Slide's `transition-transform` the same way, and a child's `transition` or `transition-all` stays
+- a `translate-*` utility on the child along the slide axis applies while the child is shown, so a child centered with `-translate-x-1/2` stays centered, and gives way to Slide's offset while it is hidden
 
 ### Backdrop
 
