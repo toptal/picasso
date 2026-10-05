@@ -73,7 +73,7 @@ jobs:
             5. After writing the file, also output the exact same table as
                your final message so it appears in the PR comment.
 
-      - name: Post report as PR comment on failure
+      - name: Sync report PR comment
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -85,7 +85,22 @@ jobs:
             echo "No report to post."
             exit 0
           fi
+
+          previous_comments() {
+            gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
+              --jq "map(select(.body | contains(\"$MARKER\"))) | .[].$1"
+          }
+
           if ! grep -q ':x:' design-patterns-report.md; then
+            stale_node_ids=$(previous_comments node_id)
+
+            for node_id in $stale_node_ids; do
+              echo "Marking previous comment $node_id as outdated."
+              gh api graphql \
+                -f query='mutation($id: ID!) { minimizeComment(input: { subjectId: $id, classifier: OUTDATED }) { minimizedComment { isMinimized minimizedReason } } }' \
+                -f id="$node_id"
+            done
+
             echo "All rules passed — skipping PR comment."
             exit 0
           fi
@@ -96,8 +111,7 @@ jobs:
             cat design-patterns-report.md
           } > pr-comment.md
 
-          existing_ids=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
-            --jq "map(select(.body | contains(\"$MARKER\"))) | .[].id")
+          existing_ids=$(previous_comments id)
 
           for id in $existing_ids; do
             echo "Deleting previous comment $id."
