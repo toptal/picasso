@@ -82,6 +82,7 @@
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
     "src",
+    "!src/**/*.figma.tsx",
     "eager.js",
     "eager.d.ts"
   ]
