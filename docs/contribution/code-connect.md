@@ -11,7 +11,7 @@ Code Connect links Figma design components to React code so designers see real c
   ```json
   {
     "codeConnect": {
-      "include": ["**/*.figma.ts"],
+      "include": ["**/*.figma.ts", "**/*.figma.batch.json"],
       "label": "React",
       "language": "tsx"
     }
@@ -24,7 +24,7 @@ Code Connect links Figma design components to React code so designers see real c
 
 Publishing is automated by the [Figma Code Connect workflow](../../.github/workflows/figma-code-connect.yml):
 
-- **Pull requests** that touch a `*.figma.ts` template, `figma.config.json`, `tsconfig.figma.json`, the root `package.json` or the workflow itself typecheck the templates (`pnpm typecheck:figma`), parse them (`figma connect parse`, which fails on a template with a missing or malformed header) and then run `figma connect publish --dry-run`, which checks every template against the Figma library.
+- **Pull requests** that touch a `*.figma.ts` template, an icon batch file (`*.figma.batch.ts` / `*.figma.batch.json`), `figma.config.json`, `tsconfig.figma.json`, the root `package.json` or the workflow itself typecheck the templates (`pnpm typecheck:figma`), parse them (`figma connect parse`, which fails on a template with a missing or malformed header) and then run `figma connect publish --dry-run`, which checks every template against the Figma library.
 - **Pushes to `master`** with the same paths publish the snippets to Figma Dev Mode.
 - It can also be run manually from the Actions tab (`workflow_dispatch`).
 
@@ -108,11 +108,28 @@ Backdrop, Collapse, Fade, FormLabel, FormLayout, InputAdornment, ModalContext, O
 
 These exist in the Product Library v2.0 but have no `.figma.ts` template yet, so Dev Mode shows no snippet for them:
 
-| Figma component                                 | Picasso counterpart                               | Notes                                                                                                                                                                                |
-| ----------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Text Area Input                                 | `Input` with `multiline`                          | The single-line `Input` is mapped through the "Input Field" `Text Field` variant (`Input.figma.ts`); the multiline one is not                                                        |
-| Charts Bar / Charts Bar Axis / Charts Line Axis | `picasso-charts` (`BarChart`, `LineChart`)        |                                                                                                                                                                                      |
-| Icons                                           | `@toptal/picasso-icons` (`<Name>16` / `<Name>24`) | Picasso ships 308 icons in two sizes. Mapping them needs either one template per icon or a shared template that derives the component name from the Figma icon name; not decided yet |
+| Figma component                                 | Picasso counterpart                        | Notes                                                                                                                         |
+| ----------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| Text Area Input                                 | `Input` with `multiline`                   | The single-line `Input` is mapped through the "Input Field" `Text Field` variant (`Input.figma.ts`); the multiline one is not |
+| Charts Bar / Charts Bar Axis / Charts Line Axis | `picasso-charts` (`BarChart`, `LineChart`) |                                                                                                                               |
+
+## Icons
+
+Icons come from the [Iconography](https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography) file and are mapped with one [batch template](https://developers.figma.com/docs/code-connect/batch-files/) instead of a file per icon:
+
+- `packages/base/Icons/src/Icon/Icon.figma.batch.ts` is the shared template. It reads the Figma `Size` variant and renders `<Name16 />`, `<Name24 />` or `<Name32 />`.
+- `packages/base/Icons/src/Icon/Icon.figma.batch.json` lists one entry per Figma icon (`url`, `name`, the `sizes` Picasso ships, and `sizeProperty` for the two icons whose variant is called `size`). Each entry is published as its own Code Connect doc.
+
+Every Picasso icon has a 16 and a 24 version, but only `Ach` and `CreditCard` have a 32 one. When Figma uses a size Picasso does not ship (today only Bank Wire at 32), the snippet uses the largest Picasso size and starts with a `// Picasso has no …` comment.
+
+The JSON is generated: a Figma icon is mapped only when its name, without spaces and punctuation and ignoring case, equals a Picasso icon name ("Arrow Down Minor" → `ArrowDownMinor`, "ACH" → `Ach`). Near misses such as "Dribbble" / `Dribble` or "Rank 1" / `RankOne` are not guessed. To regenerate it after icons are added on either side:
+
+1. Save the output of the Figma MCP tool `list_file_components_for_code_connect` for file `TqaGgbpjGSUDf7qq153Isq` to a JSON file.
+2. Run `node bin/generate-icon-code-connect.mjs <that file>`, then `pnpm exec prettier --write packages/base/Icons/src/Icon/Icon.figma.batch.json`.
+
+The script prints the icons it could not match. As of the first run, 264 Figma icons map to 262 Picasso icons (Figma has "Layers" and "Preview" twice). 368 Figma icons have no Picasso counterpart (261 of them are country flags), and these 46 Picasso icons have no Figma counterpart:
+
+`Abstract`, `Add`, `ArrowDropDown`, `ArrowDropUp`, `ArrowSubdirectory`, `Ask`, `Bullet`, `CertificationBadge`, `CheckSolid`, `ChevronRight`, `Control`, `DesignerPencil`, `Dialpad`, `Dribble`, `DropdownArrows`, `Employee`, `EyeHidden`, `FullTime`, `Initiative`, `Keyboard`, `Leave`, `MissedCall`, `Objective`, `PartTime`, `PendingQueue`, `Playbook`, `Player`, `PortfolioDesigner`, `PortfolioFinance`, `ProfileCard`, `ProfileCrossed`, `QuestionMark`, `RankOne`, `RankThree`, `RankTwo`, `ReferralBonus`, `ReferralDashboard`, `ReferralPartners`, `Representatives`, `RepresentativesSolid`, `Share`, `Shield`, `Sparkle`, `Terms`, `Twitter`, `Unavailable`
 
 ## Prop mismatches per component
 

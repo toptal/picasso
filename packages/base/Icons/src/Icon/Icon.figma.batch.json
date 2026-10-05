@@ -1,0 +1,2119 @@
+{
+  "templateFile": "./Icon.figma.batch.ts",
+  "components": [
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1920",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Ach16.tsx",
+      "component": "Ach",
+      "name": "Ach",
+      "sizes": ["16", "24", "32"],
+      "id": "Ach"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2263",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AddDocument16.tsx",
+      "component": "AddDocument",
+      "name": "AddDocument",
+      "sizes": ["16", "24"],
+      "id": "AddDocument"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2536",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Afternoon16.tsx",
+      "component": "Afternoon",
+      "name": "Afternoon",
+      "sizes": ["16", "24"],
+      "id": "Afternoon"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2244",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Archive16.tsx",
+      "component": "Archive",
+      "name": "Archive",
+      "sizes": ["16", "24"],
+      "id": "Archive"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3188",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ArrowDownMinor16.tsx",
+      "component": "ArrowDownMinor",
+      "name": "ArrowDownMinor",
+      "sizes": ["16", "24"],
+      "id": "ArrowDownMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3177",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ArrowLongDown16.tsx",
+      "component": "ArrowLongDown",
+      "name": "ArrowLongDown",
+      "sizes": ["16", "24"],
+      "id": "ArrowLongDown"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3166",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ArrowLongLeft16.tsx",
+      "component": "ArrowLongLeft",
+      "name": "ArrowLongLeft",
+      "sizes": ["16", "24"],
+      "id": "ArrowLongLeft"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3155",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ArrowLongRight16.tsx",
+      "component": "ArrowLongRight",
+      "name": "ArrowLongRight",
+      "sizes": ["16", "24"],
+      "id": "ArrowLongRight"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3144",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ArrowLongUp16.tsx",
+      "component": "ArrowLongUp",
+      "name": "ArrowLongUp",
+      "sizes": ["16", "24"],
+      "id": "ArrowLongUp"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3135",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ArrowUpMinor16.tsx",
+      "component": "ArrowUpMinor",
+      "name": "ArrowUpMinor",
+      "sizes": ["16", "24"],
+      "id": "ArrowUpMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=533-80",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AssociatedOrgUnitJoin16.tsx",
+      "component": "AssociatedOrgUnitJoin",
+      "name": "AssociatedOrgUnitJoin",
+      "sizes": ["16", "24"],
+      "id": "AssociatedOrgUnitJoin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=533-51",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AssociatedOrgUnitLeave16.tsx",
+      "component": "AssociatedOrgUnitLeave",
+      "name": "AssociatedOrgUnitLeave",
+      "sizes": ["16", "24"],
+      "id": "AssociatedOrgUnitLeave"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-859",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AsteriskSolid16.tsx",
+      "component": "AsteriskSolid",
+      "name": "AsteriskSolid",
+      "sizes": ["16", "24"],
+      "id": "AsteriskSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2233",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Attachment16.tsx",
+      "component": "Attachment",
+      "name": "Attachment",
+      "sizes": ["16", "24"],
+      "id": "Attachment"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2496",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AvailabilityFullTime16.tsx",
+      "component": "AvailabilityFullTime",
+      "name": "AvailabilityFullTime",
+      "sizes": ["16", "24"],
+      "id": "AvailabilityFullTime"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2460",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AvailabilityPartTime16.tsx",
+      "component": "AvailabilityPartTime",
+      "name": "AvailabilityPartTime",
+      "sizes": ["16", "24"],
+      "id": "AvailabilityPartTime"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2447",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AvailabilityUnavailable16.tsx",
+      "component": "AvailabilityUnavailable",
+      "name": "AvailabilityUnavailable",
+      "sizes": ["16", "24"],
+      "id": "AvailabilityUnavailable"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=4252-133",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AvailabilityUnavailableMinor16.tsx",
+      "component": "AvailabilityUnavailableMinor",
+      "name": "AvailabilityUnavailableMinor",
+      "sizes": ["16", "24"],
+      "id": "AvailabilityUnavailableMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2695-18",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Avatar16.tsx",
+      "component": "Avatar",
+      "name": "Avatar",
+      "sizes": ["16", "24"],
+      "id": "Avatar"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2260-219",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AvgWeeklyHours16.tsx",
+      "component": "AvgWeeklyHours",
+      "name": "AvgWeeklyHours",
+      "sizes": ["16", "24"],
+      "id": "AvgWeeklyHours"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2260-165",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/AvgWeeklySpend16.tsx",
+      "component": "AvgWeeklySpend",
+      "name": "AvgWeeklySpend",
+      "sizes": ["16", "24"],
+      "id": "AvgWeeklySpend"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-842",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Award16.tsx",
+      "component": "Award",
+      "name": "Award",
+      "sizes": ["16", "24"],
+      "id": "Award"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3102",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BackMinor16.tsx",
+      "component": "BackMinor",
+      "name": "BackMinor",
+      "sizes": ["16", "24"],
+      "id": "BackMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=314-205",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Backspace16.tsx",
+      "component": "Backspace",
+      "name": "Backspace",
+      "sizes": ["16", "24"],
+      "id": "Backspace"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2720-23",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Badge16.tsx",
+      "component": "Badge",
+      "name": "Badge",
+      "sizes": ["16", "24"],
+      "id": "Badge"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1871",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BankWire16.tsx",
+      "component": "BankWire",
+      "name": "BankWire",
+      "sizes": ["16", "24"],
+      "id": "BankWire"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-157",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Behance16.tsx",
+      "component": "Behance",
+      "name": "Behance",
+      "sizes": ["16", "24"],
+      "id": "Behance"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2432",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Bell16.tsx",
+      "component": "Bell",
+      "name": "Bell",
+      "sizes": ["16", "24"],
+      "id": "Bell"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=130-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BellOff16.tsx",
+      "component": "BellOff",
+      "name": "BellOff",
+      "sizes": ["16", "24"],
+      "id": "BellOff"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1721-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BellSolid16.tsx",
+      "component": "BellSolid",
+      "name": "BellSolid",
+      "sizes": ["16", "24"],
+      "id": "BellSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2858-894",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Bidirectional16.tsx",
+      "component": "Bidirectional",
+      "name": "Bidirectional",
+      "sizes": ["16", "24"],
+      "id": "Bidirectional"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2210",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Billing16.tsx",
+      "component": "Billing",
+      "name": "Billing",
+      "sizes": ["16", "24"],
+      "id": "Billing"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=568-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BoardNew16.tsx",
+      "component": "BoardNew",
+      "name": "BoardNew",
+      "sizes": ["16", "24"],
+      "id": "BoardNew"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=313-48",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Bold16.tsx",
+      "component": "Bold",
+      "name": "Bold",
+      "sizes": ["16", "24"],
+      "id": "Bold"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2201",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Bookmark16.tsx",
+      "component": "Bookmark",
+      "name": "Bookmark",
+      "sizes": ["16", "24"],
+      "id": "Bookmark"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3263-72",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BookmarkSolid16.tsx",
+      "component": "BookmarkSolid",
+      "name": "BookmarkSolid",
+      "sizes": ["16", "24"],
+      "id": "BookmarkSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=951-11",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BookmarkStarEmpty16.tsx",
+      "component": "BookmarkStarEmpty",
+      "name": "BookmarkStarEmpty",
+      "sizes": ["16", "24"],
+      "id": "BookmarkStarEmpty"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=951-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BookmarkStarFull16.tsx",
+      "component": "BookmarkStarFull",
+      "name": "BookmarkStarFull",
+      "sizes": ["16", "24"],
+      "id": "BookmarkStarFull"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=622-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Box16.tsx",
+      "component": "Box",
+      "name": "Box",
+      "sizes": ["16", "24"],
+      "id": "Box"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3343-102",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Bulb16.tsx",
+      "component": "Bulb",
+      "name": "Bulb",
+      "sizes": ["16", "24"],
+      "id": "Bulb"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=536-154",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BusinessOwnerJoin16.tsx",
+      "component": "BusinessOwnerJoin",
+      "name": "BusinessOwnerJoin",
+      "sizes": ["16", "24"],
+      "id": "BusinessOwnerJoin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=536-125",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/BusinessOwnerLeave16.tsx",
+      "component": "BusinessOwnerLeave",
+      "name": "BusinessOwnerLeave",
+      "sizes": ["16", "24"],
+      "id": "BusinessOwnerLeave"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=872-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Cake16.tsx",
+      "component": "Cake",
+      "name": "Cake",
+      "sizes": ["16", "24"],
+      "id": "Cake"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2413",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Calendar16.tsx",
+      "component": "Calendar",
+      "name": "Calendar",
+      "sizes": ["16", "24"],
+      "id": "Calendar"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2398",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CalendarReminder16.tsx",
+      "component": "CalendarReminder",
+      "name": "CalendarReminder",
+      "sizes": ["16", "24"],
+      "id": "CalendarReminder"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2735",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CallMissed16.tsx",
+      "component": "CallMissed",
+      "name": "CallMissed",
+      "sizes": ["16", "24"],
+      "id": "CallMissed"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-515",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Canceled16.tsx",
+      "component": "Canceled",
+      "name": "Canceled",
+      "sizes": ["16", "24"],
+      "id": "Canceled"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2726",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Candidates16.tsx",
+      "component": "Candidates",
+      "name": "Candidates",
+      "sizes": ["16", "24"],
+      "id": "Candidates"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-484",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Career16.tsx",
+      "component": "Career",
+      "name": "Career",
+      "sizes": ["16", "24"],
+      "id": "Career"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2180",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Certificate16.tsx",
+      "component": "Certificate",
+      "name": "Certificate",
+      "sizes": ["16", "24"],
+      "id": "Certificate"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2705",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Chat16.tsx",
+      "component": "Chat",
+      "name": "Chat",
+      "sizes": ["16", "24"],
+      "id": "Chat"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1696",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Check16.tsx",
+      "component": "Check",
+      "name": "Check",
+      "sizes": ["16", "24"],
+      "id": "Check"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1687",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CheckMinor16.tsx",
+      "component": "CheckMinor",
+      "name": "CheckMinor",
+      "sizes": ["16", "24"],
+      "id": "CheckMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=478-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Chef16.tsx",
+      "component": "Chef",
+      "name": "Chef",
+      "sizes": ["16", "24"],
+      "id": "Chef"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3093",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Chevron16.tsx",
+      "component": "Chevron",
+      "name": "Chevron",
+      "sizes": ["16", "24"],
+      "id": "Chevron"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3079",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ChevronDouble16.tsx",
+      "component": "ChevronDouble",
+      "name": "ChevronDouble",
+      "sizes": ["16", "24"],
+      "id": "ChevronDouble"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3070",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ChevronMinor16.tsx",
+      "component": "ChevronMinor",
+      "name": "ChevronMinor",
+      "sizes": ["16", "24"],
+      "id": "ChevronMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1678",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Close16.tsx",
+      "component": "Close",
+      "name": "Close",
+      "sizes": ["16", "24"],
+      "id": "Close"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=314-226",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CloseCircle16.tsx",
+      "component": "CloseCircle",
+      "name": "CloseCircle",
+      "sizes": ["16", "24"],
+      "id": "CloseCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1669",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CloseMinor16.tsx",
+      "component": "CloseMinor",
+      "name": "CloseMinor",
+      "sizes": ["16", "24"],
+      "id": "CloseMinor"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3130-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Code16.tsx",
+      "component": "Code",
+      "name": "Code",
+      "sizes": ["16", "24"],
+      "id": "Code"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2557-35",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CodeBlock16.tsx",
+      "component": "CodeBlock",
+      "name": "CodeBlock",
+      "sizes": ["16", "24"],
+      "id": "CodeBlock"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2822-40",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Collapse16.tsx",
+      "component": "Collapse",
+      "name": "Collapse",
+      "sizes": ["16", "24"],
+      "id": "Collapse"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2821-4",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CommandKey16.tsx",
+      "component": "CommandKey",
+      "name": "CommandKey",
+      "sizes": ["16", "24"],
+      "id": "CommandKey"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1830",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Commission16.tsx",
+      "component": "Commission",
+      "name": "Commission",
+      "sizes": ["16", "24"],
+      "id": "Commission"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-917",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Company16.tsx",
+      "component": "Company",
+      "name": "Company",
+      "sizes": ["16", "24"],
+      "id": "Company"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-818",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Component16.tsx",
+      "component": "Component",
+      "name": "Component",
+      "sizes": ["16", "24"],
+      "id": "Component"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=132-32",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Confluence16.tsx",
+      "component": "Confluence",
+      "name": "Confluence",
+      "sizes": ["16", "24"],
+      "id": "Confluence"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1641",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Copy16.tsx",
+      "component": "Copy",
+      "name": "Copy",
+      "sizes": ["16", "24"],
+      "id": "Copy"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2839-739",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Cpu216.tsx",
+      "component": "Cpu2",
+      "name": "Cpu2",
+      "sizes": ["16", "24"],
+      "id": "Cpu2"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1811",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CreditCard16.tsx",
+      "component": "CreditCard",
+      "name": "CreditCard",
+      "sizes": ["16", "24", "32"],
+      "id": "CreditCard"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=4197-205",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Critical16.tsx",
+      "component": "Critical",
+      "name": "Critical",
+      "sizes": ["16", "24"],
+      "id": "Critical"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=4197-230",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CriticalSolid16.tsx",
+      "component": "CriticalSolid",
+      "name": "CriticalSolid",
+      "sizes": ["16", "24"],
+      "id": "CriticalSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2693-7",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CurrencyCoin16.tsx",
+      "component": "CurrencyCoin",
+      "name": "CurrencyCoin",
+      "sizes": ["16", "24"],
+      "id": "CurrencyCoin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2693-13",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/CurrencyNote16.tsx",
+      "component": "CurrencyNote",
+      "name": "CurrencyNote",
+      "sizes": ["16", "24"],
+      "id": "CurrencyNote"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2839-729",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Dashboard16.tsx",
+      "component": "Dashboard",
+      "name": "Dashboard",
+      "sizes": ["16", "24"],
+      "id": "Dashboard"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-797",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Dispute16.tsx",
+      "component": "Dispute",
+      "name": "Dispute",
+      "sizes": ["16", "24"],
+      "id": "Dispute"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1761",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Dollar16.tsx",
+      "component": "Dollar",
+      "name": "Dollar",
+      "sizes": ["16", "24"],
+      "id": "Dollar"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1626",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Done16.tsx",
+      "component": "Done",
+      "name": "Done",
+      "sizes": ["16", "24"],
+      "id": "Done"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1617",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/DoneSolid16.tsx",
+      "component": "DoneSolid",
+      "name": "DoneSolid",
+      "sizes": ["16", "24"],
+      "id": "DoneSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1602",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Download16.tsx",
+      "component": "Download",
+      "name": "Download",
+      "sizes": ["16", "24"],
+      "id": "Download"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1573",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Drag16.tsx",
+      "component": "Drag",
+      "name": "Drag",
+      "sizes": ["16", "24"],
+      "id": "Drag"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-457",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Education16.tsx",
+      "component": "Education",
+      "name": "Education",
+      "sizes": ["16", "24"],
+      "id": "Education"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2692",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Email16.tsx",
+      "component": "Email",
+      "name": "Email",
+      "sizes": ["16", "24"],
+      "id": "Email"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=533-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Enter16.tsx",
+      "component": "Enter",
+      "name": "Enter",
+      "sizes": ["16", "24"],
+      "id": "Enter"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2373",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Evening16.tsx",
+      "component": "Evening",
+      "name": "Evening",
+      "sizes": ["16", "24"],
+      "id": "Evening"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1558",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Exclamation16.tsx",
+      "component": "Exclamation",
+      "name": "Exclamation",
+      "sizes": ["16", "24"],
+      "id": "Exclamation"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1545",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ExclamationSolid16.tsx",
+      "component": "ExclamationSolid",
+      "name": "ExclamationSolid",
+      "sizes": ["16", "24"],
+      "id": "ExclamationSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1528",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Exit16.tsx",
+      "component": "Exit",
+      "name": "Exit",
+      "sizes": ["16", "24"],
+      "id": "Exit"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2822-22",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Expand16.tsx",
+      "component": "Expand",
+      "name": "Expand",
+      "sizes": ["16", "24"],
+      "id": "Expand"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1511",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Eye16.tsx",
+      "component": "Eye",
+      "name": "Eye",
+      "sizes": ["16", "24"],
+      "id": "Eye"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1486",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/EyeHide16.tsx",
+      "component": "EyeHide",
+      "name": "EyeHide",
+      "sizes": ["16", "24"],
+      "id": "EyeHide"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-133",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Facebook16.tsx",
+      "component": "Facebook",
+      "name": "Facebook",
+      "sizes": ["16", "24"],
+      "id": "Facebook"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-521",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Failed16.tsx",
+      "component": "Failed",
+      "name": "Failed",
+      "sizes": ["16", "24"],
+      "id": "Failed"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1475",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Filter16.tsx",
+      "component": "Filter",
+      "name": "Filter",
+      "sizes": ["16", "24"],
+      "id": "Filter"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-784",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Flag16.tsx",
+      "component": "Flag",
+      "name": "Flag",
+      "sizes": ["16", "24"],
+      "id": "Flag"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2720-29",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Flag216.tsx",
+      "component": "Flag2",
+      "name": "Flag2",
+      "sizes": ["16", "24"],
+      "id": "Flag2"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-775",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Flash16.tsx",
+      "component": "Flash",
+      "name": "Flash",
+      "sizes": ["16", "24"],
+      "id": "Flash"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2695-32",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/FocusGroup16.tsx",
+      "component": "FocusGroup",
+      "name": "FocusGroup",
+      "sizes": ["16", "24"],
+      "id": "FocusGroup"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2171",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Folder16.tsx",
+      "component": "Folder",
+      "name": "Folder",
+      "sizes": ["16", "24"],
+      "id": "Folder"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2724-34",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/FolderMisc16.tsx",
+      "component": "FolderMisc",
+      "name": "FolderMisc",
+      "sizes": ["16", "24"],
+      "id": "FolderMisc"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=885-19",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/FontSize16.tsx",
+      "component": "FontSize",
+      "name": "FontSize",
+      "sizes": ["16", "24"],
+      "id": "FontSize"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2949",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Fullscreen16.tsx",
+      "component": "Fullscreen",
+      "name": "Fullscreen",
+      "sizes": ["16", "24"],
+      "id": "Fullscreen"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-748",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Function16.tsx",
+      "component": "Function",
+      "name": "Function",
+      "sizes": ["16", "24"],
+      "id": "Function"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3198-125",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Gift16.tsx",
+      "component": "Gift",
+      "name": "Gift",
+      "sizes": ["16", "24"],
+      "id": "Gift"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-128",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Github16.tsx",
+      "component": "Github",
+      "name": "Github",
+      "sizes": ["16", "24"],
+      "id": "Github"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-898",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Globe16.tsx",
+      "component": "Globe",
+      "name": "Globe",
+      "sizes": ["16", "24"],
+      "id": "Globe"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2453-31",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/GrammarCheck16.tsx",
+      "component": "GrammarCheck",
+      "name": "GrammarCheck",
+      "sizes": ["16", "24"],
+      "sizeProperty": "size",
+      "id": "GrammarCheck"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1446",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Grid16.tsx",
+      "component": "Grid",
+      "name": "Grid",
+      "sizes": ["16", "24"],
+      "id": "Grid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-440",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Guests16.tsx",
+      "component": "Guests",
+      "name": "Guests",
+      "sizes": ["16", "24"],
+      "id": "Guests"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=728-16",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Heading16.tsx",
+      "component": "Heading",
+      "name": "Heading",
+      "sizes": ["16", "24"],
+      "id": "Heading"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-743",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Heartbeat16.tsx",
+      "component": "Heartbeat",
+      "name": "Heartbeat",
+      "sizes": ["16", "24"],
+      "id": "Heartbeat"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1427",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Help16.tsx",
+      "component": "Help",
+      "name": "Help",
+      "sizes": ["16", "24"],
+      "id": "Help"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2460-16",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Home16.tsx",
+      "component": "Home",
+      "name": "Home",
+      "sizes": ["16", "24"],
+      "id": "Home"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2260-191",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/HoursThisMonth16.tsx",
+      "component": "HoursThisMonth",
+      "name": "HoursThisMonth",
+      "sizes": ["16", "24"],
+      "id": "HoursThisMonth"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1584-9",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Image16.tsx",
+      "component": "Image",
+      "name": "Image",
+      "sizes": ["16", "24"],
+      "id": "Image"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=5285-72",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ImageGallery16.tsx",
+      "component": "ImageGallery",
+      "name": "ImageGallery",
+      "sizes": ["16", "24"],
+      "id": "ImageGallery"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1013-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Inbox16.tsx",
+      "component": "Inbox",
+      "name": "Inbox",
+      "sizes": ["16", "24"],
+      "id": "Inbox"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1408",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Info16.tsx",
+      "component": "Info",
+      "name": "Info",
+      "sizes": ["16", "24"],
+      "id": "Info"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=152-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/InfoSolid16.tsx",
+      "component": "InfoSolid",
+      "name": "InfoSolid",
+      "sizes": ["16", "24"],
+      "id": "InfoSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-524",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/InProgress16.tsx",
+      "component": "InProgress",
+      "name": "InProgress",
+      "sizes": ["16", "24"],
+      "id": "InProgress"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-113",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Instagram16.tsx",
+      "component": "Instagram",
+      "name": "Instagram",
+      "sizes": ["16", "24"],
+      "id": "Instagram"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-527",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/InTransit16.tsx",
+      "component": "InTransit",
+      "name": "InTransit",
+      "sizes": ["16", "24"],
+      "id": "InTransit"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=313-75",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Italic16.tsx",
+      "component": "Italic",
+      "name": "Italic",
+      "sizes": ["16", "24"],
+      "id": "Italic"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2134",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/JobChange16.tsx",
+      "component": "JobChange",
+      "name": "JobChange",
+      "sizes": ["16", "24"],
+      "id": "JobChange"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2113",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Jobs16.tsx",
+      "component": "Jobs",
+      "name": "Jobs",
+      "sizes": ["16", "24"],
+      "id": "Jobs"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2834-715",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/KeyboardKey16.tsx",
+      "component": "KeyboardKey",
+      "name": "KeyboardKey",
+      "sizes": ["16", "24"],
+      "id": "KeyboardKey"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1343",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Keypad16.tsx",
+      "component": "Keypad",
+      "name": "Keypad",
+      "sizes": ["16", "24"],
+      "id": "Keypad"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=5778-75",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/KeyResults16.tsx",
+      "component": "KeyResults",
+      "name": "KeyResults",
+      "sizes": ["16", "24"],
+      "id": "KeyResults"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2675",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Language16.tsx",
+      "component": "Language",
+      "name": "Language",
+      "sizes": ["16", "24"],
+      "id": "Language"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1330",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Layers16.tsx",
+      "component": "Layers",
+      "name": "Layers",
+      "sizes": ["16", "24"],
+      "id": "Layers"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2763-317",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Layers16.tsx",
+      "component": "Layers",
+      "name": "Layers",
+      "sizes": ["16", "24"],
+      "id": "Layers-2"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=536-204",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/LeadOrgUnitJoin16.tsx",
+      "component": "LeadOrgUnitJoin",
+      "name": "LeadOrgUnitJoin",
+      "sizes": ["16", "24"],
+      "id": "LeadOrgUnitJoin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=536-199",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/LeadOrgUnitLeave16.tsx",
+      "component": "LeadOrgUnitLeave",
+      "name": "LeadOrgUnitLeave",
+      "sizes": ["16", "24"],
+      "id": "LeadOrgUnitLeave"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2092",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/LegalInfo16.tsx",
+      "component": "LegalInfo",
+      "name": "LegalInfo",
+      "sizes": ["16", "24"],
+      "id": "LegalInfo"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3053",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Length16.tsx",
+      "component": "Length",
+      "name": "Length",
+      "sizes": ["16", "24"],
+      "id": "Length"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2453-69",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/LengthenParagraphText16.tsx",
+      "component": "LengthenParagraphText",
+      "name": "LengthenParagraphText",
+      "sizes": ["16", "24"],
+      "id": "LengthenParagraphText"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1313",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Link16.tsx",
+      "component": "Link",
+      "name": "Link",
+      "sizes": ["16", "24"],
+      "id": "Link"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-100",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Linkedin16.tsx",
+      "component": "Linkedin",
+      "name": "Linkedin",
+      "sizes": ["16", "24"],
+      "id": "Linkedin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=314-188",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ListOrdered16.tsx",
+      "component": "ListOrdered",
+      "name": "ListOrdered",
+      "sizes": ["16", "24"],
+      "id": "ListOrdered"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=314-158",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ListUnordered16.tsx",
+      "component": "ListUnordered",
+      "name": "ListUnordered",
+      "sizes": ["16", "24"],
+      "id": "ListUnordered"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2724-53",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Location16.tsx",
+      "component": "Location",
+      "name": "Location",
+      "sizes": ["16", "24"],
+      "id": "Location"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1296",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Lock16.tsx",
+      "component": "Lock",
+      "name": "Lock",
+      "sizes": ["16", "24"],
+      "id": "Lock"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=533-22",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ManagerChange16.tsx",
+      "component": "ManagerChange",
+      "name": "ManagerChange",
+      "sizes": ["16", "24"],
+      "id": "ManagerChange"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2861-1508",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Memo16.tsx",
+      "component": "Memo",
+      "name": "Memo",
+      "sizes": ["16", "24"],
+      "id": "Memo"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2658",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Mention16.tsx",
+      "component": "Mention",
+      "name": "Mention",
+      "sizes": ["16", "24"],
+      "id": "Mention"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2649",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Message16.tsx",
+      "component": "Message",
+      "name": "Message",
+      "sizes": ["16", "24"],
+      "id": "Message"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2924",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/MicrophoneOff16.tsx",
+      "component": "MicrophoneOff",
+      "name": "MicrophoneOff",
+      "sizes": ["16", "24"],
+      "id": "MicrophoneOff"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2907",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/MicrophoneOn16.tsx",
+      "component": "MicrophoneOn",
+      "name": "MicrophoneOn",
+      "sizes": ["16", "24"],
+      "id": "MicrophoneOn"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1291",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Minus16.tsx",
+      "component": "Minus",
+      "name": "Minus",
+      "sizes": ["16", "24"],
+      "id": "Minus"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=505-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Mobile16.tsx",
+      "component": "Mobile",
+      "name": "Mobile",
+      "sizes": ["16", "24"],
+      "id": "Mobile"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1268",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/More16.tsx",
+      "component": "More",
+      "name": "More",
+      "sizes": ["16", "24"],
+      "id": "More"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2356",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Morning16.tsx",
+      "component": "Morning",
+      "name": "Morning",
+      "sizes": ["16", "24"],
+      "id": "Morning"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-720",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Multi16.tsx",
+      "component": "Multi",
+      "name": "Multi",
+      "sizes": ["16", "24"],
+      "id": "Multi"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1257",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/New16.tsx",
+      "component": "New",
+      "name": "New",
+      "sizes": ["16", "24"],
+      "id": "New"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-423",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/NewCandidate16.tsx",
+      "component": "NewCandidate",
+      "name": "NewCandidate",
+      "sizes": ["16", "24"],
+      "id": "NewCandidate"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2340",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Night16.tsx",
+      "component": "Night",
+      "name": "Night",
+      "sizes": ["16", "24"],
+      "id": "Night"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-691",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/NumericalAnalysis16.tsx",
+      "component": "NumericalAnalysis",
+      "name": "NumericalAnalysis",
+      "sizes": ["16", "24"],
+      "id": "NumericalAnalysis"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-400",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Okr16.tsx",
+      "component": "Okr",
+      "name": "Okr",
+      "sizes": ["16", "24"],
+      "id": "Okr"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-530",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/OnHold16.tsx",
+      "component": "OnHold",
+      "name": "OnHold",
+      "sizes": ["16", "24"],
+      "id": "OnHold"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=5482-104",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/OrgUnit16.tsx",
+      "component": "OrgUnit",
+      "name": "OrgUnit",
+      "sizes": ["16", "24"],
+      "id": "OrgUnit"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1234",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Overlap16.tsx",
+      "component": "Overlap",
+      "name": "Overlap",
+      "sizes": ["16", "24"],
+      "id": "Overlap"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1223",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Overview16.tsx",
+      "component": "Overview",
+      "name": "Overview",
+      "sizes": ["16", "24"],
+      "id": "Overview"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-377",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/OwnerDefault16.tsx",
+      "component": "OwnerDefault",
+      "name": "OwnerDefault",
+      "sizes": ["16", "24"],
+      "id": "OwnerDefault"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-360",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/OwnerPending16.tsx",
+      "component": "OwnerPending",
+      "name": "OwnerPending",
+      "sizes": ["16", "24"],
+      "id": "OwnerPending"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2073",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Page16.tsx",
+      "component": "Page",
+      "name": "Page",
+      "sizes": ["16", "24"],
+      "id": "Page"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-339",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Participants16.tsx",
+      "component": "Participants",
+      "name": "Participants",
+      "sizes": ["16", "24"],
+      "id": "Participants"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2892",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Pause16.tsx",
+      "component": "Pause",
+      "name": "Pause",
+      "sizes": ["16", "24"],
+      "id": "Pause"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1511-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PauseSolid16.tsx",
+      "component": "PauseSolid",
+      "name": "PauseSolid",
+      "sizes": ["16", "24"],
+      "id": "PauseSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1210",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Pencil16.tsx",
+      "component": "Pencil",
+      "name": "Pencil",
+      "sizes": ["16", "24"],
+      "id": "Pencil"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-534",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PendingReturn16.tsx",
+      "component": "PendingReturn",
+      "name": "PendingReturn",
+      "sizes": ["16", "24"],
+      "id": "PendingReturn"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1772",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Performance16.tsx",
+      "component": "Performance",
+      "name": "Performance",
+      "sizes": ["16", "24"],
+      "id": "Performance"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2640",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Phone16.tsx",
+      "component": "Phone",
+      "name": "Phone",
+      "sizes": ["16", "24"],
+      "id": "Phone"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2754",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PhoneDown16.tsx",
+      "component": "PhoneDown",
+      "name": "PhoneDown",
+      "sizes": ["16", "24"],
+      "id": "PhoneDown"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2056",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PieChart16.tsx",
+      "component": "PieChart",
+      "name": "PieChart",
+      "sizes": ["16", "24"],
+      "id": "PieChart"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-881",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Pin16.tsx",
+      "component": "Pin",
+      "name": "Pin",
+      "sizes": ["16", "24"],
+      "id": "Pin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-872",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PinSolid16.tsx",
+      "component": "PinSolid",
+      "name": "PinSolid",
+      "sizes": ["16", "24"],
+      "id": "PinSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Placeholder16.tsx",
+      "component": "Placeholder",
+      "name": "Placeholder",
+      "sizes": ["16", "24"],
+      "id": "Placeholder"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2887",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PlaySolid16.tsx",
+      "component": "PlaySolid",
+      "name": "PlaySolid",
+      "sizes": ["16", "24"],
+      "id": "PlaySolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1201",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Plus16.tsx",
+      "component": "Plus",
+      "name": "Plus",
+      "sizes": ["16", "24"],
+      "id": "Plus"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-662",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Pod16.tsx",
+      "component": "Pod",
+      "name": "Pod",
+      "sizes": ["16", "24"],
+      "id": "Pod"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2720-9",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/PresenterMode16.tsx",
+      "component": "PresenterMode",
+      "name": "PresenterMode",
+      "sizes": ["16", "24"],
+      "id": "PresenterMode"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1784-2",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Preview16.tsx",
+      "component": "Preview",
+      "name": "Preview",
+      "sizes": ["16", "24"],
+      "id": "Preview"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2827-98",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Preview16.tsx",
+      "component": "Preview",
+      "name": "Preview",
+      "sizes": ["16", "24"],
+      "id": "Preview-2"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3130-13",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ProductManager16.tsx",
+      "component": "ProductManager",
+      "name": "ProductManager",
+      "sizes": ["16", "24"],
+      "id": "ProductManager"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-306",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Profile16.tsx",
+      "component": "Profile",
+      "name": "Profile",
+      "sizes": ["16", "24"],
+      "id": "Profile"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-633",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Project16.tsx",
+      "component": "Project",
+      "name": "Project",
+      "sizes": ["16", "24"],
+      "id": "Project"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2871-105",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ProjectDiscovery16.tsx",
+      "component": "ProjectDiscovery",
+      "name": "ProjectDiscovery",
+      "sizes": ["16", "24"],
+      "id": "ProjectDiscovery"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=729-74",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Quote16.tsx",
+      "component": "Quote",
+      "name": "Quote",
+      "sizes": ["16", "24"],
+      "id": "Quote"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-583",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Recognize16.tsx",
+      "component": "Recognize",
+      "name": "Recognize",
+      "sizes": ["16", "24"],
+      "id": "Recognize"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-285",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Referral16.tsx",
+      "component": "Referral",
+      "name": "Referral",
+      "sizes": ["16", "24"],
+      "id": "Referral"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-268",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Referrals16.tsx",
+      "component": "Referrals",
+      "name": "Referrals",
+      "sizes": ["16", "24"],
+      "id": "Referrals"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-247",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/RemovedUser16.tsx",
+      "component": "RemovedUser",
+      "name": "RemovedUser",
+      "sizes": ["16", "24"],
+      "id": "RemovedUser"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2624",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Report16.tsx",
+      "component": "Report",
+      "name": "Report",
+      "sizes": ["16", "24"],
+      "id": "Report"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3042",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Reset16.tsx",
+      "component": "Reset",
+      "name": "Reset",
+      "sizes": ["16", "24"],
+      "id": "Reset"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2037",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Resources16.tsx",
+      "component": "Resources",
+      "name": "Resources",
+      "sizes": ["16", "24"],
+      "id": "Resources"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2339-538",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Returned16.tsx",
+      "component": "Returned",
+      "name": "Returned",
+      "sizes": ["16", "24"],
+      "id": "Returned"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3021",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Rotate16.tsx",
+      "component": "Rotate",
+      "name": "Rotate",
+      "sizes": ["16", "24"],
+      "id": "Rotate"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1707",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ScheduledPayment16.tsx",
+      "component": "ScheduledPayment",
+      "name": "ScheduledPayment",
+      "sizes": ["16", "24"],
+      "id": "ScheduledPayment"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1188",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Search16.tsx",
+      "component": "Search",
+      "name": "Search",
+      "sizes": ["16", "24"],
+      "id": "Search"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3343-521",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Send16.tsx",
+      "component": "Send",
+      "name": "Send",
+      "sizes": ["16", "24"],
+      "id": "Send"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2763-314",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Service16.tsx",
+      "component": "Service",
+      "name": "Service",
+      "sizes": ["16", "24"],
+      "id": "Service"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-574",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Services16.tsx",
+      "component": "Services",
+      "name": "Services",
+      "sizes": ["16", "24"],
+      "id": "Services"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1171",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Settings16.tsx",
+      "component": "Settings",
+      "name": "Settings",
+      "sizes": ["16", "24"],
+      "id": "Settings"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2863",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ShareScreen16.tsx",
+      "component": "ShareScreen",
+      "name": "ShareScreen",
+      "sizes": ["16", "24"],
+      "id": "ShareScreen"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1784-40",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ShoppingBasket16.tsx",
+      "component": "ShoppingBasket",
+      "name": "ShoppingBasket",
+      "sizes": ["16", "24"],
+      "id": "ShoppingBasket"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2453-66",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ShortenParagraphText16.tsx",
+      "component": "ShortenParagraphText",
+      "name": "ShortenParagraphText",
+      "sizes": ["16", "24"],
+      "sizeProperty": "size",
+      "id": "ShortenParagraphText"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-565",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Single16.tsx",
+      "component": "Single",
+      "name": "Single",
+      "sizes": ["16", "24"],
+      "id": "Single"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1151",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Skills16.tsx",
+      "component": "Skills",
+      "name": "Skills",
+      "sizes": ["16", "24"],
+      "id": "Skills"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2611",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Skype16.tsx",
+      "component": "Skype",
+      "name": "Skype",
+      "sizes": ["16", "24"],
+      "id": "Skype"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-79",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Slack16.tsx",
+      "component": "Slack",
+      "name": "Slack",
+      "sizes": ["16", "24"],
+      "id": "Slack"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-542",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Sleep16.tsx",
+      "component": "Sleep",
+      "name": "Sleep",
+      "sizes": ["16", "24"],
+      "id": "Sleep"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-3004",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Sort16.tsx",
+      "component": "Sort",
+      "name": "Sort",
+      "sizes": ["16", "24"],
+      "id": "Sort"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2848",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/SoundOff16.tsx",
+      "component": "SoundOff",
+      "name": "SoundOff",
+      "sizes": ["16", "24"],
+      "id": "SoundOff"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2829",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/SoundOn16.tsx",
+      "component": "SoundOn",
+      "name": "SoundOn",
+      "sizes": ["16", "24"],
+      "id": "SoundOn"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-220",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/SpecialGroup16.tsx",
+      "component": "SpecialGroup",
+      "name": "SpecialGroup",
+      "sizes": ["16", "24"],
+      "id": "SpecialGroup"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=536-225",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/SpecialGroupJoin16.tsx",
+      "component": "SpecialGroupJoin",
+      "name": "SpecialGroupJoin",
+      "sizes": ["16", "24"],
+      "id": "SpecialGroupJoin"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=536-252",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/SpecialGroupLeave16.tsx",
+      "component": "SpecialGroupLeave",
+      "name": "SpecialGroupLeave",
+      "sizes": ["16", "24"],
+      "id": "SpecialGroupLeave"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1142",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Star16.tsx",
+      "component": "Star",
+      "name": "Star",
+      "sizes": ["16", "24"],
+      "id": "Star"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1137",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/StarSolid16.tsx",
+      "component": "StarSolid",
+      "name": "StarSolid",
+      "sizes": ["16", "24"],
+      "id": "StarSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=568-53",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Sticker16.tsx",
+      "component": "Sticker",
+      "name": "Sticker",
+      "sizes": ["16", "24"],
+      "id": "Sticker"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2824",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/StopSolid16.tsx",
+      "component": "StopSolid",
+      "name": "StopSolid",
+      "sizes": ["16", "24"],
+      "id": "StopSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=729-45",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Strikethrough16.tsx",
+      "component": "Strikethrough",
+      "name": "Strikethrough",
+      "sizes": ["16", "24"],
+      "id": "Strikethrough"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2871-12",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/SubArrowRight16.tsx",
+      "component": "SubArrowRight",
+      "name": "SubArrowRight",
+      "sizes": ["16", "24"],
+      "id": "SubArrowRight"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-515",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Subfunction16.tsx",
+      "component": "Subfunction",
+      "name": "Subfunction",
+      "sizes": ["16", "24"],
+      "id": "Subfunction"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2584",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Support16.tsx",
+      "component": "Support",
+      "name": "Support",
+      "sizes": ["16", "24"],
+      "id": "Support"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2565",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Switch16.tsx",
+      "component": "Switch",
+      "name": "Switch",
+      "sizes": ["16", "24"],
+      "id": "Switch"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1116",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Table16.tsx",
+      "component": "Table",
+      "name": "Table",
+      "sizes": ["16", "24"],
+      "id": "Table"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1089",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Tasks16.tsx",
+      "component": "Tasks",
+      "name": "Tasks",
+      "sizes": ["16", "24"],
+      "id": "Tasks"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-189",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Team16.tsx",
+      "component": "Team",
+      "name": "Team",
+      "sizes": ["16", "24"],
+      "id": "Team"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-70",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Telegram16.tsx",
+      "component": "Telegram",
+      "name": "Telegram",
+      "sizes": ["16", "24"],
+      "id": "Telegram"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1076",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ThumbsDown16.tsx",
+      "component": "ThumbsDown",
+      "name": "ThumbsDown",
+      "sizes": ["16", "24"],
+      "id": "ThumbsDown"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1063",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/ThumbsUp16.tsx",
+      "component": "ThumbsUp",
+      "name": "ThumbsUp",
+      "sizes": ["16", "24"],
+      "id": "ThumbsUp"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2324",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Time16.tsx",
+      "component": "Time",
+      "name": "Time",
+      "sizes": ["16", "24"],
+      "id": "Time"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2260-87",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/TimeConvert16.tsx",
+      "component": "TimeConvert",
+      "name": "TimeConvert",
+      "sizes": ["16", "24"],
+      "id": "TimeConvert"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2016",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Timesheet16.tsx",
+      "component": "Timesheet",
+      "name": "Timesheet",
+      "sizes": ["16", "24"],
+      "id": "Timesheet"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=322-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/TimeSolid16.tsx",
+      "component": "TimeSolid",
+      "name": "TimeSolid",
+      "sizes": ["16", "24"],
+      "id": "TimeSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2597-22",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Tip16.tsx",
+      "component": "Tip",
+      "name": "Tip",
+      "sizes": ["16", "24"],
+      "id": "Tip"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=6-5",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Transfer16.tsx",
+      "component": "Transfer",
+      "name": "Transfer",
+      "sizes": ["16", "24"],
+      "id": "Transfer"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1039",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Trash16.tsx",
+      "component": "Trash",
+      "name": "Trash",
+      "sizes": ["16", "24"],
+      "id": "Trash"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1173-12",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/TriangleDownMinorSolid16.tsx",
+      "component": "TriangleDownMinorSolid",
+      "name": "TriangleDownMinorSolid",
+      "sizes": ["16", "24"],
+      "id": "TriangleDownMinorSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2999",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/TriangleLeftMinorSolid16.tsx",
+      "component": "TriangleLeftMinorSolid",
+      "name": "TriangleLeftMinorSolid",
+      "sizes": ["16", "24"],
+      "id": "TriangleLeftMinorSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2994",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/TriangleRightMinorSolid16.tsx",
+      "component": "TriangleRightMinorSolid",
+      "name": "TriangleRightMinorSolid",
+      "sizes": ["16", "24"],
+      "id": "TriangleRightMinorSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=3362-71",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/TriangleUpMinorSolid16.tsx",
+      "component": "TriangleUpMinorSolid",
+      "name": "TriangleUpMinorSolid",
+      "sizes": ["16", "24"],
+      "id": "TriangleUpMinorSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1022",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/UiGuidelines16.tsx",
+      "component": "UiGuidelines",
+      "name": "UiGuidelines",
+      "sizes": ["16", "24"],
+      "id": "UiGuidelines"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2989",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Undo16.tsx",
+      "component": "Undo",
+      "name": "Undo",
+      "sizes": ["16", "24"],
+      "id": "Undo"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-997",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Unlink16.tsx",
+      "component": "Unlink",
+      "name": "Unlink",
+      "sizes": ["16", "24"],
+      "id": "Unlink"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2970",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Update16.tsx",
+      "component": "Update",
+      "name": "Update",
+      "sizes": ["16", "24"],
+      "id": "Update"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-978",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Upload16.tsx",
+      "component": "Upload",
+      "name": "Upload",
+      "sizes": ["16", "24"],
+      "id": "Upload"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1997",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/UploadDocument16.tsx",
+      "component": "UploadDocument",
+      "name": "UploadDocument",
+      "sizes": ["16", "24"],
+      "id": "UploadDocument"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-176",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/User16.tsx",
+      "component": "User",
+      "name": "User",
+      "sizes": ["16", "24"],
+      "id": "User"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1982-8",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/VerificationBadge16.tsx",
+      "component": "VerificationBadge",
+      "name": "VerificationBadge",
+      "sizes": ["16", "24"],
+      "id": "VerificationBadge"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2807",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Video16.tsx",
+      "component": "Video",
+      "name": "Video",
+      "sizes": ["16", "24"],
+      "id": "Video"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2719-4",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/VideoCall16.tsx",
+      "component": "VideoCall",
+      "name": "VideoCall",
+      "sizes": ["16", "24"],
+      "id": "VideoCall"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2782",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/VideoOff16.tsx",
+      "component": "VideoOff",
+      "name": "VideoOff",
+      "sizes": ["16", "24"],
+      "id": "VideoOff"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-2765",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/VideoOn16.tsx",
+      "component": "VideoOn",
+      "name": "VideoOn",
+      "sizes": ["16", "24"],
+      "id": "VideoOn"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-959",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/View16.tsx",
+      "component": "View",
+      "name": "View",
+      "sizes": ["16", "24"],
+      "id": "View"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=4197-251",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Warning16.tsx",
+      "component": "Warning",
+      "name": "Warning",
+      "sizes": ["16", "24"],
+      "id": "Warning"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=4197-264",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/WarningSolid16.tsx",
+      "component": "WarningSolid",
+      "name": "WarningSolid",
+      "sizes": ["16", "24"],
+      "id": "WarningSolid"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-54",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Whatsapp16.tsx",
+      "component": "Whatsapp",
+      "name": "Whatsapp",
+      "sizes": ["16", "24"],
+      "id": "Whatsapp"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1976",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/WhitePaper16.tsx",
+      "component": "WhitePaper",
+      "name": "WhitePaper",
+      "sizes": ["16", "24"],
+      "id": "WhitePaper"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2828-142",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Wifi16.tsx",
+      "component": "Wifi",
+      "name": "Wifi",
+      "sizes": ["16", "24"],
+      "id": "Wifi"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1943",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/WorkExperience16.tsx",
+      "component": "WorkExperience",
+      "name": "WorkExperience",
+      "sizes": ["16", "24"],
+      "id": "WorkExperience"
+    },
+    {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-946",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Working16.tsx",
+      "component": "Working",
+      "name": "Working",
+      "sizes": ["16", "24"],
+      "id": "Working"
+    }
+  ]
+}

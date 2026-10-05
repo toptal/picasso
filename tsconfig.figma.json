@@ -6,6 +6,10 @@
     "typeRoots": ["./node_modules"],
     "types": ["@figma/code-connect/figma-types"]
   },
-  "include": ["figma-template.d.ts", "packages/**/*.figma.ts"],
+  "include": [
+    "figma-template.d.ts",
+    "packages/**/*.figma.ts",
+    "packages/**/*.figma.batch.ts"
+  ],
   "exclude": ["**/node_modules", "**/dist-package"]
 }

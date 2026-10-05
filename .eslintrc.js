@@ -77,7 +77,12 @@ module.exports = {
     '@toptal/davinci/no-package-self-imports': [
       'error',
       {
-        excludeFiles: ['**/*.example.jsx', '**/*.example.tsx', '**/*.figma.ts'],
+        excludeFiles: [
+          '**/*.example.jsx',
+          '**/*.example.tsx',
+          '**/*.figma.ts',
+          '**/*.figma.batch.ts',
+        ],
         excludePaths: ['@toptal/picasso-test-utils'],
       },
     ],
@@ -141,6 +146,7 @@ module.exports = {
         '*.spec.tsx',
         '*.example.tsx',
         '*.figma.ts',
+        '*.figma.batch.ts',
         'test.tsx',
         'test.ts',
         '*.test.tsx',

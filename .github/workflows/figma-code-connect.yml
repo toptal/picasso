@@ -13,6 +13,8 @@ on:
       - master
     paths:
       - '**/*.figma.ts'
+      - '**/*.figma.batch.ts'
+      - '**/*.figma.batch.json'
       - 'figma.config.json'
       - 'tsconfig.figma.json'
       - 'package.json'
@@ -20,6 +22,8 @@ on:
   pull_request:
     paths:
       - '**/*.figma.ts'
+      - '**/*.figma.batch.ts'
+      - '**/*.figma.batch.json'
       - 'figma.config.json'
       - 'tsconfig.figma.json'
       - 'package.json'
