@@ -30,6 +30,20 @@ describe('TimePicker', () => {
     expect(handleChange).toHaveBeenCalledTimes(1)
   })
 
+  it.each(['', undefined])(
+    'clears the time when the value is reset to %p from outside',
+    reset => {
+      const { getByDisplayValue, rerender } = render(
+        <TimePicker value='10:30' onChange={() => {}} />
+      )
+      const input = getByDisplayValue('10:30')
+
+      rerender(<TimePicker value={reset} onChange={() => {}} />)
+
+      expect(input).toHaveValue('')
+    }
+  )
+
   describe('when invalid time is entered', () => {
     it('calls onChange with empty value', () => {
       const time = '09:00'

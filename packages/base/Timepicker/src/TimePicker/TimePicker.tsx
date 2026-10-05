@@ -60,6 +60,15 @@ export const TimePicker = ({
     // Set internal value based on the provided one if the later is correct
     if (externalValue && VALID_TIME_REGEX.test(externalValue)) {
       setValue(externalValue)
+
+      return
+    }
+
+    // Cleared from outside, such as a form reset. The '' this component
+    // reports for an incomplete time leaves nothing to clear, since the time
+    // input reads '' then too, and an empty picker stays uncontrolled
+    if (!externalValue) {
+      setValue(current => (current ? '' : current))
     }
   }, [externalValue])
 
