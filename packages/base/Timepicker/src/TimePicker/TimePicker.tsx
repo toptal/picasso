@@ -3,23 +3,15 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
 import { Input } from '@toptal/picasso-input'
-import { Popper } from '@toptal/picasso-popper'
-import { ClickAwayListener } from '@toptal/picasso-utils'
+import { Time16 } from '@toptal/picasso-icons'
 import type { InputProps } from '@toptal/picasso-input'
 import type { Status } from '@toptal/picasso-outlined-input'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { TimePickerColumns } from '../TimePickerColumns'
+import { TimePickerDropdown } from '../TimePickerDropdown'
 import { TimePickerTrigger } from '../TimePickerTrigger'
 import { useTimePickerPopover } from './use-time-picker-popover'
-import {
-  VALID_TIME_REGEX,
-  formatTime,
-  getCurrentTime,
-  getHourCycle,
-  parseTime,
-} from './utils'
-import type { Time } from './utils'
+import { VALID_TIME_REGEX, getHourCycle } from './utils'
 
 export interface Props
   extends BaseProps,
@@ -51,24 +43,31 @@ export interface Props
   status?: Extract<Status, 'error' | 'warning' | 'default'>
   /** Called on input change */
   onChange?: (value: string) => void
-  /** Label of the hour column in the time dropdown */
-  hourLabel?: string
-  /** Label of the minute column in the time dropdown */
-  minuteLabel?: string
+  /** Interval in minutes between the times offered in a dropdown list. When omitted, the browser's own time picker is used */
+  minuteStep?: 5 | 10 | 15 | 20 | 30 | 60
 }
 
-const POPPER_OPTIONS = {
-  modifiers: {
-    offset: { offset: '0, 4' },
-  },
+const NATIVE_PICKER_CLASS_NAME = `-mr-[8px] [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
+    [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
+
+// With a time list, devices with a mouse open the list and touch devices keep their native picker
+const TIME_LIST_CLASS_NAME = `${NATIVE_PICKER_CLASS_NAME} pointer-fine:[&::-webkit-calendar-picker-indicator]:hidden`
+
+const nativePickerIcon = (
+  <Time16
+    classes={{
+      root: 'bg-white absolute right-[0.625rem] pointer-events-none m-0 select-none',
+    }}
+  />
+)
+
+const getInputMask = (value?: string) => {
+  const startsWithTwo = value && value[0] === '2'
+
+  return [/[0-2]/, startsWithTwo ? /[0-3]/ : /[0-9]/, ':', /[0-5]/, /[0-9]/]
 }
 
-export const TimePicker = ({
-  status = 'default',
-  hourLabel = 'Hour',
-  minuteLabel = 'Minute',
-  ...props
-}: Props) => {
+export const TimePicker = ({ status = 'default', ...props }: Props) => {
   const {
     onChange: externalOnChange,
     value: externalValue,
@@ -76,11 +75,13 @@ export const TimePicker = ({
     className,
     highlight,
     size,
+    minuteStep,
     ...rest
   } = props
 
   const [value, setValue] = useState(externalValue)
-  const isInteractive = !rest.disabled && !rest.readOnly
+  const hasTimeList = minuteStep !== undefined
+  const interactive = hasTimeList && !rest.disabled && !rest.readOnly
 
   useEffect(() => {
     // Set internal value based on the provided one if the later is correct
@@ -105,75 +106,58 @@ export const TimePicker = ({
     >
   ) => changeValue(event.target.value)
 
-  const browser = detect()
-  const isSafari = browser?.name === 'safari'
+  const isSafari = detect()?.name === 'safari'
 
   const {
     isOpen,
     hourCycle,
     anchorRef,
-    focusColumnsOnOpen,
+    focusListOnOpen,
     handleTriggerClick,
     handleClickAway,
-    handleColumnsClose,
+    closeAndFocusField,
     handleFieldKeyDown,
   } = useTimePickerPopover({
-    value,
-    isInteractive,
-    // Safari renders its own 24-hour masked field, so the columns have to match it
+    enabled: interactive,
+    // Safari renders its own 24-hour masked field, so the list has to match it
     getHourCycle: () => (isSafari ? 24 : getHourCycle()),
-    onChange: changeValue,
   })
-  const startsWithTwo = value && value[0] === '2'
 
-  const inputMask = [
-    /[0-2]/,
-    startsWithTwo ? /[0-3]/ : /[0-9]/,
-    ':',
-    /[0-5]/,
-    /[0-9]/,
-  ]
+  const handleTimePick = (time: string) => {
+    changeValue(time)
+    closeAndFocusField()
+  }
 
-  const trigger = (
-    <TimePickerTrigger
+  const adornmentProps = hasTimeList
+    ? {
+        endAdornment: (
+          <TimePickerTrigger
+            open={isOpen}
+            disabled={!interactive}
+            onClick={handleTriggerClick}
+          />
+        ),
+      }
+    : { iconPosition: 'end' as const, icon: nativePickerIcon }
+
+  const timeList = hasTimeList && (
+    <TimePickerDropdown
       open={isOpen}
-      disabled={!isInteractive}
-      onClick={handleTriggerClick}
+      anchorEl={anchorRef.current}
+      onClickAway={handleClickAway}
+      value={value}
+      minuteStep={minuteStep}
+      hourCycle={hourCycle}
+      autoFocus={focusListOnOpen}
+      onChange={handleTimePick}
+      onClose={closeAndFocusField}
     />
   )
 
-  const popover = isOpen && anchorRef.current && (
-    <Popper
-      open
-      role='dialog'
-      aria-label='Choose time'
-      anchorEl={anchorRef.current}
-      placement='bottom-start'
-      autoWidth={false}
-      popperOptions={POPPER_OPTIONS}
-      className='xs:max-md:w-auto xs:max-md:max-w-none'
-    >
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <div>
-          <TimePickerColumns
-            time={parseTime(value) ?? getCurrentTime()}
-            hourCycle={hourCycle}
-            hourLabel={hourLabel}
-            minuteLabel={minuteLabel}
-            autoFocus={focusColumnsOnOpen}
-            onChange={(time: Time) => changeValue(formatTime(time))}
-            onClose={handleColumnsClose}
-          />
-        </div>
-      </ClickAwayListener>
-    </Popper>
-  )
-
   const inputClassName = twMerge('cursor-default', className)
-
-  const inputPropClassName = `-mr-[8px] [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
-    [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none
-    pointer-fine:[&::-webkit-calendar-picker-indicator]:hidden`
+  const inputPropClassName = hasTimeList
+    ? TIME_LIST_CLASS_NAME
+    : NATIVE_PICKER_CLASS_NAME
 
   if (isSafari) {
     return (
@@ -181,7 +165,7 @@ export const TimePicker = ({
         <Input
           type='text'
           readOnly
-          endAdornment={trigger}
+          {...adornmentProps}
           width={width}
           status={status}
           className={inputClassName}
@@ -194,7 +178,7 @@ export const TimePicker = ({
           }}
           startAdornment={
             <InputMask
-              mask={inputMask}
+              mask={getInputMask(value)}
               alwaysShowMask
               maskPlaceholder='-'
               value={value}
@@ -204,7 +188,7 @@ export const TimePicker = ({
             />
           }
         />
-        {popover}
+        {timeList}
       </>
     )
   }
@@ -216,7 +200,7 @@ export const TimePicker = ({
         value={value}
         className={inputClassName}
         onChange={onChange}
-        endAdornment={trigger}
+        {...adornmentProps}
         highlight={highlight}
         width={width}
         size={size}
@@ -232,7 +216,7 @@ export const TimePicker = ({
           },
         }}
       />
-      {popover}
+      {timeList}
     </>
   )
 }

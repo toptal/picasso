@@ -23,33 +23,41 @@ const mockedDetect = detect as jest.MockedFunction<typeof detect>
 const renderComponent = (props: Partial<Props> = {}) => {
   const handleChange = jest.fn()
 
-  render(<TimePicker value='21:30' onChange={handleChange} {...props} />)
+  render(
+    <TimePicker
+      value='21:30'
+      minuteStep={30}
+      onChange={handleChange}
+      {...props}
+    />
+  )
 
   return { handleChange }
 }
 
-const openPicker = () =>
+const getField = (value = '21:30') => screen.getByDisplayValue(value)
+
+const openList = () =>
   fireEvent.click(screen.getByRole('button', { name: 'Choose time' }))
 
-const getOption = (column: string, name: string) =>
-  within(screen.getByRole('listbox', { name: column })).getByRole('option', {
-    name,
-  })
+const openListWithKeyboard = (value = '21:30') =>
+  fireEvent.keyDown(getField(value), { key: 'ArrowDown', altKey: true })
 
-const getHourLabels = () =>
-  within(screen.getByRole('listbox', { name: 'Hour' }))
-    .getAllByRole('option')
-    .map(option => option.textContent)
+const queryList = () => screen.queryByRole('listbox', { name: 'Choose time' })
 
-const pickOption = (column: string, name: string) => {
-  openPicker()
-  fireEvent.click(getOption(column, name))
-}
+const getOptions = () =>
+  within(screen.getByRole('listbox', { name: 'Choose time' })).getAllByRole(
+    'option'
+  )
 
-const pressOnOption = (column: string, name: string, key: string) => {
-  openPicker()
-  act(() => getOption(column, name).focus())
-  fireEvent.keyDown(getOption(column, name), { key })
+const getOption = (name: string) => screen.getByRole('option', { name })
+
+const getOptionLabels = () => getOptions().map(option => option.textContent)
+
+const pressOnOption = (name: string, key: string) => {
+  openList()
+  act(() => getOption(name).focus())
+  fireEvent.keyDown(getOption(name), { key })
 }
 
 // eslint-disable-next-line max-lines-per-function, max-statements
@@ -107,117 +115,113 @@ describe('TimePicker', () => {
     })
   })
 
-  describe('when the clock button is clicked', () => {
-    it('opens a dialog with hour and minute columns', () => {
-      renderComponent()
-
-      openPicker()
-
-      const dialog = screen.getByRole('dialog', { name: 'Choose time' })
+  describe('when minuteStep is not provided', () => {
+    it('renders no button for a time list', () => {
+      renderComponent({ minuteStep: undefined })
 
       expect(
-        within(dialog).getByRole('listbox', { name: 'Hour' })
-      ).toBeInTheDocument()
-      expect(
-        within(dialog).getByRole('listbox', { name: 'Minute' })
-      ).toBeInTheDocument()
+        screen.queryByRole('button', { name: 'Choose time' })
+      ).not.toBeInTheDocument()
+    })
+  })
+
+  describe('when minuteStep is provided and the clock button is clicked', () => {
+    it('opens a list of times at that interval', () => {
+      renderComponent({ minuteStep: 30 })
+
+      openList()
+
+      expect(getOptionLabels()).toHaveLength(48)
+      expect(getOptionLabels().slice(0, 3)).toEqual(['00:00', '00:30', '01:00'])
+      expect(getOptionLabels().slice(-1)).toEqual(['23:30'])
     })
 
-    it('marks the hour and minute of the value as selected', () => {
+    it('marks the time of the value as selected', () => {
       renderComponent()
 
-      openPicker()
+      openList()
 
-      expect(getOption('Hour', '21')).toHaveAttribute('aria-selected', 'true')
-      expect(getOption('Minute', '30')).toHaveAttribute('aria-selected', 'true')
-      expect(getOption('Hour', '09')).toHaveAttribute('aria-selected', 'false')
+      expect(getOption('21:30')).toHaveAttribute('aria-selected', 'true')
+      expect(getOption('09:00')).toHaveAttribute('aria-selected', 'false')
+    })
+  })
+
+  describe('when minuteStep is 15', () => {
+    it('offers a time every quarter of an hour', () => {
+      renderComponent({ minuteStep: 15 })
+
+      openList()
+
+      expect(getOptionLabels()).toHaveLength(96)
+      expect(getOptionLabels().slice(0, 4)).toEqual([
+        '00:00',
+        '00:15',
+        '00:30',
+        '00:45',
+      ])
     })
   })
 
   describe('when the clock button is clicked twice', () => {
-    it('closes the dialog', () => {
+    it('closes the list', () => {
       renderComponent()
 
-      openPicker()
-      openPicker()
+      openList()
+      openList()
 
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
   })
 
-  describe('when an hour is picked', () => {
-    it('calls onChange with the picked hour and the current minutes', () => {
+  describe('when a time is picked', () => {
+    const setup = () => {
       const { handleChange } = renderComponent()
 
-      pickOption('Hour', '09')
+      openList()
+      fireEvent.click(getOption('09:00'))
+
+      return handleChange
+    }
+
+    it('calls onChange with the picked time', () => {
+      const handleChange = setup()
 
       expect(handleChange).toHaveBeenCalledTimes(1)
-      expect(handleChange).toHaveBeenCalledWith('09:30')
+      expect(handleChange).toHaveBeenCalledWith('09:00')
     })
 
-    it('keeps the dialog open', () => {
-      renderComponent()
+    it('closes the list', () => {
+      setup()
 
-      pickOption('Hour', '09')
-
-      expect(screen.getByRole('dialog')).toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
 
     it('shows the picked time in the field', () => {
-      renderComponent()
+      setup()
 
-      pickOption('Hour', '09')
-
-      expect(screen.getByDisplayValue('09:30')).toBeInTheDocument()
+      expect(getField('09:00')).toBeInTheDocument()
     })
   })
 
-  describe('when a minute is picked', () => {
-    it('calls onChange with the current hour and the picked minutes', () => {
-      const { handleChange } = renderComponent()
+  describe('when the value is not on the step', () => {
+    it('marks no time as selected', () => {
+      renderComponent({ value: '21:07', minuteStep: 15 })
 
-      pickOption('Minute', '45')
+      openList()
 
-      expect(handleChange).toHaveBeenCalledTimes(1)
-      expect(handleChange).toHaveBeenCalledWith('21:45')
-    })
-  })
-
-  describe('when the field shows a 24-hour clock', () => {
-    it('shows hours from 00 to 23 without an AM/PM column', () => {
-      renderComponent()
-
-      openPicker()
-
-      expect(getHourLabels()).toEqual([
-        '00',
-        '01',
-        '02',
-        '03',
-        '04',
-        '05',
-        '06',
-        '07',
-        '08',
-        '09',
-        '10',
-        '11',
-        '12',
-        '13',
-        '14',
-        '15',
-        '16',
-        '17',
-        '18',
-        '19',
-        '20',
-        '21',
-        '22',
-        '23',
-      ])
       expect(
-        screen.queryByRole('listbox', { name: 'AM/PM' })
-      ).not.toBeInTheDocument()
+        getOptions().filter(
+          option => option.getAttribute('aria-selected') === 'true'
+        )
+      ).toHaveLength(0)
+    })
+
+    it('moves keyboard focus to the nearest time', () => {
+      renderComponent({ value: '21:07', minuteStep: 15 })
+
+      openListWithKeyboard('21:07')
+
+      expect(getOption('21:00')).toHaveFocus()
     })
   })
 
@@ -226,105 +230,40 @@ describe('TimePicker', () => {
       mockedGetHourCycle.mockReturnValue(12)
     })
 
-    it('shows hours from 01 to 12 and an AM/PM column', () => {
+    it('labels the times with AM and PM', () => {
       renderComponent()
 
-      openPicker()
+      openList()
 
-      expect(getHourLabels()).toEqual([
-        '01',
-        '02',
-        '03',
-        '04',
-        '05',
-        '06',
-        '07',
-        '08',
-        '09',
-        '10',
-        '11',
-        '12',
+      expect(getOptionLabels().slice(0, 3)).toEqual([
+        '12:00 AM',
+        '12:30 AM',
+        '01:00 AM',
       ])
-      expect(screen.getByRole('listbox', { name: 'AM/PM' })).toBeInTheDocument()
+      expect(getOptionLabels().slice(-1)).toEqual(['11:30 PM'])
     })
 
-    it('marks the 12-hour equivalent of the value as selected', () => {
+    it('marks the 12-hour label of the value as selected', () => {
       renderComponent()
 
-      openPicker()
+      openList()
 
-      expect(getOption('Hour', '09')).toHaveAttribute('aria-selected', 'true')
-      expect(getOption('AM/PM', 'PM')).toHaveAttribute('aria-selected', 'true')
+      expect(getOption('09:30 PM')).toHaveAttribute('aria-selected', 'true')
     })
   })
 
-  describe('when an hour is picked for an afternoon value on a 12-hour clock', () => {
+  describe('when a PM time is picked on a 12-hour clock', () => {
     beforeEach(() => {
       mockedGetHourCycle.mockReturnValue(12)
     })
 
-    it('calls onChange with the 24-hour afternoon value', () => {
+    it('calls onChange with the 24-hour value', () => {
       const { handleChange } = renderComponent()
 
-      pickOption('Hour', '07')
+      openList()
+      fireEvent.click(getOption('07:00 PM'))
 
-      expect(handleChange).toHaveBeenCalledWith('19:30')
-    })
-  })
-
-  describe('when 12 is picked for an afternoon value on a 12-hour clock', () => {
-    beforeEach(() => {
-      mockedGetHourCycle.mockReturnValue(12)
-    })
-
-    it('calls onChange with noon', () => {
-      const { handleChange } = renderComponent({ value: '21:15' })
-
-      pickOption('Hour', '12')
-
-      expect(handleChange).toHaveBeenCalledWith('12:15')
-    })
-  })
-
-  describe('when 12 is picked for a morning value on a 12-hour clock', () => {
-    beforeEach(() => {
-      mockedGetHourCycle.mockReturnValue(12)
-    })
-
-    it('calls onChange with midnight', () => {
-      const { handleChange } = renderComponent({ value: '09:15' })
-
-      pickOption('Hour', '12')
-
-      expect(handleChange).toHaveBeenCalledWith('00:15')
-    })
-  })
-
-  describe('when AM is picked for an afternoon value', () => {
-    beforeEach(() => {
-      mockedGetHourCycle.mockReturnValue(12)
-    })
-
-    it('calls onChange with the morning value', () => {
-      const { handleChange } = renderComponent({ value: '21:15' })
-
-      pickOption('AM/PM', 'AM')
-
-      expect(handleChange).toHaveBeenCalledWith('09:15')
-    })
-  })
-
-  describe('when PM is picked for a morning value', () => {
-    beforeEach(() => {
-      mockedGetHourCycle.mockReturnValue(12)
-    })
-
-    it('calls onChange with the afternoon value', () => {
-      const { handleChange } = renderComponent({ value: '09:15' })
-
-      pickOption('AM/PM', 'PM')
-
-      expect(handleChange).toHaveBeenCalledWith('21:15')
+      expect(handleChange).toHaveBeenCalledWith('19:00')
     })
   })
 
@@ -339,128 +278,51 @@ describe('TimePicker', () => {
       })
     })
 
-    it('shows hours from 00 to 23 to match its 24-hour field', () => {
+    it('labels the times in 24-hour format to match its field', () => {
       renderComponent()
 
-      openPicker()
+      openList()
 
-      expect(getHourLabels()).toHaveLength(24)
-      expect(
-        screen.queryByRole('listbox', { name: 'AM/PM' })
-      ).not.toBeInTheDocument()
+      expect(getOptionLabels().slice(-1)).toEqual(['23:30'])
     })
   })
 
-  describe('when hourLabel and minuteLabel are provided', () => {
-    it('names the columns with them', () => {
-      renderComponent({ hourLabel: 'Stunde', minuteLabel: 'Minute(n)' })
-
-      openPicker()
-
-      expect(
-        screen.getByRole('listbox', { name: 'Stunde' })
-      ).toBeInTheDocument()
-      expect(
-        screen.getByRole('listbox', { name: 'Minute(n)' })
-      ).toBeInTheDocument()
-    })
-
-    it('does not pass them to the input element', () => {
-      renderComponent({ hourLabel: 'Stunde', minuteLabel: 'Minute(n)' })
-
-      const input = screen.getByDisplayValue('21:30')
-
-      expect(input).not.toHaveAttribute('hourlabel')
-      expect(input).not.toHaveAttribute('minutelabel')
-    })
-  })
-
-  describe('when the value is empty', () => {
-    beforeEach(() => {
-      jest.useFakeTimers().setSystemTime(new Date(2026, 0, 15, 10, 25))
-    })
-
-    afterEach(() => {
-      jest.useRealTimers()
-    })
-
-    it('marks the current time as selected', () => {
-      renderComponent({ value: undefined })
-
-      openPicker()
-
-      expect(getOption('Hour', '10')).toHaveAttribute('aria-selected', 'true')
-      expect(getOption('Minute', '25')).toHaveAttribute('aria-selected', 'true')
-    })
-  })
-
-  describe('when an hour is picked for an empty value', () => {
-    beforeEach(() => {
-      jest.useFakeTimers().setSystemTime(new Date(2026, 0, 15, 10, 25))
-    })
-
-    afterEach(() => {
-      jest.useRealTimers()
-    })
-
-    it('calls onChange with the picked hour and the current minute', () => {
+  describe('when a time is picked for an empty value', () => {
+    it('calls onChange with the picked time', () => {
       const { handleChange } = renderComponent({ value: undefined })
 
-      pickOption('Hour', '14')
+      openList()
+      fireEvent.click(getOption('14:30'))
 
-      expect(handleChange).toHaveBeenCalledWith('14:25')
+      expect(handleChange).toHaveBeenCalledWith('14:30')
     })
   })
 
-  describe('when a time was picked and Escape is pressed in the field', () => {
+  describe('when Escape is pressed in the field with the list open', () => {
     const setup = () => {
       const { handleChange } = renderComponent()
 
-      pickOption('Hour', '09')
-      fireEvent.keyDown(screen.getByDisplayValue('09:30'), { key: 'Escape' })
+      openList()
+      fireEvent.keyDown(getField(), { key: 'Escape' })
 
       return handleChange
     }
 
-    it('closes the dialog', () => {
+    it('closes the list', () => {
       setup()
 
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
 
-    it('restores the value from before the dialog was opened', () => {
+    it('keeps the value', () => {
       const handleChange = setup()
 
-      expect(handleChange).toHaveBeenLastCalledWith('21:30')
-      expect(screen.getByDisplayValue('21:30')).toBeInTheDocument()
+      expect(handleChange).not.toHaveBeenCalled()
+      expect(getField()).toBeInTheDocument()
     })
   })
 
-  describe('when a time was picked and Enter is pressed in the field', () => {
-    const setup = () => {
-      const { handleChange } = renderComponent()
-
-      pickOption('Hour', '09')
-      fireEvent.keyDown(screen.getByDisplayValue('09:30'), { key: 'Enter' })
-
-      return handleChange
-    }
-
-    it('closes the dialog', () => {
-      setup()
-
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-    })
-
-    it('keeps the picked value', () => {
-      const handleChange = setup()
-
-      expect(handleChange).toHaveBeenCalledTimes(1)
-      expect(screen.getByDisplayValue('09:30')).toBeInTheDocument()
-    })
-  })
-
-  describe('when clicking outside of the open dialog', () => {
+  describe('when clicking outside of the open list', () => {
     beforeEach(() => {
       jest.useFakeTimers()
     })
@@ -469,186 +331,165 @@ describe('TimePicker', () => {
       jest.useRealTimers()
     })
 
-    it('closes the dialog', () => {
+    it('closes the list', () => {
       renderComponent()
 
-      openPicker()
+      openList()
       // ClickAwayListener starts listening on the next tick after it mounts
       act(() => {
         jest.runOnlyPendingTimers()
       })
       fireEvent.click(document.body)
 
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
   })
 
   describe('when disabled', () => {
-    it('does not open the dialog', () => {
+    it('does not open the list', () => {
       renderComponent({ disabled: true })
 
-      openPicker()
+      openList()
 
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
   })
 
   describe('when read-only', () => {
-    it('does not open the dialog', () => {
+    it('does not open the list', () => {
       renderComponent({ readOnly: true })
 
-      openPicker()
+      openList()
 
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
   })
 
   describe('when Alt+ArrowDown is pressed in the field', () => {
-    const setup = () => {
+    it('opens the list', () => {
       renderComponent()
 
-      fireEvent.keyDown(screen.getByDisplayValue('21:30'), {
-        key: 'ArrowDown',
-        altKey: true,
-      })
-    }
+      openListWithKeyboard()
 
-    it('opens the dialog', () => {
-      setup()
-
-      expect(screen.getByRole('dialog')).toBeInTheDocument()
+      expect(queryList()).toBeInTheDocument()
     })
 
-    it('moves focus to the selected hour', () => {
-      setup()
+    it('moves focus to the selected time', () => {
+      renderComponent()
 
-      expect(getOption('Hour', '21')).toHaveFocus()
+      openListWithKeyboard()
+
+      expect(getOption('21:30')).toHaveFocus()
     })
   })
 
-  describe('when ArrowDown is pressed on the selected hour', () => {
-    it('selects the next hour', () => {
+  describe('when ArrowDown is pressed on a time', () => {
+    it('moves focus to the next time', () => {
+      renderComponent()
+
+      pressOnOption('21:30', 'ArrowDown')
+
+      expect(getOption('22:00')).toHaveFocus()
+    })
+
+    it('keeps the value', () => {
       const { handleChange } = renderComponent()
 
-      pressOnOption('Hour', '21', 'ArrowDown')
+      pressOnOption('21:30', 'ArrowDown')
 
-      expect(handleChange).toHaveBeenCalledWith('22:30')
+      expect(handleChange).not.toHaveBeenCalled()
     })
+  })
 
-    it('moves focus to the next hour', () => {
+  describe('when ArrowUp is pressed on a time', () => {
+    it('moves focus to the previous time', () => {
       renderComponent()
 
-      pressOnOption('Hour', '21', 'ArrowDown')
+      pressOnOption('21:30', 'ArrowUp')
 
-      expect(getOption('Hour', '22')).toHaveFocus()
+      expect(getOption('21:00')).toHaveFocus()
     })
   })
 
-  describe('when ArrowDown is pressed on the last hour', () => {
-    it('keeps the last hour selected', () => {
-      renderComponent({ value: '23:30' })
+  describe('when ArrowDown is pressed on the last time', () => {
+    it('keeps focus on the last time', () => {
+      renderComponent()
 
-      pressOnOption('Hour', '23', 'ArrowDown')
+      pressOnOption('23:30', 'ArrowDown')
 
-      expect(getOption('Hour', '23')).toHaveAttribute('aria-selected', 'true')
+      expect(getOption('23:30')).toHaveFocus()
     })
   })
 
-  describe('when ArrowUp is pressed on the selected hour', () => {
-    it('selects the previous hour', () => {
+  describe('when Home is pressed on a time', () => {
+    it('moves focus to the first time', () => {
+      renderComponent()
+
+      pressOnOption('21:30', 'Home')
+
+      expect(getOption('00:00')).toHaveFocus()
+    })
+  })
+
+  describe('when End is pressed on a time', () => {
+    it('moves focus to the last time', () => {
+      renderComponent()
+
+      pressOnOption('21:30', 'End')
+
+      expect(getOption('23:30')).toHaveFocus()
+    })
+  })
+
+  describe('when Enter is pressed on a time', () => {
+    it('calls onChange with that time', () => {
       const { handleChange } = renderComponent()
 
-      pressOnOption('Hour', '21', 'ArrowUp')
+      pressOnOption('09:00', 'Enter')
 
-      expect(handleChange).toHaveBeenCalledWith('20:30')
+      expect(handleChange).toHaveBeenCalledWith('09:00')
     })
-  })
 
-  describe('when Home is pressed on the selected hour', () => {
-    it('selects the first hour', () => {
-      const { handleChange } = renderComponent()
-
-      pressOnOption('Hour', '21', 'Home')
-
-      expect(handleChange).toHaveBeenCalledWith('00:30')
-    })
-  })
-
-  describe('when End is pressed on the selected hour', () => {
-    it('selects the last hour', () => {
-      const { handleChange } = renderComponent()
-
-      pressOnOption('Hour', '21', 'End')
-
-      expect(handleChange).toHaveBeenCalledWith('23:30')
-    })
-  })
-
-  describe('when ArrowRight is pressed on the selected hour', () => {
-    it('moves focus to the selected minute', () => {
+    it('closes the list', () => {
       renderComponent()
 
-      pressOnOption('Hour', '21', 'ArrowRight')
+      pressOnOption('09:00', 'Enter')
 
-      expect(getOption('Minute', '30')).toHaveFocus()
-    })
-  })
-
-  describe('when ArrowLeft is pressed on the selected minute', () => {
-    it('moves focus to the selected hour', () => {
-      renderComponent()
-
-      pressOnOption('Minute', '30', 'ArrowLeft')
-
-      expect(getOption('Hour', '21')).toHaveFocus()
-    })
-  })
-
-  describe('when Enter is pressed on the selected hour', () => {
-    it('closes the dialog', () => {
-      renderComponent()
-
-      pressOnOption('Hour', '21', 'Enter')
-
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
 
     it('returns focus to the field', () => {
       renderComponent()
 
-      pressOnOption('Hour', '21', 'Enter')
+      pressOnOption('09:00', 'Enter')
 
-      expect(screen.getByDisplayValue('21:30')).toHaveFocus()
+      expect(getField('09:00')).toHaveFocus()
     })
   })
 
-  describe('when a time was picked and Escape is pressed inside the dialog', () => {
-    const setup = () => {
-      const { handleChange } = renderComponent()
+  describe('when Escape is pressed on a time', () => {
+    it('closes the list', () => {
+      renderComponent()
 
-      pickOption('Hour', '09')
-      act(() => getOption('Hour', '09').focus())
-      fireEvent.keyDown(getOption('Hour', '09'), { key: 'Escape' })
+      pressOnOption('09:00', 'Escape')
 
-      return handleChange
-    }
-
-    it('closes the dialog', () => {
-      setup()
-
-      expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+      expect(queryList()).not.toBeInTheDocument()
     })
 
-    it('restores the value from before the dialog was opened', () => {
-      const handleChange = setup()
+    it('keeps the value', () => {
+      const { handleChange } = renderComponent()
 
-      expect(handleChange).toHaveBeenLastCalledWith('21:30')
+      pressOnOption('09:00', 'Escape')
+
+      expect(handleChange).not.toHaveBeenCalled()
     })
 
     it('returns focus to the field', () => {
-      setup()
+      renderComponent()
 
-      expect(screen.getByDisplayValue('21:30')).toHaveFocus()
+      pressOnOption('09:00', 'Escape')
+
+      expect(getField()).toHaveFocus()
     })
   })
 })

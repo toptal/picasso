@@ -5,7 +5,7 @@ import { Time16 } from '@toptal/picasso-icons'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps {
-  /** Whether the time dropdown is shown */
+  /** Whether the time list is shown */
   open: boolean
   /** Whether the trigger ignores clicks */
   disabled?: boolean
@@ -29,7 +29,7 @@ export const TimePickerTrigger = ({
       type='button'
       tabIndex={-1}
       aria-label='Choose time'
-      aria-haspopup='dialog'
+      aria-haspopup='listbox'
       aria-expanded={open}
       disabled={disabled}
       onMouseDown={preventFocusLoss}

@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { TimePicker } from '@toptal/picasso'
 
-const ColumnLabelsExample = () => {
+const MinuteStepExample = () => {
   const [timepickerValue, setTimepickerValue] = useState<string>('09:30')
 
   return (
     <TimePicker
       onChange={setTimepickerValue}
       value={timepickerValue}
-      hourLabel='Std'
-      minuteLabel='Min'
+      minuteStep={15}
     />
   )
 }
 
-export default ColumnLabelsExample
+export default MinuteStepExample

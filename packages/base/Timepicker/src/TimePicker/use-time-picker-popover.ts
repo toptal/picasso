@@ -4,73 +4,58 @@ import { useRef, useState } from 'react'
 import type { HourCycle } from './utils'
 
 interface Options {
-  value?: string
-  isInteractive: boolean
+  enabled: boolean
   getHourCycle: () => HourCycle
-  onChange: (value: string) => void
 }
 
-export const useTimePickerPopover = ({
-  value,
-  isInteractive,
-  getHourCycle,
-  onChange,
-}: Options) => {
+export const useTimePickerPopover = ({ enabled, getHourCycle }: Options) => {
   const [isOpen, setIsOpen] = useState(false)
   const [hourCycle, setHourCycle] = useState<HourCycle>(24)
   const anchorRef = useRef<HTMLElement>(null)
-  const valueOnOpen = useRef(value)
-  const focusColumnsOnOpen = useRef(false)
+  const focusListOnOpen = useRef(false)
 
   const focusField = () =>
     anchorRef.current
       ?.querySelector<HTMLInputElement>('input:not([readonly])')
       ?.focus()
 
-  const open = ({ focusColumns }: { focusColumns: boolean }) => {
-    valueOnOpen.current = value
-    focusColumnsOnOpen.current = focusColumns
+  const open = ({ focusList }: { focusList: boolean }) => {
+    focusListOnOpen.current = focusList
     setHourCycle(getHourCycle())
     setIsOpen(true)
   }
 
-  const close = ({ revert }: { revert: boolean }) => {
-    setIsOpen(false)
+  const close = () => setIsOpen(false)
 
-    if (revert && value !== valueOnOpen.current) {
-      onChange(valueOnOpen.current ?? '')
-    }
+  const closeAndFocusField = () => {
+    close()
+    focusField()
   }
 
   const handleTriggerClick = () => {
     if (isOpen) {
-      close({ revert: false })
+      close()
 
       return
     }
 
-    open({ focusColumns: false })
+    open({ focusList: false })
     focusField()
   }
 
   const handleClickAway = (event: React.MouseEvent) => {
     if (!anchorRef.current?.contains(event.target as Node)) {
-      close({ revert: false })
+      close()
     }
-  }
-
-  const handleColumnsClose = ({ revert }: { revert: boolean }) => {
-    close({ revert })
-    focusField()
   }
 
   const handleFieldKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (!isOpen) {
-      if (event.key === 'ArrowDown' && event.altKey && isInteractive) {
+      if (enabled && event.key === 'ArrowDown' && event.altKey) {
         event.preventDefault()
-        open({ focusColumns: true })
+        open({ focusList: true })
       }
 
       return
@@ -78,16 +63,16 @@ export const useTimePickerPopover = ({
 
     switch (event.key) {
       case 'Escape':
-        // Keeps a surrounding Modal or Drawer open while the picker closes
+        // Keeps a surrounding Modal or Drawer open while the list closes
         event.stopPropagation()
-        close({ revert: true })
+        close()
         break
       case 'Enter':
         event.preventDefault()
-        close({ revert: false })
+        close()
         break
       case 'Tab':
-        close({ revert: false })
+        close()
         break
     }
   }
@@ -96,10 +81,10 @@ export const useTimePickerPopover = ({
     isOpen,
     hourCycle,
     anchorRef,
-    focusColumnsOnOpen: focusColumnsOnOpen.current,
+    focusListOnOpen: focusListOnOpen.current,
     handleTriggerClick,
     handleClickAway,
-    handleColumnsClose,
+    closeAndFocusField,
     handleFieldKeyDown,
   }
 }
