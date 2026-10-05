@@ -95,7 +95,10 @@ describe('Form.Checkbox', () => {
     ).toBeInTheDocument()
   })
   describe('when `format` and `parse` map the value to a string', () => {
-    const renderStringCheckbox = (initialValue: string) => {
+    const renderStringCheckbox = (
+      initialValue: string,
+      { formatOnBlur = false } = {}
+    ) => {
       const onSubmit = jest.fn()
 
       const api = render(
@@ -105,6 +108,7 @@ describe('Form.Checkbox', () => {
             label='Considers relocation'
             format={value => value === 'true'}
             parse={checked => (checked ? 'true' : 'false')}
+            formatOnBlur={formatOnBlur}
           />
           <Button type='submit'>Submit</Button>
         </Form>
@@ -128,6 +132,22 @@ describe('Form.Checkbox', () => {
         getByRole('checkbox', { name: 'Considers relocation' })
       ).toBeChecked()
     })
+
+    // react-final-form leaves the value unformatted until blur then
+    it.each([
+      ['false', false],
+      ['true', true],
+    ] as const)(
+      'renders a stored "%s" as `checked: %s` with `formatOnBlur` too',
+      (initialValue, checked) => {
+        const { getByRole } = renderStringCheckbox(initialValue, {
+          formatOnBlur: true,
+        })
+        const checkbox = getByRole('checkbox', { name: 'Considers relocation' })
+
+        expect(checkbox).toHaveAttribute('aria-checked', String(checked))
+      }
+    )
 
     it('submits the value the user ticked', async () => {
       const { getByRole, getByText, onSubmit } = renderStringCheckbox('false')
