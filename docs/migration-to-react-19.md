@@ -89,7 +89,7 @@ change fails, React is the cause.
 | tailwind-merge 3                                         | Review your class overrides                         | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
 | Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
 | ShowMore, TimePicker, RichTextEditor                     | Maybe: tests that relied on the old DOM             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | **Yes**: a `react-is` override         | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
+| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | Only if you import recharts yourself   | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
 | Types                                                    | No                                                  | **Yes**: `@types/react` 19             | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
 | Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19 | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
 
@@ -930,8 +930,10 @@ Staff Portal's #16704 sets these as `overrides`:
 | `@testing-library/dom`           | 10.4.1  |
 
 - **`react-is` 19.** Jest's pretty-format and other libraries need it to
-  recognize React 19 elements, and Picasso's charts need it
-  ([Step 11](#step-11-handle-picassos-react-19-limitations)).
+  recognize React 19 elements. So does recharts, in charts you render with it
+  yourself: it ships `react-is` 18, which doesn't recognize a React 19
+  fragment, so it drops the chart parts inside one. Picasso's charts don't
+  need it: `LineChart` unwraps its fragment children itself.
 - **`@testing-library/react` 16, with `@testing-library/dom` 10.** RTL 16.1 is
   the first release whose peer range admits React 19. The override also replaces
   the RTL 14 that `@toptal/davinci-qa` nests, which would call
@@ -975,11 +977,7 @@ Staff Portal's #16704 sets these as `overrides`:
    mounted with an undefined `href` renders in place and stays there after the
    `href` arrives. Picasso's favicons now mount only once their URLs resolve;
    render your own head links only once their `href` exists.
-3. **Charts drop fragment-wrapped children** unless the app installs a
-   `react-is` that matches React 19, because recharts ships `react-is` 18. Add
-   an override: Staff Portal pins `react-is` to 19.2.8, and Client Portal's
-   spend chart needs the same.
-4. **Types.**
+3. **Types.**
    - Picasso's published declarations compile against `@types/react` 19 with
      `skipLibCheck: false`, and CI checks that they keep doing so. Two
      dependencies' declarations don't: `react-dropzone` uses the global `JSX`
@@ -1195,7 +1193,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 **In Picasso, after the release**, from the
 [#5070 review](https://toptal-core.atlassian.net/wiki/spaces/PF/pages/6455296029/PF-2262+-+React+19+PR+5070+Review+Findings+and+Action+Items):
 
-- Charts need the `react-is` override on React 19.
 - Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,
   as upstream does. Which behavior Picasso settles on is still open.
 - Fade and Slide replace the child's own `transition-*` (and, for Slide,

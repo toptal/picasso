@@ -18,7 +18,12 @@ import { ticks as getD3Ticks } from 'd3-array'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
-import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
+import {
+  flattenFragments,
+  getChartTicks,
+  toRechartsHighlightFormat,
+  orderData,
+} from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import type {
@@ -281,7 +286,7 @@ export const LineChart = ({
           )}
 
           {lineGraphs}
-          {children}
+          {flattenFragments(children)}
 
           {tooltip && (
             <Tooltip
