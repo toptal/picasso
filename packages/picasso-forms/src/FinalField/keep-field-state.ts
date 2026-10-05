@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import type { FormApi } from 'final-form'
 import type { UseFieldConfig } from 'react-final-form'
 import { useForm } from 'react-final-form'
-import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
+import { isBrowser, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 type Release = () => void
 
@@ -19,6 +19,10 @@ type KeptFieldConfig = Pick<
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type FieldHook = (name: string, config?: any) => unknown
+
+// How long a hold waits for a render that never commits, such as an abandoned
+// transition, before it lets go. A yielding render resumes far sooner
+const UNCOMMITTED_HOLD_MS = 10000
 
 const noop = () => {}
 const defaultFormat = (value: unknown) => (value === undefined ? '' : value)
@@ -74,7 +78,18 @@ const hold = (form: FormApi, name: string, config: KeptFieldConfig) => {
 
   pending.set(name, release)
   holds.set(form, pending)
-  // A promise rather than `queueMicrotask`, which Jest's fake timers stop
+
+  // A concurrent render can yield between the field and the children rendered
+  // with it, and a microtask would end the hold in that gap, so the browser
+  // keeps it until commit and this only ends one whose render never commits
+  if (isBrowser()) {
+    setTimeout(() => releaseHold(form, name, release), UNCOMMITTED_HOLD_MS)
+
+    return
+  }
+
+  // A server render can't yield. A promise rather than `queueMicrotask`, which
+  // Jest's fake timers stop
   // eslint-disable-next-line promise/catch-or-return
   Promise.resolve().then(() => releaseHold(form, name, release))
 }
@@ -171,7 +186,9 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
  *
  * - The first render is built from `initialValues`, and an array's shows no
  *   items. The hold, registered during render and released at commit, lets
- *   that render, and the children rendered with it, read the field state.
+ *   that render, and the children rendered with it, read the field state,
+ *   also when a concurrent render yields before the children. A render that
+ *   never commits releases it after a timeout, or on the server right after.
  * - The mount effect writes `initialValues` back (#1095). The claim,
  *   registered at commit and released right after that effect, prevents it.
  *   It creates the field entry, so it carries the config final-form applies
