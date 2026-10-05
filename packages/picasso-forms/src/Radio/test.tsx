@@ -1,5 +1,7 @@
-import React from 'react'
-import { render } from '@toptal/picasso-test-utils'
+import React, { useState } from 'react'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import type { FormApi } from 'final-form'
+import { useForm } from 'react-final-form'
 
 import type { FormConfigProps } from '../FormConfig'
 import { FormCompound as Form } from '../FormCompound'
@@ -45,5 +47,48 @@ describe('FormRadio', () => {
     )
 
     expect(container).toMatchSnapshot()
+  })
+})
+
+describe('FormRadio with a field of its own', () => {
+  const Toggleable = ({ children }: { children: React.ReactNode }) => {
+    const [mounted, setMounted] = useState(true)
+
+    return (
+      <>
+        {mounted && children}
+        <button type='button' onClick={() => setMounted(current => !current)}>
+          toggle
+        </button>
+      </>
+    )
+  }
+
+  it('keeps its stored value when it remounts', () => {
+    const formRef: { current?: FormApi } = {}
+    const CaptureForm = () => {
+      formRef.current = useForm()
+
+      return null
+    }
+
+    render(
+      <Form onSubmit={() => {}} initialValues={{ size: 'small' }}>
+        <CaptureForm />
+        <Toggleable>
+          <Form.Radio name='size' label='Small' value='small' />
+          <Form.Radio name='size' label='Large' value='large' />
+        </Toggleable>
+      </Form>
+    )
+
+    act(() => {
+      formRef.current?.change('size', 'large')
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+    fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+
+    expect(screen.getByLabelText('Large')).toBeChecked()
+    expect(formRef.current?.getState().values.size).toBe('large')
   })
 })
