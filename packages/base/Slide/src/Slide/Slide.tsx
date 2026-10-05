@@ -20,8 +20,10 @@ export interface Props extends TransitionProps, BaseProps {
   children: TransitionChild
   /** Show the component; toggling runs the enter or exit transition */
   in: boolean
-  /** Callback fired when the enter transition starts */
-  onEnter?: (node: HTMLElement, isAppearing: boolean) => void
+  /** Callback fired when the enter transition starts, with `null` for a child that takes no ref */
+  onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
+  /** Callback fired when the exit transition settles, with `null` for a child that takes no ref */
+  onExited?: (node: HTMLElement | null) => void
   /** Direction in which the component will slide */
   direction: SlideDirection
 }

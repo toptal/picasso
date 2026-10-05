@@ -115,6 +115,40 @@ describe('Fade', () => {
     expect(onExited).toHaveBeenCalledWith(getByTestId('child-div'))
   })
 
+  it('calls `onEnter` and `onExited` with `null` for a child that takes no ref', () => {
+    const onEnter = jest.fn()
+    const onExited = jest.fn()
+    // Takes the ref without attaching it, so Fade has no node to pass
+    const RefLessChild = React.forwardRef<
+      HTMLDivElement,
+      { className?: string }
+    >(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ className }, ref) => <div className={className}>No ref here</div>
+    )
+    const renderFade = (inProp: boolean) => (
+      <Fade in={inProp} onEnter={onEnter} onExited={onExited}>
+        <RefLessChild />
+      </Fade>
+    )
+    const { rerender } = render(renderFade(false))
+
+    act(() => {
+      rerender(renderFade(true))
+    })
+
+    expect(onEnter).toHaveBeenCalledWith(null, false)
+
+    act(() => {
+      rerender(renderFade(false))
+    })
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    expect(onExited).toHaveBeenCalledWith(null)
+  })
+
   it('forwards the ref', () => {
     const ref = React.createRef<HTMLDivElement>()
     const { getByTestId } = render(

@@ -578,13 +578,12 @@ react-transition-group.
   unknown props such as `data-private` now reach the DOM, and `CollapseProps`
   replaces the misnamed `FadeProps` export, which stays as a deprecated alias.
 - Fade and Slide call `onEnter` and `onExited` with the transitioning DOM node,
-  as their types always said. If you read `onEnter`'s first argument as
-  `isAppearing`, read the second one.
-- Fade and Slide have known limitations. Their callbacks run only when the child
-  takes the ref they pass (a DOM element, or a component that forwards its ref).
-  A `transition-*` utility on the child replaces their own transition, and on
-  Slide so does a `translate-*` utility along the slide axis. And `in` must be a
-  boolean, because an `undefined` that turns into `false` starts an exit.
+  or `null` when the child takes no ref, so their node parameter is typed
+  `HTMLElement | null`. If you read `onEnter`'s first argument as `isAppearing`,
+  read the second one.
+- Fade and Slide have a known limitation: a `transition-*` utility on the child
+  replaces their own transition, and on Slide so does a `translate-*` utility
+  along the slide axis.
 - Expect a few visual diffs on accordions and expandable content. Client
   Portal's two Happo diffs are still under review; the first suspect is the
   `RejectedTalents` accordion in `TalentsSection`, built on the rewritten
@@ -1204,9 +1203,8 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
   as upstream does. Which behavior Picasso settles on is still open.
 - An array seeded only by its own `initialValue` or `defaultValue` shows its
   items from the second render.
-- Fade and Slide skip their callbacks when the child takes no ref, replace the
-  child's own `transition-*` (and, for Slide, `translate-*`) utilities, and need
-  a boolean `in`.
+- Fade and Slide replace the child's own `transition-*` (and, for Slide,
+  `translate-*`) utilities.
 - The forms remount workaround
   ([PF-2522](https://toptal-core.atlassian.net/browse/PF-2522)) has no upstream
   fix to wait for: react-final-form's `allowNull` initializer is still on

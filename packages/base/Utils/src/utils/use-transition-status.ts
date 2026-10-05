@@ -40,12 +40,12 @@ export interface UseTransitionStatusOptions<T extends HTMLElement> {
   appear?: boolean
   /** Resolve to `unmounted` once fully exited, so the caller can render nothing */
   unmountOnExit?: boolean
-  /** The transitioning DOM element, passed to the lifecycle callbacks */
+  /** The transitioning DOM element, passed to the lifecycle callbacks; `null` while nothing takes the ref */
   nodeRef: RefObject<T | null>
   /** Fired when the enter phase starts */
-  onEnter?: (node: T, isAppearing: boolean) => void
+  onEnter?: (node: T | null, isAppearing: boolean) => void
   /** Fired when the exit transition settles */
-  onExited?: (node: T) => void
+  onExited?: (node: T | null) => void
 }
 
 export interface UseTransitionStatusResult {
@@ -87,12 +87,15 @@ const useTransitionStatus = <T extends HTMLElement>(
   options: UseTransitionStatusOptions<T>
 ): UseTransitionStatusResult => {
   const {
-    in: inProp,
+    in: inOption,
     appear = false,
     unmountOnExit = false,
     nodeRef,
     timeout,
   } = options
+  // By its truthiness, as react-transition-group read it: an `undefined` that
+  // becomes `false` starts no exit
+  const inProp = Boolean(inOption)
 
   const [{ status, isAppearing }, setTransition] = useState<TransitionState>(
     () => {
@@ -143,12 +146,8 @@ const useTransitionStatus = <T extends HTMLElement>(
         }
 
         setTransition(previous => ({ ...previous, status: 'exited' }))
-
-        const settledNode = nodeRef.current
-
-        if (settledNode) {
-          optionsRef.current.onExited?.(settledNode)
-        }
+        // Also without a node, as react-transition-group called it
+        optionsRef.current.onExited?.(nodeRef.current)
       }, getSettleDelay(pending, timeouts))
 
     // Effect replay without an `in` flip (StrictMode double invocation): never
@@ -176,9 +175,7 @@ const useTransitionStatus = <T extends HTMLElement>(
     const node = nodeRef.current
 
     const startEnter = (): PendingSettle => {
-      if (node) {
-        optionsRef.current.onEnter?.(node, isInitialMount)
-      }
+      optionsRef.current.onEnter?.(node, isInitialMount)
 
       setTransition({ status: 'entering', isAppearing: isInitialMount })
 

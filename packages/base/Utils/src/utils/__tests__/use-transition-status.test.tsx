@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import React, { StrictMode } from 'react'
 import { renderHook, act, render } from '@testing-library/react'
@@ -318,6 +319,50 @@ describe('useTransitionStatus', () => {
 
       expect(result.current.duration).toBe(300)
     })
+  })
+
+  it('calls `onEnter` and `onExited` with `null` while nothing takes the node ref', () => {
+    const onEnter = jest.fn()
+    const onExited = jest.fn()
+    const nodeRef = { current: null }
+    const initialProps: UseTransitionStatusOptions<HTMLDivElement> = {
+      in: false,
+      timeout: 300,
+      nodeRef,
+      onEnter,
+      onExited,
+    }
+    const { rerender } = renderHook(props => useTransitionStatus(props), {
+      initialProps,
+    })
+
+    rerender({ ...initialProps, in: true })
+
+    expect(onEnter).toHaveBeenCalledWith(null, false)
+
+    rerender({ ...initialProps, in: false })
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    expect(onExited).toHaveBeenCalledWith(null)
+  })
+
+  it('reads `in` by its truthiness, so `undefined` becoming `false` starts no exit', () => {
+    const onExited = jest.fn()
+    const { result, setIn } = renderTransitionStatus({
+      // A JavaScript caller, or an optional prop left out
+      in: undefined as unknown as boolean,
+      onExited,
+    })
+
+    setIn(false)
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    expect(result.current.status).toBe('exited')
+    expect(onExited).not.toHaveBeenCalled()
   })
 
   describe('under StrictMode', () => {
