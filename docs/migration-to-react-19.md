@@ -90,7 +90,6 @@ change fails, React is the cause.
 | Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
 | ShowMore, TimePicker, RichTextEditor                     | Maybe: tests that relied on the old DOM             | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
 | Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | **Yes**: a `react-is` override                        | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| `Radio` without a `value`                                | No                                                  | **Yes**: pass a `value`                               | [11](#step-11-handle-picassos-react-19-limitations)                                                         |
 | Types                                                    | No                                                  | **Yes**: `@types/react` 19; keep `skipLibCheck: true` | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
 | Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19                | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
 
@@ -979,17 +978,12 @@ Staff Portal's #16704 sets these as `overrides`:
    `react-is` that matches React 19, because recharts ships `react-is` 18. Add
    an override: Staff Portal pins `react-is` to 19.2.8, and Client Portal's
    spend chart needs the same.
-4. **A `Radio` or `Button.Radio` without a `value`** reports `"on"` where React
-   18 reported `""`. Pass a `value` wherever `event.target.value` or a native
-   form submission is read. Staff Portal's draft job form would have saved `on`
-   for its "N/A" option; that radio now has `value=''`, which its `parse` turns
-   into `null`.
-5. **Fragments take no props.** Components that clone a `className` into a
+4. **Fragments take no props.** Components that clone a `className` into a
    child, such as `InputIconAdornment`, fail when that child is a Fragment.
    Staff Portal changed `icon={<>%</>}` to `icon={<span>%</span>}` in
    `PaymentsRateTableRow` and `BudgetDetails`. The span now receives that class,
    so check Happo for the `%` and `$` adornments.
-6. **Types.**
+5. **Types.**
    - Picasso's published declarations are still built against `@types/react` 17,
      so a component without an explicit return type is declared as returning the
      global `JSX.Element`. With `@types/react` 19 and `skipLibCheck: false`,
@@ -1002,7 +996,7 @@ Staff Portal's #16704 sets these as `overrides`:
    - `useRef<T>(null)` returns `RefObject<T | null>`. `NullableRefObject<T>`
      from `@toptal/picasso/utils` names that type for refs that are both read
      and passed to `ref`.
-7. **Autocomplete's `inputComponent`** rejects React 19 components that take
+6. **Autocomplete's `inputComponent`** rejects React 19 components that take
    `ref` as a prop. It's a pre-existing bug, still open after the release.
 
 ### Step 12. Fix the React 19 types
@@ -1113,8 +1107,6 @@ These are real bugs on React 19, not test noise.
   closed itself while rendering, which updates the store and the URL, and that
   looped on React 19. It now closes from an effect. Look for components that
   close, navigate or dispatch while rendering.
-- **A `Radio` without a `value` reports `"on"`**
-  ([Step 11](#step-11-handle-picassos-react-19-limitations)).
 - **Report errors through the root.** React 19 no longer rethrows errors that an
   error boundary caught, so pass its error callbacks to `createRoot`, for
   example with Sentry:
@@ -1212,8 +1204,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 
 - `Page.Helmet` doesn't merge helmets on React 19, so you build full titles
   yourself.
-- A `Radio` without a `value` reports `"on"` on React 19 and `""` on React 18.
-  Which value Picasso settles on is still open.
 - Charts need the `react-is` override on React 19.
 - The published `.d.ts` files still use the global `JSX` namespace.
 - Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,

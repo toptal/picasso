@@ -87,6 +87,15 @@ describe('Radio', () => {
 
       expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
     })
+
+    it('reports an empty value without a `value` on every React major', () => {
+      const { getByRole } = renderRadio({ label: 'Radio' })
+      const radio = getByRole('radio') as HTMLInputElement
+
+      // React 19 alone would leave the browser's `"on"` default
+      expect(radio.value).toBe('')
+      expect(radio).toHaveAttribute('value', '')
+    })
   })
 
   describe('Radio.Group', () => {

@@ -101,4 +101,4 @@ Allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0
 - known limitations on React 19, where behavior differs from React 17 and 18:
   - helmets rendered with `Page.Helmet` no longer merge, so a parent's `titleTemplate` or `defaultTitle` no longer applies to a nested helmet, duplicate `<title>` and `<meta>` tags stay, and a `<script>` child without `async` does not run
   - chart children wrapped in a fragment are dropped unless the app installs a `react-is` that matches its React major, because recharts ships `react-is@18`
-  - a `Radio` or `Button.Radio` rendered without a `value` reports `"on"` as its DOM value where React 18 reports `""`, so pass a `value` wherever `event.target.value` or a native form submission is read
+- a `Radio` or `Button.Radio` rendered without a `value` reports `""` as its DOM value on React 19 too, as on React 17 and 18, where React 19 alone would leave the browser's `"on"`
