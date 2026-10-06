@@ -5,10 +5,9 @@ type Segment = 'hour' | 'ampm'
 const PROBE_CLASS_NAME =
   'fixed top-0 left-0 invisible pointer-events-none h-auto p-0 border-0'
 
-// A stretched segment makes the whole field taller, which tells whether the browser rendered it
 const SEGMENT_CLASS_NAMES: Record<Segment, string> = {
-  hour: '[&::-webkit-datetime-edit-hour-field]:inline-block [&::-webkit-datetime-edit-hour-field]:h-[6.25rem]',
-  ampm: '[&::-webkit-datetime-edit-ampm-field]:inline-block [&::-webkit-datetime-edit-ampm-field]:h-[6.25rem]',
+  hour: '[&::-webkit-datetime-edit-hour-field]:inline-block [&::-webkit-datetime-edit-hour-field]:h-screen',
+  ampm: '[&::-webkit-datetime-edit-ampm-field]:inline-block [&::-webkit-datetime-edit-ampm-field]:h-screen',
 }
 
 const measureProbe = (segment?: Segment) => {

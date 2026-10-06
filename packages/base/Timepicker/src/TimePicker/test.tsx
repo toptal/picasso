@@ -355,6 +355,28 @@ describe('TimePicker', () => {
     })
   })
 
+  describe('when the field becomes disabled while the list is open', () => {
+    it('closes the list', () => {
+      const { rerender } = render(
+        <TimePicker value='21:30' minuteStep={30} onChange={jest.fn()} />
+      )
+
+      openList()
+      expect(queryList()).toBeInTheDocument()
+
+      rerender(
+        <TimePicker
+          value='21:30'
+          minuteStep={30}
+          onChange={jest.fn()}
+          disabled
+        />
+      )
+
+      expect(queryList()).not.toBeInTheDocument()
+    })
+  })
+
   describe('when read-only', () => {
     it('does not open the list', () => {
       renderComponent({ readOnly: true })
@@ -362,6 +384,94 @@ describe('TimePicker', () => {
       openList()
 
       expect(queryList()).not.toBeInTheDocument()
+    })
+  })
+
+  describe('when onKeyDown is provided', () => {
+    it('calls it for key presses in the field', () => {
+      const handleKeyDown = jest.fn()
+
+      renderComponent({ onKeyDown: handleKeyDown })
+
+      fireEvent.keyDown(getField(), { key: 'a' })
+
+      expect(handleKeyDown).toHaveBeenCalledTimes(1)
+      expect(handleKeyDown.mock.calls[0][0].key).toBe('a')
+    })
+
+    it('still opens the list on Alt+ArrowDown', () => {
+      renderComponent({ onKeyDown: jest.fn() })
+
+      openListWithKeyboard()
+
+      expect(queryList()).toBeInTheDocument()
+    })
+  })
+
+  describe('when Alt+ArrowDown is pressed in the field with the list open', () => {
+    const pressAltArrowDownWithListOpen = () => {
+      openList()
+
+      return fireEvent.keyDown(getField(), { key: 'ArrowDown', altKey: true })
+    }
+
+    it('keeps a single list open', () => {
+      renderComponent()
+
+      pressAltArrowDownWithListOpen()
+
+      expect(
+        screen.getAllByRole('listbox', { name: 'Choose time' })
+      ).toHaveLength(1)
+    })
+
+    it('prevents the browser from opening its own picker', () => {
+      renderComponent()
+
+      const defaultNotPrevented = pressAltArrowDownWithListOpen()
+
+      expect(defaultNotPrevented).toBe(false)
+    })
+
+    it('moves keyboard focus into the list', () => {
+      renderComponent()
+
+      pressAltArrowDownWithListOpen()
+
+      expect(getOption('21:30')).toHaveFocus()
+    })
+  })
+
+  describe('when Space is pressed in the field', () => {
+    it('opens the list with keyboard focus on the selected time', () => {
+      renderComponent()
+
+      fireEvent.keyDown(getField(), { key: ' ' })
+
+      expect(queryList()).toBeInTheDocument()
+      expect(getOption('21:30')).toHaveFocus()
+    })
+
+    it('prevents the browser from opening its own picker', () => {
+      renderComponent()
+
+      const defaultNotPrevented = fireEvent.keyDown(getField(), { key: ' ' })
+
+      expect(defaultNotPrevented).toBe(false)
+    })
+  })
+
+  describe('when Space is pressed in the field with the list open', () => {
+    it('keeps a single list open and focuses it', () => {
+      renderComponent()
+
+      openList()
+      fireEvent.keyDown(getField(), { key: ' ' })
+
+      expect(
+        screen.getAllByRole('listbox', { name: 'Choose time' })
+      ).toHaveLength(1)
+      expect(getOption('21:30')).toHaveFocus()
     })
   })
 

@@ -3,17 +3,22 @@ import { getHourCycle } from './get-hour-cycle'
 const PROBE_HEIGHT = 100
 
 const mockNativeFieldLayout = (renderedSegments: string[]) => {
-  jest
-    .spyOn(HTMLElement.prototype, 'offsetHeight', 'get')
-    .mockImplementation(function (this: HTMLElement) {
-      // eslint-disable-next-line no-invalid-this
-      const testId = this.getAttribute('data-testid')
+  const appendChild = document.body.appendChild.bind(document.body)
+
+  jest.spyOn(document.body, 'appendChild').mockImplementation(node => {
+    if (node instanceof HTMLElement) {
+      const testId = node.getAttribute('data-testid')
       const isStretched = renderedSegments.some(
         segment => testId === `time-picker-probe-${segment}`
       )
 
-      return isStretched ? PROBE_HEIGHT : 17
-    })
+      Object.defineProperty(node, 'offsetHeight', {
+        value: isStretched ? PROBE_HEIGHT : 17,
+      })
+    }
+
+    return appendChild(node)
+  })
 }
 
 describe('getHourCycle', () => {
