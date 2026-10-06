@@ -50,7 +50,6 @@ export interface Props
 const NATIVE_PICKER_CLASS_NAME = `-mr-2 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
     [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
 
-// With a time list, devices with a mouse open the list and touch devices keep their native picker
 const TIME_LIST_CLASS_NAME = `${NATIVE_PICKER_CLASS_NAME} pointer-fine:[&::-webkit-calendar-picker-indicator]:hidden`
 
 const nativePickerIcon = (
@@ -70,6 +69,7 @@ const getInputMask = (value?: string) => {
 export const TimePicker = ({ status = 'default', ...props }: Props) => {
   const {
     onChange: externalOnChange,
+    onKeyDown: externalOnKeyDown,
     value: externalValue,
     width,
     className,
@@ -112,7 +112,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     isOpen,
     hourCycle,
     anchorRef,
-    focusListOnOpen,
+    focusList,
     handleTriggerClick,
     handleClickAway,
     closeAndFocusField,
@@ -126,6 +126,11 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
   const handleTimePick = (time: string) => {
     changeValue(time)
     closeAndFocusField()
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    externalOnKeyDown?.(event)
+    handleFieldKeyDown(event)
   }
 
   const adornmentProps = hasTimeList
@@ -148,7 +153,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
       value={value}
       minuteStep={minuteStep}
       hourCycle={hourCycle}
-      autoFocus={focusListOnOpen}
+      autoFocus={focusList}
       onChange={handleTimePick}
       onClose={closeAndFocusField}
     />
@@ -183,7 +188,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
               maskPlaceholder='-'
               value={value}
               onChange={onChange}
-              onKeyDown={handleFieldKeyDown}
+              onKeyDown={handleKeyDown}
               className={'text-sm border-none p-0 m-0 outline-hidden'}
             />
           }
@@ -200,6 +205,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
         value={value}
         className={inputClassName}
         onChange={onChange}
+        onKeyDown={handleKeyDown}
         {...adornmentProps}
         highlight={highlight}
         width={width}
@@ -210,10 +216,6 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
           className: inputPropClassName,
           step: 60, // 1 min
           ...rest,
-          onKeyDown: event => {
-            rest.onKeyDown?.(event as React.KeyboardEvent<HTMLInputElement>)
-            handleFieldKeyDown(event)
-          },
         }}
       />
       {timeList}

@@ -53,6 +53,7 @@ describe('TimePicker', () => {
     it('renders the list of times', () => {
       cy.mount(<TestTimePicker minuteStep={15} />)
 
+      forceHourCycle(24)
       openList()
 
       cy.get('body').happoScreenshot({
@@ -97,9 +98,9 @@ describe('TimePicker', () => {
     it('updates the field and closes the list', () => {
       cy.mount(<TestTimePicker minuteStep={15} />)
 
+      forceHourCycle(24)
       openList()
-      // The labels follow the 12/24-hour setting of the machine running the test
-      cy.contains('[role="option"]', /^(19:15|07:15 PM)$/).click()
+      cy.contains('[role="option"]', /^19:15$/).click()
 
       cy.get('input[type="time"]').should('have.value', '19:15')
       cy.get(list).should('not.exist')
