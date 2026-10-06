@@ -77,6 +77,26 @@ const CustomTooltipAndDelayExample = () => (
   </Container>
 )
 
+const LinkExample = () => (
+  <Container padded='medium' style={{ width: 300, marginTop: 100 }}>
+    <TypographyOverflow disableTooltipGuard>
+      <a href='#' data-testid='link'>
+        Link
+      </a>{' '}
+      inside a typography that is very long and therefore it overflows.
+    </TypographyOverflow>
+  </Container>
+)
+
+const getElementAtCenter = (element: HTMLElement) => {
+  const { left, top, width, height } = element.getBoundingClientRect()
+
+  return element.ownerDocument.elementFromPoint(
+    left + width / 2,
+    top + height / 2
+  )
+}
+
 const component = 'TypographyOverflow'
 
 describe('TypographyOverflow', () => {
@@ -96,6 +116,29 @@ describe('TypographyOverflow', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'default/after-hovered-dynamic-width',
+    })
+  })
+
+  it('puts an empty layer under the pointer and still opens the tooltip on hover', () => {
+    cy.mount(<DefaultExample />)
+
+    cy.getByTestId('ellipsed-text').should(([element]) => {
+      const hit = getElementAtCenter(element)
+
+      expect(hit).to.have.attr('aria-hidden', 'true')
+      expect(hit?.childNodes).to.have.length(0)
+      expect(hit?.parentElement).to.equal(element)
+    })
+
+    cy.getByTestId('ellipsed-text').realHover()
+    cy.getByRole('tooltip').should('be.visible')
+  })
+
+  it('leaves a link reachable when disableTooltipGuard is set', () => {
+    cy.mount(<LinkExample />)
+
+    cy.getByTestId('link').should(([link]) => {
+      expect(getElementAtCenter(link)).to.equal(link)
     })
   })
 
