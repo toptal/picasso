@@ -120,7 +120,7 @@ Icons come from the [Iconography](https://www.figma.com/design/TqaGgbpjGSUDf7qq1
 - `packages/base/Icons/src/Icon/Icon.figma.batch.ts` is the shared template. It reads the Figma `Size` variant and renders `<Name16 />`, `<Name24 />` or `<Name32 />`.
 - `packages/base/Icons/src/Icon/Icon.figma.batch.json` lists one entry per Figma icon (`url`, `name`, the `sizes` Picasso ships, and `sizeProperty` for the two icons whose variant is called `size`). Each entry is published as its own Code Connect doc.
 
-Every Picasso icon has a 16 and a 24 version, but only `Ach` and `CreditCard` have a 32 one. When Figma uses a size Picasso does not ship (today only Bank Wire at 32), the snippet uses the largest Picasso size and starts with a `// Picasso has no …` comment.
+Every Picasso icon has a 16 and a 24 version, but only `Ach` and `CreditCard` have a 32 one. When Figma uses a size Picasso does not ship (today only Bank Wire at 32), the snippet uses the largest Picasso size and starts with a `/* Picasso has no … */` comment.
 
 The JSON is generated: a Figma icon is mapped only when its name, without spaces and punctuation and ignoring case, equals a Picasso icon name ("Arrow Down Minor" → `ArrowDownMinor`, "ACH" → `Ach`). Near misses such as "Dribbble" / `Dribble` or "Rank 1" / `RankOne` are not guessed. To regenerate it after icons are added on either side:
 
@@ -265,7 +265,7 @@ We do not use it, because it only reads stories written in [Component Story Form
 
 ### Figma copy files vs. original library file
 
-Code Connect published against a copy of a Figma file does **not** appear in the original library. For Code Connect to surface in Dev Mode for designers using the original library, connections must target the original file's node IDs. The copy files (`...—Copy-`) used here are for testing only.
+Code Connect published against a copy of a Figma file does **not** appear in the original library. Every connection here targets the library files themselves: Product Library v2.0 (`0zTTN9YKOABPGLQ4NsyEW5`) for components and Iconography (`TqaGgbpjGSUDf7qq153Isq`) for icons.
 
 ## Testing Figma MCP Typography extraction
 

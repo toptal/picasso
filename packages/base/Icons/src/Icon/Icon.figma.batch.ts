@@ -29,7 +29,7 @@ export default {
   id,
   imports: [`import { ${component} } from '@toptal/picasso'`],
   example: figma.code`${
-    size === figmaSize ? '' : `// Picasso has no ${name}${figmaSize}\n`
+    size === figmaSize ? '' : `/* Picasso has no ${name}${figmaSize} */\n`
   }<${component} />`,
   metadata: { nestable: true },
 } satisfies CodeConnectTemplate
