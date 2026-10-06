@@ -113,6 +113,49 @@ describe('TypographyOverflow', () => {
     })
   })
 
+  describe('Safari tooltip guard', () => {
+    beforeEach(() => {
+      mockedTypography.mockImplementation(({ children }) => (
+        <span>{children}</span>
+      ))
+    })
+
+    const getRootClasses = () =>
+      mockedTypography.mock.calls[0][0].className.split(' ')
+
+    it('covers the text with a positioned layer by default', () => {
+      const { container } = render(
+        <TypographyOverflow>Just Typography</TypographyOverflow>
+      )
+
+      expect(container.querySelector('[aria-hidden="true"]')).toHaveClass(
+        'absolute',
+        'inset-0'
+      )
+      expect(getRootClasses()).toContain('relative')
+    })
+
+    it('leaves the text uncovered when disableTooltipGuard is set', () => {
+      const { container } = render(
+        <TypographyOverflow disableTooltipGuard>
+          Just Typography
+        </TypographyOverflow>
+      )
+
+      expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
+      expect(getRootClasses()).not.toContain('relative')
+    })
+
+    it('leaves the text uncovered when the tooltip is disabled', () => {
+      const { container } = render(
+        <TypographyOverflow disableTooltip>Just Typography</TypographyOverflow>
+      )
+
+      expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
+      expect(getRootClasses()).not.toContain('relative')
+    })
+  })
+
   describe('when tooltip is disabled', () => {
     it('does not render tooltip', () => {
       mockedIsOverflown.mockReturnValueOnce(true)

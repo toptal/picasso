@@ -19,6 +19,8 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipDelay?: DelayType
   /** Do not show tooltips for shorten content. */
   disableTooltip?: boolean
+  /** Do not cover the text with the layer that stops Safari from adding its own tooltip. Set it when children contain links or other controls, because the layer takes their clicks. */
+  disableTooltipGuard?: boolean
   /** Where should the tooltip be positioned */
   placement?: PlacementType
 }
@@ -30,6 +32,7 @@ export const TypographyOverflow = (props: Props) => {
     tooltipContent,
     tooltipDelay,
     disableTooltip,
+    disableTooltipGuard,
     className,
     onClick,
     onMouseEnter,
@@ -43,6 +46,7 @@ export const TypographyOverflow = (props: Props) => {
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
   const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
+  const isGuarded = !disableTooltip && !disableTooltipGuard
 
   // We are paying a very high price when using dynamic JSS rules
   // for a component that is used on a very large scale.
@@ -112,12 +116,18 @@ export const TypographyOverflow = (props: Props) => {
         isMultiline
           ? '[display:-webkit-box] break-words ![white-space:initial]'
           : 'block',
+        isGuarded && 'relative',
         className
       )}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
     >
       {children}
+      {isGuarded && (
+        // Safari shows a native tooltip when the element under the pointer has
+        // no title and its block ends in an ellipsis; this empty layer is that element
+        <span aria-hidden className='absolute inset-0' />
+      )}
     </Typography>
   )
 
