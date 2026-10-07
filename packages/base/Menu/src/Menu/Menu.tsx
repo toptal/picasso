@@ -1,12 +1,13 @@
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
+import { useCombinedRefs } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 
 import { MenuItem } from '../MenuItem'
-import { useMenu } from './hooks'
+import { useMenu, useMenuKeyboardNavigation } from './hooks'
 import MenuContext from './MenuContext'
 import type { MenuVariant } from './types'
 
@@ -15,19 +16,37 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   variant?: MenuVariant
   /** Whether or not to handle nested navigation */
   allowNestedNavigation?: boolean
+  /** Focuses the selected or first enabled item when the menu mounts */
+  autoFocus?: boolean
   testIds?: {
     menuItem?: string
   }
 }
 
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
-  { variant = 'slide', allowNestedNavigation = true, ...props },
+  { variant = 'slide', allowNestedNavigation = true, autoFocus, ...props },
   ref
 ) {
-  const { children, className, style, testIds, role = 'menu', ...rest } = props
+  const {
+    children,
+    className,
+    style,
+    testIds,
+    role = 'menu',
+    onKeyDown,
+    ...rest
+  } = props
 
+  const menuRef = useCombinedRefs<HTMLUListElement>(ref)
   const { context, innerMenu, hasBackButton } = useMenu({ variant })
   const { onBackClick, onMenuMouseLeave } = context
+  const handleKeyDown = useMenuKeyboardNavigation({
+    menuRef,
+    autoFocus,
+    isShowingInnerMenu: Boolean(innerMenu),
+    onBack: hasBackButton && allowNestedNavigation ? onBackClick : undefined,
+    onKeyDown,
+  })
 
   let activeItemIndex = -1
 
@@ -81,7 +100,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
       {innerMenu ?? (
         <ul
           {...rest}
-          ref={ref}
+          ref={menuRef}
           className={twMerge(
             'relative list-none',
             'outline-hidden shadow-1',
@@ -91,6 +110,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
           )}
           style={style}
           onMouseLeave={onMenuMouseLeave}
+          onKeyDown={handleKeyDown}
           role={role}
           tabIndex={-1}
         >

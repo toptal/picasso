@@ -15,9 +15,26 @@ const useMenuItem = (props: Props) => {
   const { menu, onClick, onMouseEnter } = props
   const key = useMenuItemKey()
 
+  const { openSlideMenuWithKeyboard, ...slide } = useSlideMenuItem({
+    key,
+    menu,
+    onClick,
+  })
+  const { openDrilldownMenuWithKeyboard, ...drilldown } = useDrilldownMenuItem({
+    key,
+    menu,
+    onMouseEnter,
+  })
+
+  const openMenuWithKeyboard = () => {
+    openSlideMenuWithKeyboard()
+    openDrilldownMenuWithKeyboard()
+  }
+
   return {
-    ...useSlideMenuItem({ key, menu, onClick }),
-    ...useDrilldownMenuItem({ key, menu, onMouseEnter }),
+    ...slide,
+    ...drilldown,
+    openMenuWithKeyboard,
   }
 }
 

@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 
 import useMenuItem from './use-menu-item'
 import useMenuItemKey from '../use-menu-item-key'
@@ -26,22 +26,58 @@ describe('useMenuItem', () => {
     const onItemClick = jest.fn()
     const onItemMouseEnter = jest.fn()
     const onAwayClick = jest.fn()
+    const closeMenu = jest.fn()
 
     mockedUseMenuItemKey.mockReturnValue(key)
-    mockedUseSlideMenuItem.mockReturnValue({ onItemClick })
+    mockedUseSlideMenuItem.mockReturnValue({
+      onItemClick,
+      openSlideMenuWithKeyboard: jest.fn(),
+    })
     mockedUseDrilldownMenuItem.mockReturnValue({
       isOpened,
+      isOpenedWithKeyboard: false,
       onItemMouseEnter,
       onAwayClick,
+      openDrilldownMenuWithKeyboard: jest.fn(),
+      closeMenu,
     })
 
     const { result } = renderHook(() => useMenuItem({}))
 
     expect(result.current).toEqual({
       isOpened,
+      isOpenedWithKeyboard: false,
       onItemClick,
       onItemMouseEnter,
       onAwayClick,
+      closeMenu,
+      openMenuWithKeyboard: expect.any(Function),
     })
+  })
+
+  it('opens the submenu of whichever variant is active with the keyboard', () => {
+    const openSlideMenuWithKeyboard = jest.fn()
+    const openDrilldownMenuWithKeyboard = jest.fn()
+
+    mockedUseMenuItemKey.mockReturnValue('1')
+    mockedUseSlideMenuItem.mockReturnValue({
+      onItemClick: jest.fn(),
+      openSlideMenuWithKeyboard,
+    })
+    mockedUseDrilldownMenuItem.mockReturnValue({
+      isOpened: false,
+      isOpenedWithKeyboard: false,
+      onItemMouseEnter: jest.fn(),
+      onAwayClick: jest.fn(),
+      openDrilldownMenuWithKeyboard,
+      closeMenu: jest.fn(),
+    })
+
+    const { result } = renderHook(() => useMenuItem({}))
+
+    act(() => result.current.openMenuWithKeyboard())
+
+    expect(openSlideMenuWithKeyboard).toHaveBeenCalledTimes(1)
+    expect(openDrilldownMenuWithKeyboard).toHaveBeenCalledTimes(1)
   })
 })

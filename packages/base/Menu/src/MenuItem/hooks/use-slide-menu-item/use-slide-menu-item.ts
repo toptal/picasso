@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import type React from 'react'
-import { useCallback, useContext, useEffect } from 'react'
+import { cloneElement, useCallback, useContext, useEffect } from 'react'
 
 import MenuContext from '../../../Menu/MenuContext'
 
@@ -34,8 +34,15 @@ const useSlideMenuItem = (props: Props) => {
     [key, menu, onClick, onItemClick]
   )
 
+  const openMenuWithKeyboard = useCallback(() => {
+    if (menu && onItemClick) {
+      onItemClick(key, cloneElement(menu, { autoFocus: true }))
+    }
+  }, [key, menu, onItemClick])
+
   return {
     onItemClick: handleItemClick,
+    openSlideMenuWithKeyboard: openMenuWithKeyboard,
   }
 }
 
