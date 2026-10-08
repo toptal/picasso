@@ -2,8 +2,9 @@
  * The title props of every mounted `Page.Helmet`, in mount order, so that on
  * React 19 they merge into one title the way react-helmet-async's provider
  * merges them on React 17 and 18: the innermost `title`, formatted with the
- * innermost `titleTemplate`, or else the innermost `defaultTitle`. It is
- * module-wide, like the one document whose title it sets.
+ * innermost `titleTemplate`, or else, when that title is empty or missing, the
+ * innermost `defaultTitle`. It is module-wide, like the one document whose
+ * title it sets.
  */
 export interface TitleEntry {
   title?: string
@@ -48,24 +49,20 @@ export const update = (entry: TitleEntry, next: TitleEntry) => {
 }
 
 const findInnermost = (key: keyof TitleEntry) =>
-  [...entries].reverse().find(entry => entry[key] !== undefined)
+  [...entries].reverse().find(entry => entry[key] !== undefined)?.[key]
 
-/** The title this helmet renders, if any: only one helmet renders one */
-export const resolveTitle = (entry: TitleEntry): string | undefined => {
-  const titled = findInnermost('title')
+const mergeTitles = () => {
+  const title = findInnermost('title')
+  const template = findInnermost('titleTemplate')
 
-  if (titled) {
-    if (titled !== entry) {
-      return undefined
-    }
-
-    const title = titled.title ?? ''
-    const template = findInnermost('titleTemplate')?.titleTemplate
-
-    return template ? template.replace(/%s/g, title) : title
+  if (template && title) {
+    // A replacer function keeps `$` sequences in the title as they are
+    return template.replace(/%s/g, () => title)
   }
 
-  return findInnermost('defaultTitle') === entry
-    ? entry.defaultTitle
-    : undefined
+  return title || findInnermost('defaultTitle') || undefined
 }
+
+/** The title this helmet renders, if any: only the innermost one renders it */
+export const resolveTitle = (entry: TitleEntry): string | undefined =>
+  entries[entries.length - 1] === entry ? mergeTitles() : undefined

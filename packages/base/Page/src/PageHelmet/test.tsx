@@ -76,5 +76,49 @@ describe('PageHelmet', () => {
         expect(document.title).toBe('Jobs | Toptal')
       })
     })
+
+    it('falls back to the `defaultTitle` for an empty title', async () => {
+      render(
+        <>
+          <PageHelmet titleTemplate='%s | Toptal' defaultTitle='Toptal' />
+          <PageHelmet title='' />
+        </>
+      )
+
+      await waitFor(() => {
+        expect(document.title).toBe('Toptal')
+      })
+    })
+
+    it('keeps `$` sequences in a title as they are', async () => {
+      render(
+        <>
+          <PageHelmet titleTemplate='%s | Toptal' />
+          <PageHelmet title='Rates $$ and $&' />
+        </>
+      )
+
+      await waitFor(() => {
+        expect(document.title).toBe('Rates $$ and $& | Toptal')
+      })
+    })
+
+    it('reads a `<title>` inside a fragment', async () => {
+      render(
+        <>
+          <PageHelmet titleTemplate='%s | Toptal' />
+          <PageHelmet>
+            <>
+              <title>Jobs</title>
+              <meta name='description' content='Open jobs' />
+            </>
+          </PageHelmet>
+        </>
+      )
+
+      await waitFor(() => {
+        expect(document.title).toBe('Jobs | Toptal')
+      })
+    })
   })
 })

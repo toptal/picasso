@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import React, {
   Children,
+  cloneElement,
+  Fragment,
   isValidElement,
   useEffect,
   useReducer,
@@ -18,10 +20,27 @@ export interface Props extends HelmetProps {
   children?: ReactNode
 }
 
+// react-helmet-async reads the children of fragments as its own. The others
+// are keyed by the fragment they came from, so they stay unique
+const flattenFragments = (children: ReactNode, keyPrefix = ''): ReactNode[] =>
+  Children.toArray(children).flatMap(child => {
+    if (!isValidElement<{ children?: ReactNode }>(child)) {
+      return [child]
+    }
+
+    if (child.type === Fragment) {
+      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`)
+    }
+
+    return keyPrefix
+      ? [cloneElement(child, { key: `${keyPrefix}${child.key}` })]
+      : [child]
+  })
+
 // A `<title>` child is the helmet's title, as react-helmet-async reads it
 const splitTitleChild = (children: ReactNode) => {
   let title: string | undefined
-  const otherChildren = Children.toArray(children).filter(child => {
+  const otherChildren = flattenFragments(children).filter(child => {
     if (
       isValidElement<{ children?: ReactNode }>(child) &&
       child.type === 'title'
