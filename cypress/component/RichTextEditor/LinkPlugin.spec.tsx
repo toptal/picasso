@@ -30,7 +30,7 @@ const setAliases = () => {
 
 const saveLink = (
   url: string,
-  { text, openInNewTab }: { text?: string; openInNewTab?: boolean } = {}
+  { text, sameTab }: { text?: string; sameTab?: boolean } = {}
 ) => {
   cy.getByRole('dialog').within(() => {
     if (text !== undefined) {
@@ -39,7 +39,7 @@ const saveLink = (
     }
     cy.get('#rte-link-url').clear()
     cy.get('#rte-link-url').type(url)
-    if (openInNewTab) {
+    if (sameTab) {
       cy.contains('Open in new tab').click()
     }
     cy.contains('button', 'Save').click()
@@ -65,7 +65,7 @@ describe('LinkPlugin', () => {
       cy.get('@editor').type('text')
       cy.get('@editor').type('{selectall}')
       cy.get('@linkPluginButton').realClick()
-      saveLink('https://toptal.com/')
+      saveLink('https://toptal.com/', { sameTab: true })
 
       // Bold text turns into a link
       cy.get('@editor').click()
@@ -81,7 +81,7 @@ describe('LinkPlugin', () => {
         'ArrowLeft',
       ])
       cy.get('@linkPluginButton').realClick()
-      saveLink('https://toptal.com/')
+      saveLink('https://toptal.com/', { sameTab: true })
 
       // Link is inserted into unordered list
       cy.get('@editor').click()
@@ -95,7 +95,7 @@ describe('LinkPlugin', () => {
         'ArrowLeft',
       ])
       cy.get('@linkPluginButton').realClick()
-      saveLink('https://toptal.com/')
+      saveLink('https://toptal.com/', { sameTab: true })
 
       cy.get('@resultContainer').contains(
         `<p><a href="https://toptal.com/" rel="noreferrer"><span>text</span></a></p><p><a href="https://toptal.com/" rel="noreferrer"><strong>bold</strong></a></p><ul><li><a href="https://toptal.com/" rel="noreferrer"><strong>list</strong></a></li></ul>`
@@ -123,7 +123,7 @@ describe('LinkPlugin', () => {
       // Empty editor creates a Link node
       cy.get('@editor').click()
       cy.get('@linkPluginButton').realClick()
-      saveLink('https://toptal.com/')
+      saveLink('https://toptal.com/', { sameTab: true })
 
       // Text node with bold formatting has Link node inserted
       cy.get('@editor').click()
@@ -132,7 +132,7 @@ describe('LinkPlugin', () => {
       cy.get('@editor').type('long bold text')
       cy.realPress(['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowLeft'])
       cy.get('@linkPluginButton').realClick()
-      saveLink('https://toptal.com/')
+      saveLink('https://toptal.com/', { sameTab: true })
 
       // Link is inserted into unordered list
       cy.get('@editor').click()
@@ -140,7 +140,7 @@ describe('LinkPlugin', () => {
       cy.get('@ulButton').click()
       cy.realPress(['Enter'])
       cy.get('@linkPluginButton').realClick()
-      saveLink('https://toptal.com/')
+      saveLink('https://toptal.com/', { sameTab: true })
 
       cy.get('@resultContainer').contains(
         `<p><a href="https://toptal.com/" rel="noreferrer"><span>https://toptal.com/</span></a></p><p><strong>long bold </strong><a href="https://toptal.com/" rel="noreferrer"><span>https://toptal.com/</span></a><strong>text</strong></p><ul><li><strong>list</strong></li><li><a href="https://toptal.com/" rel="noreferrer"><span>https://toptal.com/</span></a></li></ul>`
@@ -172,7 +172,7 @@ describe('LinkPlugin', () => {
         component,
         variant: 'link-plugin/link-dialog',
       })
-      saveLink('https://toptal.com/', { text: 'Toptal', openInNewTab: true })
+      saveLink('https://toptal.com/', { text: 'Toptal' })
 
       cy.get('@resultContainer').contains(
         `<p><a href="https://toptal.com/" target="_blank" rel="noopener noreferrer"><span>Toptal</span></a></p>`
@@ -202,11 +202,9 @@ describe('LinkPlugin', () => {
         cy.contains('Edit link')
         cy.get('#rte-link-text').should('have.value', 'Toptal')
         cy.get('#rte-link-url').should('have.value', 'https://toptal.com/')
+        cy.get('input[type=checkbox]').should('be.checked')
       })
-      saveLink('https://toptal.com/careers', {
-        text: 'Careers',
-        openInNewTab: true,
-      })
+      saveLink('https://toptal.com/careers', { text: 'Careers' })
 
       cy.get('@resultContainer').contains(
         `<p><a href="https://toptal.com/careers" target="_blank" rel="noopener noreferrer"><span>Careers</span></a></p>`

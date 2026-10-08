@@ -15,7 +15,7 @@ import { getSelectedNode } from '../../LexicalEditor/utils/get-selected-node'
 import type { LinkValues } from './LinkPluginModal'
 import { sanitizeUrl } from './utils/url'
 
-const EMPTY_VALUES: LinkValues = { text: '', url: '', openInNewTab: false }
+const EMPTY_VALUES: LinkValues = { text: '', url: '', openInNewTab: true }
 
 const linkAttributes = (openInNewTab: boolean) =>
   openInNewTab

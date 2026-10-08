@@ -15,7 +15,7 @@ const renderModal = (props: Partial<Props> = {}) => {
     <LinkPluginModal
       isOpen
       editing={false}
-      initialValues={{ text: '', url: '', openInNewTab: false }}
+      initialValues={{ text: '', url: '', openInNewTab: true }}
       {...handlers}
       {...props}
     />
@@ -33,7 +33,6 @@ describe('LinkPluginModal', () => {
 
     type('Text', 'Book a call')
     type('Link', ' https://toptal.com/book ')
-    fireEvent.click(screen.getByLabelText('Open in new tab'))
     fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
     expect(onSubmit).toHaveBeenCalledWith({
@@ -43,10 +42,11 @@ describe('LinkPluginModal', () => {
     })
   })
 
-  it('leaves new tab off by default', () => {
+  it('lets the link open in the same tab', () => {
     const { onSubmit } = renderModal()
 
     type('Link', 'https://toptal.com')
+    fireEvent.click(screen.getByLabelText('Open in new tab'))
     fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
     expect(onSubmit).toHaveBeenCalledWith(
