@@ -8111,7 +8111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import { PageHelmet } from '../PageHelmet'\nimport PicassoBook from '~/.storybook/components/PicassoBook'\n\nconst componentDocs = PicassoBook.createComponentDocs(PageHelmet, 'Page.Helmet')\n\nconst chapter = PicassoBook.connectToPage(page =>\n  page\n    .createChapter('Page.Helmet', 'Manipulate with document head')\n    .addTextSection(\n      `\n      This component is a wrapper around react-helmet-async, you can use Page.Helmet as a drop-in replacement\n\n      <Page.Helmet>\n        <title>My custom title</title>\n      </Page.Helmet>\n    `\n    )\n    .addTextSection(\n      'ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.'\n    )\n    .addTextSection(\n      'Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).'\n    )\n    .addTextSection(\n      'Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' +\n        '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' +\n        '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. `Page.Helmet` still merges ' +\n        'titles: the innermost `title`, formatted with the innermost `titleTemplate`, or else the innermost ' +\n        '`defaultTitle`. Other duplicate tags stay, and a `<script>` without `async` does not run. ' +\n        'React 17 and 18 are unchanged.'\n    )\n    .addTextSection(\n      'If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' +\n        'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'\n    )\n)\n\nexport default {\n  chapter,\n  componentDocs,\n}\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import { PageHelmet } from '../PageHelmet'\nimport PicassoBook from '~/.storybook/components/PicassoBook'\n\nconst componentDocs = PicassoBook.createComponentDocs(PageHelmet, 'Page.Helmet')\n\nconst chapter = PicassoBook.connectToPage(page =>\n  page\n    .createChapter('Page.Helmet', 'Manipulate with document head')\n    .addTextSection(\n      `\n      This component is a wrapper around react-helmet-async, you can use Page.Helmet as a drop-in replacement\n\n      <Page.Helmet>\n        <title>My custom title</title>\n      </Page.Helmet>\n    `\n    )\n    .addTextSection(\n      'ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.'\n    )\n    .addTextSection(\n      'Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).'\n    )\n    .addTextSection(\n      'Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' +\n        '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' +\n        '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. `Page.Helmet` still merges ' +\n        'titles: the innermost `title`, formatted with the innermost `titleTemplate`, or else the innermost ' +\n        '`defaultTitle`. It sets the merged title after mount, so a server render gets no `<title>` from it. ' +\n        'Other duplicate tags stay, and a `<script>` without `async` does not run. ' +\n        'React 17 and 18 are unchanged.'\n    )\n    .addTextSection(\n      'If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' +\n        'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).'\n    )\n)\n\nexport default {\n  chapter,\n  componentDocs,\n}\n");
 
 /***/ }),
 
@@ -16595,6 +16595,7 @@ var getItemText = function (item) {
   return item && item.text || EMPTY_INPUT_VALUE;
 };
 var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_a, customRef) {
+  var _b;
   var _a$enableAutofill = _a.enableAutofill,
     enableAutofill = _a$enableAutofill === void 0 ? false : _a$enableAutofill,
     _a$getDisplayValue = _a.getDisplayValue,
@@ -16655,11 +16656,13 @@ var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_a, c
     rest = Autocomplete_rest(props, ["autoComplete", "className", "endAdornment", "getKey", "icon", "inputComponent", "menuWidth", "name", "closeOnSelect", "placeholder", "popperContainer", "popperOptions", "renderOption", "renderOtherOption", "style", "testIds", "value", "highlight"]);
   var inputRef = (0,react.useRef)(null);
   var ref = customRef || inputRef;
-  // React 19 passes a function component its `ref` as a prop; React 17 and
-  // 18 pass it only to a `forwardRef` component
-  if (inputComponent && !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent)) {
+  // A class component's ref is its instance, not the input. React 19 passes
+  // a function component its `ref` as a prop; React 17 and 18 pass it only
+  // to a `forwardRef` component
+  var isClassComponent = Boolean((_b = inputComponent === null || inputComponent === void 0 ? void 0 : inputComponent.prototype) === null || _b === void 0 ? void 0 : _b.isReactComponent);
+  if (inputComponent && (isClassComponent || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
     ref = undefined;
-    (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. On React 17 and 18 it then does not receive the input ref, which may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.');
+    (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.');
   }
   var _useAutocomplete = useAutocomplete({
       value: value,
@@ -17314,6 +17317,7 @@ var getItemText = function (item) {
   return item && item.text || EMPTY_INPUT_VALUE;
 };
 var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref, customRef) {
+  var _inputComponent$proto;
   var _ref$enableAutofill = _ref.enableAutofill,
     enableAutofill = _ref$enableAutofill === void 0 ? false : _ref$enableAutofill,
     _ref$getDisplayValue = _ref.getDisplayValue,
@@ -17375,11 +17379,13 @@ var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref,
   var inputRef = (0,react.useRef)(null);
   var ref = customRef || inputRef;
 
-  // React 19 passes a function component its `ref` as a prop; React 17 and
-  // 18 pass it only to a `forwardRef` component
-  if (inputComponent && !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent)) {
+  // A class component's ref is its instance, not the input. React 19 passes
+  // a function component its `ref` as a prop; React 17 and 18 pass it only
+  // to a `forwardRef` component
+  var isClassComponent = Boolean(inputComponent === null || inputComponent === void 0 ? void 0 : (_inputComponent$proto = inputComponent.prototype) === null || _inputComponent$proto === void 0 ? void 0 : _inputComponent$proto.isReactComponent);
+  if (inputComponent && (isClassComponent || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
     ref = undefined;
-    (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. On React 17 and 18 it then does not receive the input ref, which may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.');
+    (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.');
   }
   var _useAutocomplete = useAutocomplete({
       value: value,
@@ -30888,17 +30894,18 @@ var es_array_includes = __webpack_require__("./node_modules/core-js/modules/es.a
 ;// ./packages/base/Fade/dist-package/src/Fade/styles.js
 
 
-// These animate opacity along with the child's other transitions
-var BROAD_TRANSITIONS = ['transition', 'transition-all'];
+// These animate opacity along with the child's other transitions, or turn
+// transitions off on purpose
+var KEPT_CHILD_TRANSITIONS = ['transition', 'transition-all', 'transition-none'];
 /**
  * Fade's transition utility, which goes after the child's className so the
  * fade replaces a `transition-*` utility of the child's, unless the child's
- * is a broad one that animates opacity too
+ * animates opacity too or turns transitions off
  */
 var createTransitionClassName = function () {
   var childClassName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return childClassName.split(/\s+/).some(function (name) {
-    return BROAD_TRANSITIONS.includes(name);
+    return KEPT_CHILD_TRANSITIONS.includes(name);
   }) ? undefined : 'transition-opacity';
 };
 ;// ./packages/base/Fade/dist-package/src/Fade/Fade.js
@@ -31015,18 +31022,19 @@ var es_array_includes = __webpack_require__("./node_modules/core-js/modules/es.a
 ;// ./packages/base/Fade/src/Fade/styles.ts
 
 
-// These animate opacity along with the child's other transitions
-var BROAD_TRANSITIONS = ['transition', 'transition-all'];
+// These animate opacity along with the child's other transitions, or turn
+// transitions off on purpose
+var KEPT_CHILD_TRANSITIONS = ['transition', 'transition-all', 'transition-none'];
 
 /**
  * Fade's transition utility, which goes after the child's className so the
  * fade replaces a `transition-*` utility of the child's, unless the child's
- * is a broad one that animates opacity too
+ * animates opacity too or turns transitions off
  */
 var createTransitionClassName = function () {
   var childClassName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return childClassName.split(/\s+/).some(function (name) {
-    return BROAD_TRANSITIONS.includes(name);
+    return KEPT_CHILD_TRANSITIONS.includes(name);
   }) ? undefined : 'transition-opacity';
 };
 ;// ./packages/base/Fade/src/Fade/Fade.tsx
@@ -78190,23 +78198,25 @@ var update = function (entry, next) {
   notify();
 };
 var findInnermost = function (key) {
-  return [].concat(entries).reverse().find(function (entry) {
+  var _a;
+  return (_a = [].concat(entries).reverse().find(function (entry) {
     return entry[key] !== undefined;
-  });
+  })) === null || _a === void 0 ? void 0 : _a[key];
 };
-/** The title this helmet renders, if any: only one helmet renders one */
-var resolveTitle = function (entry) {
-  var _a, _b;
-  var titled = findInnermost('title');
-  if (titled) {
-    if (titled !== entry) {
-      return undefined;
-    }
-    var title = (_a = titled.title) !== null && _a !== void 0 ? _a : '';
-    var template = (_b = findInnermost('titleTemplate')) === null || _b === void 0 ? void 0 : _b.titleTemplate;
-    return template ? template.replace(/%s/g, title) : title;
+var mergeTitles = function () {
+  var title = findInnermost('title');
+  var template = findInnermost('titleTemplate');
+  if (template && title) {
+    // A replacer function keeps `$` sequences in the title as they are
+    return template.replace(/%s/g, function () {
+      return title;
+    });
   }
-  return findInnermost('defaultTitle') === entry ? entry.defaultTitle : undefined;
+  return title || findInnermost('defaultTitle') || undefined;
+};
+/** The title this helmet renders, if any: only the innermost one renders it */
+var resolveTitle = function (entry) {
+  return entries[entries.length - 1] === entry ? mergeTitles() : undefined;
 };
 ;// ./packages/base/Page/dist-package/src/PageHelmet/PageHelmet.js
 
@@ -78228,10 +78238,26 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
+// react-helmet-async reads the children of fragments as its own. The others
+// are keyed by the fragment they came from, so they stay unique
+var flattenFragments = function (children) {
+  var keyPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return react.Children.toArray(children).flatMap(function (child) {
+    if (! /*#__PURE__*/(0,react.isValidElement)(child)) {
+      return [child];
+    }
+    if (child.type === react.Fragment) {
+      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`);
+    }
+    return keyPrefix ? [/*#__PURE__*/(0,react.cloneElement)(child, {
+      key: `${keyPrefix}${child.key}`
+    })] : [child];
+  });
+};
 // A `<title>` child is the helmet's title, as react-helmet-async reads it
 var splitTitleChild = function (children) {
   var title;
-  var otherChildren = react.Children.toArray(children).filter(function (child) {
+  var otherChildren = flattenFragments(children).filter(function (child) {
     if (/*#__PURE__*/(0,react.isValidElement)(child) && child.type === 'title') {
       title = react.Children.toArray(child.props.children).join('');
       return false;
@@ -81075,8 +81101,9 @@ var es_regexp_exec = __webpack_require__("./node_modules/core-js/modules/es.rege
  * The title props of every mounted `Page.Helmet`, in mount order, so that on
  * React 19 they merge into one title the way react-helmet-async's provider
  * merges them on React 17 and 18: the innermost `title`, formatted with the
- * innermost `titleTemplate`, or else the innermost `defaultTitle`. It is
- * module-wide, like the one document whose title it sets.
+ * innermost `titleTemplate`, or else, when that title is empty or missing, the
+ * innermost `defaultTitle`. It is module-wide, like the one document whose
+ * title it sets.
  */
 
 var entries = [];
@@ -81108,24 +81135,26 @@ var update = function (entry, next) {
   notify();
 };
 var findInnermost = function (key) {
-  return [].concat(entries).reverse().find(function (entry) {
+  var _reverse$find;
+  return (_reverse$find = [].concat(entries).reverse().find(function (entry) {
     return entry[key] !== undefined;
-  });
+  })) === null || _reverse$find === void 0 ? void 0 : _reverse$find[key];
+};
+var mergeTitles = function () {
+  var title = findInnermost('title');
+  var template = findInnermost('titleTemplate');
+  if (template && title) {
+    // A replacer function keeps `$` sequences in the title as they are
+    return template.replace(/%s/g, function () {
+      return title;
+    });
+  }
+  return title || findInnermost('defaultTitle') || undefined;
 };
 
-/** The title this helmet renders, if any: only one helmet renders one */
+/** The title this helmet renders, if any: only the innermost one renders it */
 var resolveTitle = function (entry) {
-  var titled = findInnermost('title');
-  if (titled) {
-    var _titled$title, _findInnermost;
-    if (titled !== entry) {
-      return undefined;
-    }
-    var title = (_titled$title = titled.title) !== null && _titled$title !== void 0 ? _titled$title : '';
-    var template = (_findInnermost = findInnermost('titleTemplate')) === null || _findInnermost === void 0 ? void 0 : _findInnermost.titleTemplate;
-    return template ? template.replace(/%s/g, title) : title;
-  }
-  return findInnermost('defaultTitle') === entry ? entry.defaultTitle : undefined;
+  return entries[entries.length - 1] === entry ? mergeTitles() : undefined;
 };
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
@@ -81146,10 +81175,27 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 
+// react-helmet-async reads the children of fragments as its own. The others
+// are keyed by the fragment they came from, so they stay unique
+var flattenFragments = function (children) {
+  var keyPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return react.Children.toArray(children).flatMap(function (child) {
+    if (! /*#__PURE__*/(0,react.isValidElement)(child)) {
+      return [child];
+    }
+    if (child.type === react.Fragment) {
+      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`);
+    }
+    return keyPrefix ? [/*#__PURE__*/(0,react.cloneElement)(child, {
+      key: `${keyPrefix}${child.key}`
+    })] : [child];
+  });
+};
+
 // A `<title>` child is the helmet's title, as react-helmet-async reads it
 var splitTitleChild = function (children) {
   var title;
-  var otherChildren = react.Children.toArray(children).filter(function (child) {
+  var otherChildren = flattenFragments(children).filter(function (child) {
     if (/*#__PURE__*/(0,react.isValidElement)(child) && child.type === 'title') {
       title = react.Children.toArray(child.props.children).join('');
       return false;
@@ -81239,7 +81285,7 @@ var chapter = PicassoBook/* default */.A.connectToPage(function (page) {
       <Page.Helmet>
         <title>My custom title</title>
       </Page.Helmet>
-    `).addTextSection('ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.').addTextSection('Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).').addTextSection('Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' + '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' + '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. `Page.Helmet` still merges ' + 'titles: the innermost `title`, formatted with the innermost `titleTemplate`, or else the innermost ' + '`defaultTitle`. Other duplicate tags stay, and a `<script>` without `async` does not run. ' + 'React 17 and 18 are unchanged.').addTextSection('If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' + 'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).');
+    `).addTextSection('ℹ️ You must wrap your application with `<PicassoProvider>` component to make `<Page.Helmet>` work properly.').addTextSection('Please refer to the original [react-helmet-async documentation](https://www.npmjs.com/package/react-helmet-async).').addTextSection('Under React 19, `react-helmet-async@3` lets React hoist head elements itself: ' + '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' + '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. `Page.Helmet` still merges ' + 'titles: the innermost `title`, formatted with the innermost `titleTemplate`, or else the innermost ' + '`defaultTitle`. It sets the merged title after mount, so a server render gets no `<title>` from it. ' + 'Other duplicate tags stay, and a `<script>` without `async` does not run. ' + 'React 17 and 18 are unchanged.').addTextSection('If you are using **Next.js** please disable usage of `react-helmet-async` by passing `disableHelmet` prop to the `<PicassoProvider>`. ' + 'After that, refer to the [next/head documentation](https://nextjs.org/docs/api-reference/next/head).');
 });
 /* harmony default export */ const story = ({
   chapter: chapter,
@@ -93747,18 +93793,19 @@ var shownClassByDirection = {
   up: 'translate-y-0',
   down: 'translate-y-0'
 };
-// These animate translate along with the child's other transitions
-var BROAD_TRANSITIONS = ['transition', 'transition-all'];
+// These animate translate along with the child's other transitions, or turn
+// transitions off on purpose
+var KEPT_CHILD_TRANSITIONS = ['transition', 'transition-all', 'transition-none'];
 /**
  * Slide's transition utility, which goes after the child's className so the
  * slide replaces a `transition-*` utility of the child's, unless the child's
- * is a broad one that animates translate too. In Tailwind v4,
+ * animates translate too or turns transitions off. In Tailwind v4,
  * `transition-transform` also covers the standalone `translate` property
  */
 var createTransitionClassName = function () {
   var childClassName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return childClassName.split(/\s+/).some(function (name) {
-    return BROAD_TRANSITIONS.includes(name);
+    return KEPT_CHILD_TRANSITIONS.includes(name);
   }) ? undefined : 'transition-transform';
 };
 ;// ./packages/base/Slide/dist-package/src/Slide/Slide.js
@@ -93877,19 +93924,20 @@ var shownClassByDirection = {
   down: 'translate-y-0'
 };
 
-// These animate translate along with the child's other transitions
-var BROAD_TRANSITIONS = ['transition', 'transition-all'];
+// These animate translate along with the child's other transitions, or turn
+// transitions off on purpose
+var KEPT_CHILD_TRANSITIONS = ['transition', 'transition-all', 'transition-none'];
 
 /**
  * Slide's transition utility, which goes after the child's className so the
  * slide replaces a `transition-*` utility of the child's, unless the child's
- * is a broad one that animates translate too. In Tailwind v4,
+ * animates translate too or turns transitions off. In Tailwind v4,
  * `transition-transform` also covers the standalone `translate` property
  */
 var createTransitionClassName = function () {
   var childClassName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return childClassName.split(/\s+/).some(function (name) {
-    return BROAD_TRANSITIONS.includes(name);
+    return KEPT_CHILD_TRANSITIONS.includes(name);
   }) ? undefined : 'transition-transform';
 };
 ;// ./packages/base/Slide/src/Slide/Slide.tsx
@@ -111597,16 +111645,21 @@ var releaseHold = function (form, name, only) {
   release();
 };
 // Ends a hold at commit, or after a render that never commits
-var keepUntilCommit = function (form, name, release) {
+var keepUntilCommit = function (form, name, unregister) {
   var _a;
   var pending = (_a = holds.get(form)) !== null && _a !== void 0 ? _a : new Map();
+  var timer;
+  var release = function () {
+    clearTimeout(timer);
+    unregister();
+  };
   pending.set(name, release);
   holds.set(form, pending);
   // A concurrent render can yield between the field and the children rendered
   // with it, and a microtask would end the hold in that gap, so the browser
   // keeps it until commit and this only ends one whose render never commits
   if ((0,is_browser/* default */.A)()) {
-    setTimeout(function () {
+    timer = setTimeout(function () {
       return releaseHold(form, name, release);
     }, UNCOMMITTED_HOLD_MS);
     return;
@@ -112833,30 +112886,63 @@ var Radio = __webpack_require__("./packages/base/Radio/dist-package/src/Radio/Ra
 ;// ./packages/picasso-forms/dist-package/src/RadioGroup/RadioGroupContext.js
 
 /* harmony default export */ const RadioGroupContext = (/*#__PURE__*/(0,react.createContext)(undefined));
-;// ./packages/picasso-forms/dist-package/src/Radio/use-radio-checked.js
+;// ./packages/picasso-forms/dist-package/src/Radio/RadioChecked.js
 
 
 
 
 
+var GroupFieldChecked = function (_ref) {
+  var name = _ref.name,
+    value = _ref.value,
+    children = _ref.children;
+  return children((0,react_final_form_cjs.useField)(name, {
+    type: 'radio',
+    value: value
+  }).input.checked);
+};
+var OwnFieldChecked = function (_ref2) {
+  var name = _ref2.name,
+    value = _ref2.value,
+    children = _ref2.children;
+  return children(useField(name, {
+    type: 'radio',
+    value: value
+  }).input.checked);
+};
 /**
- * Whether the radio with this `value` is the checked one in its field: the
- * radio's own `name`, or the enclosing `RadioGroup`'s
+ * Renders `children` with whether the radio with this `value` is the checked
+ * one in its field: the radio's own `name`, or the enclosing `RadioGroup`'s
  */
-var useRadioChecked = function (name, value) {
+var RadioChecked = function (_ref3) {
+  var name = _ref3.name,
+    value = _ref3.value,
+    children = _ref3.children;
   var groupName = (0,react.useContext)(RadioGroupContext);
   var fieldName = name || groupName;
   assertFieldName(fieldName);
   // A group's field keeps its state across a remount and must create the
   // field entry itself, so a radio inside it stays on react-final-form's hook.
-  // A radio with a field of its own keeps the state itself. A radio keeps its
-  // name and group while mounted, so every render runs the same hook
-  var useRadioField = fieldName === groupName ? react_final_form_cjs.useField : useField;
-  return useRadioField(fieldName, {
-    type: 'radio',
+  // A radio with a field of its own keeps the state itself. The two run
+  // different hooks, so a radio whose `name` moves it between them remounts
+  var FieldChecked = fieldName === groupName ? GroupFieldChecked : OwnFieldChecked;
+  return /*#__PURE__*/react.createElement(FieldChecked, {
+    name: fieldName,
     value: value
-  }).input.checked;
+  }, children);
 };
+RadioChecked.__docgenInfo = {
+  "description": "Renders `children` with whether the radio with this `value` is the checked\none in its field: the radio's own `name`, or the enclosing `RadioGroup`'s",
+  "methods": [],
+  "displayName": "RadioChecked"
+};
+if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
+  STORYBOOK_REACT_CLASSES["packages/picasso-forms/dist-package/src/Radio/RadioChecked.js"] = {
+    name: "RadioChecked",
+    docgenInfo: RadioChecked.__docgenInfo,
+    path: "packages/picasso-forms/dist-package/src/Radio/RadioChecked.js"
+  };
+}
 ;// ./packages/picasso-forms/dist-package/src/Radio/Radio.js
 var Radio_rest = undefined && undefined.__rest || function (s, e) {
   var t = {};
@@ -112872,10 +112958,14 @@ var Radio_rest = undefined && undefined.__rest || function (s, e) {
 var Radio_Radio = function (_a) {
   var name = _a.name,
     rest = Radio_rest(_a, ["name"]);
-  var checked = useRadioChecked(name, rest.value);
-  return /*#__PURE__*/react.createElement(Radio/* default */.A, Object.assign({
-    checked: checked
-  }, rest));
+  return /*#__PURE__*/react.createElement(RadioChecked, {
+    name: name,
+    value: rest.value
+  }, function (checked) {
+    return /*#__PURE__*/react.createElement(Radio/* default */.A, Object.assign({
+      checked: checked
+    }, rest));
+  });
 };
 Radio_Radio.__docgenInfo = {
   "description": "",
@@ -112907,10 +112997,14 @@ var ButtonRadio_rest = undefined && undefined.__rest || function (s, e) {
 var ButtonRadio_ButtonRadio = function (_a) {
   var name = _a.name,
     rest = ButtonRadio_rest(_a, ["name"]);
-  var checked = useRadioChecked(name, rest.value);
-  return /*#__PURE__*/react.createElement(ButtonRadio/* default */.A, Object.assign({
-    checked: checked
-  }, rest));
+  return /*#__PURE__*/react.createElement(RadioChecked, {
+    name: name,
+    value: rest.value
+  }, function (checked) {
+    return /*#__PURE__*/react.createElement(ButtonRadio/* default */.A, Object.assign({
+      checked: checked
+    }, rest));
+  });
 };
 ButtonRadio_ButtonRadio.displayName = 'ButtonRadio';
 ButtonRadio_ButtonRadio.__docgenInfo = {
@@ -114984,9 +115078,14 @@ var releaseHold = function (form, name, only) {
 };
 
 // Ends a hold at commit, or after a render that never commits
-var keepUntilCommit = function (form, name, release) {
+var keepUntilCommit = function (form, name, unregister) {
   var _holds$get;
   var pending = (_holds$get = holds.get(form)) !== null && _holds$get !== void 0 ? _holds$get : new Map();
+  var timer;
+  var release = function () {
+    clearTimeout(timer);
+    unregister();
+  };
   pending.set(name, release);
   holds.set(form, pending);
 
@@ -114994,7 +115093,7 @@ var keepUntilCommit = function (form, name, release) {
   // with it, and a microtask would end the hold in that gap, so the browser
   // keeps it until commit and this only ends one whose render never commits
   if ((0,is_browser/* default */.A)()) {
-    setTimeout(function () {
+    timer = setTimeout(function () {
       return releaseHold(form, name, release);
     }, UNCOMMITTED_HOLD_MS);
     return;
@@ -160635,4 +160734,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.6b5df474.iframe.bundle.js.map
+//# sourceMappingURL=main.977a98b4.iframe.bundle.js.map
