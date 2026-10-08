@@ -176,12 +176,20 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const inputRef = useRef<HTMLInputElement | null>(null)
     let ref: Ref<HTMLInputElement> | undefined = customRef || inputRef
 
-    // React 19 passes a function component its `ref` as a prop; React 17 and
-    // 18 pass it only to a `forwardRef` component
-    if (inputComponent && !isReact19OrNewer && !isForwardRef(inputComponent)) {
+    // A class component's ref is its instance, not the input. React 19 passes
+    // a function component its `ref` as a prop; React 17 and 18 pass it only
+    // to a `forwardRef` component
+    const isClassComponent = Boolean(
+      inputComponent?.prototype?.isReactComponent
+    )
+
+    if (
+      inputComponent &&
+      (isClassComponent || (!isReact19OrNewer && !isForwardRef(inputComponent)))
+    ) {
       ref = undefined
       unsafeErrorLog(
-        'You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. On React 17 and 18 it then does not receive the input ref, which may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.'
+        'You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.'
       )
     }
 
