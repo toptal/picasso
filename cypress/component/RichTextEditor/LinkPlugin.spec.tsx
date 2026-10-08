@@ -28,13 +28,28 @@ const setAliases = () => {
   cy.getByTestId(ulButton).as('ulButton')
 }
 
+const saveLink = (
+  url: string,
+  { text, openInNewTab }: { text?: string; openInNewTab?: boolean } = {}
+) => {
+  cy.getByRole('dialog').within(() => {
+    if (text !== undefined) {
+      cy.get('#rte-link-text').clear()
+      cy.get('#rte-link-text').type(text)
+    }
+    cy.get('#rte-link-url').clear()
+    cy.get('#rte-link-url').type(url)
+    if (openInNewTab) {
+      cy.contains('Open in new tab').click()
+    }
+    cy.contains('button', 'Save').click()
+  })
+  cy.getByRole('dialog').should('not.exist')
+}
+
 describe('LinkPlugin', () => {
   describe('when links are inserted into existing text', () => {
     it('inserts links into rich text editor', () => {
-      // eslint-disable-next-line
-      cy.window().then(win => {
-        cy.stub(win, 'prompt').returns('https://toptal.com/')
-      })
       cy.mount(
         <Editor
           {...{
@@ -50,6 +65,7 @@ describe('LinkPlugin', () => {
       cy.get('@editor').type('text')
       cy.get('@editor').type('{selectall}')
       cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
 
       // Bold text turns into a link
       cy.get('@editor').click()
@@ -65,6 +81,7 @@ describe('LinkPlugin', () => {
         'ArrowLeft',
       ])
       cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
 
       // Link is inserted into unordered list
       cy.get('@editor').click()
@@ -78,6 +95,7 @@ describe('LinkPlugin', () => {
         'ArrowLeft',
       ])
       cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
 
       cy.get('@resultContainer').contains(
         `<p><a href="https://toptal.com/" rel="noreferrer"><span>text</span></a></p><p><a href="https://toptal.com/" rel="noreferrer"><strong>bold</strong></a></p><ul><li><a href="https://toptal.com/" rel="noreferrer"><strong>list</strong></a></li></ul>`
@@ -92,10 +110,6 @@ describe('LinkPlugin', () => {
 
   describe('when links are inserted with no text selected', () => {
     it('inserts links into rich text editor', () => {
-      // eslint-disable-next-line
-      cy.window().then(win => {
-        cy.stub(win, 'prompt').returns('https://toptal.com/')
-      })
       cy.mount(
         <Editor
           {...{
@@ -109,6 +123,7 @@ describe('LinkPlugin', () => {
       // Empty editor creates a Link node
       cy.get('@editor').click()
       cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
 
       // Text node with bold formatting has Link node inserted
       cy.get('@editor').click()
@@ -117,6 +132,7 @@ describe('LinkPlugin', () => {
       cy.get('@editor').type('long bold text')
       cy.realPress(['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowLeft'])
       cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
 
       // Link is inserted into unordered list
       cy.get('@editor').click()
@@ -124,6 +140,7 @@ describe('LinkPlugin', () => {
       cy.get('@ulButton').click()
       cy.realPress(['Enter'])
       cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
 
       cy.get('@resultContainer').contains(
         `<p><a href="https://toptal.com/" rel="noreferrer"><span>https://toptal.com/</span></a></p><p><strong>long bold </strong><a href="https://toptal.com/" rel="noreferrer"><span>https://toptal.com/</span></a><strong>text</strong></p><ul><li><strong>list</strong></li><li><a href="https://toptal.com/" rel="noreferrer"><span>https://toptal.com/</span></a></li></ul>`
@@ -133,6 +150,73 @@ describe('LinkPlugin', () => {
         component,
         variant: 'link-plugin/standalone-links',
       })
+    })
+  })
+
+  describe('when a link opens in a new tab', () => {
+    it('sets target and rel on the link', () => {
+      cy.mount(
+        <Editor
+          {...{
+            ...defaultProps,
+            plugins: [<LinkPlugin data-testid={linkPluginButton} />],
+          }}
+        />
+      )
+      setAliases()
+
+      cy.get('@editor').click()
+      cy.get('@linkPluginButton').realClick()
+      cy.getByRole('dialog').contains('Add link')
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'link-plugin/link-dialog',
+      })
+      saveLink('https://toptal.com/', { text: 'Toptal', openInNewTab: true })
+
+      cy.get('@resultContainer').contains(
+        `<p><a href="https://toptal.com/" target="_blank" rel="noopener noreferrer"><span>Toptal</span></a></p>`
+      )
+    })
+  })
+
+  describe('when an existing link is edited', () => {
+    it('updates the link and can remove it', () => {
+      cy.mount(
+        <Editor
+          {...{
+            ...defaultProps,
+            plugins: [<LinkPlugin data-testid={linkPluginButton} />],
+          }}
+        />
+      )
+      setAliases()
+
+      cy.get('@editor').click()
+      cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/', { text: 'Toptal' })
+
+      cy.get('@editor').type('{leftArrow}{leftArrow}')
+      cy.get('@linkPluginButton').realClick()
+      cy.getByRole('dialog').within(() => {
+        cy.contains('Edit link')
+        cy.get('#rte-link-text').should('have.value', 'Toptal')
+        cy.get('#rte-link-url').should('have.value', 'https://toptal.com/')
+      })
+      saveLink('https://toptal.com/careers', {
+        text: 'Careers',
+        openInNewTab: true,
+      })
+
+      cy.get('@resultContainer').contains(
+        `<p><a href="https://toptal.com/careers" target="_blank" rel="noopener noreferrer"><span>Careers</span></a></p>`
+      )
+
+      cy.get('@editor').type('{leftArrow}{leftArrow}')
+      cy.get('@linkPluginButton').realClick()
+      cy.getByRole('dialog').contains('button', 'Remove link').click()
+
+      cy.get('@resultContainer').contains(`<p>Careers</p>`)
     })
   })
 })

@@ -11,7 +11,7 @@ export const hastSanitizeSchema: Schema = {
     li: ['ol', 'ul'],
   },
   attributes: {
-    a: ['href'],
+    a: ['href', 'target', 'rel'],
     img: ['src', 'alt', 'data*', 'class'],
     '*': [],
   },

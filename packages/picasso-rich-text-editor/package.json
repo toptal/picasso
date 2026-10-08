@@ -42,6 +42,7 @@
     "@lexical/react": "0.11.3",
     "@toptal/picasso-container": "workspace:*",
     "@toptal/picasso-button": "workspace:*",
+    "@toptal/picasso-checkbox": "workspace:*",
     "@toptal/picasso-icons": "workspace:*",
     "@toptal/picasso-file-input": "workspace:*",
     "@toptal/picasso-image": "workspace:*",

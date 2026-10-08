@@ -4,6 +4,7 @@
   "include": ["src"],
   "references": [
     { "path": "../base/Button" },
+    { "path": "../base/Checkbox" },
     { "path": "../base/Container" },
     { "path": "../base/FileInput" },
     { "path": "../base/Form" },
