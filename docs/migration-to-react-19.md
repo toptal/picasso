@@ -581,10 +581,11 @@ react-transition-group.
   `HTMLElement | null`. If you read `onEnter`'s first argument as `isAppearing`,
   read the second one.
 - Fade's and Slide's own transition replaces a `transition-*` utility on the
-  child, so they always animate. A broad `transition` or `transition-all` on the
-  child stays. On Slide, a `translate-*` utility on the child along the slide
-  axis applies while the child is shown, and gives way to the slide's offset
-  while it's hidden.
+  child, so they animate. A broad `transition` or `transition-all` on the child
+  stays, and so does `transition-none`, which turns the animation off. On
+  Slide, a `translate-*` utility on the child along the slide axis applies
+  while the child is shown, and gives way to the slide's offset while it's
+  hidden.
 - Expect a few visual diffs on accordions and expandable content. Client
   Portal's two Happo diffs are still under review; the first suspect is the
   `RejectedTalents` accordion in `TalentsSection`, built on the rewritten

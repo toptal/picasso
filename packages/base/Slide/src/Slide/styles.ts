@@ -16,16 +16,23 @@ export const shownClassByDirection: Record<SlideDirection, string> = {
   down: 'translate-y-0',
 }
 
-// These animate translate along with the child's other transitions
-const BROAD_TRANSITIONS = ['transition', 'transition-all']
+// These animate translate along with the child's other transitions, or turn
+// transitions off on purpose
+const KEPT_CHILD_TRANSITIONS = [
+  'transition',
+  'transition-all',
+  'transition-none',
+]
 
 /**
  * Slide's transition utility, which goes after the child's className so the
  * slide replaces a `transition-*` utility of the child's, unless the child's
- * is a broad one that animates translate too. In Tailwind v4,
+ * animates translate too or turns transitions off. In Tailwind v4,
  * `transition-transform` also covers the standalone `translate` property
  */
 export const createTransitionClassName = (childClassName = '') =>
-  childClassName.split(/\s+/).some(name => BROAD_TRANSITIONS.includes(name))
+  childClassName
+    .split(/\s+/)
+    .some(name => KEPT_CHILD_TRANSITIONS.includes(name))
     ? undefined
     : 'transition-transform'
