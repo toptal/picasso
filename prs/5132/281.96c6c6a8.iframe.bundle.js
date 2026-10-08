@@ -1637,7 +1637,7 @@ function use_link_plugin_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var EMPTY_VALUES = {
   text: '',
   url: '',
-  openInNewTab: false
+  openInNewTab: true
 };
 var linkAttributes = function (openInNewTab) {
   return openInNewTab ? {
@@ -2641,4 +2641,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=281.ee9affb8.iframe.bundle.js.map
+//# sourceMappingURL=281.96c6c6a8.iframe.bundle.js.map

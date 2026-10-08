@@ -154752,7 +154752,7 @@ function use_link_plugin_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var EMPTY_VALUES = {
   text: '',
   url: '',
-  openInNewTab: false
+  openInNewTab: true
 };
 var linkAttributes = function (openInNewTab) {
   return openInNewTab ? {
@@ -159131,4 +159131,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.cf30cc37.iframe.bundle.js.map
+//# sourceMappingURL=main.6cd8bf85.iframe.bundle.js.map
