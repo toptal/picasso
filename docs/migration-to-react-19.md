@@ -967,7 +967,8 @@ Staff Portal's #16704 sets these as `overrides`:
    react-helmet-async 3 renders real elements for React to hoist, and
    `<HelmetProvider>` becomes a passthrough. `Page.Helmet` still merges titles:
    the innermost `title`, formatted with the innermost `titleTemplate`, or else
-   the innermost `defaultTitle`. So Client Portal's
+   the innermost `defaultTitle`. It sets the result after mount, so a server
+   render gets no `<title>` from it. Client Portal's
    `titleTemplate='%s | Toptal: Exclusive access to top talent'` in `BaseLayout`
    and `PreOnboardingLayout` still formats its pages'
    `<Page.Helmet title='Overview' />`. A `<Helmet>` rendered directly doesn't

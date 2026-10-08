@@ -26,7 +26,8 @@ const chapter = PicassoBook.connectToPage(page =>
         '`<HelmetProvider>` becomes a passthrough, the SSR `context` is not populated, and the ' +
         '`prioritizeSeoTags`, `helmetData` and `canUseDOM` props have no effect. `Page.Helmet` still merges ' +
         'titles: the innermost `title`, formatted with the innermost `titleTemplate`, or else the innermost ' +
-        '`defaultTitle`. Other duplicate tags stay, and a `<script>` without `async` does not run. ' +
+        '`defaultTitle`. It sets the merged title after mount, so a server render gets no `<title>` from it. ' +
+        'Other duplicate tags stay, and a `<script>` without `async` does not run. ' +
         'React 17 and 18 are unchanged.'
     )
     .addTextSection(
