@@ -64,8 +64,13 @@ const releaseHold = (form: FormApi, name: string, only?: Release) => {
 }
 
 // Ends a hold at commit, or after a render that never commits
-const keepUntilCommit = (form: FormApi, name: string, release: Release) => {
+const keepUntilCommit = (form: FormApi, name: string, unregister: Release) => {
   const pending = holds.get(form) ?? new Map<string, Release>()
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const release = () => {
+    clearTimeout(timer)
+    unregister()
+  }
 
   pending.set(name, release)
   holds.set(form, pending)
@@ -74,7 +79,10 @@ const keepUntilCommit = (form: FormApi, name: string, release: Release) => {
   // with it, and a microtask would end the hold in that gap, so the browser
   // keeps it until commit and this only ends one whose render never commits
   if (isBrowser()) {
-    setTimeout(() => releaseHold(form, name, release), UNCOMMITTED_HOLD_MS)
+    timer = setTimeout(
+      () => releaseHold(form, name, release),
+      UNCOMMITTED_HOLD_MS
+    )
 
     return
   }

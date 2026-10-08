@@ -213,6 +213,23 @@ describe('FinalField', () => {
       expect(formRef.current?.getRegisteredFields()).not.toContain('a')
     })
 
+    it('leaves no timer behind once the remounted field commits', () => {
+      jest.useFakeTimers()
+
+      try {
+        renderForm(
+          <Toggleable>
+            <HookInput />
+          </Toggleable>
+        )
+        editAndRemount()
+
+        expect(jest.getTimerCount()).toBe(0)
+      } finally {
+        jest.useRealTimers()
+      }
+    })
+
     // The server path, where a render can't yield, is in server.test.tsx
     it('leaves nothing registered once a render that never commits times out', async () => {
       jest.useFakeTimers()
