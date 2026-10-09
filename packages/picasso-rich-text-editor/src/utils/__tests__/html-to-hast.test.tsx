@@ -25,6 +25,29 @@ describe('html-to-hast', () => {
       })
     })
 
+    it('keeps the target and rel of links', () => {
+      const html =
+        '<p><a href="https://toptal.com" target="_blank" rel="noopener noreferrer" onclick="evil()">Toptal</a></p>'
+
+      expect(htmlToHast(html).children[0]).toEqual({
+        type: 'element',
+        tagName: 'p',
+        properties: {},
+        children: [
+          {
+            type: 'element',
+            tagName: 'a',
+            properties: {
+              href: 'https://toptal.com',
+              target: '_blank',
+              rel: ['noopener', 'noreferrer'],
+            },
+            children: [{ type: 'text', value: 'Toptal' }],
+          },
+        ],
+      })
+    })
+
     it('strips script tags', () => {
       const html = `
         <script>alert(2)</script>

@@ -3771,6 +3771,9 @@ importers:
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../base/Button
+      '@toptal/picasso-checkbox':
+        specifier: workspace:*
+        version: link:../base/Checkbox
       '@toptal/picasso-container':
         specifier: workspace:*
         version: link:../base/Container

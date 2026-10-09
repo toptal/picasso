@@ -1,5 +1,9 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { noop } from '@toptal/picasso-utils'
+
+// Plugin dialogs render in a portal outside the editor, but moving focus into
+// one is still part of editing, so it must not blur the editor
+export const INTERNAL_DIALOG_ATTRIBUTE = 'data-rte-dialog'
 
 export type Props = {
   internalRefs?: React.RefObject<HTMLDivElement>[]
@@ -13,29 +17,59 @@ type Result = {
   handleBlur: (e: React.FocusEvent<HTMLDivElement>) => void
 }
 
+const isDialogElement = (element: Element) =>
+  Boolean(element.closest(`[${INTERNAL_DIALOG_ATTRIBUTE}]`)) ||
+  // Base UI puts the dialog's focus guards beside it, not inside it
+  (element.hasAttribute('data-base-ui-focus-guard') &&
+    Boolean(
+      element.parentElement?.querySelector(
+        `:scope > [${INTERNAL_DIALOG_ATTRIBUTE}]`
+      )
+    ))
+
+const isInternalElement = (
+  e: React.FocusEvent<HTMLDivElement>,
+  internalRefs: React.RefObject<HTMLDivElement>[]
+) => {
+  const focusElement = e.relatedTarget as Node | null
+
+  if (!focusElement) {
+    return false
+  }
+
+  return (
+    Boolean(e.currentTarget?.contains(focusElement)) ||
+    internalRefs.some(ref => ref.current?.contains(focusElement)) ||
+    (focusElement instanceof Element && isDialogElement(focusElement))
+  )
+}
+
 const useOnFocus = ({
   onFocus = noop,
   onBlur = noop,
   internalRefs = [],
 }: Props): Result => {
   const [focused, setFocused] = useState(false)
+  // Focus coming back from the toolbar or a dialog is not a new focus
+  const focusedRef = useRef(false)
 
   const handleFocus = useCallback(() => {
+    if (focusedRef.current) {
+      return
+    }
+
+    focusedRef.current = true
     setFocused(true)
     onFocus()
   }, [onFocus])
 
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLDivElement>) => {
-      const focusElement = e.relatedTarget as Node
-      const isInternalElement = internalRefs.some(
-        ref => ref.current && ref.current.contains(focusElement)
-      )
-
-      if (isInternalElement) {
+      if (isInternalElement(e, internalRefs)) {
         return
       }
 
+      focusedRef.current = false
       setFocused(false)
       onBlur()
     },
