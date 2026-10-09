@@ -130,7 +130,7 @@ const BarChart = <T extends string>({
   maxBarSize,
   valueAxisTickFormatter,
   ...rest
-}: Props<T>) => {
+}: Props<T>): React.ReactElement => {
   const horizontal = layout === 'horizontal'
   const dataKeys = Object.keys(data[0].value) as T[]
 

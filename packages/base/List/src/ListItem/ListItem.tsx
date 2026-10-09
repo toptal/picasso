@@ -31,7 +31,7 @@ export type Props = BaseProps & {
   isLastElement?: boolean
 }
 
-export const ListItem = (props: Props) => {
+export const ListItem = (props: Props): React.ReactElement => {
   const { styleType: parentType } = useListContext()
   const { children, type, 'data-testid': testId } = props
 

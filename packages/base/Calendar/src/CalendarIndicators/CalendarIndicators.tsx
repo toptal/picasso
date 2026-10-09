@@ -11,7 +11,7 @@ export const CalendarIndicators = ({
   isIndicated,
   isSelected,
   isToday,
-}: Props) => {
+}: Props): React.ReactElement | null => {
   if (isToday || isIndicated) {
     return (
       <div className='flex flex-row	justify-around w-[1.3em] absolute bottom-[0.375rem]'>

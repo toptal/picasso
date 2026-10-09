@@ -34,6 +34,7 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
       canOpen: true,
       open: jest.fn(),
       close: jest.fn(),
+      getIsOpen: jest.fn(() => false),
       highlightedIndex: 0,
       closeOnEnter: true,
       setHighlightedIndex: jest.fn(),

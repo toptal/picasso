@@ -37,7 +37,8 @@
     "packages/picasso-forms/src/FormState/test.tsx",
     "packages/picasso-forms/src/FormListeners/test.tsx",
     "packages/picasso-forms/src/FieldArray/test.tsx",
-    "packages/picasso-forms/src/FinalField/test.tsx"
+    "packages/picasso-forms/src/FinalField/test.tsx",
+    "packages/picasso-forms/src/FinalField/checked-from-format.test.tsx"
   ],
   "include": ["packages/*/src", "packages/base/*/src"],
   "exclude": [

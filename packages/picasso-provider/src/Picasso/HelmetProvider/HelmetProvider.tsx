@@ -9,7 +9,7 @@ interface Props {
   disabled?: boolean
 }
 
-const HelmetProvider = ({ children, disabled }: Props) => {
+const HelmetProvider = ({ children, disabled }: Props): React.ReactElement => {
   return disabled ? (
     <>{children}</>
   ) : (

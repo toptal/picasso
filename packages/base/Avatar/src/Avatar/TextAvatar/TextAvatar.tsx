@@ -24,7 +24,7 @@ const TextAvatar = ({
   fontSize,
   size = 'large',
   'data-private': dataPrivate,
-}: Props) => (
+}: Props): React.ReactElement => (
   <div
     className={twMerge('uppercase', containerTextClassBySize[size], className)}
     style={style}

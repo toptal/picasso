@@ -11,7 +11,7 @@ export type Props = AutocompleteProps &
   FieldProps<AutocompleteProps['value']> &
   FieldLabelProps
 
-export const Autocomplete = (props: Props) => {
+export const Autocomplete = (props: Props): React.ReactElement => {
   const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (

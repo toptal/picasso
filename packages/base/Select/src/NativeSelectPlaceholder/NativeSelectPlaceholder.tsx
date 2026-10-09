@@ -11,7 +11,7 @@ const NativeSelectPlaceholder = ({
   emptySelectValue,
   disabled,
   children,
-}: Props) => (
+}: Props): React.ReactElement => (
   <option disabled={disabled} value={emptySelectValue}>
     {children}
   </option>

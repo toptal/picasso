@@ -18,8 +18,7 @@ describe('useClickHandler', () => {
   it('closes when open', () => {
     const props = getUseSelectPropsMock()
 
-    props.selectState.canOpen = false
-    props.selectState.isOpen = true
+    props.selectState.getIsOpen = jest.fn(() => true)
     const { result } = renderHook(() => useClickHandler(props))
 
     result.current()
@@ -27,17 +26,31 @@ describe('useClickHandler', () => {
     expect(props.selectState.close).toHaveBeenCalledTimes(1)
   })
 
-  it("does nothing when can't be open and not open", () => {
+  it('does nothing when disabled and closed', () => {
     const props = getUseSelectPropsMock()
 
-    props.selectState.canOpen = false
-    props.selectState.isOpen = false
+    props.selectProps.disabled = true
     const { result } = renderHook(() => useClickHandler(props))
 
     result.current()
 
     expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(0)
     expect(props.selectState.open).toHaveBeenCalledTimes(0)
+  })
+
+  it('reopens when a blur in the same task closed the popup after the last render', () => {
+    const props = getUseSelectPropsMock()
+
+    // Open as of the last render, closed since
+    props.selectState.isOpen = true
+    props.selectState.canOpen = false
+    props.selectState.getIsOpen = jest.fn(() => false)
+    const { result } = renderHook(() => useClickHandler(props))
+
+    result.current()
+
+    expect(props.selectState.open).toHaveBeenCalledTimes(1)
+    expect(props.selectState.close).toHaveBeenCalledTimes(0)
   })
 
   describe('when the click is synthesized by an associated label activation', () => {

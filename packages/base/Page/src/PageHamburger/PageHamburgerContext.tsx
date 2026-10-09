@@ -30,7 +30,7 @@ interface Props {
 export const PageHamburgerContextProvider = ({
   children,
   hamburgerId,
-}: Props) => {
+}: Props): React.ReactElement => {
   const [hasPageHamburger, setHasPageHamburger] = useState(false)
   const hamburgerRef = useRef<HTMLDivElement>(null)
 

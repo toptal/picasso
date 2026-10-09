@@ -1,5 +1,6 @@
 import type { MouseEvent, ElementType, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type {
   BaseProps,
@@ -30,7 +31,7 @@ const getIcon = ({
     iconPosition: children && iconPosition ? iconPosition : undefined,
   })
 
-  return React.cloneElement(icon, {
+  return cloneElementUnlessFragment(icon, {
     className: cx(iconClassNames, icon.props.className),
   })
 }

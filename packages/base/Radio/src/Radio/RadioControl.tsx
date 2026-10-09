@@ -45,7 +45,9 @@ export const RadioControl = forwardRef<HTMLSpanElement, Props>(
       setFocused(false)
     }
 
-    const inputValue = typeof value === 'boolean' ? String(value) : value
+    // Without a `value`, React 18 writes `value=""` and React 19 writes none,
+    // which makes the browser report its `"on"` default: keep React 18's
+    const inputValue = typeof value === 'boolean' ? String(value) : value ?? ''
 
     return (
       <span

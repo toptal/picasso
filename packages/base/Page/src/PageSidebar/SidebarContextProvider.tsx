@@ -27,7 +27,7 @@ export const SidebarContextProvider = ({
   expandedItemKey,
   setExpandedItemKey,
   isHovered,
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <SidebarContext.Provider
       value={{

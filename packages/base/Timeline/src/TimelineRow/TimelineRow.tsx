@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import React from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import type { BaseProps, IconElement } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
@@ -30,7 +31,7 @@ const TimelineRow = ({
   hasConnector = true,
   'data-testid': dataTestId,
   testIds = {},
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Container
       data-testid={dataTestId}
@@ -45,7 +46,7 @@ const TimelineRow = ({
           className='h-full'
         >
           {typeof icon !== 'undefined' ? (
-            React.cloneElement(icon, {
+            cloneElementUnlessFragment(icon, {
               className: twMerge(
                 'my-1 mx-0 text-gray-600',
                 icon.props.className

@@ -12,13 +12,17 @@ import {
 } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
+import { createTransitionClassName } from './styles'
+
 export interface Props extends TransitionProps, BaseProps {
   /** Element that accepts ref */
   children: TransitionChild
   /** Show the component; toggling runs the enter or exit transition */
   in: boolean
-  /** Callback fired when the enter transition starts */
-  onEnter?: (node: HTMLElement, isAppearing: boolean) => void
+  /** Callback fired when the enter transition starts, with `null` for a child that takes no ref */
+  onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
+  /** Callback fired when the exit transition settles, with `null` for a child that takes no ref */
+  onExited?: (node: HTMLElement | null) => void
 }
 
 const DEFAULT_TIMEOUT = 300
@@ -48,10 +52,9 @@ export const Fade = React.forwardRef<HTMLDivElement, Props>(function Fade(
 
   return React.cloneElement(children, {
     className: twMerge(
-      'transition-opacity',
       children.props.className,
       // behavior classes, not defaults — must stay after the child's className
-      cx({
+      cx(createTransitionClassName(children.props.className), {
         'opacity-0': !inProp,
         invisible: status === 'exited' && !inProp,
       })

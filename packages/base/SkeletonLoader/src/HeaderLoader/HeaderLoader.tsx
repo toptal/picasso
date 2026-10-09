@@ -14,7 +14,11 @@ export interface Props extends BaseProps {
   uniqueKey?: string
 }
 
-export const HeaderLoader = ({ className, style, uniqueKey }: Props) => {
+export const HeaderLoader = ({
+  className,
+  style,
+  uniqueKey,
+}: Props): React.ReactElement => {
   return (
     <ContentLoader
       className={className}

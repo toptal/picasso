@@ -9,7 +9,10 @@ import type {
   TextLabelProps,
   IconElement,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import {
+  cloneElementUnlessFragment,
+  useTitleCase,
+} from '@toptal/picasso-shared'
 import { Button as BaseUIButton } from '@base-ui/react/button'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
@@ -57,7 +60,7 @@ const getIcon = ({ icon }: { icon?: IconElement }) => {
     return undefined
   }
 
-  return React.cloneElement(icon, {
+  return cloneElementUnlessFragment(icon, {
     className: twMerge('text-[1.2em] flex-1', icon.props.className),
     key: 'button-icon',
   })

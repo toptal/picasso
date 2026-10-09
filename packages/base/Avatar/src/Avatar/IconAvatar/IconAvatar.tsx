@@ -16,7 +16,7 @@ const IconAvatar = ({
   'data-testid': dataTestId,
   className,
   style,
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Profile16
       className={twMerge(classBySize[size], className)}

@@ -28,7 +28,7 @@ const breakpointKeyByRange: Record<BreakpointKeys, BreakpointKeys> = {
 
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
-) => {
+): React.ReactElement => {
   const {
     children,
     RootComponent,

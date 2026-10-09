@@ -150,6 +150,8 @@ export type UseSelectStateOutput = {
   canOpen: boolean
   open: () => void
   close: () => void
+  /** The open state `open` and `close` last set, before a re-render shows it */
+  getIsOpen: () => boolean
   highlightedIndex: number
   closeOnEnter: boolean
   setHighlightedIndex: (index: number) => void

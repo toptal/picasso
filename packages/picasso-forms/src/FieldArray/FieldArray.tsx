@@ -16,10 +16,15 @@ const TypedFinalFormFieldArray = FinalFormFieldArray as <FieldValue>(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const FieldArray = <FieldValue = any,>(
   props: FieldArrayProps<FieldValue>
-) => {
+): React.ReactElement => {
   useKeptFieldState(
     props.name,
-    { isEqual: props.isEqual ?? defaultIsEqual },
+    {
+      isEqual: props.isEqual ?? defaultIsEqual,
+      initialValue: props.initialValue,
+      defaultValue: props.defaultValue,
+      seedsFirstRender: true,
+    },
     'useFieldArray'
   )
 

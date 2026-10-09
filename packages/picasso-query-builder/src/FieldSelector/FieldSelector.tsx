@@ -10,7 +10,7 @@ export const FieldSelector = ({
   context: { resetSubmitButtonClicked, getDisabledFields, testIds },
   disabled,
   ...props
-}: ComponentProps<typeof Select>) => {
+}: ComponentProps<typeof Select>): React.ReactElement => {
   // TODO: https://toptal-core.atlassian.net/browse/CPT-947
   const disabledFields = getDisabledFields()
 

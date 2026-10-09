@@ -16,7 +16,7 @@ export const RunQueryButton = ({
   onClick,
   children = 'Run Query',
   runQueryTestId,
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Button
       className='self-end'

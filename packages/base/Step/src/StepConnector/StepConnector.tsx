@@ -3,7 +3,7 @@ import { ChevronRight16 as ChevronRightIcon } from '@toptal/picasso-icons'
 
 export type Props = { direction: 'vertical' | 'horizontal' }
 
-export const StepConnector = ({ direction }: Props) => {
+export const StepConnector = ({ direction }: Props): React.ReactElement => {
   if (direction === 'vertical') {
     return <div className='h-4' />
   }

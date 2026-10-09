@@ -30,7 +30,7 @@ const getChangedProps = (previous: Props, next: Props) => {
  * first commit and fed changed props through `update` after that; an effect
  * replay (StrictMode, Fast Refresh) finds it already constructed.
  */
-const EmojiMartPicker = (props: Props) => {
+const EmojiMartPicker = (props: Props): React.ReactElement => {
   const containerRef = useRef<HTMLDivElement>(null)
   const pickerRef = useRef<Picker | null>(null)
   const pushedPropsRef = useRef(props)

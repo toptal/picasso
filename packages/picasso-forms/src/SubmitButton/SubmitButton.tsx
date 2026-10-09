@@ -32,7 +32,7 @@ export const SubmitButton = ({
   buttonType = 'rectangular',
   variant,
   ...restOfProps
-}: Props) => {
+}: Props): React.ReactElement => {
   /* eslint-disable react/jsx-props-no-spreading */
   const { submitting } = useFormState({ subscription: { submitting: true } })
 

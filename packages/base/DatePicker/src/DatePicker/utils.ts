@@ -24,10 +24,14 @@ export const timezoneConvert = (
     if (timeZone) {
       /**
        * Prevent invalid IANA timezone error. This is likely to happen
-       * when someone is editing properties in a Storybook examples.
+       * when someone is editing properties in a Storybook examples, or with
+       * a zone the browser does not know yet. `toZonedTime` returns an
+       * Invalid Date for one instead of throwing, which `format` throws on.
        */
       try {
-        return toZonedTime(dateToConvert, timeZone)
+        const zonedDate = toZonedTime(dateToConvert, timeZone)
+
+        return isValid(zonedDate) ? zonedDate : dateToConvert
       } catch {
         return dateToConvert
       }

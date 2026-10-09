@@ -19,7 +19,7 @@ const SliderMark = ({
   'data-index': dataIndex,
   style,
   forceInactive,
-}: SliderMarkProps) => {
+}: SliderMarkProps): React.ReactElement => {
   return (
     <span
       data-index={dataIndex}

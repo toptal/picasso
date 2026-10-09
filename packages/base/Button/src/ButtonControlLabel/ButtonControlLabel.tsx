@@ -48,7 +48,7 @@ const ButtonControlLabel = ({
   value,
   disabled,
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const contentLeftSpacing = size === 'large' ? 1 : 0.5
 
   return (

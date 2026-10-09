@@ -29,7 +29,7 @@ export interface ListContextProviderProps {
 export const ListContextProvider = ({
   children,
   styleType,
-}: ListContextProviderProps) => {
+}: ListContextProviderProps): React.ReactElement => {
   const { level } = useListContext()
 
   return (

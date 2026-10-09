@@ -9,7 +9,7 @@ export const RemoveGroupButton = ({
   disabled,
   context: { removeGroup, testIds } = {},
   path,
-}: ActionWithRulesProps) => {
+}: ActionWithRulesProps): React.ReactElement => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (

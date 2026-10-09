@@ -66,7 +66,7 @@ const Field = <
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
   props: Props<TWrappedComponentProps, TInputValue>
-) => {
+): React.ReactElement => {
   const {
     type,
     hint,
@@ -134,20 +134,11 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
-  // react-final-form 7.0.1 derives `checked` from `parse(value)`, so a
-  // string-boolean `format`/`parse` pair renders a stored `'false'` checked.
-  // Restore 6.x's `format(value)` for a standalone checkbox; groups keep
-  // upstream's.
-  // TODO: [PF-2522] drop when upstream derives it from `format` again
-  const shouldDeriveCheckedFromFormat =
-    type === 'checkbox' && value === undefined && format !== undefined
-
   const childProps: Record<string, unknown> = {
     id,
     status,
     ...rest,
     ...input,
-    ...(shouldDeriveCheckedFromFormat ? { checked: Boolean(input.value) } : {}),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       if (isFirefox && event?.target) {

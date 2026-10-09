@@ -47,7 +47,7 @@ export const RichTextEditorEmojiPicker = ({
   customEmojis,
   onInsertEmoji,
   disabled,
-}: Props) => {
+}: Props): React.ReactElement => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   // kept after the first open, so closing only hides emoji-mart
   const [pickerMounted, setPickerMounted] = useState(false)

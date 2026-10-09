@@ -11,7 +11,10 @@ import type {
   TextLabelProps,
   IconElement,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import {
+  cloneElementUnlessFragment,
+  useTitleCase,
+} from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
@@ -64,7 +67,7 @@ const cloneIcon = (icon: ReactNode, disabled?: boolean) => {
     return null
   }
 
-  return React.cloneElement(icon, {
+  return cloneElementUnlessFragment(icon, {
     color: disabled ? 'grey' : icon.props.color || 'darkGrey',
     className: twMerge('flex items-center -mr-1 ml-3', icon.props.className),
   })

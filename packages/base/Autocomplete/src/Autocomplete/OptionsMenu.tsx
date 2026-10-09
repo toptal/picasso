@@ -55,7 +55,7 @@ const OptionsMenu = ({
   shouldShowOtherOption,
   highlightedIndex,
   testIds,
-}: OptionsMenuProps) => {
+}: OptionsMenuProps): React.ReactElement | null => {
   const getKey = (item: Item) => {
     if (customGetKey) {
       return customGetKey(item)

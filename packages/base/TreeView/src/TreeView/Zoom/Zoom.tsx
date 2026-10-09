@@ -6,7 +6,10 @@ export interface Props {
   scaleCoefficient: number
 }
 
-export const Zoom = ({ handleZoom, scaleCoefficient }: Props) => {
+export const Zoom = ({
+  handleZoom,
+  scaleCoefficient,
+}: Props): React.ReactElement => {
   return (
     <Container>
       <Button size='small' onClick={() => handleZoom(1 - scaleCoefficient)}>

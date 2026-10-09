@@ -20,7 +20,7 @@ export const CategoriesChart = ({
   labels,
   tooltips,
   ...restProps
-}: Props) => {
+}: Props): React.ReactElement => {
   const chartData = useMemo(() => formatData(data, labels), [data, labels])
 
   const getBarLabelColor = ({

@@ -7,7 +7,7 @@ interface FieldRendererProps extends PasswordInputProps {
   onShowContent: () => void
   onHideContent: () => void
 }
-const FieldRenderer = (props: FieldRendererProps) => {
+const FieldRenderer = (props: FieldRendererProps): React.ReactElement => {
   const { onFocus, onBlur, onShowContent, onHideContent, ...rest } = props
 
   const handleFocus = useCallback(

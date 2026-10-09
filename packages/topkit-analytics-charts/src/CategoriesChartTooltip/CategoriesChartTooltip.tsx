@@ -22,7 +22,7 @@ const CategoriesChartTooltip = ({
   tooltips,
   originalData,
   testIds,
-}: Props) => {
+}: Props): React.ReactElement | null => {
   if (active && payload && payload.length > 0) {
     const currentData = originalData.find(
       ({ id: dataId }) => dataId === payload[0].payload.name

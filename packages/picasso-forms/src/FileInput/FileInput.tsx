@@ -16,7 +16,7 @@ export type Props = FileInputProps &
   FieldProps<FileInputProps['value']> &
   FieldLabelProps
 
-export const FileInput = (props: Props) => {
+export const FileInput = (props: Props): React.ReactElement => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     value: FileUpload[] | undefined = [],

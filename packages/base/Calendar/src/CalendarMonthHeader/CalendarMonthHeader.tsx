@@ -22,7 +22,9 @@ export type RenderMonthHeader = (
   args: RenderMonthHeaderProps
 ) => React.ReactElement | null
 
-const CalendarMonthHeader = (props: RenderMonthHeaderProps) => {
+const CalendarMonthHeader = (
+  props: RenderMonthHeaderProps
+): React.ReactElement => {
   const {
     formatters: { formatCaption },
     locale,

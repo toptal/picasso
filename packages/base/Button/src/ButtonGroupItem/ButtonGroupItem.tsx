@@ -17,7 +17,7 @@ const ButtonGroupItem = ({
   hovered,
   className,
   ...rest
-}: Props) => {
+}: Props): React.ReactElement => {
   const finalClassName = twMerge(
     createButtonGroupItemClassNames({ active, disabled, focused, hovered }),
     createGroupVariantClassNames({ active, disabled, hovered }),

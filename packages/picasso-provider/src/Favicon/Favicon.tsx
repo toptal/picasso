@@ -15,7 +15,7 @@ export interface Props {
 
 type Icons = Awaited<ReturnType<typeof getIcons>>
 
-export const Favicon = ({ environment }: Props) => {
+export const Favicon = ({ environment }: Props): React.ReactElement | null => {
   const [icons, setIcons] = useSafeState<Icons | null>(null)
 
   const { environment: configEnvironment } = useAppConfig()

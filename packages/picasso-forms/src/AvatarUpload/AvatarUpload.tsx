@@ -19,7 +19,7 @@ type FinalFormOnChangeType = FinalFieldInputProps<
   AvatarUploadProps['value']
 >['onChange']
 
-const AvatarUpload = (props: Props) => {
+const AvatarUpload = (props: Props): React.ReactElement => {
   const {
     label,
     labelEndAdornment,

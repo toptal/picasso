@@ -43,7 +43,11 @@ type Props = {
   }
 }
 
-const LexicalEditorToolbarPlugin = ({ toolbarRef, testIds, id }: Props) => {
+const LexicalEditorToolbarPlugin = ({
+  toolbarRef,
+  testIds,
+  id,
+}: Props): React.ReactElement => {
   const [editor] = useLexicalComposerContext()
   const { setDisabledFormatting } = useRTEPluginContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(

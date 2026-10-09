@@ -156,7 +156,7 @@ const NonNativeSelectOptions = ({
   fixedHeader,
   fixedFooter,
   testIds,
-}: Props) => {
+}: Props): React.ReactElement => {
   const flatOptions: Option[] = useMemo(
     () => flattenOptions(options),
     [options]

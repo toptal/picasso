@@ -57,7 +57,7 @@ export const NumberInputEndAdornment = ({
   disabled = false,
   size = 'medium',
   inputRef,
-}: Props) => {
+}: Props): React.ReactElement => {
   const normalizedStep = Number(step)
   const normalizedValue = Number(value)
   const normalizedMin = Number(min)

@@ -20,7 +20,10 @@ export interface Props
 
 const HORIZONTAL_SPACING = fromPx(spacingToPx(SPACING_4)) as GridSpacing
 
-const CheckboxGroup = ({ horizontal = false, ...props }: Props) => {
+const CheckboxGroup = ({
+  horizontal = false,
+  ...props
+}: Props): React.ReactElement => {
   const { spacing, xs, sm, md, lg, xl, className, ...rest } = props
 
   const direction = horizontal ? 'row' : 'column'

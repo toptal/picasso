@@ -8,7 +8,7 @@ export const AddRuleButton = ({
   className,
   disabled,
   context: { resetSubmitButtonClicked, testIds },
-}: ActionWithRulesProps) => {
+}: ActionWithRulesProps): React.ReactElement => {
   return (
     <Button
       disabled={disabled}

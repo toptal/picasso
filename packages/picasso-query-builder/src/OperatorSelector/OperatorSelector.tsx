@@ -7,7 +7,7 @@ import type { Field } from '../types/query-builder'
 export const OperatorSelector = ({
   fieldData,
   ...rest
-}: OperatorSelectorProps) => {
+}: OperatorSelectorProps): React.ReactElement | null => {
   if (
     fieldData.hideOperator ||
     (fieldData as Field).valueEditorType === 'range'

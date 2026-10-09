@@ -6,7 +6,10 @@ import { ScrollMenu } from '../ScrollMenu'
 
 export interface Props extends ScrollMenuProps {}
 
-const SelectOptions = ({ role = 'menu', ...props }: Props) => {
+const SelectOptions = ({
+  role = 'menu',
+  ...props
+}: Props): React.ReactElement => {
   const {
     selectedIndex,
     onBlur,

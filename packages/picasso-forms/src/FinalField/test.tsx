@@ -213,32 +213,62 @@ describe('FinalField', () => {
       expect(formRef.current?.getRegisteredFields()).not.toContain('a')
     })
 
-    it('leaves nothing registered after a server render', async () => {
-      // jsdom's `window` makes the claim pick a layout effect, which React
-      // warns about on the server
+    it('leaves no timer behind once the remounted field commits', () => {
+      jest.useFakeTimers()
+
+      try {
+        renderForm(
+          <Toggleable>
+            <HookInput />
+          </Toggleable>
+        )
+        editAndRemount()
+
+        expect(jest.getTimerCount()).toBe(0)
+      } finally {
+        jest.useRealTimers()
+      }
+    })
+
+    // The server path, where a render can't yield, is in server.test.tsx
+    it('leaves nothing registered once a render that never commits times out', async () => {
+      jest.useFakeTimers()
+
+      // `renderToString` renders without committing. jsdom's `window` makes
+      // the claim pick a layout effect, which React warns about there
       const consoleError = jest
         .spyOn(console, 'error')
         .mockImplementation(() => {})
-      const form = createForm<{ a: string }>({
-        onSubmit: jest.fn(),
-        initialValues: { a: 'x' },
-      })
 
-      form.change('a', 'y')
+      try {
+        const form = createForm<{ a: string }>({
+          onSubmit: jest.fn(),
+          initialValues: { a: 'x' },
+        })
 
-      const html = renderToString(
-        <FinalForm
-          form={form}
-          onSubmit={jest.fn()}
-          render={() => <HookInput />}
-        />
-      )
+        form.change('a', 'y')
 
-      await Promise.resolve()
-      consoleError.mockRestore()
+        const html = renderToString(
+          <FinalForm
+            form={form}
+            onSubmit={jest.fn()}
+            render={() => <HookInput />}
+          />
+        )
 
-      expect(html).toContain('<output>y</output>')
-      expect(form.getRegisteredFields()).not.toContain('a')
+        await Promise.resolve()
+
+        expect(html).toContain('<output>y</output>')
+        // A yielding render could still be rendering, so the hold outlasts it
+        expect(form.getRegisteredFields()).toContain('a')
+
+        jest.runOnlyPendingTimers()
+
+        expect(form.getRegisteredFields()).not.toContain('a')
+      } finally {
+        consoleError.mockRestore()
+        jest.useRealTimers()
+      }
     })
   })
 })

@@ -122,7 +122,7 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
     return true
   }
 
-  decorate() {
+  decorate(): React.ReactElement {
     return <Image src={this.src} alt={this.alt ?? ''} />
   }
 }

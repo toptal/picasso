@@ -44,7 +44,7 @@ const SliderValueLabel = ({
   onRender,
   yPlacement,
   isOverlaped,
-}: SliderValueLabelProps) => {
+}: SliderValueLabelProps): React.ReactElement => {
   const ref = useRef<HTMLSpanElement>(null)
 
   // we need to change the placement of the label if it is overlaped

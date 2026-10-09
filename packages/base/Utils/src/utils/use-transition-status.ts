@@ -40,20 +40,12 @@ export interface UseTransitionStatusOptions<T extends HTMLElement> {
   appear?: boolean
   /** Resolve to `unmounted` once fully exited, so the caller can render nothing */
   unmountOnExit?: boolean
-  /** The transitioning DOM element, passed to the lifecycle callbacks */
+  /** The transitioning DOM element, passed to the lifecycle callbacks; `null` while nothing takes the ref */
   nodeRef: RefObject<T | null>
   /** Fired when the enter phase starts */
-  onEnter?: (node: T, isAppearing: boolean) => void
-  /** Fired right after `onEnter`, as the enter phase starts */
-  onEntering?: (node: T, isAppearing: boolean) => void
-  /** Fired when the enter transition settles */
-  onEntered?: (node: T, isAppearing: boolean) => void
-  /** Fired when the exit phase starts */
-  onExit?: (node: T) => void
-  /** Fired right after `onExit`, as the exit phase starts */
-  onExiting?: (node: T) => void
+  onEnter?: (node: T | null, isAppearing: boolean) => void
   /** Fired when the exit transition settles */
-  onExited?: (node: T) => void
+  onExited?: (node: T | null) => void
 }
 
 export interface UseTransitionStatusResult {
@@ -73,6 +65,17 @@ type PendingSettle =
   | { phase: 'enter'; isAppearing: boolean }
   | { phase: 'exit' }
 
+const getSettleDelay = (
+  pending: PendingSettle,
+  timeouts: ReturnType<typeof getTransitionTimeouts>
+) => {
+  if (pending.phase === 'exit') {
+    return timeouts.exit
+  }
+
+  return pending.isAppearing ? timeouts.appear : timeouts.enter
+}
+
 /**
  * Drop-in replacement for react-transition-group's `<Transition>` state
  * machine. Settles on `setTimeout(timeout)` — not `transitionend` — so
@@ -84,12 +87,15 @@ const useTransitionStatus = <T extends HTMLElement>(
   options: UseTransitionStatusOptions<T>
 ): UseTransitionStatusResult => {
   const {
-    in: inProp,
+    in: inOption,
     appear = false,
     unmountOnExit = false,
     nodeRef,
     timeout,
   } = options
+  // By its truthiness, as react-transition-group read it: an `undefined` that
+  // becomes `false` starts no exit
+  const inProp = Boolean(inOption)
 
   const [{ status, isAppearing }, setTransition] = useState<TransitionState>(
     () => {
@@ -129,32 +135,20 @@ const useTransitionStatus = <T extends HTMLElement>(
 
     const timeouts = getTransitionTimeouts(optionsRef.current.timeout)
 
-    const scheduleEnterSettle = (appearing: boolean) =>
-      setTimeout(
-        () => {
-          pendingSettleRef.current = null
-          setTransition(previous => ({ ...previous, status: 'entered' }))
-
-          const settledNode = nodeRef.current
-
-          if (settledNode) {
-            optionsRef.current.onEntered?.(settledNode, appearing)
-          }
-        },
-        appearing ? timeouts.appear : timeouts.enter
-      )
-
-    const scheduleExitSettle = () =>
+    const scheduleSettle = (pending: PendingSettle) =>
       setTimeout(() => {
         pendingSettleRef.current = null
-        setTransition(previous => ({ ...previous, status: 'exited' }))
 
-        const settledNode = nodeRef.current
+        if (pending.phase === 'enter') {
+          setTransition(previous => ({ ...previous, status: 'entered' }))
 
-        if (settledNode) {
-          optionsRef.current.onExited?.(settledNode)
+          return
         }
-      }, timeouts.exit)
+
+        setTransition(previous => ({ ...previous, status: 'exited' }))
+        // Also without a node, as react-transition-group called it
+        optionsRef.current.onExited?.(nodeRef.current)
+      }, getSettleDelay(pending, timeouts))
 
     // Effect replay without an `in` flip (StrictMode double invocation): never
     // re-fire the start callbacks, but reschedule a settle the replay's
@@ -168,10 +162,7 @@ const useTransitionStatus = <T extends HTMLElement>(
         return
       }
 
-      const timer =
-        pending.phase === 'enter'
-          ? scheduleEnterSettle(pending.isAppearing)
-          : scheduleExitSettle()
+      const timer = scheduleSettle(pending)
 
       return () => clearTimeout(timer)
     }
@@ -183,41 +174,25 @@ const useTransitionStatus = <T extends HTMLElement>(
 
     const node = nodeRef.current
 
-    const performEnter = () => {
-      const appearing = isInitialMount
+    const startEnter = (): PendingSettle => {
+      optionsRef.current.onEnter?.(node, isInitialMount)
 
-      if (node) {
-        optionsRef.current.onEnter?.(node, appearing)
-      }
+      setTransition({ status: 'entering', isAppearing: isInitialMount })
 
-      setTransition({ status: 'entering', isAppearing: appearing })
-
-      if (node) {
-        optionsRef.current.onEntering?.(node, appearing)
-      }
-
-      pendingSettleRef.current = { phase: 'enter', isAppearing: appearing }
-
-      return scheduleEnterSettle(appearing)
+      return { phase: 'enter', isAppearing: isInitialMount }
     }
 
-    const performExit = () => {
-      if (node) {
-        optionsRef.current.onExit?.(node)
-      }
-
+    const startExit = (): PendingSettle => {
       setTransition({ status: 'exiting', isAppearing: false })
 
-      if (node) {
-        optionsRef.current.onExiting?.(node)
-      }
-
-      pendingSettleRef.current = { phase: 'exit' }
-
-      return scheduleExitSettle()
+      return { phase: 'exit' }
     }
 
-    const timer = inProp ? performEnter() : performExit()
+    const pending = inProp ? startEnter() : startExit()
+
+    pendingSettleRef.current = pending
+
+    const timer = scheduleSettle(pending)
 
     return () => clearTimeout(timer)
     // eslint-disable-next-line react-hooks/exhaustive-deps -- transitions are keyed on `in` alone; the other options are read from optionsRef

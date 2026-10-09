@@ -17,7 +17,7 @@ const FieldWrapper = <
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
   props: Props<TWrappedComponentProps, TInputValue>
-) => {
+): React.ReactElement => {
   const { label, labelEndAdornment, name, titleCase, children, ...rest } = props
 
   return (

@@ -42,7 +42,7 @@ export const PasswordInput = ({
   validate,
   hideRequirements,
   ...rest
-}: Props) => {
+}: Props): React.ReactElement => {
   const [focused, setFocused] = useState(false)
   const [showRequirements, setShowRequirements] = useState(false)
 

@@ -109,7 +109,7 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
 export const MediaSkeletonLoader = ({
   variant = 'avatar',
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const { className, style, uniqueKey } = props
   const { width, height, borderRadius } = useMemo(
     () => getAttributes({ variant, ...props } as Props),
