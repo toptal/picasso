@@ -40,7 +40,10 @@ export interface Props
 
 const VALID_TIME_REGEX = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
 
-export const TimePicker = ({ status = 'default', ...props }: Props) => {
+export const TimePicker = ({
+  status = 'default',
+  ...props
+}: Props): React.ReactElement => {
   const {
     onChange: externalOnChange,
     value: externalValue,
@@ -57,6 +60,18 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     // Set internal value based on the provided one if the later is correct
     if (externalValue && VALID_TIME_REGEX.test(externalValue)) {
       setValue(externalValue)
+
+      return
+    }
+
+    // Cleared from outside, such as a form reset. The '' this component
+    // reports for an incomplete time must not clear it: a text field, where
+    // a browser has no time input, still shows it, and an empty picker stays
+    // uncontrolled
+    if (!externalValue) {
+      setValue(current =>
+        current && VALID_TIME_REGEX.test(current) ? '' : current
+      )
     }
   }, [externalValue])
 

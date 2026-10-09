@@ -115,6 +115,40 @@ describe('Fade', () => {
     expect(onExited).toHaveBeenCalledWith(getByTestId('child-div'))
   })
 
+  it('calls `onEnter` and `onExited` with `null` for a child that takes no ref', () => {
+    const onEnter = jest.fn()
+    const onExited = jest.fn()
+    // Takes the ref without attaching it, so Fade has no node to pass
+    const RefLessChild = React.forwardRef<
+      HTMLDivElement,
+      { className?: string }
+    >(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ className }, ref) => <div className={className}>No ref here</div>
+    )
+    const renderFade = (inProp: boolean) => (
+      <Fade in={inProp} onEnter={onEnter} onExited={onExited}>
+        <RefLessChild />
+      </Fade>
+    )
+    const { rerender } = render(renderFade(false))
+
+    act(() => {
+      rerender(renderFade(true))
+    })
+
+    expect(onEnter).toHaveBeenCalledWith(null, false)
+
+    act(() => {
+      rerender(renderFade(false))
+    })
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    expect(onExited).toHaveBeenCalledWith(null)
+  })
+
   it('forwards the ref', () => {
     const ref = React.createRef<HTMLDivElement>()
     const { getByTestId } = render(
@@ -173,5 +207,31 @@ describe('Fade', () => {
 
     expect(getByTestId('child-div')).toHaveClass('p-4')
     expect(getByTestId('child-div')).toHaveClass('transition-opacity')
+  })
+
+  it("fades over a `transition-*` utility of the child's", () => {
+    const { getByTestId } = render(
+      <Fade in={true}>
+        <SomeChildComponent className='transition-colors' />
+      </Fade>
+    )
+
+    expect(getByTestId('child-div')).toHaveClass('transition-opacity')
+    expect(getByTestId('child-div')).not.toHaveClass('transition-colors')
+  })
+
+  it.each([
+    ['transition', 'animates opacity too'],
+    ['transition-all', 'animates opacity too'],
+    ['transition-none', 'turns the fade off'],
+  ])("keeps the child's `%s`, which %s", transition => {
+    const { getByTestId } = render(
+      <Fade in={true}>
+        <SomeChildComponent className={transition} />
+      </Fade>
+    )
+
+    expect(getByTestId('child-div')).toHaveClass(transition)
+    expect(getByTestId('child-div')).not.toHaveClass('transition-opacity')
   })
 })

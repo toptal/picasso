@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 
 import { TimePicker } from './TimePicker'
@@ -28,6 +28,38 @@ describe('TimePicker', () => {
     fireEvent.change(input, { target: { value: nextTime } })
 
     expect(handleChange).toHaveBeenCalledTimes(1)
+  })
+
+  it.each(['', undefined])(
+    'clears the time when the value is reset to %p from outside',
+    reset => {
+      const { getByDisplayValue, rerender } = render(
+        <TimePicker value='10:30' onChange={() => {}} />
+      )
+      const input = getByDisplayValue('10:30')
+
+      rerender(<TimePicker value={reset} onChange={() => {}} />)
+
+      expect(input).toHaveValue('')
+    }
+  )
+
+  // Safari 13 and 14.0 render a text field, which keeps an incomplete time
+  it('keeps an incomplete time typed into a text field', () => {
+    const ControlledTimePicker = () => {
+      const [value, setValue] = useState('10:30')
+
+      return <TimePicker value={value} onChange={setValue} />
+    }
+    const { getByDisplayValue } = render(<ControlledTimePicker />)
+    const input = getByDisplayValue('10:30')
+
+    // Such a browser reads the type as 'text', whatever React sets it to
+    input.setAttribute('type', 'text')
+    Object.defineProperty(input, 'type', { get: () => 'text', set: () => {} })
+    fireEvent.change(input, { target: { value: '10:3' } })
+
+    expect(input).toHaveValue('10:3')
   })
 
   describe('when invalid time is entered', () => {

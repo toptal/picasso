@@ -19,7 +19,7 @@ export const ApplicationUpdateNotificationActions = ({
   justifyContent = 'flex-start',
   alignItems = 'center',
   children,
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Container
       flex

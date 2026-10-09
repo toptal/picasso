@@ -10,7 +10,7 @@ export type Props = {
   'data-testid'?: string
 }
 
-const CodeButton = ({ 'data-testid': testId }: Props) => {
+const CodeButton = ({ 'data-testid': testId }: Props): React.ReactElement => {
   const [active, setActive] = useState(false)
   const [editor] = useLexicalComposerContext()
   const { disabled, focused, disabledFormatting } = useRTEPluginContext()

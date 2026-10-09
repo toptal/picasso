@@ -29,7 +29,7 @@ export const Amount = ({
   minimumFractionDigits,
   maximumFractionDigits,
   ...typographyProps
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Typography inline={inline} as={as} {...typographyProps}>
       {formatAmount({

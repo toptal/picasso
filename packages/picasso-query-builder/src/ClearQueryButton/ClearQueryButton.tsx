@@ -5,7 +5,7 @@ type Props = {
   onClick: () => void
 }
 
-export const ClearQueryButton = ({ onClick }: Props) => {
+export const ClearQueryButton = ({ onClick }: Props): React.ReactElement => {
   return (
     <Button variant='secondary' onClick={onClick}>
       Clear Query

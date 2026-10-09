@@ -16,5 +16,5 @@ export const useFieldArray = keepFieldState(
     config?: UseFieldArrayConfig<FieldValue>
   ) => FieldArrayRenderProps<FieldValue>,
   'useFieldArray',
-  defaultIsEqual
+  { defaultIsEqual, seedsFirstRender: true }
 )

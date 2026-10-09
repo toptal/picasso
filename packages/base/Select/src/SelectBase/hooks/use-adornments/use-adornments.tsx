@@ -10,7 +10,12 @@ export interface Props {
   loading?: boolean
 }
 
-export const useAdornments = ({ disabled, position, icon, loading }: Props) =>
+export const useAdornments = ({
+  disabled,
+  position,
+  icon,
+  loading,
+}: Props): (React.ReactElement | null)[] =>
   useMemo(() => {
     const adornment = icon ? (
       <InputAdornment

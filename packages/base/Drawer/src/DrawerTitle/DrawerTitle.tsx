@@ -7,7 +7,7 @@ export interface Props extends BaseProps {
   title?: ReactNode
 }
 
-export const DrawerTitle = ({ title }: Props) => {
+export const DrawerTitle = ({ title }: Props): React.ReactElement | null => {
   if (!title) {
     return null
   }

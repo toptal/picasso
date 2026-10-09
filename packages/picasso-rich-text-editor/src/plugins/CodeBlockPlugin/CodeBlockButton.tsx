@@ -113,7 +113,9 @@ const replaceChildrenNodesWithRawText = (selection: RangeSelection) => {
   codeBlock.select()
 }
 
-const CodeBlockButton = ({ 'data-testid': testId }: Props) => {
+const CodeBlockButton = ({
+  'data-testid': testId,
+}: Props): React.ReactElement => {
   const [isButtonActive, setButtonActive] = useState(false)
   const [editor] = useLexicalComposerContext()
   const { disabled, focused } = useRTEPluginContext()

@@ -42,7 +42,7 @@ export const TypographyLoader = ({
   rows = 1,
   style,
   uniqueKey,
-}: Props) => (
+}: Props): React.ReactElement => (
   <>
     {Array.from({ length: rows }).map((_, index) => (
       <Paragraph

@@ -14,7 +14,11 @@ export interface Props extends Omit<ContainerProps, 'children'> {
   children: ReactNode
 }
 
-const FormActionsContainer = ({ children, style, ...rest }: Props) => {
+const FormActionsContainer = ({
+  children,
+  style,
+  ...rest
+}: Props): React.ReactElement => {
   const { layout, labelWidth } = useFieldsLayoutContext()
 
   if (layout === 'vertical') {

@@ -28,7 +28,7 @@ export const Checkbox = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultValue,
   ...restProps
-}: Props) => {
+}: Props): React.ReactElement => {
   const { layout } = useFieldsLayoutContext()
   const formConfig = useFormConfig()
   const groupName = useContext(CheckboxGroupContext)

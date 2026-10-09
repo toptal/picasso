@@ -11,7 +11,7 @@ export interface SummaryProps extends Omit<StandardProps, 'classes'> {
   children: ReactNode
 }
 
-const Summary = (props: SummaryProps) => {
+const Summary = (props: SummaryProps): React.ReactElement => {
   const { children, className, ...rest } = props
 
   return (

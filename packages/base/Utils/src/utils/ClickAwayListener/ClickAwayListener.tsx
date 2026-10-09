@@ -53,7 +53,7 @@ const isEventInsideNode = (
   )
 }
 
-export const ClickAwayListener = (props: Props) => {
+export const ClickAwayListener = (props: Props): React.ReactElement => {
   const {
     children,
     disableReactTree = false,

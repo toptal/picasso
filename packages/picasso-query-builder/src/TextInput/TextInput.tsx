@@ -27,7 +27,7 @@ export const TextInput = ({
   touched,
   handleTouched,
   valueEditorTestId,
-}: Props) => {
+}: Props): React.ReactElement => {
   const hasError = validateValueEditor({
     validation,
     touched,

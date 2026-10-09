@@ -23,7 +23,7 @@ export interface Props extends BaseProps, TypographyProps {
   placement?: PlacementType
 }
 
-export const TypographyOverflow = (props: Props) => {
+export const TypographyOverflow = (props: Props): React.ReactElement => {
   const {
     children,
     lines = 1,

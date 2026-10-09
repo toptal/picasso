@@ -1,0 +1,16 @@
+{
+  // The published declarations, compiled the way a consumer on `@types/react`
+  // 19 with `skipLibCheck: false` compiles them. Run it through
+  // bin/check-react19-declarations.mjs, after `pnpm build:package`
+  "extends": "./tsconfig.react19.json",
+  "compilerOptions": {
+    "skipLibCheck": false,
+    "types": ["node"]
+  },
+  "files": [],
+  "include": [
+    "packages/*/dist-package/src/**/*.d.ts",
+    "packages/base/*/dist-package/src/**/*.d.ts"
+  ],
+  "exclude": ["packages/picasso-codemod", "packages/picasso-cypress-utils"]
+}

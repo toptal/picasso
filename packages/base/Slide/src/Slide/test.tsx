@@ -204,4 +204,48 @@ describe('Slide', () => {
     expect(getByTestId('child-div')).toHaveClass('p-4')
     expect(getByTestId('child-div')).toHaveClass('transition-transform')
   })
+
+  it("slides over a `transition-*` utility of the child's", () => {
+    const { getByTestId } = render(
+      <Slide direction='left' in={true}>
+        <SomeChildComponent className='transition-colors' />
+      </Slide>
+    )
+
+    expect(getByTestId('child-div')).toHaveClass('transition-transform')
+    expect(getByTestId('child-div')).not.toHaveClass('transition-colors')
+  })
+
+  it.each([
+    ['transition', 'animates translate too'],
+    ['transition-all', 'animates translate too'],
+    ['transition-none', 'turns the slide off'],
+  ])("keeps the child's `%s`, which %s", transition => {
+    const { getByTestId } = render(
+      <Slide direction='left' in={true}>
+        <SomeChildComponent className={transition} />
+      </Slide>
+    )
+
+    expect(getByTestId('child-div')).toHaveClass(transition)
+    expect(getByTestId('child-div')).not.toHaveClass('transition-transform')
+  })
+
+  // A child centred with `left-1/2 -translate-x-1/2`, sliding in from the side
+  it.each([
+    [true, '-translate-x-1/2', 'translate-x-0'],
+    [false, 'translate-x-full', '-translate-x-1/2'],
+  ] as const)(
+    "with `in` %s, keeps `%s` over `%s` along the slide's axis",
+    (inProp, kept, replaced) => {
+      const { getByTestId } = render(
+        <Slide direction='left' in={inProp}>
+          <SomeChildComponent className='-translate-x-1/2' />
+        </Slide>
+      )
+
+      expect(getByTestId('child-div')).toHaveClass(kept)
+      expect(getByTestId('child-div')).not.toHaveClass(replaced)
+    }
+  )
 })

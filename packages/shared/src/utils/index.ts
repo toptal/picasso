@@ -1,5 +1,7 @@
 export { default as isBrowser } from './is-browser'
 export { default as getElementById } from './get-element-by-id'
 export { default as isForwardRef } from './is-forward-ref'
+export { default as cloneElementUnlessFragment } from './clone-element-unless-fragment'
+export { default as flattenFragments } from './flatten-fragments'
 export { default as toReactEvent } from './to-react-event'
 export { default as toReactChangeEvent } from './to-react-change-event'

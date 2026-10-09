@@ -7,7 +7,9 @@ type Props = {
   hiddenInputId: string
 }
 
-const FocusOnLabelClickPlugin = ({ hiddenInputId }: Props) => {
+const FocusOnLabelClickPlugin = ({
+  hiddenInputId,
+}: Props): React.ReactElement => {
   const classes = styles
   const [editor] = useLexicalComposerContext()
 

@@ -24,7 +24,7 @@ export const MultiSelect = ({
   className,
   fieldData,
   valueEditorTestId,
-}: Props) => {
+}: Props): React.ReactElement => {
   const hasError = validateValueEditor({
     validation,
     touched,

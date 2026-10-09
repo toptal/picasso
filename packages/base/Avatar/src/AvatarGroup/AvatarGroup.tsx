@@ -38,7 +38,7 @@ const AvatarGroup = ({
   limit = 5,
   size = 'xsmall',
   showEmblem = false,
-}: Props) => {
+}: Props): React.ReactElement | null => {
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const isOverLimit = items.length > limit!
   // we need to add +1 for the last item that is going to be transformed to numbered Avatar

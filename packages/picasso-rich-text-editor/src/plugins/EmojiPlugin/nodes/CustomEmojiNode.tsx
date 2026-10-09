@@ -130,7 +130,7 @@ export class CustomEmojiNode extends DecoratorNode<React.ReactElement> {
     return true
   }
 
-  decorate() {
+  decorate(): React.ReactElement {
     return <img src={this.src} data-src={this.src} data-emoji-name={this.id} />
   }
 }

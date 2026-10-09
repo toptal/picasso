@@ -17,7 +17,7 @@ const NotificationsProvider = ({
   children,
   container,
   maxNotifications = 5,
-}: NotificationsProviderProps) => {
+}: NotificationsProviderProps): React.ReactElement => {
   const { hasTopBar } = usePageTopBar()
   const { hasDrawer } = useDrawer()
 

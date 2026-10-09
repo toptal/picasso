@@ -1,5 +1,6 @@
 import type { ReactNode, MouseEvent, ReactElement, HTMLAttributes } from 'react'
-import React, { forwardRef, cloneElement } from 'react'
+import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import type { Classes, StandardProps } from '@toptal/picasso-shared'
 import {
   CloseMinor16,
@@ -65,7 +66,11 @@ const renderNotificationIcon = ({ icon, variant = 'yellow' }: PrivateProps) => {
     default: {
       const infoProps = { color: 'grey' as const }
 
-      return icon ? cloneElement(icon, infoProps) : <Info24 {...infoProps} />
+      return icon ? (
+        cloneElementUnlessFragment(icon, infoProps)
+      ) : (
+        <Info24 {...infoProps} />
+      )
     }
   }
 }

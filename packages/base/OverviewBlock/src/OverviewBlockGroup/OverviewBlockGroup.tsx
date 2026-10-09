@@ -30,7 +30,7 @@ const OverviewBlockGroup = ({
   align = 'default',
   blockWidth = 'regular',
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const { children, ...rest } = props
 
   return (

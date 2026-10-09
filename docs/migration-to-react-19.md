@@ -78,21 +78,20 @@ change fails, React is the cause.
 
 ### Do you need to act?
 
-| Change                                                   | On React 18                                         | On React 19                                           | Step                                                                                                        |
-| -------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Picasso and topkit versions                              | **Yes**: bump them together                         | Yes                                                   | [1](#step-1-bump-picasso-and-topkit-together)                                                               |
-| `notistack`                                              | **Yes**: exactly `3.0.2`                            | No                                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                      | Nothing extra                                         | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
-| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | npm and yarn: an override. pnpm: nothing            | No                                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: helmets stop merging                         | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| Patches and overrides keyed on old versions              | **Yes**                                             | Yes                                                   | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| tailwind-merge 3                                         | Review your class overrides                         | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
-| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
-| ShowMore, TimePicker, RichTextEditor                     | Maybe: tests that relied on the old DOM             | No                                                    | [6](#step-6-review-the-component-changes)                                                                   |
-| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | **Yes**: a `react-is` override                        | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| `Radio` without a `value`                                | No                                                  | **Yes**: pass a `value`                               | [11](#step-11-handle-picassos-react-19-limitations)                                                         |
-| Types                                                    | No                                                  | **Yes**: `@types/react` 19; keep `skipLibCheck: true` | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
-| Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19                | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
+| Change                                                   | On React 18                                         | On React 19                            | Step                                                                                                        |
+| -------------------------------------------------------- | --------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Picasso and topkit versions                              | **Yes**: bump them together                         | Yes                                    | [1](#step-1-bump-picasso-and-topkit-together)                                                               |
+| `notistack`                                              | **Yes**: exactly `3.0.2`                            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                      | Nothing extra                          | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
+| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | npm and yarn: an override. pnpm: nothing            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: only titles merge             | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
+| Patches and overrides keyed on old versions              | **Yes**                                             | Yes                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| tailwind-merge 3                                         | Review your class overrides                         | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, visual diffs             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| ShowMore, TimePicker, RichTextEditor                     | Maybe: tests that relied on the old DOM             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | Only if you import recharts yourself   | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
+| Types                                                    | No                                                  | **Yes**: `@types/react` 19             | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
+| Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19 | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
 
 ### Versions in the release
 
@@ -102,7 +101,7 @@ v100 was. Packages on the `100.x` line skip `101`, which
 
 The shared major doesn't mean every package breaks. At the time of writing, the
 release plan without the re-baseline (`pnpm changeset status` on the feature
-branch) moves 88 packages:
+branch) moves 90 packages:
 
 - **66 take a major of their own.** The majors come from date-fns 4 (Calendar,
   DatePicker and the `@toptal/picasso` aggregate), final-form 5
@@ -111,8 +110,10 @@ branch) moves 88 packages:
   so its major moves them too.
 - **22 carry only minor changes**, among them `@toptal/picasso-provider`,
   `-shared`, `-utils`, `-test-utils`, `-charts` and `@topkit/analytics-charts`.
-- `@toptal/picasso-tailwind`, `@toptal/base-tailwind` and
-  `@toptal/picasso-cypress-utils` have no changes of their own.
+- **2 carry only a patch**: `@toptal/picasso-tailwind` and
+  `@toptal/base-tailwind`, whose type declarations no longer name a Tailwind 3
+  type.
+- `@toptal/picasso-cypress-utils` has no changes of its own.
 
 A `^100` range doesn't reach the release, in your manifests or in topkit's peers
 ([Step 1](#step-1-bump-picasso-and-topkit-together)).
@@ -159,9 +160,10 @@ files it changed.
 The release also adds helpers for code that has to run on both React majors:
 `renderedProps` in `@toptal/picasso/test-utils`
 ([Step 14](#step-14-update-the-tests-for-react-19)), `getElementRef`
-([Step 13](#step-13-fix-the-react-19-runtime-breaks)) and `NullableRefObject`
-([Step 11](#step-11-handle-picassos-react-19-limitations)) in
-`@toptal/picasso/utils`, and the `IconElement` type in `@toptal/picasso`.
+([Step 13](#step-13-fix-the-react-19-runtime-breaks)), `NullableRefObject`
+([Step 11](#step-11-handle-picassos-react-19-limitations)) and
+`isReact19OrNewer` in `@toptal/picasso/utils`, and the `IconElement` type in
+`@toptal/picasso`.
 
 ## Before you start
 
@@ -218,7 +220,7 @@ git grep -n -E '\.defaultProps[[:space:]]*=' -- '*.ts' '*.tsx' '*.js' '*.jsx'
 git grep -n -E "react-dom/test-utils|ReactDOM\.(render|hydrate|unmountComponentAtNode)\(|findDOMNode\(|react-hot-loader" -- '*.ts' '*.tsx' '*.js' '*.jsx'
 # test files with Symbol placeholders that mocks may render (Step 14)
 git grep -l "Symbol('" -- '*.test.ts' '*.test.tsx' | wc -l
-# helmet title templates, which stop applying (Step 11)
+# helmet title templates, which apply on React 19 only through Page.Helmet (Step 11)
 git grep -n 'titleTemplate' -- '*.ts' '*.tsx'
 ```
 
@@ -499,9 +501,8 @@ git grep -n -E "from 'react-final-form(-arrays|-listeners)?'" -- '*.ts' '*.tsx'
 ```
 
 The workaround doesn't cover a field whose `data`, `defaultValue` or
-`initialValue` prop changes identity while it's mounted, and an array seeded
-only by its own `initialValue` or `defaultValue` still shows its items from the
-second render. Forms with `destroyOnUnregister` behave as before. Removing the
+`initialValue` prop changes identity while it's mounted. Forms with
+`destroyOnUnregister` behave as before. Removing the
 workaround is tracked in
 [PF-2522](https://toptal-core.atlassian.net/browse/PF-2522).
 
@@ -536,13 +537,15 @@ Client Portal both hits were false positives: a prop named
 The search can't see a field that passes `meta` to a helper, as recording-audits
 does with `fieldArrayError(meta)`, so check those helpers too.
 
-**Checkboxes with a custom `format`.** `Form.Checkbox`, `Form.ButtonCheckbox`
-and `Form.Switch` keep version 6's `checked` for a checkbox without its own
-`value`. react-final-form 7.0.1 derives `checked` from `parse` instead, which
-renders a stored `'false'` as checked. Group checkboxes, radios, and checkboxes
-built on `FinalField` or `useField` follow upstream, so re-check their `format`
-and `parse` pairs. Staff Portal tested its relocation fields, which store
-`'true'` and `'false'`.
+**Checkboxes with a custom `format`.** A checkbox without its own `value` keeps
+version 6's `checked` for good: `Form.Checkbox`, `Form.ButtonCheckbox`,
+`Form.Switch`, and checkboxes built on `FinalField` or `useField`.
+react-final-form 7.0.1 derives `checked` from `parse` instead, which renders a
+stored `'false'` as checked, a change it made on purpose for checkboxes with a
+`value` ([#1074](https://github.com/final-form/react-final-form/pull/1074)).
+Group checkboxes and radios follow upstream, which compares the stored
+value with their own `value`, so re-check their `format` and `parse` pairs.
+Staff Portal tested its relocation fields, which store `'true'` and `'false'`.
 
 **Listeners keep their old behavior.** `ExternallyChanged` reports every change
 made while its field isn't focused, including the first one after mount, as
@@ -576,13 +579,15 @@ react-transition-group.
   unknown props such as `data-private` now reach the DOM, and `CollapseProps`
   replaces the misnamed `FadeProps` export, which stays as a deprecated alias.
 - Fade and Slide call `onEnter` and `onExited` with the transitioning DOM node,
-  as their types always said. If you read `onEnter`'s first argument as
-  `isAppearing`, read the second one.
-- Fade and Slide have known limitations. Their callbacks run only when the child
-  takes the ref they pass (a DOM element, or a component that forwards its ref).
-  A `transition-*` utility on the child replaces their own transition, and on
-  Slide so does a `translate-*` utility along the slide axis. And `in` must be a
-  boolean, because an `undefined` that turns into `false` starts an exit.
+  or `null` when the child takes no ref, so their node parameter is typed
+  `HTMLElement | null`. If you read `onEnter`'s first argument as `isAppearing`,
+  read the second one.
+- Fade's and Slide's own transition replaces a `transition-*` utility on the
+  child, so they animate. A broad `transition` or `transition-all` on the child
+  stays, and so does `transition-none`, which turns the animation off. On
+  Slide, a `translate-*` utility on the child along the slide axis applies
+  while the child is shown, and gives way to the slide's offset while it's
+  hidden.
 - Expect a few visual diffs on accordions and expandable content. Client
   Portal's two Happo diffs are still under review; the first suspect is the
   `RejectedTalents` accordion in `TalentsSection`, built on the rewritten
@@ -930,8 +935,10 @@ Staff Portal's #16704 sets these as `overrides`:
 | `@testing-library/dom`           | 10.4.1  |
 
 - **`react-is` 19.** Jest's pretty-format and other libraries need it to
-  recognize React 19 elements, and Picasso's charts need it
-  ([Step 11](#step-11-handle-picassos-react-19-limitations)).
+  recognize React 19 elements. So does recharts, in charts you render with it
+  yourself: it ships `react-is` 18, which doesn't recognize a React 19
+  fragment, so it drops the chart parts inside one. Picasso's charts don't
+  need it: `LineChart` unwraps its fragment children itself.
 - **`@testing-library/react` 16, with `@testing-library/dom` 10.** RTL 16.1 is
   the first release whose peer range admits React 19. The override also replaces
   the RTL 14 that `@toptal/davinci-qa` nests, which would call
@@ -958,52 +965,37 @@ Staff Portal's #16704 sets these as `overrides`:
 
 ### Step 11. Handle Picasso's React 19 limitations
 
-1. **Helmets stop merging.** On React 19, react-helmet-async 3 renders real
-   elements for React to hoist, and `<HelmetProvider>` becomes a passthrough. A
-   parent's `titleTemplate` or `defaultTitle` no longer applies to a nested
-   helmet, duplicate `<title>` and `<meta>` tags stay, `onChangeClientState`
+1. **Only titles merge, and only through `Page.Helmet`.** On React 19,
+   react-helmet-async 3 renders real elements for React to hoist, and
+   `<HelmetProvider>` becomes a passthrough. `Page.Helmet` still merges titles:
+   the innermost `title`, formatted with the innermost `titleTemplate`, or else
+   the innermost `defaultTitle`. The title takes only the innermost helmet's
+   attributes, from its `titleAttributes` or its `<title>` child. It sets the
+   result after mount, so a server render gets no `<title>` from it. Client
+   Portal's `titleTemplate='%s | Toptal: Exclusive access to top talent'` in
+   `BaseLayout` and `PreOnboardingLayout` still formats its pages'
+   `<Page.Helmet title='Overview' />`. A `<Helmet>` rendered directly doesn't
+   take part. Otherwise duplicate `<meta>` tags stay, `onChangeClientState`
    never fires, a `<script>` child without `async` doesn't run, the SSR
    `context` stays empty, and `prioritizeSeoTags`, `helmetData` and `canUseDOM`
-   do nothing. `htmlAttributes` and `bodyAttributes` keep working. Build full
-   titles where you render them. Client Portal sets
-   `titleTemplate='%s | Toptal: Exclusive access to top talent'` in `BaseLayout`
-   and `PreOnboardingLayout` while its pages render
-   `<Page.Helmet title='Overview' />`, so its titles lose that suffix on React
-   19 until the template is replaced.
+   do nothing. `htmlAttributes` and `bodyAttributes` keep working.
 2. **A `<link>` whose `href` arrives late stays in the body.** React 19 decides
    whether a `<link>` can be hoisted into `<head>` when the element mounts. One
    mounted with an undefined `href` renders in place and stays there after the
    `href` arrives. Picasso's favicons now mount only once their URLs resolve;
    render your own head links only once their `href` exists.
-3. **Charts drop fragment-wrapped children** unless the app installs a
-   `react-is` that matches React 19, because recharts ships `react-is` 18. Add
-   an override: Staff Portal pins `react-is` to 19.2.8, and Client Portal's
-   spend chart needs the same.
-4. **A `Radio` or `Button.Radio` without a `value`** reports `"on"` where React
-   18 reported `""`. Pass a `value` wherever `event.target.value` or a native
-   form submission is read. Staff Portal's draft job form would have saved `on`
-   for its "N/A" option; that radio now has `value=''`, which its `parse` turns
-   into `null`.
-5. **Fragments take no props.** Components that clone a `className` into a
-   child, such as `InputIconAdornment`, fail when that child is a Fragment.
-   Staff Portal changed `icon={<>%</>}` to `icon={<span>%</span>}` in
-   `PaymentsRateTableRow` and `BudgetDetails`. The span now receives that class,
-   so check Happo for the `%` and `$` adornments.
-6. **Types.**
-   - Picasso's published declarations are still built against `@types/react` 17,
-     so a component without an explicit return type is declared as returning the
-     global `JSX.Element`. With `@types/react` 19 and `skipLibCheck: false`,
-     that reports `TS2503: Cannot find namespace 'JSX'`. With
-     `skipLibCheck: true`, the usual setting, those return types resolve to
-     `any`.
+3. **Types.**
+   - Picasso's published declarations compile against `@types/react` 19 with
+     `skipLibCheck: false`, and CI checks that they keep doing so. Two
+     dependencies' declarations don't: `react-dropzone` uses the global `JSX`
+     namespace, and `react-final-form` imports its `package.json`, which needs
+     `resolveJsonModule`. Keep `skipLibCheck: true` if your app compiles them.
    - A variable typed as a bare `ReactElement` has `unknown` props on React 19,
      so it no longer satisfies `icon?: ReactElement<{ className?: string }>`.
      Type it as `IconElement` from `@toptal/picasso`, or pass the JSX inline.
    - `useRef<T>(null)` returns `RefObject<T | null>`. `NullableRefObject<T>`
      from `@toptal/picasso/utils` names that type for refs that are both read
      and passed to `ref`.
-7. **Autocomplete's `inputComponent`** rejects React 19 components that take
-   `ref` as a prop. It's a pre-existing bug, still open after the release.
 
 ### Step 12. Fix the React 19 types
 
@@ -1101,9 +1093,9 @@ These are real bugs on React 19, not test noise.
   silently, so those props arrive `undefined`. Move the defaults into the
   parameter list.
 - **A Fragment takes no props.** Don't `cloneElement` props into one. Staff
-  Portal's `DetailedListItemContent` now skips Fragments; for Picasso's
-  `InputIconAdornment`, see
-  [Step 11](#step-11-handle-picassos-react-19-limitations).
+  Portal's `DetailedListItemContent` now skips Fragments, as Picasso's
+  components do with an `icon`, `image` or `expandIcon` they style, so
+  `icon={<>%</>}` renders as on React 18.
 - **Reading `element.ref` warns.** React 19 keeps an element's ref in
   `props.ref` and warns on every `element.ref` read, while React 18 warns on
   `props.ref`. If your components read a child's ref, for example to merge it
@@ -1113,8 +1105,6 @@ These are real bugs on React 19, not test noise.
   closed itself while rendering, which updates the store and the URL, and that
   looped on React 19. It now closes from an effect. Look for components that
   close, navigate or dispatch while rendering.
-- **A `Radio` without a `value` reports `"on"`**
-  ([Step 11](#step-11-handle-picassos-react-19-limitations)).
 - **Report errors through the root.** React 19 no longer rethrows errors that an
   error boundary caught, so pass its error callbacks to `createRoot`, for
   example with Sentry:
@@ -1210,21 +1200,6 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 **In Picasso, after the release**, from the
 [#5070 review](https://toptal-core.atlassian.net/wiki/spaces/PF/pages/6455296029/PF-2262+-+React+19+PR+5070+Review+Findings+and+Action+Items):
 
-- `Page.Helmet` doesn't merge helmets on React 19, so you build full titles
-  yourself.
-- A `Radio` without a `value` reports `"on"` on React 19 and `""` on React 18.
-  Which value Picasso settles on is still open.
-- Charts need the `react-is` override on React 19.
-- The published `.d.ts` files still use the global `JSX` namespace.
-- Checkboxes built on `FinalField` or `useField` derive `checked` from `parse`,
-  as upstream does. Which behavior Picasso settles on is still open.
-- An array seeded only by its own `initialValue` or `defaultValue` shows its
-  items from the second render.
-- Fade and Slide skip their callbacks when the child takes no ref, replace the
-  child's own `transition-*` (and, for Slide, `translate-*`) utilities, and need
-  a boolean `in`.
-- Autocomplete's `inputComponent` rejects React 19 components that take `ref` as
-  a prop.
 - The forms remount workaround
   ([PF-2522](https://toptal-core.atlassian.net/browse/PF-2522)) has no upstream
   fix to wait for: react-final-form's `allowNull` initializer is still on

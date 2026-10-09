@@ -18,7 +18,7 @@ export type Props<
 
 export const Select = <T extends SelectValueType, M extends boolean = false>(
   props: Props<T, M>
-) => {
+): React.ReactElement => {
   const {
     name,
     id = name,

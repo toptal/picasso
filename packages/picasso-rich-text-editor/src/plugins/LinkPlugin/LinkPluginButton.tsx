@@ -17,7 +17,9 @@ export type Props = {
   'data-testid'?: string
 }
 
-const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
+const LinkPluginButton = ({
+  'data-testid': testId,
+}: Props): React.ReactElement => {
   const [active, setActive] = useState(false)
   const [editor] = useLexicalComposerContext()
   const { disabled, focused, disabledFormatting } = useRTEPluginContext()

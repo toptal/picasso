@@ -3,7 +3,10 @@ import React from 'react'
 import List from '../List'
 
 /* eslint-disable react/no-array-index-key */
-const generateListItems = (total: number, listItemProps?: any) =>
+const generateListItems = (
+  total: number,
+  listItemProps?: any
+): React.ReactElement[] =>
   Array(total)
     .fill(0)
     .map((_, index) => (

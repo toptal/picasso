@@ -24,7 +24,7 @@ export const BooleanInput = ({
   value,
   handleOnChange,
   ...rest
-}: BooleanInputProps) => {
+}: BooleanInputProps): React.ReactElement => {
   const [inputValue, setInputValue] = useState<boolean | undefined>(value)
 
   useEffect(() => {

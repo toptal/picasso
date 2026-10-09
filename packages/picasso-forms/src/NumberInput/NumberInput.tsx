@@ -18,7 +18,7 @@ const MAX = 2147483647
 
 const { composeValidators } = validators
 
-export const NumberInput = (props: Props) => {
+export const NumberInput = (props: Props): React.ReactElement => {
   const {
     min = MIN,
     max = MAX,

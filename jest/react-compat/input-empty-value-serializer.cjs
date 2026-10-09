@@ -1,13 +1,16 @@
-// React 18 reflects an empty `value` prop on an <input> as a `value=""`
-// attribute; React 19 sets only the property. Dropping the attribute keeps
-// one snapshot valid for both — it carries nothing the property does not.
+// React 18 reflects an empty `value` prop on a text-like <input> as a
+// `value=""` attribute; React 19 sets only the property. Dropping the attribute
+// keeps one snapshot valid for both — it carries nothing the property does not.
 //
-// Only <input>: on <option> an empty `value` is meaningful (without it the
-// option's value falls back to its text), and both majors agree there.
-const EMPTY_VALUE_INPUT = 'input[value=""]'
+// Only text-like inputs: a radio or checkbox without a `value` attribute
+// reports the browser's `"on"`, so there the attribute is the value and the
+// snapshot must show it. On <option> an empty `value` is meaningful too
+// (without it the option's value falls back to its text), and both majors
+// agree there.
+const EMPTY_VALUE_INPUT =
+  'input[value=""]:not([type="radio"]):not([type="checkbox"])'
 
-const isEmptyValueInput = element =>
-  element.tagName === 'INPUT' && element.getAttribute('value') === ''
+const isEmptyValueInput = element => element.matches(EMPTY_VALUE_INPUT)
 
 module.exports = {
   test: value =>

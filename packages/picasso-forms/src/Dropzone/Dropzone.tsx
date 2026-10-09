@@ -17,7 +17,7 @@ type FinalFormOnChangeType = FinalFieldInputProps<
   DropzoneProps['value']
 >['onChange']
 
-const Dropzone = ({ dropzoneHint, ...props }: Props) => {
+const Dropzone = ({ dropzoneHint, ...props }: Props): React.ReactElement => {
   const handleDrop = ({
     acceptedFiles,
     value = [],

@@ -12,7 +12,7 @@ export type Props = RadioGroupProps &
   FieldProps<RadioProps['value']> &
   FieldLabelProps
 
-export const RadioGroup = (props: Props) => {
+export const RadioGroup = (props: Props): React.ReactElement => {
   const { children, label, labelEndAdornment, titleCase, ...rest } = props
 
   const alignment = Children.count(children) > 2 ? 'top' : 'middle'

@@ -11,7 +11,7 @@ export interface DetailsProps extends Omit<StandardProps, 'classes'> {
   children: ReactNode
 }
 
-const Details = (props: DetailsProps) => {
+const Details = (props: DetailsProps): React.ReactElement => {
   const { children, className, ...rest } = props
 
   return (

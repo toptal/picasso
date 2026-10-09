@@ -17,7 +17,11 @@ const treeContextValue: TreeViewContextValue = {
 export const TreeViewContext =
   React.createContext<TreeViewContextValue>(treeContextValue)
 
-export const TreeViewContainer = ({ children }: { children: ReactNode }) => {
+export const TreeViewContainer = ({
+  children,
+}: {
+  children: ReactNode
+}): React.ReactElement => {
   const [state, setState] = useState<TreeViewContextProps>({})
 
   const updateState = (newState: Partial<TreeViewContextProps>) => {

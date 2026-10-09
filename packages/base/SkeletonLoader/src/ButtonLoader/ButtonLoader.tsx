@@ -32,7 +32,7 @@ export const ButtonLoader = ({
   size = 'medium',
   circular = false,
   uniqueKey,
-}: Props) => {
+}: Props): React.ReactElement => {
   const borderRadius = circular ? '50%' : BORDER_RADIUS
   const height = BUTTON_SIZES[size]
   const width = circular ? height : height + BUTTON_HORIZONTAL_PADDINGS[size]

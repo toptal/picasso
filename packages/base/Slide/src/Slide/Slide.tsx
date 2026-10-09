@@ -13,15 +13,21 @@ import {
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { SlideDirection } from './styles'
-import { createTranslateClassNames } from './styles'
+import {
+  createTransitionClassName,
+  hiddenClassByDirection,
+  shownClassByDirection,
+} from './styles'
 
 export interface Props extends TransitionProps, BaseProps {
   /** Element that accepts ref */
   children: TransitionChild
   /** Show the component; toggling runs the enter or exit transition */
   in: boolean
-  /** Callback fired when the enter transition starts */
-  onEnter?: (node: HTMLElement, isAppearing: boolean) => void
+  /** Callback fired when the enter transition starts, with `null` for a child that takes no ref */
+  onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
+  /** Callback fired when the exit transition settles, with `null` for a child that takes no ref */
+  onExited?: (node: HTMLElement | null) => void
   /** Direction in which the component will slide */
   direction: SlideDirection
 }
@@ -61,11 +67,12 @@ export const Slide = React.forwardRef<HTMLDivElement, Props>(function Slide(
 
   return React.cloneElement(children, {
     className: twMerge(
-      // In Tailwind v4 this also covers the standalone `translate` property
-      'transition-transform',
+      // a default, so a `translate-*` of the child's own along the axis wins
+      inProp && shownClassByDirection[direction],
       children.props.className,
       // behavior classes, not defaults — must stay after the child's className
-      cx(createTranslateClassNames(direction, inProp), {
+      cx(createTransitionClassName(children.props.className), {
+        [hiddenClassByDirection[direction]]: !inProp,
         invisible: status === 'exited' && !inProp,
       })
     ),

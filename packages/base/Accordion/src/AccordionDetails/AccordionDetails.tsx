@@ -10,7 +10,7 @@ export interface Props
   children?: ReactNode
 }
 
-const AccordionDetails = (props: Props) => {
+const AccordionDetails = (props: Props): React.ReactElement => {
   const {
     children,
     className,

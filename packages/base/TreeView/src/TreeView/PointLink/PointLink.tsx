@@ -9,7 +9,7 @@ export interface Props {
   horizontalMargin: number
 }
 
-export const PointLink = (props: Props) => {
+export const PointLink = (props: Props): React.ReactElement => {
   const { link, direction, verticalMargin, horizontalMargin } = props
   const path = useMemo(() => {
     const { source, target } = link

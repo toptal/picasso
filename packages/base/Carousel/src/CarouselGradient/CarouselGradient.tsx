@@ -8,7 +8,10 @@ type Props = {
   isLastPage: boolean
 }
 
-const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
+const CarouselGradient = ({
+  isLastPage,
+  slidesToShow,
+}: Props): React.ReactElement => {
   const showNextGradient = !isLastPage
   const showPrevGradient = isLastPage
 

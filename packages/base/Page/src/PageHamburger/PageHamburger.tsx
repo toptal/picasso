@@ -10,7 +10,10 @@ interface Props {
   'data-testid'?: string
 }
 
-const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
+const PageHamburger = ({
+  id,
+  'data-testid': dataTestId,
+}: Props): React.ReactElement => {
   const { hamburgerRef } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
 

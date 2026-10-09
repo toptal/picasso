@@ -20,7 +20,7 @@ const NonNativeSelectOption = React.memo(
     description,
     children,
     ...itemProps
-  }: Props<T>) => {
+  }: Props<T>): React.ReactElement => {
     return (
       <MenuItem
         value={option.value}

@@ -14,7 +14,10 @@ export interface Props extends BaseProps {
   onClick?: (event: React.MouseEvent) => void
 }
 
-export const AvatarEditContainer = ({ size = 'small', ...props }: Props) => {
+export const AvatarEditContainer = ({
+  size = 'small',
+  ...props
+}: Props): React.ReactElement => {
   const { onClick, 'data-testid': dataTestId } = props
   const [focused, setFocused] = useState(false)
 

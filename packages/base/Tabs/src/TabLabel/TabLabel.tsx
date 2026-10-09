@@ -8,7 +8,11 @@ interface Props {
   titleCase?: boolean
 }
 
-const TabLabel = ({ label, orientation, titleCase }: Props) => {
+const TabLabel = ({
+  label,
+  orientation,
+  titleCase,
+}: Props): React.ReactElement => {
   if (orientation === 'horizontal') {
     return (
       <Typography

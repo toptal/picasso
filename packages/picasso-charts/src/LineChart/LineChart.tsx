@@ -1,5 +1,6 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
+import { flattenFragments } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import {
@@ -167,7 +168,7 @@ export const LineChart = ({
   getXAxisTicks = getChartTicks,
   getYAxisTicks = defaultGetYAxisTicks,
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const {
     data,
     lineConfig: lines,
@@ -281,7 +282,10 @@ export const LineChart = ({
           )}
 
           {lineGraphs}
-          {children}
+          {/* recharts finds its chart parts with the react-is 18 it ships, which
+              doesn't recognize a React 19 fragment, so it would drop the parts
+              inside one */}
+          {flattenFragments(children)}
 
           {tooltip && (
             <Tooltip

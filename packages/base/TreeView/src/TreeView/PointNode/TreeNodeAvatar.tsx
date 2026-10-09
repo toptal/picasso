@@ -49,7 +49,7 @@ export const TreeNodeAvatar = ({
   size = 'xxsmall',
   objectFit = 'contain',
   ...props
-}: Props) => {
+}: Props): React.ReactElement => {
   const { name, src, ...rest } = props
   const sizeValue = sizeValues[size]
 

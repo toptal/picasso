@@ -9,7 +9,9 @@ export interface FixViewportProps {
   responsive?: boolean
 }
 
-const FixViewport = ({ responsive = true }: FixViewportProps) => {
+const FixViewport = ({
+  responsive = true,
+}: FixViewportProps): React.ReactElement | null => {
   const [warned, setWarned] = useState(false)
 
   if (!isBrowser()) {

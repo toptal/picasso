@@ -16,7 +16,7 @@ const CalendarContainer = ({
   children,
   hasFooter,
   isFlexible,
-}: CalendarContainerProps) => {
+}: CalendarContainerProps): React.ReactElement => {
   const { renderRoot } = useCalendar()
 
   return renderRoot ? (

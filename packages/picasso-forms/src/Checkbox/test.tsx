@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, fireEvent, render } from '@toptal/picasso-test-utils'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 
 import type { FormConfigProps } from '../FormConfig'
@@ -95,7 +95,10 @@ describe('Form.Checkbox', () => {
     ).toBeInTheDocument()
   })
   describe('when `format` and `parse` map the value to a string', () => {
-    const renderStringCheckbox = (initialValue: string) => {
+    const renderStringCheckbox = (
+      initialValue: string,
+      { formatOnBlur = false } = {}
+    ) => {
       const onSubmit = jest.fn()
 
       const api = render(
@@ -105,6 +108,7 @@ describe('Form.Checkbox', () => {
             label='Considers relocation'
             format={value => value === 'true'}
             parse={checked => (checked ? 'true' : 'false')}
+            formatOnBlur={formatOnBlur}
           />
           <Button type='submit'>Submit</Button>
         </Form>
@@ -128,6 +132,48 @@ describe('Form.Checkbox', () => {
         getByRole('checkbox', { name: 'Considers relocation' })
       ).toBeChecked()
     })
+
+    // react-final-form leaves the value unformatted until blur then
+    it.each([
+      ['false', false],
+      ['true', true],
+    ] as const)(
+      'renders a stored "%s" as `checked: %s` with `formatOnBlur` too',
+      (initialValue, checked) => {
+        const { getByRole } = renderStringCheckbox(initialValue, {
+          formatOnBlur: true,
+        })
+        const checkbox = getByRole('checkbox', { name: 'Considers relocation' })
+
+        expect(checkbox).toHaveAttribute('aria-checked', String(checked))
+      }
+    )
+
+    // A blur or a submit stores format's result, `true`, which must not be
+    // formatted again
+    it.each([
+      ['a blur', (checkbox: HTMLElement) => fireEvent.blur(checkbox)],
+      [
+        'a submit',
+        async () => {
+          await act(async () => {
+            fireEvent.click(screen.getByText('Submit'))
+          })
+        },
+      ],
+    ])(
+      'keeps a stored "true" checked with `formatOnBlur` after %s',
+      async (_, formatValue) => {
+        const { getByRole } = renderStringCheckbox('true', {
+          formatOnBlur: true,
+        })
+        const checkbox = getByRole('checkbox', { name: 'Considers relocation' })
+
+        await formatValue(checkbox)
+
+        expect(checkbox).toHaveAttribute('aria-checked', 'true')
+      }
+    )
 
     it('submits the value the user ticked', async () => {
       const { getByRole, getByText, onSubmit } = renderStringCheckbox('false')

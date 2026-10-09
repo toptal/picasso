@@ -1,5 +1,6 @@
 import type { ReactNode, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
@@ -91,7 +92,7 @@ const getIcon = ({
     iconPosition: children && iconPosition ? iconPosition : undefined,
   })
 
-  return React.cloneElement(icon, {
+  return cloneElementUnlessFragment(icon, {
     className: twMerge(iconClassNames, icon.props.className),
   })
 }

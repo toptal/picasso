@@ -95,7 +95,7 @@ const QueryBuilder = ({
   runQueryButtonContent,
   onQueryReset,
   testIds,
-}: Props) => {
+}: Props): React.ReactElement => {
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
 
   const { showError } = useNotifications()

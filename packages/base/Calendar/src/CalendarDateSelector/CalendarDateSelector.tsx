@@ -10,7 +10,7 @@ const CalendarDateSelector = ({
   onChange,
   value,
   'aria-label': ariaLabel,
-}: DropdownProps) => {
+}: DropdownProps): React.ReactElement => {
   return (
     <label
       aria-label={ariaLabel}

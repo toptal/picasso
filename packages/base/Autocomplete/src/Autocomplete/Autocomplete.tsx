@@ -19,7 +19,7 @@ import { Container } from '@toptal/picasso-container'
 import { Loader } from '@toptal/picasso-loader'
 import { Popper } from '@toptal/picasso-popper'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import { unsafeErrorLog } from '@toptal/picasso-utils'
+import { isReact19OrNewer, unsafeErrorLog } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
@@ -125,6 +125,22 @@ export interface Props
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
+interface ComponentInternals {
+  $$typeof?: symbol
+  type?: unknown
+  prototype?: { isReactComponent?: unknown }
+}
+
+// A class component's ref is its instance, not the input, also when `memo`
+// wraps the class. A class inside `lazy` only shows once it has loaded
+const isClassComponent = (component: unknown): boolean => {
+  const { $$typeof, type, prototype } = (component ?? {}) as ComponentInternals
+
+  return $$typeof === Symbol.for('react.memo')
+    ? isClassComponent(type)
+    : Boolean(prototype?.isReactComponent)
+}
+
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
@@ -176,10 +192,16 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const inputRef = useRef<HTMLInputElement | null>(null)
     let ref: Ref<HTMLInputElement> | undefined = customRef || inputRef
 
-    if (inputComponent && !isForwardRef(inputComponent)) {
+    // React 19 passes a function component its `ref` as a prop; React 17 and
+    // 18 pass it only to a `forwardRef` component
+    if (
+      inputComponent &&
+      (isClassComponent(inputComponent) ||
+        (!isReact19OrNewer && !isForwardRef(inputComponent)))
+    ) {
       ref = undefined
       unsafeErrorLog(
-        'You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. This is not supported and may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.'
+        'You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.'
       )
     }
 

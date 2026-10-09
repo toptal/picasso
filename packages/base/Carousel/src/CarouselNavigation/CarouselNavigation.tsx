@@ -40,7 +40,7 @@ const CarouselNavigation = ({
   hasArrows,
   hasDots,
   testIds,
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Container
       className='pt-[14px] px-6 pb-0'

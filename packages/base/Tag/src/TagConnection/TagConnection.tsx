@@ -9,7 +9,7 @@ export type Props = {
   children: string
 }
 
-const TagConnection = ({ children }: Props) => {
+const TagConnection = ({ children }: Props): React.ReactElement => {
   return (
     <Typography
       className='inline-flex items-center gap-[5px] text-gray-600 group-aria-disabled:text-gray-500'

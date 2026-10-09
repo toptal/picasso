@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
+import { createPortal } from 'react-dom'
 import { act, fireEvent, render } from '@toptal/picasso-test-utils'
 import { Tooltip } from '@toptal/picasso-tooltip'
 
@@ -166,6 +167,89 @@ describe('DatePicker', () => {
     const tooltip = getByText('tooltip content')
 
     expect(tooltip).toBeInTheDocument()
+  })
+
+  it('shows the date as it is for a timezone the browser does not know', () => {
+    const { getByTestId } = render(
+      <DatePicker
+        testIds={testIds}
+        value={new Date('2020-06-25T12:00:00Z')}
+        timezone='Invalid/Zone'
+        onChange={() => {}}
+      />
+    )
+
+    expect(getByTestId(testIds.input)).toHaveValue('Jun 25, 2020')
+  })
+
+  describe('when Tab moves the focus into the calendar', () => {
+    it('closes the calendar and calls `onBlur` once the focus leaves it', () => {
+      const onBlur = jest.fn()
+      const { getByRole, getByTestId, queryByTestId } = render(
+        <>
+          <DatePicker
+            testIds={testIds}
+            value={null}
+            onChange={() => {}}
+            onBlur={onBlur}
+          />
+          <button type='button'>After the picker</button>
+        </>
+      )
+      const input = getByTestId(testIds.input)
+
+      act(() => {
+        input.focus()
+      })
+      fireEvent.keyDown(input, { key: 'Tab' })
+
+      expect(getByTestId(testIds.calendar)).toContainElement(
+        document.activeElement as HTMLElement
+      )
+      expect(onBlur).not.toHaveBeenCalled()
+
+      act(() => {
+        getByRole('button', { name: 'After the picker' }).focus()
+      })
+      act(() => {
+        jest.runOnlyPendingTimers()
+      })
+
+      expect(queryByTestId(testIds.calendar)).not.toBeInTheDocument()
+      expect(onBlur).toHaveBeenCalledTimes(1)
+    })
+
+    // Such as a Dropdown or a searchable Select in the footer
+    it('stays open when a footer control moves the focus into its popup', () => {
+      const onBlur = jest.fn()
+      const { getByRole, getByTestId } = render(
+        <DatePicker
+          testIds={testIds}
+          value={null}
+          onChange={() => {}}
+          onBlur={onBlur}
+          footer={createPortal(
+            <button type='button'>In the popup</button>,
+            document.body
+          )}
+        />
+      )
+      const input = getByTestId(testIds.input)
+
+      act(() => {
+        input.focus()
+      })
+      fireEvent.keyDown(input, { key: 'Tab' })
+      act(() => {
+        getByRole('button', { name: 'In the popup' }).focus()
+      })
+      act(() => {
+        jest.runOnlyPendingTimers()
+      })
+
+      expect(getByTestId(testIds.calendar)).toBeInTheDocument()
+      expect(onBlur).not.toHaveBeenCalled()
+    })
   })
 
   describe('Input', () => {

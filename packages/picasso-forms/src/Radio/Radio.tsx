@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import type { RadioProps } from '@toptal/picasso-radio'
 import { Radio as PicassoRadio } from '@toptal/picasso-radio'
-import { Field } from 'react-final-form'
 
-import { RadioGroupContext } from '../RadioGroup'
-import { assertFieldName } from '../Field/assert-field-name'
+import { RadioChecked } from './RadioChecked'
 
 // Intersection with the type { name?: string } is needed here because of
 // TS compiler issue https://github.com/microsoft/TypeScript/issues/34793
@@ -12,17 +10,10 @@ export type Props = RadioProps & {
   name?: string
 }
 
-const Radio = ({ name, ...rest }: Props) => {
-  const groupName = useContext(RadioGroupContext)
-  const fieldName = name || groupName
-
-  assertFieldName(fieldName)
-
-  return (
-    <Field name={fieldName} type='radio' value={rest.value}>
-      {({ input }) => <PicassoRadio checked={input.checked} {...rest} />}
-    </Field>
-  )
-}
+const Radio = ({ name, ...rest }: Props): React.ReactElement => (
+  <RadioChecked name={name} value={rest.value}>
+    {checked => <PicassoRadio checked={checked} {...rest} />}
+  </RadioChecked>
+)
 
 export default Radio
