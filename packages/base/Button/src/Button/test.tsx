@@ -86,6 +86,14 @@ describe('Button', () => {
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 
+  it('should ring on keyboard focus only, not while focus sits inside it', () => {
+    const { getByText } = renderButton({ children: 'Click me!' })
+    const button = getByText('Click me!').closest('button')
+
+    expect(button?.className).toContain('focus-visible:shadow-')
+    expect(button?.className).not.toContain('focus-within:shadow-')
+  })
+
   describe('disabled button', () => {
     let onClick: () => void
     let api: RenderResult

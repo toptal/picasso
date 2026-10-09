@@ -52,6 +52,29 @@ describe('ButtonRadio', () => {
     expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
+  it('rings the label while the radio inside it holds focus', () => {
+    const { getByTestId } = renderButtonRadio({
+      children: 'Click me!',
+      'data-testid': 'button',
+    })
+
+    expect(getByTestId('button').className).toContain(
+      'focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]'
+    )
+  })
+
+  it('does not ring the label when disabled', () => {
+    const { getByTestId } = renderButtonRadio({
+      children: 'Click me!',
+      'data-testid': 'button',
+      disabled: true,
+    })
+
+    expect(getByTestId('button').className).not.toContain(
+      'focus-within:shadow-'
+    )
+  })
+
   it('ignores clicks when disabled', () => {
     const onChange = jest.fn()
     const { getByTestId } = renderButtonRadio({
