@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
+import { createPortal } from 'react-dom'
 import { act, fireEvent, render } from '@toptal/picasso-test-utils'
 import { Tooltip } from '@toptal/picasso-tooltip'
 
@@ -210,9 +211,44 @@ describe('DatePicker', () => {
       act(() => {
         getByRole('button', { name: 'After the picker' }).focus()
       })
+      act(() => {
+        jest.runOnlyPendingTimers()
+      })
 
       expect(queryByTestId(testIds.calendar)).not.toBeInTheDocument()
       expect(onBlur).toHaveBeenCalledTimes(1)
+    })
+
+    // Such as a Dropdown or a searchable Select in the footer
+    it('stays open when a footer control moves the focus into its popup', () => {
+      const onBlur = jest.fn()
+      const { getByRole, getByTestId } = render(
+        <DatePicker
+          testIds={testIds}
+          value={null}
+          onChange={() => {}}
+          onBlur={onBlur}
+          footer={createPortal(
+            <button type='button'>In the popup</button>,
+            document.body
+          )}
+        />
+      )
+      const input = getByTestId(testIds.input)
+
+      act(() => {
+        input.focus()
+      })
+      fireEvent.keyDown(input, { key: 'Tab' })
+      act(() => {
+        getByRole('button', { name: 'In the popup' }).focus()
+      })
+      act(() => {
+        jest.runOnlyPendingTimers()
+      })
+
+      expect(getByTestId(testIds.calendar)).toBeInTheDocument()
+      expect(onBlur).not.toHaveBeenCalled()
     })
   })
 

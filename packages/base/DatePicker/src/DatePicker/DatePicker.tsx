@@ -276,13 +276,9 @@ export const DatePicker = ({
     )
   }
 
-  // Closes the picker once the focus leaves it, from the input or the calendar
-  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-    const isFocusedInsideDatePicker = isInsideDatePicker(
-      (event.relatedTarget || document.activeElement) as Node
-    )
-
-    if (isFocusedInsideDatePicker) {
+  // Closes the picker unless the focus moved within it
+  const handleFocusMove = (focusedNode: Node) => {
+    if (isInsideDatePicker(focusedNode)) {
       return
     }
 
@@ -292,6 +288,29 @@ export const DatePicker = ({
     hasInteractedWhileFocused.current = false
     setInputFocused(false)
   }
+
+  const handleInputBlur = (event: React.FocusEvent<HTMLDivElement>) =>
+    handleFocusMove((event.relatedTarget || document.activeElement) as Node)
+
+  // Tab moves the focus from the input into the calendar, so it can also leave
+  // the picker from there. A control in the footer can move it into a popup of
+  // its own, outside the picker's DOM, and React passes that focus to the
+  // calendar through the portal, so the calendar waits for the focus to land
+  // and stays open when it lands in its own React tree
+  const calendarBlurTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  )
+
+  const handleCalendarBlur = () => {
+    clearTimeout(calendarBlurTimeout.current)
+    calendarBlurTimeout.current = setTimeout(() =>
+      handleFocusMove(document.activeElement as Node)
+    )
+  }
+
+  const handleCalendarFocus = () => clearTimeout(calendarBlurTimeout.current)
+
+  useEffect(() => () => clearTimeout(calendarBlurTimeout.current), [])
 
   const handleCalendarClickOutside = (
     event: React.MouseEvent<unknown, unknown>
@@ -446,7 +465,7 @@ export const DatePicker = ({
           onKeyDown={handleInputKeydown}
           onClick={handleClick}
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={handleInputBlur}
           onResetClick={handleResetClick}
           value={inputValue}
           onChange={handleInputChange}
@@ -472,9 +491,7 @@ export const DatePicker = ({
           {...popperProps}
         >
           <ClickAwayListener onClickAway={handleCalendarClickOutside}>
-            {/* Tab moves the focus from the input into the calendar, so it can
-                also leave the picker from here */}
-            <div onBlur={handleBlur}>
+            <div onBlur={handleCalendarBlur} onFocus={handleCalendarFocus}>
               <Calendar
                 activeMonth={activeMonth}
                 data-testid={testIds?.calendar}
