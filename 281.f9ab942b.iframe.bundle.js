@@ -1551,12 +1551,21 @@ var LinkPluginModal = function (_ref) {
     _useState4 = LinkPluginModal_slicedToArray(_useState3, 2),
     urlError = _useState4[0],
     setUrlError = _useState4[1];
-  (0,react.useEffect)(function () {
-    if (open) {
-      setValues(initialValues);
-      setUrlError(false);
-    }
-  }, [open, initialValues]);
+  var _useState5 = (0,react.useState)(initialValues),
+    _useState6 = LinkPluginModal_slicedToArray(_useState5, 2),
+    shownValues = _useState6[0],
+    setShownValues = _useState6[1];
+
+  // Reset the form during render, not in an effect: the fields mount with the
+  // dialog, and their autoFocus must see the values it opened with
+  if (shownValues !== initialValues) {
+    setShownValues(initialValues);
+    setValues(initialValues);
+    setUrlError(false);
+  }
+
+  // With text selected only the URL is missing, so start there
+  var focusUrl = Boolean(initialValues.text);
   var handleSave = function () {
     var url = values.url.trim();
     if (!validateUrl(url)) {
@@ -1591,7 +1600,7 @@ var LinkPluginModal = function (_ref) {
             }));
           },
           width: "full",
-          autoFocus: !values.text
+          autoFocus: !focusUrl
         })]
       }), /*#__PURE__*/(0,jsx_runtime.jsxs)(FormCompound/* FormCompound */.k.Field, {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(FormCompound/* FormCompound */.k.Label, {
@@ -1608,7 +1617,7 @@ var LinkPluginModal = function (_ref) {
           },
           status: urlError ? 'error' : undefined,
           width: "full",
-          autoFocus: Boolean(values.text)
+          autoFocus: focusUrl
         }), urlError && /*#__PURE__*/(0,jsx_runtime.jsx)(FormCompound/* FormCompound */.k.Error, {
           children: "Enter a valid URL"
         })]
@@ -1671,11 +1680,6 @@ function use_link_plugin_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-var EMPTY_VALUES = {
-  text: '',
-  url: '',
-  openInNewTab: true
-};
 var linkAttributes = function (openInNewTab) {
   return openInNewTab ? {
     target: '_blank',
@@ -1733,7 +1737,8 @@ var $insertLink = function (selection, _ref2) {
   linkNode.append((0,Lexical.$createTextNode)(label));
   placeholder.replace(linkNode);
 };
-var useLinkPlugin = function () {
+var useLinkPlugin = function (_ref3) {
+  var defaultTarget = _ref3.defaultTarget;
   var _useLexicalComposerCo = (0,LexicalComposerContext.useLexicalComposerContext)(),
     _useLexicalComposerCo2 = use_link_plugin_slicedToArray(_useLexicalComposerCo, 1),
     editor = _useLexicalComposerCo2[0];
@@ -1745,7 +1750,12 @@ var useLinkPlugin = function () {
     _useState4 = use_link_plugin_slicedToArray(_useState3, 2),
     editing = _useState4[0],
     setEditing = _useState4[1];
-  var _useState5 = (0,react.useState)(EMPTY_VALUES),
+  var emptyValues = {
+    text: '',
+    url: '',
+    openInNewTab: defaultTarget === '_blank'
+  };
+  var _useState5 = (0,react.useState)(emptyValues),
     _useState6 = use_link_plugin_slicedToArray(_useState5, 2),
     initialValues = _useState6[0],
     setInitialValues = _useState6[1];
@@ -1781,12 +1791,14 @@ var useLinkPlugin = function () {
         text: link.getTextContent(),
         url: link.getURL(),
         openInNewTab: link.getTarget() === '_blank'
-      } : Object.assign({}, EMPTY_VALUES, {
-        text: selection.getTextContent()
-      }));
+      } : {
+        text: selection.getTextContent(),
+        url: '',
+        openInNewTab: defaultTarget === '_blank'
+      });
       setOpen(true);
     });
-  }, [editor]);
+  }, [editor, defaultTarget]);
   var close = (0,react.useCallback)(function () {
     editor.update(function () {
       var _selectionRef$current;
@@ -1797,10 +1809,10 @@ var useLinkPlugin = function () {
     });
     setOpen(false);
   }, [editor]);
-  var submit = (0,react.useCallback)(function (_ref3) {
-    var text = _ref3.text,
-      url = _ref3.url,
-      openInNewTab = _ref3.openInNewTab;
+  var submit = (0,react.useCallback)(function (_ref4) {
+    var text = _ref4.text,
+      url = _ref4.url,
+      openInNewTab = _ref4.openInNewTab;
     editor.update(function () {
       var _selectionRef$current2;
       var href = sanitizeUrl(url);
@@ -1852,8 +1864,14 @@ var useLinkPlugin = function () {
 
 var PLUGIN_NAME = 'link';
 var LinkPlugin = function (_ref) {
-  var testId = _ref['data-testid'];
-  var _useLinkPlugin = useLinkPlugin(),
+  var _ref$defaultTarget = _ref.defaultTarget,
+    defaultTarget = _ref$defaultTarget === void 0 ? '_self' : _ref$defaultTarget,
+    className = _ref.className,
+    style = _ref.style,
+    testId = _ref['data-testid'];
+  var _useLinkPlugin = useLinkPlugin({
+      defaultTarget: defaultTarget
+    }),
     open = _useLinkPlugin.open,
     editing = _useLinkPlugin.editing,
     initialValues = _useLinkPlugin.initialValues,
@@ -1866,6 +1884,8 @@ var LinkPlugin = function (_ref) {
       keyName: PLUGIN_NAME,
       children: /*#__PURE__*/(0,jsx_runtime.jsx)(LinkPlugin_LinkPluginButton, {
         onClick: show,
+        className: className,
+        style: style,
         "data-testid": testId
       })
     }), /*#__PURE__*/(0,jsx_runtime.jsx)(LexicalLinkPlugin.LinkPlugin, {}), /*#__PURE__*/(0,jsx_runtime.jsx)(LinkPlugin_LinkPluginModal, {
@@ -2490,12 +2510,21 @@ var hoistNestedLists = function (htmlDoc) {
   });
   return htmlDoc;
 };
+
+// A link that opens in a new tab must not get access to this page through
+// window.opener, whatever produced it (the dialog or pasted HTML)
+var secureNewTabLinks = function (htmlDoc) {
+  htmlDoc.querySelectorAll('a[target="_blank"]').forEach(function (link) {
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+  return htmlDoc;
+};
 var cleanupHtmlOutput = function (html) {
   var parser = new DOMParser();
   var htmlDoc = parser.parseFromString(html, 'text/html');
-  var _map$map$map = [htmlDoc].map(removeExtraTags).map(replaceItalicTag).map(hoistNestedLists),
-    _map$map$map2 = cleanup_html_output_slicedToArray(_map$map$map, 1),
-    newHtml = _map$map$map2[0];
+  var _map$map$map$map = [htmlDoc].map(removeExtraTags).map(replaceItalicTag).map(hoistNestedLists).map(secureNewTabLinks),
+    _map$map$map$map2 = cleanup_html_output_slicedToArray(_map$map$map$map, 1),
+    newHtml = _map$map$map$map2[0];
   var result = newHtml.body.innerHTML;
   return result;
 };
@@ -2701,4 +2730,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=281.3576581c.iframe.bundle.js.map
+//# sourceMappingURL=281.f9ab942b.iframe.bundle.js.map
