@@ -7,7 +7,10 @@
     { "path": "../../picasso-tailwind-merge" },
     { "path": "../Icons" },
     { "path": "../Input" },
+    { "path": "../InputAdornment" },
+    { "path": "../Menu" },
     { "path": "../OutlinedInput" },
+    { "path": "../Popper" },
     { "path": "../Utils" }
   ]
 }

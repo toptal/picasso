@@ -8,6 +8,11 @@ import type { InputProps } from '@toptal/picasso-input'
 import type { Status } from '@toptal/picasso-outlined-input'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
+import { TimePickerDropdown } from '../TimePickerDropdown'
+import { TimePickerTrigger } from '../TimePickerTrigger'
+import { useTimePickerPopover } from './use-time-picker-popover'
+import { VALID_TIME_REGEX, getHourCycle } from './utils'
+
 export interface Props
   extends BaseProps,
     Omit<
@@ -38,22 +43,45 @@ export interface Props
   status?: Extract<Status, 'error' | 'warning' | 'default'>
   /** Called on input change */
   onChange?: (value: string) => void
+  /** Interval in minutes between the times offered in a dropdown list. When omitted, the browser's own time picker is used */
+  minuteStep?: 5 | 10 | 15 | 20 | 30 | 60
 }
 
-const VALID_TIME_REGEX = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
+const NATIVE_PICKER_CLASS_NAME = `-mr-2 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
+    [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
+
+const TIME_LIST_CLASS_NAME = `${NATIVE_PICKER_CLASS_NAME} pointer-fine:[&::-webkit-calendar-picker-indicator]:hidden`
+
+const nativePickerIcon = (
+  <Time16
+    classes={{
+      root: 'bg-white absolute right-[0.625rem] pointer-events-none m-0 select-none',
+    }}
+  />
+)
+
+const getInputMask = (value?: string) => {
+  const startsWithTwo = value && value[0] === '2'
+
+  return [/[0-2]/, startsWithTwo ? /[0-3]/ : /[0-9]/, ':', /[0-5]/, /[0-9]/]
+}
 
 export const TimePicker = ({ status = 'default', ...props }: Props) => {
   const {
     onChange: externalOnChange,
+    onKeyDown: externalOnKeyDown,
     value: externalValue,
     width,
     className,
     highlight,
     size,
+    minuteStep,
     ...rest
   } = props
 
   const [value, setValue] = useState(externalValue)
+  const hasTimeList = minuteStep !== undefined
+  const interactive = hasTimeList && !rest.disabled && !rest.readOnly
 
   useEffect(() => {
     // Set internal value based on the provided one if the later is correct
@@ -62,13 +90,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     }
   }, [externalValue])
 
-  const onChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const newValue = event.target.value
-
+  const changeValue = (newValue: string) => {
     setValue(newValue)
 
     if (newValue && VALID_TIME_REGEX.test(newValue)) {
@@ -78,79 +100,126 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     }
   }
 
-  const browser = detect()
-  const isSafari = browser?.name === 'safari'
-  const startsWithTwo = value && value[0] === '2'
+  const onChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => changeValue(event.target.value)
 
-  const inputMask = [
-    /[0-2]/,
-    startsWithTwo ? /[0-3]/ : /[0-9]/,
-    ':',
-    /[0-5]/,
-    /[0-9]/,
-  ]
+  const isSafari = detect()?.name === 'safari'
 
-  const icon = (
-    <Time16
-      classes={{
-        root: 'bg-white absolute right-[0.625rem] pointer-events-none m-0 select-none',
-      }}
+  const {
+    isOpen,
+    hourCycle,
+    anchorRef,
+    focusList,
+    handleTriggerClick,
+    handleClickAway,
+    closeAndFocusField,
+    handleFieldKeyDown,
+  } = useTimePickerPopover({
+    enabled: interactive,
+    // Safari renders its own 24-hour masked field, so the list has to match it
+    getHourCycle: () => (isSafari ? 24 : getHourCycle()),
+  })
+
+  const handleTimePick = (time: string) => {
+    changeValue(time)
+    closeAndFocusField()
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    externalOnKeyDown?.(event)
+    handleFieldKeyDown(event)
+  }
+
+  const adornmentProps = hasTimeList
+    ? {
+        endAdornment: (
+          <TimePickerTrigger
+            open={isOpen}
+            disabled={!interactive}
+            onClick={handleTriggerClick}
+          />
+        ),
+      }
+    : { iconPosition: 'end' as const, icon: nativePickerIcon }
+
+  const timeList = hasTimeList && (
+    <TimePickerDropdown
+      open={isOpen}
+      anchorEl={anchorRef.current}
+      onClickAway={handleClickAway}
+      value={value}
+      minuteStep={minuteStep}
+      hourCycle={hourCycle}
+      autoFocus={focusList}
+      onChange={handleTimePick}
+      onClose={closeAndFocusField}
     />
   )
 
   const inputClassName = twMerge('cursor-default', className)
-
-  const inputPropClassName = `-mr-[8px] [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
-    [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
+  const inputPropClassName = hasTimeList
+    ? TIME_LIST_CLASS_NAME
+    : NATIVE_PICKER_CLASS_NAME
 
   if (isSafari) {
     return (
-      <Input
-        type='text'
-        readOnly
-        iconPosition='end'
-        icon={icon}
-        width={width}
-        status={status}
-        className={inputClassName}
-        highlight={highlight}
-        size={size}
-        inputProps={{
-          className: inputPropClassName,
-          ...rest,
-        }}
-        startAdornment={
-          <InputMask
-            mask={inputMask}
-            alwaysShowMask
-            maskPlaceholder='-'
-            value={value}
-            onChange={onChange}
-            className={'text-sm border-none p-0 m-0 outline-hidden'}
-          />
-        }
-      />
+      <>
+        <Input
+          type='text'
+          readOnly
+          {...adornmentProps}
+          width={width}
+          status={status}
+          className={inputClassName}
+          highlight={highlight}
+          size={size}
+          outlineRef={anchorRef}
+          inputProps={{
+            className: inputPropClassName,
+            ...rest,
+          }}
+          startAdornment={
+            <InputMask
+              mask={getInputMask(value)}
+              alwaysShowMask
+              maskPlaceholder='-'
+              value={value}
+              onChange={onChange}
+              onKeyDown={handleKeyDown}
+              className={'text-sm border-none p-0 m-0 outline-hidden'}
+            />
+          }
+        />
+        {timeList}
+      </>
     )
   }
 
   return (
-    <Input
-      type='time'
-      value={value}
-      className={inputClassName}
-      onChange={onChange}
-      iconPosition='end'
-      highlight={highlight}
-      icon={icon}
-      width={width}
-      size={size}
-      status={status}
-      inputProps={{
-        className: inputPropClassName,
-        step: 60, // 1 min
-        ...rest,
-      }}
-    />
+    <>
+      <Input
+        type='time'
+        value={value}
+        className={inputClassName}
+        onChange={onChange}
+        onKeyDown={handleKeyDown}
+        {...adornmentProps}
+        highlight={highlight}
+        width={width}
+        size={size}
+        status={status}
+        outlineRef={anchorRef}
+        inputProps={{
+          className: inputPropClassName,
+          step: 60, // 1 min
+          ...rest,
+        }}
+      />
+      {timeList}
+    </>
   )
 }
 
