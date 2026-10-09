@@ -37,15 +37,20 @@ const flattenFragments = (children: ReactNode, keyPrefix = ''): ReactNode[] =>
       : [child]
   })
 
-// A `<title>` child is the helmet's title, as react-helmet-async reads it
+// A `<title>` child is the helmet's title, and its other props are the
+// title's attributes, as react-helmet-async reads it
 const splitTitleChild = (children: ReactNode) => {
   let title: string | undefined
+  let titleAttributes: HelmetProps['titleAttributes']
   const otherChildren = flattenFragments(children).filter(child => {
     if (
       isValidElement<{ children?: ReactNode }>(child) &&
       child.type === 'title'
     ) {
-      title = Children.toArray(child.props.children).join('')
+      const { children: text, ...attributes } = child.props
+
+      title = Children.toArray(text).join('')
+      titleAttributes = attributes
 
       return false
     }
@@ -53,7 +58,7 @@ const splitTitleChild = (children: ReactNode) => {
     return true
   })
 
-  return { title, otherChildren }
+  return { title, titleAttributes, otherChildren }
 }
 
 const PlainPageHelmet = (props: Props): React.ReactElement => {
@@ -73,7 +78,11 @@ const MergingPageHelmet = (props: Props): React.ReactElement => {
     defaultTitle: defaultTitleProp,
     ...rest
   } = props
-  const { title: childTitle, otherChildren } = splitTitleChild(children)
+  const {
+    title: childTitle,
+    titleAttributes: childTitleAttributes,
+    otherChildren,
+  } = splitTitleChild(children)
   // A prop set to `undefined` still hides an outer helmet's value, as
   // react-helmet-async merges them, so the registry keeps it as `null`
   const own = (key: keyof TitleEntry, value: string | undefined) =>
@@ -91,8 +100,15 @@ const MergingPageHelmet = (props: Props): React.ReactElement => {
   }, [entry, title, titleTemplate, defaultTitle])
   useEffect(() => register(entry), [entry])
 
+  // As in react-helmet-async, a `<title>` child's attributes replace the
+  // `titleAttributes` prop. Only the helmet that renders the title applies
+  // them, so an outer helmet's don't merge in
   return (
-    <Helmet {...rest} title={resolveTitle(entry)}>
+    <Helmet
+      {...rest}
+      title={resolveTitle(entry)}
+      titleAttributes={childTitleAttributes ?? rest.titleAttributes}
+    >
       {otherChildren}
     </Helmet>
   )

@@ -26,6 +26,18 @@ describe('PageHelmet', () => {
     })
   })
 
+  it('gives the title the attributes of a `<title>` child', async () => {
+    render(
+      <PageHelmet>
+        <title lang='hr'>Poslovi</title>
+      </PageHelmet>
+    )
+
+    await waitFor(() => {
+      expect(document.head.querySelector('title')).toHaveAttribute('lang', 'hr')
+    })
+  })
+
   // React 17 and 18 merge through react-helmet-async's provider, React 19
   // through Page.Helmet itself
   describe('across helmets', () => {
