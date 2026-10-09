@@ -37,14 +37,6 @@ export const register = (entry: TitleEntry) => {
 }
 
 export const update = (entry: TitleEntry, next: TitleEntry) => {
-  if (
-    entry.title === next.title &&
-    entry.titleTemplate === next.titleTemplate &&
-    entry.defaultTitle === next.defaultTitle
-  ) {
-    return
-  }
-
   Object.assign(entry, next)
   notify()
 }

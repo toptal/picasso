@@ -95,10 +95,10 @@ const MergingPageHelmet = (props: Props): React.ReactElement => {
   const [, rerender] = useReducer((count: number) => count + 1, 0)
 
   useEffect(() => subscribe(rerender), [])
+  useEffect(() => register(entry), [entry])
   useEffect(() => {
     update(entry, { title, titleTemplate, defaultTitle })
   }, [entry, title, titleTemplate, defaultTitle])
-  useEffect(() => register(entry), [entry])
 
   // As in react-helmet-async, a `<title>` child's attributes replace the
   // `titleAttributes` prop. Only the helmet that renders the title applies
