@@ -49,7 +49,9 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(function Collapse(
     unmountOnExit,
     timeout,
     nodeRef,
-    // Collapse renders the node itself, so it is there for the callbacks
+    // Collapse renders the node itself, so it is there for the callbacks,
+    // which keep their non-null `node`. The checks only narrow the hook's
+    // `node`, which is `null` for a child that takes no ref
     onEnter: (node, isAppearing) => {
       if (node) {
         onEnter?.(node, isAppearing)
