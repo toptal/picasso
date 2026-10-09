@@ -1,5 +1,5 @@
 "use strict";
-(globalThis["webpackChunk_toptal_picasso_root"] = globalThis["webpackChunk_toptal_picasso_root"] || []).push([[683],{
+(globalThis["webpackChunk_toptal_picasso_root"] = globalThis["webpackChunk_toptal_picasso_root"] || []).push([[866],{
 
 /***/ "./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/LexicalEditor.js":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -710,50 +710,9 @@ var useTypographyClasses = function (options) {
   return (0,get_typography_classnames/* getTypographyClassName */.X)(typographyStyles/* typographyStyles */.g, options);
 };
 /* harmony default export */ const use_typography_classes = (useTypographyClasses);
-;// ./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/hooks/useOnFocus/use-on-focus.js
-
-function use_on_focus_slicedToArray(r, e) { return use_on_focus_arrayWithHoles(r) || use_on_focus_iterableToArrayLimit(r, e) || use_on_focus_unsupportedIterableToArray(r, e) || use_on_focus_nonIterableRest(); }
-function use_on_focus_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function use_on_focus_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return use_on_focus_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? use_on_focus_arrayLikeToArray(r, a) : void 0; } }
-function use_on_focus_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function use_on_focus_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function use_on_focus_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-
-
-var useOnFocus = function (_ref) {
-  var _ref$onFocus = _ref.onFocus,
-    onFocus = _ref$onFocus === void 0 ? noop/* default */.A : _ref$onFocus,
-    _ref$onBlur = _ref.onBlur,
-    onBlur = _ref$onBlur === void 0 ? noop/* default */.A : _ref$onBlur,
-    _ref$internalRefs = _ref.internalRefs,
-    internalRefs = _ref$internalRefs === void 0 ? [] : _ref$internalRefs;
-  var _useState = (0,react.useState)(false),
-    _useState2 = use_on_focus_slicedToArray(_useState, 2),
-    focused = _useState2[0],
-    setFocused = _useState2[1];
-  var handleFocus = (0,react.useCallback)(function () {
-    setFocused(true);
-    onFocus();
-  }, [onFocus]);
-  var handleBlur = (0,react.useCallback)(function (e) {
-    var focusElement = e.relatedTarget;
-    var isInternalElement = internalRefs.some(function (ref) {
-      return ref.current && ref.current.contains(focusElement);
-    });
-    if (isInternalElement) {
-      return;
-    }
-    setFocused(false);
-    onBlur();
-  }, [onBlur]);
-  return {
-    focused: focused,
-    handleFocus: handleFocus,
-    handleBlur: handleBlur
-  };
-};
-/* harmony default export */ const use_on_focus = (useOnFocus);
-// EXTERNAL MODULE: ./packages/picasso-rich-text-editor/dist-package/src/plugins/LinkPlugin/LinkPlugin.js + 2 modules
+// EXTERNAL MODULE: ./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/hooks/useOnFocus/use-on-focus.js
+var use_on_focus = __webpack_require__("./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/hooks/useOnFocus/use-on-focus.js");
+// EXTERNAL MODULE: ./packages/picasso-rich-text-editor/dist-package/src/plugins/LinkPlugin/LinkPlugin.js + 4 modules
 var LinkPlugin = __webpack_require__("./packages/picasso-rich-text-editor/dist-package/src/plugins/LinkPlugin/LinkPlugin.js");
 // EXTERNAL MODULE: ./packages/picasso-rich-text-editor/dist-package/src/plugins/EmojiPlugin/EmojiPlugin.js + 3 modules
 var EmojiPlugin = __webpack_require__("./packages/picasso-rich-text-editor/dist-package/src/plugins/EmojiPlugin/EmojiPlugin.js");
@@ -1148,7 +1107,7 @@ var LexicalEditor = /*#__PURE__*/(0,react.forwardRef)(function LexicalEditor(pro
       onChange(cleanedValue);
     });
   }, [onChange]);
-  var _useOnFocus = use_on_focus({
+  var _useOnFocus = (0,use_on_focus/* default */.A)({
       onFocus: onFocus,
       onBlur: onBlur,
       internalRefs: [toolbarRef]
@@ -1225,4 +1184,4 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 /***/ })
 
 }]);
-//# sourceMappingURL=683.797cc0c3.iframe.bundle.js.map
+//# sourceMappingURL=866.4bafb651.iframe.bundle.js.map

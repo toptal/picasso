@@ -1,5 +1,5 @@
 "use strict";
-(globalThis["webpackChunk_toptal_picasso_root"] = globalThis["webpackChunk_toptal_picasso_root"] || []).push([[437],{
+(globalThis["webpackChunk_toptal_picasso_root"] = globalThis["webpackChunk_toptal_picasso_root"] || []).push([[281],{
 
 /***/ "./packages/picasso-rich-text-editor/src/LexicalEditor/LexicalEditor.tsx":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1355,6 +1355,27 @@ function use_on_focus_iterableToArrayLimit(r, l) { var t = null == r ? null : "u
 function use_on_focus_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
+
+// Plugin dialogs render in a portal outside the editor, but moving focus into
+// one is still part of editing, so it must not blur the editor
+var INTERNAL_DIALOG_ATTRIBUTE = 'data-rte-dialog';
+var isDialogElement = function (element) {
+  var _element$parentElemen;
+  return Boolean(element.closest(`[${INTERNAL_DIALOG_ATTRIBUTE}]`)) ||
+  // Base UI puts the dialog's focus guards beside it, not inside it
+  element.hasAttribute('data-base-ui-focus-guard') && Boolean((_element$parentElemen = element.parentElement) === null || _element$parentElemen === void 0 ? void 0 : _element$parentElemen.querySelector(`:scope > [${INTERNAL_DIALOG_ATTRIBUTE}]`));
+};
+var isInternalElement = function (e, internalRefs) {
+  var _e$currentTarget;
+  var focusElement = e.relatedTarget;
+  if (!focusElement) {
+    return false;
+  }
+  return Boolean((_e$currentTarget = e.currentTarget) === null || _e$currentTarget === void 0 ? void 0 : _e$currentTarget.contains(focusElement)) || internalRefs.some(function (ref) {
+    var _ref$current;
+    return (_ref$current = ref.current) === null || _ref$current === void 0 ? void 0 : _ref$current.contains(focusElement);
+  }) || focusElement instanceof Element && isDialogElement(focusElement);
+};
 var useOnFocus = function (_ref) {
   var _ref$onFocus = _ref.onFocus,
     onFocus = _ref$onFocus === void 0 ? noop/* default */.A : _ref$onFocus,
@@ -1366,18 +1387,21 @@ var useOnFocus = function (_ref) {
     _useState2 = use_on_focus_slicedToArray(_useState, 2),
     focused = _useState2[0],
     setFocused = _useState2[1];
+  // Focus coming back from the toolbar or a dialog is not a new focus
+  var focusedRef = (0,react.useRef)(false);
   var handleFocus = (0,react.useCallback)(function () {
+    if (focusedRef.current) {
+      return;
+    }
+    focusedRef.current = true;
     setFocused(true);
     onFocus();
   }, [onFocus]);
   var handleBlur = (0,react.useCallback)(function (e) {
-    var focusElement = e.relatedTarget;
-    var isInternalElement = internalRefs.some(function (ref) {
-      return ref.current && ref.current.contains(focusElement);
-    });
-    if (isInternalElement) {
+    if (isInternalElement(e, internalRefs)) {
       return;
     }
+    focusedRef.current = false;
     setFocused(false);
     onBlur();
   }, [onBlur]);
@@ -1394,6 +1418,77 @@ var LexicalLink = __webpack_require__("./node_modules/@lexical/link/LexicalLink.
 var LexicalLinkPlugin = __webpack_require__("./node_modules/@lexical/react/LexicalLinkPlugin.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/Link16.js
 var Link16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/Link16.js");
+;// ./packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginButton.tsx
+
+function LinkPluginButton_slicedToArray(r, e) { return LinkPluginButton_arrayWithHoles(r) || LinkPluginButton_iterableToArrayLimit(r, e) || LinkPluginButton_unsupportedIterableToArray(r, e) || LinkPluginButton_nonIterableRest(); }
+function LinkPluginButton_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function LinkPluginButton_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return LinkPluginButton_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? LinkPluginButton_arrayLikeToArray(r, a) : void 0; } }
+function LinkPluginButton_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function LinkPluginButton_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function LinkPluginButton_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+
+var LinkPluginButton = function (_ref) {
+  var testId = _ref['data-testid'],
+    className = _ref.className,
+    style = _ref.style,
+    onClick = _ref.onClick;
+  var _useState = (0,react.useState)(false),
+    _useState2 = LinkPluginButton_slicedToArray(_useState, 2),
+    active = _useState2[0],
+    setActive = _useState2[1];
+  var _useRTEPluginContext = useRTEPluginContext(),
+    disabled = _useRTEPluginContext.disabled,
+    focused = _useRTEPluginContext.focused,
+    disabledFormatting = _useRTEPluginContext.disabledFormatting;
+  useRTEUpdate(function () {
+    var selection = (0,Lexical.$getSelection)();
+    if ((0,Lexical.$isRangeSelection)(selection)) {
+      var node = getSelectedNode(selection);
+      var parent = node.getParent();
+      setActive(Boolean((0,LexicalLink.$isLinkNode)(node) || (0,LexicalLink.$isLinkNode)(parent)));
+    }
+  });
+  var isDisabled = disabled || !focused || disabledFormatting;
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(RichTextEditorButton_RichTextEditorButton, {
+    icon: /*#__PURE__*/(0,jsx_runtime.jsx)(Link16/* default */.A, {}),
+    onClick: onClick,
+    active: isDisabled ? false : active,
+    disabled: isDisabled,
+    className: className,
+    style: style,
+    "data-testid": testId
+  });
+};
+LinkPluginButton.displayName = "LinkPluginButton";
+/* harmony default export */ const LinkPlugin_LinkPluginButton = (LinkPluginButton);
+try {
+    // @ts-ignore
+    LinkPluginButton.displayName = "LinkPluginButton";
+    // @ts-ignore
+    LinkPluginButton.__docgenInfo = { "description": "", "displayName": "LinkPluginButton", "props": { "onClick": { "defaultValue": null, "description": "Called when the button is clicked", "name": "onClick", "required": true, "type": { "name": "() => void" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    // @ts-ignore
+    if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
+        // @ts-ignore
+        STORYBOOK_REACT_CLASSES["packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginButton.tsx#LinkPluginButton"] = { docgenInfo: LinkPluginButton.__docgenInfo, name: "LinkPluginButton", path: "packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginButton.tsx#LinkPluginButton" };
+}
+catch (__react_docgen_typescript_loader_error) { }
+// EXTERNAL MODULE: ./packages/base/Button/dist-package/src/Button/Button.js
+var Button = __webpack_require__("./packages/base/Button/dist-package/src/Button/Button.js");
+// EXTERNAL MODULE: ./packages/base/Checkbox/dist-package/src/index.js + 6 modules
+var src = __webpack_require__("./packages/base/Checkbox/dist-package/src/index.js");
+// EXTERNAL MODULE: ./packages/base/Form/dist-package/src/FormCompound/index.js
+var FormCompound = __webpack_require__("./packages/base/Form/dist-package/src/FormCompound/index.js");
+// EXTERNAL MODULE: ./packages/base/Input/dist-package/src/Input/Input.js
+var Input = __webpack_require__("./packages/base/Input/dist-package/src/Input/Input.js");
+// EXTERNAL MODULE: ./packages/base/Modal/dist-package/src/ModalCompound/index.js
+var ModalCompound = __webpack_require__("./packages/base/Modal/dist-package/src/ModalCompound/index.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.url.js
 var web_url = __webpack_require__("./node_modules/core-js/modules/web.url.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.constructor.js
@@ -1421,16 +1516,14 @@ var urlRegExp = new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-
 var validateUrl = function (url) {
   return urlRegExp.test(url);
 };
-;// ./packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginButton.tsx
+;// ./packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginModal.tsx
 
-
-
-function LinkPluginButton_slicedToArray(r, e) { return LinkPluginButton_arrayWithHoles(r) || LinkPluginButton_iterableToArrayLimit(r, e) || LinkPluginButton_unsupportedIterableToArray(r, e) || LinkPluginButton_nonIterableRest(); }
-function LinkPluginButton_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function LinkPluginButton_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return LinkPluginButton_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? LinkPluginButton_arrayLikeToArray(r, a) : void 0; } }
-function LinkPluginButton_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function LinkPluginButton_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function LinkPluginButton_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function LinkPluginModal_slicedToArray(r, e) { return LinkPluginModal_arrayWithHoles(r) || LinkPluginModal_iterableToArrayLimit(r, e) || LinkPluginModal_unsupportedIterableToArray(r, e) || LinkPluginModal_nonIterableRest(); }
+function LinkPluginModal_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function LinkPluginModal_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return LinkPluginModal_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? LinkPluginModal_arrayLikeToArray(r, a) : void 0; } }
+function LinkPluginModal_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function LinkPluginModal_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function LinkPluginModal_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
@@ -1440,91 +1533,317 @@ function LinkPluginButton_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-
-var LinkPluginButton = function (_ref) {
-  var testId = _ref['data-testid'];
-  var _useState = (0,react.useState)(false),
-    _useState2 = LinkPluginButton_slicedToArray(_useState, 2),
-    active = _useState2[0],
-    setActive = _useState2[1];
-  var _useLexicalComposerCo = (0,LexicalComposerContext.useLexicalComposerContext)(),
-    _useLexicalComposerCo2 = LinkPluginButton_slicedToArray(_useLexicalComposerCo, 1),
-    editor = _useLexicalComposerCo2[0];
-  var _useRTEPluginContext = useRTEPluginContext(),
-    disabled = _useRTEPluginContext.disabled,
-    focused = _useRTEPluginContext.focused,
-    disabledFormatting = _useRTEPluginContext.disabledFormatting;
-  useRTEUpdate(function () {
-    var selection = (0,Lexical.$getSelection)();
-    if ((0,Lexical.$isRangeSelection)(selection)) {
-      var node = getSelectedNode(selection);
-      var parent = node.getParent();
-      setActive(Boolean((0,LexicalLink.$isLinkNode)(node) || (0,LexicalLink.$isLinkNode)(parent)));
+var LinkPluginModal = function (_ref) {
+  var open = _ref.open,
+    initialValues = _ref.initialValues,
+    editing = _ref.editing,
+    onClose = _ref.onClose,
+    onSubmit = _ref.onSubmit,
+    onRemove = _ref.onRemove,
+    className = _ref.className,
+    style = _ref.style,
+    testId = _ref['data-testid'];
+  var _useState = (0,react.useState)(initialValues),
+    _useState2 = LinkPluginModal_slicedToArray(_useState, 2),
+    values = _useState2[0],
+    setValues = _useState2[1];
+  var _useState3 = (0,react.useState)(false),
+    _useState4 = LinkPluginModal_slicedToArray(_useState3, 2),
+    urlError = _useState4[0],
+    setUrlError = _useState4[1];
+  (0,react.useEffect)(function () {
+    if (open) {
+      setValues(initialValues);
+      setUrlError(false);
     }
-  });
-  var onLinkClick = (0,react.useCallback)(function () {
-    if (active) {
-      return editor.dispatchCommand(LexicalLink.TOGGLE_LINK_COMMAND, null);
+  }, [open, initialValues]);
+  var handleSave = function () {
+    var url = values.url.trim();
+    if (!validateUrl(url)) {
+      setUrlError(true);
+      return;
     }
-    editor.update(function () {
-      var selection = (0,Lexical.$getSelection)();
-      if ((0,Lexical.$isRangeSelection)(selection)) {
-        var isEmptySelection = selection.anchor.is(selection.focus);
-        var url = window.prompt('URL');
-        if (url != null) {
-          if (!validateUrl(url)) {
-            return window.alert('Not a valid URL');
+    onSubmit(Object.assign({}, values, {
+      url: url
+    }));
+  };
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)(ModalCompound/* ModalCompound */.p, {
+    onClose: onClose,
+    open: open,
+    size: "small",
+    className: className,
+    style: style,
+    "data-testid": testId,
+    [INTERNAL_DIALOG_ATTRIBUTE]: '',
+    children: [/*#__PURE__*/(0,jsx_runtime.jsx)(ModalCompound/* ModalCompound */.p.Title, {
+      children: editing ? 'Edit link' : 'Add link'
+    }), /*#__PURE__*/(0,jsx_runtime.jsxs)(ModalCompound/* ModalCompound */.p.Content, {
+      children: [/*#__PURE__*/(0,jsx_runtime.jsxs)(FormCompound/* FormCompound */.k.Field, {
+        children: [/*#__PURE__*/(0,jsx_runtime.jsx)(FormCompound/* FormCompound */.k.Label, {
+          htmlFor: "rte-link-text",
+          children: "Text"
+        }), /*#__PURE__*/(0,jsx_runtime.jsx)(Input/* default */.A, {
+          id: "rte-link-text",
+          value: values.text,
+          onChange: function (event) {
+            return setValues(Object.assign({}, values, {
+              text: event.target.value
+            }));
+          },
+          width: "full",
+          autoFocus: !values.text
+        })]
+      }), /*#__PURE__*/(0,jsx_runtime.jsxs)(FormCompound/* FormCompound */.k.Field, {
+        children: [/*#__PURE__*/(0,jsx_runtime.jsx)(FormCompound/* FormCompound */.k.Label, {
+          htmlFor: "rte-link-url",
+          children: "Link"
+        }), /*#__PURE__*/(0,jsx_runtime.jsx)(Input/* default */.A, {
+          id: "rte-link-url",
+          value: values.url,
+          onChange: function (event) {
+            setValues(Object.assign({}, values, {
+              url: event.target.value
+            }));
+            setUrlError(false);
+          },
+          status: urlError ? 'error' : undefined,
+          width: "full",
+          autoFocus: Boolean(values.text)
+        }), urlError && /*#__PURE__*/(0,jsx_runtime.jsx)(FormCompound/* FormCompound */.k.Error, {
+          children: "Enter a valid URL"
+        })]
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)(FormCompound/* FormCompound */.k.Field, {
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)(src.Checkbox, {
+          label: "Open in new tab",
+          checked: values.openInNewTab,
+          onChange: function (_event, checked) {
+            return setValues(Object.assign({}, values, {
+              openInNewTab: checked
+            }));
           }
-          var sanitizedUrl = sanitizeUrl(url);
-
-          // When nothing is selected, we create a new Link node without dispatching
-          // any commands to the original Lexical Link plugin
-          if (isEmptySelection) {
-            // The only way to reliably insert a link is to first create a dummy text node
-            selection.insertNodes([(0,Lexical.$createTextNode)(sanitizedUrl)]);
-            // Once created, node becomes selected
-            var node = getSelectedNode(selection);
-            var text = node.getTextContent();
-
-            // Then we create a target Link node and replace the dummy text node with it
-            var linkNode = (0,LexicalLink.$createLinkNode)(sanitizedUrl, {
-              rel: 'noreferrer'
-            });
-            linkNode.append((0,Lexical.$createTextNode)(text));
-            node.replace(linkNode);
-          } else {
-            // If we have a selection of any kind, pass the creation of the Link node to the plugin
-            editor.dispatchCommand(LexicalLink.TOGGLE_LINK_COMMAND, {
-              url: sanitizedUrl
-            });
-          }
-        }
-      }
-    });
-  }, [editor, active]);
-  var isDisabled = disabled || !focused || disabledFormatting;
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(RichTextEditorButton_RichTextEditorButton, {
-    icon: /*#__PURE__*/(0,jsx_runtime.jsx)(Link16/* default */.A, {}),
-    onClick: onLinkClick,
-    active: isDisabled ? false : active,
-    disabled: isDisabled,
-    "data-testid": testId
+        })
+      })]
+    }), /*#__PURE__*/(0,jsx_runtime.jsxs)(ModalCompound/* ModalCompound */.p.Actions, {
+      children: [editing && /*#__PURE__*/(0,jsx_runtime.jsx)(Button/* default */.A, {
+        variant: "secondary",
+        onClick: onRemove,
+        children: "Remove link"
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)(Button/* default */.A, {
+        variant: "secondary",
+        onClick: onClose,
+        children: "Cancel"
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)(Button/* default */.A, {
+        variant: "primary",
+        disabled: !values.url.trim(),
+        onClick: handleSave,
+        children: "Save"
+      })]
+    })]
   });
 };
-LinkPluginButton.displayName = "LinkPluginButton";
-/* harmony default export */ const LinkPlugin_LinkPluginButton = (LinkPluginButton);
+LinkPluginModal.displayName = "LinkPluginModal";
+/* harmony default export */ const LinkPlugin_LinkPluginModal = (LinkPluginModal);
 try {
     // @ts-ignore
-    LinkPluginButton.displayName = "LinkPluginButton";
+    LinkPluginModal.displayName = "LinkPluginModal";
     // @ts-ignore
-    LinkPluginButton.__docgenInfo = { "description": "", "displayName": "LinkPluginButton", "props": {} };
+    LinkPluginModal.__docgenInfo = { "description": "", "displayName": "LinkPluginModal", "props": { "open": { "defaultValue": null, "description": "Whether the dialog is shown", "name": "open", "required": true, "type": { "name": "boolean" } }, "initialValues": { "defaultValue": null, "description": "Values the form opens with: the selected text, or the link being edited", "name": "initialValues", "required": true, "type": { "name": "LinkValues" } }, "editing": { "defaultValue": null, "description": "Whether an existing link is being edited, which offers removing it", "name": "editing", "required": true, "type": { "name": "boolean" } }, "onClose": { "defaultValue": null, "description": "Called when the dialog is dismissed without saving", "name": "onClose", "required": true, "type": { "name": "() => void" } }, "onSubmit": { "defaultValue": null, "description": "Called with the entered values when the link is saved", "name": "onSubmit", "required": true, "type": { "name": "(values: LinkValues) => void" } }, "onRemove": { "defaultValue": null, "description": "Called when the edited link is removed", "name": "onRemove", "required": true, "type": { "name": "() => void" } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
-        STORYBOOK_REACT_CLASSES["packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginButton.tsx#LinkPluginButton"] = { docgenInfo: LinkPluginButton.__docgenInfo, name: "LinkPluginButton", path: "packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginButton.tsx#LinkPluginButton" };
+        STORYBOOK_REACT_CLASSES["packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginModal.tsx#LinkPluginModal"] = { docgenInfo: LinkPluginModal.__docgenInfo, name: "LinkPluginModal", path: "packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPluginModal.tsx#LinkPluginModal" };
 }
 catch (__react_docgen_typescript_loader_error) { }
+;// ./packages/picasso-rich-text-editor/src/plugins/LinkPlugin/use-link-plugin.ts
+function use_link_plugin_slicedToArray(r, e) { return use_link_plugin_arrayWithHoles(r) || use_link_plugin_iterableToArrayLimit(r, e) || use_link_plugin_unsupportedIterableToArray(r, e) || use_link_plugin_nonIterableRest(); }
+function use_link_plugin_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function use_link_plugin_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return use_link_plugin_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? use_link_plugin_arrayLikeToArray(r, a) : void 0; } }
+function use_link_plugin_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function use_link_plugin_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function use_link_plugin_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+
+
+
+
+
+
+
+var EMPTY_VALUES = {
+  text: '',
+  url: '',
+  openInNewTab: true
+};
+var linkAttributes = function (openInNewTab) {
+  return openInNewTab ? {
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  } : {
+    target: null,
+    rel: 'noreferrer'
+  };
+};
+var $getEditedLink = function (key) {
+  var node = key ? (0,Lexical.$getNodeByKey)(key) : null;
+  return (0,LexicalLink.$isLinkNode)(node) ? node : null;
+};
+var $getLinkAt = function (node) {
+  var link = (0,LexicalUtils.$findMatchingParent)(node, LexicalLink.$isLinkNode);
+  return (0,LexicalLink.$isLinkNode)(link) ? link : null;
+};
+var $updateLink = function (link, _ref) {
+  var href = _ref.href,
+    attributes = _ref.attributes,
+    label = _ref.label;
+  link.setURL(href);
+  link.setTarget(attributes.target);
+  link.setRel(attributes.rel);
+  if (label === link.getTextContent()) {
+    return;
+  }
+  var oldChildren = link.getChildren();
+  var textNode = (0,Lexical.$createTextNode)(label);
+
+  // Append before removing: a link left without children removes itself
+  link.append(textNode);
+  oldChildren.forEach(function (child) {
+    return child.remove();
+  });
+  textNode.select();
+};
+var $insertLink = function (selection, _ref2) {
+  var href = _ref2.href,
+    attributes = _ref2.attributes,
+    label = _ref2.label;
+  (0,Lexical.$setSelection)(selection);
+
+  // Keep the selection's formatting when only a URL is attached to it
+  if (!selection.isCollapsed() && label === selection.getTextContent()) {
+    (0,LexicalLink.toggleLink)(href, attributes);
+    return;
+  }
+
+  // Inserting a text node first and then swapping it for the link is the
+  // only reliable way to place a link at the selection
+  selection.insertNodes([(0,Lexical.$createTextNode)(label)]);
+  var placeholder = getSelectedNode(selection);
+  var linkNode = (0,LexicalLink.$createLinkNode)(href, attributes);
+  linkNode.append((0,Lexical.$createTextNode)(label));
+  placeholder.replace(linkNode);
+};
+var useLinkPlugin = function () {
+  var _useLexicalComposerCo = (0,LexicalComposerContext.useLexicalComposerContext)(),
+    _useLexicalComposerCo2 = use_link_plugin_slicedToArray(_useLexicalComposerCo, 1),
+    editor = _useLexicalComposerCo2[0];
+  var _useState = (0,react.useState)(false),
+    _useState2 = use_link_plugin_slicedToArray(_useState, 2),
+    open = _useState2[0],
+    setOpen = _useState2[1];
+  var _useState3 = (0,react.useState)(false),
+    _useState4 = use_link_plugin_slicedToArray(_useState3, 2),
+    editing = _useState4[0],
+    setEditing = _useState4[1];
+  var _useState5 = (0,react.useState)(EMPTY_VALUES),
+    _useState6 = use_link_plugin_slicedToArray(_useState5, 2),
+    initialValues = _useState6[0],
+    setInitialValues = _useState6[1];
+  // The dialog takes focus from the editor, so the selection it applies to is
+  // captured on show and restored when it closes.
+  var selectionRef = (0,react.useRef)(null);
+  var linkKeyRef = (0,react.useRef)(null);
+  var wasOpenRef = (0,react.useRef)(false);
+
+  // Return focus to the editor once the dialog is gone; focusing it while the
+  // dialog is still mounted would be pulled back into the dialog
+  (0,react.useEffect)(function () {
+    if (wasOpenRef.current && !open) {
+      editor.focus();
+    }
+    wasOpenRef.current = open;
+  }, [editor, open]);
+  var show = (0,react.useCallback)(function () {
+    editor.getEditorState().read(function () {
+      var _$getLinkAt;
+      var selection = (0,Lexical.$getSelection)();
+      if (!(0,Lexical.$isRangeSelection)(selection)) {
+        return;
+      }
+
+      // Either end of the selection can sit in a link, e.g. a selection that
+      // starts inside one and ends after it
+      var link = (_$getLinkAt = $getLinkAt(selection.anchor.getNode())) !== null && _$getLinkAt !== void 0 ? _$getLinkAt : $getLinkAt(selection.focus.getNode());
+      selectionRef.current = selection.clone();
+      linkKeyRef.current = link ? link.getKey() : null;
+      setEditing(Boolean(link));
+      setInitialValues(link ? {
+        text: link.getTextContent(),
+        url: link.getURL(),
+        openInNewTab: link.getTarget() === '_blank'
+      } : Object.assign({}, EMPTY_VALUES, {
+        text: selection.getTextContent()
+      }));
+      setOpen(true);
+    });
+  }, [editor]);
+  var close = (0,react.useCallback)(function () {
+    editor.update(function () {
+      var _selectionRef$current;
+      var selection = (_selectionRef$current = selectionRef.current) === null || _selectionRef$current === void 0 ? void 0 : _selectionRef$current.clone();
+      if (selection) {
+        (0,Lexical.$setSelection)(selection);
+      }
+    });
+    setOpen(false);
+  }, [editor]);
+  var submit = (0,react.useCallback)(function (_ref3) {
+    var text = _ref3.text,
+      url = _ref3.url,
+      openInNewTab = _ref3.openInNewTab;
+    editor.update(function () {
+      var _selectionRef$current2;
+      var href = sanitizeUrl(url);
+      var spec = {
+        href: href,
+        attributes: linkAttributes(openInNewTab),
+        label: text || href
+      };
+      var link = $getEditedLink(linkKeyRef.current);
+      var selection = (_selectionRef$current2 = selectionRef.current) === null || _selectionRef$current2 === void 0 ? void 0 : _selectionRef$current2.clone();
+      if (link) {
+        $updateLink(link, spec);
+      } else if (selection) {
+        $insertLink(selection, spec);
+      }
+    });
+    setOpen(false);
+  }, [editor]);
+  var remove = (0,react.useCallback)(function () {
+    editor.update(function () {
+      var link = $getEditedLink(linkKeyRef.current);
+      if (link) {
+        link.getChildren().forEach(function (child) {
+          return link.insertBefore(child);
+        });
+        link.remove();
+      }
+    });
+    setOpen(false);
+  }, [editor]);
+  return {
+    open: open,
+    editing: editing,
+    initialValues: initialValues,
+    show: show,
+    close: close,
+    submit: submit,
+    remove: remove
+  };
+};
 ;// ./packages/picasso-rich-text-editor/src/plugins/LinkPlugin/LinkPlugin.tsx
+
+
 
 
 
@@ -1534,13 +1853,29 @@ catch (__react_docgen_typescript_loader_error) { }
 var PLUGIN_NAME = 'link';
 var LinkPlugin = function (_ref) {
   var testId = _ref['data-testid'];
+  var _useLinkPlugin = useLinkPlugin(),
+    open = _useLinkPlugin.open,
+    editing = _useLinkPlugin.editing,
+    initialValues = _useLinkPlugin.initialValues,
+    show = _useLinkPlugin.show,
+    close = _useLinkPlugin.close,
+    submit = _useLinkPlugin.submit,
+    remove = _useLinkPlugin.remove;
   return /*#__PURE__*/(0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
     children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Toolbar_Toolbar, {
       keyName: PLUGIN_NAME,
       children: /*#__PURE__*/(0,jsx_runtime.jsx)(LinkPlugin_LinkPluginButton, {
+        onClick: show,
         "data-testid": testId
       })
-    }), /*#__PURE__*/(0,jsx_runtime.jsx)(LexicalLinkPlugin.LinkPlugin, {})]
+    }), /*#__PURE__*/(0,jsx_runtime.jsx)(LexicalLinkPlugin.LinkPlugin, {}), /*#__PURE__*/(0,jsx_runtime.jsx)(LinkPlugin_LinkPluginModal, {
+      open: open,
+      editing: editing,
+      initialValues: initialValues,
+      onClose: close,
+      onSubmit: submit,
+      onRemove: remove
+    })]
   });
 };
 LinkPlugin[RTEPluginMeta] = {
@@ -2366,4 +2701,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=437.34563db3.iframe.bundle.js.map
+//# sourceMappingURL=281.3576581c.iframe.bundle.js.map
