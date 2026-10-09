@@ -9,9 +9,10 @@ type CheckedConfig = Pick<
  * A checkbox without its own `value` that passes a custom `format`.
  * react-final-form 7.0.1 derives its `checked` from `parse(value)`, so a
  * string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+ * Upstream made that change on purpose, for a checkbox with a `value`
+ * (react-final-form #1074), so Picasso keeps version 6's rule for good.
  * Group checkboxes and radios keep upstream's, which compares the stored value
  * with their own.
- * TODO: [PF-2522] drop when upstream derives it from `format` again
  */
 export const derivesCheckedFromFormat = (
   config: CheckedConfig = {}
