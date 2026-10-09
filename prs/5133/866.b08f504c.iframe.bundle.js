@@ -981,12 +981,20 @@ var hoistNestedLists = function (htmlDoc) {
   });
   return htmlDoc;
 };
+// A link that opens in a new tab must not get access to this page through
+// window.opener, whatever produced it (the dialog or pasted HTML)
+var secureNewTabLinks = function (htmlDoc) {
+  htmlDoc.querySelectorAll('a[target="_blank"]').forEach(function (link) {
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+  return htmlDoc;
+};
 var cleanupHtmlOutput = function (html) {
   var parser = new DOMParser();
   var htmlDoc = parser.parseFromString(html, 'text/html');
-  var _map$map$map = [htmlDoc].map(removeExtraTags).map(replaceItalicTag).map(hoistNestedLists),
-    _map$map$map2 = cleanup_html_output_slicedToArray(_map$map$map, 1),
-    newHtml = _map$map$map2[0];
+  var _map$map$map$map = [htmlDoc].map(removeExtraTags).map(replaceItalicTag).map(hoistNestedLists).map(secureNewTabLinks),
+    _map$map$map$map2 = cleanup_html_output_slicedToArray(_map$map$map$map, 1),
+    newHtml = _map$map$map$map2[0];
   var result = newHtml.body.innerHTML;
   return result;
 };
@@ -1184,4 +1192,4 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 /***/ })
 
 }]);
-//# sourceMappingURL=866.4bafb651.iframe.bundle.js.map
+//# sourceMappingURL=866.b08f504c.iframe.bundle.js.map
