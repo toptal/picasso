@@ -6,14 +6,13 @@ import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { generateRandomString } from '@toptal/picasso-provider'
+import { isReact19OrNewer } from '@toptal/picasso-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import type { Props } from './Autocomplete'
 import { Autocomplete } from './Autocomplete'
 
 jest.mock('ap-style-title-case')
-
-const isReact19OrNewer = Number.parseInt(React.version, 10) >= 19
 
 const testOptions = [
   { text: 'Belarus', value: 'BY' },
