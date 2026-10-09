@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import type { Ref } from 'react'
-import React, { Component, createRef, forwardRef } from 'react'
+import React, { Component, createRef, forwardRef, memo } from 'react'
 import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
@@ -196,50 +196,58 @@ describe('Autocomplete', () => {
       }
     })
 
-    it('keeps its ref away from a class custom input, whose ref is the instance', () => {
-      const consoleLog = jest.spyOn(console, 'log').mockImplementation(() => {})
-      const autocompleteRef = createRef<HTMLInputElement>()
+    class ClassInput extends Component<{
+      value?: string
+      onChange?: React.ChangeEventHandler<HTMLInputElement>
+      onFocus?: React.FocusEventHandler<HTMLInputElement>
+    }> {
+      render() {
+        const { value, onChange, onFocus } = this.props
 
-      class CustomInput extends Component<{
-        value?: string
-        onChange?: React.ChangeEventHandler<HTMLInputElement>
-        onFocus?: React.FocusEventHandler<HTMLInputElement>
-      }> {
-        render() {
-          const { value, onChange, onFocus } = this.props
-
-          return (
-            <input
-              data-testid='custom-input'
-              value={value}
-              onChange={onChange}
-              onFocus={onFocus}
-            />
-          )
-        }
-      }
-
-      try {
-        const { getByTestId } = render(
-          <Autocomplete
-            ref={autocompleteRef}
-            value=''
-            options={[{ text: 'Apple' }, { text: 'Banana' }]}
-            inputComponent={CustomInput as Props['inputComponent']}
+        return (
+          <input
+            data-testid='custom-input'
+            value={value}
+            onChange={onChange}
+            onFocus={onFocus}
           />
         )
-        const input = getByTestId('custom-input')
-
-        // Opening the menu focuses the input through the ref
-        fireEvent.focus(input)
-        fireEvent.change(input, { target: { value: 'a' } })
-
-        expect(autocompleteRef.current).toBeNull()
-        expect(consoleLog).toHaveBeenCalled()
-      } finally {
-        consoleLog.mockRestore()
       }
-    })
+    }
+
+    it.each([
+      ['a class', ClassInput],
+      ['a memo-wrapped class', memo(ClassInput)],
+    ])(
+      'keeps its ref away from %s custom input, whose ref is the instance',
+      (_, CustomInput) => {
+        const consoleLog = jest
+          .spyOn(console, 'log')
+          .mockImplementation(() => {})
+        const autocompleteRef = createRef<HTMLInputElement>()
+
+        try {
+          const { getByTestId } = render(
+            <Autocomplete
+              ref={autocompleteRef}
+              value=''
+              options={[{ text: 'Apple' }, { text: 'Banana' }]}
+              inputComponent={CustomInput as Props['inputComponent']}
+            />
+          )
+          const input = getByTestId('custom-input')
+
+          // Opening the menu focuses the input through the ref
+          fireEvent.focus(input)
+          fireEvent.change(input, { target: { value: 'a' } })
+
+          expect(autocompleteRef.current).toBeNull()
+          expect(consoleLog).toHaveBeenCalled()
+        } finally {
+          consoleLog.mockRestore()
+        }
+      }
+    )
 
     it('shows default no options text when no options are available', () => {
       const { getByTestId, getByText } = renderAutocomplete({

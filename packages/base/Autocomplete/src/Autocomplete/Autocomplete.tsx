@@ -125,6 +125,22 @@ export interface Props
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
+interface ComponentInternals {
+  $$typeof?: symbol
+  type?: unknown
+  prototype?: { isReactComponent?: unknown }
+}
+
+// A class component's ref is its instance, not the input, also when `memo`
+// wraps the class. A class inside `lazy` only shows once it has loaded
+const isClassComponent = (component: unknown): boolean => {
+  const { $$typeof, type, prototype } = (component ?? {}) as ComponentInternals
+
+  return $$typeof === Symbol.for('react.memo')
+    ? isClassComponent(type)
+    : Boolean(prototype?.isReactComponent)
+}
+
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
@@ -176,16 +192,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     const inputRef = useRef<HTMLInputElement | null>(null)
     let ref: Ref<HTMLInputElement> | undefined = customRef || inputRef
 
-    // A class component's ref is its instance, not the input. React 19 passes
-    // a function component its `ref` as a prop; React 17 and 18 pass it only
-    // to a `forwardRef` component
-    const isClassComponent = Boolean(
-      inputComponent?.prototype?.isReactComponent
-    )
-
+    // React 19 passes a function component its `ref` as a prop; React 17 and
+    // 18 pass it only to a `forwardRef` component
     if (
       inputComponent &&
-      (isClassComponent || (!isReact19OrNewer && !isForwardRef(inputComponent)))
+      (isClassComponent(inputComponent) ||
+        (!isReact19OrNewer && !isForwardRef(inputComponent)))
     ) {
       ref = undefined
       unsafeErrorLog(
