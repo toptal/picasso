@@ -3,13 +3,14 @@
  * React 19 they merge into one title the way react-helmet-async's provider
  * merges them on React 17 and 18: the innermost `title`, formatted with the
  * innermost `titleTemplate`, or else, when that title is empty or missing, the
- * innermost `defaultTitle`. It is module-wide, like the one document whose
- * title it sets.
+ * innermost `defaultTitle`. A helmet that sets one of them to `undefined`
+ * holds `null` for it, which hides an outer helmet's value, as it does there.
+ * It is module-wide, like the one document whose title it sets.
  */
 export interface TitleEntry {
-  title?: string
-  titleTemplate?: string
-  defaultTitle?: string
+  title?: string | null
+  titleTemplate?: string | null
+  defaultTitle?: string | null
 }
 
 const entries: TitleEntry[] = []

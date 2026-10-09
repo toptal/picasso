@@ -69,13 +69,19 @@ const MergingPageHelmet = (props: Props): React.ReactElement => {
   const {
     children,
     title: titleProp,
-    titleTemplate,
-    defaultTitle,
+    titleTemplate: titleTemplateProp,
+    defaultTitle: defaultTitleProp,
     ...rest
   } = props
   const { title: childTitle, otherChildren } = splitTitleChild(children)
+  // A prop set to `undefined` still hides an outer helmet's value, as
+  // react-helmet-async merges them, so the registry keeps it as `null`
+  const own = (key: keyof TitleEntry, value: string | undefined) =>
+    key in props ? value ?? null : undefined
   // As in react-helmet-async, a `<title>` child replaces the `title` prop
-  const title = childTitle ?? titleProp
+  const title = childTitle ?? own('title', titleProp)
+  const titleTemplate = own('titleTemplate', titleTemplateProp)
+  const defaultTitle = own('defaultTitle', defaultTitleProp)
   const [entry] = useState<TitleEntry>(() => ({}))
   const [, rerender] = useReducer((count: number) => count + 1, 0)
 

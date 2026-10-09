@@ -103,6 +103,34 @@ describe('PageHelmet', () => {
       })
     })
 
+    // A page's `title={job?.name}` while the job loads, for example
+    it.each([
+      ['title', <PageHelmet title={undefined} />, 'Toptal'],
+      [
+        'titleTemplate',
+        <PageHelmet title='Jobs' titleTemplate={undefined} />,
+        'Jobs',
+      ],
+    ])(
+      "lets an inner helmet's `%s={undefined}` hide the outer one",
+      async (_, innerHelmet, expectedTitle) => {
+        render(
+          <>
+            <PageHelmet
+              title='Dashboard'
+              titleTemplate='%s | Toptal'
+              defaultTitle='Toptal'
+            />
+            {innerHelmet}
+          </>
+        )
+
+        await waitFor(() => {
+          expect(document.title).toBe(expectedTitle)
+        })
+      }
+    )
+
     it('takes a `<title>` child over the `title` prop', async () => {
       render(
         <>
