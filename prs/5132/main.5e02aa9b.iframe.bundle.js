@@ -152172,6 +152172,80 @@ section.createDocPage('CHANGELOG', (0,Markdown/* createMarkdownPage */.V1)(CHANG
 
 /***/ }),
 
+/***/ "./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/hooks/useOnFocus/use-on-focus.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   s: () => (/* binding */ INTERNAL_DIALOG_ATTRIBUTE)
+/* harmony export */ });
+/* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/noop.js");
+
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+// Plugin dialogs render in a portal outside the editor, but moving focus into
+// one is still part of editing, so it must not blur the editor
+var INTERNAL_DIALOG_ATTRIBUTE = 'data-rte-dialog';
+var isInternalElement = function (e, internalRefs) {
+  var _a;
+  var focusElement = e.relatedTarget;
+  if (!focusElement) {
+    return false;
+  }
+  return Boolean((_a = e.currentTarget) === null || _a === void 0 ? void 0 : _a.contains(focusElement)) || internalRefs.some(function (ref) {
+    var _a;
+    return (_a = ref.current) === null || _a === void 0 ? void 0 : _a.contains(focusElement);
+  }) || focusElement instanceof Element && Boolean(focusElement.closest(`[${INTERNAL_DIALOG_ATTRIBUTE}]`));
+};
+var useOnFocus = function (_ref) {
+  var _ref$onFocus = _ref.onFocus,
+    onFocus = _ref$onFocus === void 0 ? _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A : _ref$onFocus,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A : _ref$onBlur,
+    _ref$internalRefs = _ref.internalRefs,
+    internalRefs = _ref$internalRefs === void 0 ? [] : _ref$internalRefs;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    focused = _useState2[0],
+    setFocused = _useState2[1];
+  // Focus coming back from the toolbar or a dialog is not a new focus
+  var focusedRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(false);
+  var handleFocus = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function () {
+    if (focusedRef.current) {
+      return;
+    }
+    focusedRef.current = true;
+    setFocused(true);
+    onFocus();
+  }, [onFocus]);
+  var handleBlur = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function (e) {
+    if (isInternalElement(e, internalRefs)) {
+      return;
+    }
+    focusedRef.current = false;
+    setFocused(false);
+    onBlur();
+  }, [onBlur]);
+  return {
+    focused: focused,
+    handleFocus: handleFocus,
+    handleBlur: handleBlur
+  };
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useOnFocus);
+
+/***/ }),
+
 /***/ "./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/utils/get-selected-node.js":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -152338,7 +152412,7 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 
 
 var LexicalEditor = /*#__PURE__*/(0,react.lazy)(function () {
-  return Promise.all(/* import() */[__webpack_require__.e(274), __webpack_require__.e(683)]).then(__webpack_require__.bind(__webpack_require__, "./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/LexicalEditor.js"));
+  return Promise.all(/* import() */[__webpack_require__.e(274), __webpack_require__.e(866)]).then(__webpack_require__.bind(__webpack_require__, "./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/LexicalEditor.js"));
 });
 var LazyLexicalEditor = /*#__PURE__*/(0,react.forwardRef)(function LazyLexicalEditor(props, ref) {
   return /*#__PURE__*/react.createElement(react.Suspense, {
@@ -154592,6 +154666,8 @@ var FormCompound = __webpack_require__("./packages/base/Form/dist-package/src/Fo
 var Input = __webpack_require__("./packages/base/Input/dist-package/src/Input/Input.js");
 // EXTERNAL MODULE: ./packages/base/Modal/dist-package/src/ModalCompound/index.js
 var ModalCompound = __webpack_require__("./packages/base/Modal/dist-package/src/ModalCompound/index.js");
+// EXTERNAL MODULE: ./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/hooks/useOnFocus/use-on-focus.js
+var use_on_focus = __webpack_require__("./packages/picasso-rich-text-editor/dist-package/src/LexicalEditor/hooks/useOnFocus/use-on-focus.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.url.js
 var web_url = __webpack_require__("./node_modules/core-js/modules/web.url.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.constructor.js
@@ -154635,13 +154711,17 @@ function LinkPluginModal_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 var LinkPluginModal = function (_ref) {
-  var isOpen = _ref.isOpen,
+  var open = _ref.open,
     initialValues = _ref.initialValues,
     editing = _ref.editing,
     onClose = _ref.onClose,
     onSubmit = _ref.onSubmit,
-    onRemove = _ref.onRemove;
+    onRemove = _ref.onRemove,
+    className = _ref.className,
+    style = _ref.style,
+    testId = _ref['data-testid'];
   var _useState = (0,react.useState)(initialValues),
     _useState2 = LinkPluginModal_slicedToArray(_useState, 2),
     values = _useState2[0],
@@ -154651,11 +154731,11 @@ var LinkPluginModal = function (_ref) {
     urlError = _useState4[0],
     setUrlError = _useState4[1];
   (0,react.useEffect)(function () {
-    if (isOpen) {
+    if (open) {
       setValues(initialValues);
       setUrlError(false);
     }
-  }, [isOpen, initialValues]);
+  }, [open, initialValues]);
   var handleSave = function () {
     var url = values.url.trim();
     if (!validateUrl(url)) {
@@ -154668,8 +154748,12 @@ var LinkPluginModal = function (_ref) {
   };
   return /*#__PURE__*/react.createElement(ModalCompound/* ModalCompound */.p, {
     onClose: onClose,
-    open: isOpen,
-    size: 'small'
+    open: open,
+    size: 'small',
+    className: className,
+    style: style,
+    "data-testid": testId,
+    [use_on_focus/* INTERNAL_DIALOG_ATTRIBUTE */.s]: ''
   }, /*#__PURE__*/react.createElement(ModalCompound/* ModalCompound */.p.Title, null, editing ? 'Edit link' : 'Add link'), /*#__PURE__*/react.createElement(ModalCompound/* ModalCompound */.p.Content, null, /*#__PURE__*/react.createElement(FormCompound/* FormCompound */.k.Field, null, /*#__PURE__*/react.createElement(FormCompound/* FormCompound */.k.Label, {
     htmlFor: 'rte-link-text'
   }, "Text"), /*#__PURE__*/react.createElement(Input/* default */.A, {
@@ -154733,6 +154817,8 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 var es_string_replace = __webpack_require__("./node_modules/core-js/modules/es.string.replace.js");
 // EXTERNAL MODULE: ./node_modules/@lexical/react/LexicalComposerContext.js
 var LexicalComposerContext = __webpack_require__("./node_modules/@lexical/react/LexicalComposerContext.js");
+// EXTERNAL MODULE: ./node_modules/@lexical/utils/LexicalUtils.js
+var LexicalUtils = __webpack_require__("./node_modules/@lexical/utils/LexicalUtils.js");
 ;// ./packages/picasso-rich-text-editor/dist-package/src/plugins/LinkPlugin/use-link-plugin.js
 function use_link_plugin_slicedToArray(r, e) { return use_link_plugin_arrayWithHoles(r) || use_link_plugin_iterableToArrayLimit(r, e) || use_link_plugin_unsupportedIterableToArray(r, e) || use_link_plugin_nonIterableRest(); }
 function use_link_plugin_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -154740,6 +154826,7 @@ function use_link_plugin_unsupportedIterableToArray(r, a) { if (r) { if ("string
 function use_link_plugin_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function use_link_plugin_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function use_link_plugin_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
 
 
 
@@ -154766,6 +154853,10 @@ var linkAttributes = function (openInNewTab) {
 var $getEditedLink = function (key) {
   var node = key ? (0,Lexical.$getNodeByKey)(key) : null;
   return (0,LexicalLink.$isLinkNode)(node) ? node : null;
+};
+var $getLinkAt = function (node) {
+  var link = (0,LexicalUtils.$findMatchingParent)(node, LexicalLink.$isLinkNode);
+  return (0,LexicalLink.$isLinkNode)(link) ? link : null;
 };
 var $updateLink = function (link, _ref) {
   var href = _ref.href,
@@ -154810,8 +154901,8 @@ var useLinkPlugin = function () {
     editor = _useLexicalComposerCo2[0];
   var _useState = (0,react.useState)(false),
     _useState2 = use_link_plugin_slicedToArray(_useState, 2),
-    isOpen = _useState2[0],
-    setIsOpen = _useState2[1];
+    open = _useState2[0],
+    setOpen = _useState2[1];
   var _useState3 = (0,react.useState)(false),
     _useState4 = use_link_plugin_slicedToArray(_useState3, 2),
     editing = _useState4[0],
@@ -154821,18 +154912,28 @@ var useLinkPlugin = function () {
     initialValues = _useState6[0],
     setInitialValues = _useState6[1];
   // The dialog takes focus from the editor, so the selection it applies to is
-  // captured on open and restored on save.
+  // captured on show and restored when it closes.
   var selectionRef = (0,react.useRef)(null);
   var linkKeyRef = (0,react.useRef)(null);
-  var open = (0,react.useCallback)(function () {
+  var wasOpenRef = (0,react.useRef)(false);
+  // Return focus to the editor once the dialog is gone; focusing it while the
+  // dialog is still mounted would be pulled back into the dialog
+  (0,react.useEffect)(function () {
+    if (wasOpenRef.current && !open) {
+      editor.focus();
+    }
+    wasOpenRef.current = open;
+  }, [editor, open]);
+  var show = (0,react.useCallback)(function () {
     editor.getEditorState().read(function () {
+      var _a;
       var selection = (0,Lexical.$getSelection)();
       if (!(0,Lexical.$isRangeSelection)(selection)) {
         return;
       }
-      var node = (0,get_selected_node/* getSelectedNode */.O)(selection);
-      var parent = node.getParent();
-      var link = (0,LexicalLink.$isLinkNode)(node) ? node : (0,LexicalLink.$isLinkNode)(parent) ? parent : null;
+      // Either end of the selection can sit in a link, e.g. a selection that
+      // starts inside one and ends after it
+      var link = (_a = $getLinkAt(selection.anchor.getNode())) !== null && _a !== void 0 ? _a : $getLinkAt(selection.focus.getNode());
       selectionRef.current = selection.clone();
       linkKeyRef.current = link ? link.getKey() : null;
       setEditing(Boolean(link));
@@ -154843,12 +154944,19 @@ var useLinkPlugin = function () {
       } : Object.assign(Object.assign({}, EMPTY_VALUES), {
         text: selection.getTextContent()
       }));
-      setIsOpen(true);
+      setOpen(true);
     });
   }, [editor]);
   var close = (0,react.useCallback)(function () {
-    return setIsOpen(false);
-  }, []);
+    editor.update(function () {
+      var _a;
+      var selection = (_a = selectionRef.current) === null || _a === void 0 ? void 0 : _a.clone();
+      if (selection) {
+        (0,Lexical.$setSelection)(selection);
+      }
+    });
+    setOpen(false);
+  }, [editor]);
   var submit = (0,react.useCallback)(function (_ref3) {
     var text = _ref3.text,
       url = _ref3.url,
@@ -154869,7 +154977,7 @@ var useLinkPlugin = function () {
         $insertLink(selection, spec);
       }
     });
-    setIsOpen(false);
+    setOpen(false);
   }, [editor]);
   var remove = (0,react.useCallback)(function () {
     editor.update(function () {
@@ -154881,13 +154989,13 @@ var useLinkPlugin = function () {
         link.remove();
       }
     });
-    setIsOpen(false);
+    setOpen(false);
   }, [editor]);
   return {
-    isOpen: isOpen,
+    open: open,
     editing: editing,
     initialValues: initialValues,
-    open: open,
+    show: show,
     close: close,
     submit: submit,
     remove: remove
@@ -154905,20 +155013,20 @@ var PLUGIN_NAME = 'link';
 var LinkPlugin = function (_ref) {
   var testId = _ref['data-testid'];
   var _useLinkPlugin = useLinkPlugin(),
-    isOpen = _useLinkPlugin.isOpen,
+    open = _useLinkPlugin.open,
     editing = _useLinkPlugin.editing,
     initialValues = _useLinkPlugin.initialValues,
-    open = _useLinkPlugin.open,
+    show = _useLinkPlugin.show,
     close = _useLinkPlugin.close,
     submit = _useLinkPlugin.submit,
     remove = _useLinkPlugin.remove;
   return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Toolbar/* Toolbar */.M7, {
     keyName: PLUGIN_NAME
   }, /*#__PURE__*/react.createElement(LinkPlugin_LinkPluginButton, {
-    onClick: open,
+    onClick: show,
     "data-testid": testId
   })), /*#__PURE__*/react.createElement(LexicalLinkPlugin.LinkPlugin, null), /*#__PURE__*/react.createElement(LinkPlugin_LinkPluginModal, {
-    isOpen: isOpen,
+    open: open,
     editing: editing,
     initialValues: initialValues,
     onClose: close,
@@ -159131,4 +159239,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.6cd8bf85.iframe.bundle.js.map
+//# sourceMappingURL=main.5e02aa9b.iframe.bundle.js.map
