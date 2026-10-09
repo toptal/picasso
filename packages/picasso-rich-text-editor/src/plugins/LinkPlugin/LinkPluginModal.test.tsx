@@ -15,7 +15,7 @@ const renderModal = (props: Partial<Props> = {}) => {
     <LinkPluginModal
       open
       editing={false}
-      initialValues={{ text: '', url: '', openInNewTab: true }}
+      initialValues={{ text: '', url: '', openInNewTab: false }}
       {...handlers}
       {...props}
     />
@@ -33,6 +33,7 @@ describe('LinkPluginModal', () => {
 
     type('Text', 'Book a call')
     type('Link', ' https://toptal.com/book ')
+    fireEvent.click(screen.getByLabelText('Open in new tab'))
     fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
     expect(onSubmit).toHaveBeenCalledWith({
@@ -42,11 +43,10 @@ describe('LinkPluginModal', () => {
     })
   })
 
-  it('lets the link open in the same tab', () => {
+  it('opens links in the same tab unless chosen otherwise', () => {
     const { onSubmit } = renderModal()
 
     type('Link', 'https://toptal.com')
-    fireEvent.click(screen.getByLabelText('Open in new tab'))
     fireEvent.click(screen.getByRole('button', { name: 'Save' }))
 
     expect(onSubmit).toHaveBeenCalledWith(
@@ -97,5 +97,76 @@ describe('LinkPluginModal', () => {
     expect(
       screen.queryByRole('button', { name: 'Remove link' })
     ).not.toBeInTheDocument()
+  })
+
+  it('focuses the link field when text is already selected', () => {
+    renderModal({
+      initialValues: { text: 'Toptal', url: '', openInNewTab: false },
+    })
+
+    expect(screen.getByLabelText('Link')).toHaveFocus()
+  })
+
+  it('focuses the text field when nothing is selected', () => {
+    renderModal()
+
+    expect(screen.getByLabelText('Text')).toHaveFocus()
+  })
+
+  it('resets the form when it opens with new values', () => {
+    const props = {
+      open: true,
+      editing: false,
+      onClose: jest.fn(),
+      onSubmit: jest.fn(),
+      onRemove: jest.fn(),
+    }
+    const { rerender } = render(
+      <LinkPluginModal
+        {...props}
+        initialValues={{ text: 'Old', url: '', openInNewTab: false }}
+      />
+    )
+
+    type('Link', 'not a url')
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+
+    rerender(
+      <LinkPluginModal
+        {...props}
+        initialValues={{ text: 'New', url: '', openInNewTab: true }}
+      />
+    )
+
+    expect(screen.getByLabelText('Text')).toHaveValue('New')
+    expect(screen.getByLabelText('Link')).toHaveValue('')
+    expect(screen.getByLabelText('Open in new tab')).toBeChecked()
+    expect(screen.queryByText('Enter a valid URL')).not.toBeInTheDocument()
+  })
+
+  it('focuses the link field when it reopens with selected text', () => {
+    const props = {
+      editing: false,
+      onClose: jest.fn(),
+      onSubmit: jest.fn(),
+      onRemove: jest.fn(),
+    }
+    const { rerender } = render(
+      <LinkPluginModal
+        {...props}
+        open={false}
+        initialValues={{ text: '', url: '', openInNewTab: false }}
+      />
+    )
+
+    rerender(
+      <LinkPluginModal
+        {...props}
+        open
+        initialValues={{ text: 'Toptal', url: '', openInNewTab: false }}
+      />
+    )
+
+    expect(screen.getByLabelText('Link')).toHaveFocus()
   })
 })

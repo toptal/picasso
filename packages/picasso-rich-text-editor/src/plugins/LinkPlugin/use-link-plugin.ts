@@ -16,8 +16,6 @@ import { getSelectedNode } from '../../LexicalEditor/utils/get-selected-node'
 import type { LinkValues } from './LinkPluginModal'
 import { sanitizeUrl } from './utils/url'
 
-const EMPTY_VALUES: LinkValues = { text: '', url: '', openInNewTab: true }
-
 const linkAttributes = (openInNewTab: boolean) =>
   openInNewTab
     ? { target: '_blank', rel: 'noopener noreferrer' }
@@ -82,11 +80,20 @@ const $insertLink = (
   placeholder.replace(linkNode)
 }
 
-export const useLinkPlugin = () => {
+type Options = {
+  defaultTarget: '_self' | '_blank'
+}
+
+export const useLinkPlugin = ({ defaultTarget }: Options) => {
   const [editor] = useLexicalComposerContext()
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState(false)
-  const [initialValues, setInitialValues] = useState(EMPTY_VALUES)
+  const emptyValues: LinkValues = {
+    text: '',
+    url: '',
+    openInNewTab: defaultTarget === '_blank',
+  }
+  const [initialValues, setInitialValues] = useState(emptyValues)
   // The dialog takes focus from the editor, so the selection it applies to is
   // captured on show and restored when it closes.
   const selectionRef = useRef<RangeSelection | null>(null)
@@ -126,11 +133,15 @@ export const useLinkPlugin = () => {
               url: link.getURL(),
               openInNewTab: link.getTarget() === '_blank',
             }
-          : { ...EMPTY_VALUES, text: selection.getTextContent() }
+          : {
+              text: selection.getTextContent(),
+              url: '',
+              openInNewTab: defaultTarget === '_blank',
+            }
       )
       setOpen(true)
     })
-  }, [editor])
+  }, [editor, defaultTarget])
 
   const close = useCallback(() => {
     editor.update(() => {

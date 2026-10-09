@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from '@toptal/picasso-button'
 import { Checkbox } from '@toptal/picasso-checkbox'
 import { FormCompound as Form } from '@toptal/picasso-form'
@@ -43,13 +43,18 @@ const LinkPluginModal = ({
 }: Props) => {
   const [values, setValues] = useState(initialValues)
   const [urlError, setUrlError] = useState(false)
+  const [shownValues, setShownValues] = useState(initialValues)
 
-  useEffect(() => {
-    if (open) {
-      setValues(initialValues)
-      setUrlError(false)
-    }
-  }, [open, initialValues])
+  // Reset the form during render, not in an effect: the fields mount with the
+  // dialog, and their autoFocus must see the values it opened with
+  if (shownValues !== initialValues) {
+    setShownValues(initialValues)
+    setValues(initialValues)
+    setUrlError(false)
+  }
+
+  // With text selected only the URL is missing, so start there
+  const focusUrl = Boolean(initialValues.text)
 
   const handleSave = () => {
     const url = values.url.trim()
@@ -84,7 +89,7 @@ const LinkPluginModal = ({
               setValues({ ...values, text: event.target.value })
             }
             width='full'
-            autoFocus={!values.text}
+            autoFocus={!focusUrl}
           />
         </Form.Field>
         <Form.Field>
@@ -98,7 +103,7 @@ const LinkPluginModal = ({
             }}
             status={urlError ? 'error' : undefined}
             width='full'
-            autoFocus={Boolean(values.text)}
+            autoFocus={focusUrl}
           />
           {urlError && <Form.Error>Enter a valid URL</Form.Error>}
         </Form.Field>
