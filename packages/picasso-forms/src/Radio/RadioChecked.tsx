@@ -6,13 +6,18 @@ import { assertFieldName } from '../Field/assert-field-name'
 import { useField } from '../FinalField/use-field'
 import { RadioGroupContext } from '../RadioGroup'
 
-type Props = {
+interface Props {
+  /** The radio's own field, if it has one rather than its group's */
   name?: string
+  /** The value the radio stands for */
   value: unknown
+  /** Renders the radio with whether it is the checked one */
   children: (checked: boolean | undefined) => ReactElement
 }
 
-type FieldProps = Omit<Props, 'name'> & { name: string }
+interface FieldProps extends Omit<Props, 'name'> {
+  name: string
+}
 
 const GroupFieldChecked = ({
   name,
