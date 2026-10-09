@@ -65,10 +65,13 @@ export const TimePicker = ({
     }
 
     // Cleared from outside, such as a form reset. The '' this component
-    // reports for an incomplete time leaves nothing to clear, since the time
-    // input reads '' then too, and an empty picker stays uncontrolled
+    // reports for an incomplete time must not clear it: a text field, where
+    // a browser has no time input, still shows it, and an empty picker stays
+    // uncontrolled
     if (!externalValue) {
-      setValue(current => (current ? '' : current))
+      setValue(current =>
+        current && VALID_TIME_REGEX.test(current) ? '' : current
+      )
     }
   }, [externalValue])
 
