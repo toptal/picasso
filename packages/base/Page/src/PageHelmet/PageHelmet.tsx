@@ -74,7 +74,8 @@ const MergingPageHelmet = (props: Props): React.ReactElement => {
     ...rest
   } = props
   const { title: childTitle, otherChildren } = splitTitleChild(children)
-  const title = titleProp ?? childTitle
+  // As in react-helmet-async, a `<title>` child replaces the `title` prop
+  const title = childTitle ?? titleProp
   const [entry] = useState<TitleEntry>(() => ({}))
   const [, rerender] = useReducer((count: number) => count + 1, 0)
 

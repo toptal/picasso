@@ -103,6 +103,21 @@ describe('PageHelmet', () => {
       })
     })
 
+    it('takes a `<title>` child over the `title` prop', async () => {
+      render(
+        <>
+          <PageHelmet titleTemplate='%s | Toptal' />
+          <PageHelmet title='Fallback'>
+            <title>Jobs</title>
+          </PageHelmet>
+        </>
+      )
+
+      await waitFor(() => {
+        expect(document.title).toBe('Jobs | Toptal')
+      })
+    })
+
     it('reads a `<title>` inside a fragment', async () => {
       render(
         <>
