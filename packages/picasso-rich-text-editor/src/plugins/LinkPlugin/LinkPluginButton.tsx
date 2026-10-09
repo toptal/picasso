@@ -1,5 +1,6 @@
 import { $isLinkNode } from '@lexical/link'
 import { Link16 } from '@toptal/picasso-icons'
+import type { BaseProps } from '@toptal/picasso-shared'
 import { $getSelection, $isRangeSelection } from 'lexical'
 import React, { useState } from 'react'
 
@@ -7,12 +8,17 @@ import { getSelectedNode } from '../../LexicalEditor/utils/get-selected-node'
 import { useRTEPluginContext, useRTEUpdate } from '../api'
 import RichTextEditorButton from '../../RichTextEditorButton'
 
-export type Props = {
-  'data-testid'?: string
+export interface Props extends BaseProps {
+  /** Called when the button is clicked */
   onClick: () => void
 }
 
-const LinkPluginButton = ({ 'data-testid': testId, onClick }: Props) => {
+const LinkPluginButton = ({
+  'data-testid': testId,
+  className,
+  style,
+  onClick,
+}: Props) => {
   const [active, setActive] = useState(false)
   const { disabled, focused, disabledFormatting } = useRTEPluginContext()
 
@@ -35,6 +41,8 @@ const LinkPluginButton = ({ 'data-testid': testId, onClick }: Props) => {
       onClick={onClick}
       active={isDisabled ? false : active}
       disabled={isDisabled}
+      className={className}
+      style={style}
       data-testid={testId}
     />
   )
