@@ -10,7 +10,9 @@ try {
     return
   }
 
-  const { number: prNumber, body: oldBody } = context.payload.pull_request
+  const { number: prNumber, body } = context.payload.pull_request
+  // GitHub sends `null` for an empty description
+  const oldBody = body ?? ''
 
   const searchString = '- Temploy'
   const replacementString = `- [Temploy](https://toptal.github.io/picasso/prs/${prNumber}/)`

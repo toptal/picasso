@@ -92,13 +92,18 @@ jobs:
           }
 
           if ! grep -q ':x:' design-patterns-report.md; then
-            stale_node_ids=$(previous_comments node_id)
+            # hiding is cosmetic, so a failure warns instead of failing the check
+            stale_node_ids=$(previous_comments node_id) || {
+              echo "::warning::Could not list previous report comments."
+              stale_node_ids=''
+            }
 
             for node_id in $stale_node_ids; do
               echo "Marking previous comment $node_id as outdated."
               gh api graphql \
                 -f query='mutation($id: ID!) { minimizeComment(input: { subjectId: $id, classifier: OUTDATED }) { minimizedComment { isMinimized minimizedReason } } }' \
-                -f id="$node_id"
+                -f id="$node_id" ||
+                echo "::warning::Could not mark comment $node_id as outdated."
             done
 
             echo "All rules passed — skipping PR comment."
