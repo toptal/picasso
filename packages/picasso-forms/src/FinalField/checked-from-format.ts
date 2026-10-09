@@ -2,7 +2,7 @@ import type { FieldInputProps, UseFieldConfig } from 'react-final-form'
 
 type CheckedConfig = Pick<
   UseFieldConfig,
-  'type' | 'value' | 'format' | 'formatOnBlur' | 'allowNull'
+  'type' | 'value' | 'format' | 'parse' | 'formatOnBlur' | 'allowNull'
 >
 
 /**
@@ -23,8 +23,10 @@ export const derivesCheckedFromFormat = (
 /**
  * The input with version 6's `checked`, `format(value)`, for a checkbox that
  * `derivesCheckedFromFormat`. react-final-form formats the value for us,
- * except with `formatOnBlur` until the blur, and for an `allowNull` field
- * holding `null`
+ * except for an `allowNull` field holding `null`, and with `formatOnBlur`,
+ * where the field holds what `parse` returned until a blur or a submit stores
+ * what `format` returned. Version 6 formatted that again, so a blur unticked a
+ * stored `'true'`
  */
 export const withCheckedFromFormat = <Input extends FieldInputProps<unknown>>(
   input: Input,
@@ -34,12 +36,19 @@ export const withCheckedFromFormat = <Input extends FieldInputProps<unknown>>(
     return input
   }
 
-  const { format, formatOnBlur, allowNull } = config
-  const getChecked = () => {
-    const isFormatted = !formatOnBlur && !(allowNull && input.value === null)
-
-    return Boolean(isFormatted ? input.value : format(input.value, input.name))
-  }
+  const { format, parse, formatOnBlur, allowNull } = config
+  // A value the checkbox's `onChange` stores. react-final-form's default
+  // `parse` stores `checked` as it is
+  const isParsed = (value: unknown) =>
+    [true, false].some(
+      checked => value === (parse ? parse(checked, input.name) : checked)
+    )
+  const needsFormat = (value: unknown) =>
+    (allowNull && value === null) || (formatOnBlur && isParsed(value))
+  const getChecked = () =>
+    Boolean(
+      needsFormat(input.value) ? format(input.value, input.name) : input.value
+    )
 
   // Copied by descriptor: a spread would read react-final-form's lazy getters
   return Object.create(Object.getPrototypeOf(input), {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, fireEvent, render } from '@toptal/picasso-test-utils'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 
 import type { FormConfigProps } from '../FormConfig'
@@ -146,6 +146,32 @@ describe('Form.Checkbox', () => {
         const checkbox = getByRole('checkbox', { name: 'Considers relocation' })
 
         expect(checkbox).toHaveAttribute('aria-checked', String(checked))
+      }
+    )
+
+    // A blur or a submit stores format's result, `true`, which must not be
+    // formatted again
+    it.each([
+      ['a blur', (checkbox: HTMLElement) => fireEvent.blur(checkbox)],
+      [
+        'a submit',
+        async () => {
+          await act(async () => {
+            fireEvent.click(screen.getByText('Submit'))
+          })
+        },
+      ],
+    ])(
+      'keeps a stored "true" checked with `formatOnBlur` after %s',
+      async (_, formatValue) => {
+        const { getByRole } = renderStringCheckbox('true', {
+          formatOnBlur: true,
+        })
+        const checkbox = getByRole('checkbox', { name: 'Considers relocation' })
+
+        await formatValue(checkbox)
+
+        expect(checkbox).toHaveAttribute('aria-checked', 'true')
       }
     )
 
