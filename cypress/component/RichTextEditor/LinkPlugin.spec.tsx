@@ -250,4 +250,40 @@ describe('LinkPlugin', () => {
       )
     })
   })
+
+  describe('when focus moves around the dialog', () => {
+    it('keeps the editor focused', () => {
+      const onBlur = cy.spy().as('onBlur')
+      const onFocus = cy.spy().as('onFocus')
+
+      cy.mount(
+        <Editor
+          {...{
+            ...defaultProps,
+            onBlur,
+            onFocus,
+            plugins: [<LinkPlugin data-testid={linkPluginButton} />],
+          }}
+        />
+      )
+      setAliases()
+
+      cy.get('@editor').click()
+      cy.get('@linkPluginButton').realClick()
+      cy.getByRole('dialog').contains('Add link')
+      // Cycle through every element, past the dialog's focus guards
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+      cy.getByRole('dialog').contains('button', 'Cancel').click()
+
+      cy.focused().should('have.attr', 'contenteditable', 'true')
+      cy.get('@onBlur').should('not.have.been.called')
+      cy.get('@onFocus').should('have.been.calledOnce')
+    })
+  })
 })

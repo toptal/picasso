@@ -17,6 +17,16 @@ type Result = {
   handleBlur: (e: React.FocusEvent<HTMLDivElement>) => void
 }
 
+const isDialogElement = (element: Element) =>
+  Boolean(element.closest(`[${INTERNAL_DIALOG_ATTRIBUTE}]`)) ||
+  // Base UI puts the dialog's focus guards beside it, not inside it
+  (element.hasAttribute('data-base-ui-focus-guard') &&
+    Boolean(
+      element.parentElement?.querySelector(
+        `:scope > [${INTERNAL_DIALOG_ATTRIBUTE}]`
+      )
+    ))
+
 const isInternalElement = (
   e: React.FocusEvent<HTMLDivElement>,
   internalRefs: React.RefObject<HTMLDivElement>[]
@@ -30,8 +40,7 @@ const isInternalElement = (
   return (
     Boolean(e.currentTarget?.contains(focusElement)) ||
     internalRefs.some(ref => ref.current?.contains(focusElement)) ||
-    (focusElement instanceof Element &&
-      Boolean(focusElement.closest(`[${INTERNAL_DIALOG_ATTRIBUTE}]`)))
+    (focusElement instanceof Element && isDialogElement(focusElement))
   )
 }
 
