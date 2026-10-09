@@ -1,5 +1,6 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
+import { flattenFragments } from '@toptal/picasso-shared'
 import { palette } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import {
@@ -18,12 +19,7 @@ import { ticks as getD3Ticks } from 'd3-array'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
-import {
-  flattenFragments,
-  getChartTicks,
-  toRechartsHighlightFormat,
-  orderData,
-} from '../utils'
+import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import type {
@@ -286,6 +282,9 @@ export const LineChart = ({
           )}
 
           {lineGraphs}
+          {/* recharts finds its chart parts with the react-is 18 it ships, which
+              doesn't recognize a React 19 fragment, so it would drop the parts
+              inside one */}
           {flattenFragments(children)}
 
           {tooltip && (

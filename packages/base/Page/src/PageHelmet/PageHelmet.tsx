@@ -1,8 +1,6 @@
 import type { ReactNode } from 'react'
 import React, {
   Children,
-  cloneElement,
-  Fragment,
   isValidElement,
   useEffect,
   useReducer,
@@ -10,6 +8,7 @@ import React, {
 } from 'react'
 import type { HelmetProps } from '@toptal/picasso-provider'
 import { Helmet } from '@toptal/picasso-provider'
+import { flattenFragments } from '@toptal/picasso-shared'
 import { isReact19OrNewer } from '@toptal/picasso-utils'
 
 import type { TitleEntry } from './title-registry'
@@ -20,25 +19,8 @@ export interface Props extends HelmetProps {
   children?: ReactNode
 }
 
-// react-helmet-async reads the children of fragments as its own. The others
-// are keyed by the fragment they came from, so they stay unique
-const flattenFragments = (children: ReactNode, keyPrefix = ''): ReactNode[] =>
-  Children.toArray(children).flatMap(child => {
-    if (!isValidElement<{ children?: ReactNode }>(child)) {
-      return [child]
-    }
-
-    if (child.type === Fragment) {
-      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`)
-    }
-
-    return keyPrefix
-      ? [cloneElement(child, { key: `${keyPrefix}${child.key}` })]
-      : [child]
-  })
-
 // A `<title>` child is the helmet's title, and its other props are the
-// title's attributes, as react-helmet-async reads it
+// title's attributes, as react-helmet-async reads it, inside a fragment too
 const splitTitleChild = (children: ReactNode) => {
   let title: string | undefined
   let titleAttributes: HelmetProps['titleAttributes']

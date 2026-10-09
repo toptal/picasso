@@ -1,7 +1,9 @@
-import { createElement, Fragment } from 'react'
+import type { ReactNode } from 'react'
+import { createElement, Fragment, isValidElement } from 'react'
 
 import {
   cloneElementUnlessFragment,
+  flattenFragments,
   toReactEvent,
   toReactChangeEvent,
 } from './'
@@ -218,5 +220,44 @@ describe('cloneElementUnlessFragment', () => {
 
     expect(clone.key).toBe('icon')
     expect(clone.props).toEqual({ children: '%' })
+  })
+})
+
+describe('flattenFragments', () => {
+  const Part = ({ name }: { name: string }) => createElement('span', null, name)
+  const part = (name: string, key?: string) =>
+    createElement(Part, { name, key })
+  const getNames = (nodes: ReactNode[]) =>
+    nodes.map(node =>
+      isValidElement<{ name: string }>(node) ? node.props.name : node
+    )
+
+  it('unwraps the children of nested fragments in order', () => {
+    const flat = flattenFragments(
+      createElement(
+        Fragment,
+        null,
+        part('a'),
+        null,
+        createElement(Fragment, null, part('b'), false, part('c')),
+        part('d')
+      )
+    )
+
+    expect(getNames(flat)).toEqual(['a', 'b', 'c', 'd'])
+  })
+
+  it('keys each child by the fragment it came from', () => {
+    const flat = flattenFragments([
+      createElement(Fragment, { key: 'first' }, part('a', 'part')),
+      createElement(Fragment, { key: 'second' }, part('b', 'part')),
+    ])
+    const keys = flat.map(node => (isValidElement(node) ? node.key : null))
+
+    expect(new Set(keys).size).toBe(2)
+  })
+
+  it('leaves children outside a fragment as they are', () => {
+    expect(getNames(flattenFragments(part('a')))).toEqual(['a'])
   })
 })
