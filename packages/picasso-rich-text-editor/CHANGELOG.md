@@ -1,5 +1,25 @@
 # @toptal/picasso-rich-text-editor
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5132](https://github.com/toptal/picasso/pull/5132) [`664c567`](https://github.com/toptal/picasso/commit/664c567cf71b6de0b68417cbc1ce3a7298ed7ed0) Thanks [@mikhail-pospelov-toptal](https://github.com/mikhail-pospelov-toptal)!
+
+### RichTextEditor
+
+- replace the browser prompt of `LinkPlugin` with a dialog to set the link text, the URL and whether the link opens in a new tab. "Open in new tab" is unchecked by default, so links keep opening in the same tab; checked, a link gets `target="_blank"` and `rel="noopener noreferrer"`
+- add `defaultTarget` prop to `LinkPlugin`; `'_blank'` checks "Open in new tab" for new links. Its props type is exported as `LinkPluginProps`
+- give every link that opens in a new tab `rel="noopener noreferrer"` in the editor output, including links that came in from HTML
+- clicking the link button on an existing link now opens the dialog to edit or remove it, instead of removing it right away
+- keep `target` and `rel` on links when converting HTML to the editor value
+- keep the editor focused while the link dialog is open, and return focus to it when the dialog closes. `onBlur` no longer fires when focus moves into the dialog, and `onFocus` no longer fires again when focus comes back from the toolbar or a dialog
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@100.0.4
+
 ## 100.0.10
 
 ### Patch Changes
