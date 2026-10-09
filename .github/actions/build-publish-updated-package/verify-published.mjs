@@ -11,6 +11,11 @@ import { execFileSync } from 'node:child_process'
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
+// npm can take a minute or more to serve a new version: stragglers showed up
+// 50-60s after publish, past the previous 40s window. Re-check for up to 5 min.
+const PASSES = 11
+const PASS_DELAY_S = 30
+
 let pkgs
 try {
   pkgs = JSON.parse(process.env.PUBLISHED_PACKAGES || '[]')
@@ -36,11 +41,12 @@ const onNpm = spec => {
 
 let pending = pkgs.map(p => `${p.name}@${p.version}`)
 
-// Registry/CDN propagation can lag a few seconds after publish, so re-check stragglers.
-for (let pass = 1; pass <= 3 && pending.length > 0; pass++) {
+for (let pass = 1; pass <= PASSES && pending.length > 0; pass++) {
   if (pass > 1) {
-    console.log(`Waiting 20s for npm propagation (pass ${pass}/3)...`)
-    await sleep(20_000)
+    console.log(
+      `Waiting ${PASS_DELAY_S}s for npm propagation (pass ${pass}/${PASSES})...`
+    )
+    await sleep(PASS_DELAY_S * 1000)
   }
 
   pending = pending.filter(spec => {
