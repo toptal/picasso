@@ -16594,8 +16594,16 @@ var Autocomplete_rest = undefined && undefined.__rest || function (s, e) {
 var getItemText = function (item) {
   return item && item.text || EMPTY_INPUT_VALUE;
 };
+// A class component's ref is its instance, not the input, also when `memo`
+// wraps the class. A class inside `lazy` only shows once it has loaded
+var isClassComponent = function (component) {
+  var _ref = component !== null && component !== void 0 ? component : {},
+    $$typeof = _ref.$$typeof,
+    type = _ref.type,
+    prototype = _ref.prototype;
+  return $$typeof === Symbol.for('react.memo') ? isClassComponent(type) : Boolean(prototype === null || prototype === void 0 ? void 0 : prototype.isReactComponent);
+};
 var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_a, customRef) {
-  var _b;
   var _a$enableAutofill = _a.enableAutofill,
     enableAutofill = _a$enableAutofill === void 0 ? false : _a$enableAutofill,
     _a$getDisplayValue = _a.getDisplayValue,
@@ -16656,11 +16664,9 @@ var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_a, c
     rest = Autocomplete_rest(props, ["autoComplete", "className", "endAdornment", "getKey", "icon", "inputComponent", "menuWidth", "name", "closeOnSelect", "placeholder", "popperContainer", "popperOptions", "renderOption", "renderOtherOption", "style", "testIds", "value", "highlight"]);
   var inputRef = (0,react.useRef)(null);
   var ref = customRef || inputRef;
-  // A class component's ref is its instance, not the input. React 19 passes
-  // a function component its `ref` as a prop; React 17 and 18 pass it only
-  // to a `forwardRef` component
-  var isClassComponent = Boolean((_b = inputComponent === null || inputComponent === void 0 ? void 0 : inputComponent.prototype) === null || _b === void 0 ? void 0 : _b.isReactComponent);
-  if (inputComponent && (isClassComponent || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
+  // React 19 passes a function component its `ref` as a prop; React 17 and
+  // 18 pass it only to a `forwardRef` component
+  if (inputComponent && (isClassComponent(inputComponent) || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
     ref = undefined;
     (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.');
   }
@@ -17316,47 +17322,55 @@ function Autocomplete_objectWithoutPropertiesLoose(r, e) { if (null == r) return
 var getItemText = function (item) {
   return item && item.text || EMPTY_INPUT_VALUE;
 };
-var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref, customRef) {
-  var _inputComponent$proto;
-  var _ref$enableAutofill = _ref.enableAutofill,
-    enableAutofill = _ref$enableAutofill === void 0 ? false : _ref$enableAutofill,
-    _ref$getDisplayValue = _ref.getDisplayValue,
-    getDisplayValue = _ref$getDisplayValue === void 0 ? getItemText : _ref$getDisplayValue,
-    _ref$loading = _ref.loading,
-    loading = _ref$loading === void 0 ? false : _ref$loading,
-    _ref$noOptionsText = _ref.noOptionsText,
-    noOptionsText = _ref$noOptionsText === void 0 ? 'No options' : _ref$noOptionsText,
-    _ref$onChange = _ref.onChange,
-    onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
-    _ref$onKeyDown = _ref.onKeyDown,
-    onKeyDown = _ref$onKeyDown === void 0 ? function () {} : _ref$onKeyDown,
-    _ref$onFocus = _ref.onFocus,
-    onFocus = _ref$onFocus === void 0 ? function () {} : _ref$onFocus,
-    _ref$onBlur = _ref.onBlur,
-    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
-    _ref$onOtherOptionSel = _ref.onOtherOptionSelect,
-    onOtherOptionSelect = _ref$onOtherOptionSel === void 0 ? function () {} : _ref$onOtherOptionSel,
-    _ref$onResetClick = _ref.onResetClick,
-    onResetClick = _ref$onResetClick === void 0 ? function () {} : _ref$onResetClick,
-    _ref$onSelect = _ref.onSelect,
-    onSelect = _ref$onSelect === void 0 ? function () {} : _ref$onSelect,
-    _ref$options = _ref.options,
-    options = _ref$options === void 0 ? [] : _ref$options,
-    _ref$otherOptionText = _ref.otherOptionText,
-    otherOptionText = _ref$otherOptionText === void 0 ? 'Other option: ' : _ref$otherOptionText,
-    _ref$showOtherOption = _ref.showOtherOption,
-    showOtherOption = _ref$showOtherOption === void 0 ? false : _ref$showOtherOption,
-    _ref$width = _ref.width,
-    width = _ref$width === void 0 ? 'auto' : _ref$width,
-    _ref$enableReset = _ref.enableReset,
-    enableReset = _ref$enableReset === void 0 ? true : _ref$enableReset,
-    _ref$poweredByGoogle = _ref.poweredByGoogle,
-    poweredByGoogle = _ref$poweredByGoogle === void 0 ? false : _ref$poweredByGoogle,
-    _ref$disabled = _ref.disabled,
-    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    _ref$status = _ref.status,
-    status = _ref$status === void 0 ? 'default' : _ref$status,
-    props = Autocomplete_objectWithoutProperties(_ref, Autocomplete_excluded);
+// A class component's ref is its instance, not the input, also when `memo`
+// wraps the class. A class inside `lazy` only shows once it has loaded
+var isClassComponent = function (component) {
+  var _ref = component !== null && component !== void 0 ? component : {},
+    $$typeof = _ref.$$typeof,
+    type = _ref.type,
+    prototype = _ref.prototype;
+  return $$typeof === Symbol.for('react.memo') ? isClassComponent(type) : Boolean(prototype === null || prototype === void 0 ? void 0 : prototype.isReactComponent);
+};
+var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref2, customRef) {
+  var _ref2$enableAutofill = _ref2.enableAutofill,
+    enableAutofill = _ref2$enableAutofill === void 0 ? false : _ref2$enableAutofill,
+    _ref2$getDisplayValue = _ref2.getDisplayValue,
+    getDisplayValue = _ref2$getDisplayValue === void 0 ? getItemText : _ref2$getDisplayValue,
+    _ref2$loading = _ref2.loading,
+    loading = _ref2$loading === void 0 ? false : _ref2$loading,
+    _ref2$noOptionsText = _ref2.noOptionsText,
+    noOptionsText = _ref2$noOptionsText === void 0 ? 'No options' : _ref2$noOptionsText,
+    _ref2$onChange = _ref2.onChange,
+    onChange = _ref2$onChange === void 0 ? function () {} : _ref2$onChange,
+    _ref2$onKeyDown = _ref2.onKeyDown,
+    onKeyDown = _ref2$onKeyDown === void 0 ? function () {} : _ref2$onKeyDown,
+    _ref2$onFocus = _ref2.onFocus,
+    onFocus = _ref2$onFocus === void 0 ? function () {} : _ref2$onFocus,
+    _ref2$onBlur = _ref2.onBlur,
+    onBlur = _ref2$onBlur === void 0 ? function () {} : _ref2$onBlur,
+    _ref2$onOtherOptionSe = _ref2.onOtherOptionSelect,
+    onOtherOptionSelect = _ref2$onOtherOptionSe === void 0 ? function () {} : _ref2$onOtherOptionSe,
+    _ref2$onResetClick = _ref2.onResetClick,
+    onResetClick = _ref2$onResetClick === void 0 ? function () {} : _ref2$onResetClick,
+    _ref2$onSelect = _ref2.onSelect,
+    onSelect = _ref2$onSelect === void 0 ? function () {} : _ref2$onSelect,
+    _ref2$options = _ref2.options,
+    options = _ref2$options === void 0 ? [] : _ref2$options,
+    _ref2$otherOptionText = _ref2.otherOptionText,
+    otherOptionText = _ref2$otherOptionText === void 0 ? 'Other option: ' : _ref2$otherOptionText,
+    _ref2$showOtherOption = _ref2.showOtherOption,
+    showOtherOption = _ref2$showOtherOption === void 0 ? false : _ref2$showOtherOption,
+    _ref2$width = _ref2.width,
+    width = _ref2$width === void 0 ? 'auto' : _ref2$width,
+    _ref2$enableReset = _ref2.enableReset,
+    enableReset = _ref2$enableReset === void 0 ? true : _ref2$enableReset,
+    _ref2$poweredByGoogle = _ref2.poweredByGoogle,
+    poweredByGoogle = _ref2$poweredByGoogle === void 0 ? false : _ref2$poweredByGoogle,
+    _ref2$disabled = _ref2.disabled,
+    disabled = _ref2$disabled === void 0 ? false : _ref2$disabled,
+    _ref2$status = _ref2.status,
+    status = _ref2$status === void 0 ? 'default' : _ref2$status,
+    props = Autocomplete_objectWithoutProperties(_ref2, Autocomplete_excluded);
   var autoComplete = props.autoComplete,
     className = props.className,
     endAdornment = props.endAdornment,
@@ -17379,11 +17393,9 @@ var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref,
   var inputRef = (0,react.useRef)(null);
   var ref = customRef || inputRef;
 
-  // A class component's ref is its instance, not the input. React 19 passes
-  // a function component its `ref` as a prop; React 17 and 18 pass it only
-  // to a `forwardRef` component
-  var isClassComponent = Boolean(inputComponent === null || inputComponent === void 0 ? void 0 : (_inputComponent$proto = inputComponent.prototype) === null || _inputComponent$proto === void 0 ? void 0 : _inputComponent$proto.isReactComponent);
-  if (inputComponent && (isClassComponent || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
+  // React 19 passes a function component its `ref` as a prop; React 17 and
+  // 18 pass it only to a `forwardRef` component
+  if (inputComponent && (isClassComponent(inputComponent) || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
     ref = undefined;
     (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.');
   }
@@ -26223,7 +26235,9 @@ var Collapse = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(fu
       unmountOnExit: unmountOnExit,
       timeout: timeout,
       nodeRef: nodeRef,
-      // Collapse renders the node itself, so it is there for the callbacks
+      // Collapse renders the node itself, so it is there for the callbacks,
+      // which keep their non-null `node`. The checks only narrow the hook's
+      // `node`, which is `null` for a child that takes no ref
       onEnter: function (node, isAppearing) {
         if (node) {
           onEnter === null || onEnter === void 0 ? void 0 : onEnter(node, isAppearing);
@@ -26410,7 +26424,9 @@ var Collapse = /*#__PURE__*/(0,react.forwardRef)(function Collapse(_ref, ref) {
       unmountOnExit: unmountOnExit,
       timeout: timeout,
       nodeRef: nodeRef,
-      // Collapse renders the node itself, so it is there for the callbacks
+      // Collapse renders the node itself, so it is there for the callbacks,
+      // which keep their non-null `node`. The checks only narrow the hook's
+      // `node`, which is `null` for a child that takes no ref
       onEnter: function (node, isAppearing) {
         if (node) {
           onEnter === null || onEnter === void 0 ? void 0 : onEnter(node, isAppearing);
@@ -27061,10 +27077,9 @@ var DatePicker = function (_a) {
     var _a, _b;
     return ((_a = popperRef.current) === null || _a === void 0 ? void 0 : _a.popper.contains(node)) || ((_b = inputWrapperRef.current) === null || _b === void 0 ? void 0 : _b.contains(node));
   };
-  // Closes the picker once the focus leaves it, from the input or the calendar
-  var handleBlur = function (event) {
-    var isFocusedInsideDatePicker = isInsideDatePicker(event.relatedTarget || document.activeElement);
-    if (isFocusedInsideDatePicker) {
+  // Closes the picker unless the focus moved within it
+  var handleFocusMove = function (focusedNode) {
+    if (isInsideDatePicker(focusedNode)) {
       return;
     }
     hideCalendar();
@@ -27072,6 +27087,29 @@ var DatePicker = function (_a) {
     hasInteractedWhileFocused.current = false;
     setInputFocused(false);
   };
+  var handleInputBlur = function (event) {
+    return handleFocusMove(event.relatedTarget || document.activeElement);
+  };
+  // Tab moves the focus from the input into the calendar, so it can also leave
+  // the picker from there. A control in the footer can move it into a popup of
+  // its own, outside the picker's DOM, and React passes that focus to the
+  // calendar through the portal, so the calendar waits for the focus to land
+  // and stays open when it lands in its own React tree
+  var calendarBlurTimeout = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(undefined);
+  var handleCalendarBlur = function () {
+    clearTimeout(calendarBlurTimeout.current);
+    calendarBlurTimeout.current = setTimeout(function () {
+      return handleFocusMove(document.activeElement);
+    });
+  };
+  var handleCalendarFocus = function () {
+    return clearTimeout(calendarBlurTimeout.current);
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    return function () {
+      return clearTimeout(calendarBlurTimeout.current);
+    };
+  }, []);
   var handleCalendarClickOutside = function (event) {
     if (!isInsideDatePicker(event.target)) {
       hideCalendar();
@@ -27186,7 +27224,7 @@ var DatePicker = function (_a) {
     onKeyDown: handleInputKeydown,
     onClick: handleClick,
     onFocus: handleFocus,
-    onBlur: handleBlur,
+    onBlur: handleInputBlur,
     onResetClick: handleResetClick,
     value: inputValue,
     onChange: handleInputChange,
@@ -27209,7 +27247,8 @@ var DatePicker = function (_a) {
   }, popperProps), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .A, {
     onClickAway: handleCalendarClickOutside
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    onBlur: handleBlur
+    onBlur: handleCalendarBlur,
+    onFocus: handleCalendarFocus
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_calendar__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .A, {
     activeMonth: activeMonth,
     "data-testid": testIds === null || testIds === void 0 ? void 0 : testIds.calendar,
@@ -27796,10 +27835,9 @@ var DatePicker = function (_ref) {
     return ((_popperRef$current = popperRef.current) === null || _popperRef$current === void 0 ? void 0 : _popperRef$current.popper.contains(node)) || ((_inputWrapperRef$curr = inputWrapperRef.current) === null || _inputWrapperRef$curr === void 0 ? void 0 : _inputWrapperRef$curr.contains(node));
   };
 
-  // Closes the picker once the focus leaves it, from the input or the calendar
-  var handleBlur = function (event) {
-    var isFocusedInsideDatePicker = isInsideDatePicker(event.relatedTarget || document.activeElement);
-    if (isFocusedInsideDatePicker) {
+  // Closes the picker unless the focus moved within it
+  var handleFocusMove = function (focusedNode) {
+    if (isInsideDatePicker(focusedNode)) {
       return;
     }
     hideCalendar();
@@ -27807,6 +27845,30 @@ var DatePicker = function (_ref) {
     hasInteractedWhileFocused.current = false;
     setInputFocused(false);
   };
+  var handleInputBlur = function (event) {
+    return handleFocusMove(event.relatedTarget || document.activeElement);
+  };
+
+  // Tab moves the focus from the input into the calendar, so it can also leave
+  // the picker from there. A control in the footer can move it into a popup of
+  // its own, outside the picker's DOM, and React passes that focus to the
+  // calendar through the portal, so the calendar waits for the focus to land
+  // and stays open when it lands in its own React tree
+  var calendarBlurTimeout = (0,react.useRef)(undefined);
+  var handleCalendarBlur = function () {
+    clearTimeout(calendarBlurTimeout.current);
+    calendarBlurTimeout.current = setTimeout(function () {
+      return handleFocusMove(document.activeElement);
+    });
+  };
+  var handleCalendarFocus = function () {
+    return clearTimeout(calendarBlurTimeout.current);
+  };
+  (0,react.useEffect)(function () {
+    return function () {
+      return clearTimeout(calendarBlurTimeout.current);
+    };
+  }, []);
   var handleCalendarClickOutside = function (event) {
     if (!isInsideDatePicker(event.target)) {
       hideCalendar();
@@ -27929,7 +27991,7 @@ var DatePicker = function (_ref) {
         onKeyDown: handleInputKeydown,
         onClick: handleClick,
         onFocus: handleFocus,
-        onBlur: handleBlur,
+        onBlur: handleInputBlur,
         onResetClick: handleResetClick,
         value: inputValue,
         onChange: handleInputChange,
@@ -27954,7 +28016,8 @@ var DatePicker = function (_ref) {
       children: /*#__PURE__*/(0,jsx_runtime.jsx)(ClickAwayListener/* default */.A, {
         onClickAway: handleCalendarClickOutside,
         children: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-          onBlur: handleBlur,
+          onBlur: handleCalendarBlur,
+          onFocus: handleCalendarFocus,
           children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Calendar/* default */.A, {
             activeMonth: activeMonth,
             "data-testid": testIds === null || testIds === void 0 ? void 0 : testIds.calendar,
@@ -78159,6 +78222,8 @@ var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/m
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/utils/flatten-fragments.js
+var flatten_fragments = __webpack_require__("./packages/shared/dist-package/src/utils/flatten-fragments.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-react-19-or-newer.js
 var is_react_19_or_newer = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-react-19-or-newer.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
@@ -78191,9 +78256,6 @@ var register = function (entry) {
   };
 };
 var update = function (entry, next) {
-  if (entry.title === next.title && entry.titleTemplate === next.titleTemplate && entry.defaultTitle === next.defaultTitle) {
-    return;
-  }
   Object.assign(entry, next);
   notify();
 };
@@ -78238,34 +78300,26 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
-// react-helmet-async reads the children of fragments as its own. The others
-// are keyed by the fragment they came from, so they stay unique
-var flattenFragments = function (children) {
-  var keyPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return react.Children.toArray(children).flatMap(function (child) {
-    if (! /*#__PURE__*/(0,react.isValidElement)(child)) {
-      return [child];
-    }
-    if (child.type === react.Fragment) {
-      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`);
-    }
-    return keyPrefix ? [/*#__PURE__*/(0,react.cloneElement)(child, {
-      key: `${keyPrefix}${child.key}`
-    })] : [child];
-  });
-};
-// A `<title>` child is the helmet's title, as react-helmet-async reads it
+
+// A `<title>` child is the helmet's title, and its other props are the
+// title's attributes, as react-helmet-async reads it, inside a fragment too
 var splitTitleChild = function (children) {
   var title;
-  var otherChildren = flattenFragments(children).filter(function (child) {
+  var titleAttributes;
+  var otherChildren = (0,flatten_fragments/* default */.A)(children).filter(function (child) {
     if (/*#__PURE__*/(0,react.isValidElement)(child) && child.type === 'title') {
-      title = react.Children.toArray(child.props.children).join('');
+      var _a = child.props,
+        text = _a.children,
+        attributes = __rest(_a, ["children"]);
+      title = react.Children.toArray(text).join('');
+      titleAttributes = attributes;
       return false;
     }
     return true;
   });
   return {
     title: title,
+    titleAttributes: titleAttributes,
     otherChildren: otherChildren
   };
 };
@@ -78280,13 +78334,22 @@ var PlainPageHelmet = function (props) {
 var MergingPageHelmet = function (props) {
   var children = props.children,
     titleProp = props.title,
-    titleTemplate = props.titleTemplate,
-    defaultTitle = props.defaultTitle,
+    titleTemplateProp = props.titleTemplate,
+    defaultTitleProp = props.defaultTitle,
     rest = __rest(props, ["children", "title", "titleTemplate", "defaultTitle"]);
   var _splitTitleChild = splitTitleChild(children),
     childTitle = _splitTitleChild.title,
+    childTitleAttributes = _splitTitleChild.titleAttributes,
     otherChildren = _splitTitleChild.otherChildren;
-  var title = titleProp !== null && titleProp !== void 0 ? titleProp : childTitle;
+  // A prop set to `undefined` still hides an outer helmet's value, as
+  // react-helmet-async merges them, so the registry keeps it as `null`
+  var own = function (key, value) {
+    return key in props ? value !== null && value !== void 0 ? value : null : undefined;
+  };
+  // As in react-helmet-async, a `<title>` child replaces the `title` prop
+  var title = childTitle !== null && childTitle !== void 0 ? childTitle : own('title', titleProp);
+  var titleTemplate = own('titleTemplate', titleTemplateProp);
+  var defaultTitle = own('defaultTitle', defaultTitleProp);
   var _useState = (0,react.useState)(function () {
       return {};
     }),
@@ -78301,17 +78364,21 @@ var MergingPageHelmet = function (props) {
     return subscribe(rerender);
   }, []);
   (0,react.useEffect)(function () {
+    return register(entry);
+  }, [entry]);
+  (0,react.useEffect)(function () {
     update(entry, {
       title: title,
       titleTemplate: titleTemplate,
       defaultTitle: defaultTitle
     });
   }, [entry, title, titleTemplate, defaultTitle]);
-  (0,react.useEffect)(function () {
-    return register(entry);
-  }, [entry]);
+  // As in react-helmet-async, a `<title>` child's attributes replace the
+  // `titleAttributes` prop. Only the helmet that renders the title applies
+  // them, so an outer helmet's don't merge in
   return /*#__PURE__*/react.createElement(src.Helmet, Object.assign({}, rest, {
-    title: resolveTitle(entry)
+    title: resolveTitle(entry),
+    titleAttributes: childTitleAttributes !== null && childTitleAttributes !== void 0 ? childTitleAttributes : rest.titleAttributes
   }), otherChildren);
 };
 PlainPageHelmet.displayName = 'PageHelmet';
@@ -81087,6 +81154,8 @@ var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/m
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/utils/flatten-fragments.js
+var flatten_fragments = __webpack_require__("./packages/shared/dist-package/src/utils/flatten-fragments.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-react-19-or-newer.js
 var is_react_19_or_newer = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-react-19-or-newer.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
@@ -81102,8 +81171,9 @@ var es_regexp_exec = __webpack_require__("./node_modules/core-js/modules/es.rege
  * React 19 they merge into one title the way react-helmet-async's provider
  * merges them on React 17 and 18: the innermost `title`, formatted with the
  * innermost `titleTemplate`, or else, when that title is empty or missing, the
- * innermost `defaultTitle`. It is module-wide, like the one document whose
- * title it sets.
+ * innermost `defaultTitle`. A helmet that sets one of them to `undefined`
+ * holds `null` for it, which hides an outer helmet's value, as it does there.
+ * It is module-wide, like the one document whose title it sets.
  */
 
 var entries = [];
@@ -81128,9 +81198,6 @@ var register = function (entry) {
   };
 };
 var update = function (entry, next) {
-  if (entry.title === next.title && entry.titleTemplate === next.titleTemplate && entry.defaultTitle === next.defaultTitle) {
-    return;
-  }
   Object.assign(entry, next);
   notify();
 };
@@ -81161,7 +81228,8 @@ var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
 ;// ./packages/base/Page/src/PageHelmet/PageHelmet.tsx
 
 var _excluded = ["children"],
-  _excluded2 = ["children", "title", "titleTemplate", "defaultTitle"];
+  _excluded2 = ["children"],
+  _excluded3 = ["children", "title", "titleTemplate", "defaultTitle"];
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -81175,41 +81243,32 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 
-// react-helmet-async reads the children of fragments as its own. The others
-// are keyed by the fragment they came from, so they stay unique
-var flattenFragments = function (children) {
-  var keyPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return react.Children.toArray(children).flatMap(function (child) {
-    if (! /*#__PURE__*/(0,react.isValidElement)(child)) {
-      return [child];
-    }
-    if (child.type === react.Fragment) {
-      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`);
-    }
-    return keyPrefix ? [/*#__PURE__*/(0,react.cloneElement)(child, {
-      key: `${keyPrefix}${child.key}`
-    })] : [child];
-  });
-};
 
-// A `<title>` child is the helmet's title, as react-helmet-async reads it
+// A `<title>` child is the helmet's title, and its other props are the
+// title's attributes, as react-helmet-async reads it, inside a fragment too
 var splitTitleChild = function (children) {
   var title;
-  var otherChildren = flattenFragments(children).filter(function (child) {
+  var titleAttributes;
+  var otherChildren = (0,flatten_fragments/* default */.A)(children).filter(function (child) {
     if (/*#__PURE__*/(0,react.isValidElement)(child) && child.type === 'title') {
-      title = react.Children.toArray(child.props.children).join('');
+      var _child$props = child.props,
+        text = _child$props.children,
+        attributes = _objectWithoutProperties(_child$props, _excluded);
+      title = react.Children.toArray(text).join('');
+      titleAttributes = attributes;
       return false;
     }
     return true;
   });
   return {
     title: title,
+    titleAttributes: titleAttributes,
     otherChildren: otherChildren
   };
 };
 var PlainPageHelmet = function (props) {
   var children = props.children,
-    rest = _objectWithoutProperties(props, _excluded);
+    rest = _objectWithoutProperties(props, _excluded2);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(src.Helmet, Object.assign({}, rest, {
     children: children
   }));
@@ -81221,13 +81280,22 @@ PlainPageHelmet.displayName = "PlainPageHelmet";
 var MergingPageHelmet = function (props) {
   var children = props.children,
     titleProp = props.title,
-    titleTemplate = props.titleTemplate,
-    defaultTitle = props.defaultTitle,
-    rest = _objectWithoutProperties(props, _excluded2);
+    titleTemplateProp = props.titleTemplate,
+    defaultTitleProp = props.defaultTitle,
+    rest = _objectWithoutProperties(props, _excluded3);
   var _splitTitleChild = splitTitleChild(children),
     childTitle = _splitTitleChild.title,
+    childTitleAttributes = _splitTitleChild.titleAttributes,
     otherChildren = _splitTitleChild.otherChildren;
-  var title = titleProp !== null && titleProp !== void 0 ? titleProp : childTitle;
+  // A prop set to `undefined` still hides an outer helmet's value, as
+  // react-helmet-async merges them, so the registry keeps it as `null`
+  var own = function (key, value) {
+    return key in props ? value !== null && value !== void 0 ? value : null : undefined;
+  };
+  // As in react-helmet-async, a `<title>` child replaces the `title` prop
+  var title = childTitle !== null && childTitle !== void 0 ? childTitle : own('title', titleProp);
+  var titleTemplate = own('titleTemplate', titleTemplateProp);
+  var defaultTitle = own('defaultTitle', defaultTitleProp);
   var _useState = (0,react.useState)(function () {
       return {};
     }),
@@ -81242,17 +81310,22 @@ var MergingPageHelmet = function (props) {
     return subscribe(rerender);
   }, []);
   (0,react.useEffect)(function () {
+    return register(entry);
+  }, [entry]);
+  (0,react.useEffect)(function () {
     update(entry, {
       title: title,
       titleTemplate: titleTemplate,
       defaultTitle: defaultTitle
     });
   }, [entry, title, titleTemplate, defaultTitle]);
-  (0,react.useEffect)(function () {
-    return register(entry);
-  }, [entry]);
+
+  // As in react-helmet-async, a `<title>` child's attributes replace the
+  // `titleAttributes` prop. Only the helmet that renders the title applies
+  // them, so an outer helmet's don't merge in
   return /*#__PURE__*/(0,jsx_runtime.jsx)(src.Helmet, Object.assign({}, rest, {
     title: resolveTitle(entry),
+    titleAttributes: childTitleAttributes !== null && childTitleAttributes !== void 0 ? childTitleAttributes : rest.titleAttributes,
     children: otherChildren
   }));
 };
@@ -101048,11 +101121,12 @@ var TimePicker = function (_a) {
       return;
     }
     // Cleared from outside, such as a form reset. The '' this component
-    // reports for an incomplete time leaves nothing to clear, since the time
-    // input reads '' then too, and an empty picker stays uncontrolled
+    // reports for an incomplete time must not clear it: a text field, where
+    // a browser has no time input, still shows it, and an empty picker stays
+    // uncontrolled
     if (!externalValue) {
       setValue(function (current) {
-        return current ? '' : current;
+        return current && VALID_TIME_REGEX.test(current) ? '' : current;
       });
     }
   }, [externalValue]);
@@ -101192,11 +101266,12 @@ var TimePicker = function (_ref) {
     }
 
     // Cleared from outside, such as a form reset. The '' this component
-    // reports for an incomplete time leaves nothing to clear, since the time
-    // input reads '' then too, and an empty picker stays uncontrolled
+    // reports for an incomplete time must not clear it: a text field, where
+    // a browser has no time input, still shows it, and an empty picker stays
+    // uncontrolled
     if (!externalValue) {
       setValue(function (current) {
-        return current ? '' : current;
+        return current && VALID_TIME_REGEX.test(current) ? '' : current;
       });
     }
   }, [externalValue]);
@@ -109496,6 +109571,8 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/utils/flatten-fragments.js
+var flatten_fragments = __webpack_require__("./packages/shared/dist-package/src/utils/flatten-fragments.js");
 // EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
@@ -109601,7 +109678,7 @@ var calculateTooltipPosition = debounce_default()(function (payload, tooltipElem
 /* harmony default export */ const calculate_tooltip_position = (calculateTooltipPosition);
 ;// ./packages/picasso-charts/dist-package/src/utils/calculate-tooltip-position/index.js
 
-// EXTERNAL MODULE: ./packages/picasso-charts/dist-package/src/utils/index.js + 6 modules
+// EXTERNAL MODULE: ./packages/picasso-charts/dist-package/src/utils/index.js + 4 modules
 var utils = __webpack_require__("./packages/picasso-charts/dist-package/src/utils/index.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.reduce.js
 var es_array_reduce = __webpack_require__("./node_modules/core-js/modules/es.array.reduce.js");
@@ -109653,6 +109730,7 @@ var LineChart_rest = undefined && undefined.__rest || function (s, e) {
   return t;
 };
 /* eslint-disable complexity */
+
 
 
 
@@ -109856,7 +109934,7 @@ var LineChart = function (_a) {
     fill: src.colors.blue.main,
     fillOpacity: 0.1,
     isAnimationActive: IS_ANIMATION_ACTIVE
-  })), lineGraphs, (0,utils.flattenFragments)(children), tooltip && (/*#__PURE__*/react.createElement(lib/* Tooltip */.m_, {
+  })), lineGraphs, (0,flatten_fragments/* default */.A)(children), tooltip && (/*#__PURE__*/react.createElement(lib/* Tooltip */.m_, {
     wrapperStyle: TOOLTIP_WRAPPER_STYLE,
     allowEscapeViewBox: allowTooltipEscapeViewBox ? {
       x: true,
@@ -110326,7 +110404,6 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  flattenFragments: () => (/* reexport */ flatten_fragments),
   getChartTicks: () => (/* reexport */ get_chart_ticks),
   orderData: () => (/* reexport */ order_data),
   toRechartsHighlightFormat: () => (/* reexport */ to_recharts_highlight_format)
@@ -110387,36 +110464,7 @@ var orderData = function (data) {
   });
 };
 /* harmony default export */ const order_data = (orderData);
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__("./node_modules/react/index.js");
-;// ./packages/picasso-charts/dist-package/src/utils/flatten-fragments/flatten-fragments.js
-
-/**
- * The children, with each fragment replaced by the elements inside it, keyed
- * by the fragment they came from. recharts looks for its chart parts among a
- * chart's children and unwraps fragments with the `react-is` 18 it ships,
- * which does not recognize a React 19 fragment, so on React 19 it dropped the
- * parts inside one
- */
-var flattenFragments = function (children) {
-  var keyPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return react.Children.toArray(children).flatMap(function (child) {
-    if (! /*#__PURE__*/(0,react.isValidElement)(child)) {
-      return [child];
-    }
-    if (child.type === react.Fragment) {
-      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`);
-    }
-    return keyPrefix ? [/*#__PURE__*/(0,react.cloneElement)(child, {
-      key: `${keyPrefix}${child.key}`
-    })] : [child];
-  });
-};
-/* harmony default export */ const flatten_fragments = (flattenFragments);
-;// ./packages/picasso-charts/dist-package/src/utils/flatten-fragments/index.js
-
 ;// ./packages/picasso-charts/dist-package/src/utils/index.js
-
 
 
 
@@ -110890,6 +110938,8 @@ page.createChapter().addExample('BarChart/story/Default.example.tsx', {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/utils/flatten-fragments.js
+var flatten_fragments = __webpack_require__("./packages/shared/dist-package/src/utils/flatten-fragments.js");
 // EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
@@ -111073,35 +111123,7 @@ try {
         STORYBOOK_REACT_CLASSES["packages/picasso-charts/src/utils/order-data/order-data.tsx#orderdata"] = { docgenInfo: orderdata.__docgenInfo, name: "orderdata", path: "packages/picasso-charts/src/utils/order-data/order-data.tsx#orderdata" };
 }
 catch (__react_docgen_typescript_loader_error) { }
-;// ./packages/picasso-charts/src/utils/flatten-fragments/flatten-fragments.ts
-
-
-/**
- * The children, with each fragment replaced by the elements inside it, keyed
- * by the fragment they came from. recharts looks for its chart parts among a
- * chart's children and unwraps fragments with the `react-is` 18 it ships,
- * which does not recognize a React 19 fragment, so on React 19 it dropped the
- * parts inside one
- */
-var flattenFragments = function (children) {
-  var keyPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  return react.Children.toArray(children).flatMap(function (child) {
-    if (! /*#__PURE__*/(0,react.isValidElement)(child)) {
-      return [child];
-    }
-    if (child.type === react.Fragment) {
-      return flattenFragments(child.props.children, `${keyPrefix}${child.key}`);
-    }
-    return keyPrefix ? [/*#__PURE__*/(0,react.cloneElement)(child, {
-      key: `${keyPrefix}${child.key}`
-    })] : [child];
-  });
-};
-/* harmony default export */ const flatten_fragments = (flattenFragments);
-;// ./packages/picasso-charts/src/utils/flatten-fragments/index.ts
-
 ;// ./packages/picasso-charts/src/utils/index.ts
-
 
 
 
@@ -111145,6 +111167,7 @@ var _excluded = ["height", "unit", "tooltip", "allowTooltipEscapeViewBox", "xAxi
 function LineChart_objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = LineChart_objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function LineChart_objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 /* eslint-disable complexity */
+
 
 
 
@@ -111349,7 +111372,7 @@ var LineChart = function (_ref3) {
           fill: src.colors.blue.main,
           fillOpacity: 0.1,
           isAnimationActive: IS_ANIMATION_ACTIVE
-        }), lineGraphs, flatten_fragments(children), tooltip && /*#__PURE__*/(0,jsx_runtime.jsx)(lib/* Tooltip */.m_, {
+        }), lineGraphs, (0,flatten_fragments/* default */.A)(children), tooltip && /*#__PURE__*/(0,jsx_runtime.jsx)(lib/* Tooltip */.m_, {
           wrapperStyle: TOOLTIP_WRAPPER_STYLE,
           allowEscapeViewBox: allowTooltipEscapeViewBox ? {
             x: true,
@@ -111575,9 +111598,10 @@ var forward_ref = __webpack_require__("./packages/base/Utils/dist-package/src/ut
  * A checkbox without its own `value` that passes a custom `format`.
  * react-final-form 7.0.1 derives its `checked` from `parse(value)`, so a
  * string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+ * Upstream made that change on purpose, for a checkbox with a `value`
+ * (react-final-form #1074), so Picasso keeps version 6's rule for good.
  * Group checkboxes and radios keep upstream's, which compares the stored value
  * with their own.
- * TODO: [PF-2522] drop when upstream derives it from `format` again
  */
 var derivesCheckedFromFormat = function () {
   var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -111586,19 +111610,31 @@ var derivesCheckedFromFormat = function () {
 /**
  * The input with version 6's `checked`, `format(value)`, for a checkbox that
  * `derivesCheckedFromFormat`. react-final-form formats the value for us,
- * except with `formatOnBlur` until the blur, and for an `allowNull` field
- * holding `null`
+ * except for an `allowNull` field holding `null`, and with `formatOnBlur`,
+ * where the field holds what `parse` returned until a blur or a submit stores
+ * what `format` returned. Version 6 formatted that again, so a blur unticked a
+ * stored `'true'`
  */
 var withCheckedFromFormat = function (input, config) {
   if (!derivesCheckedFromFormat(config)) {
     return input;
   }
   var format = config.format,
+    parse = config.parse,
     formatOnBlur = config.formatOnBlur,
     allowNull = config.allowNull;
+  // A value the checkbox's `onChange` stores. react-final-form's default
+  // `parse` stores `checked` as it is
+  var isParsed = function (value) {
+    return [true, false].some(function (checked) {
+      return value === (parse ? parse(checked, input.name) : checked);
+    });
+  };
+  var needsFormat = function (value) {
+    return allowNull && value === null || formatOnBlur && isParsed(value);
+  };
   var getChecked = function () {
-    var isFormatted = !formatOnBlur && !(allowNull && input.value === null);
-    return Boolean(isFormatted ? input.value : format(input.value, input.name));
+    return Boolean(needsFormat(input.value) ? format(input.value, input.name) : input.value);
   };
   // Copied by descriptor: a spread would read react-final-form's lazy getters
   return Object.create(Object.getPrototypeOf(input), Object.assign(Object.assign({}, Object.getOwnPropertyDescriptors(input)), {
@@ -111656,16 +111692,20 @@ var keepUntilCommit = function (form, name, unregister) {
   pending.set(name, release);
   holds.set(form, pending);
   // A concurrent render can yield between the field and the children rendered
-  // with it, and a microtask would end the hold in that gap, so the browser
-  // keeps it until commit and this only ends one whose render never commits
+  // with it, and a microtask would end the hold in that gap, so with a
+  // `window` the hold lasts until commit, and this only ends one whose render
+  // never commits. A server render under jsdom or another `window` polyfill
+  // takes this path too
   if ((0,is_browser/* default */.A)()) {
     timer = setTimeout(function () {
       return releaseHold(form, name, release);
     }, UNCOMMITTED_HOLD_MS);
     return;
   }
-  // A server render can't yield. A promise rather than `queueMicrotask`, which
-  // Jest's fake timers stop
+  // Without a `window` nothing commits, so the hold ends after the render,
+  // which `renderToString` doesn't yield in. A streaming render that resumes a
+  // suspended boundary later can render a group's children after it ends. A
+  // promise rather than `queueMicrotask`, which Jest's fake timers stop
   // eslint-disable-next-line promise/catch-or-return
   Promise.resolve().then(function () {
     return releaseHold(form, name, release);
@@ -111798,7 +111838,8 @@ var useClaim = function (form, name, config) {
  *   items. The hold, registered during render and released at commit, lets
  *   that render, and the children rendered with it, read the field state,
  *   also when a concurrent render yields before the children. A render that
- *   never commits releases it after a timeout, or on the server right after.
+ *   never commits releases it after a timeout, or, without a `window`, right
+ *   after the render.
  * - The mount effect writes `initialValues` back (#1095). The claim,
  *   registered at commit and released right after that effect, prevents it.
  *   It creates the field entry, so it carries the config final-form applies
@@ -115001,9 +115042,10 @@ var useFieldValidation = function (_ref) {
  * A checkbox without its own `value` that passes a custom `format`.
  * react-final-form 7.0.1 derives its `checked` from `parse(value)`, so a
  * string-boolean `format`/`parse` pair renders a stored `'false'` checked.
+ * Upstream made that change on purpose, for a checkbox with a `value`
+ * (react-final-form #1074), so Picasso keeps version 6's rule for good.
  * Group checkboxes and radios keep upstream's, which compares the stored value
  * with their own.
- * TODO: [PF-2522] drop when upstream derives it from `format` again
  */
 var derivesCheckedFromFormat = function () {
   var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -115013,19 +115055,31 @@ var derivesCheckedFromFormat = function () {
 /**
  * The input with version 6's `checked`, `format(value)`, for a checkbox that
  * `derivesCheckedFromFormat`. react-final-form formats the value for us,
- * except with `formatOnBlur` until the blur, and for an `allowNull` field
- * holding `null`
+ * except for an `allowNull` field holding `null`, and with `formatOnBlur`,
+ * where the field holds what `parse` returned until a blur or a submit stores
+ * what `format` returned. Version 6 formatted that again, so a blur unticked a
+ * stored `'true'`
  */
 var withCheckedFromFormat = function (input, config) {
   if (!derivesCheckedFromFormat(config)) {
     return input;
   }
   var format = config.format,
+    parse = config.parse,
     formatOnBlur = config.formatOnBlur,
     allowNull = config.allowNull;
+  // A value the checkbox's `onChange` stores. react-final-form's default
+  // `parse` stores `checked` as it is
+  var isParsed = function (value) {
+    return [true, false].some(function (checked) {
+      return value === (parse ? parse(checked, input.name) : checked);
+    });
+  };
+  var needsFormat = function (value) {
+    return allowNull && value === null || formatOnBlur && isParsed(value);
+  };
   var getChecked = function () {
-    var isFormatted = !formatOnBlur && !(allowNull && input.value === null);
-    return Boolean(isFormatted ? input.value : format(input.value, input.name));
+    return Boolean(needsFormat(input.value) ? format(input.value, input.name) : input.value);
   };
 
   // Copied by descriptor: a spread would read react-final-form's lazy getters
@@ -115090,8 +115144,10 @@ var keepUntilCommit = function (form, name, unregister) {
   holds.set(form, pending);
 
   // A concurrent render can yield between the field and the children rendered
-  // with it, and a microtask would end the hold in that gap, so the browser
-  // keeps it until commit and this only ends one whose render never commits
+  // with it, and a microtask would end the hold in that gap, so with a
+  // `window` the hold lasts until commit, and this only ends one whose render
+  // never commits. A server render under jsdom or another `window` polyfill
+  // takes this path too
   if ((0,is_browser/* default */.A)()) {
     timer = setTimeout(function () {
       return releaseHold(form, name, release);
@@ -115099,8 +115155,10 @@ var keepUntilCommit = function (form, name, unregister) {
     return;
   }
 
-  // A server render can't yield. A promise rather than `queueMicrotask`, which
-  // Jest's fake timers stop
+  // Without a `window` nothing commits, so the hold ends after the render,
+  // which `renderToString` doesn't yield in. A streaming render that resumes a
+  // suspended boundary later can render a group's children after it ends. A
+  // promise rather than `queueMicrotask`, which Jest's fake timers stop
   // eslint-disable-next-line promise/catch-or-return
   Promise.resolve().then(function () {
     return releaseHold(form, name, release);
@@ -115240,7 +115298,8 @@ var useClaim = function (form, name, config) {
  *   items. The hold, registered during render and released at commit, lets
  *   that render, and the children rendered with it, read the field state,
  *   also when a concurrent render yields before the children. A render that
- *   never commits releases it after a timeout, or on the server right after.
+ *   never commits releases it after a timeout, or, without a `window`, right
+ *   after the render.
  * - The mount effect writes `initialValues` back (#1095). The claim,
  *   registered at commit and released right after that effect, prevents it.
  *   It creates the field entry, so it carries the config final-form applies
@@ -159370,6 +159429,31 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 
 /***/ }),
 
+/***/ "./packages/shared/dist-package/src/utils/flatten-fragments.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/react/index.js");
+
+/**
+ * The children, with each fragment replaced by the children inside it, for
+ * code that reads elements by type. `Children.map` flattens the arrays this
+ * returns and keys each child by the fragment it came from, so the keys stay
+ * unique
+ */
+var flattenFragments = function (children) {
+  var _a;
+  return (_a = react__WEBPACK_IMPORTED_MODULE_0__.Children.map(children, function (child) {
+    return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(child) && child.type === react__WEBPACK_IMPORTED_MODULE_0__.Fragment ? flattenFragments(child.props.children) : child;
+  })) !== null && _a !== void 0 ? _a : [];
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (flattenFragments);
+
+/***/ }),
+
 /***/ "./packages/shared/dist-package/src/utils/is-browser.js":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -160734,4 +160818,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.977a98b4.iframe.bundle.js.map
+//# sourceMappingURL=main.936a225b.iframe.bundle.js.map
