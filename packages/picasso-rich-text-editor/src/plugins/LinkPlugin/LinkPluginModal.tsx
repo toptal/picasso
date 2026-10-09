@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import React, { useState } from 'react'
 import { Button } from '@toptal/picasso-button'
 import { Checkbox } from '@toptal/picasso-checkbox'
@@ -40,7 +41,7 @@ const LinkPluginModal = ({
   className,
   style,
   'data-testid': testId,
-}: Props) => {
+}: Props): ReactElement => {
   const [values, setValues] = useState(initialValues)
   const [urlError, setUrlError] = useState(false)
   const [shownValues, setShownValues] = useState(initialValues)

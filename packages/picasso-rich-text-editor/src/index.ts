@@ -12,5 +12,10 @@ export {
   CodePlugin,
   CodeBlockPlugin,
 } from './plugins'
-export type { UploadedImage, CustomEmoji, CustomEmojiGroup } from './plugins'
+export type {
+  UploadedImage,
+  CustomEmoji,
+  CustomEmojiGroup,
+  LinkPluginProps,
+} from './plugins'
 export * from './utils'
