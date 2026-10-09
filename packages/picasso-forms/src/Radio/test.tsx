@@ -48,70 +48,70 @@ describe('FormRadio', () => {
 
     expect(container).toMatchSnapshot()
   })
-})
 
-describe('FormRadio with a field of its own', () => {
-  const Toggleable = ({ children }: { children: React.ReactNode }) => {
-    const [mounted, setMounted] = useState(true)
+  describe('with a field of its own', () => {
+    const Toggleable = ({ children }: { children: React.ReactNode }) => {
+      const [mounted, setMounted] = useState(true)
 
-    return (
-      <>
-        {mounted && children}
-        <button type='button' onClick={() => setMounted(current => !current)}>
-          toggle
-        </button>
-      </>
-    )
-  }
-
-  it('keeps its stored value when it remounts', () => {
-    const formRef: { current?: FormApi } = {}
-    const CaptureForm = () => {
-      formRef.current = useForm()
-
-      return null
+      return (
+        <>
+          {mounted && children}
+          <button type='button' onClick={() => setMounted(current => !current)}>
+            toggle
+          </button>
+        </>
+      )
     }
 
-    render(
-      <Form onSubmit={() => {}} initialValues={{ size: 'small' }}>
-        <CaptureForm />
-        <Toggleable>
-          <Form.Radio name='size' label='Small' value='small' />
-          <Form.Radio name='size' label='Large' value='large' />
-        </Toggleable>
-      </Form>
-    )
+    it('keeps its stored value when it remounts', () => {
+      const formRef: { current?: FormApi } = {}
+      const CaptureForm = () => {
+        formRef.current = useForm()
 
-    act(() => {
-      formRef.current?.change('size', 'large')
+        return null
+      }
+
+      render(
+        <Form onSubmit={() => {}} initialValues={{ size: 'small' }}>
+          <CaptureForm />
+          <Toggleable>
+            <Form.Radio name='size' label='Small' value='small' />
+            <Form.Radio name='size' label='Large' value='large' />
+          </Toggleable>
+        </Form>
+      )
+
+      act(() => {
+        formRef.current?.change('size', 'large')
+      })
+      fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+      fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+
+      expect(screen.getByLabelText('Large')).toBeChecked()
+      expect(formRef.current?.getState().values.size).toBe('large')
     })
-    fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
-    fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 
-    expect(screen.getByLabelText('Large')).toBeChecked()
-    expect(formRef.current?.getState().values.size).toBe('large')
-  })
+    it('moves to a field of its own when a new `name` takes it out of its group', () => {
+      const formRef: { current?: FormApi } = {}
+      const CaptureForm = () => {
+        formRef.current = useForm()
 
-  it('moves to a field of its own when a new `name` takes it out of its group', () => {
-    const formRef: { current?: FormApi } = {}
-    const CaptureForm = () => {
-      formRef.current = useForm()
+        return null
+      }
+      const renderRadio = (name?: string) => (
+        <Form onSubmit={() => {}}>
+          <CaptureForm />
+          <Form.RadioGroup name='group'>
+            <Form.Radio name={name} label='Small' value='small' />
+          </Form.RadioGroup>
+        </Form>
+      )
+      const { rerender } = render(renderRadio())
 
-      return null
-    }
-    const renderRadio = (name?: string) => (
-      <Form onSubmit={() => {}}>
-        <CaptureForm />
-        <Form.RadioGroup name='group'>
-          <Form.Radio name={name} label='Small' value='small' />
-        </Form.RadioGroup>
-      </Form>
-    )
-    const { rerender } = render(renderRadio())
+      rerender(renderRadio('size'))
 
-    rerender(renderRadio('size'))
-
-    expect(screen.getByLabelText('Small')).toBeInTheDocument()
-    expect(formRef.current?.getRegisteredFields()).toContain('size')
+      expect(screen.getByLabelText('Small')).toBeInTheDocument()
+      expect(formRef.current?.getRegisteredFields()).toContain('size')
+    })
   })
 })
