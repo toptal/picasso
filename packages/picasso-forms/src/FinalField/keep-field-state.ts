@@ -76,8 +76,10 @@ const keepUntilCommit = (form: FormApi, name: string, unregister: Release) => {
   holds.set(form, pending)
 
   // A concurrent render can yield between the field and the children rendered
-  // with it, and a microtask would end the hold in that gap, so the browser
-  // keeps it until commit and this only ends one whose render never commits
+  // with it, and a microtask would end the hold in that gap, so with a
+  // `window` the hold lasts until commit, and this only ends one whose render
+  // never commits. A server render under jsdom or another `window` polyfill
+  // takes this path too
   if (isBrowser()) {
     timer = setTimeout(
       () => releaseHold(form, name, release),
@@ -87,8 +89,10 @@ const keepUntilCommit = (form: FormApi, name: string, unregister: Release) => {
     return
   }
 
-  // A server render can't yield. A promise rather than `queueMicrotask`, which
-  // Jest's fake timers stop
+  // Without a `window` nothing commits, so the hold ends after the render,
+  // which `renderToString` doesn't yield in. A streaming render that resumes a
+  // suspended boundary later can render a group's children after it ends. A
+  // promise rather than `queueMicrotask`, which Jest's fake timers stop
   // eslint-disable-next-line promise/catch-or-return
   Promise.resolve().then(() => releaseHold(form, name, release))
 }
@@ -241,7 +245,8 @@ const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
  *   items. The hold, registered during render and released at commit, lets
  *   that render, and the children rendered with it, read the field state,
  *   also when a concurrent render yields before the children. A render that
- *   never commits releases it after a timeout, or on the server right after.
+ *   never commits releases it after a timeout, or, without a `window`, right
+ *   after the render.
  * - The mount effect writes `initialValues` back (#1095). The claim,
  *   registered at commit and released right after that effect, prevents it.
  *   It creates the field entry, so it carries the config final-form applies
