@@ -21,11 +21,19 @@ const repoRoot = path.resolve(
 )
 const tsc = createRequire(import.meta.url).resolve('typescript/bin/tsc')
 
-const { stdout, stderr, status } = spawnSync(
+const { stdout, stderr, status, signal, error } = spawnSync(
   process.execPath,
   [tsc, '-p', 'tsconfig.react19.declarations.json', '--pretty', 'false'],
-  { cwd: repoRoot, encoding: 'utf8' }
+  // Unbounded: past the default 1 MiB, Node kills tsc and cuts the output,
+  // and tsc prints other packages' errors before Picasso's
+  { cwd: repoRoot, encoding: 'utf8', maxBuffer: Infinity }
 )
+
+// A tsc that didn't run or didn't finish leaves errors unprinted
+if (error || signal) {
+  console.error(error ?? `tsc was stopped by ${signal}`)
+  process.exit(1)
+}
 
 const output = `${stdout}${stderr}`
 const errors = output.split('\n').filter(line => / error TS\d+:/.test(line))
