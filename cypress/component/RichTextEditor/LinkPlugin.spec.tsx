@@ -198,23 +198,56 @@ describe('LinkPlugin', () => {
 
       cy.get('@editor').type('{leftArrow}{leftArrow}')
       cy.get('@linkPluginButton').realClick()
-      cy.getByRole('dialog').within(() => {
-        cy.contains('Edit link')
-        cy.get('#rte-link-text').should('have.value', 'Toptal')
-        cy.get('#rte-link-url').should('have.value', 'https://toptal.com/')
-        cy.get('input[type=checkbox]').should('be.checked')
-      })
-      saveLink('https://toptal.com/careers', { text: 'Careers' })
+      cy.getByRole('dialog').contains('Edit link')
+      cy.get('#rte-link-text').should('have.value', 'Toptal')
+      cy.get('#rte-link-url').should('have.value', 'https://toptal.com/')
+      cy.get('input[type=checkbox]').should('be.checked')
+      saveLink('https://toptal.com/careers', { text: 'Careers', sameTab: true })
 
       cy.get('@resultContainer').contains(
-        `<p><a href="https://toptal.com/careers" target="_blank" rel="noopener noreferrer"><span>Careers</span></a></p>`
+        `<p><a href="https://toptal.com/careers" rel="noreferrer"><span>Careers</span></a></p>`
       )
+      // Focus comes back to the editor after saving
+      cy.focused().should('have.attr', 'contenteditable', 'true')
 
       cy.get('@editor').type('{leftArrow}{leftArrow}')
       cy.get('@linkPluginButton').realClick()
       cy.getByRole('dialog').contains('button', 'Remove link').click()
 
       cy.get('@resultContainer').contains(`<p>Careers</p>`)
+    })
+  })
+
+  describe('when the selection starts inside a link and ends after it', () => {
+    it('edits that link instead of nesting a new one', () => {
+      cy.mount(
+        <Editor
+          {...{
+            ...defaultProps,
+            plugins: [<LinkPlugin data-testid={linkPluginButton} />],
+          }}
+        />
+      )
+      setAliases()
+
+      cy.get('@editor').click()
+      cy.get('@editor').type('alpha beta')
+      cy.get('@editor').type('{selectall}')
+      cy.get('@linkPluginButton').realClick()
+      saveLink('https://toptal.com/')
+
+      cy.get('@editor').type('{moveToEnd} gamma')
+      // Put the caret inside "beta", then select forward past the link
+      cy.realPress(Array(8).fill('ArrowLeft'))
+      cy.realPress(['Shift', ...Array(8).fill('ArrowRight')])
+      cy.get('@linkPluginButton').realClick()
+      cy.getByRole('dialog').contains('Edit link')
+      cy.get('#rte-link-text').should('have.value', 'alpha beta')
+      saveLink('https://toptal.com/', { text: 'X' })
+
+      cy.get('@resultContainer').contains(
+        `<p><a href="https://toptal.com/" target="_blank" rel="noopener noreferrer"><span>X</span></a> gamma</p>`
+      )
     })
   })
 })

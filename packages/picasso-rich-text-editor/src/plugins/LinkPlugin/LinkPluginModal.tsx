@@ -4,7 +4,9 @@ import { Checkbox } from '@toptal/picasso-checkbox'
 import { FormCompound as Form } from '@toptal/picasso-form'
 import { Input } from '@toptal/picasso-input'
 import { ModalCompound as Modal } from '@toptal/picasso-modal'
+import type { BaseProps } from '@toptal/picasso-shared'
 
+import { INTERNAL_DIALOG_ATTRIBUTE } from '../../LexicalEditor/hooks/useOnFocus/use-on-focus'
 import { validateUrl } from './utils/url'
 
 export type LinkValues = {
@@ -13,34 +15,41 @@ export type LinkValues = {
   openInNewTab: boolean
 }
 
-export type Props = {
-  isOpen: boolean
+export interface Props extends BaseProps {
+  /** Whether the dialog is shown */
+  open: boolean
   /** Values the form opens with: the selected text, or the link being edited */
   initialValues: LinkValues
   /** Whether an existing link is being edited, which offers removing it */
   editing: boolean
+  /** Called when the dialog is dismissed without saving */
   onClose: () => void
+  /** Called with the entered values when the link is saved */
   onSubmit: (values: LinkValues) => void
+  /** Called when the edited link is removed */
   onRemove: () => void
 }
 
 const LinkPluginModal = ({
-  isOpen,
+  open,
   initialValues,
   editing,
   onClose,
   onSubmit,
   onRemove,
+  className,
+  style,
+  'data-testid': testId,
 }: Props) => {
   const [values, setValues] = useState(initialValues)
   const [urlError, setUrlError] = useState(false)
 
   useEffect(() => {
-    if (isOpen) {
+    if (open) {
       setValues(initialValues)
       setUrlError(false)
     }
-  }, [isOpen, initialValues])
+  }, [open, initialValues])
 
   const handleSave = () => {
     const url = values.url.trim()
@@ -55,7 +64,15 @@ const LinkPluginModal = ({
   }
 
   return (
-    <Modal onClose={onClose} open={isOpen} size='small'>
+    <Modal
+      onClose={onClose}
+      open={open}
+      size='small'
+      className={className}
+      style={style}
+      data-testid={testId}
+      {...{ [INTERNAL_DIALOG_ATTRIBUTE]: '' }}
+    >
       <Modal.Title>{editing ? 'Edit link' : 'Add link'}</Modal.Title>
       <Modal.Content>
         <Form.Field>

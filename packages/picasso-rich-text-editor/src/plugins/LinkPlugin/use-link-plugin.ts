@@ -1,7 +1,8 @@
 import type { LinkNode } from '@lexical/link'
 import { $createLinkNode, $isLinkNode, toggleLink } from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import type { NodeKey, RangeSelection } from 'lexical'
+import { $findMatchingParent } from '@lexical/utils'
+import type { LexicalNode, NodeKey, RangeSelection } from 'lexical'
 import {
   $createTextNode,
   $getNodeByKey,
@@ -9,7 +10,7 @@ import {
   $isRangeSelection,
   $setSelection,
 } from 'lexical'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { getSelectedNode } from '../../LexicalEditor/utils/get-selected-node'
 import type { LinkValues } from './LinkPluginModal'
@@ -26,6 +27,12 @@ const $getEditedLink = (key: NodeKey | null): LinkNode | null => {
   const node = key ? $getNodeByKey(key) : null
 
   return $isLinkNode(node) ? node : null
+}
+
+const $getLinkAt = (node: LexicalNode): LinkNode | null => {
+  const link = $findMatchingParent(node, $isLinkNode)
+
+  return $isLinkNode(link) ? link : null
 }
 
 type LinkSpec = {
@@ -77,15 +84,25 @@ const $insertLink = (
 
 export const useLinkPlugin = () => {
   const [editor] = useLexicalComposerContext()
-  const [isOpen, setIsOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState(false)
   const [initialValues, setInitialValues] = useState(EMPTY_VALUES)
   // The dialog takes focus from the editor, so the selection it applies to is
-  // captured on open and restored on save.
+  // captured on show and restored when it closes.
   const selectionRef = useRef<RangeSelection | null>(null)
   const linkKeyRef = useRef<NodeKey | null>(null)
+  const wasOpenRef = useRef(false)
 
-  const open = useCallback(() => {
+  // Return focus to the editor once the dialog is gone; focusing it while the
+  // dialog is still mounted would be pulled back into the dialog
+  useEffect(() => {
+    if (wasOpenRef.current && !open) {
+      editor.focus()
+    }
+    wasOpenRef.current = open
+  }, [editor, open])
+
+  const show = useCallback(() => {
     editor.getEditorState().read(() => {
       const selection = $getSelection()
 
@@ -93,13 +110,11 @@ export const useLinkPlugin = () => {
         return
       }
 
-      const node = getSelectedNode(selection)
-      const parent = node.getParent()
-      const link = $isLinkNode(node)
-        ? node
-        : $isLinkNode(parent)
-        ? parent
-        : null
+      // Either end of the selection can sit in a link, e.g. a selection that
+      // starts inside one and ends after it
+      const link =
+        $getLinkAt(selection.anchor.getNode()) ??
+        $getLinkAt(selection.focus.getNode())
 
       selectionRef.current = selection.clone()
       linkKeyRef.current = link ? link.getKey() : null
@@ -113,11 +128,20 @@ export const useLinkPlugin = () => {
             }
           : { ...EMPTY_VALUES, text: selection.getTextContent() }
       )
-      setIsOpen(true)
+      setOpen(true)
     })
   }, [editor])
 
-  const close = useCallback(() => setIsOpen(false), [])
+  const close = useCallback(() => {
+    editor.update(() => {
+      const selection = selectionRef.current?.clone()
+
+      if (selection) {
+        $setSelection(selection)
+      }
+    })
+    setOpen(false)
+  }, [editor])
 
   const submit = useCallback(
     ({ text, url, openInNewTab }: LinkValues) => {
@@ -137,7 +161,7 @@ export const useLinkPlugin = () => {
           $insertLink(selection, spec)
         }
       })
-      setIsOpen(false)
+      setOpen(false)
     },
     [editor]
   )
@@ -151,8 +175,8 @@ export const useLinkPlugin = () => {
         link.remove()
       }
     })
-    setIsOpen(false)
+    setOpen(false)
   }, [editor])
 
-  return { isOpen, editing, initialValues, open, close, submit, remove }
+  return { open, editing, initialValues, show, close, submit, remove }
 }

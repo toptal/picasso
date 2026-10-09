@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import useOnFocus from './use-on-focus'
+import useOnFocus, { INTERNAL_DIALOG_ATTRIBUTE } from './use-on-focus'
 
 let mockEvent: React.FocusEvent<HTMLDivElement>
 
@@ -72,5 +72,60 @@ describe('useOnFocus', () => {
         expect(onBlur).toHaveBeenCalledTimes(0)
       })
     })
+  })
+
+  it('calls onFocus once while focus stays inside the editor', () => {
+    const onFocus = jest.fn()
+    const { result } = renderHook(() => useOnFocus({ onFocus }))
+
+    act(() => {
+      result.current.handleFocus(mockEvent)
+      result.current.handleFocus(mockEvent)
+    })
+
+    expect(onFocus).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not blur when focus moves into a plugin dialog', () => {
+    const onBlur = jest.fn()
+    const dialog = document.createElement('div')
+    const input = document.createElement('input')
+
+    dialog.setAttribute(INTERNAL_DIALOG_ATTRIBUTE, '')
+    dialog.appendChild(input)
+
+    const { result } = renderHook(() => useOnFocus({ onBlur }))
+
+    act(() => {
+      result.current.handleFocus(mockEvent)
+    })
+    act(() => {
+      result.current.handleBlur(getFocusEvent(input))
+    })
+
+    expect(result.current.focused).toBe(true)
+    expect(onBlur).not.toHaveBeenCalled()
+  })
+
+  it('does not blur when focus moves within the editor', () => {
+    const onBlur = jest.fn()
+    const wrapper = document.createElement('div')
+    const content = document.createElement('div')
+
+    wrapper.appendChild(content)
+
+    const { result } = renderHook(() => useOnFocus({ onBlur }))
+
+    act(() => {
+      result.current.handleFocus(mockEvent)
+    })
+    act(() => {
+      result.current.handleBlur({
+        relatedTarget: content,
+        currentTarget: wrapper,
+      } as unknown as React.FocusEvent<HTMLDivElement>)
+    })
+
+    expect(onBlur).not.toHaveBeenCalled()
   })
 })

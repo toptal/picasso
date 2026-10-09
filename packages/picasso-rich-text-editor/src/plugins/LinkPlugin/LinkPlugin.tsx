@@ -15,17 +15,17 @@ export type Props = {
 }
 
 const LinkPlugin: RTEPlugin<Props> = ({ 'data-testid': testId }: Props) => {
-  const { isOpen, editing, initialValues, open, close, submit, remove } =
+  const { open, editing, initialValues, show, close, submit, remove } =
     useLinkPlugin()
 
   return (
     <>
       <Toolbar keyName={PLUGIN_NAME}>
-        <LinkPluginButton onClick={open} data-testid={testId} />
+        <LinkPluginButton onClick={show} data-testid={testId} />
       </Toolbar>
       <LexicalLinkPlugin />
       <LinkPluginModal
-        isOpen={isOpen}
+        open={open}
         editing={editing}
         initialValues={initialValues}
         onClose={close}

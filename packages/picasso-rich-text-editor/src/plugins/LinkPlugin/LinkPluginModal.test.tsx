@@ -13,7 +13,7 @@ const renderModal = (props: Partial<Props> = {}) => {
 
   render(
     <LinkPluginModal
-      isOpen
+      open
       editing={false}
       initialValues={{ text: '', url: '', openInNewTab: true }}
       {...handlers}
