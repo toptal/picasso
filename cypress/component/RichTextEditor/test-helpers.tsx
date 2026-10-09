@@ -54,3 +54,22 @@ export const buttonShouldNotBeActive = (
     .should('have.attr', 'class')
     .and('not.include', ACTIVE_TOOLBAR_BUTTON_CLASS)
 }
+
+// Fills and saves the link dialog. `toggleNewTab` clicks "Open in new tab",
+// flipping whatever state the dialog opened with.
+export const saveLink = (
+  url: string,
+  { text, toggleNewTab }: { text?: string; toggleNewTab?: boolean } = {}
+) => {
+  if (text !== undefined) {
+    cy.get('#rte-link-text').clear()
+    cy.get('#rte-link-text').type(text)
+  }
+  cy.get('#rte-link-url').clear()
+  cy.get('#rte-link-url').type(url)
+  if (toggleNewTab) {
+    cy.getByRole('dialog').contains('Open in new tab').click()
+  }
+  cy.getByRole('dialog').contains('button', 'Save').click()
+  cy.getByRole('dialog').should('not.exist')
+}

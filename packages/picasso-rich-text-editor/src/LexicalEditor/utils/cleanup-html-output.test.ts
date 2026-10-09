@@ -82,4 +82,13 @@ describe('cleanupHtmlOutput', () => {
 
     expect(result).toBe(expected)
   })
+
+  it('adds a safe rel to links that open in a new tab', () => {
+    const html =
+      '<p><a href="https://toptal.com" target="_blank">new tab</a><a href="https://toptal.com" target="_blank" rel="opener">opener</a><a href="https://toptal.com" rel="noreferrer">same tab</a></p>'
+
+    expect(cleanupHtmlOutput(html)).toBe(
+      '<p><a href="https://toptal.com" target="_blank" rel="noopener noreferrer">new tab</a><a href="https://toptal.com" target="_blank" rel="noopener noreferrer">opener</a><a href="https://toptal.com" rel="noreferrer">same tab</a></p>'
+    )
+  })
 })

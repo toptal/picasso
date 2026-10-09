@@ -112,6 +112,16 @@ const hoistNestedLists = (htmlDoc: Document): Document => {
   return htmlDoc
 }
 
+// A link that opens in a new tab must not get access to this page through
+// window.opener, whatever produced it (the dialog or pasted HTML)
+const secureNewTabLinks = (htmlDoc: Document): Document => {
+  htmlDoc.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.setAttribute('rel', 'noopener noreferrer')
+  })
+
+  return htmlDoc
+}
+
 export const cleanupHtmlOutput = (html: string): string => {
   const parser = new DOMParser()
 
@@ -121,6 +131,7 @@ export const cleanupHtmlOutput = (html: string): string => {
     .map(removeExtraTags)
     .map(replaceItalicTag)
     .map(hoistNestedLists)
+    .map(secureNewTabLinks)
 
   const result = newHtml.body.innerHTML
 
