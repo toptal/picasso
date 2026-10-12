@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Popper } from '@toptal/picasso-popper'
 import { ClickAwayListener } from '@toptal/picasso-utils'
 
@@ -14,31 +14,31 @@ export interface Props extends TimePickerListProps {
   onClickAway: (event: React.MouseEvent) => void
 }
 
-export const TimePickerDropdown = ({
-  open,
-  anchorEl,
-  onClickAway,
-  ...rest
-}: Props) => {
-  if (!open || !anchorEl) {
-    return null
-  }
+export const TimePickerDropdown = forwardRef<HTMLDivElement, Props>(
+  function TimePickerDropdown(
+    { open, anchorEl, onClickAway, ...rest }: Props,
+    ref
+  ): React.ReactElement | null {
+    if (!open || !anchorEl) {
+      return null
+    }
 
-  return (
-    <Popper
-      open
-      role='presentation'
-      anchorEl={anchorEl}
-      placement='bottom-start'
-    >
-      <ClickAwayListener onClickAway={onClickAway}>
-        <div>
-          <TimePickerList {...rest} />
-        </div>
-      </ClickAwayListener>
-    </Popper>
-  )
-}
+    return (
+      <Popper
+        open
+        role='presentation'
+        anchorEl={anchorEl}
+        placement='bottom-start'
+      >
+        <ClickAwayListener onClickAway={onClickAway}>
+          <div ref={ref}>
+            <TimePickerList {...rest} />
+          </div>
+        </ClickAwayListener>
+      </Popper>
+    )
+  }
+)
 
 TimePickerDropdown.displayName = 'TimePickerDropdown'
 

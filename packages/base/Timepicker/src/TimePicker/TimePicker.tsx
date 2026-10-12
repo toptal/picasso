@@ -66,10 +66,15 @@ const getInputMask = (value?: string) => {
   return [/[0-2]/, startsWithTwo ? /[0-3]/ : /[0-9]/, ':', /[0-5]/, /[0-9]/]
 }
 
-export const TimePicker = ({ status = 'default', ...props }: Props) => {
+export const TimePicker = ({
+  status = 'default',
+  ...props
+}: Props): React.ReactElement => {
   const {
     onChange: externalOnChange,
     onKeyDown: externalOnKeyDown,
+    onBlur: externalOnBlur,
+    onFocus: externalOnFocus,
     value: externalValue,
     width,
     className,
@@ -112,10 +117,13 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     isOpen,
     hourCycle,
     anchorRef,
+    listRef,
     focusList,
+    isFocusChangeWithinList,
     handleTriggerClick,
     handleClickAway,
     closeAndFocusField,
+    handleFieldFocus,
     handleFieldKeyDown,
   } = useTimePickerPopover({
     enabled: interactive,
@@ -133,6 +141,20 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
     handleFieldKeyDown(event)
   }
 
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (!isFocusChangeWithinList(event)) {
+      externalOnBlur?.(event)
+    }
+  }
+
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    handleFieldFocus()
+
+    if (!isFocusChangeWithinList(event)) {
+      externalOnFocus?.(event)
+    }
+  }
+
   const adornmentProps = hasTimeList
     ? {
         endAdornment: (
@@ -147,6 +169,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
 
   const timeList = hasTimeList && (
     <TimePickerDropdown
+      ref={listRef}
       open={isOpen}
       anchorEl={anchorRef.current}
       onClickAway={handleClickAway}
@@ -189,6 +212,8 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
               value={value}
               onChange={onChange}
               onKeyDown={handleKeyDown}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
               className={'text-sm border-none p-0 m-0 outline-hidden'}
             />
           }
@@ -206,6 +231,8 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
         className={inputClassName}
         onChange={onChange}
         onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         {...adornmentProps}
         highlight={highlight}
         width={width}

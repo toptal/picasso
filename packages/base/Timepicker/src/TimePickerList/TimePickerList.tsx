@@ -46,6 +46,14 @@ const getStartingIndex = (
     : getNearestOptionIndex(parseTime(value) ?? getCurrentTime(), minuteStep)
 }
 
+const scrollToOption = (list: HTMLElement, option: HTMLElement) => {
+  const listRect = list.getBoundingClientRect()
+  const optionRect = option.getBoundingClientRect()
+
+  list.scrollTop +=
+    optionRect.top - listRect.top - (listRect.height - optionRect.height) / 2
+}
+
 const getNextIndex = (key: string, index: number, count: number) => {
   switch (key) {
     case 'ArrowDown':
@@ -71,13 +79,13 @@ export const TimePickerList = ({
   className,
   style,
   'data-testid': dataTestId,
-}: Props) => {
+}: Props): React.ReactElement => {
   const listRef = useRef<HTMLUListElement>(null)
   const options = useMemo(
     () => getTimeOptions(minuteStep, hourCycle),
     [minuteStep, hourCycle]
   )
-  const [startingIndex] = useState(() =>
+  const [initialIndex] = useState(() =>
     getStartingIndex(options, minuteStep, value)
   )
 
@@ -86,22 +94,29 @@ export const TimePickerList = ({
 
   useIsomorphicLayoutEffect(() => {
     const list = listRef.current
-    const option = list?.querySelectorAll<HTMLElement>(OPTION)[startingIndex]
+    const option = getOptionElements()[initialIndex]
 
-    if (!list || !option) {
+    if (list && option) {
+      scrollToOption(list, option)
+    }
+  }, [initialIndex])
+
+  useIsomorphicLayoutEffect(() => {
+    if (!autoFocus) {
       return
     }
 
-    const listRect = list.getBoundingClientRect()
-    const optionRect = option.getBoundingClientRect()
+    // The value may have been typed since the list opened, so the time to
+    // focus is looked up at the moment focus is requested
+    const list = listRef.current
+    const option =
+      getOptionElements()[getStartingIndex(options, minuteStep, value)]
 
-    list.scrollTop +=
-      optionRect.top - listRect.top - (listRect.height - optionRect.height) / 2
-
-    if (autoFocus) {
+    if (list && option) {
+      scrollToOption(list, option)
       option.focus({ preventScroll: true })
     }
-  }, [startingIndex, autoFocus])
+  }, [autoFocus])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
     const optionElements = getOptionElements()
@@ -143,6 +158,7 @@ export const TimePickerList = ({
       ref={listRef}
       role='listbox'
       aria-label='Choose time'
+      allowNestedNavigation={false}
       onKeyDown={handleKeyDown}
       onMouseDown={preventFocusLoss}
       className={twMerge(

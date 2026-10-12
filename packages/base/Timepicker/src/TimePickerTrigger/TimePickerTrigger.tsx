@@ -22,7 +22,7 @@ export const TimePickerTrigger = ({
   className,
   style,
   'data-testid': dataTestId,
-}: Props) => (
+}: Props): React.ReactElement => (
   <InputAdornment position='end'>
     {/* Touch devices keep the native picker: the button lets taps through to the browser's own picker indicator underneath */}
     <button

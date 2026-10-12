@@ -442,6 +442,103 @@ describe('TimePicker', () => {
     })
   })
 
+  describe('when the list is opened with the keyboard', () => {
+    it('does not call onBlur although focus moves into the list', () => {
+      const handleBlur = jest.fn()
+
+      renderComponent({ onBlur: handleBlur })
+
+      openListWithKeyboard()
+
+      expect(getOption('21:30')).toHaveFocus()
+      expect(handleBlur).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when a time is picked with the keyboard', () => {
+    it('does not call onFocus although focus returns to the field', () => {
+      const handleFocus = jest.fn()
+
+      renderComponent({ onFocus: handleFocus })
+
+      openListWithKeyboard()
+      fireEvent.keyDown(getOption('21:30'), { key: 'Enter' })
+
+      expect(getField()).toHaveFocus()
+      expect(handleFocus).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when focus leaves the field for something else than the list', () => {
+    it('calls onBlur', () => {
+      const handleBlur = jest.fn()
+
+      renderComponent({ onBlur: handleBlur })
+
+      act(() => getField().focus())
+      act(() => getField().blur())
+
+      expect(handleBlur).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('when the field is focused from something else than the list', () => {
+    it('calls onFocus', () => {
+      const handleFocus = jest.fn()
+
+      renderComponent({ onFocus: handleFocus })
+
+      act(() => getField().focus())
+
+      expect(handleFocus).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('when the clock button is clicked while the list has focus', () => {
+    it('closes the list and returns focus to the field', () => {
+      renderComponent()
+
+      openListWithKeyboard()
+      expect(getOption('21:30')).toHaveFocus()
+
+      fireEvent.click(screen.getByRole('button', { name: 'Choose time' }))
+
+      expect(queryList()).not.toBeInTheDocument()
+      expect(getField()).toHaveFocus()
+    })
+  })
+
+  describe('when the value changes while the list is open', () => {
+    it('focuses the time of the new value when the list is focused with the keyboard', () => {
+      const { rerender } = render(
+        <TimePicker value='21:30' minuteStep={30} onChange={jest.fn()} />
+      )
+
+      openList()
+      rerender(
+        <TimePicker value='10:00' minuteStep={30} onChange={jest.fn()} />
+      )
+      fireEvent.keyDown(getField('10:00'), { key: ' ' })
+
+      expect(getOption('10:00')).toHaveFocus()
+    })
+  })
+
+  describe('when focus returns to the field while the list stays open', () => {
+    it('moves focus into the list again on the next Space', () => {
+      renderComponent()
+
+      openListWithKeyboard()
+      expect(getOption('21:30')).toHaveFocus()
+
+      act(() => getField().focus())
+      fireEvent.keyDown(getField(), { key: ' ' })
+
+      expect(queryList()).toBeInTheDocument()
+      expect(getOption('21:30')).toHaveFocus()
+    })
+  })
+
   describe('when Space is pressed in the field', () => {
     it('opens the list with keyboard focus on the selected time', () => {
       renderComponent()

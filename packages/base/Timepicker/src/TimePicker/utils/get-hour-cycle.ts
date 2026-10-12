@@ -5,9 +5,10 @@ type Segment = 'hour' | 'ampm'
 const PROBE_CLASS_NAME =
   'fixed top-0 left-0 invisible pointer-events-none h-auto p-0 border-0'
 
+// Blink calls the AM/PM segment `ampm-field`, WebKit calls it `meridiem-field`
 const SEGMENT_CLASS_NAMES: Record<Segment, string> = {
   hour: '[&::-webkit-datetime-edit-hour-field]:inline-block [&::-webkit-datetime-edit-hour-field]:h-screen',
-  ampm: '[&::-webkit-datetime-edit-ampm-field]:inline-block [&::-webkit-datetime-edit-ampm-field]:h-screen',
+  ampm: '[&::-webkit-datetime-edit-ampm-field]:inline-block [&::-webkit-datetime-edit-ampm-field]:h-screen [&::-webkit-datetime-edit-meridiem-field]:inline-block [&::-webkit-datetime-edit-meridiem-field]:h-screen',
 }
 
 const measureProbe = (segment?: Segment) => {

@@ -17,6 +17,7 @@ export const useTimePickerPopover = ({ enabled, getHourCycle }: Options) => {
   const [focusList, setFocusList] = useState(false)
   const [hourCycle, setHourCycle] = useState<HourCycle>(24)
   const anchorRef = useRef<HTMLElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
 
   const focusField = () =>
     anchorRef.current
@@ -44,7 +45,7 @@ export const useTimePickerPopover = ({ enabled, getHourCycle }: Options) => {
 
   const handleTriggerClick = () => {
     if (isOpen) {
-      close()
+      closeAndFocusField()
 
       return
     }
@@ -57,6 +58,18 @@ export const useTimePickerPopover = ({ enabled, getHourCycle }: Options) => {
     if (!anchorRef.current?.contains(event.target as Node)) {
       close()
     }
+  }
+
+  // Whether focus moved between the field and its list, which consumers
+  // should not see as the field losing or gaining focus
+  const isFocusChangeWithinList = (event: React.FocusEvent) =>
+    event.relatedTarget instanceof Node &&
+    Boolean(listRef.current?.contains(event.relatedTarget))
+
+  const handleFieldFocus = () => {
+    // Focus is back in the field, so the next shortcut must be able to move it
+    // into the list again
+    setFocusList(false)
   }
 
   const handleFieldKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -97,10 +110,13 @@ export const useTimePickerPopover = ({ enabled, getHourCycle }: Options) => {
     isOpen,
     hourCycle,
     anchorRef,
+    listRef,
     focusList,
+    isFocusChangeWithinList,
     handleTriggerClick,
     handleClickAway,
     closeAndFocusField,
+    handleFieldFocus,
     handleFieldKeyDown,
   }
 }
