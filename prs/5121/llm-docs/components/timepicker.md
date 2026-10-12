@@ -76,7 +76,7 @@ import React, { useState } from 'react'
 import { TimePicker } from '@toptal/picasso'
 
 const MinuteStepExample = () => {
-  const [timepickerValue, setTimepickerValue] = useState<string>('09:30')
+  const [timepickerValue, setTimepickerValue] = useState('09:30')
 
   return (
     <TimePicker
