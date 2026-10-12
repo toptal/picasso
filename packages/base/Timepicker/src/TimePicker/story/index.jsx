@@ -30,3 +30,13 @@ page
     },
     'base/Timepicker'
   )
+  .addExample(
+    'TimePicker/story/MinuteStep.example.tsx',
+    {
+      title: 'Minute step',
+      description:
+        'Pass `minuteStep` to replace the browser time picker with a list of times at that interval. Any other time can still be typed',
+      takeScreenshot: false,
+    },
+    'base/Timepicker'
+  )
