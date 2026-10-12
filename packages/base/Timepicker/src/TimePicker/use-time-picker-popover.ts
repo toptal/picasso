@@ -60,8 +60,6 @@ export const useTimePickerPopover = ({ enabled, getHourCycle }: Options) => {
     }
   }
 
-  // Whether focus moved between the field and its list, which consumers
-  // should not see as the field losing or gaining focus
   const isFocusChangeWithinList = (event: React.FocusEvent) =>
     event.relatedTarget instanceof Node &&
     Boolean(listRef.current?.contains(event.relatedTarget))
