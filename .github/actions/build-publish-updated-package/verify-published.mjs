@@ -9,8 +9,6 @@
 // so `npm view` resolves them without auth.
 import { execFileSync } from 'node:child_process'
 
-// npm's registry can take a couple of minutes after `npm publish` returns before
-// the new version shows up in package metadata, so keep re-checking stragglers.
 const POLL_INTERVAL_MS = 15_000
 const MAX_WAIT_MS = 5 * 60_000
 
