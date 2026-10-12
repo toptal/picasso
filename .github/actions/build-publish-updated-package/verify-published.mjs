@@ -9,6 +9,11 @@
 // so `npm view` resolves them without auth.
 import { execFileSync } from 'node:child_process'
 
+// npm's registry can take a couple of minutes after `npm publish` returns before
+// the new version shows up in package metadata, so keep re-checking stragglers.
+const POLL_INTERVAL_MS = 15_000
+const MAX_WAIT_MS = 5 * 60_000
+
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 let pkgs
@@ -34,29 +39,35 @@ const onNpm = spec => {
   }
 }
 
-let pending = pkgs.map(p => `${p.name}@${p.version}`)
-
-// Registry/CDN propagation can lag a few seconds after publish, so re-check stragglers.
-for (let pass = 1; pass <= 3 && pending.length > 0; pass++) {
-  if (pass > 1) {
-    console.log(`Waiting 20s for npm propagation (pass ${pass}/3)...`)
-    await sleep(20_000)
-  }
-
-  pending = pending.filter(spec => {
+const checkPending = specs =>
+  specs.filter(spec => {
     const ok = onNpm(spec)
 
     console.log(`${ok ? '✓' : '…'} ${spec}`)
 
     return !ok
   })
+
+const deadline = Date.now() + MAX_WAIT_MS
+let pending = checkPending(pkgs.map(p => `${p.name}@${p.version}`))
+
+while (pending.length > 0 && Date.now() < deadline) {
+  const secondsLeft = Math.round((deadline - Date.now()) / 1000)
+
+  console.log(
+    `Waiting ${
+      POLL_INTERVAL_MS / 1000
+    }s for npm propagation (${secondsLeft}s left)...`
+  )
+  await sleep(POLL_INTERVAL_MS)
+  pending = checkPending(pending)
 }
 
 if (pending.length > 0) {
   console.error(
-    `::error::${
-      pending.length
-    } published package(s) not found on npm: ${pending.join(', ')}`
+    `::error::${pending.length} published package(s) not found on npm after ${
+      MAX_WAIT_MS / 60_000
+    } min: ${pending.join(', ')}`
   )
   process.exit(1)
 }
