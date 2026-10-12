@@ -1,5 +1,16 @@
 # @toptal/picasso-typography-overflow
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5128](https://github.com/toptal/picasso/pull/5128) [`0165f4f`](https://github.com/toptal/picasso/commit/0165f4f2b6a308924ab6c123330e7073c649e0f2) Thanks [@surohak](https://github.com/surohak)!
+
+### TypographyOverflow
+
+- stop Safari from showing its native tooltip next to the TypographyOverflow tooltip on truncated text. An empty layer now covers the text, and it is skipped when `disableTooltip` is set
+- add `disableTooltipGuard` prop to remove that layer when children contain links or other controls, because the layer takes their clicks
+
 ## 100.0.2
 
 ### Patch Changes

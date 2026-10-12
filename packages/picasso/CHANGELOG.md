@@ -1,5 +1,17 @@
 # Change Log
 
+## 100.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`77b7516`](https://github.com/toptal/picasso/commit/77b75160340f6d85e4e5b59111585547893163ec), [`0165f4f`](https://github.com/toptal/picasso/commit/0165f4f2b6a308924ab6c123330e7073c649e0f2)]:
+  - @toptal/picasso-timepicker@100.1.0
+  - @toptal/picasso-typography-overflow@100.1.0
+  - @toptal/picasso-file-input@100.0.4
+  - @toptal/picasso-step@100.0.3
+  - @toptal/picasso-tabs@100.0.5
+  - @toptal/picasso-dropzone@100.0.4
+
 ## 100.0.11
 
 ### Patch Changes

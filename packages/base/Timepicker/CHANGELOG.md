@@ -1,5 +1,15 @@
 # @toptal/picasso-timepicker
 
+## 100.1.0
+
+### Minor Changes
+
+- [#5121](https://github.com/toptal/picasso/pull/5121) [`77b7516`](https://github.com/toptal/picasso/commit/77b75160340f6d85e4e5b59111585547893163ec) Thanks [@sashuk](https://github.com/sashuk)!
+
+### TimePicker
+
+- add optional `minuteStep` prop, when set the clock icon opens a dropdown list of times at that interval on devices with a mouse instead of the browser's native time picker, touch devices keep the native picker and any other time can still be typed
+
 ## 100.0.3
 
 ### Patch Changes
