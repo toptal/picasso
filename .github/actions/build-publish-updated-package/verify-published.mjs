@@ -9,7 +9,7 @@
 // so `npm view` resolves them without auth.
 import { execFileSync } from 'node:child_process'
 
-const POLL_INTERVAL_MS = 15_000
+const POLL_INTERVAL_MS = 30_000
 const MAX_WAIT_MS = 5 * 60_000
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
