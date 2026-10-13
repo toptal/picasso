@@ -29,6 +29,11 @@ Changes in peer dependencies, breaking changes in component API or behavior, sup
 
 Changes in dev dependencies, component HTML structure, or visual changes are not considered as breaking changes and result in minor or patch releases.
 
+## Migration guides
+
+- [Migrating to the React 19-ready Picasso (v102)](./docs/migration-to-react-19.md)
+- [Migrating to the base-ui and Tailwind Picasso (v100)](./docs/migration-to-new-picasso-v2.md)
+
 ## Running storybook
 
 In order to run storybook you need to execute `pnpm start` which will spin up storybook server on <http://localhost:9001>.
