@@ -29,7 +29,7 @@ Menu list.
 | children | `ReactNode` | - | The main content of the item |
 | description | `ReactNode` | - | The additional description |
 | icon | `IconElement` | - | Render an `<Icon />` |
-| avatar | `ReactElement<AvatarProps, { ({ size, ...props }: Props): Element; displayName: string; }>` | - | Render an <Avatar /> |
+| avatar | `ReactElement<AvatarProps, { ({ size, ...props }: Props): ReactElement<any, string \| JSXElementConstructor<any>>; displayName: string; }>` | - | Render an <Avatar /> |
 | onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
 | onMouseEnter | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is hovered |
 | className | `string` | - | Classnames applied to root element |

@@ -13,6 +13,7 @@ Show tooltip when typography overflows
 | tooltipContent | `ReactNode` | - | A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used. |
 | tooltipDelay | `"short" \| "long"` | - | A delay in showing the tooltip when typography overflows. |
 | disableTooltip | `boolean` | - | Do not show tooltips for shorten content. |
+| disableTooltipGuard | `boolean` | - | Do not cover the text with the layer that stops Safari from adding its own tooltip. Set it when children contain links or other controls, because the layer takes their clicks. |
 | placement | `"bottom-end" \| "bottom-start" \| "bottom" \| "left-end" \| "left-start" \| "left" \| "right-end" \| "right-start" \| "right" \| "top-end" \| "top-start" \| "top"` | - | Where should the tooltip be positioned |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
@@ -118,20 +119,35 @@ const Example = () => {
   return (
     <>
       <DynamicWidthContainer style={{ marginTop: 150 }}>
-        <TypographyOverflow lines={2} as='p' data-testid='ellipsed-text-lines2'>
+        <TypographyOverflow
+          lines={2}
+          as='p'
+          disableTooltipGuard
+          data-testid='ellipsed-text-lines2'
+        >
           Two lines typography with a very long text and{' '}
           <a href='#'>two words link</a> and dynamic width. Try to resize.
         </TypographyOverflow>
       </DynamicWidthContainer>
       <DynamicWidthContainer>
-        <TypographyOverflow lines={3} as='p' data-testid='ellipsed-text-lines3'>
+        <TypographyOverflow
+          lines={3}
+          as='p'
+          disableTooltipGuard
+          data-testid='ellipsed-text-lines3'
+        >
           Three lines typography with a very long text and a very long text and{' '}
           a very long text and <a href='#'>two words link</a> and dynamic width.
           Try to resize.
         </TypographyOverflow>
       </DynamicWidthContainer>
       <DynamicWidthContainer>
-        <TypographyOverflow lines={4} as='p' data-testid='ellipsed-text-lines4'>
+        <TypographyOverflow
+          lines={4}
+          as='p'
+          disableTooltipGuard
+          data-testid='ellipsed-text-lines4'
+        >
           &lt;https://longlong.longlong.html/very/long/html/link/very/long/html/link/&gt;
           Four lines typography with a very long text and a very long text and a
           very long text and a very long text and a very long text and a very

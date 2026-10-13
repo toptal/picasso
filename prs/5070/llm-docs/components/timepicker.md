@@ -11,6 +11,7 @@ Time Picker component
 | value | `string` | - | Time value that will be selected in TimePicker |
 | status | `"error" \| "warning" \| "default"` | `default` | Indicate whether `TimePicker` is in `error`, `warning` or `default` state |
 | onChange | `((value: string) => void)` | - | Called on input change |
+| minuteStep | `5 \| 10 \| 15 \| 20 \| 30 \| 60` | - | Interval in minutes between the times offered in a dropdown list. When omitted, the browser's own time picker is used |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 | size | `"small" \| "medium" \| "large"` | - | Component size |
@@ -64,4 +65,27 @@ const Example = () => {
 }
 
 export default Example
+```
+
+### Minute step
+
+Pass `minuteStep` to replace the browser time picker with a list of times at that interval. Any other time can still be typed
+
+```tsx
+import React, { useState } from 'react'
+import { TimePicker } from '@toptal/picasso'
+
+const MinuteStepExample = () => {
+  const [timepickerValue, setTimepickerValue] = useState('09:30')
+
+  return (
+    <TimePicker
+      onChange={setTimepickerValue}
+      value={timepickerValue}
+      minuteStep={15}
+    />
+  )
+}
+
+export default MinuteStepExample
 ```
