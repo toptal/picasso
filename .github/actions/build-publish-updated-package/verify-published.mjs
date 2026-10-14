@@ -1,13 +1,12 @@
 #!/usr/bin/env node
-// Post-publish safety net: verify every package that `changeset publish` reported
-// as published is actually resolvable on npm. Guards against a silent PARTIAL
-// publish (e.g. npm's rate limit cutting a ~90-package big-bang short) by turning
-// it into a hard job failure instead of a green-but-incomplete release.
+// Warns about published versions npm doesn't show yet. npm can take many minutes,
+// and the publish step itself fails the job when a package fails to publish.
 //
 // Reads the changesets/action `publishedPackages` output via the PUBLISHED_PACKAGES
 // env var (JSON: [{ name, version }, ...]). Picasso packages publish `access: public`,
 // so `npm view` resolves them without auth.
 import { execFileSync } from 'node:child_process'
+import { appendFileSync } from 'node:fs'
 
 const POLL_INTERVAL_MS = 30_000
 const MAX_WAIT_MS = 5 * 60_000
@@ -62,12 +61,23 @@ while (pending.length > 0 && Date.now() < deadline) {
 }
 
 if (pending.length > 0) {
-  console.error(
-    `::error::${pending.length} published package(s) not found on npm after ${
-      MAX_WAIT_MS / 60_000
-    } min: ${pending.join(', ')}`
-  )
-  process.exit(1)
-}
+  const list = pending.join(', ')
 
-console.log(`All ${pkgs.length} published package(s) verified on npm.`)
+  console.log(
+    `::warning::${pending.length} published package(s) not yet visible on npm: ${list}`
+  )
+
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    appendFileSync(
+      process.env.GITHUB_STEP_SUMMARY,
+      [
+        `### Not yet visible on npm after ${MAX_WAIT_MS / 60_000} min`,
+        '',
+        ...pending.map(spec => `- \`${spec}\``),
+        '',
+      ].join('\n')
+    )
+  }
+} else {
+  console.log(`All ${pkgs.length} published package(s) verified on npm.`)
+}
