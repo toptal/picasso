@@ -50,9 +50,12 @@ const COLOR_DISABLED_MAP: Record<
   },
 }
 
-const FOCUS_RING_COLOR_MAP: Record<ColorType, string> = {
-  blue: 'focus-visible:shadow-blue-500/48',
-  white: 'focus-visible:shadow-white/48',
+// One shadow class and no radius, so a component rendered `as={Link}` keeps
+// its own focus ring and corners
+const FOCUS_RING_MAP: Record<ColorType, string> = {
+  blue: 'focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
+  white:
+    'focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.white)_48%,transparent)]',
 }
 
 export type Props = BaseProps &
@@ -72,7 +75,7 @@ export type Props = BaseProps &
     variant?: VariantType
     /** Controls color of the link */
     color?: ColorType
-    /** Indicates the order of receiving focus. If not set will not receive focus. */
+    /** Indicates the order of receiving focus. Defaults to 0 for a link with `onClick` and no `href` */
     tabIndex?: number
     /** Indicates that the user cannot interact with the Link or its children */
     disabled?: boolean
@@ -98,10 +101,27 @@ type ViewModel = {
   weight: 'inherit' | 'semibold'
   style?: React.CSSProperties
   tabIndex?: number
+  role?: React.AriaRole
+  onKeyDown?: React.KeyboardEventHandler<HTMLAnchorElement>
   as: Props['as']
   ariaDisabled?: boolean
   nativeHTMLAttributes: Omit<Props, keyof BaseProps>
 }
+
+// Enter and Space click it, as they do a button
+const createActionKeyDownHandler =
+  (onKeyDown?: React.KeyboardEventHandler<HTMLAnchorElement>) =>
+  (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+    onKeyDown?.(event)
+
+    if (
+      !event.defaultPrevented &&
+      (event.key === 'Enter' || event.key === ' ')
+    ) {
+      event.preventDefault()
+      event.currentTarget.click()
+    }
+  }
 
 /* eslint-disable complexity */
 export const calculateViewModel = (props: Props): ViewModel => {
@@ -120,10 +140,15 @@ export const calculateViewModel = (props: Props): ViewModel => {
     visited = false,
     noUnderline,
     'aria-disabled': ariaDisabled,
+    role,
+    onKeyDown,
     ...nativeHTMLAttributes
   } = props
 
   const sanitizedRel = sanitizeRel(rel, target)
+  // An `<a>` without `href` can't be focused or operated by keyboard
+  const isAction = as === 'a' && !href && Boolean(onClick)
+  const isEnabledAction = isAction && !disabled
 
   // When Link is used as={Link}, TypeScript can't ensure the input to the Link is compatible with its Props type.
   const color = supportedColors.includes(inputColor) ? inputColor : defaultColor
@@ -134,9 +159,7 @@ export const calculateViewModel = (props: Props): ViewModel => {
   return {
     className: twMerge(
       'focus:outline-hidden hover:underline leading-[inherit]',
-      // keyboard focus only, so a click leaves no ring
-      'focus-visible:rounded-sm focus-visible:shadow-[0_0_0_0.1875rem]',
-      FOCUS_RING_COLOR_MAP[color],
+      FOCUS_RING_MAP[color],
       COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
       disabled ? 'cursor-not-allowed' : '',
       noUnderline ? 'no-underline!' : '',
@@ -155,7 +178,11 @@ export const calculateViewModel = (props: Props): ViewModel => {
     weight: variant === 'action' ? 'semibold' : 'inherit',
     color: 'inherit',
     style,
-    tabIndex,
+    tabIndex: isEnabledAction ? tabIndex ?? 0 : tabIndex,
+    role: isAction ? role ?? 'button' : role,
+    onKeyDown: isEnabledAction
+      ? createActionKeyDownHandler(onKeyDown)
+      : onKeyDown,
     as,
     ariaDisabled: disabled || ariaDisabled,
     nativeHTMLAttributes,
@@ -198,6 +225,8 @@ export const Link: OverridableComponent<Props> = forwardRef<
       className={viewModel.className}
       style={viewModel.style}
       tabIndex={viewModel.tabIndex}
+      role={viewModel.role}
+      onKeyDown={viewModel.onKeyDown}
       aria-disabled={viewModel.ariaDisabled}
     >
       {props.children}

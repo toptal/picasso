@@ -1,6 +1,9 @@
+import type { ReactNode } from 'react'
 import React from 'react'
 import {
   Link,
+  Button,
+  ButtonCircular,
   Container,
   Typography,
   Menu,
@@ -38,20 +41,23 @@ const TestUserBadgeLink = () => {
 
 const component = 'Link'
 
-// 3px ring at 48% opacity, serialized as rgba() or oklab()
+// 3px ring at 48% opacity
 const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px$/
-const WHITE_FOCUS_RING =
-  /(rgba\(255, 255, 255, 0\.48\)|oklab\((1|0\.99\d*) \S+ \S+ \/ 0\.48\)) 0px 0px 0px 3px$/
+const WHITE_FOCUS_RING = /color\(srgb 1 1 1 \/ 0\.48\) 0px 0px 0px 3px$/
+const BUTTON_WHITE_FOCUS_RING = /rgba\(255, 255, 255, 0\.48\) 0px 0px 0px 3px$/
 
-const renderFocusableLink = (color?: 'white') =>
+const mountAfterButton = (children: ReactNode) =>
   cy.mount(
     <>
       <button>Before</button>
-      <Link href='#' color={color} data-testid='link'>
-        Link
-      </Link>
+      {children}
     </>
   )
+
+const tabIntoContent = () => {
+  cy.contains('Before').realClick()
+  cy.realPress('Tab')
+}
 
 describe('Link', () => {
   describe('when action variant and disabled', () => {
@@ -169,10 +175,12 @@ describe('Link', () => {
 
   describe('when focused', () => {
     it('shows focus ring on keyboard focus', () => {
-      renderFocusableLink()
-
-      cy.contains('Before').realClick()
-      cy.realPress('Tab')
+      mountAfterButton(
+        <Link href='#' data-testid='link'>
+          Link
+        </Link>
+      )
+      tabIntoContent()
 
       cy.getByTestId('link')
         .should('have.focus')
@@ -181,10 +189,12 @@ describe('Link', () => {
     })
 
     it('shows white focus ring on keyboard focus of a white link', () => {
-      renderFocusableLink('white')
-
-      cy.contains('Before').realClick()
-      cy.realPress('Tab')
+      mountAfterButton(
+        <Link href='#' color='white' data-testid='link'>
+          Link
+        </Link>
+      )
+      tabIntoContent()
 
       cy.getByTestId('link')
         .should('have.focus')
@@ -192,7 +202,11 @@ describe('Link', () => {
     })
 
     it('does not show focus ring on mouse focus', () => {
-      renderFocusableLink()
+      cy.mount(
+        <Link href='#' data-testid='link'>
+          Link
+        </Link>
+      )
 
       cy.getByTestId('link').realClick()
 
@@ -200,6 +214,48 @@ describe('Link', () => {
         .should('have.focus')
         .and(toMatchFocusVisible(false))
         .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
+    })
+
+    it('reaches and runs a link with onClick and no href by keyboard', () => {
+      mountAfterButton(
+        <Link onClick={cy.stub().as('click')} data-testid='link'>
+          Action
+        </Link>
+      )
+      tabIntoContent()
+
+      cy.getByTestId('link')
+        .should('have.focus')
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+
+      cy.realPress('Enter')
+      cy.get('@click').should('have.been.calledOnce')
+    })
+
+    it('keeps the focus ring and shape of a component rendered as Link', () => {
+      mountAfterButton(
+        <>
+          <Button as={Link} href='#' variant='transparent' data-testid='button'>
+            Button
+          </Button>
+          <ButtonCircular
+            as={Link}
+            href='#'
+            icon={<ChevronRight16 />}
+            data-testid='button-circular'
+          />
+        </>
+      )
+      tabIntoContent()
+
+      cy.getByTestId('button')
+        .should('have.focus')
+        .and(toHaveStyle('boxShadow', BUTTON_WHITE_FOCUS_RING))
+
+      cy.realPress('Tab')
+      cy.getByTestId('button-circular')
+        .should('have.focus')
+        .and(toHaveStyle('borderRadius', '9999px'))
     })
   })
 })

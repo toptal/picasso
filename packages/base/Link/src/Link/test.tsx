@@ -113,7 +113,7 @@ describe('Link', () => {
 
   describe('when focused with the keyboard', () => {
     it.each([
-      ['blue', 'blue-500'],
+      ['blue', 'blue.500'],
       ['white', 'white'],
     ] as const)('shows a %s focus ring', (color, ringColor) => {
       render(
@@ -123,9 +123,70 @@ describe('Link', () => {
       )
 
       expect(screen.getByRole('link')).toHaveClass(
-        'focus-visible:shadow-[0_0_0_0.1875rem]',
-        `focus-visible:shadow-${ringColor}/48`
+        `focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.${ringColor})_48%,transparent)]`
       )
+    })
+  })
+
+  describe('when it has onClick and no href', () => {
+    it('renders a focusable button', () => {
+      render(<Link onClick={jest.fn()}>Action</Link>)
+
+      expect(screen.getByRole('button', { name: 'Action' })).toHaveAttribute(
+        'tabindex',
+        '0'
+      )
+    })
+
+    it.each(['Enter', ' '])('calls onClick on "%s"', key => {
+      const handleClick = jest.fn()
+
+      render(<Link onClick={handleClick}>Action</Link>)
+      fireEvent.keyDown(screen.getByRole('button'), { key })
+
+      expect(handleClick).toHaveBeenCalledTimes(1)
+    })
+
+    it('lets onKeyDown prevent the click', () => {
+      const handleClick = jest.fn()
+
+      render(
+        <Link onClick={handleClick} onKeyDown={event => event.preventDefault()}>
+          Action
+        </Link>
+      )
+      fireEvent.keyDown(screen.getByRole('button'), { key: 'Enter' })
+
+      expect(handleClick).not.toHaveBeenCalled()
+    })
+
+    it('is not focusable or operable when disabled', () => {
+      const handleClick = jest.fn()
+
+      render(
+        <Link onClick={handleClick} disabled>
+          Action
+        </Link>
+      )
+      const action = screen.getByRole('button')
+
+      fireEvent.keyDown(action, { key: 'Enter' })
+
+      expect(action).not.toHaveAttribute('tabindex')
+      expect(action).toHaveAttribute('aria-disabled', 'true')
+      expect(handleClick).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when it has href and onClick', () => {
+    it('stays a link', () => {
+      render(
+        <Link href='#' onClick={jest.fn()}>
+          Link
+        </Link>
+      )
+
+      expect(screen.getByRole('link')).not.toHaveAttribute('tabindex')
     })
   })
 })
