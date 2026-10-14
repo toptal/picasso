@@ -50,6 +50,11 @@ const COLOR_DISABLED_MAP: Record<
   },
 }
 
+const FOCUS_RING_COLOR_MAP: Record<ColorType, string> = {
+  blue: 'focus-visible:shadow-blue-500/48',
+  white: 'focus-visible:shadow-white/48',
+}
+
 export type Props = BaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     /** Content of the component */
@@ -129,6 +134,9 @@ export const calculateViewModel = (props: Props): ViewModel => {
   return {
     className: twMerge(
       'focus:outline-hidden hover:underline leading-[inherit]',
+      // keyboard focus only, so a click leaves no ring
+      'focus-visible:rounded-sm focus-visible:shadow-[0_0_0_0.1875rem]',
+      FOCUS_RING_COLOR_MAP[color],
       COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
       disabled ? 'cursor-not-allowed' : '',
       noUnderline ? 'no-underline!' : '',

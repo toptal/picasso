@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso-test-utils'
+import { render, fireEvent, screen } from '@toptal/picasso-test-utils'
 import { MemoryRouter, Link as RouterLink } from 'react-router-dom'
 
 import { calculateViewModel } from './Link'
@@ -110,6 +110,24 @@ describe('Link', () => {
       expect(document.querySelector('a')).not.toHaveAttribute('rel', 'noopener')
     })
   })
+
+  describe('when focused with the keyboard', () => {
+    it.each([
+      ['blue', 'blue-500'],
+      ['white', 'white'],
+    ] as const)('shows a %s focus ring', (color, ringColor) => {
+      render(
+        <Link href='#' color={color}>
+          Link
+        </Link>
+      )
+
+      expect(screen.getByRole('link')).toHaveClass(
+        'focus-visible:shadow-[0_0_0_0.1875rem]',
+        `focus-visible:shadow-${ringColor}/48`
+      )
+    })
+  })
 })
 
 describe('calculateViewModel', () => {
@@ -186,7 +204,7 @@ describe('calculateViewModel', () => {
       const whiteResult = calculateViewModel(whiteProps)
 
       expect(blueResult.className).toContain(
-        'focus:outline-hidden hover:underline leading-[inherit] text-gray-600 underline cursor-not-allowed'
+        'text-gray-600 underline cursor-not-allowed'
       )
       expect(whiteResult.className).toContain('text-gray-600')
     })

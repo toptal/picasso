@@ -8,6 +8,8 @@ import {
   ChevronRight16,
 } from '@toptal/picasso'
 
+import { toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const PURPLE_MAIN = 'rgb(103, 39, 207)'
 const GREY = 'rgb(196, 198, 202)'
 
@@ -35,6 +37,21 @@ const TestUserBadgeLink = () => {
 }
 
 const component = 'Link'
+
+// 3px ring at 48% opacity, serialized as rgba() or oklab()
+const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px$/
+const WHITE_FOCUS_RING =
+  /(rgba\(255, 255, 255, 0\.48\)|oklab\((1|0\.99\d*) \S+ \S+ \/ 0\.48\)) 0px 0px 0px 3px$/
+
+const renderFocusableLink = (color?: 'white') =>
+  cy.mount(
+    <>
+      <button>Before</button>
+      <Link href='#' color={color} data-testid='link'>
+        Link
+      </Link>
+    </>
+  )
 
 describe('Link', () => {
   describe('when action variant and disabled', () => {
@@ -147,6 +164,42 @@ describe('Link', () => {
       cy.getByTestId('blue-link').should('have.css', 'color', PURPLE_MAIN)
 
       cy.getByTestId('white-link').should('have.css', 'color', GREY)
+    })
+  })
+
+  describe('when focused', () => {
+    it('shows focus ring on keyboard focus', () => {
+      renderFocusableLink()
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('link')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('shows white focus ring on keyboard focus of a white link', () => {
+      renderFocusableLink('white')
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('link')
+        .should('have.focus')
+        .and(toHaveStyle('boxShadow', WHITE_FOCUS_RING))
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      renderFocusableLink()
+
+      cy.getByTestId('link').realClick()
+
+      cy.getByTestId('link')
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
   })
 })
