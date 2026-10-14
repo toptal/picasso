@@ -9,7 +9,14 @@ inputs:
 runs:
   using: composite
   steps:
+    # Pending changesets mean Release opens the "Version Packages" PR and nothing is published yet
+    - name: Check for pending changesets
+      id: pending
+      shell: bash
+      run: echo "count=$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name '.*' ! -iname README.md | wc -l)" >> "$GITHUB_OUTPUT"
+
     - name: Set up node
+      if: steps.pending.outputs.count == '0'
       # Same as actions/setup-node@v6.1
       uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
       with:
@@ -17,10 +24,12 @@ runs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install dependencies
+      if: steps.pending.outputs.count == '0'
       uses: ./.github/actions/pnpm-install
 
     - name: Publish to npm
       id: changesets
+      if: steps.pending.outputs.count == '0'
       # Same as changesets/action@v1.5.3
       uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
       with:
