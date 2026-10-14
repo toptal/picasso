@@ -26,7 +26,9 @@ exports[`AccountSelect renders 1`] = `
               class="flex items-center"
             >
               <a
-                class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] text-blue visited:text-purple no-underline no-underline! cursor-pointer flex-1"
+                class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] text-blue visited:text-purple no-underline no-underline! cursor-pointer flex-1"
+                role="button"
+                tabindex="0"
               >
                 <div
                   class="p-6 items-center justify-between flex"
@@ -103,7 +105,7 @@ exports[`AccountSelect renders 1`] = `
               class="flex items-center"
             >
               <a
-                class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] text-blue visited:text-purple no-underline no-underline! cursor-pointer flex-1"
+                class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] text-blue visited:text-purple no-underline no-underline! cursor-pointer flex-1"
                 href="#"
               >
                 <div
@@ -181,7 +183,7 @@ exports[`AccountSelect renders 1`] = `
               class="flex items-center"
             >
               <a
-                class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] text-blue visited:text-purple no-underline no-underline! cursor-pointer flex-1"
+                class="m-0 font-inherit font-inherit focus:outline-hidden hover:underline leading-[inherit] focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] text-blue visited:text-purple no-underline no-underline! cursor-pointer flex-1"
                 href="#"
               >
                 <div
