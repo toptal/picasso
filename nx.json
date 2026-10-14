@@ -20,6 +20,11 @@
       "dependsOn": ["^build:package"]
     }
   },
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": false
+    }
+  },
   "release": {
     "projectsRelationship": "independent",
     "version": {
