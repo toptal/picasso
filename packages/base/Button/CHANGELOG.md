@@ -1,5 +1,12 @@
 # @toptal/picasso-button
 
+## 100.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`dfb88c6`](https://github.com/toptal/picasso/commit/dfb88c6701eb7d0af8094583cd712b8af289fbdf)]:
+  - @toptal/picasso-link@100.0.2
+
 ## 100.0.2
 
 ### Patch Changes

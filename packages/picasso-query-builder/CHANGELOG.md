@@ -1,5 +1,18 @@
 # @toptal/picasso-query-builder
 
+## 100.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@100.0.3
+  - @toptal/picasso-notification@100.0.3
+  - @toptal/picasso-prompt-modal@100.0.7
+  - @toptal/picasso-select@100.0.5
+  - @toptal/picasso-input@100.0.4
+  - @toptal/picasso-number-input@100.0.4
+  - @toptal/picasso-tagselector@100.0.5
+
 ## 100.0.9
 
 ### Patch Changes
