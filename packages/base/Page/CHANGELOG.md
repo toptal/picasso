@@ -1,5 +1,17 @@
 # @toptal/picasso-page
 
+## 100.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@100.0.3
+  - @toptal/picasso-menu@100.0.4
+  - @toptal/picasso-accordion@100.0.3
+  - @toptal/picasso-notification@100.0.3
+  - @toptal/picasso-skeleton-loader@100.0.3
+  - @toptal/picasso-autocomplete@100.0.5
+
 ## 100.0.5
 
 ### Patch Changes

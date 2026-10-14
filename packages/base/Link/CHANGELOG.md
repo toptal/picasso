@@ -1,5 +1,16 @@
 # @toptal/picasso-link
 
+## 100.0.2
+
+### Patch Changes
+
+- [#5136](https://github.com/toptal/picasso/pull/5136) [`dfb88c6`](https://github.com/toptal/picasso/commit/dfb88c6701eb7d0af8094583cd712b8af289fbdf) Thanks [@azebich](https://github.com/azebich)!
+
+### Link
+
+- show a focus ring on a keyboard-focused link
+- make a link with `onClick` and no `href` reachable and operable with the keyboard, as a button
+
 ## 100.0.1
 
 ### Patch Changes

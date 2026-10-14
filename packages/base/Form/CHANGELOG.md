@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 100.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-alert@100.0.3
+
 ## 100.0.2
 
 ### Patch Changes
