@@ -9,6 +9,7 @@ import type { DelayType, PlacementType } from '@toptal/picasso-tooltip'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import isSafari from './is-safari'
+import { useRestingHoverOpen } from './use-resting-hover-open'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
@@ -35,6 +36,7 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
     className,
     onClick,
     onMouseEnter,
+    onMouseLeave,
     style,
     placement = 'top',
     ...rest
@@ -85,28 +87,39 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
     [isTooltipOpened, disableTooltip, onClick]
   )
 
+  const handleTooltipOpen = useCallback(() => {
+    setIsTooltipOpened(true)
+  }, [])
+
+  const { handleEnter, handleMouseLeave, handleClose } = useRestingHoverOpen({
+    delay: tooltipDelay,
+    onOpen: handleTooltipOpen,
+    onMouseLeave,
+  })
+
   const handleMouseEnter = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (isOverflown(event.currentTarget)) {
+      const isTextOverflown = isOverflown(event.currentTarget)
+
+      if (isTextOverflown) {
         setIsTooltipActive(true)
         setIsTooltipAnimating(true)
       }
+
+      handleEnter(isTextOverflown && !disableTooltip)
 
       if (onMouseEnter) {
         onMouseEnter(event)
       }
     },
-    [onMouseEnter]
+    [handleEnter, disableTooltip, onMouseEnter]
   )
 
-  const handleTooltipOpen = useCallback(() => {
-    setIsTooltipOpened(true)
-  }, [])
-
   const handleTooltipClose = useCallback(() => {
+    handleClose()
     setIsTooltipActive(false)
     setIsTooltipOpened(false)
-  }, [])
+  }, [handleClose])
 
   const handleTransitionExiting = useCallback(() => {
     setIsTooltipAnimating(true)
@@ -134,6 +147,7 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
       )}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {children}
     </Typography>

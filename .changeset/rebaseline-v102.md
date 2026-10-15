@@ -92,8 +92,7 @@
 '@topkit/analytics-charts': major
 ---
 
-Re-baseline the entire Picasso library to a single unified major version (v102) for the React 19 release.
+### All packages
 
-- all Picasso packages are released together at v102.0.0 as one unified version.
-- packages on the 100.x line skip 101, which `@toptal/picasso-calendar`, `@toptal/picasso-date-picker` and `@toptal/picasso-switch` already shipped.
-- no API or behavior change comes from this re-baseline itself; see each package's changelog for the specific changes it received.
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)

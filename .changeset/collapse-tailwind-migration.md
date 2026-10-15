@@ -4,9 +4,9 @@
 
 ### Collapse
 
-- drop the react-transition-group dependency, whose `findDOMNode` path React 19 removes, and reimplement on the shared timer-driven `useTransitionStatus` hook. Public props are unchanged
-- the expand and collapse animations start about 50 ms sooner: the height handoff runs on the next frame instead of after an internal delay
-- the object form of `timeout` now sets the CSS transition duration correctly per direction, including a distinct `appear` duration for the mount transition (previously it produced an invalid inline value)
-- unrecognized props (including `data-private`) now reach the rendered DOM node — previously they were silently dropped
-- add the `CollapseProps` type export and deprecate the misnamed `FadeProps` re-export (kept as an alias, so no action is required yet)
-- prop descriptions are corrected (`children`, `appear` and `onEnter` were stale or wrong) and promoted to JSDoc, so they surface in IDE tooltips and generated docs
+- drop react-transition-group, whose `findDOMNode` React 19 removes. Public props are unchanged
+- the animations start about 50 ms sooner
+- unrecognized props, such as `data-private`, reach the DOM node
+- the consumer `className` is merged last, so it overrides the component's own classes, such as `overflow-hidden`
+- add the `CollapseProps` type and deprecate the misnamed `FadeProps` alias
+- the object form of `timeout` sets each direction's duration, including `appear`, where it produced an invalid inline value

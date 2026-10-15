@@ -49,9 +49,9 @@ both were invisible to CI and caught only by humans clicking a preview deploy.
   render inline.
 - **React 16 is dropped; the React 19 cap lift ships separately.** v100's
   `react`/`react-dom` peer range is `>=17.0.0 < 19.0.0` — the floor rose to
-  React 17 because `@base-ui/react` requires `^17 || ^18 || ^19`. The release
-  after v100 lifts the cap (PF-2262);
-  [migration-to-react-19.md](./migration-to-react-19.md) covers that upgrade.
+  React 17 because `@base-ui/react` requires `^17 || ^18 || ^19`. v102 lifts
+  the cap; [migration-to-react-19.md](./migration-to-react-19.md) covers that
+  upgrade.
 
 > ### 🏆 Golden rule
 >
