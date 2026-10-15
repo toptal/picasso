@@ -16,6 +16,7 @@ export interface RootContextProps extends TextLabelProps {
   disableTransitions?: boolean
   responsive?: boolean
   currentBreakpointRange?: BreakpointKeys
+  isSafari?: boolean
 }
 
 export const RootContext = React.createContext<RootContextProps>({
@@ -30,6 +31,7 @@ export const RootContext = React.createContext<RootContextProps>({
   disableTransitions: false,
   responsive: true,
   currentBreakpointRange: undefined,
+  isSafari: false,
 })
 
 // State-backed Picasso root node. Kept in a dedicated context (instead of a
@@ -89,6 +91,9 @@ export const useAppConfig = () => {
     responsive: context.responsive,
   }
 }
+
+// False until the provider mounts, so server-rendered HTML is the same everywhere
+export const useIsSafari = () => Boolean(useContext(RootContext).isSafari)
 
 export const useCurrentBreakpointRange = () => {
   const context = useContext(RootContext)

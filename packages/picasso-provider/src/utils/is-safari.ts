@@ -1,4 +1,4 @@
-import { isBrowser } from '@toptal/picasso-shared'
+import isBrowser from './is-browser'
 
 // jsdom also reports Apple as the vendor, so the user agent has to name Safari too
 const isSafari = (): boolean =>

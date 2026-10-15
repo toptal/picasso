@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { render, act, screen } from '@toptal/picasso-test-utils'
+import { render, act, screen, TestingPicasso } from '@toptal/picasso-test-utils'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
@@ -186,23 +186,6 @@ describe('TypographyOverflow', () => {
       )
     })
 
-    it('keeps the fix when the deprecated disableTooltipGuard is set', () => {
-      mockSafari()
-
-      render(
-        <TypographyOverflow disableTooltipGuard>
-          Just Typography
-        </TypographyOverflow>
-      )
-
-      expect(getRootClasses()).toEqual(
-        expect.arrayContaining(SAFARI_FIX_CLASSES)
-      )
-      expect(mockedTypography.mock.calls.at(-1)?.[0]).not.toHaveProperty(
-        'disableTooltipGuard'
-      )
-    })
-
     it('skips the fix for multiline text', () => {
       mockSafari()
 
@@ -223,10 +206,12 @@ describe('TypographyOverflow', () => {
 
     it('renders server HTML without the fix', () => {
       mockSafari()
-      // jsdom picks useLayoutEffect, which React warns about in renderToString
-      jest.spyOn(console, 'error').mockImplementation(() => {})
 
-      renderToString(<TypographyOverflow>Just Typography</TypographyOverflow>)
+      renderToString(
+        <TestingPicasso>
+          <TypographyOverflow>Just Typography</TypographyOverflow>
+        </TestingPicasso>
+      )
 
       expect(getRootClasses()).not.toContain('after:block')
     })

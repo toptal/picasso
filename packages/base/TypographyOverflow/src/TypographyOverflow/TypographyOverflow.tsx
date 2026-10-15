@@ -3,11 +3,8 @@ import React, { useCallback, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
-import {
-  isOverflown,
-  isSafari,
-  useIsomorphicLayoutEffect,
-} from '@toptal/picasso-utils'
+import { useIsSafari } from '@toptal/picasso-provider'
+import { isOverflown } from '@toptal/picasso-utils'
 import type { TypographyProps } from '@toptal/picasso-typography'
 import type { DelayType, PlacementType } from '@toptal/picasso-tooltip'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
@@ -23,8 +20,6 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipDelay?: DelayType
   /** Do not show tooltips for shorten content. */
   disableTooltip?: boolean
-  /** @deprecated [PF-2778] has no effect, links and other controls inside no longer need it */
-  disableTooltipGuard?: boolean
   /** Where should the tooltip be positioned */
   placement?: PlacementType
 }
@@ -36,8 +31,6 @@ export const TypographyOverflow = (props: Props) => {
     tooltipContent,
     tooltipDelay,
     disableTooltip,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    disableTooltipGuard: _disableTooltipGuard,
     className,
     onClick,
     onMouseEnter,
@@ -49,20 +42,11 @@ export const TypographyOverflow = (props: Props) => {
   const [isTooltipActive, setIsTooltipActive] = useState(false)
   const [isTooltipOpened, setIsTooltipOpened] = useState(false)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
-  const [isSafariBrowser, setIsSafariBrowser] = useState(false)
   const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
   // Safari never adds its tooltip to clamped multiline text, and without
   // our tooltip its own one is the only way to read the full text
-  const hasSafariTooltipFix = isSafariBrowser && !isMultiline && !disableTooltip
-
-  // Decided after mount, so server-rendered HTML stays the same, and set only in
-  // Safari, so other browsers render once and keep their markup
-  useIsomorphicLayoutEffect(() => {
-    if (isSafari()) {
-      setIsSafariBrowser(true)
-    }
-  }, [])
+  const hasSafariTooltipFix = useIsSafari() && !isMultiline && !disableTooltip
 
   // We are paying a very high price when using dynamic JSS rules
   // for a component that is used on a very large scale.

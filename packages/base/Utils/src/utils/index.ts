@@ -18,6 +18,7 @@ export {
   useScreens,
   shadows,
   colors as palette,
+  isSafari,
   gradients,
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
@@ -43,7 +44,6 @@ export { default as isBoolean } from './is-boolean'
 export { default as isNumber } from './is-number'
 export { default as isOverflown } from './is-overflown'
 export { default as isPointerDevice } from './is-pointer-device'
-export { default as isSafari } from './is-safari'
 export { default as isString } from './is-string'
 export { default as isSubstring } from './is-substring'
 export { default as kebabToCamelCase } from './kebab-to-camel-case'

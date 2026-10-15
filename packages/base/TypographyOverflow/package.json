@@ -31,11 +31,13 @@
     "**/styles.js"
   ],
   "peerDependencies": {
+    "@toptal/picasso-provider": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-tailwind-merge": "workspace:^",
     "react": ">=17.0.0 < 19.0.0"
   },
   "devDependencies": {
+    "@toptal/picasso-provider": "workspace:*",
     "@toptal/picasso-test-utils": "workspace:*",
     "@toptal/picasso-tailwind-merge": "workspace:*",
     "styled-components": "^6.1.1"

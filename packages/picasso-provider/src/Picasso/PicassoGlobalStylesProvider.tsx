@@ -7,6 +7,7 @@ import type { EnvironmentType, TextLabelProps } from '../types'
 import type { PicassoRootNodeProps } from './PicassoRootNode'
 import type { BreakpointKeys } from './config/breakpoints'
 import { useScreens } from './config/breakpoints'
+import { isSafari } from '../utils'
 
 export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
@@ -82,6 +83,14 @@ const PicassoGlobalStylesProvider = (
     disableTransitions,
     responsive,
   })
+
+  // Set once after mount, so server-rendered HTML doesn't depend on the browser
+  useEffect(() => {
+    if (isSafari()) {
+      document.documentElement.setAttribute('data-picasso-safari', '')
+      setContextValue(context => ({ ...context, isSafari: true }))
+    }
+  }, [])
 
   useEffect(() => {
     if (contextValue.currentBreakpointRange !== currentBreakpointRange) {
