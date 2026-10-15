@@ -33,6 +33,15 @@ page
     'base/TypographyOverflow'
   )
   .addExample(
+    'TypographyOverflow/story/Link.example.tsx',
+    {
+      title: 'Link inside',
+      description: 'Links and buttons inside stay clickable.',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )
+  .addExample(
     'TypographyOverflow/story/CheckboxLabel.example.tsx',
     {
       title: 'Checkbox label',

@@ -91,7 +91,7 @@ const LinkExample = ({ onClick }: { onClick: () => void }) => (
 const SAFARI_USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
 
-const mockDesktopSafari = () =>
+const mockSafari = () =>
   cy.window().then(win => {
     cy.stub(win.navigator, 'vendor').value('Apple Computer, Inc.')
 
@@ -107,23 +107,28 @@ const getElementAtCenter = (element: HTMLElement) => {
   )
 }
 
-// The end of the line is plain text in every example
-const getElementAtEnd = (element: HTMLElement) => {
-  const { right, top, height } = element.getBoundingClientRect()
-
-  return element.ownerDocument.elementFromPoint(right - 10, top + height / 2)
-}
-
 const expectOnTop = ([element]: JQuery<HTMLElement>) => {
   expect(getElementAtCenter(element)).to.equal(element)
 }
 
-const expectEmptyLayerOnTop = ([element]: JQuery<HTMLElement>) => {
-  const hit = getElementAtEnd(element)
+const getAfter = ([element]: JQuery<HTMLElement>) =>
+  element.ownerDocument.defaultView?.getComputedStyle(element, '::after')
 
-  expect(hit).to.have.attr('aria-hidden', 'true')
-  expect(hit?.childNodes).to.have.length(0)
-  expect(hit?.parentElement).to.equal(element)
+const expectNothingAfter = (subject: JQuery<HTMLElement>) => {
+  expect(getAfter(subject)?.content).to.equal('none')
+}
+
+// One empty block after the text, while the text keeps one line and its ellipsis
+const expectEmptyBlockAfter = (subject: JQuery<HTMLElement>) => {
+  const [element] = subject
+  const after = getAfter(subject)
+
+  expect(after?.display).to.equal('block')
+  expect(after?.content).to.equal('""')
+  expect(element.scrollWidth).to.be.greaterThan(element.clientWidth)
+  expect(element.getBoundingClientRect().height).to.equal(
+    parseFloat(getComputedStyle(element).lineHeight)
+  )
 }
 
 // Hovering wraps the text in the tooltip anchor and remounts it, so hover first,
@@ -165,37 +170,30 @@ describe('TypographyOverflow', () => {
     })
   })
 
-  it('renders no layer outside Safari', () => {
+  it('adds nothing after the text outside Safari', () => {
     cy.mount(<DefaultExample />)
 
-    cy.getByTestId('ellipsed-text').should(expectOnTop)
-    cy.getByTestId('ellipsed-text').find('[aria-hidden]').should('not.exist')
+    cy.getByTestId('ellipsed-text').should(expectNothingAfter)
   })
 
   it('keeps a link inside clickable', () => {
     hoverAndClickLink()
   })
 
-  describe('in desktop Safari', () => {
+  describe('in Safari', () => {
     beforeEach(() => {
-      mockDesktopSafari()
+      mockSafari()
     })
 
-    it('puts an empty layer under the pointer and still opens the tooltip on hover', () => {
+    it('adds an empty block after the text and still opens the tooltip on hover', () => {
       cy.mount(<DefaultExample />)
 
-      cy.getByTestId('ellipsed-text').should(expectEmptyLayerOnTop)
-
+      cy.getByTestId('ellipsed-text').should(expectEmptyBlockAfter)
       cy.getByTestId('ellipsed-text').realHover()
       cy.getByRole('tooltip').should('be.visible')
     })
 
-    it('keeps the layer over the text next to a link and the link clickable', () => {
-      cy.mount(<LinkExample onClick={cy.stub()} />)
-
-      cy.getByTestId('ellipsed-text').should(expectEmptyLayerOnTop)
-      cy.getByTestId('link').should(expectOnTop)
-
+    it('keeps a link inside clickable', () => {
       hoverAndClickLink()
     })
   })

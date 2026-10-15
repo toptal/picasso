@@ -1,4 +1,4 @@
-import type { ReactNode, Ref } from 'react'
+import type { ReactNode } from 'react'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { render, act, screen } from '@toptal/picasso-test-utils'
@@ -17,11 +17,9 @@ jest.mock('@toptal/picasso-tooltip', () => {
   }
 })
 jest.mock('@toptal/picasso-typography', () => {
-  const { forwardRef } = jest.requireActual('react')
-
   return {
     __esModule: true,
-    Typography: forwardRef(jest.fn()),
+    Typography: jest.fn(),
   }
 })
 jest.mock('@toptal/picasso-utils', () => ({
@@ -33,37 +31,29 @@ jest.mock('@toptal/picasso-utils', () => ({
 const mockedTooltip = Tooltip as unknown as jest.Mock<
   ReturnType<typeof Tooltip>
 >
-const mockedTypography = (Typography as unknown as { render: jest.Mock }).render
+const mockedTypography = Typography as unknown as jest.Mock<
+  ReturnType<typeof Typography>
+>
 const mockedIsOverflown = isOverflown as jest.Mock<
   ReturnType<typeof isOverflown>
 >
 
 const SAFARI_USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+const SAFARI_FIX_CLASSES = ['after:block', "after:content-['']"]
 
-const mockPointer = (pointer: boolean) =>
-  jest
-    .spyOn(window, 'matchMedia')
-    .mockReturnValue({ matches: pointer } as MediaQueryList)
-
-const mockSafari = ({ pointer }: { pointer: boolean }) => {
+const mockSafari = () => {
   jest.spyOn(navigator, 'vendor', 'get').mockReturnValue('Apple Computer, Inc.')
   jest.spyOn(navigator, 'userAgent', 'get').mockReturnValue(SAFARI_USER_AGENT)
-  mockPointer(pointer)
 }
 
-const getLayer = (container: HTMLElement) =>
-  container.querySelector('[aria-hidden="true"]')
-
 const getRootClasses = () =>
-  mockedTypography.mock.calls.at(-1)[0].className.split(' ')
+  mockedTypography.mock.calls.at(-1)?.[0].className.split(' ')
 
 describe('TypographyOverflow', () => {
   beforeEach(() => {
     mockedTypography.mockImplementation(
-      ({ children }: { children: ReactNode }, ref: Ref<HTMLSpanElement>) => (
-        <span ref={ref}>{children}</span>
-      )
+      ({ children }: { children: ReactNode }) => <span>{children}</span>
     )
   })
 
@@ -142,20 +132,30 @@ describe('TypographyOverflow', () => {
   })
 
   describe('title case', () => {
+    const { Typography: ActualTypography } = jest.requireActual(
+      '@toptal/picasso-typography'
+    )
+
+    beforeEach(() => {
+      mockedTypography.mockImplementation(props =>
+        ActualTypography.render(props, null)
+      )
+    })
+
     it('applies titleCase', () => {
       render(<TypographyOverflow titleCase>invoice for</TypographyOverflow>)
 
       expect(screen.getByText('Invoice For')).toBeInTheDocument()
     })
 
-    it('applies titleCase under the Safari layer', () => {
-      mockSafari({ pointer: true })
+    it('applies titleCase in Safari', () => {
+      mockSafari()
 
-      const { container } = render(
-        <TypographyOverflow titleCase>invoice for</TypographyOverflow>
+      render(<TypographyOverflow titleCase>invoice for</TypographyOverflow>)
+
+      expect(getRootClasses()).toEqual(
+        expect.arrayContaining(SAFARI_FIX_CLASSES)
       )
-
-      expect(getLayer(container)).not.toBeNull()
       expect(screen.getByText('Invoice For')).toBeInTheDocument()
     })
 
@@ -166,109 +166,69 @@ describe('TypographyOverflow', () => {
     })
   })
 
-  describe('Safari tooltip guard', () => {
-    it('renders the text once and without a layer outside Safari', () => {
-      mockPointer(true)
+  describe('Safari tooltip fix', () => {
+    it('renders once and without the fix outside Safari', () => {
+      render(<TypographyOverflow>Just Typography</TypographyOverflow>)
 
-      const { container } = render(
-        <TypographyOverflow>Just Typography</TypographyOverflow>
-      )
-
-      expect(getLayer(container)).toBeNull()
-      expect(getRootClasses()).not.toContain('relative')
       expect(mockedTypography).toHaveBeenCalledTimes(1)
-    })
-
-    it('covers the text with a positioned layer in desktop Safari', () => {
-      mockSafari({ pointer: true })
-
-      const { container } = render(
-        <TypographyOverflow>Just Typography</TypographyOverflow>
-      )
-
-      expect(getLayer(container)).toHaveClass('absolute', 'inset-0')
-      expect(getRootClasses()).toContain('relative')
-    })
-
-    it('leaves the text uncovered on touch devices', () => {
-      mockSafari({ pointer: false })
-
-      const { container } = render(
-        <TypographyOverflow>Just Typography</TypographyOverflow>
-      )
-
-      expect(getLayer(container)).toBeNull()
-    })
-
-    it.each([
-      ['a link', <a href='#'>Link</a>],
-      ['a button', <button type='button'>Button</button>],
-      ['an input', <input />],
-      ['a role="button" element', <span role='button'>Action</span>],
-      ['a focusable element', <span tabIndex={0}>Focusable</span>],
-    ])('keeps the layer and lifts %s above it', (_, control) => {
-      mockSafari({ pointer: true })
-
-      const { container } = render(
-        <TypographyOverflow>{control} next to the text</TypographyOverflow>
-      )
-      const root = getLayer(container)?.parentElement as HTMLElement
-      const liftedSelector = getRootClasses()
-        .find(cls => cls.endsWith(']:relative'))
-        ?.slice('[&_'.length, -']:relative'.length)
-
-      expect(root.firstElementChild).toBe(getLayer(container))
-      expect(root.querySelector(liftedSelector ?? 'none')).toBe(
-        root.children[1]
+      expect(mockedTypography.mock.calls[0][0].className).not.toContain(
+        'after:'
       )
     })
 
-    it('does not lift plain inline elements', () => {
-      mockSafari({ pointer: true })
+    it('adds an empty block after the text in Safari', () => {
+      mockSafari()
 
-      const { container } = render(
-        <TypographyOverflow>
-          <strong>Bold</strong> next to the text
-        </TypographyOverflow>
+      render(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+      expect(getRootClasses()).toEqual(
+        expect.arrayContaining(SAFARI_FIX_CLASSES)
       )
-      const liftedSelector = getRootClasses()
-        .find(cls => cls.endsWith(']:relative'))
-        ?.slice('[&_'.length, -']:relative'.length)
-
-      expect(liftedSelector).toBeDefined()
-      expect(container.querySelector(liftedSelector ?? 'none')).toBeNull()
     })
 
-    it('leaves the text uncovered when disableTooltipGuard is set', () => {
-      mockSafari({ pointer: true })
+    it('keeps the fix when the deprecated disableTooltipGuard is set', () => {
+      mockSafari()
 
-      const { container } = render(
+      render(
         <TypographyOverflow disableTooltipGuard>
           Just Typography
         </TypographyOverflow>
       )
 
-      expect(getLayer(container)).toBeNull()
+      expect(getRootClasses()).toEqual(
+        expect.arrayContaining(SAFARI_FIX_CLASSES)
+      )
+      expect(mockedTypography.mock.calls.at(-1)?.[0]).not.toHaveProperty(
+        'disableTooltipGuard'
+      )
     })
 
-    it('leaves the text uncovered when the tooltip is disabled', () => {
-      mockSafari({ pointer: true })
+    it('skips the fix for multiline text', () => {
+      mockSafari()
 
-      const { container } = render(
+      render(<TypographyOverflow lines={2}>Just Typography</TypographyOverflow>)
+
+      expect(getRootClasses()).not.toContain('after:block')
+    })
+
+    it('skips the fix when the tooltip is disabled', () => {
+      mockSafari()
+
+      render(
         <TypographyOverflow disableTooltip>Just Typography</TypographyOverflow>
       )
 
-      expect(getLayer(container)).toBeNull()
+      expect(getRootClasses()).not.toContain('after:block')
     })
 
-    it('renders no layer on the server', () => {
-      mockSafari({ pointer: true })
+    it('renders server HTML without the fix', () => {
+      mockSafari()
       // jsdom picks useLayoutEffect, which React warns about in renderToString
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
-      expect(
-        renderToString(<TypographyOverflow>Just Typography</TypographyOverflow>)
-      ).not.toContain('aria-hidden')
+      renderToString(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+      expect(getRootClasses()).not.toContain('after:block')
     })
   })
 

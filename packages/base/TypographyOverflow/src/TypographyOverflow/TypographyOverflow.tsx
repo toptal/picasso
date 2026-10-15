@@ -5,9 +5,7 @@ import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import {
   isOverflown,
-  isPointerDevice,
   isSafari,
-  toTitleCase,
   useIsomorphicLayoutEffect,
 } from '@toptal/picasso-utils'
 import type { TypographyProps } from '@toptal/picasso-typography'
@@ -25,7 +23,7 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipDelay?: DelayType
   /** Do not show tooltips for shorten content. */
   disableTooltip?: boolean
-  /** Do not cover the text with the layer that stops desktop Safari from adding its own tooltip. Links and other controls inside are kept above the layer, so they stay clickable without it. */
+  /** @deprecated [PF-2778] has no effect, links and other controls inside no longer need it */
   disableTooltipGuard?: boolean
   /** Where should the tooltip be positioned */
   placement?: PlacementType
@@ -38,8 +36,8 @@ export const TypographyOverflow = (props: Props) => {
     tooltipContent,
     tooltipDelay,
     disableTooltip,
-    disableTooltipGuard,
-    titleCase,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    disableTooltipGuard: _disableTooltipGuard,
     className,
     onClick,
     onMouseEnter,
@@ -51,21 +49,20 @@ export const TypographyOverflow = (props: Props) => {
   const [isTooltipActive, setIsTooltipActive] = useState(false)
   const [isTooltipOpened, setIsTooltipOpened] = useState(false)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
-  const [isGuarded, setIsGuarded] = useState(false)
+  const [isSafariBrowser, setIsSafariBrowser] = useState(false)
   const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
+  // Safari never adds its tooltip to clamped multiline text, and without
+  // our tooltip its own one is the only way to read the full text
+  const hasSafariTooltipFix = isSafariBrowser && !isMultiline && !disableTooltip
 
-  // Decided after mount, so server-rendered HTML never has the layer, and only in
-  // Safari, so other browsers render the plain text without an extra render
+  // Decided after mount, so server-rendered HTML stays the same, and set only in
+  // Safari, so other browsers render once and keep their markup
   useIsomorphicLayoutEffect(() => {
-    if (!isSafari()) {
-      return
+    if (isSafari()) {
+      setIsSafariBrowser(true)
     }
-
-    setIsGuarded(
-      !disableTooltip && !disableTooltipGuard && Boolean(isPointerDevice())
-    )
-  }, [disableTooltip, disableTooltipGuard])
+  }, [])
 
   // We are paying a very high price when using dynamic JSS rules
   // for a component that is used on a very large scale.
@@ -135,20 +132,16 @@ export const TypographyOverflow = (props: Props) => {
         isMultiline
           ? '[display:-webkit-box] break-words ![white-space:initial]'
           : 'block',
-        isGuarded &&
-          // Positioned controls paint over the earlier layer, so they keep the pointer
-          'relative [&_:where(a[href],button,input,select,textarea,[role="button"],[role="link"],[tabindex]:not([tabindex="-1"]))]:relative',
+        // Safari adds its own tooltip when a line of this block ends in the ellipsis.
+        // An empty block after the text moves the text into an anonymous box, so
+        // the line that ends in the ellipsis isn't this block's own anymore
+        hasSafariTooltipFix && "after:block after:content-['']",
         className
       )}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
     >
-      {isGuarded && (
-        // Desktop Safari shows a native tooltip when the element under the pointer
-        // has no title and its block ends in an ellipsis; this empty layer is that element
-        <span aria-hidden className='absolute inset-0' />
-      )}
-      {titleCase ? toTitleCase(children) : children}
+      {children}
     </Typography>
   )
 

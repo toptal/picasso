@@ -5,9 +5,8 @@
 
 ### TypographyOverflow
 
-- render the layer that stops Safari's native tooltip only in desktop Safari, so links, buttons and text selection inside TypographyOverflow work again in other browsers
-- keep links and other controls inside above the layer, so they stay clickable in Safari without `disableTooltipGuard` while the text next to them is still covered
-- apply `titleCase` to the text again, also when the layer is rendered
+- replace the layer that stopped Safari's native tooltip with an empty block after the text, added only in Safari, so links, buttons, text selection and `titleCase` work again in every browser
+- deprecate `disableTooltipGuard`, it has no effect now
 
 ### Utils
 
