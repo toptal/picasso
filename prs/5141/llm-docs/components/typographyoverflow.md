@@ -13,7 +13,6 @@ Show tooltip when typography overflows
 | tooltipContent | `ReactNode` | - | A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used. |
 | tooltipDelay | `"short" \| "long"` | - | A delay in showing the tooltip when typography overflows. |
 | disableTooltip | `boolean` | - | Do not show tooltips for shorten content. |
-| disableTooltipGuard | `boolean` | - | [PF-2778] has no effect, links and other controls inside no longer need it |
 | placement | `"bottom-end" \| "bottom-start" \| "bottom" \| "left-end" \| "left-start" \| "left" \| "right-end" \| "right-start" \| "right" \| "top-end" \| "top-start" \| "top"` | - | Where should the tooltip be positioned |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
@@ -149,19 +148,40 @@ export default Example
 
 ### Link inside
 
-Links and buttons inside stay clickable.
+Links and buttons inside stay clickable. The line below names the last one clicked.
 
 ```tsx
-import React from 'react'
-import { TypographyOverflow, Link } from '@toptal/picasso'
+import React, { useState } from 'react'
+import {
+  Button,
+  Container,
+  Link,
+  Typography,
+  TypographyOverflow,
+} from '@toptal/picasso'
 
 const Example = () => {
+  const [clicked, setClicked] = useState('nothing yet')
+
   return (
     <div style={{ width: 300, marginTop: 100 }}>
       <TypographyOverflow data-testid='ellipsed-text'>
-        <Link href='#'>Invoice</Link> a client whose name is long enough to
-        overflow
+        <Link href='#' onClick={() => setClicked('the link')}>
+          Invoice
+        </Link>{' '}
+        a client whose name is long enough to overflow
       </TypographyOverflow>
+      <Container top='small'>
+        <TypographyOverflow>
+          <Button size='small' onClick={() => setClicked('the button')}>
+            Invoice
+          </Button>{' '}
+          a client whose name is long enough to overflow
+        </TypographyOverflow>
+      </Container>
+      <Container top='small'>
+        <Typography size='small'>Clicked: {clicked}</Typography>
+      </Container>
     </div>
   )
 }

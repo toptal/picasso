@@ -464,7 +464,7 @@ var Container = __webpack_require__("./packages/base/Container/dist-package/src/
 var ButtonCompound = __webpack_require__("./packages/base/Button/dist-package/src/ButtonCompound/index.js");
 // EXTERNAL MODULE: ./packages/base/Accordion/dist-package/src/AccordionCompound/index.js
 var AccordionCompound = __webpack_require__("./packages/base/Accordion/dist-package/src/AccordionCompound/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/Code16.js
 var Code16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/Code16.js");
@@ -1881,7 +1881,7 @@ var update = injectStylesIntoStyleTag_default()(styles/* default */.A, options);
 
 
 /* harmony default export */ const _storybook_styles = (styles/* default */.A.locals || {});
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
@@ -11130,7 +11130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import React from 'react'\nimport { TypographyOverflow, Link } from '@toptal/picasso'\n\nconst Example = () => {\n  return (\n    <div style={{ width: 300, marginTop: 100 }}>\n      <TypographyOverflow data-testid='ellipsed-text'>\n        <Link href='#'>Invoice</Link> a client whose name is long enough to\n        overflow\n      </TypographyOverflow>\n    </div>\n  )\n}\n\nexport default Example\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import React, { useState } from 'react'\nimport {\n  Button,\n  Container,\n  Link,\n  Typography,\n  TypographyOverflow,\n} from '@toptal/picasso'\n\nconst Example = () => {\n  const [clicked, setClicked] = useState('nothing yet')\n\n  return (\n    <div style={{ width: 300, marginTop: 100 }}>\n      <TypographyOverflow data-testid='ellipsed-text'>\n        <Link href='#' onClick={() => setClicked('the link')}>\n          Invoice\n        </Link>{' '}\n        a client whose name is long enough to overflow\n      </TypographyOverflow>\n      <Container top='small'>\n        <TypographyOverflow>\n          <Button size='small' onClick={() => setClicked('the button')}>\n            Invoice\n          </Button>{' '}\n          a client whose name is long enough to overflow\n        </TypographyOverflow>\n      </Container>\n      <Container top='small'>\n        <Typography size='small'>Clicked: {clicked}</Typography>\n      </Container>\n    </div>\n  )\n}\n\nexport default Example\n");
 
 /***/ }),
 
@@ -11166,7 +11166,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import { TypographyOverflow } from '../TypographyOverflow'\nimport PicassoBook from '~/.storybook/components/PicassoBook'\n\nconst page = PicassoBook.section('Components').createPage(\n  'TypographyOverflow',\n  `Show tooltip when typography overflows\n  \n  ${PicassoBook.createSourceLink(__filename)}\n  `\n)\n\npage.createTabChapter('Props').addComponentDocs({\n  component: TypographyOverflow,\n  name: 'TypographyOverflow',\n})\n\npage\n  .createChapter()\n  .addExample(\n    'TypographyOverflow/story/Default.example.tsx',\n    {\n      title: 'Default',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Multiline.example.tsx',\n    {\n      title: 'Multiline',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Link.example.tsx',\n    {\n      title: 'Link inside',\n      description: 'Links and buttons inside stay clickable.',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/CheckboxLabel.example.tsx',\n    {\n      title: 'Checkbox label',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/CustomTooltip.example.tsx',\n    {\n      title: 'Custom tooltip content',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Delay.example.tsx',\n    {\n      title: 'Delay',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Placement.example.tsx',\n    {\n      title: 'Placement',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("import { TypographyOverflow } from '../TypographyOverflow'\nimport PicassoBook from '~/.storybook/components/PicassoBook'\n\nconst page = PicassoBook.section('Components').createPage(\n  'TypographyOverflow',\n  `Show tooltip when typography overflows\n  \n  ${PicassoBook.createSourceLink(__filename)}\n  `\n)\n\npage.createTabChapter('Props').addComponentDocs({\n  component: TypographyOverflow,\n  name: 'TypographyOverflow',\n})\n\npage\n  .createChapter()\n  .addExample(\n    'TypographyOverflow/story/Default.example.tsx',\n    {\n      title: 'Default',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Multiline.example.tsx',\n    {\n      title: 'Multiline',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Link.example.tsx',\n    {\n      title: 'Link inside',\n      description:\n        'Links and buttons inside stay clickable. The line below names the last one clicked.',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/CheckboxLabel.example.tsx',\n    {\n      title: 'Checkbox label',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/CustomTooltip.example.tsx',\n    {\n      title: 'Custom tooltip content',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Delay.example.tsx',\n    {\n      title: 'Delay',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n  .addExample(\n    'TypographyOverflow/story/Placement.example.tsx',\n    {\n      title: 'Placement',\n      takeScreenshot: false,\n    },\n    'base/TypographyOverflow'\n  )\n");
 
 /***/ }),
 
@@ -15294,7 +15294,7 @@ var Alert = __webpack_require__("./packages/base/Alert/dist-package/src/Alert/Al
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Container/dist-package/src/Container/Container.js
 var Container = __webpack_require__("./packages/base/Container/dist-package/src/Container/Container.js");
@@ -23803,7 +23803,7 @@ var dist = __webpack_require__("./node_modules/react-day-picker/dist/index.js");
 var isWeekend = __webpack_require__("./node_modules/date-fns/esm/isWeekend/index.js");
 // EXTERNAL MODULE: ./node_modules/date-fns/index.js
 var date_fns = __webpack_require__("./node_modules/date-fns/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Calendar/dist-package/src/CalendarDay/CalendarDay.js + 4 modules
 var CalendarDay = __webpack_require__("./packages/base/Calendar/dist-package/src/CalendarDay/CalendarDay.js");
@@ -25797,7 +25797,7 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 var GridCompound = __webpack_require__("./packages/base/Grid/dist-package/src/GridCompound/index.js");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/styles/index.js
 var styles = __webpack_require__("./packages/shared/dist-package/src/styles/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 ;// ./packages/base/Checkbox/dist-package/src/CheckboxGroup/CheckboxGroup.js
 var CheckboxGroup_rest = undefined && undefined.__rest || function (s, e) {
@@ -26087,7 +26087,7 @@ var GridCompound = __webpack_require__("./packages/base/Grid/dist-package/src/Gr
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/styles/index.js
 var styles = __webpack_require__("./packages/shared/dist-package/src/styles/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
@@ -28399,7 +28399,7 @@ var DialogPopup = __webpack_require__("./node_modules/@base-ui/react/dialog/popu
 var DialogRoot = __webpack_require__("./node_modules/@base-ui/react/dialog/root/DialogRoot.mjs");
 // EXTERNAL MODULE: ./node_modules/@base-ui/react/dialog/portal/DialogPortal.mjs + 2 modules
 var DialogPortal = __webpack_require__("./node_modules/@base-ui/react/dialog/portal/DialogPortal.mjs");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js
 var CloseMinor16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js");
@@ -28714,7 +28714,7 @@ var DialogPopup = __webpack_require__("./node_modules/@base-ui/react/dialog/popu
 var DialogRoot = __webpack_require__("./node_modules/@base-ui/react/dialog/root/DialogRoot.mjs");
 // EXTERNAL MODULE: ./node_modules/@base-ui/react/dialog/portal/DialogPortal.mjs + 2 modules
 var DialogPortal = __webpack_require__("./node_modules/@base-ui/react/dialog/portal/DialogPortal.mjs");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js
 var CloseMinor16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js");
@@ -29969,7 +29969,7 @@ var Container = __webpack_require__("./packages/base/Container/dist-package/src/
 var FileList = __webpack_require__("./packages/base/FileInput/dist-package/src/FileList/FileList.js");
 // EXTERNAL MODULE: ./packages/base/Typography/dist-package/src/Typography/Typography.js + 1 modules
 var Typography = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
@@ -33852,7 +33852,7 @@ __webpack_require__.d(__webpack_exports__, {
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Grid/dist-package/src/GridContext/GridContext.js
 var GridContext = __webpack_require__("./packages/base/Grid/dist-package/src/GridContext/GridContext.js");
@@ -34343,7 +34343,7 @@ var story = __webpack_require__("./packages/base/Grid/src/GridItem/story/index.j
 var react = __webpack_require__("./node_modules/react/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Grid/src/GridContext/GridContext.tsx
 var GridContext = __webpack_require__("./packages/base/Grid/src/GridContext/GridContext.tsx");
@@ -64408,7 +64408,7 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
     path: "packages/base/Icons/dist-package/src/Icon/Working24.js"
   };
 }
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 ;// ./packages/base/Icons/dist-package/src/Icon/BoldResponsive.js
 
@@ -71358,7 +71358,7 @@ var Loader = __webpack_require__("./packages/base/Loader/dist-package/src/Loader
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
@@ -71622,7 +71622,7 @@ try {
     // @ts-ignore
     Logo.displayName = "Logo";
     // @ts-ignore
-    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"black\"" }, { "value": "\"default\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
+    Logo.__docgenInfo = { "description": "", "displayName": "Logo", "props": { "emblem": { "defaultValue": null, "description": "Whether logo should be shown as TT emblem or full word mark", "name": "emblem", "required": false, "type": { "name": "boolean | undefined" } }, "variant": { "defaultValue": { value: "default" }, "description": "Variant of the `Logo`", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"blue\"" }, { "value": "\"white\"" }, { "value": "\"grey\"" }, { "value": "\"default\"" }, { "value": "\"black\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -72934,7 +72934,7 @@ var DialogBackdrop = __webpack_require__("./node_modules/@base-ui/react/dialog/b
 var DialogPopup = __webpack_require__("./node_modules/@base-ui/react/dialog/popup/DialogPopup.mjs");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js
 var CloseMinor16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js");
@@ -73556,7 +73556,7 @@ var DialogBackdrop = __webpack_require__("./node_modules/@base-ui/react/dialog/b
 var DialogPopup = __webpack_require__("./node_modules/@base-ui/react/dialog/popup/DialogPopup.mjs");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js
 var CloseMinor16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js");
@@ -77199,7 +77199,7 @@ __webpack_require__.d(__webpack_exports__, {
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
@@ -77484,7 +77484,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/tailwind-merge/dist/bundle-mjs.mjs
 var bundle_mjs = __webpack_require__("./node_modules/tailwind-merge/dist/bundle-mjs.mjs");
@@ -78138,7 +78138,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
@@ -79916,7 +79916,7 @@ __webpack_require__.d(__webpack_exports__, {
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
@@ -80285,7 +80285,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/tailwind-merge/dist/bundle-mjs.mjs
 var bundle_mjs = __webpack_require__("./node_modules/tailwind-merge/dist/bundle-mjs.mjs");
@@ -81011,7 +81011,7 @@ var SidebarItem_story = __webpack_require__("./packages/base/Page/src/SidebarIte
 var SidebarLogo_story = __webpack_require__("./packages/base/Page/src/SidebarLogo/story/index.jsx");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
@@ -81299,7 +81299,7 @@ __webpack_require__.d(__webpack_exports__, {
 var es_array_includes = __webpack_require__("./node_modules/core-js/modules/es.array.includes.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Logo/dist-package/src/Logo/Logo.js + 1 modules
 var Logo = __webpack_require__("./packages/base/Logo/dist-package/src/Logo/Logo.js");
@@ -81623,7 +81623,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/UserBadge/dist-package/src/UserBadge/UserBadge.js
 var UserBadge = __webpack_require__("./packages/base/UserBadge/dist-package/src/UserBadge/UserBadge.js");
@@ -83978,7 +83978,7 @@ var floating_ui_react = __webpack_require__("./node_modules/@floating-ui/react/d
 var floating_ui_dom = __webpack_require__("./node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js
 var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-width-of.js
 var use_width_of = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-width-of.js");
@@ -84371,7 +84371,7 @@ var floating_ui_react = __webpack_require__("./node_modules/@floating-ui/react/d
 var floating_ui_dom = __webpack_require__("./node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js
 var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/use-width-of.js
 var use_width_of = __webpack_require__("./packages/base/Utils/dist-package/src/utils/use-width-of.js");
@@ -86183,7 +86183,7 @@ var styles = __webpack_require__("./packages/shared/dist-package/src/styles/inde
 var GridCompound = __webpack_require__("./packages/base/Grid/dist-package/src/GridCompound/index.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Radio/src/RadioGroupContext/index.ts
 var RadioGroupContext = __webpack_require__("./packages/base/Radio/src/RadioGroupContext/index.ts");
@@ -102083,7 +102083,7 @@ var TooltipRoot = __webpack_require__("./node_modules/@base-ui/react/tooltip/roo
 var TooltipTrigger = __webpack_require__("./node_modules/@base-ui/react/tooltip/trigger/TooltipTrigger.mjs");
 // EXTERNAL MODULE: ./node_modules/@base-ui/react/tooltip/portal/TooltipPortal.mjs + 1 modules
 var TooltipPortal = __webpack_require__("./node_modules/@base-ui/react/tooltip/portal/TooltipPortal.mjs");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Typography/dist-package/src/Typography/Typography.js + 1 modules
 var Typography = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
@@ -103161,7 +103161,7 @@ var TooltipRoot = __webpack_require__("./node_modules/@base-ui/react/tooltip/roo
 var TooltipTrigger = __webpack_require__("./node_modules/@base-ui/react/tooltip/trigger/TooltipTrigger.mjs");
 // EXTERNAL MODULE: ./node_modules/@base-ui/react/tooltip/portal/TooltipPortal.mjs + 1 modules
 var TooltipPortal = __webpack_require__("./node_modules/@base-ui/react/tooltip/portal/TooltipPortal.mjs");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Typography/dist-package/src/Typography/Typography.js + 1 modules
 var Typography = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
@@ -107152,12 +107152,11 @@ page.createChapter().addExample('Typography/story/Default.example.tsx', 'Normal 
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var _home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_runner_work_picasso_picasso_node_modules_core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/react/index.js");
-/* harmony import */ var _toptal_picasso_tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./packages/base/Tooltip/dist-package/src/Tooltip/Tooltip.js");
-/* harmony import */ var _toptal_picasso_typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
-/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
-/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-safari.js");
-/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-overflown.js");
-/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
+/* harmony import */ var _toptal_picasso_tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./packages/base/Tooltip/dist-package/src/Tooltip/Tooltip.js");
+/* harmony import */ var _toptal_picasso_typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
+/* harmony import */ var _toptal_picasso_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
+/* harmony import */ var _toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-overflown.js");
+/* harmony import */ var _toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -107178,6 +107177,7 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
+
 var TypographyOverflow = function (props) {
   var children = props.children,
     _props$lines = props.lines,
@@ -107185,14 +107185,13 @@ var TypographyOverflow = function (props) {
     tooltipContent = props.tooltipContent,
     tooltipDelay = props.tooltipDelay,
     disableTooltip = props.disableTooltip,
-    _disableTooltipGuard = props.disableTooltipGuard,
     className = props.className,
     onClick = props.onClick,
     onMouseEnter = props.onMouseEnter,
     style = props.style,
     _props$placement = props.placement,
     placement = _props$placement === void 0 ? 'top' : _props$placement,
-    rest = __rest(props, ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "disableTooltipGuard", "className", "onClick", "onMouseEnter", "style", "placement"]);
+    rest = __rest(props, ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "className", "onClick", "onMouseEnter", "style", "placement"]);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isTooltipActive = _useState2[0],
@@ -107205,22 +107204,11 @@ var TypographyOverflow = function (props) {
     _useState6 = _slicedToArray(_useState5, 2),
     isTooltipAnimating = _useState6[0],
     setIsTooltipAnimating = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-    _useState8 = _slicedToArray(_useState7, 2),
-    isSafariBrowser = _useState8[0],
-    setIsSafariBrowser = _useState8[1];
   var isTooltipRendered = isTooltipActive || isTooltipAnimating;
   var isMultiline = lines > 1;
   // Safari never adds its tooltip to clamped multiline text, and without
   // our tooltip its own one is the only way to read the full text
-  var hasSafariTooltipFix = isSafariBrowser && !isMultiline && !disableTooltip;
-  // Decided after mount, so server-rendered HTML stays the same, and set only in
-  // Safari, so other browsers render once and keep their markup
-  (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_2__/* .useIsomorphicLayoutEffect */ .E)(function () {
-    if ((0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)()) {
-      setIsSafariBrowser(true);
-    }
-  }, []);
+  var hasSafariTooltipFix = (0,_toptal_picasso_provider__WEBPACK_IMPORTED_MODULE_2__.useIsSafari)() && !isMultiline && !disableTooltip;
   // We are paying a very high price when using dynamic JSS rules
   // for a component that is used on a very large scale.
   // It was causing a major UI freezes and unnecessary style recalculations,
@@ -107230,7 +107218,7 @@ var TypographyOverflow = function (props) {
     WebkitLineClamp: lines
   }) : style;
   var handleClick = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function (event) {
-    if (!isTooltipOpened && !disableTooltip && (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)(event.currentTarget)) {
+    if (!isTooltipOpened && !disableTooltip && (0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)(event.currentTarget)) {
       setIsTooltipOpened(true);
       setIsTooltipActive(true);
     }
@@ -107239,7 +107227,7 @@ var TypographyOverflow = function (props) {
     }
   }, [isTooltipOpened, disableTooltip, onClick]);
   var handleMouseEnter = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function (event) {
-    if ((0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A)(event.currentTarget)) {
+    if ((0,_toptal_picasso_utils__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .A)(event.currentTarget)) {
       setIsTooltipActive(true);
       setIsTooltipAnimating(true);
     }
@@ -107260,10 +107248,10 @@ var TypographyOverflow = function (props) {
   var handleTransitionExited = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function () {
     setIsTooltipAnimating(false);
   }, []);
-  var typography = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_typography__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .A, Object.assign({}, rest, {
+  var typography = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_typography__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .A, Object.assign({}, rest, {
     style: extendedStyle,
     noWrap: !isMultiline,
-    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_6__/* .twMerge */ .QP)('[-webkit-box-orient:vertical] overflow-hidden text-ellipsis pr-[0.9px]', isMultiline ? '[display:-webkit-box] break-words ![white-space:initial]' : 'block',
+    className: (0,_toptal_picasso_tailwind_merge__WEBPACK_IMPORTED_MODULE_5__/* .twMerge */ .QP)('[-webkit-box-orient:vertical] overflow-hidden text-ellipsis pr-[0.9px]', isMultiline ? '[display:-webkit-box] break-words ![white-space:initial]' : 'block',
     // Safari adds its own tooltip when a line of this block ends in the ellipsis.
     // An empty block after the text moves the text into an anonymous box, so
     // the line that ends in the ellipsis isn't this block's own anymore
@@ -107271,7 +107259,7 @@ var TypographyOverflow = function (props) {
     onClick: handleClick,
     onMouseEnter: handleMouseEnter
   }), children);
-  var tooltip = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_tooltip__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .A, {
+  var tooltip = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_toptal_picasso_tooltip__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .A, {
     open: isTooltipOpened,
     content: tooltipContent !== null && tooltipContent !== void 0 ? tooltipContent : children,
     placement: placement,
@@ -107336,10 +107324,8 @@ var react = __webpack_require__("./node_modules/react/index.js");
 var Tooltip = __webpack_require__("./packages/base/Tooltip/dist-package/src/Tooltip/Tooltip.js");
 // EXTERNAL MODULE: ./packages/base/Typography/dist-package/src/Typography/Typography.js + 1 modules
 var Typography = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
-// EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js
-var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
-// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-safari.js
-var is_safari = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-safari.js");
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
+var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-overflown.js
 var is_overflown = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-overflown.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
@@ -107348,7 +107334,7 @@ var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-packag
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
 ;// ./packages/base/TypographyOverflow/src/TypographyOverflow/TypographyOverflow.tsx
 
-var _excluded = ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "disableTooltipGuard", "className", "onClick", "onMouseEnter", "style", "placement"];
+var _excluded = ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "className", "onClick", "onMouseEnter", "style", "placement"];
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -107363,6 +107349,7 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 
+
 var TypographyOverflow = function (props) {
   var children = props.children,
     _props$lines = props.lines,
@@ -107370,7 +107357,6 @@ var TypographyOverflow = function (props) {
     tooltipContent = props.tooltipContent,
     tooltipDelay = props.tooltipDelay,
     disableTooltip = props.disableTooltip,
-    _disableTooltipGuard = props.disableTooltipGuard,
     className = props.className,
     onClick = props.onClick,
     onMouseEnter = props.onMouseEnter,
@@ -107390,23 +107376,11 @@ var TypographyOverflow = function (props) {
     _useState6 = _slicedToArray(_useState5, 2),
     isTooltipAnimating = _useState6[0],
     setIsTooltipAnimating = _useState6[1];
-  var _useState7 = (0,react.useState)(false),
-    _useState8 = _slicedToArray(_useState7, 2),
-    isSafariBrowser = _useState8[0],
-    setIsSafariBrowser = _useState8[1];
   var isTooltipRendered = isTooltipActive || isTooltipAnimating;
   var isMultiline = lines > 1;
   // Safari never adds its tooltip to clamped multiline text, and without
   // our tooltip its own one is the only way to read the full text
-  var hasSafariTooltipFix = isSafariBrowser && !isMultiline && !disableTooltip;
-
-  // Decided after mount, so server-rendered HTML stays the same, and set only in
-  // Safari, so other browsers render once and keep their markup
-  (0,use_isomorphic_layout_effect/* useIsomorphicLayoutEffect */.E)(function () {
-    if ((0,is_safari/* default */.A)()) {
-      setIsSafariBrowser(true);
-    }
-  }, []);
+  var hasSafariTooltipFix = (0,src.useIsSafari)() && !isMultiline && !disableTooltip;
 
   // We are paying a very high price when using dynamic JSS rules
   // for a component that is used on a very large scale.
@@ -107480,7 +107454,7 @@ try {
     // @ts-ignore
     TypographyOverflow.displayName = "TypographyOverflow";
     // @ts-ignore
-    TypographyOverflow.__docgenInfo = { "description": "", "displayName": "TypographyOverflow", "props": { "children": { "defaultValue": null, "description": "A typography which can possibly overflow", "name": "children", "required": false, "type": { "name": "ReactNode" } }, "lines": { "defaultValue": null, "description": "Number of lines displayed", "name": "lines", "required": false, "type": { "name": "number | undefined" } }, "tooltipContent": { "defaultValue": null, "description": "A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used.", "name": "tooltipContent", "required": false, "type": { "name": "ReactNode" } }, "tooltipDelay": { "defaultValue": null, "description": "A delay in showing the tooltip when typography overflows.", "name": "tooltipDelay", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"short\"" }, { "value": "\"long\"" }] } }, "disableTooltip": { "defaultValue": null, "description": "Do not show tooltips for shorten content.", "name": "disableTooltip", "required": false, "type": { "name": "boolean | undefined" } }, "disableTooltipGuard": { "defaultValue": null, "description": "@deprecated [PF-2778] has no effect, links and other controls inside no longer need it", "name": "disableTooltipGuard", "required": false, "type": { "name": "boolean | undefined" } }, "placement": { "defaultValue": null, "description": "Where should the tooltip be positioned", "name": "placement", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"top\"" }, { "value": "\"bottom\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"bottom-end\"" }, { "value": "\"bottom-start\"" }, { "value": "\"left-end\"" }, { "value": "\"left-start\"" }, { "value": "\"right-end\"" }, { "value": "\"right-start\"" }, { "value": "\"top-end\"" }, { "value": "\"top-start\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "variant": { "defaultValue": null, "description": "Font variant for inner text", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"heading\"" }, { "value": "\"body\"" }] } }, "color": { "defaultValue": null, "description": "Text color", "name": "color", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"red\"" }, { "value": "\"green\"" }, { "value": "\"yellow\"" }, { "value": "\"grey\"" }, { "value": "\"inherit\"" }, { "value": "\"light-grey\"" }, { "value": "\"grey-main-2\"" }, { "value": "\"dark-grey\"" }, { "value": "\"black\"" }, { "value": "\"light-blue\"" }] } }, "inline": { "defaultValue": null, "description": "Controls whether the Typography is inline or not", "name": "inline", "required": false, "type": { "name": "boolean | undefined" } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Size of the inner text", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }, { "value": "\"xsmall\"" }, { "value": "\"xlarge\"" }, { "value": "\"xxsmall\"" }] } }, "as": { "defaultValue": null, "description": "Rendered HTML markup", "name": "as", "required": false, "type": { "name": "ElementType<any> | undefined" } }, "align": { "defaultValue": null, "description": "Text align of the inner text", "name": "align", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"center\"" }, { "value": "\"justify\"" }] } }, "noWrap": { "defaultValue": null, "description": "Enable ellipsis for overflowing text", "name": "noWrap", "required": false, "type": { "name": "boolean | undefined" } }, "invert": { "defaultValue": null, "description": "Invert color", "name": "invert", "required": false, "type": { "name": "boolean | undefined" } }, "weight": { "defaultValue": null, "description": "Font weight of the inner text", "name": "weight", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"regular\"" }, { "value": "\"semibold\"" }] } }, "underline": { "defaultValue": null, "description": "Controls when the Typography should have an underline", "name": "underline", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"solid\"" }, { "value": "\"dashed\"" }] } }, "lineThrough": { "defaultValue": null, "description": "Controls when the Typography should have line through", "name": "lineThrough", "required": false, "type": { "name": "boolean | undefined" } } } };
+    TypographyOverflow.__docgenInfo = { "description": "", "displayName": "TypographyOverflow", "props": { "children": { "defaultValue": null, "description": "A typography which can possibly overflow", "name": "children", "required": false, "type": { "name": "ReactNode" } }, "lines": { "defaultValue": null, "description": "Number of lines displayed", "name": "lines", "required": false, "type": { "name": "number | undefined" } }, "tooltipContent": { "defaultValue": null, "description": "A content to show in tooltip when typography overflows. By default, TypographyOverflow's children are used.", "name": "tooltipContent", "required": false, "type": { "name": "ReactNode" } }, "tooltipDelay": { "defaultValue": null, "description": "A delay in showing the tooltip when typography overflows.", "name": "tooltipDelay", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"short\"" }, { "value": "\"long\"" }] } }, "disableTooltip": { "defaultValue": null, "description": "Do not show tooltips for shorten content.", "name": "disableTooltip", "required": false, "type": { "name": "boolean | undefined" } }, "placement": { "defaultValue": null, "description": "Where should the tooltip be positioned", "name": "placement", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"top\"" }, { "value": "\"bottom\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"bottom-end\"" }, { "value": "\"bottom-start\"" }, { "value": "\"left-end\"" }, { "value": "\"left-start\"" }, { "value": "\"right-end\"" }, { "value": "\"right-start\"" }, { "value": "\"top-end\"" }, { "value": "\"top-start\"" }] } }, "className": { "defaultValue": null, "description": "Classnames applied to root element", "name": "className", "required": false, "type": { "name": "string | undefined" } }, "style": { "defaultValue": null, "description": "Style applied to root element", "name": "style", "required": false, "type": { "name": "CSSProperties | undefined" } }, "variant": { "defaultValue": null, "description": "Font variant for inner text", "name": "variant", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"heading\"" }, { "value": "\"body\"" }] } }, "color": { "defaultValue": null, "description": "Text color", "name": "color", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"red\"" }, { "value": "\"green\"" }, { "value": "\"yellow\"" }, { "value": "\"grey\"" }, { "value": "\"inherit\"" }, { "value": "\"light-grey\"" }, { "value": "\"grey-main-2\"" }, { "value": "\"dark-grey\"" }, { "value": "\"black\"" }, { "value": "\"light-blue\"" }] } }, "inline": { "defaultValue": null, "description": "Controls whether the Typography is inline or not", "name": "inline", "required": false, "type": { "name": "boolean | undefined" } }, "titleCase": { "defaultValue": null, "description": "Defines if the text should be transformed to title case", "name": "titleCase", "required": false, "type": { "name": "boolean | undefined" } }, "size": { "defaultValue": null, "description": "Size of the inner text", "name": "size", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"small\"" }, { "value": "\"medium\"" }, { "value": "\"large\"" }, { "value": "\"xsmall\"" }, { "value": "\"xlarge\"" }, { "value": "\"xxsmall\"" }] } }, "as": { "defaultValue": null, "description": "Rendered HTML markup", "name": "as", "required": false, "type": { "name": "ElementType<any> | undefined" } }, "align": { "defaultValue": null, "description": "Text align of the inner text", "name": "align", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"left\"" }, { "value": "\"right\"" }, { "value": "\"center\"" }, { "value": "\"justify\"" }] } }, "noWrap": { "defaultValue": null, "description": "Enable ellipsis for overflowing text", "name": "noWrap", "required": false, "type": { "name": "boolean | undefined" } }, "invert": { "defaultValue": null, "description": "Invert color", "name": "invert", "required": false, "type": { "name": "boolean | undefined" } }, "weight": { "defaultValue": null, "description": "Font weight of the inner text", "name": "weight", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"inherit\"" }, { "value": "\"regular\"" }, { "value": "\"semibold\"" }] } }, "underline": { "defaultValue": null, "description": "Controls when the Typography should have an underline", "name": "underline", "required": false, "type": { "name": "enum", "value": [{ "value": "undefined" }, { "value": "\"solid\"" }, { "value": "\"dashed\"" }] } }, "lineThrough": { "defaultValue": null, "description": "Controls when the Typography should have line through", "name": "lineThrough", "required": false, "type": { "name": "boolean | undefined" } } } };
     // @ts-ignore
     if (typeof STORYBOOK_REACT_CLASSES !== "undefined")
         // @ts-ignore
@@ -107509,7 +107483,7 @@ page.createChapter().addExample('TypographyOverflow/story/Default.example.tsx', 
   takeScreenshot: false
 }, 'base/TypographyOverflow').addExample('TypographyOverflow/story/Link.example.tsx', {
   title: 'Link inside',
-  description: 'Links and buttons inside stay clickable.',
+  description: 'Links and buttons inside stay clickable. The line below names the last one clicked.',
   takeScreenshot: false
 }, 'base/TypographyOverflow').addExample('TypographyOverflow/story/CheckboxLabel.example.tsx', {
   title: 'Checkbox label',
@@ -107821,7 +107795,7 @@ __webpack_require__.d(__webpack_exports__, {
   isOverflown: () => (/* reexport */ is_overflown/* default */.A),
   isPointerDevice: () => (/* reexport */ is_pointer_device/* default */.A),
   isPointerModality: () => (/* reexport */ pointer_modality/* isPointerModality */.T7),
-  isSafari: () => (/* reexport */ is_safari/* default */.A),
+  isSafari: () => (/* reexport */ src.isSafari),
   isScreenSize: () => (/* reexport */ src.isScreenSize),
   isString: () => (/* reexport */ is_string/* default */.A),
   isSubstring: () => (/* reexport */ is_substring/* default */.A),
@@ -107869,7 +107843,7 @@ var styles = __webpack_require__("./packages/shared/dist-package/src/styles/inde
 var Rotate180 = __webpack_require__("./packages/base/Utils/dist-package/src/utils/Transitions/Rotate180/Rotate180.js");
 ;// ./packages/base/Utils/dist-package/src/utils/Transitions/index.js
 
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js
 var use_isomorphic_layout_effect = __webpack_require__("./packages/shared/dist-package/src/hooks/use-isomorphic-layout-effect.js");
@@ -107899,8 +107873,6 @@ var isNumber = function (value) {
 var is_overflown = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-overflown.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-pointer-device.js
 var is_pointer_device = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-pointer-device.js");
-// EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-safari.js
-var is_safari = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-safari.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-string.js
 var is_string = __webpack_require__("./packages/base/Utils/dist-package/src/utils/is-string.js");
 // EXTERNAL MODULE: ./packages/base/Utils/dist-package/src/utils/is-substring.js
@@ -107992,7 +107964,6 @@ var colorUtils = {
   lighten: styles/* lighten */.a,
   darken: styles/* darken */.e$
 };
-
 
 
 
@@ -108601,23 +108572,6 @@ var isPointerDevice = function () {
 
 /***/ }),
 
-/***/ "./packages/base/Utils/dist-package/src/utils/is-safari.js":
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./packages/shared/dist-package/src/utils/is-browser.js");
-
-// jsdom also reports Apple as the vendor, so the user agent has to name Safari too
-var isSafari = function () {
-  return (0,_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .A)() && navigator.vendor === 'Apple Computer, Inc.' && /Safari\//.test(navigator.userAgent);
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isSafari);
-
-/***/ }),
-
 /***/ "./packages/base/Utils/dist-package/src/utils/is-string.js":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -108804,7 +108758,7 @@ __webpack_require__.d(__webpack_exports__, {
   a$: () => (/* binding */ getSpacingStyles)
 });
 
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 ;// ./packages/base/Utils/dist-package/src/utils/spacing-classes/constants.js
 /* eslint-disable max-lines */
@@ -110086,7 +110040,7 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__("./node_modules/classnames/index.js");
@@ -110992,7 +110946,7 @@ var orderData = function (data) {
 var PicassoBook = __webpack_require__("./.storybook/components/PicassoBook/index.js");
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/recharts/lib/index.js
 var lib = __webpack_require__("./node_modules/recharts/lib/index.js");
@@ -111450,7 +111404,7 @@ page.createChapter().addExample('BarChart/story/Default.example.tsx', {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__("./node_modules/classnames/index.js");
@@ -112803,7 +112757,7 @@ if (typeof STORYBOOK_REACT_CLASSES !== "undefined") {
 }
 // EXTERNAL MODULE: ./packages/base/Select/dist-package/src/Select/Select.js + 5 modules
 var Select = __webpack_require__("./packages/base/Select/dist-package/src/Select/Select.js");
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 ;// ./packages/picasso-forms/dist-package/src/Select/Select.js
 var Select_rest = undefined && undefined.__rest || function (s, e) {
@@ -147075,6 +147029,7 @@ __webpack_require__.d(__webpack_exports__, {
   isBrowser: () => (/* reexport */ is_browser),
   isPicassoSpacing: () => (/* reexport */ isPicassoSpacing),
   isResponsiveSpacing: () => (/* reexport */ isResponsiveSpacing),
+  isSafari: () => (/* reexport */ is_safari),
   isScreenSize: () => (/* reexport */ isScreenSize),
   kebabToCamelCase: () => (/* reexport */ kebab_to_camel_case),
   layout: () => (/* reexport */ config_layout),
@@ -147092,6 +147047,7 @@ __webpack_require__.d(__webpack_exports__, {
   useBreakpoint: () => (/* reexport */ useBreakpoint),
   useCurrentBreakpointRange: () => (/* reexport */ useCurrentBreakpointRange),
   useDrawer: () => (/* reexport */ useDrawer),
+  useIsSafari: () => (/* reexport */ useIsSafari),
   usePageTopBar: () => (/* reexport */ usePageTopBar),
   usePicassoRoot: () => (/* reexport */ usePicassoRoot),
   useSafeState: () => (/* reexport */ use_safe_state),
@@ -147276,6 +147232,13 @@ var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/m
 var es_string_replace = __webpack_require__("./node_modules/core-js/modules/es.string.replace.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
 var es_regexp_exec = __webpack_require__("./node_modules/core-js/modules/es.regexp.exec.js");
+;// ./packages/picasso-provider/dist-package/src/utils/is-safari.js
+
+// jsdom also reports Apple as the vendor, so the user agent has to name Safari too
+var isSafari = function () {
+  return is_browser() && navigator.vendor === 'Apple Computer, Inc.' && /Safari\//.test(navigator.userAgent);
+};
+/* harmony default export */ const is_safari = (isSafari);
 ;// ./packages/picasso-provider/dist-package/src/utils/kebab-to-camel-case.js
 
 
@@ -147329,6 +147292,7 @@ var useSafeState = function (initState) {
 };
 /* harmony default export */ const use_safe_state = (useSafeState);
 ;// ./packages/picasso-provider/dist-package/src/utils/index.js
+
 
 
 
@@ -147792,7 +147756,8 @@ var RootContext = /*#__PURE__*/react.createContext({
   setHasDrawer: function () {},
   disableTransitions: false,
   responsive: true,
-  currentBreakpointRange: undefined
+  currentBreakpointRange: undefined,
+  isSafari: false
 });
 // State-backed Picasso root node. Kept in a dedicated context (instead of a
 // field on RootContext) so that only `usePicassoRoot` consumers re-render
@@ -147840,6 +147805,10 @@ var useAppConfig = function () {
     disableTransitions: context.disableTransitions,
     responsive: context.responsive
   };
+};
+// False until the provider mounts, so server-rendered HTML is the same everywhere
+var useIsSafari = function () {
+  return Boolean((0,react.useContext)(RootContext).isSafari);
 };
 var useCurrentBreakpointRange = function () {
   var context = (0,react.useContext)(RootContext);
@@ -148224,6 +148193,7 @@ function PicassoGlobalStylesProvider_arrayWithHoles(r) { if (Array.isArray(r)) r
 
 
 
+
 var breakpointKeyByRange = {
   xs: 'xs',
   sm: 'sm',
@@ -148288,6 +148258,17 @@ var PicassoGlobalStylesProvider = function (props) {
     _useState4 = PicassoGlobalStylesProvider_slicedToArray(_useState3, 2),
     contextValue = _useState4[0],
     setContextValue = _useState4[1];
+  // Set once after mount, so server-rendered HTML doesn't depend on the browser
+  (0,react.useEffect)(function () {
+    if (is_safari()) {
+      document.documentElement.setAttribute('data-picasso-safari', '');
+      setContextValue(function (context) {
+        return Object.assign(Object.assign({}, context), {
+          isSafari: true
+        });
+      });
+    }
+  }, []);
   (0,react.useEffect)(function () {
     if (contextValue.currentBreakpointRange !== currentBreakpointRange) {
       setContextValue(Object.assign(Object.assign({}, contextValue), {
@@ -148752,6 +148733,14 @@ var web_dom_collections_iterator = __webpack_require__("./node_modules/core-js/m
 var es_string_replace = __webpack_require__("./node_modules/core-js/modules/es.string.replace.js");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
 var es_regexp_exec = __webpack_require__("./node_modules/core-js/modules/es.regexp.exec.js");
+;// ./packages/picasso-provider/src/utils/is-safari.ts
+
+
+// jsdom also reports Apple as the vendor, so the user agent has to name Safari too
+var isSafari = function () {
+  return is_browser() && navigator.vendor === 'Apple Computer, Inc.' && /Safari\//.test(navigator.userAgent);
+};
+/* harmony default export */ const is_safari = (isSafari);
 ;// ./packages/picasso-provider/src/utils/kebab-to-camel-case.ts
 
 
@@ -148805,6 +148794,7 @@ var useSafeState = function (initState) {
 };
 /* harmony default export */ const use_safe_state = (useSafeState);
 ;// ./packages/picasso-provider/src/utils/index.ts
+
 
 
 
@@ -149287,7 +149277,8 @@ var RootContext = /*#__PURE__*/react.createContext({
   setHasDrawer: function () {},
   disableTransitions: false,
   responsive: true,
-  currentBreakpointRange: undefined
+  currentBreakpointRange: undefined,
+  isSafari: false
 });
 
 // State-backed Picasso root node. Kept in a dedicated context (instead of a
@@ -149337,6 +149328,11 @@ var useAppConfig = function () {
     disableTransitions: context.disableTransitions,
     responsive: context.responsive
   };
+};
+
+// False until the provider mounts, so server-rendered HTML is the same everywhere
+var useIsSafari = function () {
+  return Boolean(useContext(RootContext).isSafari);
 };
 var useCurrentBreakpointRange = function () {
   var context = useContext(RootContext);
@@ -149658,6 +149654,7 @@ function PicassoGlobalStylesProvider_arrayWithHoles(r) { if (Array.isArray(r)) r
 
 
 
+
 var breakpointKeyByRange = {
   xs: 'xs',
   sm: 'sm',
@@ -149722,6 +149719,18 @@ var PicassoGlobalStylesProvider = function (props) {
     _useState4 = PicassoGlobalStylesProvider_slicedToArray(_useState3, 2),
     contextValue = _useState4[0],
     setContextValue = _useState4[1];
+
+  // Set once after mount, so server-rendered HTML doesn't depend on the browser
+  (0,react.useEffect)(function () {
+    if (is_safari()) {
+      document.documentElement.setAttribute('data-picasso-safari', '');
+      setContextValue(function (context) {
+        return Object.assign({}, context, {
+          isSafari: true
+        });
+      });
+    }
+  }, []);
   (0,react.useEffect)(function () {
     if (contextValue.currentBreakpointRange !== currentBreakpointRange) {
       setContextValue(Object.assign({}, contextValue, {
@@ -150711,7 +150720,7 @@ var react_dnd_html5_backend_dist = __webpack_require__("./node_modules/react-dnd
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__("./node_modules/classnames/index.js");
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Button/dist-package/src/Button/Button.js
 var Button = __webpack_require__("./packages/base/Button/dist-package/src/Button/Button.js");
@@ -151747,7 +151756,7 @@ var react_dnd_html5_backend_dist = __webpack_require__("./node_modules/react-dnd
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__("./node_modules/classnames/index.js");
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 // EXTERNAL MODULE: ./packages/base/Button/dist-package/src/Button/Button.js
 var Button = __webpack_require__("./packages/base/Button/dist-package/src/Button/Button.js");
@@ -159679,7 +159688,7 @@ var formatData = function (data, labels) {
 /* harmony default export */ const format_data = (formatData);
 ;// ./packages/topkit-analytics-charts/dist-package/src/CategoriesChart/utils/format-data/index.js
 
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var dist_package_src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 ;// ./packages/topkit-analytics-charts/dist-package/src/CategoriesChart/utils/get-color/get-color.js
 
@@ -160266,7 +160275,7 @@ var formatData = function (data, labels) {
 /* harmony default export */ const format_data = (formatData);
 ;// ./packages/topkit-analytics-charts/src/CategoriesChart/utils/format-data/index.ts
 
-// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 54 modules
+// EXTERNAL MODULE: ./packages/picasso-provider/dist-package/src/index.js + 55 modules
 var dist_package_src = __webpack_require__("./packages/picasso-provider/dist-package/src/index.js");
 ;// ./packages/topkit-analytics-charts/src/CategoriesChart/utils/get-color/get-color.ts
 
@@ -160592,4 +160601,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.6b6f7b51.iframe.bundle.js.map
+//# sourceMappingURL=main.d7ab6ef0.iframe.bundle.js.map
