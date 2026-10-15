@@ -31610,7 +31610,7 @@ var Attachment16 = __webpack_require__("./packages/base/Icons/dist-package/src/I
 var CloseMinor16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/CloseMinor16.js");
 // EXTERNAL MODULE: ./packages/base/Icons/dist-package/src/Icon/Trash16.js
 var Trash16 = __webpack_require__("./packages/base/Icons/dist-package/src/Icon/Trash16.js");
-// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 1 modules
+// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 2 modules
 var TypographyOverflow = __webpack_require__("./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js");
 // EXTERNAL MODULE: ./packages/base/FileInput/src/ProgressBar/ProgressBar.tsx
 var ProgressBar = __webpack_require__("./packages/base/FileInput/src/ProgressBar/ProgressBar.tsx");
@@ -95587,7 +95587,7 @@ var CheckSolid24 = __webpack_require__("./packages/base/Icons/dist-package/src/I
 var to_title_case = __webpack_require__("./packages/base/Utils/dist-package/src/utils/to-title-case.js");
 // EXTERNAL MODULE: ./packages/shared/dist-package/src/hooks/use-title-case.js
 var use_title_case = __webpack_require__("./packages/shared/dist-package/src/hooks/use-title-case.js");
-// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 1 modules
+// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 2 modules
 var TypographyOverflow = __webpack_require__("./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js");
 // EXTERNAL MODULE: ./packages/base/Typography/dist-package/src/Typography/Typography.js + 1 modules
 var Typography = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
@@ -98259,7 +98259,7 @@ var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-packag
 var bundle_mjs = __webpack_require__("./node_modules/tailwind-merge/dist/bundle-mjs.mjs");
 // EXTERNAL MODULE: ./packages/base/Tabs/src/Tabs/Tabs.tsx
 var Tabs = __webpack_require__("./packages/base/Tabs/src/Tabs/Tabs.tsx");
-// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 1 modules
+// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 2 modules
 var TypographyOverflow = __webpack_require__("./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js");
 // EXTERNAL MODULE: ./packages/base/Typography/dist-package/src/Typography/Typography.js + 1 modules
 var Typography = __webpack_require__("./packages/base/Typography/dist-package/src/Typography/Typography.js");
@@ -107734,6 +107734,52 @@ var isSafari = function () {
   return isSafariBrowser;
 };
 /* harmony default export */ const is_safari = (isSafari);
+;// ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/use-resting-hover-open.js
+
+// Same as the Tooltip's delays
+var OPEN_DELAYS = {
+  short: 200,
+  long: 500
+};
+// Hovering remounts the text inside the tooltip anchor, and the tooltip opens
+// on a pointer move over it, which a resting pointer never makes
+var useRestingHoverOpen = function (_ref) {
+  var _ref$delay = _ref.delay,
+    delay = _ref$delay === void 0 ? 'short' : _ref$delay,
+    onOpen = _ref.onOpen,
+    onMouseLeave = _ref.onMouseLeave;
+  var timerRef = (0,react.useRef)(undefined);
+  var isHoveredRef = (0,react.useRef)(false);
+  // A close while hovered (e.g. with Escape) holds until the pointer leaves
+  var isDismissedRef = (0,react.useRef)(false);
+  (0,react.useEffect)(function () {
+    return function () {
+      return clearTimeout(timerRef.current);
+    };
+  }, []);
+  var handleEnter = (0,react.useCallback)(function (canOpen) {
+    isHoveredRef.current = true;
+    if (canOpen && !isDismissedRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(onOpen, OPEN_DELAYS[delay]);
+    }
+  }, [delay, onOpen]);
+  var handleMouseLeave = (0,react.useCallback)(function (event) {
+    isHoveredRef.current = false;
+    isDismissedRef.current = false;
+    clearTimeout(timerRef.current);
+    onMouseLeave === null || onMouseLeave === void 0 ? void 0 : onMouseLeave(event);
+  }, [onMouseLeave]);
+  var handleClose = (0,react.useCallback)(function () {
+    isDismissedRef.current = isHoveredRef.current;
+    clearTimeout(timerRef.current);
+  }, []);
+  return {
+    handleEnter: handleEnter,
+    handleMouseLeave: handleMouseLeave,
+    handleClose: handleClose
+  };
+};
 ;// ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js
 
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -107756,6 +107802,7 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
+
 var TypographyOverflow = function (props) {
   var children = props.children,
     _props$lines = props.lines,
@@ -107766,10 +107813,11 @@ var TypographyOverflow = function (props) {
     className = props.className,
     onClick = props.onClick,
     onMouseEnter = props.onMouseEnter,
+    onMouseLeave = props.onMouseLeave,
     style = props.style,
     _props$placement = props.placement,
     placement = _props$placement === void 0 ? 'top' : _props$placement,
-    rest = __rest(props, ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "className", "onClick", "onMouseEnter", "style", "placement"]);
+    rest = __rest(props, ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "className", "onClick", "onMouseEnter", "onMouseLeave", "style", "placement"]);
   var _useState = (0,react.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isTooltipActive = _useState2[0],
@@ -107815,22 +107863,33 @@ var TypographyOverflow = function (props) {
       onClick(event);
     }
   }, [isTooltipOpened, disableTooltip, onClick]);
-  var handleMouseEnter = (0,react.useCallback)(function (event) {
-    if ((0,is_overflown/* default */.A)(event.currentTarget)) {
-      setIsTooltipActive(true);
-      setIsTooltipAnimating(true);
-    }
-    if (onMouseEnter) {
-      onMouseEnter(event);
-    }
-  }, [onMouseEnter]);
   var handleTooltipOpen = (0,react.useCallback)(function () {
     setIsTooltipOpened(true);
   }, []);
+  var _useRestingHoverOpen = useRestingHoverOpen({
+      delay: tooltipDelay,
+      onOpen: handleTooltipOpen,
+      onMouseLeave: onMouseLeave
+    }),
+    handleEnter = _useRestingHoverOpen.handleEnter,
+    handleMouseLeave = _useRestingHoverOpen.handleMouseLeave,
+    handleClose = _useRestingHoverOpen.handleClose;
+  var handleMouseEnter = (0,react.useCallback)(function (event) {
+    var isTextOverflown = (0,is_overflown/* default */.A)(event.currentTarget);
+    if (isTextOverflown) {
+      setIsTooltipActive(true);
+      setIsTooltipAnimating(true);
+    }
+    handleEnter(isTextOverflown && !disableTooltip);
+    if (onMouseEnter) {
+      onMouseEnter(event);
+    }
+  }, [handleEnter, disableTooltip, onMouseEnter]);
   var handleTooltipClose = (0,react.useCallback)(function () {
+    handleClose();
     setIsTooltipActive(false);
     setIsTooltipOpened(false);
-  }, []);
+  }, [handleClose]);
   var handleTransitionExiting = (0,react.useCallback)(function () {
     setIsTooltipAnimating(true);
   }, []);
@@ -107846,7 +107905,8 @@ var TypographyOverflow = function (props) {
     // the line that ends in the ellipsis isn't this block's own anymore
     hasSafariTooltipFix && "after:block after:content-['']", className),
     onClick: handleClick,
-    onMouseEnter: handleMouseEnter
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave
   }), children);
   var tooltip = /*#__PURE__*/react.createElement(Tooltip/* default */.A, {
     open: isTooltipOpened,
@@ -107891,7 +107951,7 @@ __webpack_require__.d(__webpack_exports__, {
   TypographyOverflow: () => (/* reexport */ TypographyOverflow/* default */.A)
 });
 
-// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 1 modules
+// EXTERNAL MODULE: ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js + 2 modules
 var TypographyOverflow = __webpack_require__("./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/TypographyOverflow.js");
 ;// ./packages/base/TypographyOverflow/dist-package/src/TypographyOverflow/index.js
 
@@ -107935,11 +107995,58 @@ var isSafari = function () {
   return isSafariBrowser;
 };
 /* harmony default export */ const is_safari = (isSafari);
+;// ./packages/base/TypographyOverflow/src/TypographyOverflow/use-resting-hover-open.ts
+
+// Same as the Tooltip's delays
+var OPEN_DELAYS = {
+  short: 200,
+  long: 500
+};
+
+// Hovering remounts the text inside the tooltip anchor, and the tooltip opens
+// on a pointer move over it, which a resting pointer never makes
+var useRestingHoverOpen = function (_ref) {
+  var _ref$delay = _ref.delay,
+    delay = _ref$delay === void 0 ? 'short' : _ref$delay,
+    onOpen = _ref.onOpen,
+    onMouseLeave = _ref.onMouseLeave;
+  var timerRef = (0,react.useRef)(undefined);
+  var isHoveredRef = (0,react.useRef)(false);
+  // A close while hovered (e.g. with Escape) holds until the pointer leaves
+  var isDismissedRef = (0,react.useRef)(false);
+  (0,react.useEffect)(function () {
+    return function () {
+      return clearTimeout(timerRef.current);
+    };
+  }, []);
+  var handleEnter = (0,react.useCallback)(function (canOpen) {
+    isHoveredRef.current = true;
+    if (canOpen && !isDismissedRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(onOpen, OPEN_DELAYS[delay]);
+    }
+  }, [delay, onOpen]);
+  var handleMouseLeave = (0,react.useCallback)(function (event) {
+    isHoveredRef.current = false;
+    isDismissedRef.current = false;
+    clearTimeout(timerRef.current);
+    onMouseLeave === null || onMouseLeave === void 0 ? void 0 : onMouseLeave(event);
+  }, [onMouseLeave]);
+  var handleClose = (0,react.useCallback)(function () {
+    isDismissedRef.current = isHoveredRef.current;
+    clearTimeout(timerRef.current);
+  }, []);
+  return {
+    handleEnter: handleEnter,
+    handleMouseLeave: handleMouseLeave,
+    handleClose: handleClose
+  };
+};
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
 ;// ./packages/base/TypographyOverflow/src/TypographyOverflow/TypographyOverflow.tsx
 
-var _excluded = ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "className", "onClick", "onMouseEnter", "style", "placement"];
+var _excluded = ["children", "lines", "tooltipContent", "tooltipDelay", "disableTooltip", "className", "onClick", "onMouseEnter", "onMouseLeave", "style", "placement"];
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -107948,6 +108055,7 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
+
 
 
 
@@ -107965,6 +108073,7 @@ var TypographyOverflow = function (props) {
     className = props.className,
     onClick = props.onClick,
     onMouseEnter = props.onMouseEnter,
+    onMouseLeave = props.onMouseLeave,
     style = props.style,
     _props$placement = props.placement,
     placement = _props$placement === void 0 ? 'top' : _props$placement,
@@ -108016,22 +108125,33 @@ var TypographyOverflow = function (props) {
       onClick(event);
     }
   }, [isTooltipOpened, disableTooltip, onClick]);
-  var handleMouseEnter = (0,react.useCallback)(function (event) {
-    if ((0,is_overflown/* default */.A)(event.currentTarget)) {
-      setIsTooltipActive(true);
-      setIsTooltipAnimating(true);
-    }
-    if (onMouseEnter) {
-      onMouseEnter(event);
-    }
-  }, [onMouseEnter]);
   var handleTooltipOpen = (0,react.useCallback)(function () {
     setIsTooltipOpened(true);
   }, []);
+  var _useRestingHoverOpen = useRestingHoverOpen({
+      delay: tooltipDelay,
+      onOpen: handleTooltipOpen,
+      onMouseLeave: onMouseLeave
+    }),
+    handleEnter = _useRestingHoverOpen.handleEnter,
+    handleMouseLeave = _useRestingHoverOpen.handleMouseLeave,
+    handleClose = _useRestingHoverOpen.handleClose;
+  var handleMouseEnter = (0,react.useCallback)(function (event) {
+    var isTextOverflown = (0,is_overflown/* default */.A)(event.currentTarget);
+    if (isTextOverflown) {
+      setIsTooltipActive(true);
+      setIsTooltipAnimating(true);
+    }
+    handleEnter(isTextOverflown && !disableTooltip);
+    if (onMouseEnter) {
+      onMouseEnter(event);
+    }
+  }, [handleEnter, disableTooltip, onMouseEnter]);
   var handleTooltipClose = (0,react.useCallback)(function () {
+    handleClose();
     setIsTooltipActive(false);
     setIsTooltipOpened(false);
-  }, []);
+  }, [handleClose]);
   var handleTransitionExiting = (0,react.useCallback)(function () {
     setIsTooltipAnimating(true);
   }, []);
@@ -108048,6 +108168,7 @@ var TypographyOverflow = function (props) {
     hasSafariTooltipFix && "after:block after:content-['']", className),
     onClick: handleClick,
     onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
     children: children
   }));
   var tooltip = /*#__PURE__*/(0,jsx_runtime.jsx)(Tooltip/* default */.A, {
@@ -162562,4 +162683,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.c342b26c.iframe.bundle.js.map
+//# sourceMappingURL=main.afb9e466.iframe.bundle.js.map
