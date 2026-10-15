@@ -7,6 +7,7 @@ import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
 
 import { TypographyOverflow } from '.'
+import isSafari from './is-safari'
 
 jest.mock('@toptal/picasso-tooltip', () => {
   return {
@@ -22,6 +23,10 @@ jest.mock('@toptal/picasso-typography', () => {
     Typography: jest.fn(),
   }
 })
+jest.mock('./is-safari', () => ({
+  __esModule: true,
+  default: jest.fn(() => false),
+}))
 jest.mock('@toptal/picasso-utils', () => ({
   __esModule: true,
   ...jest.requireActual('@toptal/picasso-utils'),
@@ -38,13 +43,12 @@ const mockedIsOverflown = isOverflown as jest.Mock<
   ReturnType<typeof isOverflown>
 >
 
-const SAFARI_USER_AGENT =
-  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+const mockedIsSafari = isSafari as jest.Mock<ReturnType<typeof isSafari>>
+
 const SAFARI_FIX_CLASSES = ['after:block', "after:content-['']"]
 
 const mockSafari = () => {
-  jest.spyOn(navigator, 'vendor', 'get').mockReturnValue('Apple Computer, Inc.')
-  jest.spyOn(navigator, 'userAgent', 'get').mockReturnValue(SAFARI_USER_AGENT)
+  mockedIsSafari.mockReturnValue(true)
 }
 
 const getRootClasses = () =>

@@ -18,7 +18,6 @@ export {
   useScreens,
   shadows,
   colors as palette,
-  isSafari,
   gradients,
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,

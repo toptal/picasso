@@ -3,11 +3,12 @@ import React, { useCallback, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
-import { useIsSafari } from '@toptal/picasso-provider'
-import { isOverflown } from '@toptal/picasso-utils'
+import { isOverflown, useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 import type { TypographyProps } from '@toptal/picasso-typography'
 import type { DelayType, PlacementType } from '@toptal/picasso-tooltip'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+
+import isSafari from './is-safari'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
@@ -42,11 +43,20 @@ export const TypographyOverflow = (props: Props) => {
   const [isTooltipActive, setIsTooltipActive] = useState(false)
   const [isTooltipOpened, setIsTooltipOpened] = useState(false)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
+  const [isSafariBrowser, setIsSafariBrowser] = useState(false)
   const isTooltipRendered = isTooltipActive || isTooltipAnimating
   const isMultiline = lines > 1
   // Safari never adds its tooltip to clamped multiline text, and without
   // our tooltip its own one is the only way to read the full text
-  const hasSafariTooltipFix = useIsSafari() && !isMultiline && !disableTooltip
+  const hasSafariTooltipFix = isSafariBrowser && !isMultiline && !disableTooltip
+
+  // Decided after mount, so server-rendered HTML stays the same, and set only in
+  // Safari, so other browsers render once and keep their markup
+  useIsomorphicLayoutEffect(() => {
+    if (isSafari()) {
+      setIsSafariBrowser(true)
+    }
+  }, [])
 
   // We are paying a very high price when using dynamic JSS rules
   // for a component that is used on a very large scale.

@@ -48,7 +48,6 @@ export {
   useDrawer,
   useSidebar,
   useCurrentBreakpointRange,
-  useIsSafari,
   RootContext,
   PicassoRootNodeContext,
 } from './Picasso/RootContext'

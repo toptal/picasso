@@ -3021,9 +3021,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-provider':
-        specifier: workspace:*
-        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: workspace:*
         version: link:../../picasso-tailwind-merge
