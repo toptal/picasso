@@ -1,5 +1,16 @@
 # @toptal/picasso-typography-overflow
 
+## 100.1.1
+
+### Patch Changes
+
+- [#5141](https://github.com/toptal/picasso/pull/5141) [`8c2f242`](https://github.com/toptal/picasso/commit/8c2f242ad89bdc42c1a89a4e9b14b4d1b0a5f5e6) Thanks [@surohak](https://github.com/surohak)!
+
+### TypographyOverflow
+
+- replace the layer that stopped Safari's native tooltip with an empty block after the text, added only in Safari, so links, buttons, text selection and `titleCase` work again in every browser
+- remove `disableTooltipGuard`, links and other controls inside no longer need it. Drop the prop where you pass it
+
 ## 100.1.0
 
 ### Minor Changes
