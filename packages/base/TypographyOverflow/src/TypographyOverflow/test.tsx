@@ -1,11 +1,13 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import { render, act } from '@toptal/picasso-test-utils'
+import { renderToString } from 'react-dom/server'
+import { render, act, screen, TestingPicasso } from '@toptal/picasso-test-utils'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
 
 import { TypographyOverflow } from '.'
+import isSafari from './is-safari'
 
 jest.mock('@toptal/picasso-tooltip', () => {
   return {
@@ -18,13 +20,16 @@ jest.mock('@toptal/picasso-tooltip', () => {
 jest.mock('@toptal/picasso-typography', () => {
   return {
     __esModule: true,
-    Typography: jest.fn(({ children }: { children: ReactNode }) => (
-      <span>{children}</span>
-    )),
+    Typography: jest.fn(),
   }
 })
+jest.mock('./is-safari', () => ({
+  __esModule: true,
+  default: jest.fn(() => false),
+}))
 jest.mock('@toptal/picasso-utils', () => ({
   __esModule: true,
+  ...jest.requireActual('@toptal/picasso-utils'),
   isOverflown: jest.fn(() => true),
 }))
 
@@ -38,7 +43,24 @@ const mockedIsOverflown = isOverflown as jest.Mock<
   ReturnType<typeof isOverflown>
 >
 
+const mockedIsSafari = isSafari as jest.Mock<ReturnType<typeof isSafari>>
+
+const SAFARI_FIX_CLASSES = ['after:block', "after:content-['']"]
+
+const mockSafari = () => {
+  mockedIsSafari.mockReturnValue(true)
+}
+
+const getRootClasses = () =>
+  mockedTypography.mock.calls.at(-1)?.[0].className.split(' ')
+
 describe('TypographyOverflow', () => {
+  beforeEach(() => {
+    mockedTypography.mockImplementation(
+      ({ children }: { children: ReactNode }) => <span>{children}</span>
+    )
+  })
+
   describe('initial render', () => {
     it('renders only typography', () => {
       render(
@@ -113,46 +135,89 @@ describe('TypographyOverflow', () => {
     })
   })
 
-  describe('Safari tooltip guard', () => {
+  describe('title case', () => {
+    const { Typography: ActualTypography } = jest.requireActual(
+      '@toptal/picasso-typography'
+    )
+
     beforeEach(() => {
-      mockedTypography.mockImplementation(({ children }) => (
-        <span>{children}</span>
-      ))
+      mockedTypography.mockImplementation(props =>
+        ActualTypography.render(props, null)
+      )
     })
 
-    const getRootClasses = () =>
-      mockedTypography.mock.calls[0][0].className.split(' ')
+    it('applies titleCase', () => {
+      render(<TypographyOverflow titleCase>invoice for</TypographyOverflow>)
 
-    it('covers the text with a positioned layer by default', () => {
-      const { container } = render(
-        <TypographyOverflow>Just Typography</TypographyOverflow>
-      )
-
-      expect(container.querySelector('[aria-hidden="true"]')).toHaveClass(
-        'absolute',
-        'inset-0'
-      )
-      expect(getRootClasses()).toContain('relative')
+      expect(screen.getByText('Invoice For')).toBeInTheDocument()
     })
 
-    it('leaves the text uncovered when disableTooltipGuard is set', () => {
-      const { container } = render(
-        <TypographyOverflow disableTooltipGuard>
-          Just Typography
-        </TypographyOverflow>
-      )
+    it('applies titleCase in Safari', () => {
+      mockSafari()
 
-      expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
-      expect(getRootClasses()).not.toContain('relative')
+      render(<TypographyOverflow titleCase>invoice for</TypographyOverflow>)
+
+      expect(getRootClasses()).toEqual(
+        expect.arrayContaining(SAFARI_FIX_CLASSES)
+      )
+      expect(screen.getByText('Invoice For')).toBeInTheDocument()
     })
 
-    it('leaves the text uncovered when the tooltip is disabled', () => {
-      const { container } = render(
+    it('keeps the text as written without titleCase', () => {
+      render(<TypographyOverflow>invoice for</TypographyOverflow>)
+
+      expect(screen.getByText('invoice for')).toBeInTheDocument()
+    })
+  })
+
+  describe('Safari tooltip fix', () => {
+    it('renders once and without the fix outside Safari', () => {
+      render(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+      expect(mockedTypography).toHaveBeenCalledTimes(1)
+      expect(mockedTypography.mock.calls[0][0].className).not.toContain(
+        'after:'
+      )
+    })
+
+    it('adds an empty block after the text in Safari', () => {
+      mockSafari()
+
+      render(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+      expect(getRootClasses()).toEqual(
+        expect.arrayContaining(SAFARI_FIX_CLASSES)
+      )
+    })
+
+    it('skips the fix for multiline text', () => {
+      mockSafari()
+
+      render(<TypographyOverflow lines={2}>Just Typography</TypographyOverflow>)
+
+      expect(getRootClasses()).not.toContain('after:block')
+    })
+
+    it('skips the fix when the tooltip is disabled', () => {
+      mockSafari()
+
+      render(
         <TypographyOverflow disableTooltip>Just Typography</TypographyOverflow>
       )
 
-      expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
-      expect(getRootClasses()).not.toContain('relative')
+      expect(getRootClasses()).not.toContain('after:block')
+    })
+
+    it('renders server HTML without the fix', () => {
+      mockSafari()
+
+      renderToString(
+        <TestingPicasso>
+          <TypographyOverflow>Just Typography</TypographyOverflow>
+        </TestingPicasso>
+      )
+
+      expect(getRootClasses()).not.toContain('after:block')
     })
   })
 
