@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "peerDependencies": {
-    "@testing-library/react": "^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
+    "@testing-library/react": "*",
     "@toptal/picasso-provider": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
     "notistack": "3.0.2",

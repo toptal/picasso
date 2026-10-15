@@ -59,21 +59,21 @@ that when the React 19 change fails, React is the cause.
 
 ### Do you need to act?
 
-| Change                                                   | On React 18                                         | On React 19                            | Step                                                                                                        |
-| -------------------------------------------------------- | --------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Picasso versions                                         | **Yes**: bump every package, and its dependents     | Yes                                    | [1](#step-1-bump-every-picasso-package-together)                                                            |
-| `notistack`                                              | **Yes**: exactly `3.0.2`                            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `@testing-library/react` with Picasso's test utils       | Maybe: a version that supports your React           | Yes: 16.1 or newer                     | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
-| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                      | Nothing extra                          | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
-| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | npm and yarn: an override. pnpm: nothing            | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `react-helmet-async` 3                                   | Import `Helmet` from the provider if you render one | **Yes**: only titles merge             | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| Patches and overrides keyed on old versions              | **Yes**                                             | Yes                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| tailwind-merge 3                                         | Review your class overrides                         | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, a new peer, visual diffs | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| ShowMore, TimePicker, RichTextEditor, DatePicker         | Maybe: tests that relied on the old DOM or behavior | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                | Only if you import recharts yourself   | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
-| Types                                                    | No                                                  | **Yes**: `@types/react` 19             | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
-| Your other dependencies                                  | No                                                  | **Yes**: many still cap React below 19 | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
+| Change                                                   | On React 18                                                                     | On React 19                            | Step                                                                                                        |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Picasso versions                                         | **Yes**: bump every package, and its dependents                                 | Yes                                    | [1](#step-1-bump-every-picasso-package-together)                                                            |
+| `notistack`                                              | **Yes**: exactly `3.0.2`                                                        | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| `@testing-library/react` with Picasso's test utils       | Maybe: a version that supports your React                                       | Yes: 16.1 or newer                     | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
+| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                                                  | Nothing extra                          | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
+| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | No: a peer warning only                                                         | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| `react-helmet-async` 3                                   | Import `Helmet` from the provider; pin `3.0.0` if you render `<HelmetProvider>` | **Yes**: only titles merge             | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
+| Patches and overrides keyed on old versions              | **Yes**                                                                         | Yes                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| tailwind-merge 3                                         | Review your class overrides                                                     | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, a new peer, visual diffs                             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| ShowMore, TimePicker, RichTextEditor, DatePicker         | Maybe: tests that relied on the old DOM or behavior                             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
+| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                                            | Only if you import recharts yourself   | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
+| Types                                                    | No                                                                              | **Yes**: `@types/react` 19             | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
+| Your other dependencies                                  | No                                                                              | **Yes**: many still cap React below 19 | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
 
 ### Versions in the release
 
@@ -161,7 +161,7 @@ git grep -n -E "from '(react-)?final-form(-arrays|-listeners)?'" -- '*.ts' '*.ts
 git grep -l -E '<FieldArray|useFieldArray\(' -- '*.ts' '*.tsx' \
   | xargs grep -l -E 'touched|submitError|submitFailed|dirty|pristine|modified|visited|active'
 # picasso-forms components mocked with a direct jest.Mock cast (Step 4)
-git grep -n -E '(^|[^[:alnum:]_])(FieldArray|OnChange|OnFocus|OnBlur|ExternallyChanged) as jest\.Mock' -- '*.ts' '*.tsx'
+git grep -n -E '(^|[^[:alnum:]_])(FieldArray|OnChange|ExternallyChanged) as jest\.Mock' -- '*.ts' '*.tsx'
 # files that render the components with new internals, your visual-test hot spots (Step 6)
 git grep -l -E '<(ShowMore|Accordion|Table\.ExpandableRow|Collapse|Fade|Slide|Backdrop)([[:space:]/>]|$)' -- '*.tsx' | wc -l
 # overrides and patches that name the moving packages (Step 2)
@@ -211,21 +211,22 @@ version moves: it also brings every release since your last bump.
 
 #### Keep one copy of everything that carries context
 
-| Package                          | Do this                                                                                                                                                                                                | Why                                                                                                                                                                           |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `notistack`                      | Move to exactly `3.0.2`                                                                                                                                                                                | It's an exact peer of `@toptal/picasso` and `@toptal/picasso-shared`. `SnackbarProvider` and `useSnackbar` only find each other within one copy                               |
-| `react-final-form`, `final-form` | If you depend on them directly, move to `^7` and `^5`, with `final-form-arrays@^4`, `react-final-form-arrays@^5` and `react-final-form-listeners@^3`. Remove any override that pins react-final-form 6 | react-final-form's context belongs to its copy. With two versions, `useForm` and `useField` inside a Picasso `<Form>` throw `"... must be used inside of a <Form> component"` |
-| `react-helmet-async`             | Don't render helmets from your own copy. Import `Helmet` and `HelmetProps` from `@toptal/picasso-provider`                                                                                             | A helmet only finds the `<HelmetProvider>` of its own copy, and the provider exports the copy it renders                                                                      |
-| `recharts`                       | If the app imports recharts itself, move it to `^2.15.4`                                                                                                                                               | One copy, and older releases don't run on React 19                                                                                                                            |
+| Package                          | Do this                                                                                                                                                                                                                                            | Why                                                                                                                                                                           |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `notistack`                      | Move to exactly `3.0.2`                                                                                                                                                                                                                            | It's an exact peer of `@toptal/picasso` and `@toptal/picasso-shared`. `SnackbarProvider` and `useSnackbar` only find each other within one copy                               |
+| `react-final-form`, `final-form` | If you depend on them directly, move to `^7` and `^5`, with `final-form-arrays@^4`, `react-final-form-arrays@^5` and `react-final-form-listeners@^3`. Remove any override that pins react-final-form 6                                             | react-final-form's context belongs to its copy. With two versions, `useForm` and `useField` inside a Picasso `<Form>` throw `"... must be used inside of a <Form> component"` |
+| `react-helmet-async`             | Don't render helmets from your own copy. Import `Helmet` and `HelmetProps` from `@toptal/picasso-provider`. If the app renders its own `<HelmetProvider>` (`<Picasso disableHelmet>`, `PicassoLight`), pin `react-helmet-async` to exactly `3.0.0` | A helmet only finds the `<HelmetProvider>` of its own copy. The provider exports the copy it renders, and `FixViewport`, `Favicon` and `Page.Helmet` use it                   |
+| `recharts`                       | If the app imports recharts itself, move it to `^2.15.4`                                                                                                                                                                                           | One copy, and older releases don't run on React 19                                                                                                                            |
 
 #### Test utilities
 
 `@toptal/picasso-test-utils`, and the `@toptal/picasso/test-utils` entry,
-re-export `@testing-library/react`, which is now a declared peer:
+re-export `@testing-library/react`, which is now an optional peer:
 `^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0`. Install the version that
 supports your React: 12 for React 17, 13 to 16 for React 18, and 16.1 or newer
-for React 19. `@toptal/picasso` marks the peer optional, so an app that never
-imports its test utils needs nothing.
+for React 19. RTL 16 also needs `@testing-library/dom@^10` next to it, since it
+peers on it instead of bundling it. An app that never imports the test utils
+needs neither.
 
 #### Fade, Slide and Backdrop
 
@@ -235,10 +236,10 @@ it if your app doesn't have it yet.
 
 #### date-fns
 
-- **npm 7+ and yarn stop with `ERESOLVE`.** react-day-picker 8 still declares a
-  `date-fns ^2 || ^3` peer. Add an override for `react-day-picker > date-fns`,
-  or install with `--legacy-peer-deps`. pnpm only warns. Runtime is unaffected,
-  and the conflict goes away when Picasso moves to react-day-picker 9.
+- **npm, yarn and pnpm warn about a peer conflict.** react-day-picker 8 still
+  declares a `date-fns ^2.28.0 || ^3.0.0` peer, and Picasso's date-fns 4 is
+  outside it. By default the install doesn't fail, runtime is unaffected, and
+  the warning goes away when Picasso moves to react-day-picker 9.
 - **Your own code can stay on date-fns 2.** Picasso's date-fns 4 installs next
   to it, and date-fns holds no shared state.
 - **Declare what you import.** With `node-linker=hoisted`, a package can import
@@ -337,7 +338,7 @@ stricter. Your type check finds all of these, and most fixes are one line.
 | Listener props typed `any`                                     | `OnChange`, `OnFocus`, `OnBlur` and `ExternallyChanged` ship real types. `OnChange` takes the field's value type, not the form's: `<OnChange<string> name='verticalId'>`                                                                                                                                                               |
 | Mutator arguments                                              | They're typed as arrays, so `([recipient]: [Recipient], …)` becomes `([recipient]: Recipient[], …)`, and tests that passed `{}` pass `[]`                                                                                                                                                                                              |
 | `final-form-set-field-data` is rejected by `<Form mutators>`   | `@types/final-form-set-field-data` types the mutator against final-form 4. Cast it once where you export it: `setFieldDataMutator as unknown as Mutator`                                                                                                                                                                               |
-| `FieldArray as jest.Mock` doesn't compile                      | `FieldArray` and the listeners are picasso-forms' own typed components now. Cast through `unknown`: `FieldArray as unknown as jest.Mock`. `FormSpy` is still react-final-form's and casts as before                                                                                                                                    |
+| `FieldArray as jest.Mock` doesn't compile                      | `FieldArray`, `OnChange` and `ExternallyChanged` are picasso-forms' own typed components now. Cast through `unknown`: `FieldArray as unknown as jest.Mock`. `OnBlur`, `OnFocus` and react-final-form's `FormSpy` cast as before                                                                                                        |
 | An unused `@ts-expect-error`                                   | The new types made it unnecessary; delete it                                                                                                                                                                                                                                                                                           |
 | A helper that receives form values                             | Accept `undefined`, which the values can be on the first render: `(templates ?? []).filter(…)`, `options?.[index]`                                                                                                                                                                                                                     |
 
@@ -364,8 +365,10 @@ both for its own exports: the Picasso fields, the radio and checkbox groups,
 `FinalField`, `useField`, `FieldArray`, `useFieldArray`, and the `OnChange`,
 `OnBlur`, `OnFocus` and `ExternallyChanged` listeners. The same APIs imported
 from `react-final-form`, `react-final-form-arrays` or
-`react-final-form-listeners` keep upstream's behavior. Find the imports to
-switch:
+`react-final-form-listeners` keep upstream's behavior. Mind the names:
+react-final-form's `Form` and `Field` are `FinalForm` and `FinalField` there.
+Picasso's own `Form` and `Field` are different components, so a same-name swap
+still type-checks but doesn't work. Find the imports to switch:
 
 ```bash
 git grep -n -E "from 'react-final-form(-arrays|-listeners)?'" -- '*.ts' '*.tsx'
@@ -443,6 +446,10 @@ react-transition-group.
 - Slide hides its child with `translate-*` classes instead of an inline
   `transform`, so `transitionend` listeners see `propertyName: 'translate'`, and
   a child's own inline `transform` is kept.
+- A closed Fade, Slide or Backdrop is hidden by the `invisible` class instead
+  of an inline `visibility: hidden`. jsdom doesn't apply the class, so a test
+  that checked `not.toBeVisible()` or `toHaveStyle('visibility: hidden')`
+  asserts `toHaveClass('invisible')` instead.
 - Fade's and Slide's own transition replaces a `transition-*` utility on the
   child, so they animate. A broad `transition` or `transition-all` on the child
   stays, and so does `transition-none`, which turns the animation off. On
@@ -944,9 +951,10 @@ These are real bugs on React 19, not test noise.
 
 ### Step 14. Update the tests for React 19
 
-**Mocked components are called with one argument.** React 19 calls a function
-component as `(props)`, not `(props, {})`, so `toHaveBeenCalledWith(props, {})`
-fails. Compare the props alone with `renderedProps(mock)` from
+**Mocked components get `undefined` as the second argument.** React 19 calls a
+function component as `(props, undefined)`, not `(props, {})`, so
+`toHaveBeenCalledWith(props, {})` fails, and `toHaveBeenCalledWith(props)`
+fails on both majors. Compare the props alone with `renderedProps(mock)` from
 `@toptal/picasso/test-utils` (also exported by `@toptal/picasso-test-utils`). It
 passes on both majors, so the rewrite can land on React 18 first:
 

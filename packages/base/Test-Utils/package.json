@@ -36,6 +36,11 @@
     "@toptal/picasso-provider": "workspace:^",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
+  "peerDependenciesMeta": {
+    "@testing-library/react": {
+      "optional": true
+    }
+  },
   "exports": {
     ".": "./dist-package/src/index.js"
   },
