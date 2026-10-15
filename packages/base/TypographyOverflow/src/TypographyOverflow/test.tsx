@@ -1,6 +1,7 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, Ref } from 'react'
 import React from 'react'
-import { render, act } from '@toptal/picasso-test-utils'
+import { renderToString } from 'react-dom/server'
+import { render, act, screen } from '@toptal/picasso-test-utils'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
@@ -16,29 +17,56 @@ jest.mock('@toptal/picasso-tooltip', () => {
   }
 })
 jest.mock('@toptal/picasso-typography', () => {
+  const { forwardRef } = jest.requireActual('react')
+
   return {
     __esModule: true,
-    Typography: jest.fn(({ children }: { children: ReactNode }) => (
-      <span>{children}</span>
-    )),
+    Typography: forwardRef(jest.fn()),
   }
 })
 jest.mock('@toptal/picasso-utils', () => ({
   __esModule: true,
+  ...jest.requireActual('@toptal/picasso-utils'),
   isOverflown: jest.fn(() => true),
 }))
 
 const mockedTooltip = Tooltip as unknown as jest.Mock<
   ReturnType<typeof Tooltip>
 >
-const mockedTypography = Typography as unknown as jest.Mock<
-  ReturnType<typeof Typography>
->
+const mockedTypography = (Typography as unknown as { render: jest.Mock }).render
 const mockedIsOverflown = isOverflown as jest.Mock<
   ReturnType<typeof isOverflown>
 >
 
+const SAFARI_USER_AGENT =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+
+const mockPointer = (pointer: boolean) =>
+  jest
+    .spyOn(window, 'matchMedia')
+    .mockReturnValue({ matches: pointer } as MediaQueryList)
+
+const mockSafari = ({ pointer }: { pointer: boolean }) => {
+  jest.spyOn(navigator, 'vendor', 'get').mockReturnValue('Apple Computer, Inc.')
+  jest.spyOn(navigator, 'userAgent', 'get').mockReturnValue(SAFARI_USER_AGENT)
+  mockPointer(pointer)
+}
+
+const getLayer = (container: HTMLElement) =>
+  container.querySelector('[aria-hidden="true"]')
+
+const getRootClasses = () =>
+  mockedTypography.mock.calls.at(-1)[0].className.split(' ')
+
 describe('TypographyOverflow', () => {
+  beforeEach(() => {
+    mockedTypography.mockImplementation(
+      ({ children }: { children: ReactNode }, ref: Ref<HTMLSpanElement>) => (
+        <span ref={ref}>{children}</span>
+      )
+    )
+  })
+
   describe('initial render', () => {
     it('renders only typography', () => {
       render(
@@ -113,46 +141,134 @@ describe('TypographyOverflow', () => {
     })
   })
 
-  describe('Safari tooltip guard', () => {
-    beforeEach(() => {
-      mockedTypography.mockImplementation(({ children }) => (
-        <span>{children}</span>
-      ))
+  describe('title case', () => {
+    it('applies titleCase', () => {
+      render(<TypographyOverflow titleCase>invoice for</TypographyOverflow>)
+
+      expect(screen.getByText('Invoice For')).toBeInTheDocument()
     })
 
-    const getRootClasses = () =>
-      mockedTypography.mock.calls[0][0].className.split(' ')
+    it('applies titleCase under the Safari layer', () => {
+      mockSafari({ pointer: true })
 
-    it('covers the text with a positioned layer by default', () => {
+      const { container } = render(
+        <TypographyOverflow titleCase>invoice for</TypographyOverflow>
+      )
+
+      expect(getLayer(container)).not.toBeNull()
+      expect(screen.getByText('Invoice For')).toBeInTheDocument()
+    })
+
+    it('keeps the text as written without titleCase', () => {
+      render(<TypographyOverflow>invoice for</TypographyOverflow>)
+
+      expect(screen.getByText('invoice for')).toBeInTheDocument()
+    })
+  })
+
+  describe('Safari tooltip guard', () => {
+    it('renders the text once and without a layer outside Safari', () => {
+      mockPointer(true)
+
       const { container } = render(
         <TypographyOverflow>Just Typography</TypographyOverflow>
       )
 
-      expect(container.querySelector('[aria-hidden="true"]')).toHaveClass(
-        'absolute',
-        'inset-0'
+      expect(getLayer(container)).toBeNull()
+      expect(getRootClasses()).not.toContain('relative')
+      expect(mockedTypography).toHaveBeenCalledTimes(1)
+    })
+
+    it('covers the text with a positioned layer in desktop Safari', () => {
+      mockSafari({ pointer: true })
+
+      const { container } = render(
+        <TypographyOverflow>Just Typography</TypographyOverflow>
       )
+
+      expect(getLayer(container)).toHaveClass('absolute', 'inset-0')
       expect(getRootClasses()).toContain('relative')
     })
 
+    it('leaves the text uncovered on touch devices', () => {
+      mockSafari({ pointer: false })
+
+      const { container } = render(
+        <TypographyOverflow>Just Typography</TypographyOverflow>
+      )
+
+      expect(getLayer(container)).toBeNull()
+    })
+
+    it.each([
+      ['a link', <a href='#'>Link</a>],
+      ['a button', <button type='button'>Button</button>],
+      ['an input', <input />],
+      ['a role="button" element', <span role='button'>Action</span>],
+      ['a focusable element', <span tabIndex={0}>Focusable</span>],
+    ])('keeps the layer and lifts %s above it', (_, control) => {
+      mockSafari({ pointer: true })
+
+      const { container } = render(
+        <TypographyOverflow>{control} next to the text</TypographyOverflow>
+      )
+      const root = getLayer(container)?.parentElement as HTMLElement
+      const liftedSelector = getRootClasses()
+        .find(cls => cls.endsWith(']:relative'))
+        ?.slice('[&_'.length, -']:relative'.length)
+
+      expect(root.firstElementChild).toBe(getLayer(container))
+      expect(root.querySelector(liftedSelector ?? 'none')).toBe(
+        root.children[1]
+      )
+    })
+
+    it('does not lift plain inline elements', () => {
+      mockSafari({ pointer: true })
+
+      const { container } = render(
+        <TypographyOverflow>
+          <strong>Bold</strong> next to the text
+        </TypographyOverflow>
+      )
+      const liftedSelector = getRootClasses()
+        .find(cls => cls.endsWith(']:relative'))
+        ?.slice('[&_'.length, -']:relative'.length)
+
+      expect(liftedSelector).toBeDefined()
+      expect(container.querySelector(liftedSelector ?? 'none')).toBeNull()
+    })
+
     it('leaves the text uncovered when disableTooltipGuard is set', () => {
+      mockSafari({ pointer: true })
+
       const { container } = render(
         <TypographyOverflow disableTooltipGuard>
           Just Typography
         </TypographyOverflow>
       )
 
-      expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
-      expect(getRootClasses()).not.toContain('relative')
+      expect(getLayer(container)).toBeNull()
     })
 
     it('leaves the text uncovered when the tooltip is disabled', () => {
+      mockSafari({ pointer: true })
+
       const { container } = render(
         <TypographyOverflow disableTooltip>Just Typography</TypographyOverflow>
       )
 
-      expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
-      expect(getRootClasses()).not.toContain('relative')
+      expect(getLayer(container)).toBeNull()
+    })
+
+    it('renders no layer on the server', () => {
+      mockSafari({ pointer: true })
+      // jsdom picks useLayoutEffect, which React warns about in renderToString
+      jest.spyOn(console, 'error').mockImplementation(() => {})
+
+      expect(
+        renderToString(<TypographyOverflow>Just Typography</TypographyOverflow>)
+      ).not.toContain('aria-hidden')
     })
   })
 

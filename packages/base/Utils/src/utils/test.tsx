@@ -21,6 +21,7 @@ import {
   sum,
   getReactNodeTextContent,
   isBrowser,
+  isSafari,
 } from './index'
 import unsafeErrorLog from './unsafe-error-log'
 
@@ -308,6 +309,39 @@ describe('isBrowser', () => {
     windowSpy.mockImplementation(() => ({}))
 
     expect(isBrowser()).toBe(true)
+  })
+})
+
+describe('isSafari', () => {
+  const SAFARI_USER_AGENT =
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+  const CHROME_USER_AGENT =
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+
+  const mockNavigator = (vendor: string, userAgent: string) => {
+    jest.spyOn(navigator, 'vendor', 'get').mockReturnValue(vendor)
+    jest.spyOn(navigator, 'userAgent', 'get').mockReturnValue(userAgent)
+  }
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
+  it('returns true for Safari', () => {
+    mockNavigator('Apple Computer, Inc.', SAFARI_USER_AGENT)
+
+    expect(isSafari()).toBe(true)
+  })
+
+  it('returns false for Chrome', () => {
+    mockNavigator('Google Inc.', CHROME_USER_AGENT)
+
+    expect(isSafari()).toBe(false)
+  })
+
+  it('returns false for jsdom, which also reports Apple as the vendor', () => {
+    expect(navigator.vendor).toBe('Apple Computer, Inc.')
+    expect(isSafari()).toBe(false)
   })
 })
 

@@ -77,16 +77,26 @@ const CustomTooltipAndDelayExample = () => (
   </Container>
 )
 
-const LinkExample = () => (
+const LinkExample = ({ onClick }: { onClick: () => void }) => (
   <Container padded='medium' style={{ width: 300, marginTop: 100 }}>
-    <TypographyOverflow disableTooltipGuard>
-      <a href='#' data-testid='link'>
+    <TypographyOverflow data-testid='ellipsed-text'>
+      <a href='#' data-testid='link' onClick={onClick}>
         Link
       </a>{' '}
       inside a typography that is very long and therefore it overflows.
     </TypographyOverflow>
   </Container>
 )
+
+const SAFARI_USER_AGENT =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+
+const mockDesktopSafari = () =>
+  cy.window().then(win => {
+    cy.stub(win.navigator, 'vendor').value('Apple Computer, Inc.')
+
+    return cy.stub(win.navigator, 'userAgent').value(SAFARI_USER_AGENT)
+  })
 
 const getElementAtCenter = (element: HTMLElement) => {
   const { left, top, width, height } = element.getBoundingClientRect()
@@ -95,6 +105,42 @@ const getElementAtCenter = (element: HTMLElement) => {
     left + width / 2,
     top + height / 2
   )
+}
+
+// The end of the line is plain text in every example
+const getElementAtEnd = (element: HTMLElement) => {
+  const { right, top, height } = element.getBoundingClientRect()
+
+  return element.ownerDocument.elementFromPoint(right - 10, top + height / 2)
+}
+
+const expectOnTop = ([element]: JQuery<HTMLElement>) => {
+  expect(getElementAtCenter(element)).to.equal(element)
+}
+
+const expectEmptyLayerOnTop = ([element]: JQuery<HTMLElement>) => {
+  const hit = getElementAtEnd(element)
+
+  expect(hit).to.have.attr('aria-hidden', 'true')
+  expect(hit?.childNodes).to.have.length(0)
+  expect(hit?.parentElement).to.equal(element)
+}
+
+// Hovering wraps the text in the tooltip anchor and remounts it, so hover first,
+// as a user does before clicking
+const hoverAndClickLink = () => {
+  const onClick = cy.stub().as('linkClick')
+
+  cy.mount(<LinkExample onClick={onClick} />)
+
+  cy.getByTestId('ellipsed-text').realHover()
+  cy.getByTestId('ellipsed-text').should(
+    'have.attr',
+    'data-picasso-tooltip-anchor'
+  )
+  cy.getByTestId('link').should(expectOnTop)
+  cy.getByTestId('link').realClick()
+  cy.get('@linkClick').should('have.been.calledOnce')
 }
 
 const component = 'TypographyOverflow'
@@ -119,26 +165,38 @@ describe('TypographyOverflow', () => {
     })
   })
 
-  it('puts an empty layer under the pointer and still opens the tooltip on hover', () => {
+  it('renders no layer outside Safari', () => {
     cy.mount(<DefaultExample />)
 
-    cy.getByTestId('ellipsed-text').should(([element]) => {
-      const hit = getElementAtCenter(element)
-
-      expect(hit).to.have.attr('aria-hidden', 'true')
-      expect(hit?.childNodes).to.have.length(0)
-      expect(hit?.parentElement).to.equal(element)
-    })
-
-    cy.getByTestId('ellipsed-text').realHover()
-    cy.getByRole('tooltip').should('be.visible')
+    cy.getByTestId('ellipsed-text').should(expectOnTop)
+    cy.getByTestId('ellipsed-text').find('[aria-hidden]').should('not.exist')
   })
 
-  it('leaves a link reachable when disableTooltipGuard is set', () => {
-    cy.mount(<LinkExample />)
+  it('keeps a link inside clickable', () => {
+    hoverAndClickLink()
+  })
 
-    cy.getByTestId('link').should(([link]) => {
-      expect(getElementAtCenter(link)).to.equal(link)
+  describe('in desktop Safari', () => {
+    beforeEach(() => {
+      mockDesktopSafari()
+    })
+
+    it('puts an empty layer under the pointer and still opens the tooltip on hover', () => {
+      cy.mount(<DefaultExample />)
+
+      cy.getByTestId('ellipsed-text').should(expectEmptyLayerOnTop)
+
+      cy.getByTestId('ellipsed-text').realHover()
+      cy.getByRole('tooltip').should('be.visible')
+    })
+
+    it('keeps the layer over the text next to a link and the link clickable', () => {
+      cy.mount(<LinkExample onClick={cy.stub()} />)
+
+      cy.getByTestId('ellipsed-text').should(expectEmptyLayerOnTop)
+      cy.getByTestId('link').should(expectOnTop)
+
+      hoverAndClickLink()
     })
   })
 

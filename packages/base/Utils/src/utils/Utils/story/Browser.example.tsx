@@ -4,6 +4,7 @@ import React from 'react'
 const data = {
   isPointerDevice: `Checks if the primary input mechanism includes an accurate pointing device`,
   isBrowser: `Checks if there is a browser or not.`,
+  isSafari: `Checks if the browser is Safari or another WebKit browser on iOS.`,
 }
 
 const Example = () => (
