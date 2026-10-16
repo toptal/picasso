@@ -37,6 +37,8 @@ pnpm test:integration              # cypress component tests (headless)
 pnpm test:integration:open         # cypress in dev mode + watch build
 pnpm test:react19                  # jest against the standalone React 19 install in react19/
 pnpm typecheck:react19             # tsc against @types/react 19 (build stays on @types/react 17)
+pnpm typecheck:react19:declarations # published .d.ts against @types/react 19, skipLibCheck off (after build:package)
+pnpm typecheck:react18:declarations # same against @types/react 18, from the standalone react18-types/ install
 pnpm test:integration:react19      # cypress component tests against React 19 (CYPRESS_REACT_19=1)
 pnpm start:storybook:react19       # storybook on http://localhost:9001 against the React 19 install (STORYBOOK_REACT_19=1)
 pnpm test                          # unit + integration (CI parity, slow)

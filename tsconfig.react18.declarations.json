@@ -1,0 +1,21 @@
+{
+  // The published declarations, compiled the way a consumer on `@types/react`
+  // 18 with `skipLibCheck: false` compiles them. The build compiles them
+  // against 17 and tsconfig.react19.declarations.json against 19. Run it
+  // through bin/check-declarations.mjs, after `pnpm build:package`
+  "extends": "./tsconfig.react19.declarations.json",
+  "compilerOptions": {
+    "typeRoots": [
+      "./react18-types/node_modules/@types",
+      "./node_modules/@types",
+      "./@types",
+      "./node_modules/@testing-library"
+    ],
+    "paths": {
+      "react": ["./react18-types/node_modules/@types/react"],
+      "react/*": ["./react18-types/node_modules/@types/react/*"],
+      "react-dom": ["./react18-types/node_modules/@types/react-dom"],
+      "react-dom/*": ["./react18-types/node_modules/@types/react-dom/*"]
+    }
+  }
+}

@@ -56,6 +56,11 @@ jobs:
       - name: Check the published declarations against @types/react 19
         run: pnpm typecheck:react19:declarations
 
+      # Same build again. The build compiles the declarations against
+      # @types/react 17, so with 19 above this covers every major apps use
+      - name: Check the published declarations against @types/react 18
+        run: pnpm typecheck:react18:declarations
+
   react19-component:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Component tests on React 19

@@ -1,19 +1,31 @@
 #!/usr/bin/env node
 /**
  * Type-checks the published declarations the way a consumer on `@types/react`
- * 19 with `skipLibCheck: false` compiles them (tsconfig.react19.declarations.json).
- * TypeScript then checks every declaration file in the program, other
- * packages' included, so only errors in Picasso's own declarations fail it.
+ * 18 or 19 with `skipLibCheck: false` compiles them
+ * (tsconfig.react<major>.declarations.json); the build itself compiles them
+ * against 17. TypeScript then checks every declaration file in the program,
+ * other packages' included, so only errors in Picasso's own declarations fail
+ * it.
  *
  * Run it after `pnpm build:package`, on a clean build: `tsc -b` leaves behind
  * the output of a source file that was deleted.
  *
- * Run: node bin/check-react19-declarations.mjs
+ * Run: node bin/check-declarations.mjs <18|19>
  */
 import { spawnSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+const REACT_MAJORS = ['18', '19']
+const major = process.argv[2]
+
+if (!REACT_MAJORS.includes(major)) {
+  console.error(
+    `Usage: node bin/check-declarations.mjs <${REACT_MAJORS.join('|')}>`
+  )
+  process.exit(1)
+}
 
 const repoRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -23,7 +35,7 @@ const tsc = createRequire(import.meta.url).resolve('typescript/bin/tsc')
 
 const { stdout, stderr, status, signal, error } = spawnSync(
   process.execPath,
-  [tsc, '-p', 'tsconfig.react19.declarations.json', '--pretty', 'false'],
+  [tsc, '-p', `tsconfig.react${major}.declarations.json`, '--pretty', 'false'],
   // Unbounded: past the default 1 MiB, Node kills tsc and cuts the output,
   // and tsc prints other packages' errors before Picasso's
   { cwd: repoRoot, encoding: 'utf8', maxBuffer: Infinity }
@@ -64,5 +76,5 @@ if (picassoErrors.length > 0) {
 }
 
 console.log(
-  "Picasso's published declarations compile against @types/react 19 with skipLibCheck: false"
+  `Picasso's published declarations compile against @types/react ${major} with skipLibCheck: false`
 )
