@@ -172,8 +172,11 @@ React's major:
    majors.
 5. **React 19** (Steps 11 to 16).
 
-Staff Portal merged its third-party upgrades on React 18 this way, so its React
-19 change only had to follow React itself.
+Staff Portal merged four third-party upgrades on React 18 this way
+([toptal/staff-portal#16946](https://github.com/toptal/staff-portal/pull/16946))
+and gave Apollo a pull request of its own
+([toptal/staff-portal#16987](https://github.com/toptal/staff-portal/pull/16987)),
+so that its React 19 change only has to follow React itself.
 
 ### Size the work
 
@@ -907,9 +910,11 @@ ESM-only and fails Jest's transform. Version 5 types an element's `children` as
 A peer range is only half the story. Some blockers pass the check:
 
 - **Cypress 13**'s `cypress/react` mounts through `ReactDOM.render`, which React
-  19 removes. Cypress 14's mounts through `createRoot`, and Picasso runs its
-  component tests on it, next to `@toptal/davinci-qa`, which still declares a
-  Cypress 12 or 13 peer. Expect that peer warning.
+  19 removes. From Cypress 14 it mounts through `createRoot`. Picasso runs its
+  component tests on Cypress 14 and Staff Portal on 15, next to
+  `@toptal/davinci-qa`, which still declares a Cypress 12 or 13 peer. Expect
+  that peer warning. End-to-end tests, which don't mount components, don't need
+  the upgrade.
 - **styled-components 5** declares `react >= 16.8.0` but passes `ref: null` to
   the component it wraps ([Step 14](#step-14-fix-the-react-19-runtime-breaks)).
 - **Monitoring SDKs** may read React internals that React 19 removed.
@@ -982,7 +987,7 @@ These versions work together:
   and assert on `result.current`.
 - **`logrocket-react` 7**, with an override while a library you depend on still
   pulls in version 6 ([Step 10](#step-10-clear-the-blockers-outside-picasso)).
-- **Cypress 14** for component tests
+- **Cypress 14 or newer** for component tests
   ([Step 10](#step-10-clear-the-blockers-outside-picasso)).
 
 ### Step 12. Handle Picasso's React 19 limitations
@@ -1239,8 +1244,10 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
   ([toptal/staff-portal#16703](https://github.com/toptal/staff-portal/pull/16703))
   and React 19
   ([toptal/staff-portal#16704](https://github.com/toptal/staff-portal/pull/16704)),
-  its `@apollo/client` 3.14 upgrade
-  ([toptal/staff-portal#16943](https://github.com/toptal/staff-portal/pull/16943)),
+  its third-party upgrades
+  ([toptal/staff-portal#16946](https://github.com/toptal/staff-portal/pull/16946))
+  and `@apollo/client` 3.14 upgrade
+  ([toptal/staff-portal#16987](https://github.com/toptal/staff-portal/pull/16987)),
   and Client Portal on React 18
   ([toptal/client-portal#11519](https://github.com/toptal/client-portal/pull/11519))
 - The previous migration:
