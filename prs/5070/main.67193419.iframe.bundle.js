@@ -16629,6 +16629,14 @@ var isClassComponent = function (component) {
     prototype = _ref.prototype;
   return $$typeof === Symbol.for('react.memo') ? isClassComponent(type) : Boolean(prototype === null || prototype === void 0 ? void 0 : prototype.isReactComponent);
 };
+// `memo` hands its ref to the component it wraps, so a memo-wrapped `forwardRef`
+// component takes the ref on React 17 and 18 too
+var isForwardRefComponent = function (component) {
+  var _ref2 = component !== null && component !== void 0 ? component : {},
+    $$typeof = _ref2.$$typeof,
+    type = _ref2.type;
+  return $$typeof === Symbol.for('react.memo') ? isForwardRefComponent(type) : (0,is_forward_ref/* default */.A)(component);
+};
 var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_a, customRef) {
   var _a$enableAutofill = _a.enableAutofill,
     enableAutofill = _a$enableAutofill === void 0 ? false : _a$enableAutofill,
@@ -16692,7 +16700,7 @@ var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_a, c
   var ref = customRef || inputRef;
   // React 19 passes a function component its `ref` as a prop; React 17 and
   // 18 pass it only to a `forwardRef` component
-  if (inputComponent && (isClassComponent(inputComponent) || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
+  if (inputComponent && (isClassComponent(inputComponent) || !is_react_19_or_newer/* isReact19OrNewer */.U && !isForwardRefComponent(inputComponent))) {
     ref = undefined;
     (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.');
   }
@@ -17357,46 +17365,55 @@ var isClassComponent = function (component) {
     prototype = _ref.prototype;
   return $$typeof === Symbol.for('react.memo') ? isClassComponent(type) : Boolean(prototype === null || prototype === void 0 ? void 0 : prototype.isReactComponent);
 };
-var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref2, customRef) {
-  var _ref2$enableAutofill = _ref2.enableAutofill,
-    enableAutofill = _ref2$enableAutofill === void 0 ? false : _ref2$enableAutofill,
-    _ref2$getDisplayValue = _ref2.getDisplayValue,
-    getDisplayValue = _ref2$getDisplayValue === void 0 ? getItemText : _ref2$getDisplayValue,
-    _ref2$loading = _ref2.loading,
-    loading = _ref2$loading === void 0 ? false : _ref2$loading,
-    _ref2$noOptionsText = _ref2.noOptionsText,
-    noOptionsText = _ref2$noOptionsText === void 0 ? 'No options' : _ref2$noOptionsText,
-    _ref2$onChange = _ref2.onChange,
-    onChange = _ref2$onChange === void 0 ? function () {} : _ref2$onChange,
-    _ref2$onKeyDown = _ref2.onKeyDown,
-    onKeyDown = _ref2$onKeyDown === void 0 ? function () {} : _ref2$onKeyDown,
-    _ref2$onFocus = _ref2.onFocus,
-    onFocus = _ref2$onFocus === void 0 ? function () {} : _ref2$onFocus,
-    _ref2$onBlur = _ref2.onBlur,
-    onBlur = _ref2$onBlur === void 0 ? function () {} : _ref2$onBlur,
-    _ref2$onOtherOptionSe = _ref2.onOtherOptionSelect,
-    onOtherOptionSelect = _ref2$onOtherOptionSe === void 0 ? function () {} : _ref2$onOtherOptionSe,
-    _ref2$onResetClick = _ref2.onResetClick,
-    onResetClick = _ref2$onResetClick === void 0 ? function () {} : _ref2$onResetClick,
-    _ref2$onSelect = _ref2.onSelect,
-    onSelect = _ref2$onSelect === void 0 ? function () {} : _ref2$onSelect,
-    _ref2$options = _ref2.options,
-    options = _ref2$options === void 0 ? [] : _ref2$options,
-    _ref2$otherOptionText = _ref2.otherOptionText,
-    otherOptionText = _ref2$otherOptionText === void 0 ? 'Other option: ' : _ref2$otherOptionText,
-    _ref2$showOtherOption = _ref2.showOtherOption,
-    showOtherOption = _ref2$showOtherOption === void 0 ? false : _ref2$showOtherOption,
-    _ref2$width = _ref2.width,
-    width = _ref2$width === void 0 ? 'auto' : _ref2$width,
-    _ref2$enableReset = _ref2.enableReset,
-    enableReset = _ref2$enableReset === void 0 ? true : _ref2$enableReset,
-    _ref2$poweredByGoogle = _ref2.poweredByGoogle,
-    poweredByGoogle = _ref2$poweredByGoogle === void 0 ? false : _ref2$poweredByGoogle,
-    _ref2$disabled = _ref2.disabled,
-    disabled = _ref2$disabled === void 0 ? false : _ref2$disabled,
-    _ref2$status = _ref2.status,
-    status = _ref2$status === void 0 ? 'default' : _ref2$status,
-    props = Autocomplete_objectWithoutProperties(_ref2, Autocomplete_excluded);
+
+// `memo` hands its ref to the component it wraps, so a memo-wrapped `forwardRef`
+// component takes the ref on React 17 and 18 too
+var isForwardRefComponent = function (component) {
+  var _ref2 = component !== null && component !== void 0 ? component : {},
+    $$typeof = _ref2.$$typeof,
+    type = _ref2.type;
+  return $$typeof === Symbol.for('react.memo') ? isForwardRefComponent(type) : (0,is_forward_ref/* default */.A)(component);
+};
+var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref3, customRef) {
+  var _ref3$enableAutofill = _ref3.enableAutofill,
+    enableAutofill = _ref3$enableAutofill === void 0 ? false : _ref3$enableAutofill,
+    _ref3$getDisplayValue = _ref3.getDisplayValue,
+    getDisplayValue = _ref3$getDisplayValue === void 0 ? getItemText : _ref3$getDisplayValue,
+    _ref3$loading = _ref3.loading,
+    loading = _ref3$loading === void 0 ? false : _ref3$loading,
+    _ref3$noOptionsText = _ref3.noOptionsText,
+    noOptionsText = _ref3$noOptionsText === void 0 ? 'No options' : _ref3$noOptionsText,
+    _ref3$onChange = _ref3.onChange,
+    onChange = _ref3$onChange === void 0 ? function () {} : _ref3$onChange,
+    _ref3$onKeyDown = _ref3.onKeyDown,
+    onKeyDown = _ref3$onKeyDown === void 0 ? function () {} : _ref3$onKeyDown,
+    _ref3$onFocus = _ref3.onFocus,
+    onFocus = _ref3$onFocus === void 0 ? function () {} : _ref3$onFocus,
+    _ref3$onBlur = _ref3.onBlur,
+    onBlur = _ref3$onBlur === void 0 ? function () {} : _ref3$onBlur,
+    _ref3$onOtherOptionSe = _ref3.onOtherOptionSelect,
+    onOtherOptionSelect = _ref3$onOtherOptionSe === void 0 ? function () {} : _ref3$onOtherOptionSe,
+    _ref3$onResetClick = _ref3.onResetClick,
+    onResetClick = _ref3$onResetClick === void 0 ? function () {} : _ref3$onResetClick,
+    _ref3$onSelect = _ref3.onSelect,
+    onSelect = _ref3$onSelect === void 0 ? function () {} : _ref3$onSelect,
+    _ref3$options = _ref3.options,
+    options = _ref3$options === void 0 ? [] : _ref3$options,
+    _ref3$otherOptionText = _ref3.otherOptionText,
+    otherOptionText = _ref3$otherOptionText === void 0 ? 'Other option: ' : _ref3$otherOptionText,
+    _ref3$showOtherOption = _ref3.showOtherOption,
+    showOtherOption = _ref3$showOtherOption === void 0 ? false : _ref3$showOtherOption,
+    _ref3$width = _ref3.width,
+    width = _ref3$width === void 0 ? 'auto' : _ref3$width,
+    _ref3$enableReset = _ref3.enableReset,
+    enableReset = _ref3$enableReset === void 0 ? true : _ref3$enableReset,
+    _ref3$poweredByGoogle = _ref3.poweredByGoogle,
+    poweredByGoogle = _ref3$poweredByGoogle === void 0 ? false : _ref3$poweredByGoogle,
+    _ref3$disabled = _ref3.disabled,
+    disabled = _ref3$disabled === void 0 ? false : _ref3$disabled,
+    _ref3$status = _ref3.status,
+    status = _ref3$status === void 0 ? 'default' : _ref3$status,
+    props = Autocomplete_objectWithoutProperties(_ref3, Autocomplete_excluded);
   var autoComplete = props.autoComplete,
     className = props.className,
     endAdornment = props.endAdornment,
@@ -17421,7 +17438,7 @@ var Autocomplete = /*#__PURE__*/(0,react.forwardRef)(function Autocomplete(_ref2
 
   // React 19 passes a function component its `ref` as a prop; React 17 and
   // 18 pass it only to a `forwardRef` component
-  if (inputComponent && (isClassComponent(inputComponent) || !is_react_19_or_newer/* isReact19OrNewer */.U && !(0,is_forward_ref/* default */.A)(inputComponent))) {
+  if (inputComponent && (isClassComponent(inputComponent) || !is_react_19_or_newer/* isReact19OrNewer */.U && !isForwardRefComponent(inputComponent))) {
     ref = undefined;
     (0,unsafe_error_log/* default */.A)('You provided `inputComponent` prop to Autocomplete that cannot receive the input ref: a class component, or on React 17 and 18 a component without React.forwardRef wrapper. This may cause unexpected behavior. Consider a function component wrapped with React.forwardRef that passes the ref to its input.');
   }
@@ -162683,4 +162700,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.1eb6b818.iframe.bundle.js.map
+//# sourceMappingURL=main.67193419.iframe.bundle.js.map
