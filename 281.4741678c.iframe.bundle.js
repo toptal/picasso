@@ -1905,19 +1905,29 @@ LinkPlugin[RTEPluginMeta] = {
   }
 };
 /* harmony default export */ const LinkPlugin_LinkPlugin = (LinkPlugin);
-// EXTERNAL MODULE: ./node_modules/@emoji-mart/data/sets/15/native.json
-var _15_native = __webpack_require__("./node_modules/@emoji-mart/data/sets/15/native.json");
-// EXTERNAL MODULE: ./node_modules/@emoji-mart/react/dist/main.js
-var main = __webpack_require__("./node_modules/@emoji-mart/react/dist/main.js");
-var main_default = /*#__PURE__*/__webpack_require__.n(main);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
+var es_promise = __webpack_require__("./node_modules/core-js/modules/es.promise.js");
 ;// ./packages/picasso-rich-text-editor/src/RichTextEditorEmojiPicker/RichTextEditorEmojiPicker.tsx
-
 function RichTextEditorEmojiPicker_slicedToArray(r, e) { return RichTextEditorEmojiPicker_arrayWithHoles(r) || RichTextEditorEmojiPicker_iterableToArrayLimit(r, e) || RichTextEditorEmojiPicker_unsupportedIterableToArray(r, e) || RichTextEditorEmojiPicker_nonIterableRest(); }
 function RichTextEditorEmojiPicker_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function RichTextEditorEmojiPicker_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return RichTextEditorEmojiPicker_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? RichTextEditorEmojiPicker_arrayLikeToArray(r, a) : void 0; } }
 function RichTextEditorEmojiPicker_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function RichTextEditorEmojiPicker_iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function RichTextEditorEmojiPicker_arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function RichTextEditorEmojiPicker_classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function RichTextEditorEmojiPicker_defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, RichTextEditorEmojiPicker_toPropertyKey(o.key), o); } }
+function RichTextEditorEmojiPicker_createClass(e, r, t) { return r && RichTextEditorEmojiPicker_defineProperties(e.prototype, r), t && RichTextEditorEmojiPicker_defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function RichTextEditorEmojiPicker_toPropertyKey(t) { var i = RichTextEditorEmojiPicker_toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function RichTextEditorEmojiPicker_toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function RichTextEditorEmojiPicker_callSuper(t, o, e) { return o = RichTextEditorEmojiPicker_getPrototypeOf(o), RichTextEditorEmojiPicker_possibleConstructorReturn(t, RichTextEditorEmojiPicker_isNativeReflectConstruct() ? Reflect.construct(o, e || [], RichTextEditorEmojiPicker_getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function RichTextEditorEmojiPicker_possibleConstructorReturn(t, e) { if (e && ("object" == typeof e || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return RichTextEditorEmojiPicker_assertThisInitialized(t); }
+function RichTextEditorEmojiPicker_assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function RichTextEditorEmojiPicker_isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (RichTextEditorEmojiPicker_isNativeReflectConstruct = function () { return !!t; })(); }
+function RichTextEditorEmojiPicker_getPrototypeOf(t) { return RichTextEditorEmojiPicker_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, RichTextEditorEmojiPicker_getPrototypeOf(t); }
+function RichTextEditorEmojiPicker_inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && RichTextEditorEmojiPicker_setPrototypeOf(t, e); }
+function RichTextEditorEmojiPicker_setPrototypeOf(t, e) { return RichTextEditorEmojiPicker_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, RichTextEditorEmojiPicker_setPrototypeOf(t, e); }
+
+
 /* eslint-disable no-inline-styles/no-inline-styles */
 
 
@@ -1925,45 +1935,94 @@ function RichTextEditorEmojiPicker_arrayWithHoles(r) { if (Array.isArray(r)) ret
 
 
 
+// loaded on the first open; its own Suspense keeps the load from suspending the
+// whole editor
+var EmojiMartPicker = /*#__PURE__*/(0,react.lazy)(function () {
+  return Promise.all(/* import() */[__webpack_require__.e(225), __webpack_require__.e(634)]).then(__webpack_require__.bind(__webpack_require__, "./packages/picasso-rich-text-editor/src/RichTextEditorEmojiPicker/EmojiMartPicker.tsx"));
+});
 
-var TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker';
-var handleEmojiPickerEscBehaviour = function (event, setShowEmojiPicker) {
-  if (event.key === 'Escape') {
-    setShowEmojiPicker(false);
+// renders nothing if emoji-mart fails to load, so the editor keeps its value
+var LoadErrorBoundary = /*#__PURE__*/function (_Component) {
+  RichTextEditorEmojiPicker_inherits(LoadErrorBoundary, _Component);
+  function LoadErrorBoundary() {
+    var _this;
+    RichTextEditorEmojiPicker_classCallCheck(this, LoadErrorBoundary);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    _this = RichTextEditorEmojiPicker_callSuper(this, LoadErrorBoundary, [].concat(args));
+    _this.state = {
+      failed: false
+    };
+    return _this;
   }
-};
+  RichTextEditorEmojiPicker_createClass(LoadErrorBoundary, [{
+    key: "render",
+    value: function render() {
+      return this.state.failed ? null : this.props.children;
+    }
+  }], [{
+    key: "getDerivedStateFromError",
+    value: function getDerivedStateFromError() {
+      return {
+        failed: true
+      };
+    }
+  }]);
+  return LoadErrorBoundary;
+}(react.Component);
+var TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker';
 var RichTextEditorEmojiPicker = function (_ref) {
   var customEmojis = _ref.customEmojis,
     onInsertEmoji = _ref.onInsertEmoji,
     disabled = _ref.disabled;
-  var _React$useState = react.useState(false),
-    _React$useState2 = RichTextEditorEmojiPicker_slicedToArray(_React$useState, 2),
-    showEmojiPicker = _React$useState2[0],
-    setShowEmojiPicker = _React$useState2[1];
+  var _useState = (0,react.useState)(false),
+    _useState2 = RichTextEditorEmojiPicker_slicedToArray(_useState, 2),
+    showEmojiPicker = _useState2[0],
+    setShowEmojiPicker = _useState2[1];
+  // kept after the first open, so closing only hides emoji-mart
+  var _useState3 = (0,react.useState)(false),
+    _useState4 = RichTextEditorEmojiPicker_slicedToArray(_useState3, 2),
+    pickerMounted = _useState4[0],
+    setPickerMounted = _useState4[1];
+  var rootRef = (0,react.useRef)(null);
   var handleEmojiPickerClick = function () {
     setShowEmojiPicker(!showEmojiPicker);
+    setPickerMounted(true);
   };
-  var closePicker = function () {
-    setShowEmojiPicker(false);
-  };
-  var handleEmojiInsert = function (emoji) {
+
+  // stable, so re-renders push no props into emoji-mart
+  var handleEmojiInsert = (0,react.useCallback)(function (emoji) {
     onInsertEmoji(emoji);
     setShowEmojiPicker(false);
-  };
+  }, [onInsertEmoji]);
   (0,react.useEffect)(function () {
     if (!showEmojiPicker) {
       return;
     }
-    document.body.addEventListener('keyup', function (event) {
-      handleEmojiPickerEscBehaviour(event, setShowEmojiPicker);
-    });
-    return function () {
-      document.body.removeEventListener('keyup', function (event) {
-        handleEmojiPickerEscBehaviour(event, setShowEmojiPicker);
-      });
+    var closeOnEscape = function (event) {
+      if (event.key === 'Escape') {
+        setShowEmojiPicker(false);
+      }
     };
-  }, [showEmojiPicker, setShowEmojiPicker]);
+
+    // handled here rather than by emoji-mart, so it also works while emoji-mart
+    // loads; clicks on the toggle and in the picker land inside the root
+    var closeOnClickOutside = function (event) {
+      var _rootRef$current;
+      if (event.target instanceof Node && !((_rootRef$current = rootRef.current) !== null && _rootRef$current !== void 0 && _rootRef$current.contains(event.target))) {
+        setShowEmojiPicker(false);
+      }
+    };
+    document.body.addEventListener('keyup', closeOnEscape);
+    document.addEventListener('click', closeOnClickOutside);
+    return function () {
+      document.body.removeEventListener('keyup', closeOnEscape);
+      document.removeEventListener('click', closeOnClickOutside);
+    };
+  }, [showEmojiPicker]);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)(Container/* default */.A, {
+    ref: rootRef,
     style: {
       position: 'relative'
     },
@@ -1983,11 +2042,14 @@ var RichTextEditorEmojiPicker = function (_ref) {
     // and it wins, so clicks fall through the open picker to the editor
     , {
       className: (0,twMerge/* twMerge */.QP)('absolute top-[34px] left-0 z-10 opacity-0 pointer-events-none', showEmojiPicker && 'opacity-100 pointer-events-auto'),
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)((main_default()), {
-        data: _15_native,
-        custom: customEmojis,
-        onEmojiSelect: handleEmojiInsert,
-        onClickOutside: showEmojiPicker && closePicker
+      children: pickerMounted && /*#__PURE__*/(0,jsx_runtime.jsx)(LoadErrorBoundary, {
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)(react.Suspense, {
+          fallback: null,
+          children: /*#__PURE__*/(0,jsx_runtime.jsx)(EmojiMartPicker, {
+            custom: customEmojis,
+            onEmojiSelect: handleEmojiInsert
+          })
+        })
       })
     })]
   });
@@ -2730,4 +2792,4 @@ catch (__react_docgen_typescript_loader_error) { }
 /***/ })
 
 }]);
-//# sourceMappingURL=281.f9ab942b.iframe.bundle.js.map
+//# sourceMappingURL=281.4741678c.iframe.bundle.js.map

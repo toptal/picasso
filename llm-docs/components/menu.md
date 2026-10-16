@@ -28,8 +28,8 @@ Menu list.
 | nonSelectable | `boolean` | `false` | Disables changing colors on hover/focus |
 | children | `ReactNode` | - | The main content of the item |
 | description | `ReactNode` | - | The additional description |
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Render an `<Icon />` |
-| avatar | `ReactElement<AvatarProps, { ({ size, ...props }: Props): Element; displayName: string; }>` | - | Render an <Avatar /> |
+| icon | `IconElement` | - | Render an `<Icon />` |
+| avatar | `ReactElement<AvatarProps, { ({ size, ...props }: Props): ReactElement<any, string \| JSXElementConstructor<any>>; displayName: string; }>` | - | Render an <Avatar /> |
 | onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
 | onMouseEnter | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is hovered |
 | className | `string` | - | Classnames applied to root element |
