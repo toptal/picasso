@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-icons",
-  "version": "101.0.0",
+  "version": "102.0.0",
   "description": "Toptal UI components library - Icons",
   "publishConfig": {
     "access": "public"

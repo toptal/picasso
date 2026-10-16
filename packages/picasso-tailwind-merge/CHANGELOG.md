@@ -1,5 +1,37 @@
 # @toptal/picasso-tailwind-merge
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### TailwindMerge
+
+- upgrade `tailwind-merge` to `^3.6.0`, the line that knows Tailwind v4's classes
+- the `shadow-0` to `shadow-24` scale counts as box shadows, so `shadow-none` and arbitrary shadows resolve against it instead of ignoring it, and shadow colors coexist with it instead of erasing it
+- a consumer `className` now wins for v4-only utilities that were passed through: `min-h-auto`, `max-h-auto`, `outline-hidden` (over `outline-none`), two-axis `translate-*`, `border-2` against `border-x`/`border-y`, `shrink-<number>` and the trailing `!` important syntax
+- `bg-linear-to-*` no longer conflicts with `bg-<color>`, which could drop `Modal.Content`'s scroll shades. Tailwind 3's `bg-gradient-to-*` now does, so use `bg-linear-to-*`
+- `twMerge` and `twJoin` keep their signatures
+- remove the unused react-transition-group dependency
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
 ## 100.0.0
 
 ### Major Changes
