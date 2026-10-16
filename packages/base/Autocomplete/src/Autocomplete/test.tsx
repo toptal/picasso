@@ -33,6 +33,10 @@ const testIds = {
   disableAutofillInput: 'disableAutofillInput',
 }
 
+const ForwardRefInput = forwardRef<HTMLInputElement>((_, ref) => (
+  <input ref={ref} data-testid='custom-input' />
+))
+
 const renderAutocomplete = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
@@ -155,18 +159,33 @@ describe('Autocomplete', () => {
       expect(input.value).toBe('Ukraine')
     })
 
-    it('with custom input component', async () => {
-      const { getByTestId } = renderAutocomplete({
-        value: '',
-        inputComponent: forwardRef<HTMLInputElement, any>((_, ref) => (
-          <input ref={ref} data-testid='custom-input' />
-        )) as any,
-      })
+    it.each([
+      ['a forwardRef', ForwardRefInput],
+      ['a memo-wrapped forwardRef', memo(ForwardRefInput)],
+    ])(
+      'renders %s custom input component and passes it its ref on every React major',
+      (_, CustomInput) => {
+        const consoleLog = jest
+          .spyOn(console, 'log')
+          .mockImplementation(() => {})
+        const autocompleteRef = createRef<HTMLInputElement>()
 
-      const input = getByTestId('custom-input')
+        try {
+          const { getByTestId } = render(
+            <Autocomplete
+              ref={autocompleteRef}
+              value=''
+              inputComponent={CustomInput as Props['inputComponent']}
+            />
+          )
 
-      expect(input).not.toBeNull()
-    })
+          expect(autocompleteRef.current).toBe(getByTestId('custom-input'))
+          expect(consoleLog).not.toHaveBeenCalled()
+        } finally {
+          consoleLog.mockRestore()
+        }
+      }
+    )
 
     it('passes its ref to a custom input that takes `ref` as a prop where React does', () => {
       const consoleLog = jest.spyOn(console, 'log').mockImplementation(() => {})

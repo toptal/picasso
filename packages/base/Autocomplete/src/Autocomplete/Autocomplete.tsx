@@ -141,6 +141,16 @@ const isClassComponent = (component: unknown): boolean => {
     : Boolean(prototype?.isReactComponent)
 }
 
+// `memo` hands its ref to the component it wraps, so a memo-wrapped `forwardRef`
+// component takes the ref on React 17 and 18 too
+const isForwardRefComponent = (component: unknown): boolean => {
+  const { $$typeof, type } = (component ?? {}) as ComponentInternals
+
+  return $$typeof === Symbol.for('react.memo')
+    ? isForwardRefComponent(type)
+    : isForwardRef(component)
+}
+
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
   function Autocomplete(
     {
@@ -197,7 +207,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     if (
       inputComponent &&
       (isClassComponent(inputComponent) ||
-        (!isReact19OrNewer && !isForwardRef(inputComponent)))
+        (!isReact19OrNewer && !isForwardRefComponent(inputComponent)))
     ) {
       ref = undefined
       unsafeErrorLog(
