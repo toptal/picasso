@@ -37,8 +37,8 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
 
-    # Safety net for large releases: fail loudly if any reported-published version
-    # is missing from npm (e.g. a rate-limited big-bang that published only partway).
+    # Warns about published versions npm doesn't show yet; a failed publish
+    # already fails the "Publish to npm" step
     - name: Verify published versions are visible on npm
       if: steps.changesets.outputs.published == 'true'
       shell: bash
