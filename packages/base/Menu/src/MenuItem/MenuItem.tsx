@@ -12,6 +12,7 @@ import type {
   ButtonOrAnchorProps,
   TextLabelProps,
   OverridableComponent,
+  IconElement,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { ChevronMinor16, CheckMinor16 } from '@toptal/picasso-icons'
@@ -53,7 +54,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** The additional description */
   description?: ReactNode
   /** Render an `<Icon />` */
-  icon?: ReactElement
+  icon?: IconElement
   /** Render an <Avatar /> */
   avatar?: ReactElement<AvatarProps, typeof Avatar>
   /** Callback when item is clicked */

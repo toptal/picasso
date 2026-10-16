@@ -11,7 +11,7 @@ export interface Props {
 const InputValidIconAdornment = ({
   'data-testid': dataTestId,
   multiline,
-}: Props) => {
+}: Props): React.ReactElement => {
   if (multiline) {
     return <CheckMinor16 color='green' data-testid={dataTestId} />
   }

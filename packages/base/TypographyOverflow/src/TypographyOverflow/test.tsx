@@ -110,6 +110,64 @@ describe('TypographyOverflow', () => {
       })
     })
 
+    describe('when the pointer rests on a typography', () => {
+      const getTypographyProps = () => mockedTypography.mock.lastCall?.[0]
+      const isTooltipOpen = () => mockedTooltip.mock.lastCall?.[0].open
+
+      const hover = () =>
+        act(() => getTypographyProps().onMouseEnter({ currentTarget: true }))
+      const wait = (ms: number) => act(() => jest.advanceTimersByTime(ms))
+
+      beforeEach(() => {
+        jest.useFakeTimers()
+        mockedIsOverflown.mockReturnValue(true)
+      })
+
+      afterEach(() => {
+        jest.useRealTimers()
+      })
+
+      it('opens the tooltip after the delay', () => {
+        render(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+        hover()
+        wait(199)
+        expect(isTooltipOpen()).toBe(false)
+
+        wait(1)
+        expect(isTooltipOpen()).toBe(true)
+      })
+
+      it('keeps a dismissed tooltip closed until the pointer leaves', () => {
+        render(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+        hover()
+        wait(200)
+        act(() => mockedTooltip.mock.lastCall?.[0].onClose())
+        hover()
+        wait(200)
+        expect(isTooltipOpen()).toBe(false)
+
+        act(() => getTypographyProps().onMouseLeave({}))
+        hover()
+        wait(200)
+        expect(isTooltipOpen()).toBe(true)
+      })
+
+      it('does not open the tooltip when it is disabled', () => {
+        render(
+          <TypographyOverflow disableTooltip>
+            Just Typography
+          </TypographyOverflow>
+        )
+
+        hover()
+        wait(200)
+
+        expect(isTooltipOpen()).toBe(false)
+      })
+    })
+
     describe('when mouse is NOT entered a typography', () => {
       it('does not render tooltip', () => {
         mockedIsOverflown.mockReturnValueOnce(false)

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const replaceLineBreaksWithTags = (
   children: string
-): string | (JSX.Element | JSX.Element[])[] => {
+): string | (React.ReactElement | React.ReactElement[])[] => {
   const textChunks = children.split('\n')
 
   if (textChunks.length <= 1) {

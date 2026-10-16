@@ -41,7 +41,7 @@ const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
   </div>
 )
 
-export const AvatarWrapper = (props: Props) => {
+export const AvatarWrapper = (props: Props): React.ReactElement => {
   const {
     children,
     className,

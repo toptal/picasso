@@ -14,7 +14,7 @@ type SliderValueLabelProps = {
   yPlacement: 'top' | 'bottom'
   /** indicates if there are two SliderValueLabels that overlap each other */
   isOverlaped: boolean
-  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
+  onRender: (index: number, ref: RefObject<HTMLSpanElement | null>) => void
 }
 
 const classesByTooltip: Record<ValueLabelDisplay, string> = {
@@ -44,7 +44,7 @@ const SliderValueLabel = ({
   onRender,
   yPlacement,
   isOverlaped,
-}: SliderValueLabelProps) => {
+}: SliderValueLabelProps): React.ReactElement => {
   const ref = useRef<HTMLSpanElement>(null)
 
   // we need to change the placement of the label if it is overlaped

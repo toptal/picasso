@@ -155,7 +155,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     return markValue <= (values[0] ?? min)
   }
 
-  const thumbClassName = twJoin(
+  const thumbClassName = twMerge(
     'group/thumb flex justify-center items-center w-[19px] h-[19px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-transparent bg-clip-padding',
     'outline-0 transition-shadow cursor-pointer',

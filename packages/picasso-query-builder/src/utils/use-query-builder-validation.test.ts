@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 import type { RuleGroupTypeAny, RuleType } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tooltip",
-  "version": "100.2.0",
+  "version": "101.0.0",
   "description": "Toptal UI components library - Tooltip",
   "publishConfig": {
     "access": "public"
@@ -35,7 +35,7 @@
     "@toptal/picasso-provider": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-tailwind-merge": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "workspace:*",

@@ -6,7 +6,7 @@ interface Props {
   disabled?: boolean
 }
 
-const TabDescription = ({ children, disabled }: Props) => {
+const TabDescription = ({ children, disabled }: Props): React.ReactElement => {
   const color = disabled ? 'inherit' : undefined
 
   return (

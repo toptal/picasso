@@ -40,7 +40,7 @@ export const FieldRequirements = <TValueType,>({
   className,
   style,
   testIds,
-}: Props<TValueType>) => {
+}: Props<TValueType>): React.ReactElement => {
   return (
     <Collapse
       style={style}

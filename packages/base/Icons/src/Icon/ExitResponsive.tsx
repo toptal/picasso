@@ -13,7 +13,7 @@ const ExitResponsive = (props: Props) => {
       xl: <Exit16 {...props} />,
     },
     <Exit24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default ExitResponsive

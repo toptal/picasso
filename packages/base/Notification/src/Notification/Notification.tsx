@@ -1,5 +1,6 @@
 import type { ReactNode, MouseEvent, ReactElement, HTMLAttributes } from 'react'
-import React, { forwardRef, cloneElement } from 'react'
+import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import type { Classes, StandardProps } from '@toptal/picasso-shared'
 import {
   CloseMinor16,
@@ -26,7 +27,7 @@ export interface PrivateProps
   /** Style variant of Notification */
   variant?: VariantType
   /** Add <Icon /> before Notification content  */
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string; color?: string }>
   /** Enable elevated appearance for Notification */
   elevated?: boolean
   testIds?: {
@@ -65,7 +66,11 @@ const renderNotificationIcon = ({ icon, variant = 'yellow' }: PrivateProps) => {
     default: {
       const infoProps = { color: 'grey' as const }
 
-      return icon ? cloneElement(icon, infoProps) : <Info24 {...infoProps} />
+      return icon ? (
+        cloneElementUnlessFragment(icon, infoProps)
+      ) : (
+        <Info24 {...infoProps} />
+      )
     }
   }
 }
@@ -82,7 +87,7 @@ const renderNotificationContent = (props: PrivateProps) => {
       <Container
         flex
         alignItems='center'
-        className={twJoin(
+        className={twMerge(
           'min-w-[1.5em] mr-[1em]',
           variant === 'yellow'
             ? 'h-[1em] min-w-[1em] mt-[2px] basis-0'
@@ -143,7 +148,7 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
       <div
         {...rest}
         className={twMerge(
-          'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
+          'relative w-full flex flex-nowrap items-start shadow-none rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
           elevated && 'shadow-3 rounded-sm',
           variant
             ? classByVariant[`notification${capitalize(variant)}`]

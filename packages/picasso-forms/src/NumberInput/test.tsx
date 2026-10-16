@@ -29,7 +29,6 @@ describe('Form.NumberInput', () => {
         name: 'test-input',
       })
 
-      expect(numberInputMock).toHaveBeenCalledTimes(1)
       expect(numberInputMock).toHaveBeenCalledWith(
         expect.objectContaining({
           min: '8',

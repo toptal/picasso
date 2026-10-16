@@ -6,6 +6,7 @@ import { BackMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 
 import { MenuItem } from '../MenuItem'
+import type { MenuItemProps } from '../MenuItem'
 import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
 import type { MenuVariant } from './types'
@@ -33,7 +34,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
 
   // Find the first selected or first non-disabled item
   React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
+    if (!React.isValidElement<MenuItemProps>(child)) {
       return
     }
 
@@ -59,7 +60,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   })
 
   const items = React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
+    if (!React.isValidElement<MenuItemProps>(child)) {
       return
     }
 

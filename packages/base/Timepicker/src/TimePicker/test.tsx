@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   act,
   render,
@@ -6,19 +6,16 @@ import {
   screen,
   within,
 } from '@toptal/picasso-test-utils'
-import { detect } from 'detect-browser'
 
 import type { Props } from './TimePicker'
 import { TimePicker } from './TimePicker'
 import { getHourCycle } from './utils/get-hour-cycle'
 
 jest.mock('./utils/get-hour-cycle')
-jest.mock('detect-browser')
 
 const mockedGetHourCycle = getHourCycle as jest.MockedFunction<
   typeof getHourCycle
 >
-const mockedDetect = detect as jest.MockedFunction<typeof detect>
 
 const renderComponent = (props: Partial<Props> = {}) => {
   const handleChange = jest.fn()
@@ -64,7 +61,6 @@ const pressOnOption = (name: string, key: string) => {
 describe('TimePicker', () => {
   beforeEach(() => {
     mockedGetHourCycle.mockReturnValue(24)
-    mockedDetect.mockReturnValue(null)
   })
 
   it('renders', () => {
@@ -91,6 +87,38 @@ describe('TimePicker', () => {
     fireEvent.change(input, { target: { value: nextTime } })
 
     expect(handleChange).toHaveBeenCalledTimes(1)
+  })
+
+  it.each(['', undefined])(
+    'clears the time when the value is reset to %p from outside',
+    reset => {
+      const { getByDisplayValue, rerender } = render(
+        <TimePicker value='10:30' onChange={() => {}} />
+      )
+      const input = getByDisplayValue('10:30')
+
+      rerender(<TimePicker value={reset} onChange={() => {}} />)
+
+      expect(input).toHaveValue('')
+    }
+  )
+
+  // Safari 13 and 14.0 render a text field, which keeps an incomplete time
+  it('keeps an incomplete time typed into a text field', () => {
+    const ControlledTimePicker = () => {
+      const [value, setValue] = useState('10:30')
+
+      return <TimePicker value={value} onChange={setValue} />
+    }
+    const { getByDisplayValue } = render(<ControlledTimePicker />)
+    const input = getByDisplayValue('10:30')
+
+    // Such a browser reads the type as 'text', whatever React sets it to
+    input.setAttribute('type', 'text')
+    Object.defineProperty(input, 'type', { get: () => 'text', set: () => {} })
+    fireEvent.change(input, { target: { value: '10:3' } })
+
+    expect(input).toHaveValue('10:3')
   })
 
   describe('when invalid time is entered', () => {
@@ -264,26 +292,6 @@ describe('TimePicker', () => {
       fireEvent.click(getOption('07:00 PM'))
 
       expect(handleChange).toHaveBeenCalledWith('19:00')
-    })
-  })
-
-  describe('when the browser is Safari and the locale uses a 12-hour clock', () => {
-    beforeEach(() => {
-      mockedGetHourCycle.mockReturnValue(12)
-      mockedDetect.mockReturnValue({
-        name: 'safari',
-        version: '17.0.0',
-        os: 'Mac OS',
-        type: 'browser',
-      })
-    })
-
-    it('labels the times in 24-hour format to match its field', () => {
-      renderComponent()
-
-      openList()
-
-      expect(getOptionLabels().slice(-1)).toEqual(['23:30'])
     })
   })
 

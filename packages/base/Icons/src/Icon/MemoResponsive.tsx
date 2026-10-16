@@ -13,7 +13,7 @@ const MemoResponsive = (props: Props) => {
       xl: <Memo16 {...props} />,
     },
     <Memo24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default MemoResponsive

@@ -33,7 +33,7 @@ export type Props = {
   expand?: boolean
 }
 
-export const Step = (props: Props) => {
+export const Step = (props: Props): React.ReactElement => {
   const {
     active,
     children,

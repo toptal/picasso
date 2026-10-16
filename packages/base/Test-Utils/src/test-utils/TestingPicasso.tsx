@@ -6,7 +6,10 @@ export type Props = TextLabelProps & {
   children: React.ReactNode
 }
 
-export const TestingPicasso = ({ children, titleCase }: Props) => {
+export const TestingPicasso = ({
+  children,
+  titleCase,
+}: Props): React.ReactElement => {
   return (
     <Picasso
       loadFavicon={false}

@@ -13,7 +13,7 @@ const TimesheetResponsive = (props: Props) => {
       xl: <Timesheet16 {...props} />,
     },
     <Timesheet24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default TimesheetResponsive

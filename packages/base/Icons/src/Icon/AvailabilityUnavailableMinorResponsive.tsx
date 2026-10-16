@@ -13,7 +13,7 @@ const AvailabilityUnavailableMinorResponsive = (props: Props) => {
       xl: <AvailabilityUnavailableMinor16 {...props} />,
     },
     <AvailabilityUnavailableMinor24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AvailabilityUnavailableMinorResponsive

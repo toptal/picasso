@@ -14,6 +14,7 @@ import {
 import type { ChangeEvent } from 'react'
 import React, { useEffect, useReducer } from 'react'
 import { $createHeadingNode, $isHeadingNode } from '@lexical/rich-text'
+import type { NullableRefObject } from '@toptal/picasso-utils'
 
 import {
   registerLexicalEvents,
@@ -30,7 +31,7 @@ import { $isCodeBlockNode } from '../plugins/CodeBlockPlugin/nodes'
 
 type Props = {
   id: string
-  toolbarRef: React.RefObject<HTMLDivElement>
+  toolbarRef: NullableRefObject<HTMLDivElement>
   testIds?: {
     wrapper?: string
     editor?: string
@@ -42,7 +43,11 @@ type Props = {
   }
 }
 
-const LexicalEditorToolbarPlugin = ({ toolbarRef, testIds, id }: Props) => {
+const LexicalEditorToolbarPlugin = ({
+  toolbarRef,
+  testIds,
+  id,
+}: Props): React.ReactElement => {
   const [editor] = useLexicalComposerContext()
   const { setDisabledFormatting } = useRTEPluginContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(

@@ -8,7 +8,10 @@ type Props = {
   isLastPage: boolean
 }
 
-const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
+const CarouselGradient = ({
+  isLastPage,
+  slidesToShow,
+}: Props): React.ReactElement => {
   const showNextGradient = !isLastPage
   const showPrevGradient = isLastPage
 
@@ -24,9 +27,9 @@ const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
       className={twMerge(
         (showNextGradient || showPrevGradient) && 'absolute h-full top-0',
         showNextGradient &&
-          'right-0 bg-gradient-to-r from-white/20 to-white to-95%',
+          'right-0 bg-linear-to-r from-white/20 to-white to-95%',
         showPrevGradient &&
-          'left-0 bg-gradient-to-r from-white from-5% to-white/20'
+          'left-0 bg-linear-to-r from-white from-5% to-white/20'
       )}
     />
   )

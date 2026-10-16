@@ -2,7 +2,11 @@ import React from 'react'
 
 import type { DynamicPointNode } from '../types'
 
-export const NodeContent = ({ node }: { node: DynamicPointNode }) => {
+export const NodeContent = ({
+  node,
+}: {
+  node: DynamicPointNode
+}): React.ReactElement => {
   return (
     <g>
       <text x={0} y={0} dy='.35em'>

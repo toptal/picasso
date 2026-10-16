@@ -27,7 +27,7 @@ const ImagePluginModal = ({
   onClose,
   onUpload,
   onSubmit,
-}: Props) => {
+}: Props): React.ReactElement => {
   const {
     image: uploadedImage,
     reset: resetUploader,

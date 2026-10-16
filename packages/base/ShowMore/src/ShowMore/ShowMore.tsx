@@ -1,13 +1,17 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useMemo, useCallback, useState } from 'react'
+import React, { forwardRef, useMemo, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
-import Truncate from 'react-truncate'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { ChevronRight16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { ButtonAction } from '@toptal/picasso-button'
 
 import { replaceLineBreaksWithTags } from './utils'
+
+// The scroll and client sizes are rounded separately; a clamped line is far
+// taller than this
+const ROUNDING_TOLERANCE = 1
 
 export interface Props extends BaseProps {
   /** Content of the component */
@@ -49,6 +53,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   } = props
   const [shownMore, setShownMore] = useState(initialExpanded)
   const [needsTruncation, setNeedsTruncation] = useState(true)
+  const contentRef = useRef<HTMLSpanElement>(null)
   const content = useMemo(
     () =>
       typeof children === 'string'
@@ -56,18 +61,56 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
         : children,
     [children]
   )
-  const handleNeedsTruncation = useCallback(
-    (truncated: boolean) => setNeedsTruncation(truncated),
-    [setNeedsTruncation]
-  )
+
+  useIsomorphicLayoutEffect(() => {
+    const element = contentRef.current
+
+    if (!element || shownMore) {
+      return
+    }
+
+    const updateNeedsTruncation = () => {
+      // Zero width means an unmeasurable environment (jsdom, display: none
+      // container) — keep the previous assumption instead of hiding the
+      // toggle. Empty content still has its container's width
+      if (element.clientWidth === 0) {
+        return
+      }
+
+      // The layout box, unlike `getBoundingClientRect()`, ignores transforms
+      // such as a popup's scale-in
+      setNeedsTruncation(
+        element.scrollHeight - element.clientHeight > ROUNDING_TOLERANCE ||
+          element.scrollWidth - element.clientWidth > ROUNDING_TOLERANCE
+      )
+    }
+
+    updateNeedsTruncation()
+
+    if (typeof ResizeObserver === 'undefined') {
+      return
+    }
+
+    const observer = new ResizeObserver(updateNeedsTruncation)
+
+    observer.observe(element)
+
+    return () => observer.disconnect()
+    // `content` and `rows` are not read above: they are the re-measure
+    // triggers, since either changes what overflows
+  }, [shownMore, content, rows])
 
   const isContentVisible = rows !== 0 || shownMore
   const formattedContent = shownMore ? (
     content
   ) : (
-    <Truncate onTruncate={handleNeedsTruncation} lines={rows}>
+    <span
+      ref={contentRef}
+      className='overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] break-words'
+      style={{ WebkitLineClamp: rows }}
+    >
       {content}
-    </Truncate>
+    </span>
   )
 
   return (

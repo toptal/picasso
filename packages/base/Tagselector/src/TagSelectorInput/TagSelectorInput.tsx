@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import type { InputProps } from '@toptal/picasso-input'
@@ -47,7 +48,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       endAdornment &&
       React.isValidElement<{ className?: string }>(endAdornment)
     ) {
-      usedEndAdornment = React.cloneElement(endAdornment, {
+      usedEndAdornment = cloneElementUnlessFragment(endAdornment, {
         className: 'absolute top-[calc(50%-0.5em)] right-[0.625em] h-[1em]',
       })
     }

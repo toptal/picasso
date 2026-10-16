@@ -13,7 +13,7 @@ const HeadingResponsive = (props: Props) => {
       xl: <Heading16 {...props} />,
     },
     <Heading24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default HeadingResponsive

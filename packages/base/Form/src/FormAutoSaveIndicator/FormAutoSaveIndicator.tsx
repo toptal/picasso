@@ -25,7 +25,7 @@ const FormAutoSaveIndicator = ({
   saving,
   label = 'Saved',
   hideTimeout = 1000,
-}: Props) => {
+}: Props): React.ReactElement => {
   const [savingState, setSavingState] = useState<SavingState>(
     SavingState.Initial
   )

@@ -22,7 +22,7 @@ export interface Props
     TextLabelProps,
     FormControlLabelAttributesType {
   /** A control element. For instance, it can be be a Radio or a Checkbox */
-  control: ReactElement
+  control: ReactElement<{ disabled?: boolean }>
   /** The text to be used in an enclosing label element */
   label?: ReactNode
   /** Shows whether label is disabled or not */

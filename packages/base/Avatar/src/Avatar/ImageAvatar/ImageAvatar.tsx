@@ -9,7 +9,7 @@ export interface Props extends BaseProps {
   name?: string
 }
 
-const ImageAvatar = (props: Props) => {
+const ImageAvatar = (props: Props): React.ReactElement => {
   const {
     alt,
     className,

@@ -13,7 +13,7 @@ const LockResponsive = (props: Props) => {
       xl: <Lock16 {...props} />,
     },
     <Lock24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LockResponsive

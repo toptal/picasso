@@ -19,7 +19,9 @@ const Title = ({
   children,
   className,
   ...rest
-}: TextLabelProps & { children: ReactNode } & BaseProps) => {
+}: TextLabelProps & {
+  children: ReactNode
+} & BaseProps): React.ReactElement => {
   return (
     <Typography
       variant='heading'
@@ -37,7 +39,7 @@ const Tabs = ({
   children,
   className,
   ...rest
-}: { children: ReactNode } & BaseProps) => {
+}: { children: ReactNode } & BaseProps): React.ReactElement => {
   return (
     <Container className={className} {...rest}>
       {children}
@@ -47,7 +49,7 @@ const Tabs = ({
 
 const Main = (
   props: { children?: ReactNode; enableMinHeight?: boolean } & BaseProps
-) => {
+): React.ReactElement => {
   const { className, children, enableMinHeight, ...rest } = props
 
   return (
@@ -70,7 +72,7 @@ const Actions = ({
   children,
   className,
   ...rest
-}: { children: ReactNode } & BaseProps) => {
+}: { children: ReactNode } & BaseProps): React.ReactElement => {
   return (
     <Container flex alignItems='center' className={className} {...rest}>
       {children}

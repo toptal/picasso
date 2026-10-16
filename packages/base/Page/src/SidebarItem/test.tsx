@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import { Candidates16 } from '@toptal/picasso-icons'
 
 import { PageSidebar } from '../PageSidebar'
@@ -200,7 +200,11 @@ describe('SubMenuContextProvider', () => {
   describe('when a provider available', () => {
     it('returns `isSubMenu` as true', () => {
       const { result } = renderHook(() => useSubMenuContext(), {
-        wrapper: SubMenuContextProvider,
+        wrapper: ({ children }) => (
+          <SubMenuContextProvider parentMenu={null}>
+            {children}
+          </SubMenuContextProvider>
+        ),
       })
 
       expect(result.current.isSubMenu).toBe(true)

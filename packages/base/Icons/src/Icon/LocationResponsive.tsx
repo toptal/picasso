@@ -13,7 +13,7 @@ const LocationResponsive = (props: Props) => {
       xl: <Location16 {...props} />,
     },
     <Location24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default LocationResponsive

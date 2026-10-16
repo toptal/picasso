@@ -69,7 +69,7 @@ export const RTEPluginContextProvider = ({
   children,
   disabled,
   focused,
-}: ToolbarPortalProviderProps) => {
+}: ToolbarPortalProviderProps): React.ReactElement => {
   const [disabledFormatting, setDisabledFormatting] = useState(false)
 
   /**

@@ -13,7 +13,7 @@ const BellSolidResponsive = (props: Props) => {
       xl: <BellSolid16 {...props} />,
     },
     <BellSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BellSolidResponsive

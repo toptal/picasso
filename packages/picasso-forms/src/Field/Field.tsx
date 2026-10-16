@@ -4,7 +4,6 @@ import type {
   FieldProps as FinalFieldProps,
   FieldRenderProps,
 } from 'react-final-form'
-import { useField } from 'react-final-form'
 import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
 import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 import type { TextLabelProps } from '@toptal/picasso-shared'
@@ -13,6 +12,8 @@ import { detect } from 'detect-browser'
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
+import { useField } from '../FinalField'
+import { assertFieldName } from './assert-field-name'
 
 const { composeValidators, required: requiredValidator } = validators
 
@@ -23,11 +24,16 @@ export type FieldProps<TInputValue> = FinalFieldProps<
 > &
   TextLabelProps
 
+// The wrapped component's `children?: ReactNode` must not meet the render-prop
+// `children` below: @types/react 19 no longer lets a function pass as a
+// ReactNode. Distributive, so union props keep their variants.
+type WithoutChildren<T> = T extends unknown ? Omit<T, 'children'> : never
+
 export type Props<
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue
-> = TWrappedComponentProps &
-  FieldProps<TInputValue> & {
+> = WithoutChildren<TWrappedComponentProps> &
+  Omit<FieldProps<TInputValue>, 'children'> & {
     name: string
     type?: string
     label?: React.ReactNode
@@ -60,7 +66,7 @@ const Field = <
   TInputValue extends ValueType = TWrappedComponentProps['value']
 >(
   props: Props<TWrappedComponentProps, TInputValue>
-) => {
+): React.ReactElement => {
   const {
     type,
     hint,
@@ -90,6 +96,8 @@ const Field = <
     autoSaveIndicator,
     ...rest
   } = props
+
+  assertFieldName(name)
 
   const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
     useFormConfig()

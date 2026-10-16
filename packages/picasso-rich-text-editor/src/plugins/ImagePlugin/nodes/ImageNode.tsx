@@ -45,7 +45,7 @@ const convertImageElement = (domNode: Node): null | DOMConversionOutput => {
   return null
 }
 
-export class ImageNode extends DecoratorNode<JSX.Element> {
+export class ImageNode extends DecoratorNode<React.ReactElement> {
   src: string
   alt?: string
 
@@ -122,7 +122,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     return true
   }
 
-  decorate() {
+  decorate(): React.ReactElement {
     return <Image src={this.src} alt={this.alt ?? ''} />
   }
 }

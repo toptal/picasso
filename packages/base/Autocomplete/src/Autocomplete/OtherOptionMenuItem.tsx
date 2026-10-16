@@ -12,7 +12,7 @@ const OtherOptionMenuItem = ({
   value: string
   otherOptionText: string
   renderOtherOption?: (value: string) => ReactNode
-}) => {
+}): React.ReactElement => {
   return (
     <MenuItem
       key='other-option'

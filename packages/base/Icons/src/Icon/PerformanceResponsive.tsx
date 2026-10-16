@@ -13,7 +13,7 @@ const PerformanceResponsive = (props: Props) => {
       xl: <Performance16 {...props} />,
     },
     <Performance24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PerformanceResponsive

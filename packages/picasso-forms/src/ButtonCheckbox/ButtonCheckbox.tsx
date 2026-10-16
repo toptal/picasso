@@ -20,7 +20,12 @@ type CheckboxInGroup = CheckboxFormProps & { name?: string }
 
 export type Props = CheckboxWithoutGroup | CheckboxInGroup
 
-const ButtonCheckbox = ({ name, value, required, ...restProps }: Props) => {
+const ButtonCheckbox = ({
+  name,
+  value,
+  required,
+  ...restProps
+}: Props): React.ReactElement => {
   const groupName = useContext(CheckboxGroupContext)
   const isCheckboxInGroup = Boolean(groupName)
 

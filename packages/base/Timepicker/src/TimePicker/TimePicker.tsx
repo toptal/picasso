@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import InputMask from 'react-input-mask'
-import { detect } from 'detect-browser'
 import { Input } from '@toptal/picasso-input'
 import { Time16 } from '@toptal/picasso-icons'
 import type { InputProps } from '@toptal/picasso-input'
@@ -60,12 +58,6 @@ const nativePickerIcon = (
   />
 )
 
-const getInputMask = (value?: string) => {
-  const startsWithTwo = value && value[0] === '2'
-
-  return [/[0-2]/, startsWithTwo ? /[0-3]/ : /[0-9]/, ':', /[0-5]/, /[0-9]/]
-}
-
 export const TimePicker = ({
   status = 'default',
   ...props
@@ -92,6 +84,18 @@ export const TimePicker = ({
     // Set internal value based on the provided one if the later is correct
     if (externalValue && VALID_TIME_REGEX.test(externalValue)) {
       setValue(externalValue)
+
+      return
+    }
+
+    // Cleared from outside, such as a form reset. The '' this component
+    // reports for an incomplete time must not clear it: a text field, where
+    // a browser has no time input, still shows it, and an empty picker stays
+    // uncontrolled
+    if (!externalValue) {
+      setValue(current =>
+        current && VALID_TIME_REGEX.test(current) ? '' : current
+      )
     }
   }, [externalValue])
 
@@ -111,8 +115,6 @@ export const TimePicker = ({
     >
   ) => changeValue(event.target.value)
 
-  const isSafari = detect()?.name === 'safari'
-
   const {
     isOpen,
     hourCycle,
@@ -127,8 +129,7 @@ export const TimePicker = ({
     handleFieldKeyDown,
   } = useTimePickerPopover({
     enabled: interactive,
-    // Safari renders its own 24-hour masked field, so the list has to match it
-    getHourCycle: () => (isSafari ? 24 : getHourCycle()),
+    getHourCycle,
   })
 
   const handleTimePick = (time: string) => {
@@ -186,42 +187,6 @@ export const TimePicker = ({
   const inputPropClassName = hasTimeList
     ? TIME_LIST_CLASS_NAME
     : NATIVE_PICKER_CLASS_NAME
-
-  if (isSafari) {
-    return (
-      <>
-        <Input
-          type='text'
-          readOnly
-          {...adornmentProps}
-          width={width}
-          status={status}
-          className={inputClassName}
-          highlight={highlight}
-          size={size}
-          outlineRef={anchorRef}
-          inputProps={{
-            className: inputPropClassName,
-            ...rest,
-          }}
-          startAdornment={
-            <InputMask
-              mask={getInputMask(value)}
-              alwaysShowMask
-              maskPlaceholder='-'
-              value={value}
-              onChange={onChange}
-              onKeyDown={handleKeyDown}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-              className={'text-sm border-none p-0 m-0 outline-hidden'}
-            />
-          }
-        />
-        {timeList}
-      </>
-    )
-  }
 
   return (
     <>

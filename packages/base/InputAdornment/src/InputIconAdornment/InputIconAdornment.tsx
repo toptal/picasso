@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 
 import { InputAdornment } from '../InputAdornment'
 
@@ -11,12 +12,15 @@ export interface Props {
   icon?: ReactNode
 }
 
-const InputIconAdornment = (props: Props) => {
+const InputIconAdornment = (props: Props): React.ReactElement => {
   const { position, disabled, icon } = props
-  const styledIcon = React.cloneElement(icon as ReactElement, {
-    className: 'grow shrink basis-0', // fix for IE11
-    role: 'presentation',
-  })
+  const styledIcon = cloneElementUnlessFragment(
+    icon as ReactElement<{ className?: string; role?: string }>,
+    {
+      className: 'grow shrink basis-0', // fix for IE11
+      role: 'presentation',
+    }
+  )
 
   return (
     <InputAdornment

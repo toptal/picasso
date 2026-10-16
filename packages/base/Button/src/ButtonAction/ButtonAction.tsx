@@ -1,10 +1,12 @@
-import type { ReactElement, MouseEvent, ElementType, ReactNode } from 'react'
+import type { MouseEvent, ElementType, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type {
   BaseProps,
   ButtonOrAnchorProps,
   OverridableComponent,
+  IconElement,
 } from '@toptal/picasso-shared'
 import { Loader } from '@toptal/picasso-loader'
 
@@ -18,7 +20,7 @@ const getIcon = ({
   iconPosition,
 }: {
   children: ReactNode
-  icon?: ReactElement
+  icon?: IconElement
   iconPosition?: IconPositionType
 }) => {
   if (!icon) {
@@ -29,7 +31,7 @@ const getIcon = ({
     iconPosition: children && iconPosition ? iconPosition : undefined,
   })
 
-  return React.cloneElement(icon, {
+  return cloneElementUnlessFragment(icon, {
     className: cx(iconClassNames, icon.props.className),
   })
 }
@@ -46,7 +48,7 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: IconElement
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */

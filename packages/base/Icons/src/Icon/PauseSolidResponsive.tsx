@@ -13,7 +13,7 @@ const PauseSolidResponsive = (props: Props) => {
       xl: <PauseSolid16 {...props} />,
     },
     <PauseSolid24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default PauseSolidResponsive

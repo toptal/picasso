@@ -452,7 +452,10 @@ describe('Select with search input', () => {
     cy.getByTestId('search-input').click('center')
     cy.getByTestId('search-input').find('input').should('be.focused')
 
-    // focuses on by click on the input wrapper
+    // Clicking the wrapper while the popup is open is two state changes: the
+    // search input's blur closes the popup, then the wrapper's click handler
+    // reopens it. Cypress's `.click()` fires mousedown, blur and click in one
+    // task, so this also checks the click reads the state the blur left
     cy.getByTestId('select').click()
     cy.getByTestId('select').getByTestId('search-input').click('bottom')
     cy.getByTestId('select')

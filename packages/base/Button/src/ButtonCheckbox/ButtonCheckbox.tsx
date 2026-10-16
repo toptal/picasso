@@ -10,7 +10,7 @@ export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   }
 }
 
-const ButtonCheckbox = ({ testIds, ...props }: Props) => {
+const ButtonCheckbox = ({ testIds, ...props }: Props): React.ReactElement => {
   return (
     <ButtonControlLabel
       {...props}

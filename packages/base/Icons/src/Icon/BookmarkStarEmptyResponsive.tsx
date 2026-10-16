@@ -13,7 +13,7 @@ const BookmarkStarEmptyResponsive = (props: Props) => {
       xl: <BookmarkStarEmpty16 {...props} />,
     },
     <BookmarkStarEmpty24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default BookmarkStarEmptyResponsive

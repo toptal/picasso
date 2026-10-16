@@ -13,7 +13,7 @@ const FocusGroupResponsive = (props: Props) => {
       xl: <FocusGroup16 {...props} />,
     },
     <FocusGroup24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FocusGroupResponsive

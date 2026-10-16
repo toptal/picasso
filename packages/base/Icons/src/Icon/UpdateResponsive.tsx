@@ -13,7 +13,7 @@ const UpdateResponsive = (props: Props) => {
       xl: <Update16 {...props} />,
     },
     <Update24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default UpdateResponsive

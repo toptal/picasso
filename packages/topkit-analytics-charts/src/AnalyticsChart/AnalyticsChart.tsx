@@ -44,7 +44,7 @@ export const AnalyticsChart = ({
   granularity,
   unit,
   ...rest
-}: Props) => {
+}: Props): React.ReactElement => {
   const chartData = useMemo(
     () => toChartFormat(data, referenceLines, xAxisKey, formatXAxisLabel),
     [data, referenceLines, xAxisKey, formatXAxisLabel]

@@ -13,7 +13,7 @@ const WarningResponsive = (props: Props) => {
       xl: <Warning16 {...props} />,
     },
     <Warning24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default WarningResponsive

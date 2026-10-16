@@ -1,12 +1,15 @@
 import React from 'react'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { ScrollMenuProps } from '../ScrollMenu'
 import { ScrollMenu } from '../ScrollMenu'
 
 export interface Props extends ScrollMenuProps {}
 
-const SelectOptions = ({ role = 'menu', ...props }: Props) => {
+const SelectOptions = ({
+  role = 'menu',
+  ...props
+}: Props): React.ReactElement => {
   const {
     selectedIndex,
     onBlur,
@@ -20,7 +23,7 @@ const SelectOptions = ({ role = 'menu', ...props }: Props) => {
 
   return (
     <ScrollMenu
-      className={twJoin(
+      className={twMerge(
         'shadow-5',
         Boolean(fixedHeader) && 'pt-[0.125rem] [&>div:first-child]:pb-2',
         Boolean(fixedFooter) && 'pb-0',

@@ -83,6 +83,13 @@ describe('TypographyOverflow', () => {
     hoverAndClickLink()
   })
 
+  it('opens the tooltip on hover', () => {
+    cy.mount(<DefaultExample />)
+
+    cy.getByTestId('ellipsed-text').realHover()
+    cy.getByRole('tooltip').should('be.visible')
+  })
+
   it('renders with Checkbox label', () => {
     cy.mount(<CheckboxLabelExample />)
 

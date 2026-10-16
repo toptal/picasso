@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-user-badge",
-  "version": "100.0.2",
+  "version": "101.0.0",
   "description": "Toptal UI components library - UserBadge",
   "publishConfig": {
     "access": "public"
@@ -35,7 +35,7 @@
   "peerDependencies": {
     "@toptal/picasso-tailwind": "workspace:^",
     "@toptal/picasso-tailwind-merge": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

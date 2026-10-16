@@ -19,7 +19,7 @@ export interface Props extends BaseProps {
 }
 
 const getMenuSelectedNode = (
-  menuRef: RefObject<HTMLDivElement>,
+  menuRef: RefObject<HTMLDivElement | null>,
   selectedIndex?: number | null
 ) =>
   typeof selectedIndex === 'number'
@@ -27,7 +27,7 @@ const getMenuSelectedNode = (
     : undefined
 
 export const scrollToSelection = (
-  menuRef: RefObject<HTMLDivElement>,
+  menuRef: RefObject<HTMLDivElement | null>,
   selectedIndex?: number | null
 ) => {
   const menuNode = menuRef.current
@@ -53,7 +53,7 @@ const preventClick = (e: React.MouseEvent) => {
   e.preventDefault()
 }
 
-const ScrollMenu = ({ role = 'menu', ...props }: Props) => {
+const ScrollMenu = ({ role = 'menu', ...props }: Props): React.ReactElement => {
   const {
     selectedIndex,
     onBlur,

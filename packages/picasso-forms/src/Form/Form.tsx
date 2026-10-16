@@ -50,7 +50,9 @@ const getValidationErrors = (
   return errors
 }
 
-export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
+export const Form = <T extends AnyObject = AnyObject>(
+  props: Props<T>
+): React.ReactElement => {
   const {
     autoComplete,
     children,
@@ -129,20 +131,26 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   return (
     <FormContext.Provider value={validationObject}>
       <FinalForm
-        render={({ form, handleSubmit: handleFormRendererSubmit }) => (
-          <FormRenderer
-            autoComplete={autoComplete}
-            data-testid={dataTestId}
-            onSubmit={handleFormRendererSubmit}
-            validateOnBlur={validateOnBlur}
-            setActiveFieldTouched={form.mutators.setActiveFieldTouched}
-            labelWidth={labelWidth}
-            layout={layout}
-            className={className}
-          >
-            {children}
-          </FormRenderer>
-        )}
+        render={renderProps => {
+          const { form, handleSubmit: handleFormRendererSubmit } = renderProps
+
+          return (
+            <FormRenderer
+              autoComplete={autoComplete}
+              data-testid={dataTestId}
+              onSubmit={handleFormRendererSubmit}
+              validateOnBlur={validateOnBlur}
+              setActiveFieldTouched={form.mutators.setActiveFieldTouched}
+              labelWidth={labelWidth}
+              layout={layout}
+              className={className}
+            >
+              {typeof children === 'function'
+                ? children(renderProps)
+                : children}
+            </FormRenderer>
+          )
+        }}
         onSubmit={handleSubmit}
         decorators={[...decorators, scrollToErrorDecorator]}
         mutators={{

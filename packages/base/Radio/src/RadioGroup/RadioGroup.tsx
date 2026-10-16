@@ -31,7 +31,10 @@ export interface Props
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void
 }
 
-const RadioGroup = ({ horizontal = false, ...props }: Props) => {
+const RadioGroup = ({
+  horizontal = false,
+  ...props
+}: Props): React.ReactElement => {
   const {
     spacing,
     xs,

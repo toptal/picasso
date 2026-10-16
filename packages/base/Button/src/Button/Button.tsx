@@ -1,5 +1,6 @@
-import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import type { ReactNode, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
@@ -8,6 +9,7 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
   TextLabelProps,
+  IconElement,
 } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso-utils'
 // we need to ensure the correct order of styles import
@@ -51,7 +53,7 @@ export interface Props
   /** Set hovered style for the button */
   hovered?: boolean
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: IconElement
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
@@ -77,7 +79,7 @@ const getIcon = ({
   size,
 }: {
   children: ReactNode
-  icon?: ReactElement
+  icon?: IconElement
   iconPosition?: IconPositionType
   size: SizeType<'small' | 'medium' | 'large'>
 }) => {
@@ -90,7 +92,7 @@ const getIcon = ({
     iconPosition: children && iconPosition ? iconPosition : undefined,
   })
 
-  return React.cloneElement(icon, {
+  return cloneElementUnlessFragment(icon, {
     className: twMerge(iconClassNames, icon.props.className),
   })
 }

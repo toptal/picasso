@@ -77,7 +77,7 @@ export const Carousel = ({
   slidesToScroll = 1,
   slidesToShow = 1,
   testIds = testIdsDefault,
-}: Props) => {
+}: Props): React.ReactElement => {
   const {
     isLastPage,
     getContainerProps,

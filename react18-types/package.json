@@ -1,0 +1,10 @@
+{
+  "name": "picasso-react18-types",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Standalone @types/react 18 install for `pnpm typecheck:react18:declarations`, installed with `pnpm react18-types:install`. Like react19/, deliberately not a pnpm workspace member: the workspace's `@types/react` override would rewrite it to 17.",
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0"
+  }
+}

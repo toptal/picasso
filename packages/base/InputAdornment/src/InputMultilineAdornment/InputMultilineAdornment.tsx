@@ -9,7 +9,7 @@ export interface Props {
   'data-testid'?: string
 }
 
-const InputMultilineAdornment = (props: Props) => {
+const InputMultilineAdornment = (props: Props): React.ReactElement => {
   const { children, error, 'data-testid': dataTestId } = props
 
   return (

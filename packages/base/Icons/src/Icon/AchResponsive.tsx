@@ -13,7 +13,7 @@ const AchResponsive = (props: Props) => {
       xl: <Ach16 {...props} />,
     },
     <Ach24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default AchResponsive

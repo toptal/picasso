@@ -45,7 +45,7 @@ const FieldLabel = ({
   name,
   alignment,
   labelEndAdornment,
-}: Props & InternalProps) => {
+}: Props & InternalProps): React.ReactElement | null => {
   const formConfig = useFormConfig()
 
   if (!label) {

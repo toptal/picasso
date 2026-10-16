@@ -1,6 +1,10 @@
-import type { ElementType, ReactElement } from 'react'
+import type { ElementType, ReactElement, ReactNode } from 'react'
 import type React from 'react'
-import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type {
+  BaseProps,
+  TextLabelProps,
+  IconElement,
+} from '@toptal/picasso-shared'
 import type { MenuItemAttributes, MenuItemProps } from '@toptal/picasso-menu'
 
 import type { VariantType } from '../PageSidebar/types'
@@ -11,7 +15,7 @@ import type {
 
 export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */
-  icon?: ReactElement
+  icon?: IconElement
   /** Highlights the item as selected */
   selected?: boolean
   /** Whether to render disabled item */
@@ -19,7 +23,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** If item has menu defines can menu be collapsed */
   collapsible?: boolean
   /** Renders nested sidebar menu */
-  menu?: ReactElement
+  menu?: ReactElement<{ children?: ReactNode }>
   /** Component name to render the menu item as */
   as?: ElementType<MenuItemProps>
   /** Definition of the embedded badge  */

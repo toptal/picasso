@@ -13,7 +13,7 @@ const FlagResponsive = (props: Props) => {
       xl: <Flag16 {...props} />,
     },
     <Flag24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default FlagResponsive

@@ -16,7 +16,7 @@ export type Props = FormSwitchProps &
   FieldProps<FormSwitchProps['value']> &
   Omit<FieldLabelProps, 'name' | 'required'>
 
-export const Switch = (props: Props) => (
+export const Switch = (props: Props): React.ReactElement => (
   <PicassoField<FormSwitchProps>
     {...props}
     type='checkbox'

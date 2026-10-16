@@ -30,8 +30,8 @@
     "@toptal/picasso-outlined-input": "workspace:*",
     "@toptal/picasso-popper": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",
-    "date-fns": "^2.30.0",
-    "date-fns-tz": "^2.0.0"
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -39,7 +39,7 @@
   ],
   "peerDependencies": {
     "@toptal/picasso-tailwind": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

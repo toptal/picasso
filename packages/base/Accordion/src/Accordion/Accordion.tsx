@@ -3,7 +3,6 @@ import type {
   ChangeEvent,
   CSSProperties,
   HTMLAttributes,
-  ReactElement,
   Ref,
   TransitionEvent,
 } from 'react'
@@ -11,8 +10,16 @@ import React, { forwardRef, useRef, useState } from 'react'
 import cx from 'classnames'
 import { Accordion as BaseUIAccordion } from '@base-ui/react/accordion'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
-import type { StandardProps, TransitionProps } from '@toptal/picasso-shared'
-import { toReactEvent, useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
+import type {
+  StandardProps,
+  TransitionProps,
+  IconElement,
+} from '@toptal/picasso-shared'
+import {
+  cloneElementUnlessFragment,
+  toReactEvent,
+  useIsomorphicLayoutEffect,
+} from '@toptal/picasso-shared'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { ButtonAction } from '@toptal/picasso-button'
 
@@ -58,7 +65,7 @@ const EmptyAccordionSummary = ({
 
 export interface Props
   extends Omit<StandardProps, 'classes'>,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'content'> {
   /** Always visible part of accordion */
   children?: ReactNode
   /** Collapsible content of `Accordion` */
@@ -70,7 +77,7 @@ export interface Props
   /** Whether the Accordion is disabled */
   disabled?: boolean
   /** Customize icon indicating expanded status */
-  expandIcon?: ReactElement
+  expandIcon?: IconElement
   /** Defines where the horizontal borders show */
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
@@ -85,10 +92,10 @@ export interface Props
 }
 
 const decorateWithExpandIconClasses = (
-  expandIcon: ReactElement,
+  expandIcon: IconElement,
   classes: string
 ) =>
-  React.cloneElement(expandIcon, {
+  cloneElementUnlessFragment(expandIcon, {
     // Some components overwrite the icon color when disabled
     // That's why we need to apply the disabled state to the icon itself,
     // instead of the ButtonAction wrapper

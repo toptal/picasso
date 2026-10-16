@@ -12,7 +12,7 @@ export const PageAutocomplete = ({
   variant = 'dark',
   testIds,
   ...rest
-}: Props) => (
+}: Props): React.ReactElement => (
   <Autocomplete
     inputProps={{
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

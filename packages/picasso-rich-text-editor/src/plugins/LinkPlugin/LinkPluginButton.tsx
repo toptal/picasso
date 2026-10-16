@@ -18,7 +18,7 @@ const LinkPluginButton = ({
   className,
   style,
   onClick,
-}: Props) => {
+}: Props): React.ReactElement => {
   const [active, setActive] = useState(false)
   const { disabled, focused, disabledFormatting } = useRTEPluginContext()
 

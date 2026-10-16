@@ -28,7 +28,11 @@ interface Props extends PropsWithChildren<{}> {
     defaultIcon?: string
   }
 }
-const FieldRequirementItem = ({ children, status, testIds }: Props) => {
+const FieldRequirementItem = ({
+  children,
+  status,
+  testIds,
+}: Props): React.ReactElement => {
   const IconComponent = IconsMap[status]
   const iconTestId = getIconTestId(status, testIds)
 

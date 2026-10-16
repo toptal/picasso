@@ -1,7 +1,12 @@
 import React from 'react'
 import { MenuItem } from '@toptal/picasso-menu'
 
-const NoOptionsMenuItem = ({ children, ...rest }: { children: string }) => (
+const NoOptionsMenuItem = ({
+  children,
+  ...rest
+}: {
+  children: string
+}): React.ReactElement => (
   <MenuItem titleCase={false} disabled {...rest}>
     {children}
   </MenuItem>

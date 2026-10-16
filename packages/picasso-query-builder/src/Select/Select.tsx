@@ -27,7 +27,7 @@ export const Select = ({
   fieldData,
   valueEditorTestId,
   renderOption,
-}: Props) => {
+}: Props): React.ReactElement => {
   const formattedOptions = useMemo(
     () => generateSelectOptions(options),
     [options]

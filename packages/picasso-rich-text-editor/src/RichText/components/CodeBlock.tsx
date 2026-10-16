@@ -7,7 +7,7 @@ type Props = {
   children?: ReactNode
 }
 
-const CodeBlockComponent = ({ children }: Props) => {
+const CodeBlockComponent = ({ children }: Props): React.ReactElement => {
   return <pre className={codeBlockStyles}>{children}</pre>
 }
 

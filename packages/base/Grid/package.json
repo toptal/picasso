@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-grid",
-  "version": "100.0.1",
+  "version": "101.0.0",
   "description": "Toptal UI components library - Grid",
   "publishConfig": {
     "access": "public"
@@ -35,7 +35,7 @@
     "@toptal/picasso-provider": "workspace:^",
     "@toptal/picasso-shared": "workspace:^",
     "@toptal/picasso-tailwind": "workspace:^",
-    "react": ">=17.0.0 < 19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

@@ -1,7 +1,7 @@
 import type { ReactNode, ReactElement } from 'react'
 import React, { forwardRef, useMemo, useCallback } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
-import type { OptionsObject } from 'notistack'
+import type { OptionsObject, SnackbarKey } from 'notistack'
 import { useSnackbar } from 'notistack'
 import type { BaseProps } from '@toptal/picasso-shared'
 
@@ -21,7 +21,7 @@ const defaultPosition: SnackbarOrigin = {
 interface Props extends BaseProps {
   key?: string
   content: ReactNode
-  icon?: ReactElement
+  icon?: ReactElement<{ className?: string; color?: string }>
   onClose?: () => void
   variant?: VariantType
 }
@@ -54,7 +54,10 @@ export const useNotifications = () => {
 
   const getNotification = useCallback(
     () =>
-      (notificationElement: React.ReactElement, options?: OptionsObject) => {
+      (
+        notificationElement: React.ReactElement<{ onClose?: () => void }>,
+        options?: OptionsObject
+      ) => {
         const closeNotification = () => {
           if (!notificationId) {
             return
@@ -68,7 +71,7 @@ export const useNotifications = () => {
         }
         const notificationId = enqueueSnackbar('', {
           anchorOrigin: defaultPosition,
-          content: (key: string) =>
+          content: (key: SnackbarKey) =>
             React.cloneElement(notificationElement, {
               key,
               onClose: closeNotification,
@@ -83,7 +86,11 @@ export const useNotifications = () => {
 
   const getPicassoNotification = useCallback(
     (variant?: VariantType) =>
-      (content: ReactNode, icon?: ReactElement, options?: OptionsObject) => {
+      (
+        content: ReactNode,
+        icon?: ReactElement<{ className?: string; color?: string }>,
+        options?: OptionsObject
+      ) => {
         const notificationComponent = (
           <StyledNotification content={content} icon={icon} variant={variant} />
         )

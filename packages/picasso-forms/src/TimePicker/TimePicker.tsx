@@ -14,7 +14,7 @@ export type Props = FormTimePickerProps &
   FieldProps<TimePickerProps['value']> &
   FieldLabelProps
 
-export const TimePicker = (props: Props) => {
+export const TimePicker = (props: Props): React.ReactElement => {
   const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (

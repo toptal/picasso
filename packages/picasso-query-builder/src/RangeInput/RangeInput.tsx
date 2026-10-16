@@ -35,7 +35,7 @@ export const RangeInput = ({
   validation,
   handleTouched,
   valueEditorTestId,
-}: Props) => {
+}: Props): React.ReactElement => {
   const fromValue = (value as RangeValue).from ?? ''
   const toValue = (value as RangeValue).to ?? ''
 

@@ -13,7 +13,7 @@ const RecognizeResponsive = (props: Props) => {
       xl: <Recognize16 {...props} />,
     },
     <Recognize24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default RecognizeResponsive

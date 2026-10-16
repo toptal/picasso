@@ -1,6 +1,7 @@
-import type { ReactElement, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import React from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
+import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
+import type { BaseProps, IconElement } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -9,7 +10,7 @@ export interface Props extends BaseProps {
   /** Timeline row content */
   children: ReactNode
   /** Icon for the row between lines */
-  icon?: ReactElement
+  icon?: IconElement
   /** Timeline row date */
   date?: string
   /** Whether to render a connector line after the row */
@@ -30,7 +31,7 @@ const TimelineRow = ({
   hasConnector = true,
   'data-testid': dataTestId,
   testIds = {},
-}: Props) => {
+}: Props): React.ReactElement => {
   return (
     <Container
       data-testid={dataTestId}
@@ -45,23 +46,22 @@ const TimelineRow = ({
           className='h-full'
         >
           {typeof icon !== 'undefined' ? (
-            React.cloneElement(icon, {
-              className: twJoin(
-                icon.props.className,
-                'my-1 mx-0 text-gray-600'
+            cloneElementUnlessFragment(icon, {
+              className: twMerge(
+                'my-1 mx-0 text-gray-600',
+                icon.props.className
               ),
             })
           ) : (
             <div
-              className='
-            w-4 h-4 flex items-center justify-center bg-white my-1 mx-0
-
-            [&:after]:content-[""]
-            [&:after]:w-[9px]
-            [&:after]:h-[9px]
-            [&:after]:bg-gray-600
-            [&:after]:rounded-[50%] [&:after]:leading-5
-            '
+              className={twJoin(
+                'w-4 h-4 flex items-center justify-center bg-white my-1 mx-0',
+                '[&:after]:content-[""]',
+                '[&:after]:w-[9px]',
+                '[&:after]:h-[9px]',
+                '[&:after]:bg-gray-600',
+                '[&:after]:rounded-[50%] [&:after]:leading-5'
+              )}
               data-testid={testIds.dot}
             />
           )}

@@ -15,7 +15,7 @@ export const ChartDot = ({
   cy?: number
   value?: number | string | null
   color: string
-}) => {
+}): React.ReactElement => {
   const isEmptyValue = payload && payload[`${dataKey}IsEmpty`]
 
   return (

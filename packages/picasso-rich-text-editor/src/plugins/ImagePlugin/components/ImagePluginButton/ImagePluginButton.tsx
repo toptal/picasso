@@ -9,7 +9,10 @@ export type Props = {
   onClick: () => void
 }
 
-const ImagePluginButton = ({ 'data-testid': testId, onClick }: Props) => {
+const ImagePluginButton = ({
+  'data-testid': testId,
+  onClick,
+}: Props): React.ReactElement => {
   const { disabled, focused, disabledFormatting } = useRTEPluginContext()
 
   return (

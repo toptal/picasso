@@ -13,7 +13,7 @@ const KeypadResponsive = (props: Props) => {
       xl: <Keypad16 {...props} />,
     },
     <Keypad24 {...props} />
-  ) as JSX.Element
+  ) as React.ReactElement
 }
 
 export default KeypadResponsive

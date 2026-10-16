@@ -5,7 +5,7 @@ import { Container } from '@toptal/picasso-container'
  * "You may not resize or modify these logos in any way." by the Google Policies
  * https://developers.google.com/places/web-service/policies
  */
-const PoweredByGoogle = () => (
+const PoweredByGoogle = (): React.ReactElement => (
   <Container
     flex
     justifyContent='flex-end'
