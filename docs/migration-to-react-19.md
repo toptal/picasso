@@ -8,7 +8,8 @@ React 19. If your app is on an older Picasso, follow
 [the v100 guide](./migration-to-new-picasso-v2.md) first.
 
 Each package's CHANGELOG lists its changes in full. This guide orders them into
-the steps an app takes.
+the steps an app takes, and adds what Staff Portal and Client Portal ran into
+when they migrated first.
 
 ## Contents
 
@@ -25,13 +26,14 @@ the steps an app takes.
   - [Step 7. Update the tests](#step-7-update-the-tests)
   - [Step 8. Verify and ship](#step-8-verify-and-ship)
 - [Part 2: Move the app to React 19](#part-2-move-the-app-to-react-19)
-  - [Step 9. Clear the blockers outside Picasso](#step-9-clear-the-blockers-outside-picasso)
-  - [Step 10. Switch React and the test tooling](#step-10-switch-react-and-the-test-tooling)
-  - [Step 11. Handle Picasso's React 19 limitations](#step-11-handle-picassos-react-19-limitations)
-  - [Step 12. Fix the React 19 types](#step-12-fix-the-react-19-types)
-  - [Step 13. Fix the React 19 runtime breaks](#step-13-fix-the-react-19-runtime-breaks)
-  - [Step 14. Update the tests for React 19](#step-14-update-the-tests-for-react-19)
-  - [Step 15. Verify](#step-15-verify)
+  - [Step 9. Move to React 18.3 first](#step-9-move-to-react-183-first)
+  - [Step 10. Clear the blockers outside Picasso](#step-10-clear-the-blockers-outside-picasso)
+  - [Step 11. Switch React and the test tooling](#step-11-switch-react-and-the-test-tooling)
+  - [Step 12. Handle Picasso's React 19 limitations](#step-12-handle-picassos-react-19-limitations)
+  - [Step 13. Fix the React 19 types](#step-13-fix-the-react-19-types)
+  - [Step 14. Fix the React 19 runtime breaks](#step-14-fix-the-react-19-runtime-breaks)
+  - [Step 15. Update the tests for React 19](#step-15-update-the-tests-for-react-19)
+  - [Step 16. Verify](#step-16-verify)
 - [Known gaps](#known-gaps)
 - [References](#references)
 
@@ -59,21 +61,23 @@ that when the React 19 change fails, React is the cause.
 
 ### Do you need to act?
 
-| Change                                                   | On React 18                                                                     | On React 19                            | Step                                                                                                        |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Picasso versions                                         | **Yes**: bump every package, and its dependents                                 | Yes                                    | [1](#step-1-bump-every-picasso-package-together)                                                            |
-| `notistack`                                              | **Yes**: exactly `3.0.2`                                                        | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `@testing-library/react` with Picasso's test utils       | Maybe: a version that supports your React                                       | Yes: 16.1 or newer                     | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
-| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                                                  | Nothing extra                          | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
-| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | No: a peer warning only                                                         | No                                     | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| `react-helmet-async` 3                                   | Import `Helmet` from the provider; pin `3.0.0` if you render `<HelmetProvider>` | **Yes**: only titles merge             | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-handle-picassos-react-19-limitations) |
-| Patches and overrides keyed on old versions              | **Yes**                                                                         | Yes                                    | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
-| tailwind-merge 3                                         | Review your class overrides                                                     | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, a new peer, visual diffs                             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| ShowMore, TimePicker, RichTextEditor, DatePicker         | Maybe: tests that relied on the old DOM or behavior                             | No                                     | [6](#step-6-review-the-component-changes)                                                                   |
-| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                                            | Only if you import recharts yourself   | [2](#step-2-update-dependencies-overrides-and-patches), [10](#step-10-switch-react-and-the-test-tooling)    |
-| Types                                                    | No                                                                              | **Yes**: `@types/react` 19             | [11](#step-11-handle-picassos-react-19-limitations), [12](#step-12-fix-the-react-19-types)                  |
-| Your other dependencies                                  | No                                                                              | **Yes**: many still cap React below 19 | [9](#step-9-clear-the-blockers-outside-picasso)                                                             |
+| Change                                                   | On React 18                                                                                         | On React 19                                     | Step                                                                                                        |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Picasso versions                                         | **Yes**: bump every package, and its dependents                                                     | Yes                                             | [1](#step-1-bump-every-picasso-package-together)                                                            |
+| `notistack`                                              | **Yes**: exactly `3.0.2`                                                                            | No                                              | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| `@testing-library/react` with Picasso's test utils       | Maybe: a version that supports your React                                                           | Yes: 16.1 or newer                              | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-switch-react-and-the-test-tooling)    |
+| picasso-forms on react-final-form 7                      | **Yes**: types, runtime, tests                                                                      | Nothing extra                                   | [4](#step-4-fix-the-form-types) to [7](#step-7-update-the-tests)                                            |
+| date-fns 4 in Calendar, DatePicker and `@toptal/picasso` | No: a peer warning only                                                                             | No                                              | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| `react-helmet-async` 3                                   | Import `Helmet` from the provider; pin `3.0.0` if you render `<HelmetProvider>`                     | **Yes**: only titles merge                      | [2](#step-2-update-dependencies-overrides-and-patches), [12](#step-12-handle-picassos-react-19-limitations) |
+| Patches and overrides keyed on old versions              | **Yes**                                                                                             | Yes                                             | [2](#step-2-update-dependencies-overrides-and-patches)                                                      |
+| tailwind-merge 3                                         | Review your class overrides                                                                         | No                                              | [6](#step-6-review-the-component-changes)                                                                   |
+| Collapse, Fade, Slide, Backdrop                          | Maybe: callback arguments, a new peer, visual diffs                                                 | No                                              | [6](#step-6-review-the-component-changes)                                                                   |
+| ShowMore, TimePicker, RichTextEditor, DatePicker         | Maybe: tests that relied on the old DOM or behavior                                                 | No                                              | [6](#step-6-review-the-component-changes)                                                                   |
+| Changes from newer `100.x` releases                      | Maybe, if you come from an older `100.x`: `TypographyOverflow`, `Link`, links in the RichTextEditor | No                                              | [6](#step-6-review-the-component-changes)                                                                   |
+| Charts (recharts 2.15.4)                                 | Only if you import recharts yourself                                                                | Only if you import recharts yourself            | [2](#step-2-update-dependencies-overrides-and-patches), [11](#step-11-switch-react-and-the-test-tooling)    |
+| React 18.3.1                                             | No                                                                                                  | **Yes**: move to it first, and fix its warnings | [9](#step-9-move-to-react-183-first)                                                                        |
+| Types                                                    | No                                                                                                  | **Yes**: `@types/react` 19                      | [12](#step-12-handle-picassos-react-19-limitations), [13](#step-13-fix-the-react-19-types)                  |
+| Your other dependencies                                  | No                                                                                                  | **Yes**: many still cap React below 19          | [10](#step-10-clear-the-blockers-outside-picasso)                                                           |
 
 ### Versions in the release
 
@@ -96,11 +100,12 @@ in your manifests or in the peers of packages built on Picasso
 | ------------------------------- | -------------------- | ----------------------------------------------------------------------------------- |
 | React 17 with `@types/react` 17 | Declared, not tested | Unchanged                                                                           |
 | React 18 with `@types/react` 18 | Supported and tested | Unchanged                                                                           |
-| React 19 with `@types/react` 19 | Supported and tested | Compiles, with the gaps in [Step 11](#step-11-handle-picassos-react-19-limitations) |
+| React 19 with `@types/react` 19 | Supported and tested | Compiles, with the gaps in [Step 12](#step-12-handle-picassos-react-19-limitations) |
 
-Picasso runs its unit tests and its Cypress component tests on both React 18
-and React 19. Cypress 14 mounts every spec with `createRoot`, so nothing
-exercises React 17's legacy root any more.
+Picasso runs its unit tests and its Cypress component tests on both React 18.3
+and React 19, and checks its published declarations against `@types/react` 18
+and 19. Cypress 14 mounts every spec with `createRoot`, so nothing exercises
+React 17's legacy root any more.
 
 ## What changes underneath
 
@@ -126,9 +131,9 @@ in an app that never imports a final-form package itself.
 
 The release also adds helpers for code that has to run on both React majors:
 `renderedProps` in `@toptal/picasso/test-utils`
-([Step 14](#step-14-update-the-tests-for-react-19)), `getElementRef`
-([Step 13](#step-13-fix-the-react-19-runtime-breaks)), `NullableRefObject`
-([Step 11](#step-11-handle-picassos-react-19-limitations)) and
+([Step 15](#step-15-update-the-tests-for-react-19)), `getElementRef`
+([Step 14](#step-14-fix-the-react-19-runtime-breaks)), `NullableRefObject`
+([Step 12](#step-12-handle-picassos-react-19-limitations)) and
 `isReact19OrNewer` in `@toptal/picasso/utils`, and the `IconElement` type in
 `@toptal/picasso`.
 
@@ -136,6 +141,9 @@ The release also adds helpers for code that has to run on both React majors:
 
 ### Ground rules
 
+- **Go step by step.** Finish a step's checks before you start the next one.
+  [Step 8](#step-8-verify-and-ship) and [Step 16](#step-16-verify) are the full
+  gates for each part.
 - **Ship Part 1 before you start Part 2**, and keep Part 2 in a change of its
   own.
 - **Compare against master.** Users should see no change, so a visible
@@ -145,6 +153,27 @@ The release also adds helpers for code that has to run on both React majors:
   needs the reviewer's agreement, so list each one in the PR.
 - **When a failure points at Picasso, report it** instead of working around it
   in the app.
+
+### Plan the pull requests
+
+Each of these can merge on its own, in this order, and only the last one changes
+React's major:
+
+1. **Picasso 102 on React 18**
+   ([Part 1](#part-1-adopt-the-release-on-react-18)): Picasso, the libraries
+   built on it, and the form, component and test fixes.
+2. **React 18.3.1** ([Step 9](#step-9-move-to-react-183-first)), with Testing
+   Library 14.3 or newer and `renderHook` from `@testing-library/react`.
+3. **Dependency upgrades that already admit React 19**
+   ([Step 10](#step-10-clear-the-blockers-outside-picasso)). Give
+   `@apollo/client` a pull request of its own.
+4. **Mocked-component assertions through `renderedProps`**
+   ([Step 15](#step-15-update-the-tests-for-react-19)), which pass on both
+   majors.
+5. **React 19** (Steps 11 to 16).
+
+Staff Portal merged its third-party upgrades on React 18 this way, so its React
+19 change only had to follow React itself.
 
 ### Size the work
 
@@ -158,7 +187,7 @@ git grep -l -E '"@(toptal/(picasso|base-tailwind)|topkit/analytics-charts)' -- '
 # imports of the final-form family that bypass picasso-forms (Step 5)
 git grep -n -E "from '(react-)?final-form(-arrays|-listeners)?'" -- '*.ts' '*.tsx'
 # array fields that may read meta keys outside the new default subscription (Step 5)
-git grep -l -E '<FieldArray|useFieldArray\(' -- '*.ts' '*.tsx' \
+git grep -l -E '<FieldArray|useFieldArray[<(]' -- '*.ts' '*.tsx' \
   | xargs grep -l -E 'touched|submitError|submitFailed|dirty|pristine|modified|visited|active'
 # picasso-forms components mocked with a direct jest.Mock cast (Step 4)
 git grep -n -E '(^|[^[:alnum:]_])(FieldArray|OnChange|ExternallyChanged) as jest\.Mock' -- '*.ts' '*.tsx'
@@ -167,26 +196,39 @@ git grep -l -E '<(ShowMore|Accordion|Table\.ExpandableRow|Collapse|Fade|Slide|Ba
 # overrides and patches that name the moving packages (Step 2)
 git grep -n -E 'final-form|notistack|react-helmet-async|react-truncate|recharts|@toptal/picasso' -- pnpm-workspace.yaml package.json
 ls patches
+# a TypographyOverflow prop that 100.1.0 added and 100.1.1 removed (Step 6)
+git grep -n 'disableTooltipGuard' -- '*.ts' '*.tsx'
 
 # Part 2
-# test files that assert React 18's second component argument (Step 14, rough)
+# test files that assert React 18's second component argument (Step 15, rough)
 git grep -l -E 'CalledWith\(' -- '*.test.ts' '*.test.tsx' \
   | xargs grep -l -E '^[[:space:]]*(\{\}|expect\.anything\(\)),?[[:space:]]*$|,[[:space:]]*(\{\}|expect\.anything\(\))[[:space:]]*\)' | wc -l
-# test files on @testing-library/react-hooks (Step 10)
+# test files on @testing-library/react-hooks (Step 11)
 git grep -l '@testing-library/react-hooks' -- '*.ts' '*.tsx' | wc -l
-# global JSX namespace, useRef without an argument, ReactText and friends (Step 12)
+# global JSX namespace, useRef without an argument, ReactText and friends (Step 13)
 git grep -E '(^|[^[:alnum:]_.])JSX\.[A-Z]' -- '*.ts' '*.tsx' | wc -l
 git grep -E 'useRef<[^>]*>\(\)' -- '*.ts' '*.tsx' | wc -l
 git grep -E '(^|[^[:alnum:]_])React(Text|Child|Fragment)([^[:alnum:]_]|$)' -- '*.ts' '*.tsx' | wc -l
-# defaultProps, which React 19 ignores on function components (Step 13)
+# defaultProps, which React 18.3 warns about and 19 ignores on function components (Steps 9 and 14)
 git grep -n -E '\.defaultProps[[:space:]]*=' -- '*.ts' '*.tsx' '*.js' '*.jsx'
-# APIs React 19 removed or moved (Steps 10 and 13)
+# APIs React 18.3 warns about and React 19 removes or moves (Steps 9, 11 and 14)
 git grep -n -E "react-dom/test-utils|ReactDOM\.(render|hydrate|unmountComponentAtNode)\(|findDOMNode\(|react-hot-loader" -- '*.ts' '*.tsx' '*.js' '*.jsx'
-# test files with Symbol placeholders that mocks may render (Step 14)
+git grep -n -E 'contextTypes|getChildContext|unmountComponentAtNode|renderToStaticNodeStream' -- '*.ts' '*.tsx' '*.js' '*.jsx'
+# string refs (Step 9)
+git grep -n -E "(^|[[:space:]])ref=[\"'][^\"']+[\"']" -- '*.tsx' '*.jsx'
+# test files with Symbol placeholders that mocks may render (Step 15)
 git grep -l "Symbol('" -- '*.test.ts' '*.test.tsx' | wc -l
-# helmet title templates, which apply on React 19 only through Page.Helmet (Step 11)
+# helmet title templates, which apply on React 19 only through Page.Helmet (Step 12)
 git grep -n 'titleTemplate' -- '*.ts' '*.tsx'
 ```
+
+For scale: Part 1 touched 262 manifests, the workspace configuration and 84
+source and test files in Staff Portal, most of them one-line type fixes for
+react-final-form 7, and 89 manifests and 17 files in Client Portal. Staff
+Portal's React 19 change touched about 1,550 files, 1,272 of them only for the
+mocked components' call shape
+([Step 15](#step-15-update-the-tests-for-react-19)). Its full unit run takes 20
+to 30 minutes, so give long runs the time they need.
 
 ## Part 1: Adopt the release on React 18
 
@@ -199,13 +241,16 @@ publishes. Check the root `package.json` too: tooling packages such as
 `@toptal/picasso-tailwind-merge` and `@toptal/picasso-cypress-utils` often live
 there, and a search for `picasso` misses `@toptal/base-tailwind`.
 
-**Move the packages built on Picasso in the same change.** A library that peers
-on Picasso with a `^100` range or an exact version doesn't admit the release, so
-pnpm installs a second, older Picasso next to the new one. Context-carrying
-packages such as `@toptal/picasso-provider`, `-shared` and `-modal` then break
-without an error, because lookups in the second copy find no provider. Take
-their releases built against `102.0.0`, and read the changelog of each one whose
-version moves: it also brings every release since your last bump.
+**Move the packages built on Picasso in the same change,** such as topkit's
+`@topkit/*` packages. A library that peers on Picasso with a `^100` range or an
+exact version doesn't admit the release, so pnpm installs a second, older
+Picasso next to the new one. Context-carrying packages such as
+`@toptal/picasso-provider`, `-shared` and `-modal` then break without an error,
+because lookups in the second copy find no provider. Take their releases built
+against `102.0.0`, and read the changelog of each one whose version moves: it
+also brings every release since your last bump. If one of them has no such
+release yet, wait for it. Forcing it onto `102.0.0` with an override hides a
+peer range its owners haven't tested against.
 
 ### Step 2. Update dependencies, overrides and patches
 
@@ -298,20 +343,40 @@ grep -oE "^  '?(react|react-dom|react-final-form|final-form|notistack|react-helm
 A types-only package may nest its own copy without harm, since it holds no React
 context. For example, `@types/final-form-set-field-data` brings final-form 4.
 
+Run the first check for the libraries built on Picasso too. Two copies of one of
+them split its context the same way: two `@topkit/router` copies once broke
+Staff Portal's links. A library's own copy of a package that holds no React
+context is harmless, such as the `@topkit/apollo-client` that
+`@toptal/top-scheduler` pins:
+
+```bash
+# topkit packages locked at more than one version
+grep -oE "^  '?@topkit/[a-z-]+@[0-9][^(:']*" pnpm-lock.yaml \
+  | sed -E "s/^  '?//" | sort -u | sed -E 's/@[^@]+$//' | uniq -d
+```
+
 **Check the installed tree, not only the lockfile.** Copies can nest under a
 workspace package's own `node_modules`, where a search of the root
-`node_modules` never looks. This lists every nested copy of a Picasso package:
+`node_modules` never looks. This lists every nested copy of a Picasso or topkit
+package:
 
 ```bash
 find . -path ./.git -prune -o -name package.json \
-  -path '*/node_modules/@toptal/picasso*/package.json' -print \
-  | grep -E '/node_modules/@toptal/[^/]+/package\.json$' \
-  | grep -vE '^\./node_modules/@toptal/[^/]+/package\.json$'
+  \( -path '*/node_modules/@toptal/picasso*/package.json' -o -path '*/node_modules/@topkit/*/package.json' \) -print \
+  | grep -E '/node_modules/@(toptal|topkit)/[^/]+/package\.json$' \
+  | grep -vE '^\./node_modules/@(toptal|topkit)/[^/]+/package\.json$'
 ```
 
 It matches `package.json` files rather than directories, because an interrupted
 install can leave a `_tmp_…` directory that looks like a package but can't be
 resolved.
+
+Run it on a clean install. An install over an old `node_modules` can leave
+nested copies behind that the lockfile no longer has, and Node resolves them
+first, from inside the package that contains them. After many reinstalls during
+its migration, Staff Portal's tree held ten such topkit copies, one of them an
+older version. Remove `node_modules`, the workspace packages' own included, and
+run `pnpm install --frozen-lockfile` before you trust the result.
 
 **Rerun `pnpm dedupe --check` before acting on a failure.** It can flip on an
 unchanged lockfile: peer-context labels, the hashes inside snapshot keys, settle
@@ -359,9 +424,9 @@ options the form opened with", captures nothing. Read those values from
 **Import every form API from `@toptal/picasso-forms`.** react-final-form 7.0.1
 refills a remounted field from `initialValues`
 ([react-final-form#1095](https://github.com/final-form/react-final-form/issues/1095))
-and renders an array field's first render with no items. A step-based form
-then loses its edits when the user goes back a step. picasso-forms works around
-both for its own exports: the Picasso fields, the radio and checkbox groups,
+and renders an array field's first render with no items. A step-based form then
+loses its edits when the user goes back a step. picasso-forms works around both
+for its own exports: the Picasso fields, the radio and checkbox groups,
 `FinalField`, `useField`, `FieldArray`, `useFieldArray`, and the `OnChange`,
 `OnBlur`, `OnFocus` and `ExternallyChanged` listeners. The same APIs imported
 from `react-final-form`, `react-final-form-arrays` or
@@ -385,8 +450,8 @@ key to `length`, `value` and `error`, and Picasso's `FieldArray` and
 `meta` key, such as `touched` or `submitError`, gets `undefined`, and whatever
 depends on that key silently stops rendering: an array-level submit error, or a
 validation error shown only once the field is touched. Few tests can see it.
-Subscribe to every key you read, on top of the defaults; `length` is always
-added:
+Subscribe to every key you read. A `subscription` replaces the defaults, so keep
+`value` and `error` in it; `length` is always added:
 
 ```ts
 useFieldArray('additionalCcs', {
@@ -395,10 +460,20 @@ useFieldArray('additionalCcs', {
 ```
 
 The array-field search in [Size the work](#size-the-work) lists the candidates.
-Check each hit by hand, because only keys read from the array field's own `meta`
-count: a prop such as `activeRepresentativeId`, or form-level state read through
-`useFormState()`, is a false positive. The search can't see a field that passes
-`meta` to a helper, such as `fieldArrayError(meta)`, so check those helpers too.
+Keep its `[<(]`: a call with a type argument, such as
+`useFieldArray<RuleValues>('rules')`, doesn't match `useFieldArray\(`. Check
+each hit by hand, because only keys read from the array field's own `meta`
+count. These are false positives:
+
+- a prop or variable such as `activeRepresentativeId`, or `active` in a drag
+  handler or an import path
+- form-level state read through `useFormState()`
+- `submitError` read through `form.getFieldState()`, which the subscription
+  doesn't limit
+
+The search can't see a field that passes `meta` to a helper, such as
+`fieldArrayError(meta)`, so check those helpers too. New code can bring new
+readers, so run the search again after every merge of master.
 
 **Checkboxes with a custom `format`.** A checkbox without its own `value` keeps
 version 6's `checked`: `Form.Checkbox`, `Form.ButtonCheckbox`, `Form.Switch`,
@@ -446,16 +521,15 @@ react-transition-group.
 - Slide hides its child with `translate-*` classes instead of an inline
   `transform`, so `transitionend` listeners see `propertyName: 'translate'`, and
   a child's own inline `transform` is kept.
-- A closed Fade, Slide or Backdrop is hidden by the `invisible` class instead
-  of an inline `visibility: hidden`. jsdom doesn't apply the class, so a test
-  that checked `not.toBeVisible()` or `toHaveStyle('visibility: hidden')`
-  asserts `toHaveClass('invisible')` instead.
+- A closed Fade, Slide or Backdrop is hidden by the `invisible` class instead of
+  an inline `visibility: hidden`. jsdom doesn't apply the class, so a test that
+  checked `not.toBeVisible()` or `toHaveStyle('visibility: hidden')` asserts
+  `toHaveClass('invisible')` instead.
 - Fade's and Slide's own transition replaces a `transition-*` utility on the
   child, so they animate. A broad `transition` or `transition-all` on the child
-  stays, and so does `transition-none`, which turns the animation off. On
-  Slide, a `translate-*` utility on the child along the slide axis applies
-  while the child is shown, and gives way to the slide's offset while it's
-  hidden.
+  stays, and so does `transition-none`, which turns the animation off. On Slide,
+  a `translate-*` utility on the child along the slide axis applies while the
+  child is shown, and gives way to the slide's offset while it's hidden.
 - Expect a few visual diffs on accordions and expandable content built on
   Collapse.
 
@@ -465,30 +539,38 @@ whole text, and server-rendered output contains the full text. The toggle still
 appears only when the content overflows.
 
 **TimePicker** renders the native `<input type="time">` in Safari too, which has
-had it since 14.1. Safari 13 and 14.0 get a text field that accepts `HH:MM`.
-The shown time now clears when the value is reset from outside to `''` or
+had it since 14.1. Safari 13 and 14.0 get a text field that accepts `HH:MM`. The
+shown time now clears when the value is reset from outside to `''` or
 `undefined`, such as by a form reset.
 
 **DatePicker** closes the calendar and calls `onBlur` when the focus leaves the
 picker from the calendar, so a form now marks the field touched there. A
-`timezone` the browser doesn't know shows the date as it is instead of crashing.
-It uses date-fns 4 internally, and the `timezone` prop behaves as before. Given
-a `minDate` after its `maxDate`, it no longer crashes; it treats the interval as
-swapped.
+`footer` control that opens a popup of its own, such as a `Dropdown`, keeps the
+calendar open, but one that moves the focus anywhere else, such as a link that
+opens a chat, now closes it. A `timezone` the browser doesn't know shows the
+date as it is instead of crashing. It uses date-fns 4 internally, and the
+`timezone` prop behaves as before. Given a `minDate` after its `maxDate`, it no
+longer crashes; it treats the interval as swapped.
 
 **RichTextEditor** renders emoji-mart's picker through a local component instead
 of `@emoji-mart/react`, and no longer leaks a `keyup` listener on
 `document.body` each time the picker opens. It loads emoji-mart and its dataset
-(about 100 KB gzipped) on the first picker open instead of with every editor;
-the `/eager` entry loads both up front.
+(about 100 KB gzipped) on the first picker open instead of with every editor, so
+an app that doesn't use the emoji plugin doesn't load them at all. The `/eager`
+entry loads both up front.
 
 **Select** reopens its options on a click right after the search input's blur
 closed them. Testing Library and Cypress clicks hit the old behavior more often
-than real pointer clicks did, so a test that worked around it may need
-updating.
+than real pointer clicks did, so a test that worked around it may need updating.
 
 **Autocomplete** gives the input ref to an `inputComponent` that takes `ref` as
-a prop on React 19, instead of dropping it.
+a prop on React 19, instead of dropping it. A class component, also one wrapped
+in `memo`, still doesn't get it, since its ref would be the instance rather than
+the input.
+
+**TypographyOverflow** opens its tooltip when the pointer stops on the text,
+where it needed another pointer move before. A tooltip dismissed while hovered,
+for example with Escape, stays closed until the pointer leaves the text.
 
 **Dropdown** passes `{ open }` to a render-function child. The `isOpen` key
 still arrives, deprecated.
@@ -512,18 +594,43 @@ still arrives, deprecated.
   `className` last. Check places where you overrode a Picasso class and relied
   on stylesheet order.
 
-**If you come from an older v100 patch**, the release also brings the fixes
-Picasso shipped on v100 since: the Modal focus trap
-([#5103](https://github.com/toptal/picasso/pull/5103),
-[#5110](https://github.com/toptal/picasso/pull/5110)), `Table.ExpandableRow`'s
-collapse animation and `colSpan`
-([#5105](https://github.com/toptal/picasso/pull/5105)), and the native `Select`
-([#5113](https://github.com/toptal/picasso/pull/5113)). Drop any app-side
-workaround for those first.
+**If you come from an older `100.x`**, the release also brings what Picasso
+shipped on v100 since. These can show in your tests and screenshots:
+
+- **Fixes:** the Modal focus trap
+  ([#5103](https://github.com/toptal/picasso/pull/5103),
+  [#5110](https://github.com/toptal/picasso/pull/5110)), `Table.ExpandableRow`'s
+  collapse animation and `colSpan`
+  ([#5105](https://github.com/toptal/picasso/pull/5105)), and the native
+  `Select` ([#5113](https://github.com/toptal/picasso/pull/5113)). Drop any
+  app-side workaround for those first.
+- **`TypographyOverflow`:** `@toptal/picasso-typography-overflow` 100.1.0, in
+  `@toptal/picasso` 100.0.12 and 100.0.13, laid an empty layer over the text to
+  stop Safari's native tooltip. In every browser, that layer took the clicks of
+  links and buttons inside it and stopped `titleCase` from applying. 100.1.1
+  ([#5141](https://github.com/toptal/picasso/pull/5141)) replaces it with an
+  empty block added only in Safari, and removes the `disableTooltipGuard` prop
+  100.1.0 added, so drop the prop where you pass it. Skip 100.0.12 and 100.0.13
+  if you bump within `100.x`.
+- **RichTextEditor links**
+  ([#5132](https://github.com/toptal/picasso/pull/5132),
+  [#5133](https://github.com/toptal/picasso/pull/5133)): `LinkPlugin` sets the
+  link text, the URL and "Open in new tab" in a dialog instead of the browser's
+  prompt, and the link button on an existing link opens that dialog to edit or
+  remove it. The editor's `onBlur` no longer fires when the focus moves into the
+  dialog. A test that answered the prompt has to fill in the dialog.
+- **`Link`** ([#5136](https://github.com/toptal/picasso/pull/5136)): a link with
+  `onClick` and no `href` renders with `role="button"`, takes keyboard focus,
+  and Enter or Space clicks it, so tests query it as a button. Every link also
+  gets a focus-ring class, which changes snapshots.
+- **Focus rings:** links, and since
+  [#5118](https://github.com/toptal/picasso/pull/5118) tabs and the Slider
+  thumb, show a focus ring on keyboard focus.
 
 **Where to look in visual tests:** screens that render `ShowMore`, `Accordion`
 or `Table.ExpandableRow`, anything inside a Fade, Slide, Collapse or Backdrop,
-and places where you override a Picasso class.
+places where you override a Picasso class, and focused links, tabs and slider
+thumbs.
 
 ### Step 7. Update the tests
 
@@ -631,6 +738,9 @@ cy.getByTestId('expiry-date-editor')
 - [ ] the lockfile and tree checks from
       [Step 3](#step-3-install-then-check-the-tree), and your
       version-consistency check if you have one
+- [ ] the array-field search from
+      [Step 5](#step-5-handle-the-form-runtime-changes), again after every merge
+      of master
 - [ ] the type check with 0 errors, Cypress specs included, compared with master
 - [ ] the full unit suite
 - [ ] Cypress for every package with forms, modals, date pickers, rich text or
@@ -642,9 +752,12 @@ cy.getByTestId('expiry-date-editor')
   - conditional fields: a field that unmounts and remounts keeps its edit
   - inline editors with a date field, and a DatePicker that shows a new value
     after a click outside it
+  - a DatePicker whose footer moves the focus elsewhere, such as a link that
+    opens a chat
   - checkboxes stored as `'true'` and `'false'`
   - a `Select` or `Autocomplete` inside a `Modal` stays open when clicked
-  - each flow that relies on `ExternallyChanged`
+  - each flow that relies on `ExternallyChanged`. A temporary test is a quick
+    way to check one
   - `ShowMore` on long and on short text
   - whatever each re-keyed patch is for
 
@@ -652,7 +765,42 @@ cy.getByTestId('expiry-date-editor')
 
 Start once Part 1 is in production.
 
-### Step 9. Clear the blockers outside Picasso
+### Step 9. Move to React 18.3 first
+
+React's upgrade guide recommends moving to React 18.3 before React 19. 18.3 is
+identical to 18.2, apart from warnings about the APIs that React 19 removes or
+changes, and 18.3.1 also exports `act` from `react`. Move `react` and
+`react-dom` to `18.3.1`, overrides that pin an older 18.x included, and keep
+`@types/react` 18. It's still React 18, so the change can ship on its own, as
+Part 1 did.
+
+Then fix what it warns about. These are the warnings 18.3 adds:
+
+| It warns about                                                         | React 19                       | Fix                                                                                                       |
+| ---------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| `defaultProps` on a function component                                 | Ignores it                     | Default parameters ([Step 14](#step-14-fix-the-react-19-runtime-breaks))                                  |
+| Spreading an object that contains `key` into JSX                       | Still warns                    | Pass `key` directly ([Step 14](#step-14-fix-the-react-19-runtime-breaks))                                 |
+| String refs                                                            | Removes them                   | Ref callbacks; `npx codemod@latest react/19/replace-string-ref` rewrites them                             |
+| Legacy context: `contextTypes`, `childContextTypes`, `getChildContext` | Removes it                     | `createContext`, read with `static contextType` in a class                                                |
+| `findDOMNode`                                                          | Removes it                     | A ref on the DOM element                                                                                  |
+| `act` from `react-dom/test-utils`                                      | Removes `react-dom/test-utils` | `act` from `react`; `npx codemod@latest react/19/replace-act-import` moves the import                     |
+| The other methods of `react-dom/test-utils`                            | Removes them                   | Testing Library, or what React's `react-dom/test-utils` warning links to                                  |
+| `unmountComponentAtNode`                                               | Removes it                     | `root.unmount()` on the root `createRoot` returned; `npx codemod@latest react/19/replace-reactdom-render` |
+| `renderToStaticNodeStream`                                             | Removes it                     | Another `react-dom/server` API                                                                            |
+
+**Update Testing Library first.** `@testing-library/react` before 14.3 and
+`@testing-library/react-hooks` 8 call `act` from `react-dom/test-utils`, so
+18.3.1 warns once in every test file that renders. With a setup that fails tests
+on console output, such as `jest-fail-on-console`, that fails each of those
+files. Move `@testing-library/react` to 14.3 or newer, or straight to 16, and
+replace `@testing-library/react-hooks`
+([Step 11](#step-11-switch-react-and-the-test-tooling)) before the bump or with
+it.
+
+**Picasso logs none of these warnings.** Its React 18 tests run on 18.3.1, so an
+18.3 warning in your app comes from your own code or from another dependency.
+
+### Step 10. Clear the blockers outside Picasso
 
 Picasso allows React 19, but your other dependencies may not. Check the
 installed manifests, not the lockfile: pnpm records peer ranges after
@@ -726,16 +874,16 @@ node react19-peers.js node_modules \
 
 Expect these groups:
 
-| Group                 | Examples                                                                                                           | Fix                                                   |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| Internal libraries    | Libraries built on Picasso, and shared tooling, that still declare `>=17 <19`                                      | A release that allows React 19, or ask the owners     |
-| Test and dev tooling  | `@testing-library/react` 13 and 14, `@testing-library/react-hooks` 8, `react-test-renderer` 18, `react-hot-loader` | [Step 10](#step-10-switch-react-and-the-test-tooling) |
-| React itself          | `react-dom` 18                                                                                                     | [Step 10](#step-10-switch-react-and-the-test-tooling) |
-| Third-party libraries | See the next table                                                                                                 | Upgrade or replace                                    |
+| Group                 | Examples                                                                                                                                                                                                                                                    | Fix                                                   |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Internal libraries    | Libraries built on Picasso, such as topkit's `@topkit/*` packages and `@toptal/top-scheduler`, and shared tooling, such as Davinci's Storybook packages, that still declare `>=17 <19`, and what they bring, such as `react-redux` 8 or `logrocket-react` 6 | A release that allows React 19, or ask the owners     |
+| Test and dev tooling  | `@testing-library/react` 13 and 14, `@testing-library/react-hooks` 8, `react-test-renderer` 18, `react-hot-loader`                                                                                                                                          | [Step 11](#step-11-switch-react-and-the-test-tooling) |
+| React itself          | `react-dom` 18                                                                                                                                                                                                                                              | [Step 11](#step-11-switch-react-and-the-test-tooling) |
+| Third-party libraries | See the next table                                                                                                                                                                                                                                          | Upgrade or replace                                    |
 
 | Library                        | Admits React 19 from                          |
 | ------------------------------ | --------------------------------------------- |
-| `@apollo/client`               | 3.12.2                                        |
+| `@apollo/client`               | 3.12.2 ([below](#upgrading-apolloclient))     |
 | `react-redux`                  | 9.2.0                                         |
 | `html-react-parser`            | 5.2.0                                         |
 | `react-resize-detector`        | 12.0.0                                        |
@@ -751,18 +899,53 @@ Expect these groups:
 `react` or `react-dom` peer excludes 19.0.0, according to the npm registry in
 October 2026.
 
+Upgrade what you can on React 18 first, where each upgrade can merge on its own.
+`html-react-parser` stops at 5: version 6 moves to `domhandler` 6, which is
+ESM-only and fails Jest's transform. Version 5 types an element's `children` as
+`ChildNode[]`, so cast them to `DOMNode[]` for `domToReact`, as its README does.
+
 A peer range is only half the story. Some blockers pass the check:
 
 - **Cypress 13**'s `cypress/react` mounts through `ReactDOM.render`, which React
   19 removes. Cypress 14's mounts through `createRoot`, and Picasso runs its
-  component tests on it.
+  component tests on it, next to `@toptal/davinci-qa`, which still declares a
+  Cypress 12 or 13 peer. Expect that peer warning.
 - **styled-components 5** declares `react >= 16.8.0` but passes `ref: null` to
-  the component it wraps ([Step 13](#step-13-fix-the-react-19-runtime-breaks)).
-- **Monitoring SDKs** may turn off their React integration on React 19.
-  `logrocket-react` 6.0.3, for example, warns at load that it doesn't support
-  React 19. Decide on those before the switch.
+  the component it wraps ([Step 14](#step-14-fix-the-react-19-runtime-breaks)).
+- **Monitoring SDKs** may read React internals that React 19 removed.
+  `logrocket-react` 6 warns at load, logs an error on every click and loses
+  component names on React 19. Version 7.0.1 works, so move to it, or override
+  it where a library still depends on version 6.
 
-### Step 10. Switch React and the test tooling
+#### Upgrading @apollo/client
+
+Apollo 3.x admits React 19 from 3.12.2; 3.11.0 to 3.12.1 admit only its release
+candidate. Expect more than a version bump. An app that moved from 3.6.10 to
+3.14.1, the latest 3.x, fixed about 125 type errors, and Cypress caught four
+behavior changes it relied on:
+
+| Since      | Change                                                                                          | What broke                                                                      | Fix                                                                                                        |
+| ---------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 3.7        | `refetch()` no longer reports `loading` without `notifyOnNetworkStatusChange`                   | a spinner that relied on `refetch()` never showed                               | Set `notifyOnNetworkStatusChange: true` on each such query                                                 |
+| 3.8 / 3.13 | With `errorPolicy: 'all'`, GraphQL errors go to `onError`, and a throw in `onCompleted` rejects | root-level mutation errors showed two toasts                                    | Await `mutate` in the shared `useMutation` wrapper and run its own completed and error handling, as on 3.6 |
+| 3.11       | `nextFetchPolicy` also runs when a lazy execute sets a new policy with new variables            | a `no-cache` lazy query ran as `cache-first`                                    | Keep the initial policy on `variables-changed` in the client's default `nextFetchPolicy`                   |
+| 3.12       | `keyFields` functions receive nested normalized objects as References                           | a key built from a nested `id` threw, so every query selecting that type failed | Read the nested fields through `readField`; cache ids stay the same                                        |
+
+The types and tests change too:
+
+- Type-only `GraphQLError` annotations become `GraphQLFormattedError`, which
+  Apollo 3.8 and later use for `graphQLErrors` and response `errors`. Wrapper
+  hooks constrain `TVariables` to `OperationVariables`, as Apollo's own hooks
+  now do.
+- Apollo 3.14 warns about every option Apollo 4 removes (`addTypename`,
+  `canonizeResults`, `onCompleted`, `onError` and more). With
+  `jest-fail-on-console`, mute those warnings through Apollo's own switch until
+  you migrate to Apollo 4.
+- Since 3.9, `MockedProvider` warns when no mock matches, so pass
+  `showWarnings={false}`, and a query with no mock now fails while the test is
+  still running. Add the mocks such tests were missing.
+
+### Step 11. Switch React and the test tooling
 
 These versions work together:
 
@@ -773,17 +956,18 @@ These versions work together:
 | `@types/react-dom`               | 19.2.7  |
 | `@testing-library/react`         | 16.3.3  |
 | `@testing-library/dom`           | 10.4.1  |
+| `logrocket-react`, if you use it | 7.0.1   |
 
 - **`react-is` 19.** Jest's pretty-format and other libraries need it to
   recognize React 19 elements. So does recharts, in charts you render with it
-  yourself: it ships `react-is` 18, which doesn't recognize a React 19
-  fragment, so it drops the chart parts inside one. Picasso's charts don't
-  need it: `LineChart` unwraps its fragment children itself.
+  yourself: it ships `react-is` 18, which doesn't recognize a React 19 fragment,
+  so it drops the chart parts inside one. Picasso's charts don't need it:
+  `LineChart` unwraps its fragment children itself.
 - **`@testing-library/react` 16, with `@testing-library/dom` 10.** RTL 16.1 is
   the first release whose peer range admits React 19. Override nested copies
-  too, such as an RTL 14 that your test tooling bundles, which would call
-  `react-dom/test-utils`' `act`. Import `act` from `react` in your own tests: on
-  React 19, `react-dom/test-utils` keeps only a deprecated `act`.
+  too, such as the RTL 14 that `@toptal/davinci-qa` 20 depends on, which doesn't
+  support React 19. Import `act` from `react` in your own tests: on React 19,
+  `react-dom/test-utils` keeps only a deprecated `act`.
 - **`peerDependencyRules.allowedVersions`:** move `react`, `react-dom`,
   `@types/react` and `@types/react-dom` from `'18'` to `'19'`.
 - **Remove `react-hot-loader`.** It doesn't support React 19, and
@@ -796,10 +980,12 @@ These versions work together:
   can land on React 18 first. RTL's `renderHook` has no `result.all`,
   `result.error`, `waitForNextUpdate` or `waitForValueToChange`; use `waitFor`
   and assert on `result.current`.
+- **`logrocket-react` 7**, with an override while a library you depend on still
+  pulls in version 6 ([Step 10](#step-10-clear-the-blockers-outside-picasso)).
 - **Cypress 14** for component tests
-  ([Step 9](#step-9-clear-the-blockers-outside-picasso)).
+  ([Step 10](#step-10-clear-the-blockers-outside-picasso)).
 
-### Step 11. Handle Picasso's React 19 limitations
+### Step 12. Handle Picasso's React 19 limitations
 
 1. **Only titles merge, and only through `Page.Helmet`.** On React 19,
    react-helmet-async 3 renders real elements for React to hoist, and
@@ -821,11 +1007,12 @@ These versions work together:
    `href` arrives. Picasso's favicons now mount only once their URLs resolve;
    render your own head links only once their `href` exists.
 3. **Types.**
-   - Picasso's published declarations compile against `@types/react` 19 with
-     `skipLibCheck: false`, and CI checks that they keep doing so. Two
-     dependencies' declarations don't: `react-dropzone` uses the global `JSX`
-     namespace, and `react-final-form` imports its `package.json`, which needs
-     `resolveJsonModule`. Keep `skipLibCheck: true` if your app compiles them.
+   - Picasso's published declarations compile against `@types/react` 18 and 19
+     with `skipLibCheck: false`, and CI checks that they keep doing so. Two
+     dependencies' declarations don't: on 19, `react-dropzone` uses the global
+     `JSX` namespace, and on both, `react-final-form` imports its
+     `package.json`, which needs `resolveJsonModule`. Keep `skipLibCheck: true`
+     if your app compiles them.
    - A variable typed as a bare `ReactElement` has `unknown` props on React 19,
      so it no longer satisfies `icon?: ReactElement<{ className?: string }>`.
      Type it as `IconElement` from `@toptal/picasso`, or pass the JSX inline.
@@ -833,7 +1020,7 @@ These versions work together:
      from `@toptal/picasso/utils` names that type for refs that are both read
      and passed to `ref`.
 
-### Step 12. Fix the React 19 types
+### Step 13. Fix the React 19 types
 
 `@types/react` 19 is the largest source change, and it's mechanical:
 
@@ -842,7 +1029,7 @@ These versions work together:
 - `useRef<T>()` needs an argument: `useRef<T>(undefined)`
 - Storybook decorators: `(Story: StoryFn) =>` → `Story =>`
 - `defaultProps` on function components → default parameters
-  ([Step 13](#step-13-fix-the-react-19-runtime-breaks))
+  ([Step 14](#step-14-fix-the-react-19-runtime-breaks))
 - `ReactText` is removed → `number | string`
 
 `npx types-react-codemod preset-19 ./src` automates several of these, through
@@ -903,15 +1090,16 @@ declare global {
 
 Remove the alias once styled-components ships React 19-aware types.
 
-### Step 13. Fix the React 19 runtime breaks
+### Step 14. Fix the React 19 runtime breaks
 
 These are real bugs on React 19, not test noise.
 
 - **`ref` reaches function components as a prop.** styled-components 5.3.5
   always passes `ref: null` to the component it wraps, and React 19 spreads that
-  over the component's own ref, so a ref the component relies on ends up
-  `null`. Patch styled-components to pass `ref` only when one was given.
-- **No `key` inside spread props.** React 19 rejects it. Pull the key out and
+  over the component's own ref, so a ref the component relies on ends up `null`.
+  Patch styled-components to pass `ref` only when one was given.
+- **No `key` inside spread props.** React 18.3 and 19 warn about it, and a test
+  setup that fails on console output fails on the warning. Pull the key out and
   pass it directly:
 
   ```tsx
@@ -931,30 +1119,23 @@ These are real bugs on React 19, not test noise.
   `props.ref`. If your components read a child's ref, for example to merge it
   with their own, use `getElementRef(element)` from `@toptal/picasso/utils`,
   which reads it from where the running React keeps it.
-- **No side effects during render.** A modal that closes itself while
-  rendering, updating the store and the URL, can loop on React 19. Close it from
-  an effect, and look for components that close, navigate or dispatch while
-  rendering.
-- **Report errors through the root.** React 19 no longer rethrows errors that an
-  error boundary caught, so pass its error callbacks to `createRoot`, for
-  example with Sentry:
+- **No side effects during render.** A modal that closes itself while rendering,
+  updating the store and the URL, can loop on React 19. Close it from an effect,
+  and look for components that close, navigate or dispatch while rendering.
+- **Check how caught errors reach your error reporting.** React 19 no longer
+  rethrows an error that an error boundary caught. If your boundaries report
+  from `componentDidCatch`, nothing changes, and uncaught errors still reach
+  Sentry's global handler through `window.reportError`. Adding `onCaughtError`
+  to `createRoot` as well would report every caught error twice. Pass it, for
+  example `reactErrorHandler()` from `@sentry/react`, only when your boundaries
+  don't report.
 
-  ```tsx
-  import { reactErrorHandler } from '@sentry/react'
-
-  createRoot(container, {
-    onCaughtError: reactErrorHandler(),
-    onUncaughtError: reactErrorHandler(),
-    onRecoverableError: reactErrorHandler(),
-  }).render(<App />)
-  ```
-
-### Step 14. Update the tests for React 19
+### Step 15. Update the tests for React 19
 
 **Mocked components get `undefined` as the second argument.** React 19 calls a
 function component as `(props, undefined)`, not `(props, {})`, so
-`toHaveBeenCalledWith(props, {})` fails, and `toHaveBeenCalledWith(props)`
-fails on both majors. Compare the props alone with `renderedProps(mock)` from
+`toHaveBeenCalledWith(props, {})` fails, and `toHaveBeenCalledWith(props)` fails
+on both majors. Compare the props alone with `renderedProps(mock)` from
 `@toptal/picasso/test-utils` (also exported by `@toptal/picasso-test-utils`). It
 passes on both majors, so the rewrite can land on React 18 first:
 
@@ -981,7 +1162,7 @@ reads the error from `console.error` instead of `uncaught:exception`.
 - `Symbols are not valid as a React child`: test files that pass `Symbol('…')`
   placeholders as props their mocks render. React 18 dropped them silently.
 - warnings from libraries that don't support React 19
-  ([Step 9](#step-9-clear-the-blockers-outside-picasso)).
+  ([Step 10](#step-10-clear-the-blockers-outside-picasso)).
 
 **Snapshots.** On React 19.2, `useId` output changes format (`:r1:` becomes
 `_r_1_`). Inputs lose the empty `value=""` that Part 1 added to checkboxes, and
@@ -996,28 +1177,38 @@ rendered once on React 18 can render three times on React 19. Assert that the
 component rendered, then check its props. That's an assertion change, so it
 needs the reviewer's agreement.
 
+**Await every `waitFor`.** One left floating finishes during the next test and
+turns the act environment back on there, so that test logs `act()` warnings that
+look like its own.
+
+**Mock every query a test renders.** React 19 can let a child component send its
+query before the test ends, where React 18 didn't, and Apollo then runs out of
+mocked responses.
+
 **Cypress.**
 
 - Target the open dialog. A modal on its exit transition can still be in the DOM
   when the next one opens, so click the close button of
   `div[role="dialog"][data-open]`.
-- Wait for state between pointer steps, for example for `aria-pressed="true"` on
-  a drag handle before its second move.
+- Wait for state between pointer steps. A drag that waits for
+  `aria-pressed="true"` on the handle, moves in two steps and releases only once
+  the row below has shifted holds up on CI, where a library such as dnd-kit can
+  measure the rows in an effect after the move.
 
-### Step 15. Verify
+### Step 16. Verify
 
 Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 
-- [ ] the peer check from [Step 9](#step-9-clear-the-blockers-outside-picasso)
+- [ ] the peer check from [Step 10](#step-10-clear-the-blockers-outside-picasso)
       lists nothing you haven't decided on
 - [ ] one version each of `react` and `react-dom`, both 19, in the lockfile and
       in `node_modules`, and `react-is` 19 wherever it's installed
 - [ ] no new console messages left unexplained in the Jest output
 - [ ] the browser console on the main flows shows no new React warnings
 - [ ] page titles are complete, and favicons and other head tags sit in `<head>`
-      ([Step 11](#step-11-handle-picassos-react-19-limitations))
+      ([Step 12](#step-12-handle-picassos-react-19-limitations))
 - [ ] errors that error boundaries catch still reach your error reporting
-      ([Step 13](#step-13-fix-the-react-19-runtime-breaks))
+      ([Step 14](#step-14-fix-the-react-19-runtime-breaks))
 
 ## Known gaps
 
@@ -1042,5 +1233,15 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
 - [#5120](https://github.com/toptal/picasso/pull/5120) and
   [#5129](https://github.com/toptal/picasso/pull/5129): review fixes, including
   checkbox `checked`, Fade and Slide, and `Page.Helmet`
+- [#5141](https://github.com/toptal/picasso/pull/5141): the `TypographyOverflow`
+  fix, released in `@toptal/picasso` 100.0.14
+- The first migrations: Staff Portal on React 18
+  ([toptal/staff-portal#16703](https://github.com/toptal/staff-portal/pull/16703))
+  and React 19
+  ([toptal/staff-portal#16704](https://github.com/toptal/staff-portal/pull/16704)),
+  its `@apollo/client` 3.14 upgrade
+  ([toptal/staff-portal#16943](https://github.com/toptal/staff-portal/pull/16943)),
+  and Client Portal on React 18
+  ([toptal/client-portal#11519](https://github.com/toptal/client-portal/pull/11519))
 - The previous migration:
   [migration-to-new-picasso-v2.md](./migration-to-new-picasso-v2.md)
