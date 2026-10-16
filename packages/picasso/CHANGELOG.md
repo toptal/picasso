@@ -1,5 +1,159 @@
 # Change Log
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Calendar and DatePicker
+
+- upgrade `date-fns` to `^4.1.0`, inside the `^4.0.0` range `@base-ui/react` peers on. It's Picasso's own dependency, so an app's code can stay on its `date-fns` version
+- npm, yarn and pnpm warn about `react-day-picker@8`'s `date-fns` peer (`^2.28.0 || ^3.0.0`), which Picasso's `date-fns` 4 is outside of. By default the install doesn't fail, and runtime is unaffected
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Notifications
+
+- upgrade `notistack` from `3.0.1` to `3.0.2`, the first release that admits React 19. It ships no code changes
+- **consumer action** for `@toptal/picasso` and `@toptal/picasso-shared`: move to `notistack@3.0.2`, an exact peer that keeps a single notistack instance
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Picasso
+
+- declare `@testing-library/react` as an optional peer dependency of any version, which passes the app's copy on to the `@toptal/picasso/test-utils` entry. `@toptal/picasso-test-utils` sets the supported range
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Picasso
+
+- remove the unused direct `react-day-picker` and `react-truncate` dependencies
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Shared
+
+- add the `IconElement` and `TransitionChild` types, also exported from `@toptal/picasso`, for the icon props and the child Fade and Slide clone
+- add `cloneElementUnlessFragment` and `flattenFragments`
+
+### Patch Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### DatePicker
+
+- show a value that arrives while the input is focused and still empty, instead of leaving it blank and submitting `null`. A form library that registers fields in an effect, such as `react-final-form@7`, delivers the first value after an autofocused picker has mounted. Text the user typed, and a field they cleared, stay as they left them while the input has focus; after a click outside the picker, a new value shows again even when the browser leaves the focus on the input
+- close the calendar and call `onBlur` when the focus leaves the picker from the calendar, where Tab moves it from the input. The calendar used to stay open and `onBlur` never fired, so a form never marked the field touched. A control in the `footer` that moves the focus into a popup of its own, such as a `Dropdown`, leaves the calendar open
+- show the date as it is when `timezone` names a zone the browser does not know, such as a mistyped one or one newer than its time zone data, instead of crashing the render with `RangeError: Invalid time value`
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### ShowMore
+
+- replace the unmaintained `react-truncate` dependency (last published 2018, React peer locked to `<= 16`) with a dependency-free CSS `line-clamp` implementation; the public API is unchanged and the toggle still appears only when content actually overflows
+- the SSR output now contains the full text already clamped by CSS, where previously the text was truncated only client-side after measurement
+- collapsed content now keeps the full text in the DOM (clamping is visual), so it stays selectable, findable and queryable in tests
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### TimePicker
+
+- render the native `<input type="time">` in Safari too. The masked text field it rendered there threw on React 19, because `react-input-mask` calls `ReactDOM.findDOMNode`. Safari has had a native time input since 14.1; 13 and 14.0 get a text field that accepts `HH:MM`. `react-input-mask` and `detect-browser` are no longer dependencies
+- clear the shown time when the value is reset from outside to `''` or `undefined`, such as by a form reset. The input used to keep showing the old time while the form held no value. An incomplete time stays, so the text field of Safari 13 and 14.0 keeps what the user is typing
+- Updated dependencies [[`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53)]:
+  - @toptal/picasso-autocomplete@102.0.0
+  - @toptal/picasso-avatar-upload@102.0.0
+  - @toptal/picasso-calendar@102.0.0
+  - @toptal/picasso-page@102.0.0
+  - @toptal/picasso-slider@102.0.0
+  - @toptal/picasso-carousel@102.0.0
+  - @toptal/picasso-date-picker@102.0.0
+  - @toptal/picasso-dropdown@102.0.0
+  - @toptal/picasso-accordion@102.0.0
+  - @toptal/picasso-button@102.0.0
+  - @toptal/picasso-empty-state@102.0.0
+  - @toptal/picasso-input-adornment@102.0.0
+  - @toptal/picasso-notification@102.0.0
+  - @toptal/picasso-tag@102.0.0
+  - @toptal/picasso-tagselector@102.0.0
+  - @toptal/picasso-timeline@102.0.0
+  - @toptal/picasso-provider@102.0.0
+  - @toptal/picasso-shared@102.0.0
+  - @toptal/picasso-number-input@102.0.0
+  - @toptal/picasso-radio@102.0.0
+  - @toptal/picasso-account-select@102.0.0
+  - @toptal/picasso-alert@102.0.0
+  - @toptal/picasso-amount@102.0.0
+  - @toptal/picasso-application-update-notification@102.0.0
+  - @toptal/picasso-avatar@102.0.0
+  - @toptal/picasso-badge@102.0.0
+  - @toptal/picasso-breadcrumbs@102.0.0
+  - @toptal/picasso-checkbox@102.0.0
+  - @toptal/picasso-container@102.0.0
+  - @toptal/picasso-date-select@102.0.0
+  - @toptal/picasso-drawer@102.0.0
+  - @toptal/picasso-dropzone@102.0.0
+  - @toptal/picasso-environment-banner@102.0.0
+  - @toptal/picasso-file-input@102.0.0
+  - @toptal/picasso-form@102.0.0
+  - @toptal/picasso-form-label@102.0.0
+  - @toptal/picasso-grid@102.0.0
+  - @toptal/picasso-helpbox@102.0.0
+  - @toptal/picasso-icons@102.0.0
+  - @toptal/picasso-image@102.0.0
+  - @toptal/picasso-input@102.0.0
+  - @toptal/picasso-link@102.0.0
+  - @toptal/picasso-list@102.0.0
+  - @toptal/picasso-loader@102.0.0
+  - @toptal/picasso-logo@102.0.0
+  - @toptal/picasso-menu@102.0.0
+  - @toptal/picasso-modal@102.0.0
+  - @toptal/picasso-note@102.0.0
+  - @toptal/picasso-outlined-input@102.0.0
+  - @toptal/picasso-overview-block@102.0.0
+  - @toptal/picasso-pagination@102.0.0
+  - @toptal/picasso-paper@102.0.0
+  - @toptal/picasso-password-input@102.0.0
+  - @toptal/picasso-popper@102.0.0
+  - @toptal/picasso-prompt-modal@102.0.0
+  - @toptal/picasso-quote@102.0.0
+  - @toptal/picasso-rating@102.0.0
+  - @toptal/picasso-section@102.0.0
+  - @toptal/picasso-select@102.0.0
+  - @toptal/picasso-show-more@102.0.0
+  - @toptal/picasso-skeleton-loader@102.0.0
+  - @toptal/picasso-step@102.0.0
+  - @toptal/picasso-switch@102.0.0
+  - @toptal/picasso-table@102.0.0
+  - @toptal/picasso-tabs@102.0.0
+  - @toptal/picasso-tailwind@102.0.0
+  - @toptal/picasso-test-utils@102.0.0
+  - @toptal/picasso-timepicker@102.0.0
+  - @toptal/picasso-tooltip@102.0.0
+  - @toptal/picasso-tree-view@102.0.0
+  - @toptal/picasso-typography@102.0.0
+  - @toptal/picasso-typography-overflow@102.0.0
+  - @toptal/picasso-user-badge@102.0.0
+  - @toptal/picasso-utils@102.0.0
+
 ## 100.0.14
 
 ### Patch Changes

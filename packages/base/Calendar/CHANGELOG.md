@@ -1,5 +1,58 @@
 # @toptal/picasso-calendar
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Calendar
+
+- upgrade `react-day-picker` to `^8.10.2`, the first 8.x release that runs on React 19. It renders identically on React 18
+- import `isWeekend` and `isSameMonth` from the `date-fns` barrel, since v3 removed the submodules' default exports
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Calendar and DatePicker
+
+- upgrade `date-fns` to `^4.1.0`, inside the `^4.0.0` range `@base-ui/react` peers on. It's Picasso's own dependency, so an app's code can stay on its `date-fns` version
+- npm, yarn and pnpm warn about `react-day-picker@8`'s `date-fns` peer (`^2.28.0 || ^3.0.0`), which Picasso's `date-fns` 4 is outside of. By default the install doesn't fail, and runtime is unaffected
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
+### Patch Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Calendar, Page and Slider
+
+- class lists resolve conflicts with `twMerge` instead of stylesheet order. No visual change
+- Updated dependencies [[`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53)]:
+  - @toptal/picasso-button@102.0.0
+  - @toptal/picasso-provider@102.0.0
+  - @toptal/picasso-shared@102.0.0
+  - @toptal/picasso-container@102.0.0
+  - @toptal/picasso-icons@102.0.0
+  - @toptal/picasso-tailwind@102.0.0
+  - @toptal/picasso-tailwind-merge@102.0.0
+  - @toptal/picasso-typography@102.0.0
+  - @toptal/picasso-utils@102.0.0
+
 ## 101.0.1
 
 ### Patch Changes

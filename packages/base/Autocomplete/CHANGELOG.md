@@ -1,5 +1,51 @@
 # @toptal/picasso-autocomplete
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
+### Patch Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Autocomplete
+
+- on React 19, an `inputComponent` that takes `ref` as a prop receives the input ref, which Autocomplete used to drop with a `forwardRef` error. A class component still doesn't
+- a `forwardRef` component wrapped in `memo` receives the input ref on React 17 and 18 too, where Autocomplete dropped it with the same error
+- Updated dependencies [[`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53)]:
+  - @toptal/picasso-input-adornment@102.0.0
+  - @toptal/picasso-provider@102.0.0
+  - @toptal/picasso-shared@102.0.0
+  - @toptal/picasso-container@102.0.0
+  - @toptal/picasso-form@102.0.0
+  - @toptal/picasso-input@102.0.0
+  - @toptal/picasso-loader@102.0.0
+  - @toptal/picasso-menu@102.0.0
+  - @toptal/picasso-outlined-input@102.0.0
+  - @toptal/picasso-popper@102.0.0
+  - @toptal/picasso-select@102.0.0
+  - @toptal/picasso-tailwind@102.0.0
+  - @toptal/picasso-tailwind-merge@102.0.0
+  - @toptal/picasso-typography@102.0.0
+  - @toptal/picasso-utils@102.0.0
+
 ## 100.0.5
 
 ### Patch Changes
