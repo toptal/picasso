@@ -1,5 +1,48 @@
 # @toptal/picasso-slide
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Slide
+
+- **consumer action**: `@toptal/picasso-tailwind-merge` becomes a peer dependency, as it already is for most Picasso packages
+- drop react-transition-group for Tailwind classes. Public props and the direction mapping are unchanged
+- **consumer action**: `onEnter` and `onExited` receive the transitioning DOM node, as their types declared. A callback that read `onEnter`'s first argument as `isAppearing` reads the second one
+- **consumer action (types)**: the node is `null` for a child that takes no ref, so the parameter is typed `HTMLElement | null`
+- **consumer action**: the hidden state is the `invisible` class and a `translate-*` offset instead of inline `visibility` and `transform` styles, so `transitionend` listeners see `propertyName: 'translate'`. A child's own inline `transform` is kept
+- **consumer action (tests)**: jsdom doesn't apply the `invisible` class, so a hidden child no longer fails `toBeVisible()` or matches `toHaveStyle('visibility: hidden')`. Assert `toHaveClass('invisible')` instead
+- a `transition-*` utility on the child gives way to Slide's `transition-transform`; `transition`, `transition-all` and `transition-none` stay
+- a child's `translate-*` utility along the slide axis applies while shown, so `-translate-x-1/2` centering holds
+- the object form of `timeout` sets each direction's duration, including `appear`, where it produced an invalid inline value
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
+### Patch Changes
+
+- Updated dependencies [[`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53)]:
+  - @toptal/picasso-shared@102.0.0
+  - @toptal/picasso-tailwind@102.0.0
+  - @toptal/picasso-tailwind-merge@102.0.0
+  - @toptal/picasso-utils@102.0.0
+
 ## 100.0.1
 
 ### Patch Changes

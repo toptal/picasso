@@ -1,5 +1,46 @@
 # Change Log
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Provider
+
+- upgrade `react-helmet-async` from `2.0.3` to `3.0.0`, the only release that admits React 19. Its API is unchanged
+- **consumer action**: an app that renders `<Helmet>` from its own `react-helmet-async` 2.x shared one copy with the provider's `2.0.3`. Now it gets a second copy, whose `<Helmet>` can't find the provider and throws. Import `Helmet` and `HelmetProps` from `@toptal/picasso-provider` instead
+- export `Helmet` and `HelmetProps` from the `react-helmet-async` copy behind the provider's `<HelmetProvider>`, so a helmet rendered through them finds it, even when the app installs another `react-helmet-async` version of its own
+- **consumer action**: an app that renders its own `<HelmetProvider>`, with `<Picasso disableHelmet>` or `PicassoLight`, pins `react-helmet-async` to exactly `3.0.0`. `FixViewport`, `Favicon` and `Page.Helmet` render the provider's copy, which only finds a `<HelmetProvider>` from that same copy
+- on React 19, `<Helmet>` renders elements for React to hoist and `<HelmetProvider>` is a passthrough: the SSR `context` stays empty, `prioritizeSeoTags`, `helmetData` and `canUseDOM` do nothing, helmets rendered directly don't merge (a parent's `titleTemplate` or `defaultTitle` doesn't apply, duplicate `<title>` and `<meta>` tags stay, `onChangeClientState` doesn't fire), and a `<script>` child without `async` doesn't run. `htmlAttributes` and `bodyAttributes` keep working
+- mount the favicon `<link>` tags once their URLs resolve, so React 19 hoists them into `<head>`
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
+### Patch Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Notifications
+
+- upgrade `notistack` from `3.0.1` to `3.0.2`, the first release that admits React 19. It ships no code changes
+- **consumer action** for `@toptal/picasso` and `@toptal/picasso-shared`: move to `notistack@3.0.2`, an exact peer that keeps a single notistack instance
+
 ## 100.2.0
 
 ### Minor Changes

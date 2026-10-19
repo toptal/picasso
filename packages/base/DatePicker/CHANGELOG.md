@@ -1,5 +1,60 @@
 # @toptal/picasso-date-picker
 
+## 102.0.0
+
+### Major Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### Calendar and DatePicker
+
+- upgrade `date-fns` to `^4.1.0`, inside the `^4.0.0` range `@base-ui/react` peers on. It's Picasso's own dependency, so an app's code can stay on its `date-fns` version
+- npm, yarn and pnpm warn about `react-day-picker@8`'s `date-fns` peer (`^2.28.0 || ^3.0.0`), which Picasso's `date-fns` 4 is outside of. By default the install doesn't fail, and runtime is unaffected
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### DatePicker
+
+- upgrade `date-fns-tz` to `^3.2.0`. The `timezone` prop behaves as before
+- a `minDate` later than `maxDate` no longer crashes; the interval is treated as swapped
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- ship every package as `102.0.0` for the React 19 release; later releases version packages separately again. Packages on `100.x` skip `101`, which Calendar, DatePicker and Switch already shipped
+- the re-baseline itself changes no API or behavior. See each changelog and the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+
+### Minor Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### All packages
+
+- allow React 19: the `react` and `react-dom` peer ranges become `^17.0.0 || ^18.0.0 || ^19.0.0`, now that the test suites run on React 19 too. The next major stays opted out until it is validated the same way. See the [React 19 migration guide](https://github.com/toptal/picasso/blob/master/docs/migration-to-react-19.md)
+- the sources type-check against `@types/react` 17, 18 and 19, including `useRef(null)` refs and the `content` and `children` props of Accordion, Dropdown, Table.ExpandableRow and Tooltip
+- the published declarations compile against `@types/react` 18 and 19 with `skipLibCheck: false`: components and hooks declare a `React.ReactElement` return type instead of the global `JSX.Element`, the favicon icons are typed `string`, and the Tailwind presets no longer name Tailwind 3's `CustomThemeConfig`. `react-final-form` still reports errors in its own declarations, and on 19 `react-dropzone` does too
+
+### Patch Changes
+
+- [#5070](https://github.com/toptal/picasso/pull/5070) [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53) Thanks [@azebich](https://github.com/azebich)!
+
+### DatePicker
+
+- show a value that arrives while the input is focused and still empty, instead of leaving it blank and submitting `null`. A form library that registers fields in an effect, such as `react-final-form@7`, delivers the first value after an autofocused picker has mounted. Text the user typed, and a field they cleared, stay as they left them while the input has focus; after a click outside the picker, a new value shows again even when the browser leaves the focus on the input
+- close the calendar and call `onBlur` when the focus leaves the picker from the calendar, where Tab moves it from the input. The calendar used to stay open and `onBlur` never fired, so a form never marked the field touched. A control in the `footer` that moves the focus into a popup of its own, such as a `Dropdown`, leaves the calendar open
+- show the date as it is when `timezone` names a zone the browser does not know, such as a mistyped one or one newer than its time zone data, instead of crashing the render with `RangeError: Invalid time value`
+- Updated dependencies [[`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53), [`2394ce1`](https://github.com/toptal/picasso/commit/2394ce152aa7df810f1eddcb0e9170e6d285fe53)]:
+  - @toptal/picasso-calendar@102.0.0
+  - @toptal/picasso-input-adornment@102.0.0
+  - @toptal/picasso-container@102.0.0
+  - @toptal/picasso-icons@102.0.0
+  - @toptal/picasso-input@102.0.0
+  - @toptal/picasso-outlined-input@102.0.0
+  - @toptal/picasso-popper@102.0.0
+  - @toptal/picasso-tailwind@102.0.0
+  - @toptal/picasso-utils@102.0.0
+
 ## 101.0.2
 
 ### Patch Changes
