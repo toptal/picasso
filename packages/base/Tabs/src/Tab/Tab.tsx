@@ -6,7 +6,7 @@ import type {
   TextLabelProps,
   IconElement,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import { INSET_FOCUS_RING, useTitleCase } from '@toptal/picasso-shared'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -102,7 +102,7 @@ const getFocusClasses = (
   variant: 'scrollable' | 'fullWidth'
 ) =>
   orientation === 'vertical'
-    ? 'focus-visible:inset-shadow-[0_0_0_0.1875rem] focus-visible:inset-shadow-blue-500/48'
+    ? INSET_FOCUS_RING.blue.focusVisible
     : [
         'after:absolute after:content-[""] after:top-0 after:bottom-1 after:-z-1',
         'after:rounded-t-sm after:pointer-events-none',

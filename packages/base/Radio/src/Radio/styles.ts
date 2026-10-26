@@ -44,9 +44,8 @@ const ICON_BASE = [
   'after:rounded-full after:border-[0.125rem] after:border-solid',
   'after:border-current after:bg-current',
   'after:transition-all after:duration-350 after:ease-in-out',
-  // keyboard focus ring, mirrors shared `outline()` helper:
-  // blue-500 at 48% alpha, derived via color-mix (no frozen rgba)
-  'group-data-[focused]:before:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
+  // FOCUS_RING from @toptal/picasso-shared, on the icon's `::before`
+  'group-data-[focused]:before:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
 ]
 
 // When `checked` is controlled (boolean), visibility is driven by React so

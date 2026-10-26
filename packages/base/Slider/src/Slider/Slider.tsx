@@ -3,6 +3,7 @@ import { Slider as BaseUISlider } from '@base-ui/react/slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 
 import SliderMark from '../SliderMark'
 import SliderValueLabel from '../SliderValueLabel'
@@ -160,7 +161,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-transparent bg-clip-padding',
     'outline-0 transition-shadow cursor-pointer',
     // Base UI focuses the inner range input, not the thumb
-    'has-[:focus-visible]:shadow-[0_0_0_0.1875rem] has-[:focus-visible]:shadow-blue-500/48',
+    FOCUS_RING.blue.hasFocusVisible,
     isThumbHidden && 'hidden'
   )
 

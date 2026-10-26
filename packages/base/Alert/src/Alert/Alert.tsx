@@ -1,6 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import { SPACING_4 } from '@toptal/picasso-provider'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
@@ -46,6 +47,8 @@ const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
   <Container>
     <ButtonCircular
       variant='transparent'
+      // The transparent variant's white ring doesn't show on the pale alert
+      className={FOCUS_RING.blue.focusVisible}
       onClick={onClose}
       title='Close alert'
       icon={<CloseMinor16 color='dark-grey' />}

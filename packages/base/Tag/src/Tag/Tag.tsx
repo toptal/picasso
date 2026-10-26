@@ -13,6 +13,7 @@ import type {
 } from '@toptal/picasso-shared'
 import {
   cloneElementUnlessFragment,
+  FOCUS_RING,
   useTitleCase,
 } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
@@ -119,6 +120,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
         h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
         group align-middle leading-[inherit]`,
         classByVariant[variant],
+        isInteractive && ['outline-none', FOCUS_RING.blue.focusVisible],
         className,
         disabled && 'text-gray-500 border-gray-200 pointer-events-none'
       )}

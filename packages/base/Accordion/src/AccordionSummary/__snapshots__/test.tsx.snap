@@ -6,7 +6,7 @@ exports[`AccordionSummary renders 1`] = `
     class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <div
-      class="relative flex items-center select-none cursor-pointer focus-visible:bg-black/12 outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
+      class="relative flex items-center select-none cursor-pointer rounded-sm focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] outline-none py-[0.5625em] px-0 font-semibold text-black data-disabled:pointer-events"
       data-component-type="accordion-summary"
     >
       <div

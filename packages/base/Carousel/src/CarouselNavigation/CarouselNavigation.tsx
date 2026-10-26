@@ -68,7 +68,10 @@ const CarouselNavigation = ({
               '[&_.glider-dot:not(.active):hover]:shadow-[0_0_0_2px_rgba(32,78,207,0.2)]',
               '[&_.glider-dot:not(.active):hover]:transition-[box-shadow,opacity]',
               '[&_.glider-dot:not(.active):hover]:duration-300',
-              '[&_.glider-dot:not(.active):hover]:ease-out'
+              '[&_.glider-dot:not(.active):hover]:ease-out',
+              // Full opacity, or the dot's faded opacity fades the ring too
+              '[&_.glider-dot:focus-visible]:opacity-100',
+              '[&_.glider-dot:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
             )}
           />
         </div>

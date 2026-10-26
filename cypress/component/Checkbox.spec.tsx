@@ -1,6 +1,8 @@
 import React from 'react'
 import { Checkbox, Container } from '@toptal/picasso'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const TestCheckbox = () => (
   <Container padded='medium'>
     <Checkbox.Group>
@@ -46,5 +48,32 @@ describe('Checkbox', () => {
       variant: 'default-checked/after-focused',
     })
     cy.get('[role="checkbox"]').last().invoke('removeAttr', 'data-focused')
+  })
+
+  describe('when focused', () => {
+    it('shows focus ring on keyboard focus', () => {
+      cy.mount(<TestCheckbox />)
+
+      cy.get('[role="checkbox"]').first().realClick()
+      cy.realPress('Tab')
+
+      cy.get('[role="checkbox"]')
+        .last()
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.mount(<TestCheckbox />)
+
+      cy.get('[role="checkbox"]').first().realClick()
+
+      cy.get('[role="checkbox"]')
+        .first()
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
+    })
   })
 })

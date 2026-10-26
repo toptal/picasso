@@ -26,6 +26,7 @@
     "@toptal/picasso-file-input": "workspace:*",
     "@toptal/picasso-form": "workspace:*",
     "@toptal/picasso-icons": "workspace:*",
+    "@toptal/picasso-shared": "workspace:*",
     "@toptal/picasso-typography": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",
     "classnames": "^2.5.1",

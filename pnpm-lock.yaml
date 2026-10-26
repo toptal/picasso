@@ -697,6 +697,9 @@ importers:
       '@toptal/picasso-icons':
         specifier: workspace:*
         version: link:../Icons
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
@@ -1333,6 +1336,9 @@ importers:
       '@toptal/picasso-icons':
         specifier: workspace:*
         version: link:../Icons
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind
@@ -1757,6 +1763,9 @@ importers:
 
   packages/base/Link:
     dependencies:
+      '@toptal/picasso-shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: workspace:^
         version: link:../../picasso-tailwind

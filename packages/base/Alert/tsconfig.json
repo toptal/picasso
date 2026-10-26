@@ -5,6 +5,7 @@
   "references": [
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind" },
+    { "path": "../../shared" },
     { "path": "../Button" },
     { "path": "../Container" },
     { "path": "../Icons" },

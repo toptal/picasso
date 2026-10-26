@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Radio, Tooltip } from '@toptal/picasso'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const RadioExample = () => {
   return (
     <Container padded='medium'>
@@ -72,5 +74,44 @@ describe('Radio', () => {
     // hover the radio button itself (not the label)
     cy.getByTestId('trigger').realHover()
     cy.getByTestId('tooltip-content').should('be.visible')
+  })
+
+  describe('when focused', () => {
+    const getIcon = () => cy.get('input[type="radio"]').next('span')
+
+    it('shows focus ring on keyboard focus', () => {
+      cy.mount(
+        <>
+          <button>Before</button>
+          <RadioExample />
+        </>
+      )
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.get('input[type="radio"]')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+      getIcon().should(
+        toHaveStyle('boxShadow', FOCUS_RING, { pseudo: '::before' })
+      )
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.mount(<RadioExample />)
+
+      cy.get('input[type="radio"]').realClick()
+
+      cy.get('input[type="radio"]')
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+      getIcon().should(
+        toHaveStyle('boxShadow', FOCUS_RING, {
+          expected: false,
+          pseudo: '::before',
+        })
+      )
+    })
   })
 })

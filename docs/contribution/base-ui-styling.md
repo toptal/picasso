@@ -76,6 +76,7 @@ The basic wrapper pattern: the kit owns its default classes; consumers override 
 ```tsx
 import { Checkbox } from '@base-ui/react/checkbox';
 import cx from 'classnames';
+import { FOCUS_RING } from '@toptal/picasso-shared';
 import { twMerge } from '@toptal/picasso-tailwind-merge';
 
 export function CheckboxRoot({ className, ...props }: Checkbox.Root.Props) {
@@ -89,8 +90,8 @@ export function CheckboxRoot({ className, ...props }: Checkbox.Root.Props) {
           'border-neutral-700 bg-white text-white',
           // state
           'data-[checked]:bg-neutral-900 data-[checked]:text-white',
-          // focus
-          'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900',
+          // focus: the shared keyboard focus ring
+          FOCUS_RING.blue.focusVisible,
         ),
         // consumer override wins (rightmost in twMerge)
         className,
@@ -678,10 +679,12 @@ Complete component built with every pattern from §3–§7: default classes via 
 
 ```ts
 // styles.ts
+import { FOCUS_RING } from '@toptal/picasso-shared';
+
 const ROOT_BASE = [
   'relative inline-flex shrink-0 cursor-pointer rounded-full transition-colors',
   'bg-gray-300 data-[checked]:bg-blue-500',
-  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500',
+  FOCUS_RING.blue.focusVisible,
   'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
 ];
 
@@ -803,6 +806,7 @@ When adding a Base-UI-backed component, verify:
 - [ ] Colors come from design tokens, not Tailwind palette literals (`bg-surface`, not `bg-neutral-50`).
 - [ ] Dark mode works without `dark:` variants in component code (tokens flip automatically).
 - [ ] No `!important` anywhere; no inline `style` for colors / spacing / typography (those have class equivalents).
+- [ ] Keyboard focus shows the shared ring from `@toptal/picasso-shared` on `:focus-visible` only: `FOCUS_RING`, or `INSET_FOCUS_RING` where a container clips the element. Raise it (`focus-visible:z-1`) where neighbours paint over it.
 - [ ] Storybook covers each `data-*` state explicitly (open, disabled, checked, …) so visual regression catches state-styling drift.
 - [ ] Consumer override is documented: which classes can be safely overridden, which slots are addressable, what `render` accepts.
 

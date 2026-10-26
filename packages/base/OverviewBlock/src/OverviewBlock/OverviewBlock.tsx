@@ -6,7 +6,7 @@ import type {
   BaseProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import { FOCUS_RING, useTitleCase } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { toTitleCase, isString } from '@toptal/picasso-utils'
@@ -102,7 +102,12 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
       ref={ref}
       className={twMerge(
         isClickable
-          ? 'cursor-pointer outline-hidden hover:bg-blue-100'
+          ? [
+              'cursor-pointer outline-hidden hover:bg-blue-100',
+              // Raised, or the next block paints over the ring
+              'relative focus-visible:z-1',
+              FOCUS_RING.blue.focusVisible,
+            ]
           : 'outline-hidden',
         getAlignmentClassnames(align),
         getBlockWidthClassnames(blockWidth),

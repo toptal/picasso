@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import type {
   SelectRangeEventHandler,
   SelectSingleEventHandler,
@@ -14,6 +15,7 @@ import type {
 import { DayPicker } from 'react-day-picker'
 import { format, isEqual, isWeekend } from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { RenderDay } from '../CalendarDay'
 import { CalendarDay } from '../CalendarDay'
@@ -81,6 +83,15 @@ const getDefaultNavigationMonth = (
       : (value as Date)
     : undefined
 
+const getRootClassName = (hasFooter: boolean, className?: string) =>
+  twMerge(
+    'outline-hidden',
+    FOCUS_RING.blue.focusVisible,
+    // The corners of CalendarContainer
+    hasFooter ? 'rounded-t-sm' : 'rounded-sm',
+    className
+  )
+
 export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
   ref
@@ -102,6 +113,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     numberOfMonths = 1,
     dropdownNavigation = false,
     disableDays,
+    className,
     ...rest
   } = props
 
@@ -211,7 +223,12 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     dropdownNavigation && minDate && maxDate
 
   return (
-    <div ref={ref} {...rest} tabIndex={0}>
+    <div
+      ref={ref}
+      {...rest}
+      tabIndex={0}
+      className={getRootClassName(hasFooter, className)}
+    >
       <CalendarContext.Provider
         value={{
           onDayMouseEnter: handleDayEnter,

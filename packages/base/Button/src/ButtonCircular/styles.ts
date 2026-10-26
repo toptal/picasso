@@ -1,3 +1,5 @@
+import { FOCUS_RING } from '@toptal/picasso-shared'
+
 import type { VariantType } from './ButtonCircular'
 
 export const createRootClassNames = ({
@@ -51,11 +53,9 @@ export const createVariantClassNames = (
         variantClassNames.push('hover:bg-[#4269D6]')
         variantClassNames.push('active:bg-[#1A41AB]')
 
-        variantClassNames.push(
-          'focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]'
-        )
+        variantClassNames.push(FOCUS_RING.blue.focusVisible)
         if (focused) {
-          variantClassNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+          variantClassNames.push(FOCUS_RING.blue.focused)
         }
 
         if (hovered) {
@@ -79,11 +79,9 @@ export const createVariantClassNames = (
         variantClassNames.push('hover:bg-gray-200')
         variantClassNames.push('active:bg-gray-400')
 
-        variantClassNames.push(
-          'focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]'
-        )
+        variantClassNames.push(FOCUS_RING.blue.focusVisible)
         if (focused) {
-          variantClassNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+          variantClassNames.push(FOCUS_RING.blue.focused)
         }
 
         if (hovered) {
@@ -106,11 +104,9 @@ export const createVariantClassNames = (
         variantClassNames.push('hover:bg-white/[0.08]')
         variantClassNames.push('active:bg-white/[0.16]')
 
-        variantClassNames.push(
-          'focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)]'
-        )
+        variantClassNames.push(FOCUS_RING.white.focusVisible)
         if (focused) {
-          variantClassNames.push('shadow-[0_0_0_3px_rgba(255,255,255,0.48)]')
+          variantClassNames.push(FOCUS_RING.white.focused)
         }
 
         if (hovered) {
