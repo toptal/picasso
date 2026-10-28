@@ -1,5 +1,6 @@
 export {
   defaultOperators,
+  prepareRuleGroup,
   type Operator,
   type OptionGroup,
   type RuleType,
