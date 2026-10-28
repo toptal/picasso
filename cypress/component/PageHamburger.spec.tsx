@@ -87,6 +87,21 @@ const Example = () => {
   )
 }
 
+const LightExample = () => (
+  <Page hamburgerId='light-example'>
+    <Page.TopBar
+      variant='light'
+      rightContent={<RightContent />}
+      testIds={{ hamburger: HAMBURGER_ID }}
+      title='Light example'
+    />
+    <Page.Content>
+      <Sidebar />
+      <Page.Article />
+    </Page.Content>
+  </Page>
+)
+
 describe('TopBarMenu', () => {
   it('sidebar and center content can co-exist', () => {
     const happoTarget = HAPPO_TARGETS[0]
@@ -145,5 +160,35 @@ describe('TopBarMenu', () => {
     screenshot('both-off')
 
     cy.getByTestId(HAMBURGER_ID).should('not.exist')
+  })
+
+  describe('when the top bar variant is light', () => {
+    it('renders a dark hamburger button', () => {
+      const happoTarget = HAPPO_TARGETS[0]
+      const component = 'PageHamburger'
+
+      cy.viewport(happoTarget.width, 720)
+      cy.mount(<LightExample />)
+
+      cy.getByTestId(HAMBURGER_ID).should('be.visible')
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'light/default',
+        targets: [happoTarget],
+      })
+
+      cy.getByTestId(HAMBURGER_ID).hoverAndTakeHappoScreenshot({
+        component,
+        variant: 'light/after-hovered',
+        targets: [happoTarget],
+      })
+
+      cy.getByTestId(HAMBURGER_ID).focus()
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'light/after-focused',
+        targets: [happoTarget],
+      })
+    })
   })
 })
