@@ -2,19 +2,21 @@ import React, { useState } from 'react'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Dropdown } from '@toptal/picasso-dropdown'
 import { Close24, Overview24 } from '@toptal/picasso-icons'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { useHamburgerContext } from './PageHamburgerContext'
 
-interface Props {
+interface Props extends BaseProps {
   id: string
   /** Color variant of the top bar the hamburger is rendered on */
   variant?: 'dark' | 'light'
-  'data-testid'?: string
 }
 
 const PageHamburger = ({
   id,
   variant = 'dark',
+  className,
+  style,
   'data-testid': dataTestId,
 }: Props): React.ReactElement => {
   const { hamburgerRef } = useHamburgerContext()
@@ -25,6 +27,8 @@ const PageHamburger = ({
 
   return (
     <Dropdown
+      className={className}
+      style={style}
       content={<div id={id} ref={hamburgerRef} />}
       classes={{
         content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-var(--header-height,3.5rem))] !bg-gray-100`,
