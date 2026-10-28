@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso-test-utils'
+import { render, screen } from '@toptal/picasso-test-utils'
 import { Link } from '@toptal/picasso-link'
 
 import { PageTopBar } from './PageTopBar'
@@ -46,5 +46,36 @@ describe('PageTopBar', () => {
     const { container } = render(<PageTopBar title='Default' />)
 
     expect(container).toMatchSnapshot()
+  })
+
+  describe('when the hamburger is shown', () => {
+    const renderHamburger = (variant: 'dark' | 'light') => {
+      setScreenWidth(1200)
+
+      render(
+        <PageTopBar
+          variant={variant}
+          centerContent={<div>Menu</div>}
+          testIds={{ hamburger: 'hamburger' }}
+        />
+      )
+
+      return screen.getByTestId('hamburger')
+    }
+
+    describe('when the variant is dark', () => {
+      it('renders a light hamburger button', () => {
+        expect(renderHamburger('dark')).toHaveClass('text-white')
+      })
+    })
+
+    describe('when the variant is light', () => {
+      it('renders a dark hamburger button', () => {
+        const hamburger = renderHamburger('light')
+
+        expect(hamburger).toHaveClass('text-graphite-700')
+        expect(hamburger).not.toHaveClass('text-white')
+      })
+    })
   })
 })

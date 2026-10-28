@@ -7,11 +7,14 @@ import { useHamburgerContext } from './PageHamburgerContext'
 
 interface Props {
   id: string
+  /** Color variant of the top bar the hamburger is rendered on */
+  variant?: 'dark' | 'light'
   'data-testid'?: string
 }
 
 const PageHamburger = ({
   id,
+  variant = 'dark',
   'data-testid': dataTestId,
 }: Props): React.ReactElement => {
   const { hamburgerRef } = useHamburgerContext()
@@ -55,7 +58,7 @@ const PageHamburger = ({
           )
         }
         data-testid={dataTestId}
-        variant='transparent'
+        variant={variant === 'light' ? 'flat' : 'transparent'}
       />
     </Dropdown>
   )

@@ -156,6 +156,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
                 {showHamburger && (
                   <PageHamburger
                     id={hamburgerId}
+                    variant={isDark ? 'dark' : 'light'}
                     data-testid={testIds?.hamburger}
                   />
                 )}
