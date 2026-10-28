@@ -1,5 +1,17 @@
 # @toptal/picasso-page
 
+## 102.1.0
+
+### Minor Changes
+
+- [#5147](https://github.com/toptal/picasso/pull/5147) [`475d04a`](https://github.com/toptal/picasso/commit/475d04a1361a40077931bc2979420f5bf6f2522e) Thanks [@sashuk](https://github.com/sashuk)!
+
+### PageTopBar
+
+- a `light` `Page.TopBar` draws its hamburger menu button, its hover and its focus ring dark, where they were white on the white bar
+- add a `variant` prop to `PageHamburger` (`'dark' | 'light'`, defaults to `'dark'`)
+- accept `className` and `style` on `PageHamburger`, applied to its root element
+
 ## 102.0.0
 
 ### Major Changes
