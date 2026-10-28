@@ -1,5 +1,15 @@
 # @toptal/picasso-query-builder
 
+## 102.1.0
+
+### Minor Changes
+
+- [#5146](https://github.com/toptal/picasso/pull/5146) [`a47c97f`](https://github.com/toptal/picasso/commit/a47c97f85719a55e56575fa608cac758ebb7c025) Thanks [@Gtosta96-Toptal](https://github.com/Gtosta96-Toptal)!
+
+### QueryBuilder
+
+- export `prepareRuleGroup`, which adds missing ids to a query's rules and groups, so apps can prepare queries they set after mount without depending on `react-querybuilder` directly
+
 ## 102.0.0
 
 ### Major Changes
