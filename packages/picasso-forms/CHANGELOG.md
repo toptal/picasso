@@ -1,5 +1,36 @@
 # Change Log
 
+## 102.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-button@102.0.1
+  - @toptal/picasso-checkbox@102.0.1
+  - @toptal/picasso-date-picker@102.0.1
+  - @toptal/picasso-dropzone@102.0.1
+  - @toptal/picasso-number-input@102.1.0
+  - @toptal/picasso-outlined-input@102.0.1
+  - @toptal/picasso-radio@102.0.1
+  - @toptal/picasso-rich-text-editor@102.0.1
+  - @toptal/picasso-shared@102.1.0
+  - @toptal/picasso-switch@102.0.1
+  - @toptal/picasso-form@102.0.1
+  - @toptal/picasso-file-input@102.0.1
+  - @toptal/picasso-notification@102.0.1
+  - @toptal/picasso-password-input@102.0.1
+  - @toptal/picasso-autocomplete@102.0.1
+  - @toptal/picasso-select@102.0.1
+  - @toptal/picasso-timepicker@102.0.1
+  - @toptal/picasso-avatar-upload@102.0.1
+  - @toptal/picasso-input@102.0.1
+  - @toptal/picasso-tagselector@102.0.1
+  - @toptal/picasso-form-label@102.0.1
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-container@102.0.1
+  - @toptal/picasso-rating@102.0.1
+  - @toptal/picasso-icons@102.0.1
+
 ## 102.0.0
 
 ### Major Changes

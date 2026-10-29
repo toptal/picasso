@@ -1,5 +1,83 @@
 # Change Log
 
+## 102.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-accordion@102.0.1
+  - @toptal/picasso-alert@102.0.1
+  - @toptal/picasso-button@102.0.1
+  - @toptal/picasso-calendar@102.0.1
+  - @toptal/picasso-carousel@102.0.1
+  - @toptal/picasso-checkbox@102.0.1
+  - @toptal/picasso-date-picker@102.0.1
+  - @toptal/picasso-dropzone@102.0.1
+  - @toptal/picasso-link@102.0.1
+  - @toptal/picasso-menu@102.0.1
+  - @toptal/picasso-number-input@102.1.0
+  - @toptal/picasso-outlined-input@102.0.1
+  - @toptal/picasso-overview-block@102.0.1
+  - @toptal/picasso-page@102.1.1
+  - @toptal/picasso-radio@102.0.1
+  - @toptal/picasso-shared@102.1.0
+  - @toptal/picasso-slider@102.0.1
+  - @toptal/picasso-switch@102.0.1
+  - @toptal/picasso-tabs@102.0.1
+  - @toptal/picasso-tag@102.0.1
+  - @toptal/picasso-form@102.0.1
+  - @toptal/picasso-application-update-notification@102.0.1
+  - @toptal/picasso-drawer@102.0.1
+  - @toptal/picasso-file-input@102.0.1
+  - @toptal/picasso-helpbox@102.0.1
+  - @toptal/picasso-modal@102.0.1
+  - @toptal/picasso-notification@102.0.1
+  - @toptal/picasso-pagination@102.0.1
+  - @toptal/picasso-password-input@102.0.1
+  - @toptal/picasso-prompt-modal@102.0.1
+  - @toptal/picasso-section@102.0.1
+  - @toptal/picasso-show-more@102.0.1
+  - @toptal/picasso-skeleton-loader@102.0.1
+  - @toptal/picasso-table@102.0.1
+  - @toptal/picasso-tree-view@102.0.1
+  - @toptal/picasso-account-select@102.0.1
+  - @toptal/picasso-autocomplete@102.0.1
+  - @toptal/picasso-select@102.0.1
+  - @toptal/picasso-timepicker@102.0.1
+  - @toptal/picasso-avatar-upload@102.0.1
+  - @toptal/picasso-input@102.0.1
+  - @toptal/picasso-tagselector@102.0.1
+  - @toptal/picasso-avatar@102.0.1
+  - @toptal/picasso-badge@102.0.1
+  - @toptal/picasso-breadcrumbs@102.0.1
+  - @toptal/picasso-dropdown@102.0.1
+  - @toptal/picasso-empty-state@102.0.1
+  - @toptal/picasso-environment-banner@102.0.1
+  - @toptal/picasso-form-label@102.0.1
+  - @toptal/picasso-input-adornment@102.0.1
+  - @toptal/picasso-list@102.0.1
+  - @toptal/picasso-popper@102.0.1
+  - @toptal/picasso-step@102.0.1
+  - @toptal/picasso-test-utils@102.0.1
+  - @toptal/picasso-timeline@102.0.1
+  - @toptal/picasso-tooltip@102.0.1
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-date-select@102.0.1
+  - @toptal/picasso-user-badge@102.0.1
+  - @toptal/picasso-amount@102.0.1
+  - @toptal/picasso-container@102.0.1
+  - @toptal/picasso-grid@102.0.1
+  - @toptal/picasso-note@102.0.1
+  - @toptal/picasso-paper@102.0.1
+  - @toptal/picasso-quote@102.0.1
+  - @toptal/picasso-rating@102.0.1
+  - @toptal/picasso-typography@102.0.1
+  - @toptal/picasso-typography-overflow@102.0.1
+  - @toptal/picasso-icons@102.0.1
+  - @toptal/picasso-image@102.0.1
+  - @toptal/picasso-loader@102.0.1
+  - @toptal/picasso-logo@102.0.1
+
 ## 102.0.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @toptal/picasso-amount
 
+## 102.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-typography@102.0.1
+
 ## 102.0.0
 
 ### Major Changes

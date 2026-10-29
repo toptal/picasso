@@ -1,5 +1,21 @@
 # @toptal/picasso-overview-block
 
+## 102.0.1
+
+### Patch Changes
+
+- [#5145](https://github.com/toptal/picasso/pull/5145) [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb) Thanks [@azebich](https://github.com/azebich)!
+
+### OverviewBlock
+
+- show a focus ring on a keyboard-focused clickable block, above the next block
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-shared@102.1.0
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-container@102.0.1
+  - @toptal/picasso-typography@102.0.1
+  - @toptal/picasso-tailwind-merge@102.0.0
+
 ## 102.0.0
 
 ### Major Changes

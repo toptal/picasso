@@ -1,5 +1,16 @@
 # Change Log
 
+## 102.1.0
+
+### Minor Changes
+
+- [#5145](https://github.com/toptal/picasso/pull/5145) [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb) Thanks [@azebich](https://github.com/azebich)!
+
+### Shared
+
+- add `FOCUS_RING` and `INSET_FOCUS_RING`, the class names of the keyboard focus ring, built from the `blue-500` and `white` color tokens, for Picasso components to share
+- deprecate `outline`, which no component uses; use `FOCUS_RING` instead
+
 ## 102.0.0
 
 ### Major Changes

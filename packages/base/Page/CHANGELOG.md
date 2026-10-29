@@ -1,5 +1,35 @@
 # @toptal/picasso-page
 
+## 102.1.1
+
+### Patch Changes
+
+- [#5145](https://github.com/toptal/picasso/pull/5145) [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb) Thanks [@azebich](https://github.com/azebich)!
+
+### PageHamburger
+
+- show the hover background and the focus ring as a 40px rounded square around the icon, instead of a circle cut by it, without moving the icon; from `xl` it stays 24px, as before
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-accordion@102.0.1
+  - @toptal/picasso-button@102.0.1
+  - @toptal/picasso-menu@102.0.1
+  - @toptal/picasso-shared@102.1.0
+  - @toptal/picasso-tag@102.0.1
+  - @toptal/picasso-notification@102.0.1
+  - @toptal/picasso-skeleton-loader@102.0.1
+  - @toptal/picasso-autocomplete@102.0.1
+  - @toptal/picasso-avatar@102.0.1
+  - @toptal/picasso-badge@102.0.1
+  - @toptal/picasso-dropdown@102.0.1
+  - @toptal/picasso-tooltip@102.0.1
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-user-badge@102.0.1
+  - @toptal/picasso-container@102.0.1
+  - @toptal/picasso-typography@102.0.1
+  - @toptal/picasso-tailwind-merge@102.0.0
+  - @toptal/picasso-icons@102.0.1
+  - @toptal/picasso-logo@102.0.1
+
 ## 102.1.0
 
 ### Minor Changes
