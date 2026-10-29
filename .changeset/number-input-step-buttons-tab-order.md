@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-number-input': patch
+'@toptal/picasso-number-input': minor
 ---
 
 ### NumberInput

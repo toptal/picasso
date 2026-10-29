@@ -160,7 +160,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         className={twJoin(
           'border border-dashed',
           'box-border',
-          'outline-none',
+          'outline-hidden',
           FOCUS_RING.blue.focusVisible,
           'gap-2',
           'transition-all ease-out duration-350',

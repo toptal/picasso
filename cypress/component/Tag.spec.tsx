@@ -55,5 +55,22 @@ describe('Tag', () => {
         .and(toMatchFocusVisible(false))
         .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
+
+    it('skips a disabled tag on keyboard navigation', () => {
+      cy.mount(
+        <>
+          <button>Before</button>
+          <Tag onClick={() => {}} disabled>
+            Tag
+          </Tag>
+          <button>After</button>
+        </>
+      )
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.contains('After').should('have.focus')
+    })
   })
 })

@@ -1,6 +1,7 @@
 import React from 'react'
 import type { CarouselProps } from '@toptal/picasso'
 import { Carousel, Container, Settings16, Typography } from '@toptal/picasso'
+import { FOCUS_RING as RING_CLASSES } from '@toptal/picasso-shared'
 
 import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
 
@@ -181,6 +182,15 @@ describe('Carousel', () => {
         .and(toMatchFocusVisible(true))
         .and(toHaveStyle('opacity', '1'))
         .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('uses the shared focus ring', () => {
+      cy.mount(<CarouselExample hasDots />)
+
+      cy.getByTestId(testIds.dots).should(
+        'have.class',
+        `[&_.glider-dot:focus-visible]:${RING_CLASSES.blue.focused}`
+      )
     })
 
     it('does not show focus ring on mouse focus', () => {

@@ -2,6 +2,7 @@ import React from 'react'
 import type { RenderResult, PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import type { Props } from './Radio'
@@ -95,6 +96,13 @@ describe('Radio', () => {
       // React 19 alone would leave the browser's `"on"` default
       expect(radio.value).toBe('')
       expect(radio).toHaveAttribute('value', '')
+    })
+
+    it('draws the shared focus ring on its icons', () => {
+      const { container } = renderRadio({})
+      const ring = `group-data-[focused]:before:${FOCUS_RING.blue.focused}`
+
+      expect(container.getElementsByClassName(ring)).toHaveLength(2)
     })
   })
 

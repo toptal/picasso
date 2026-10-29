@@ -44,7 +44,7 @@ const ICON_BASE = [
   'after:rounded-full after:border-[0.125rem] after:border-solid',
   'after:border-current after:bg-current',
   'after:transition-all after:duration-350 after:ease-in-out',
-  // FOCUS_RING from @toptal/picasso-shared, on the icon's `::before`
+  // TODO: [PI-4318] FOCUS_RING on `::before`, written out; a test syncs it
   'group-data-[focused]:before:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
 ]
 

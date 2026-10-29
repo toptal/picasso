@@ -2,6 +2,7 @@ import React from 'react'
 import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 import { Settings16 } from '@toptal/picasso-icons'
 import { Link } from '@toptal/picasso-link'
@@ -102,6 +103,20 @@ describe('Tag', () => {
 
       fireEvent.click(deleteIcon)
       expect(onDelete).toHaveBeenCalled()
+    })
+
+    it('is a tab stop with a focus ring', () => {
+      const { getByTestId } = renderTag('Tag', { onDelete })
+
+      expect(getByTestId('tag')).toHaveAttribute('tabindex', '0')
+      expect(getByTestId('tag')).toHaveClass(FOCUS_RING.blue.focusVisible)
+    })
+
+    it('is not a tab stop and has no focus ring when disabled', () => {
+      const { getByTestId } = renderTag('Tag', { onDelete, disabled: true })
+
+      expect(getByTestId('tag')).not.toHaveAttribute('tabindex')
+      expect(getByTestId('tag')).not.toHaveClass(FOCUS_RING.blue.focusVisible)
     })
   })
 

@@ -1,5 +1,6 @@
 /* eslint-disable max-statements */
 import { Menu, Overview16, Page } from '@toptal/picasso'
+import { PageHamburger } from '@toptal/picasso-page'
 import { FOCUS_RING as RING_CLASSES } from '@toptal/picasso-shared'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 import React, { useCallback, useState } from 'react'
@@ -261,6 +262,25 @@ describe('TopBarMenu', () => {
         .should('have.focus')
         .and(toMatchFocusVisible(false))
         .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
+    })
+  })
+
+  describe('when the hamburger is rendered on its own', () => {
+    const SIZES = [
+      { width: 1024, size: 40, margin: '-8px' },
+      { width: 1440, size: 24, margin: '0px' },
+    ]
+
+    SIZES.forEach(({ width, size, margin }) => {
+      it(`is ${size}px with a ${margin} margin at ${width}px`, () => {
+        cy.viewport(width, 720)
+        cy.mount(<PageHamburger id='hamburger' data-testid={HAMBURGER_ID} />)
+
+        cy.getByTestId(HAMBURGER_ID)
+          .should('have.css', 'margin', margin)
+          .invoke('outerWidth')
+          .should('eq', size)
+      })
     })
   })
 })

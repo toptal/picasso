@@ -71,6 +71,7 @@ const CarouselNavigation = ({
               '[&_.glider-dot:not(.active):hover]:ease-out',
               // Full opacity, or the dot's faded opacity fades the ring too
               '[&_.glider-dot:focus-visible]:opacity-100',
+              // TODO: [PI-4318] FOCUS_RING, written out; a test syncs it
               '[&_.glider-dot:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
             )}
           />
