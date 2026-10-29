@@ -56,6 +56,45 @@ describe('Tag', () => {
         .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
 
+    it('clicks on Enter and Space and deletes on Delete', () => {
+      const onClick = cy.stub().as('onClick')
+      const onDelete = cy.stub().as('onDelete')
+
+      cy.mount(
+        <>
+          <button>Before</button>
+          <Tag onClick={onClick} onDelete={onDelete} data-testid='tag'>
+            Tag
+          </Tag>
+        </>
+      )
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+      cy.realPress('Enter')
+      cy.realPress('Space')
+      cy.realPress('Delete')
+
+      cy.get('@onClick').should('have.been.calledTwice')
+      cy.get('@onDelete').should('have.been.calledOnce')
+    })
+
+    it('clicks a tag rendered as a button once per key', () => {
+      const onClick = cy.stub().as('onClick')
+
+      cy.mount(
+        <Tag as='button' onClick={onClick} data-testid='tag'>
+          Tag
+        </Tag>
+      )
+
+      cy.getByTestId('tag').focus()
+      cy.realPress('Enter')
+      cy.realPress('Space')
+
+      cy.get('@onClick').should('have.been.calledTwice')
+    })
+
     it('skips a disabled tag on keyboard navigation', () => {
       cy.mount(
         <>

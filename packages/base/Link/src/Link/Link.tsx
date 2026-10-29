@@ -152,7 +152,6 @@ export const calculateViewModel = (props: Props): ViewModel => {
   return {
     className: twMerge(
       'focus:outline-hidden hover:underline leading-[inherit]',
-      // No radius, so a component rendered `as={Link}` keeps its own corners
       FOCUS_RING[color].focusVisible,
       COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
       disabled ? 'cursor-not-allowed' : '',

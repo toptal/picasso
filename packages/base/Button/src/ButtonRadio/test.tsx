@@ -53,6 +53,25 @@ describe('ButtonRadio', () => {
     expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
+  it('passes data-private to the label', () => {
+    const { getByTestId } = renderButtonRadio({
+      children: 'Click me!',
+      'data-testid': 'button',
+      'data-private': true,
+    })
+
+    expect(getByTestId('button')).toHaveAttribute('data-private', 'true')
+  })
+
+  it('leaves the radio, named by the label, as the only control', () => {
+    const { getByRole, queryByRole } = renderButtonRadio({
+      children: 'Click me!',
+    })
+
+    expect(getByRole('radio', { name: 'Click me!' })).toBeInTheDocument()
+    expect(queryByRole('button')).not.toBeInTheDocument()
+  })
+
   it('rings the label while the radio inside it has keyboard focus', () => {
     const { getByTestId } = renderButtonRadio({
       children: 'Click me!',

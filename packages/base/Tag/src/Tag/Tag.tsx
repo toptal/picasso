@@ -2,6 +2,7 @@ import type {
   ReactNode,
   ElementType,
   MouseEvent,
+  KeyboardEvent,
   AnchorHTMLAttributes,
   HTMLAttributes,
 } from 'react'
@@ -63,6 +64,48 @@ const DeleteIcon = ({ onClick }: { onClick: (event: MouseEvent) => void }) => (
   </span>
 )
 
+const CLICK_KEYS = ['Enter', ' ']
+const DELETE_KEYS = ['Delete', 'Backspace']
+
+// A button or link already clicks on its own keys
+const isNativeControl = (element: HTMLElement) =>
+  element instanceof HTMLButtonElement ||
+  (element instanceof HTMLAnchorElement && element.hasAttribute('href'))
+
+const getKeyboardProps = ({
+  isFocusable,
+  onClick,
+  onDelete,
+  onKeyDown,
+}: Pick<Props, 'onClick' | 'onDelete' | 'onKeyDown'> & {
+  isFocusable?: boolean
+}) => ({
+  'aria-keyshortcuts': isFocusable && onDelete ? 'Delete' : undefined,
+  onKeyDown: (event: KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event)
+
+    if (
+      !isFocusable ||
+      event.defaultPrevented ||
+      event.target !== event.currentTarget
+    ) {
+      return
+    }
+
+    if (onDelete && DELETE_KEYS.includes(event.key)) {
+      event.preventDefault()
+      onDelete()
+    } else if (
+      onClick &&
+      CLICK_KEYS.includes(event.key) &&
+      !isNativeControl(event.currentTarget)
+    ) {
+      event.preventDefault()
+      event.currentTarget.click()
+    }
+  },
+})
+
 const cloneIcon = (icon: ReactNode, disabled?: boolean) => {
   if (!icon || !React.isValidElement<IconProps>(icon)) {
     return null
@@ -85,6 +128,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
     icon,
     onDelete,
     onClick,
+    onKeyDown,
     style,
     titleCase: propsTitleCase,
     role,
@@ -127,6 +171,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
       )}
       style={style}
       onClick={onClick}
+      {...getKeyboardProps({ isFocusable, onClick, onDelete, onKeyDown })}
       tabIndex={isFocusable ? 0 : undefined}
       {...rest}
     >

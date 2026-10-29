@@ -104,7 +104,6 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
         isClickable
           ? [
               'cursor-pointer outline-hidden hover:bg-blue-100',
-              // Raised, or the next block paints over the ring
               'relative focus-visible:z-1',
               FOCUS_RING.blue.focusVisible,
             ]

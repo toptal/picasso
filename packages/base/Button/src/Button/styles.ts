@@ -18,6 +18,21 @@ export const createSizeClassNames = (
   return sizeClassNames[size]
 }
 
+export const createContentClassNames = (
+  size: 'small' | 'medium' | 'large'
+): string[] => {
+  const sizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string
+  > = {
+    small: 'text-button-small',
+    medium: 'text-button-medium',
+    large: 'text-button-large',
+  }
+
+  return ['font-semibold whitespace-nowrap', sizeClassNames[size]]
+}
+
 export const createVariantClassNames = (
   variant: VariantType,
   {
