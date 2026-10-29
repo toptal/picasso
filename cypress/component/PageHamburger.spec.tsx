@@ -1,7 +1,15 @@
 /* eslint-disable max-statements */
 import { Menu, Overview16, Page } from '@toptal/picasso'
+import { FOCUS_RING as RING_CLASSES } from '@toptal/picasso-shared'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 import React, { useCallback, useState } from 'react'
+
+import {
+  FOCUS_RING,
+  WHITE_FOCUS_RING,
+  toHaveStyle,
+  toMatchFocusVisible,
+} from '../support/focus'
 
 const TOGGLE_SIDEBAR_MENU_BUTTON_ID = 'toggle-sidebar-menu'
 const TOGGLE_CENTER_CONTENT_MENU_BUTTON_ID = 'toggle-center-content-menu'
@@ -87,20 +95,45 @@ const Example = () => {
   )
 }
 
-const LightExample = () => (
-  <Page hamburgerId='light-example'>
+const VariantExample = ({ variant }: { variant: 'dark' | 'light' }) => (
+  <Page hamburgerId={`${variant}-example`}>
     <Page.TopBar
-      variant='light'
+      variant={variant}
       rightContent={<RightContent />}
       testIds={{ hamburger: HAMBURGER_ID }}
-      title='Light example'
+      title={`${variant} example`}
     />
     <Page.Content>
       <Sidebar />
-      <Page.Article />
+      <Page.Article>
+        <button>After</button>
+      </Page.Article>
     </Page.Content>
   </Page>
 )
+
+// Happo drops `:focus-visible`, so the screenshot gets the forced ring class
+const takeFocusedScreenshot = (
+  variant: 'dark' | 'light',
+  happoTarget: (typeof HAPPO_TARGETS)[number]
+) => {
+  const ring = RING_CLASSES[variant === 'light' ? 'blue' : 'white'].focused
+
+  cy.getByTestId(HAMBURGER_ID)
+    .invoke('addClass', ring)
+    .should(
+      toHaveStyle(
+        'boxShadow',
+        variant === 'light' ? FOCUS_RING : WHITE_FOCUS_RING
+      )
+    )
+  cy.get('body').happoScreenshot({
+    component: 'PageHamburger',
+    variant: `${variant}/after-focused`,
+    targets: [happoTarget],
+  })
+  cy.getByTestId(HAMBURGER_ID).invoke('removeClass', ring)
+}
 
 describe('TopBarMenu', () => {
   it('sidebar and center content can co-exist', () => {
@@ -168,7 +201,7 @@ describe('TopBarMenu', () => {
       const component = 'PageHamburger'
 
       cy.viewport(happoTarget.width, 720)
-      cy.mount(<LightExample />)
+      cy.mount(<VariantExample variant='light' />)
 
       cy.getByTestId(HAMBURGER_ID).should('be.visible')
       cy.get('body').happoScreenshot({
@@ -183,12 +216,51 @@ describe('TopBarMenu', () => {
         targets: [happoTarget],
       })
 
-      cy.getByTestId(HAMBURGER_ID).focus()
-      cy.get('body').happoScreenshot({
-        component,
-        variant: 'light/after-focused',
-        targets: [happoTarget],
+      takeFocusedScreenshot('light', happoTarget)
+    })
+  })
+
+  describe('when the top bar variant is dark', () => {
+    it('renders a focused hamburger button', () => {
+      const happoTarget = HAPPO_TARGETS[0]
+
+      cy.viewport(happoTarget.width, 720)
+      cy.mount(<VariantExample variant='dark' />)
+
+      cy.getByTestId(HAMBURGER_ID).should('be.visible')
+      takeFocusedScreenshot('dark', happoTarget)
+    })
+  })
+
+  describe('when the hamburger is focused', () => {
+    const RINGS = { light: FOCUS_RING, dark: WHITE_FOCUS_RING }
+
+    ;(['light', 'dark'] as const).forEach(variant => {
+      it(`shows a square focus ring on keyboard focus on a ${variant} top bar`, () => {
+        cy.viewport(HAPPO_TARGETS[0].width, 720)
+        cy.mount(<VariantExample variant={variant} />)
+
+        cy.contains('After').realClick()
+        cy.realPress(['Shift', 'Tab'])
+
+        cy.getByTestId(HAMBURGER_ID)
+          .should('have.focus')
+          .and(toMatchFocusVisible(true))
+          .and(toHaveStyle('boxShadow', RINGS[variant]))
+          .and(toHaveStyle('borderRadius', '4px'))
       })
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.viewport(HAPPO_TARGETS[0].width, 720)
+      cy.mount(<VariantExample variant='light' />)
+
+      cy.getByTestId(HAMBURGER_ID).realClick()
+
+      cy.getByTestId(HAMBURGER_ID)
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
   })
 })

@@ -63,6 +63,9 @@ const PageHamburger = ({
         }
         data-testid={dataTestId}
         variant={variant === 'light' ? 'flat' : 'transparent'}
+        // Room around the 24px icon, without moving it
+        responsive
+        className='-m-2 rounded-sm'
       />
     </Dropdown>
   )
