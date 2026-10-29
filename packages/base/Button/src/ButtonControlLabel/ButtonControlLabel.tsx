@@ -2,10 +2,16 @@ import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { FOCUS_RING } from '@toptal/picasso-shared'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import { Container } from '@toptal/picasso-container'
 
-import { Button } from '../Button'
+import { createCoreClassNames as createBaseCoreClassNames } from '../ButtonBase/styles'
+import {
+  createCoreClassNames as createButtonCoreClassNames,
+  createVariantClassNames,
+  createSizeClassNames as createButtonSizeClassNames,
+  createContentClassNames,
+} from '../Button/styles'
 import { createSizeClassNames, createContentSizeClassNames } from './styles'
 
 export interface Props extends BaseProps {
@@ -38,6 +44,7 @@ export interface Props extends BaseProps {
   >
 }
 
+// A plain label styled as a Button, so the control inside is the only tab stop
 const ButtonControlLabel = ({
   children,
   size = 'medium',
@@ -48,34 +55,55 @@ const ButtonControlLabel = ({
   control,
   value,
   disabled,
-  ...props
+  active,
+  focused,
+  hovered,
+  ...rest
 }: Props): React.ReactElement => {
   const contentLeftSpacing = size === 'large' ? 1 : 0.5
+  const state = { disabled, active, focused, hovered }
 
   return (
-    <Button
-      {...props}
+    <label
+      {...rest}
+      htmlFor={id}
       className={twMerge(
+        'base-Button-root',
+        createBaseCoreClassNames({ disabled }),
+        createButtonCoreClassNames(state),
+        createVariantClassNames('secondary', state),
+        createButtonSizeClassNames(size),
         'text-center',
         createSizeClassNames(size),
-        // The Radio or Checkbox inside takes the focus, not the label
         !disabled && FOCUS_RING.blue.hasFocusVisible,
         className
       )}
-      variant='secondary'
-      size={size}
-      as='label'
-      htmlFor={id}
-      disabled={disabled}
+      // Keeps the spacing and ButtonGroup styles that target Buttons
+      data-component-type='button'
     >
-      {React.cloneElement(control, { id, checked, value, onChange, disabled })}
       <Container
-        className={createContentSizeClassNames(size)}
-        left={contentLeftSpacing}
+        as='span'
+        inline
+        flex
+        direction='row'
+        alignItems='center'
+        className={twJoin(createContentClassNames(size))}
       >
-        {children}
+        {React.cloneElement(control, {
+          id,
+          checked,
+          value,
+          onChange,
+          disabled,
+        })}
+        <Container
+          className={createContentSizeClassNames(size)}
+          left={contentLeftSpacing}
+        >
+          {children}
+        </Container>
       </Container>
-    </Button>
+    </label>
   )
 }
 

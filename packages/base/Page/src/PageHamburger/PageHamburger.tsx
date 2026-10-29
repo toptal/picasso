@@ -63,7 +63,6 @@ const PageHamburger = ({
         }
         data-testid={dataTestId}
         variant={variant === 'light' ? 'flat' : 'transparent'}
-        // Room around the 24px icon without moving it, until xl shrinks it
         responsive
         className='-m-2 xl:m-0 rounded-sm'
       />

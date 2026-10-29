@@ -21,6 +21,7 @@ import {
   createVariantClassNames,
   createCoreClassNames,
   createSizeClassNames,
+  createContentClassNames,
   createIconClassNames,
 } from './styles'
 
@@ -150,18 +151,8 @@ export const Button: OverridableComponent<Props> = forwardRef<
     className
   )
 
-  const contentSizeClassNames: Record<
-    SizeType<'small' | 'medium' | 'large'>,
-    string[]
-  > = {
-    small: ['text-button-small'],
-    medium: ['text-button-medium'],
-    large: ['text-button-large'],
-  }
-
   const contentClassName = cx(
-    'font-semibold whitespace-nowrap',
-    contentSizeClassNames[size],
+    createContentClassNames(size),
     loading ? 'opacity-0' : ''
   )
 
