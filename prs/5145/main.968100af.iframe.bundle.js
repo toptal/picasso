@@ -21257,7 +21257,6 @@ var createCoreClassNames = function (_ref2) {
   var classNames = ['no-underline hover:no-underline', 'rounded-sm', 'shadow-none'];
   if (!disabled) {
     classNames.push(_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_0__/* .FOCUS_RING */ .S.blue.focusVisible);
-    classNames.push(_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_0__/* .FOCUS_RING */ .S.blue.focusWithin);
     if (focused) {
       classNames.push(_toptal_picasso_shared__WEBPACK_IMPORTED_MODULE_0__/* .FOCUS_RING */ .S.blue.focused);
     }
@@ -21853,6 +21852,8 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/styles/focus-ring.js
+var focus_ring = __webpack_require__("./packages/shared/dist-package/src/styles/focus-ring.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 // EXTERNAL MODULE: ./packages/base/Container/dist-package/src/Container/Container.js
@@ -21890,6 +21891,7 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 
 
 
+
 var ButtonControlLabel = function (_a) {
   var children = _a.children,
     _a$size = _a.size,
@@ -21904,7 +21906,9 @@ var ButtonControlLabel = function (_a) {
     props = __rest(_a, ["children", "size", "className", "checked", "onChange", "id", "control", "value", "disabled"]);
   var contentLeftSpacing = size === 'large' ? 1 : 0.5;
   return /*#__PURE__*/react.createElement(Button/* default */.A, Object.assign({}, props, {
-    className: (0,twMerge/* twMerge */.QP)('text-center', createSizeClassNames(size), className),
+    className: (0,twMerge/* twMerge */.QP)('text-center', createSizeClassNames(size),
+    // The Radio or Checkbox inside takes the focus, not the label
+    !disabled && focus_ring/* FOCUS_RING */.S.blue.hasFocusVisible, className),
     variant: 'secondary',
     size: size,
     as: 'label',
@@ -22579,7 +22583,6 @@ var createCoreClassNames = function (_ref2) {
   var classNames = ['no-underline hover:no-underline', 'rounded-sm', 'shadow-none'];
   if (!disabled) {
     classNames.push(focus_ring/* FOCUS_RING */.S.blue.focusVisible);
-    classNames.push(focus_ring/* FOCUS_RING */.S.blue.focusWithin);
     if (focused) {
       classNames.push(focus_ring/* FOCUS_RING */.S.blue.focused);
     }
@@ -23372,6 +23375,8 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__("./node_modules/react/index.js");
+// EXTERNAL MODULE: ./packages/shared/dist-package/src/styles/focus-ring.js
+var focus_ring = __webpack_require__("./packages/shared/dist-package/src/styles/focus-ring.js");
 // EXTERNAL MODULE: ./packages/picasso-tailwind-merge/dist-package/src/twMerge.js
 var twMerge = __webpack_require__("./packages/picasso-tailwind-merge/dist-package/src/twMerge.js");
 // EXTERNAL MODULE: ./packages/base/Container/dist-package/src/Container/Container.js
@@ -23407,6 +23412,7 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 
+
 var ButtonControlLabel = function (_ref) {
   var children = _ref.children,
     _ref$size = _ref.size,
@@ -23421,7 +23427,9 @@ var ButtonControlLabel = function (_ref) {
     props = _objectWithoutProperties(_ref, _excluded);
   var contentLeftSpacing = size === 'large' ? 1 : 0.5;
   return /*#__PURE__*/(0,jsx_runtime.jsxs)(Button/* default */.A, Object.assign({}, props, {
-    className: (0,twMerge/* twMerge */.QP)('text-center', createSizeClassNames(size), className),
+    className: (0,twMerge/* twMerge */.QP)('text-center', createSizeClassNames(size),
+    // The Radio or Checkbox inside takes the focus, not the label
+    !disabled && focus_ring/* FOCUS_RING */.S.blue.hasFocusVisible, className),
     variant: "secondary",
     size: size,
     as: "label",
@@ -161385,7 +161393,6 @@ var FOCUS_RING = {
     /** For a component's `focused` prop */
     focused: 'shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
     focusVisible: 'focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
-    focusWithin: 'focus-within:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
     /** On an element that shows the focus of a hidden control inside it */
     hasFocusVisible: 'has-focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
     dataFocused: 'data-focused:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
@@ -162901,4 +162908,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.b24c7958.iframe.bundle.js.map
+//# sourceMappingURL=main.968100af.iframe.bundle.js.map
