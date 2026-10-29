@@ -1,10 +1,15 @@
+import { FOCUS_RING } from '@toptal/picasso-shared'
+
 export const summaryRootClasses = [
   'relative',
   'flex',
   'items-center',
   'select-none',
   'cursor-pointer',
-  'focus-visible:bg-black/12',
+  'rounded-sm',
+  // Outer: the summary has no horizontal padding, so an inset ring would
+  // cover its text
+  FOCUS_RING.blue.focusVisible,
   'outline-none',
   'py-[0.5625em]',
   'px-0',

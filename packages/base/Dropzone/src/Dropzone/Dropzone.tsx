@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import { Upload24 } from '@toptal/picasso-icons'
 import { FormHint } from '@toptal/picasso-form'
 import { Container } from '@toptal/picasso-container'
@@ -159,6 +160,8 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         className={twJoin(
           'border border-dashed',
           'box-border',
+          'outline-hidden',
+          FOCUS_RING.blue.focusVisible,
           'gap-2',
           'transition-all ease-out duration-350',
           getCursorClasses(componentState),

@@ -6,6 +6,7 @@
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind" },
     { "path": "../../picasso-tailwind-merge" },
+    { "path": "../../shared" },
     { "path": "../Typography" },
     { "path": "../Utils" }
   ]

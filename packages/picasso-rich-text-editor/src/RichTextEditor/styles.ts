@@ -13,9 +13,9 @@ type WrapperState = {
 // arbitrary (no spread token); the color is the matching palette token with an
 // alpha modifier — same pattern as OutlinedInput's focus ring.
 const FOCUS_OUTLINE: Record<Status, string> = {
-  error: 'shadow-[0_0_0_3px] shadow-red-500/[.48]',
-  warning: 'shadow-[0_0_0_3px] shadow-yellow-500/[.48]',
-  default: 'shadow-[0_0_0_3px] shadow-blue-500/[.48]',
+  error: 'shadow-[0_0_0_0.1875rem] shadow-red-500/48',
+  warning: 'shadow-[0_0_0_0.1875rem] shadow-yellow-500/48',
+  default: 'shadow-[0_0_0_0.1875rem] shadow-blue-500/48',
 }
 
 const STATUS_BORDER: Record<Status, string> = {

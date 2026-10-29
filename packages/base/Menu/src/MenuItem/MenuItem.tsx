@@ -14,7 +14,7 @@ import type {
   OverridableComponent,
   IconElement,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
+import { INSET_FOCUS_RING, useTitleCase } from '@toptal/picasso-shared'
 import { ChevronMinor16, CheckMinor16 } from '@toptal/picasso-icons'
 import { Paper } from '@toptal/picasso-paper'
 import { Popper } from '@toptal/picasso-popper'
@@ -61,6 +61,12 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
+}
+
+// Inset, since a menu clips its items
+const FOCUS_RING_BY_VARIANT: Record<VariantType, string> = {
+  light: INSET_FOCUS_RING.blue.focusVisible,
+  dark: INSET_FOCUS_RING.white.focusVisible,
 }
 
 const getFontColor = ({
@@ -179,6 +185,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           'overflow-hidden whitespace-normal text-left no-underline',
           'flex items-center justify-start',
           'outline-hidden appearance-none leading-4',
+          FOCUS_RING_BY_VARIANT[variant],
           className,
           disabled && 'text-gray-600 opacity-100 pointer-events-none'
         )}

@@ -13,6 +13,7 @@ import type {
 } from '@toptal/picasso-shared'
 import {
   cloneElementUnlessFragment,
+  FOCUS_RING,
   useTitleCase,
 } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
@@ -92,6 +93,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
 
   const titleCase = useTitleCase(propsTitleCase)
   const isInteractive = onDelete || onClick
+  const isFocusable = isInteractive && !disabled
 
   const handleDelete = (event: MouseEvent) => {
     if (!disabled && onDelete) {
@@ -119,12 +121,13 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
         h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
         group align-middle leading-[inherit]`,
         classByVariant[variant],
+        isFocusable && ['outline-hidden', FOCUS_RING.blue.focusVisible],
         className,
         disabled && 'text-gray-500 border-gray-200 pointer-events-none'
       )}
       style={style}
       onClick={onClick}
-      tabIndex={isInteractive ? 0 : undefined}
+      tabIndex={isFocusable ? 0 : undefined}
       {...rest}
     >
       {clonedIcon}

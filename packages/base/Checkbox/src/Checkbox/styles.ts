@@ -1,3 +1,5 @@
+import { FOCUS_RING } from '@toptal/picasso-shared'
+
 // Visual box for the checkbox control's `<span>`. The checkmark and
 // indeterminate dash are drawn with `::before` / `::after` pseudo-elements,
 // driven by the mutually-exclusive `data-checked` / `data-indeterminate`
@@ -23,13 +25,11 @@ export const checkboxClassNames: string[] = [
   '[&[data-indeterminate]:not([data-disabled]):hover]:bg-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
   '[&[data-indeterminate]:not([data-disabled]):hover]:border-[color-mix(in_srgb,theme(colors.blue.500)_84%,white)]',
 
-  // Focus ring: 3px blue-500 at 48% alpha.
   // `data-focused` mirrors the `:focus-visible` ring so it survives DOM
   // serialization for visual snapshots (live pseudo-classes don't).
-  // TODO(tokens) [PI-4318]: no canonical token for the focus-ring colour
-  // (blue-500 @ 48% alpha) — derived inline from blue-500 via color-mix.
-  'focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
-  'data-focused:shadow-[0_0_0_3px_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
+  'focus-visible:outline-none',
+  FOCUS_RING.blue.focusVisible,
+  FOCUS_RING.blue.dataFocused,
 
   // Disabled
   'data-disabled:opacity-[0.48] data-disabled:cursor-default',

@@ -3,6 +3,7 @@ import React, { useMemo, useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
 import { useDayRender } from 'react-day-picker'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import {
   isToday as isTodayDateFns,
   endOfMonth,
@@ -80,7 +81,9 @@ const CalendarDay = (dayProps: DayProps): React.ReactElement => {
       getBackgroundColorClass(currentComponentState),
       getBorderClasses(currentComponentState),
       getHoverAndFocusEffectsClasses(currentComponentState),
-      isDisabled ? 'cursor-default' : 'cursor-pointer'
+      isDisabled ? 'cursor-default' : 'cursor-pointer',
+      // Raised, or the neighbouring days paint over the ring
+      !isDisabled && ['focus-visible:z-1', FOCUS_RING.blue.focusVisible]
     )
   }, [
     isSelected,

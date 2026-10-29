@@ -11,7 +11,12 @@ import {
   ChevronRight16,
 } from '@toptal/picasso'
 
-import { toHaveStyle, toMatchFocusVisible } from '../support/focus'
+import {
+  FOCUS_RING,
+  WHITE_FOCUS_RING,
+  toHaveStyle,
+  toMatchFocusVisible,
+} from '../support/focus'
 
 const PURPLE_MAIN = 'rgb(103, 39, 207)'
 const GREY = 'rgb(196, 198, 202)'
@@ -42,9 +47,6 @@ const TestUserBadgeLink = () => {
 const component = 'Link'
 
 // 3px ring at 48% opacity
-const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px$/
-const WHITE_FOCUS_RING = /color\(srgb 1 1 1 \/ 0\.48\) 0px 0px 0px 3px$/
-const BUTTON_WHITE_FOCUS_RING = /rgba\(255, 255, 255, 0\.48\) 0px 0px 0px 3px$/
 
 const mountAfterButton = (children: ReactNode) =>
   cy.mount(
@@ -250,7 +252,8 @@ describe('Link', () => {
 
       cy.getByTestId('button')
         .should('have.focus')
-        .and(toHaveStyle('boxShadow', BUTTON_WHITE_FOCUS_RING))
+        // The button's white ring, over the link's blue one
+        .and(toHaveStyle('boxShadow', WHITE_FOCUS_RING))
 
       cy.realPress('Tab')
       cy.getByTestId('button-circular')

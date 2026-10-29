@@ -2,6 +2,7 @@ import React from 'react'
 import type { RenderResult, PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 import { Link } from '@toptal/picasso-link'
 
@@ -84,6 +85,14 @@ describe('Button', () => {
     )
 
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
+  })
+
+  it('rings on keyboard focus only, not while focus sits inside it', () => {
+    const { getByRole } = renderButton({ children: 'Click me!' })
+    const button = getByRole('button', { name: 'Click me!' })
+
+    expect(button).toHaveClass(FOCUS_RING.blue.focusVisible)
+    expect(button.className).not.toContain('focus-within:')
   })
 
   describe('disabled button', () => {

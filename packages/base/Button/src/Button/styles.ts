@@ -1,4 +1,5 @@
 import type { SizeType } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 
 import type { IconPositionType, VariantType } from './Button'
 
@@ -141,9 +142,7 @@ export const createVariantClassNames = (
         variantClassNames.push('hover:border-white')
         variantClassNames.push('active:border-white')
         variantClassNames.push('active:bg-white/[.16]')
-        variantClassNames.push(
-          'focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)]'
-        )
+        variantClassNames.push(FOCUS_RING.white.focusVisible)
 
         if (hovered) {
           variantClassNames.push('border-white')
@@ -157,7 +156,7 @@ export const createVariantClassNames = (
         }
 
         if (focused) {
-          variantClassNames.push('shadow-[0_0_0_3px_rgba(255,255,255,0.48)]')
+          variantClassNames.push(FOCUS_RING.white.focused)
         }
       }
       break
@@ -183,11 +182,10 @@ export const createCoreClassNames = ({
   ]
 
   if (!disabled) {
-    classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
-    classNames.push('focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+    classNames.push(FOCUS_RING.blue.focusVisible)
 
     if (focused) {
-      classNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+      classNames.push(FOCUS_RING.blue.focused)
     }
 
     if (active) {

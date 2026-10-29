@@ -11,6 +11,8 @@ import { PicassoBreakpoints } from '@toptal/picasso-provider'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 import React, { useEffect, useState } from 'react'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
   const [value, setValue] = useState<DatePickerProps['value']>(
     props.value || new Date(2020, 11, 27)
@@ -420,6 +422,41 @@ describe('DatePicker', () => {
           }
         )
       })
+    })
+  })
+
+  describe('when the calendar is focused', () => {
+    const testIds = {
+      input: 'date-picker-input',
+      calendar: 'date-picker-calendar',
+    }
+
+    it('shows focus ring on keyboard focus', () => {
+      cy.mount(<TestDatePicker testIds={testIds} />)
+
+      // Tab moves from the input to the first calendar button, and the
+      // calendar itself comes before its buttons
+      cy.getByTestId(testIds.input).realClick()
+      cy.realPress('Tab')
+      cy.realPress(['Shift', 'Tab'])
+
+      cy.getByTestId(testIds.calendar)
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.mount(<TestDatePicker testIds={testIds} />)
+
+      cy.getByTestId(testIds.input).realClick()
+      // Inside the calendar's padding, away from its rounded corners
+      cy.getByTestId(testIds.calendar).realClick({ x: 40, y: 10 })
+
+      cy.getByTestId(testIds.calendar)
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
   })
 })

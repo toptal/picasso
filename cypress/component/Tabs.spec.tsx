@@ -2,14 +2,17 @@ import React from 'react'
 import { Tabs } from '@toptal/picasso'
 
 import { loadAvatarFixture } from '../support/fixtures'
-import { toHaveStyle, toMatchFocusVisible } from '../support/focus'
+import {
+  INSET_FOCUS_RING,
+  toHaveStyle,
+  toMatchFocusVisible,
+} from '../support/focus'
 
 const component = 'Tabs'
 
 const getAvatarSrc = loadAvatarFixture()
 
 // blue-500/48, serialized as rgba() or oklab()
-const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px inset/
 const FOCUS_BAR = / 0px -2px 0px 0px inset/
 const GRAY_100 = 'rgb(243, 244, 246)'
 const SHADOW_1 = /0\.08\) 0px 0px 8px 0px$/
@@ -18,7 +21,7 @@ const toShowFocus =
   (orientation: 'horizontal' | 'vertical', expected = true) =>
   ($el: JQuery<HTMLElement>) => {
     if (orientation === 'vertical') {
-      toHaveStyle('boxShadow', FOCUS_RING, { expected })($el)
+      toHaveStyle('boxShadow', INSET_FOCUS_RING, { expected })($el)
 
       return
     }

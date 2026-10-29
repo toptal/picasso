@@ -3,6 +3,8 @@ import React from 'react'
 import { Calendar, Container } from '@toptal/picasso'
 import { noop } from '@toptal/picasso-utils'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const TestCalendar = (props: ComponentProps<typeof Calendar>) => (
   <Calendar {...props} />
 )
@@ -89,6 +91,97 @@ describe('Calendar', () => {
         component,
         variant: 'dropdown-navigation',
       })
+    })
+  })
+
+  describe('when focused', () => {
+    // A frozen clock stalls the real keyboard and mouse events
+    beforeEach(() => {
+      cy.clock().invoke('restore')
+    })
+
+    it('shows focus ring on the calendar on keyboard focus', () => {
+      cy.mount(
+        <>
+          <button>Before</button>
+          <TestCalendar onChange={noop} data-testid='calendar' />
+        </>
+      )
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('calendar')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('shows focus ring above the next day on keyboard focus of a selected day', () => {
+      cy.mount(<TestCalendar onChange={noop} value={new Date(2022, 4, 10)} />)
+
+      cy.getByTestId('day-button-9').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('day-button-10')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+        .and(toHaveStyle('zIndex', '1'))
+    })
+
+    it('shows focus ring on keyboard focus of a day inside a selected range', () => {
+      cy.mount(
+        <TestCalendar
+          range
+          onChange={noop}
+          value={[new Date(2022, 4, 9), new Date(2022, 4, 13)]}
+        />
+      )
+
+      cy.getByTestId('day-button-10').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('day-button-11')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('does not show focus ring on mouse focus of a selected day', () => {
+      cy.mount(<TestCalendar onChange={noop} value={new Date(2022, 4, 10)} />)
+
+      cy.getByTestId('day-button-10').realClick()
+
+      cy.getByTestId('day-button-10')
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
+    })
+
+    it('shows focus ring on the month select label on keyboard focus', () => {
+      cy.mount(
+        <>
+          <button>Before</button>
+          <TestCalendar
+            onChange={noop}
+            dropdownNavigation
+            minDate={new Date('1990-01-01')}
+            maxDate={new Date('2022-11-30')}
+          />
+        </>
+      )
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+
+      cy.get('select')
+        .first()
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .parent('label')
+        .should(toHaveStyle('boxShadow', FOCUS_RING))
     })
   })
 })

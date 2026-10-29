@@ -15,7 +15,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
     class="w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-data-[checked]:bg-blue group-data-[checked]:border-blue group-data-[disabled]:opacity group-[[data-disabled][data-unchecked]]:bg-black"
   />
   <span
-    class="w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)] group-focus-visible:shadow group-data-[checked]:translate-x"
+    class="w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:hover:not([data-disabled])]:shadow-[0_0_0_0.25rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] group-focus-visible:shadow-[0_0_0_0.25rem_color group-data-[checked]:translate-x"
     data-checked=""
   />
 </span>
@@ -42,7 +42,7 @@ exports[`Switch renders default Switch without label 1`] = `
           class="w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-data-[checked]:bg-blue group-data-[checked]:border-blue group-data-[disabled]:opacity group-[[data-disabled][data-unchecked]]:bg-black"
         />
         <span
-          class="w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)] group-focus-visible:shadow group-data-[checked]:translate-x"
+          class="w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:hover:not([data-disabled])]:shadow-[0_0_0_0.25rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] group-focus-visible:shadow-[0_0_0_0.25rem_color group-data-[checked]:translate-x"
           data-unchecked=""
         />
       </span>
@@ -86,7 +86,7 @@ exports[`Switch renders disabled state 1`] = `
             class="w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-data-[checked]:bg-blue group-data-[checked]:border-blue group-data-[disabled]:opacity group-[[data-disabled][data-unchecked]]:bg-black"
           />
           <span
-            class="w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)] group-focus-visible:shadow group-data-[checked]:translate-x"
+            class="w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:hover:not([data-disabled])]:shadow-[0_0_0_0.25rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] group-focus-visible:shadow-[0_0_0_0.25rem_color group-data-[checked]:translate-x"
             data-disabled=""
             data-unchecked=""
           />

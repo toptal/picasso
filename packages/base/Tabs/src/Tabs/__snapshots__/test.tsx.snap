@@ -163,7 +163,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-100 first-of-type:mt last-of-type:mb my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden focus-visible:inset-shadow focus-visible:inset-shadow-blue items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-100 first-of-type:mt last-of-type:mb my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden focus-visible:inset-shadow-[0_0_0_0.1875rem_color items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-activation-direction="none"
             data-orientation="vertical"
             data-testid="tab-1"
@@ -185,7 +185,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="opacity-100 first-of-type:mt last-of-type:mb my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden focus-visible:inset-shadow focus-visible:inset-shadow-blue items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="opacity-100 first-of-type:mt last-of-type:mb my-1 mx-0 py-2 px-4 text-left rounded-l rounded-r transition-all w-full overflow-hidden bg-gray hover:bg-gray text-graphite hover:text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-hidden focus-visible:inset-shadow-[0_0_0_0.1875rem_color items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             data-activation-direction="none"
             data-orientation="vertical"
             data-testid="tab-2"

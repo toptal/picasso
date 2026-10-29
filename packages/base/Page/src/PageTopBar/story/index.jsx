@@ -62,6 +62,14 @@ page
     'base/Page'
   )
   .addExample(
+    'PageTopBar/story/LightWithSidebar.example.tsx',
+    {
+      title: 'Light with sidebar',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
     'PageTopBar/story/ExtraMenuContent.example.tsx',
     {
       title: 'Extra header menu content',

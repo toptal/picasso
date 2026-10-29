@@ -1,5 +1,15 @@
 /// <reference types="cypress" />
 
+// 3px ring at 48% opacity, last of Tailwind's stacked shadows
+export const FOCUS_RING = / 0\.48\) 0px 0px 0px 3px$/
+// The same ring in white
+export const WHITE_FOCUS_RING = /color\(srgb 1 1 1 \/ 0\.48\) 0px 0px 0px 3px$/
+// The inset ring, first of the stacked shadows
+export const INSET_FOCUS_RING = / 0\.48\) 0px 0px 0px 3px inset/
+// The same ring in white
+export const WHITE_INSET_FOCUS_RING =
+  /^color\(srgb 1 1 1 \/ 0\.48\) 0px 0px 0px 3px inset/
+
 // jQuery can't match `:focus-visible`
 export const toMatchFocusVisible =
   (expected: boolean) => ($el: JQuery<HTMLElement>) =>
@@ -15,7 +25,8 @@ export const toHaveStyle =
       | 'boxShadow'
       | 'left'
       | 'opacity'
-      | 'right',
+      | 'right'
+      | 'zIndex',
     match: string | RegExp,
     { expected = true, pseudo }: { expected?: boolean; pseudo?: string } = {}
   ) =>

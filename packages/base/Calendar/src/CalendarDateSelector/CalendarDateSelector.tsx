@@ -3,6 +3,8 @@ import type { DropdownProps } from 'react-day-picker'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 
 const CalendarDateSelector = ({
   children,
@@ -15,7 +17,11 @@ const CalendarDateSelector = ({
     <label
       aria-label={ariaLabel}
       htmlFor={`month${caption}`}
-      className='flex relative items-center'
+      className={twJoin(
+        'flex relative items-center rounded-sm',
+        // The select is invisible, so its label shows its focus
+        FOCUS_RING.blue.hasFocusVisible
+      )}
     >
       <Typography
         variant='heading'

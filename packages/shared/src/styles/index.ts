@@ -44,6 +44,7 @@ export const em = (pxValue: number, baseFontSize: number) =>
 export const pxFromRem = (remValue: string, baseFontSize = 16) =>
   `${Number.parseFloat(remValue) * baseFontSize}px`
 
+/** @deprecated [PI-4318] Use the `FOCUS_RING` classes instead */
 export const outline = (baseColor: string, width = 3) => ({
   boxShadow: `0 0 0 ${width}px ${alpha(baseColor, 0.48)}`,
 })
@@ -51,3 +52,4 @@ export const outline = (baseColor: string, width = 3) => ({
 export const remToNumber = (value: string) => Number.parseFloat(value)
 
 export * from './types'
+export * from './focus-ring'

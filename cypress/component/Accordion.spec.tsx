@@ -7,6 +7,8 @@ import {
   Check16,
 } from '@toptal/picasso'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const Summary = ({
   onClick,
   expanded,
@@ -114,6 +116,43 @@ describe('Accordion', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'custom-expand-icon',
+    })
+  })
+
+  describe('when the summary is focused', () => {
+    const TestAccordion = () => (
+      <>
+        <button>Before</button>
+        <Accordion
+          content='Details'
+          testIds={{ accordionSummary: 'accordion-summary' }}
+        >
+          Summary
+        </Accordion>
+      </>
+    )
+
+    it('shows focus ring on keyboard focus', () => {
+      cy.mount(<TestAccordion />)
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('accordion-summary')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.mount(<TestAccordion />)
+
+      cy.getByTestId('accordion-summary').realClick()
+
+      cy.getByTestId('accordion-summary')
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
   })
 })

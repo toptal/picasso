@@ -146,8 +146,10 @@ export const NumberInputEndAdornment = ({
   return (
     <InputAdornment position='end'>
       <Container flex direction='column' inline>
+        {/* Not tab stops: the number input steps with the arrow keys */}
         <button
           type='button'
+          tabIndex={-1}
           disabled={disabled}
           className={rootClassName}
           onClick={handleUpClick}
@@ -157,6 +159,7 @@ export const NumberInputEndAdornment = ({
 
         <button
           type='button'
+          tabIndex={-1}
           disabled={disabled}
           className={rootClassName}
           onClick={handleDownClick}

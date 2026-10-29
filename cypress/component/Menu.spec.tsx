@@ -2,6 +2,13 @@ import React from 'react'
 import type { MenuProps } from '@toptal/picasso'
 import { Container, Menu } from '@toptal/picasso'
 
+import {
+  INSET_FOCUS_RING,
+  WHITE_INSET_FOCUS_RING,
+  toHaveStyle,
+  toMatchFocusVisible,
+} from '../support/focus'
+
 const MenuExample = (props: MenuProps) => {
   const menuForItemB1 = (
     <Menu data-testid='menu-b1' testIds={{ menuItem: 'menu-back' }}>
@@ -43,6 +50,24 @@ const MenuExample = (props: MenuProps) => {
 }
 
 const component = 'Menu'
+
+const VARIANTS = ['light', 'dark'] as const
+
+const SelectedItemMenu = ({
+  variant,
+}: {
+  variant: (typeof VARIANTS)[number]
+}) => (
+  <Container style={{ width: '240px' }}>
+    <button>Before</button>
+    <Menu>
+      <Menu.Item variant={variant} selected data-testid='selected-item'>
+        Selected
+      </Menu.Item>
+      <Menu.Item variant={variant}>Other</Menu.Item>
+    </Menu>
+  </Container>
+)
 
 // deselect via body click, then let the blurred item's transition-colors
 // (~150ms) come to rest so the snapshot doesn't freeze a mid-transition color
@@ -136,6 +161,39 @@ describe('Menu', () => {
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseout-subitem',
+    })
+  })
+
+  describe('when a selected item is focused', () => {
+    VARIANTS.forEach(variant => {
+      it(`shows inset focus ring on keyboard focus in ${variant} variant`, () => {
+        cy.mount(<SelectedItemMenu variant={variant} />)
+
+        cy.contains('Before').realClick()
+        cy.realPress('Tab')
+
+        cy.getByTestId('selected-item')
+          .should('have.focus')
+          .and(toMatchFocusVisible(true))
+          .and(toHaveStyle('boxShadow', INSET_FOCUS_RING))
+          // White on dark, blue on light
+          .and(
+            toHaveStyle('boxShadow', WHITE_INSET_FOCUS_RING, {
+              expected: variant === 'dark',
+            })
+          )
+      })
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.mount(<SelectedItemMenu variant='light' />)
+
+      cy.getByTestId('selected-item').realClick()
+
+      cy.getByTestId('selected-item')
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', INSET_FOCUS_RING, { expected: false }))
     })
   })
 })

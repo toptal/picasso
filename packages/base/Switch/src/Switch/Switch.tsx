@@ -105,8 +105,9 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
           className={twMerge(
             'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
             'transition-transform duration-150 ease-out',
-            'group-[:hover:not([data-disabled])]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-focus-visible:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
+            // TODO: [PI-4318] no token for this wider halo, shared with hover
+            'group-[:hover:not([data-disabled])]:shadow-[0_0_0_0.25rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
+            'group-focus-visible:shadow-[0_0_0_0.25rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
             'group-data-[checked]:translate-x-[16px]'
           )}
         />

@@ -2,6 +2,7 @@ import React from 'react'
 import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 
 import type { Props } from './ButtonRadio'
 import ButtonRadio from './ButtonRadio'
@@ -50,6 +51,27 @@ describe('ButtonRadio', () => {
     const anyChangeEvent = expect.anything()
 
     expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
+  })
+
+  it('rings the label while the radio inside it has keyboard focus', () => {
+    const { getByTestId } = renderButtonRadio({
+      children: 'Click me!',
+      'data-testid': 'button',
+    })
+
+    expect(getByTestId('button')).toHaveClass(FOCUS_RING.blue.hasFocusVisible)
+  })
+
+  it('does not ring the label when disabled', () => {
+    const { getByTestId } = renderButtonRadio({
+      children: 'Click me!',
+      'data-testid': 'button',
+      disabled: true,
+    })
+
+    expect(getByTestId('button')).not.toHaveClass(
+      FOCUS_RING.blue.hasFocusVisible
+    )
   })
 
   it('ignores clicks when disabled', () => {

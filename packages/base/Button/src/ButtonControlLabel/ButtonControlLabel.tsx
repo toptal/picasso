@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { Container } from '@toptal/picasso-container'
 
@@ -54,7 +55,13 @@ const ButtonControlLabel = ({
   return (
     <Button
       {...props}
-      className={twMerge('text-center', createSizeClassNames(size), className)}
+      className={twMerge(
+        'text-center',
+        createSizeClassNames(size),
+        // The Radio or Checkbox inside takes the focus, not the label
+        !disabled && FOCUS_RING.blue.hasFocusVisible,
+        className
+      )}
       variant='secondary'
       size={size}
       as='label'

@@ -1,3 +1,5 @@
+import { FOCUS_RING } from '@toptal/picasso-shared'
+
 import type { IconPositionType } from '../ButtonBase'
 
 export const createRootClassNames = ({
@@ -17,7 +19,11 @@ export const createRootClassNames = ({
 
   if (disabled) {
     classNames.push('opacity-[.48]')
-  } else if (loading) {
+
+    return classNames
+  }
+
+  if (loading) {
     classNames.push('no-underline')
     classNames.push('!cursor-default')
   } else {
@@ -30,14 +36,15 @@ export const createRootClassNames = ({
       classNames.push('text-blue-500')
       classNames.push('underline')
     }
+  }
 
-    classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
-    classNames.push('focus-visible:rounded-sm')
+  // A loading button can still be focused
+  classNames.push(FOCUS_RING.blue.focusVisible)
+  classNames.push('focus-visible:rounded-sm')
 
-    if (focused) {
-      classNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
-      classNames.push('rounded-sm')
-    }
+  if (focused) {
+    classNames.push(FOCUS_RING.blue.focused)
+    classNames.push('rounded-sm')
   }
 
   return classNames

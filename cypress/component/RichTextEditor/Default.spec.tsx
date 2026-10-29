@@ -378,7 +378,7 @@ describe('RichTextEditor', () => {
       // focused state = focus-ring shadow
       cy.get('@wrapper')
         .should('have.attr', 'class')
-        .and('include', 'shadow-blue-500/[.48]')
+        .and('include', 'shadow-blue-500/48')
     })
   })
 
@@ -393,7 +393,7 @@ describe('RichTextEditor', () => {
       // A disabled editor never gains the focus-ring shadow.
       cy.get('@wrapper')
         .should('have.attr', 'class')
-        .and('not.include', 'shadow-blue-500/[.48]')
+        .and('not.include', 'shadow-blue-500/48')
     })
   })
 

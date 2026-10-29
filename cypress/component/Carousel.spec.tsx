@@ -1,6 +1,9 @@
 import React from 'react'
 import type { CarouselProps } from '@toptal/picasso'
 import { Carousel, Container, Settings16, Typography } from '@toptal/picasso'
+import { FOCUS_RING as RING_CLASSES } from '@toptal/picasso-shared'
+
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
 
 type SlideExampleProps = {
   children: React.ReactNode
@@ -161,6 +164,46 @@ describe('Carousel', () => {
         component,
         variant: 'slides-to-show/with-gradient-left',
       })
+    })
+  })
+
+  describe('when a dot is focused', () => {
+    it('shows an inactive dot fully opaque with focus ring on keyboard focus', () => {
+      cy.mount(<CarouselExample hasDots />)
+
+      cy.getByTestId(testIds.dots).find('.glider-dot').first().realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId(testIds.dots)
+        .find('.glider-dot')
+        .eq(1)
+        .should('have.focus')
+        .and('not.have.class', 'active')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('opacity', '1'))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('uses the shared focus ring', () => {
+      cy.mount(<CarouselExample hasDots />)
+
+      cy.getByTestId(testIds.dots).should(
+        'have.class',
+        `[&_.glider-dot:focus-visible]:${RING_CLASSES.blue.focused}`
+      )
+    })
+
+    it('does not show focus ring on mouse focus', () => {
+      cy.mount(<CarouselExample hasDots />)
+
+      cy.getByTestId(testIds.dots).find('.glider-dot').eq(1).realClick()
+
+      cy.getByTestId(testIds.dots)
+        .find('.glider-dot')
+        .eq(1)
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
   })
 })

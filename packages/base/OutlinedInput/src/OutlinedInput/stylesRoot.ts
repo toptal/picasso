@@ -81,17 +81,17 @@ export const borderPseudoClassesByState = {
   shadow: {
     dark: '[&:has(:focus)]:after:shadow-0',
     default: [
-      '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
-      '[&:has(:focus)]:after:shadow-blue-500/[.48]',
+      '[&:has(:focus)]:after:shadow-[0_0_0_0.1875rem]',
+      '[&:has(:focus)]:after:shadow-blue-500/48',
     ],
     disabled: '',
     error: [
-      '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
-      '[&:has(:focus)]:after:shadow-red-500/[.48]',
+      '[&:has(:focus)]:after:shadow-[0_0_0_0.1875rem]',
+      '[&:has(:focus)]:after:shadow-red-500/48',
     ],
     warning: [
-      '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
-      '[&:has(:focus)]:after:shadow-yellow-500/[.48]',
+      '[&:has(:focus)]:after:shadow-[0_0_0_0.1875rem]',
+      '[&:has(:focus)]:after:shadow-yellow-500/48',
     ],
   },
 }

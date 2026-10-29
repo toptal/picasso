@@ -504,7 +504,6 @@ export const DatePicker = ({
                 indicatedIntervals={indicatedIntervals}
                 renderDay={renderDay}
                 onChange={handleCalendarChange}
-                className='outline-hidden'
                 hasFooter={Boolean(footer)}
                 weekStartsOn={weekStartsOn}
                 numberOfMonths={numberOfMonths}

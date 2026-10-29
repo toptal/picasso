@@ -2,6 +2,7 @@ import type { ReactNode, AnchorHTMLAttributes, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import { FOCUS_RING } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 
 const supportedColors = ['white', 'blue'] as const
@@ -48,14 +49,6 @@ const COLOR_DISABLED_MAP: Record<
       normal: 'inherit text-white visited:text-gray-500 underline',
     },
   },
-}
-
-// One shadow class and no radius, so a component rendered `as={Link}` keeps
-// its own focus ring and corners
-const FOCUS_RING_MAP: Record<ColorType, string> = {
-  blue: 'focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
-  white:
-    'focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.white)_48%,transparent)]',
 }
 
 export type Props = BaseProps &
@@ -159,7 +152,8 @@ export const calculateViewModel = (props: Props): ViewModel => {
   return {
     className: twMerge(
       'focus:outline-hidden hover:underline leading-[inherit]',
-      FOCUS_RING_MAP[color],
+      // No radius, so a component rendered `as={Link}` keeps its own corners
+      FOCUS_RING[color].focusVisible,
       COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
       disabled ? 'cursor-not-allowed' : '',
       noUnderline ? 'no-underline!' : '',
