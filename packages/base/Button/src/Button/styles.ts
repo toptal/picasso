@@ -183,7 +183,6 @@ export const createCoreClassNames = ({
 
   if (!disabled) {
     classNames.push(FOCUS_RING.blue.focusVisible)
-    classNames.push(FOCUS_RING.blue.focusWithin)
 
     if (focused) {
       classNames.push(FOCUS_RING.blue.focused)

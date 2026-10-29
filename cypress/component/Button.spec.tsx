@@ -90,4 +90,70 @@ describe('Button', () => {
         .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
     })
   })
+
+  describe('when focused', () => {
+    it('shows focus ring on keyboard focus', () => {
+      cy.mount(
+        <>
+          <button>Before</button>
+          <Button data-testid='button'>Button</Button>
+        </>
+      )
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId('button')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('does not keep a focus ring after a mouse click', () => {
+      cy.mount(<Button data-testid='button'>Button</Button>)
+
+      cy.getByTestId('button').realClick()
+
+      cy.getByTestId('button')
+        .should('have.focus')
+        .and(toMatchFocusVisible(false))
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
+    })
+  })
+
+  describe('when the radio of Button.Radio is focused', () => {
+    const TestButtonRadio = () => (
+      <>
+        <button>Before</button>
+        <Button.Radio data-testid='label' testIds={{ radio: 'radio' }}>
+          Radio
+        </Button.Radio>
+      </>
+    )
+
+    it('shows focus ring on the label on keyboard focus', () => {
+      cy.mount(<TestButtonRadio />)
+
+      cy.contains('Before').realClick()
+      // The label is a tab stop of its own, before the radio
+      cy.realPress('Tab')
+      cy.realPress('Tab')
+
+      cy.get('input[type="radio"]')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+      cy.getByTestId('label').should(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+
+    it('does not show focus ring on the label after a mouse click', () => {
+      cy.mount(<TestButtonRadio />)
+
+      cy.getByTestId('label').realClick()
+
+      cy.get('input[type="radio"]').should('be.checked')
+      cy.getByTestId('label').should(
+        toHaveStyle('boxShadow', FOCUS_RING, { expected: false })
+      )
+    })
+  })
 })

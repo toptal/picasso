@@ -8,8 +8,6 @@ export const FOCUS_RING = {
       'shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
     focusVisible:
       'focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
-    focusWithin:
-      'focus-within:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
     /** On an element that shows the focus of a hidden control inside it */
     hasFocusVisible:
       'has-focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]',
