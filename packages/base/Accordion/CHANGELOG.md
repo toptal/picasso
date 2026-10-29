@@ -1,5 +1,21 @@
 # @toptal/picasso-accordion
 
+## 102.0.1
+
+### Patch Changes
+
+- [#5145](https://github.com/toptal/picasso/pull/5145) [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb) Thanks [@azebich](https://github.com/azebich)!
+
+### Accordion
+
+- show a focus ring on a keyboard-focused summary, instead of a faint grey background
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-button@102.0.1
+  - @toptal/picasso-shared@102.1.0
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-tailwind-merge@102.0.0
+  - @toptal/picasso-icons@102.0.1
+
 ## 102.0.0
 
 ### Major Changes

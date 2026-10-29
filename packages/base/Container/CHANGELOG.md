@@ -1,5 +1,13 @@
 # @toptal/picasso-container
 
+## 102.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-tailwind-merge@102.0.0
+
 ## 102.0.0
 
 ### Major Changes

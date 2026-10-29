@@ -1,5 +1,16 @@
 # Change Log
 
+## 102.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-container@102.0.1
+  - @toptal/picasso-paper@102.0.1
+  - @toptal/picasso-typography@102.0.1
+  - @toptal/picasso-charts@102.0.1
+
 ## 102.0.0
 
 ### Major Changes

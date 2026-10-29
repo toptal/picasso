@@ -1,5 +1,19 @@
 # @toptal/picasso-switch
 
+## 102.0.1
+
+### Patch Changes
+
+- [#5145](https://github.com/toptal/picasso/pull/5145) [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb) Thanks [@azebich](https://github.com/azebich)!
+
+### Switch
+
+- build the thumb's hover and focus ring from the `blue-500` color token, sized in rem; it looks the same
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-shared@102.1.0
+  - @toptal/picasso-form-label@102.0.1
+  - @toptal/picasso-tailwind-merge@102.0.0
+
 ## 102.0.0
 
 ### Major Changes

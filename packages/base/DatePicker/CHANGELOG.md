@@ -1,5 +1,24 @@
 # @toptal/picasso-date-picker
 
+## 102.0.1
+
+### Patch Changes
+
+- [#5145](https://github.com/toptal/picasso/pull/5145) [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb) Thanks [@azebich](https://github.com/azebich)!
+
+### DatePicker
+
+- show the calendar's focus ring, which the picker hid
+- Updated dependencies [[`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb), [`5ec5afe`](https://github.com/toptal/picasso/commit/5ec5afe7d2e89dc02913ade111831687e74878fb)]:
+  - @toptal/picasso-calendar@102.0.1
+  - @toptal/picasso-outlined-input@102.0.1
+  - @toptal/picasso-input@102.0.1
+  - @toptal/picasso-input-adornment@102.0.1
+  - @toptal/picasso-popper@102.0.1
+  - @toptal/picasso-utils@102.0.1
+  - @toptal/picasso-container@102.0.1
+  - @toptal/picasso-icons@102.0.1
+
 ## 102.0.0
 
 ### Major Changes
