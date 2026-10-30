@@ -90,7 +90,8 @@ export function CheckboxRoot({ className, ...props }: Checkbox.Root.Props) {
           'border-neutral-700 bg-white text-white',
           // state
           'data-[checked]:bg-neutral-900 data-[checked]:text-white',
-          // focus: the shared keyboard focus ring
+          // focus: the shared ring in place of the native outline
+          'outline-hidden',
           FOCUS_RING.blue.focusVisible,
         ),
         // consumer override wins (rightmost in twMerge)
@@ -684,6 +685,7 @@ import { FOCUS_RING } from '@toptal/picasso-shared';
 const ROOT_BASE = [
   'relative inline-flex shrink-0 cursor-pointer rounded-full transition-colors',
   'bg-gray-300 data-[checked]:bg-blue-500',
+  'outline-hidden',
   FOCUS_RING.blue.focusVisible,
   'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
 ];
@@ -806,7 +808,7 @@ When adding a Base-UI-backed component, verify:
 - [ ] Colors come from design tokens, not Tailwind palette literals (`bg-surface`, not `bg-neutral-50`).
 - [ ] Dark mode works without `dark:` variants in component code (tokens flip automatically).
 - [ ] No `!important` anywhere; no inline `style` for colors / spacing / typography (those have class equivalents).
-- [ ] Keyboard focus shows the shared ring from `@toptal/picasso-shared` on `:focus-visible` only: `FOCUS_RING`, or `INSET_FOCUS_RING` where a container clips the element. Raise it (`focus-visible:z-1`) where neighbours paint over it.
+- [ ] Keyboard focus shows the shared ring from `@toptal/picasso-shared` on `:focus-visible` only: `FOCUS_RING`, or `INSET_FOCUS_RING` where a container clips the element. Hide the native outline with `outline-hidden` (not `outline-none`, so Windows high contrast mode still shows focus). Raise the ring (`focus-visible:z-1`) where neighbours paint over it.
 - [ ] Storybook covers each `data-*` state explicitly (open, disabled, checked, …) so visual regression catches state-styling drift.
 - [ ] Consumer override is documented: which classes can be safely overridden, which slots are addressable, what `render` accepts.
 

@@ -20,6 +20,8 @@ const renderTag = (
 ) => {
   const {
     onDelete,
+    onClick,
+    onKeyDown,
     disabled,
     variant,
     titleCase,
@@ -33,6 +35,8 @@ const renderTag = (
     <Tag
       data-testid='tag'
       onDelete={onDelete}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
       disabled={disabled}
       variant={variant}
       titleCase={titleCase}
@@ -117,6 +121,50 @@ describe('Tag', () => {
 
       expect(getByTestId('tag')).not.toHaveAttribute('tabindex')
       expect(getByTestId('tag')).not.toHaveClass(FOCUS_RING.blue.focusVisible)
+    })
+
+    it('deletes on Delete and Backspace', () => {
+      const { getByTestId } = renderTag('Tag', { onDelete })
+
+      fireEvent.keyDown(getByTestId('tag'), { key: 'Delete' })
+      fireEvent.keyDown(getByTestId('tag'), { key: 'Backspace' })
+
+      expect(onDelete).toHaveBeenCalledTimes(2)
+      expect(getByTestId('tag')).toHaveAttribute('aria-keyshortcuts', 'Delete')
+    })
+
+    it('ignores keys when disabled', () => {
+      const { getByTestId } = renderTag('Tag', { onDelete, disabled: true })
+
+      fireEvent.keyDown(getByTestId('tag'), { key: 'Delete' })
+
+      expect(onDelete).not.toHaveBeenCalled()
+      expect(getByTestId('tag')).not.toHaveAttribute('aria-keyshortcuts')
+    })
+  })
+
+  describe('clickable label', () => {
+    it('clicks on Enter and Space', () => {
+      const onClick = jest.fn()
+      const { getByTestId } = renderTag('Tag', { onClick })
+
+      fireEvent.keyDown(getByTestId('tag'), { key: 'Enter' })
+      fireEvent.keyDown(getByTestId('tag'), { key: ' ' })
+
+      expect(onClick).toHaveBeenCalledTimes(2)
+    })
+
+    it('leaves a key that its own onKeyDown handled', () => {
+      const onClick = jest.fn()
+      const onKeyDown = jest.fn((event: React.KeyboardEvent) =>
+        event.preventDefault()
+      )
+      const { getByTestId } = renderTag('Tag', { onClick, onKeyDown })
+
+      fireEvent.keyDown(getByTestId('tag'), { key: 'Enter' })
+
+      expect(onKeyDown).toHaveBeenCalled()
+      expect(onClick).not.toHaveBeenCalled()
     })
   })
 

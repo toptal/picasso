@@ -50,6 +50,15 @@ describe('ButtonCheckbox', () => {
     expect(onChange).toHaveBeenCalledWith(anyChangeEvent, true)
   })
 
+  it('leaves the checkbox, named by the label, as the only control', () => {
+    const { getByRole, queryByRole } = renderButtonCheckbox({
+      children: 'Click me!',
+    })
+
+    expect(getByRole('checkbox', { name: 'Click me!' })).toBeInTheDocument()
+    expect(queryByRole('button')).not.toBeInTheDocument()
+  })
+
   it('ignores clicks when disabled', () => {
     const onChange = jest.fn()
     const { getByTestId } = renderButtonCheckbox({

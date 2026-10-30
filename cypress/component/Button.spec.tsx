@@ -1,7 +1,12 @@
 import React from 'react'
 import { Button, Container, Link, Tooltip } from '@toptal/picasso'
 
-import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+import {
+  FOCUS_RING,
+  toHaveSettled,
+  toHaveStyle,
+  toMatchFocusVisible,
+} from '../support/focus'
 
 const component = 'Button'
 
@@ -121,37 +126,68 @@ describe('Button', () => {
     })
   })
 
-  describe('when the radio of Button.Radio is focused', () => {
-    const TestButtonRadio = () => (
+  describe('when the control of Button.Radio or Button.Checkbox is focused', () => {
+    const TestButtonControls = () => (
       <>
         <button>Before</button>
-        <Button.Radio data-testid='label' testIds={{ radio: 'radio' }}>
-          Radio
-        </Button.Radio>
+        <Button.Radio data-testid='radio-label'>Radio</Button.Radio>
+        <Button.Checkbox data-testid='checkbox-label'>Checkbox</Button.Checkbox>
+        <button>After</button>
       </>
     )
 
-    it('shows focus ring on the label on keyboard focus', () => {
-      cy.mount(<TestButtonRadio />)
+    it('makes the control the only tab stop and rings only the label', () => {
+      cy.mount(<TestButtonControls />)
 
       cy.contains('Before').realClick()
-      // The label is a tab stop of its own, before the radio
-      cy.realPress('Tab')
-      cy.realPress('Tab')
 
+      cy.realPress('Tab')
       cy.get('input[type="radio"]')
         .should('have.focus')
         .and(toMatchFocusVisible(true))
-      cy.getByTestId('label').should(toHaveStyle('boxShadow', FOCUS_RING))
+      cy.getByTestId('radio-label').should(toHaveStyle('boxShadow', FOCUS_RING))
+      cy.get('input[type="radio"]')
+        .parent()
+        .should('match', '[data-focused]')
+        .and(toHaveSettled)
+      cy.get('input[type="radio"] + span').should(
+        toHaveStyle('boxShadow', FOCUS_RING, {
+          expected: false,
+          pseudo: '::before',
+        })
+      )
+      cy.realPress('Space')
+      cy.get('input[type="radio"]').should('be.checked')
+
+      cy.realPress('Tab')
+      cy.get('[role="checkbox"]')
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+      cy.getByTestId('checkbox-label').should(
+        toHaveStyle('boxShadow', FOCUS_RING)
+      )
+      cy.get('[role="checkbox"]')
+        .should(toHaveSettled)
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
+      cy.realPress('Space')
+      cy.get('[role="checkbox"]').should('have.attr', 'aria-checked', 'true')
+
+      cy.realPress('Tab')
+      cy.contains('After').should('have.focus')
     })
 
-    it('does not show focus ring on the label after a mouse click', () => {
-      cy.mount(<TestButtonRadio />)
+    it('does not show focus ring on the labels after a mouse click', () => {
+      cy.mount(<TestButtonControls />)
 
-      cy.getByTestId('label').realClick()
-
+      cy.getByTestId('radio-label').realClick()
       cy.get('input[type="radio"]').should('be.checked')
-      cy.getByTestId('label').should(
+      cy.getByTestId('radio-label').should(
+        toHaveStyle('boxShadow', FOCUS_RING, { expected: false })
+      )
+
+      cy.getByTestId('checkbox-label').realClick()
+      cy.get('[role="checkbox"]').should('have.attr', 'aria-checked', 'true')
+      cy.getByTestId('checkbox-label').should(
         toHaveStyle('boxShadow', FOCUS_RING, { expected: false })
       )
     })
