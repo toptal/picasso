@@ -14,7 +14,13 @@ const ButtonCheckbox = ({ testIds, ...props }: Props): React.ReactElement => {
   return (
     <ButtonControlLabel
       {...props}
-      control={<Checkbox data-testid={testIds?.checkbox} />}
+      control={
+        <Checkbox
+          data-testid={testIds?.checkbox}
+          // The label shows the focus ring
+          className='focus-visible:shadow-none data-focused:shadow-none'
+        />
+      }
     />
   )
 }

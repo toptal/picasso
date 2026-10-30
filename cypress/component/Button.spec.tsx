@@ -1,7 +1,12 @@
 import React from 'react'
 import { Button, Container, Link, Tooltip } from '@toptal/picasso'
 
-import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+import {
+  FOCUS_RING,
+  toHaveSettled,
+  toHaveStyle,
+  toMatchFocusVisible,
+} from '../support/focus'
 
 const component = 'Button'
 
@@ -131,7 +136,7 @@ describe('Button', () => {
       </>
     )
 
-    it('makes the control the only tab stop and rings the label', () => {
+    it('makes the control the only tab stop and rings only the label', () => {
       cy.mount(<TestButtonControls />)
 
       cy.contains('Before').realClick()
@@ -141,6 +146,16 @@ describe('Button', () => {
         .should('have.focus')
         .and(toMatchFocusVisible(true))
       cy.getByTestId('radio-label').should(toHaveStyle('boxShadow', FOCUS_RING))
+      cy.get('input[type="radio"]')
+        .parent()
+        .should('match', '[data-focused]')
+        .and(toHaveSettled)
+      cy.get('input[type="radio"] + span').should(
+        toHaveStyle('boxShadow', FOCUS_RING, {
+          expected: false,
+          pseudo: '::before',
+        })
+      )
       cy.realPress('Space')
       cy.get('input[type="radio"]').should('be.checked')
 
@@ -151,6 +166,9 @@ describe('Button', () => {
       cy.getByTestId('checkbox-label').should(
         toHaveStyle('boxShadow', FOCUS_RING)
       )
+      cy.get('[role="checkbox"]')
+        .should(toHaveSettled)
+        .and(toHaveStyle('boxShadow', FOCUS_RING, { expected: false }))
       cy.realPress('Space')
       cy.get('[role="checkbox"]').should('have.attr', 'aria-checked', 'true')
 

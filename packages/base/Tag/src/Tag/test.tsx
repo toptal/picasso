@@ -139,6 +139,7 @@ describe('Tag', () => {
       fireEvent.keyDown(getByTestId('tag'), { key: 'Delete' })
 
       expect(onDelete).not.toHaveBeenCalled()
+      expect(getByTestId('tag')).not.toHaveAttribute('aria-keyshortcuts')
     })
   })
 
