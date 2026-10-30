@@ -117,6 +117,29 @@ const seedFirstRender = (
   )
 }
 
+const holdSeed = (form: FormApi, name: string, config: HoldConfig) => {
+  const seeded = config.seedsFirstRender
+    ? seedFirstRender(form, name, config)
+    : undefined
+
+  if (seeded) {
+    keepUntilCommit(form, name, seeded)
+  }
+}
+
+// Another field with nothing stored, such as a hook that reads the array
+// without an `initialValue`, can keep the entry that upstream's first render
+// reads. final-form publishes the seed by telling that field, which React
+// warns about in development; the field gets the value at commit anyway
+const holdShared = (form: FormApi, name: string, config: HoldConfig) => {
+  const shared =
+    name && !form.destroyOnUnregister ? form.getFieldState(name) : undefined
+
+  if (shared && shared.value === undefined && shared.initial === undefined) {
+    holdSeed(form, name, config)
+  }
+}
+
 const hold = (form: FormApi, name: string, config: HoldConfig) => {
   if (!name || form.destroyOnUnregister || form.getFieldState(name)) {
     return
@@ -141,14 +164,23 @@ const hold = (form: FormApi, name: string, config: HoldConfig) => {
   // Nothing stored: upstream's first render, a field `initialValue` included,
   // is already right, except an array's
   release()
+  holdSeed(form, name, config)
+}
 
-  const seeded = config.seedsFirstRender
-    ? seedFirstRender(form, name, config)
-    : undefined
+const useHold = (form: FormApi, name: string, config: HoldConfig) => {
+  const committed = useRef<string | undefined>(undefined)
 
-  if (seeded) {
-    keepUntilCommit(form, name, seeded)
+  // Once the field commits, the entry is its own, and a seed would write the
+  // value during a later render
+  if (committed.current !== name) {
+    holdShared(form, name, config)
   }
+
+  hold(form, name, config)
+
+  useIsomorphicLayoutEffect(() => {
+    committed.current = name
+  }, [name])
 }
 
 const useClaim = (form: FormApi, name: string, config: KeptFieldConfig) => {
@@ -263,7 +295,7 @@ export const useKeptFieldState = (
 ) => {
   const form = useForm(hookName)
 
-  hold(form, name, config)
+  useHold(form, name, config)
   useClaim(form, name, config)
 }
 
@@ -279,7 +311,7 @@ export const keepFieldState = <Hook extends FieldHook>(
   function useKeptField(name: string, config?: KeptFieldConfig) {
     const form = useForm(hookName)
 
-    hold(form, name, {
+    useHold(form, name, {
       ...config,
       isEqual: config?.isEqual ?? defaultIsEqual,
       seedsFirstRender,
