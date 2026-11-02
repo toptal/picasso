@@ -77,8 +77,8 @@ export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
           {collapsible && (
             <ButtonCircular
               className={twMerge(
-                // TODO: [FX-XXXX] technical debt: button color/background/radius/shadow shouldn't be overwritten
-                'absolute -right-3 top-3 text-graphite-700 bg-white rounded-full shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_0_8px_0_rgba(0,0,0,0.16)] z-[100] hover:text-white hover:bg-blue-500',
+                // TODO: [FX-XXXX] technical debt: button color/background shouldn't be overwritten
+                'absolute -right-3 top-3 text-graphite-700 bg-white shadow-3 z-[100] hover:text-white hover:bg-blue-500',
                 // Opacity, not `invisible`, which would take it out of the tab order
                 'opacity-0 pointer-events-none focus-visible:opacity-100 focus-visible:pointer-events-auto',
                 isHovered && 'opacity-100 pointer-events-auto'
