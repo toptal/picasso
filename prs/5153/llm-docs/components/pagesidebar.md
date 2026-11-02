@@ -11,11 +11,12 @@ Navigation items provide access to parts in your app
 | variant | `"light" \| "dark"` | `light` | Style variant of Sidebar and subcomponents |
 | children | `ReactNode` | - | Content |
 | collapsible | `boolean` | - | Indicates Sidebar is collapsible |
-| defaultCollapsed | `boolean` | - | Indicates Sidebar is collapsed as default |
-| collapsed | `boolean` | - | Controlled collapsed state; when set, `defaultCollapsed` is ignored |
-| testIds | `{ collapseButton?: string; container?: string; scrollableContainer?: string \| undefined; } \| undefined` | - | Callback to notify when sidebar is having collapsed or default state |
+| defaultCollapsed | `boolean` | - | Indicates Sidebar is collapsed as default **(applied if `collapsible: true`)** |
+| collapsed | `boolean` | - | Controlled collapsed state **(applied if `collapsible: true`)**; when set, `defaultCollapsed` is ignored |
+| testIds | `{ collapseButton?: string; container?: string; scrollableContainer?: string \| undefined; } \| undefined` | - | Test ids of the sidebar's inner elements |
 | size | `"small" \| "medium" \| "large"` | `medium` | Different width of sidebar |
 | disableSticky | `boolean` | - | Make sidebar scroll with the content |
+| wrapperMaxHeight | `string \| number` | - | Max height of the wrapper around the sidebar's content |
 | onCollapse | `((collapsed: boolean) => void)` | - | Callback invoked when the collapse button is clicked, with the collapsed state it requests |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
