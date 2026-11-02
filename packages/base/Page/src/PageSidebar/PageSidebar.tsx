@@ -22,6 +22,8 @@ export interface Props extends BaseProps {
   collapsible?: boolean
   /** Indicates Sidebar is collapsed as default */
   defaultCollapsed?: boolean
+  /** Controlled collapsed state; when set, `defaultCollapsed` is ignored */
+  collapsed?: boolean
   /** Callback to notify when sidebar is having collapsed or default state */
   testIds?: {
     collapseButton?: string
@@ -33,8 +35,8 @@ export interface Props extends BaseProps {
   /** Make sidebar scroll with the content */
   disableSticky?: boolean
   wrapperMaxHeight?: string | number
-  /** Callback when sidebar is collapsed */
-  onCollapse?: () => void
+  /** Callback invoked when the collapse button is clicked, with the collapsed state it requests */
+  onCollapse?: (collapsed: boolean) => void
 }
 
 const classesByVariant = {
@@ -58,14 +60,17 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     style,
     collapsible,
     defaultCollapsed,
+    collapsed,
     testIds,
     wrapperMaxHeight,
     disableSticky,
     onCollapse = noop,
   } = props
 
-  const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
+  const [internalCollapsed, setInternalCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
+
+  const isCollapsed = collapsed ?? internalCollapsed
 
   const { setHasSidebar } = useSidebar()
   const { hasPageHamburger } = useHamburgerContext()
@@ -80,9 +85,14 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   }, [setHasSidebar])
 
   const handleCollapse = useCallback(() => {
-    setIsCollapsed(previousState => !previousState)
-    onCollapse()
-  }, [setIsCollapsed, onCollapse])
+    const nextCollapsed = !isCollapsed
+
+    if (collapsed === undefined) {
+      setInternalCollapsed(nextCollapsed)
+    }
+
+    onCollapse(nextCollapsed)
+  }, [collapsed, isCollapsed, onCollapse])
 
   return (
     <Container

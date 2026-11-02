@@ -25,6 +25,7 @@ export const toHaveStyle =
       | 'boxShadow'
       | 'left'
       | 'opacity'
+      | 'pointerEvents'
       | 'right'
       | 'zIndex',
     match: string | RegExp,

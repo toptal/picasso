@@ -12,6 +12,8 @@ import {
   Typography,
 } from '@toptal/picasso'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const component = 'PageSidebar'
 
 enum TestIds {
@@ -131,6 +133,13 @@ const DefaultExample = (props: PageSidebarProps) => {
   )
 }
 
+const CollapsibleExample = () => (
+  <>
+    <button>Before</button>
+    <DefaultExample collapsible />
+  </>
+)
+
 const VariantsExample = () => {
   return (
     <Grid spacing={32}>
@@ -224,6 +233,34 @@ describe('Sidebar', () => {
       cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('exist')
 
       cy.get('body').happoScreenshot({ component, variant: 'expand sidebar' })
+    })
+  })
+
+  describe('when the pointer is away from a collapsible sidebar', () => {
+    it('hides the collapse button and lets the pointer through it', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.contains('Before').realHover()
+
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should(toHaveStyle('opacity', '0'))
+        .and(toHaveStyle('pointerEvents', 'none'))
+    })
+  })
+
+  describe('when tabbing into a collapsible sidebar', () => {
+    it('focuses and shows the collapse button first', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('opacity', '1'))
+        .and(toHaveStyle('pointerEvents', 'auto'))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
     })
   })
 })
