@@ -204,7 +204,8 @@ describe('Sidebar', () => {
         `[data-testid="${TestIds.COLLAPSIBLE_MENU_INNER_MENU}"]`
       )
 
-      cy.get('body').happoScreenshot({
+      // Happo doesn't capture `:hover`, which reveals the collapse button
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
         component,
         variant: 'expanded accordion menu',
       })
@@ -217,7 +218,7 @@ describe('Sidebar', () => {
 
       cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('not.exist')
 
-      cy.get('body').happoScreenshot({
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
         component,
         variant: 'collapsed sidebar default',
       })
@@ -232,7 +233,7 @@ describe('Sidebar', () => {
         .filter(':visible')
         .should('have.length', 1)
 
-      cy.get('body').happoScreenshot({
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
         component,
         variant: 'open dropdown menu',
       })
@@ -243,7 +244,10 @@ describe('Sidebar', () => {
 
       cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('exist')
 
-      cy.get('body').happoScreenshot({ component, variant: 'expand sidebar' })
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
+        component,
+        variant: 'expand sidebar',
+      })
     })
   })
 
