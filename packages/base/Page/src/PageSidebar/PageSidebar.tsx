@@ -20,11 +20,11 @@ export interface Props extends BaseProps {
   children?: ReactNode
   /** Indicates Sidebar is collapsible */
   collapsible?: boolean
-  /** Indicates Sidebar is collapsed as default */
+  /** Indicates Sidebar is collapsed as default **(applied if `collapsible: true`)** */
   defaultCollapsed?: boolean
-  /** Controlled collapsed state; when set, `defaultCollapsed` is ignored */
+  /** Controlled collapsed state **(applied if `collapsible: true`)**; when set, `defaultCollapsed` is ignored */
   collapsed?: boolean
-  /** Callback to notify when sidebar is having collapsed or default state */
+  /** Test ids of the sidebar's inner elements */
   testIds?: {
     collapseButton?: string
     container?: string
@@ -34,6 +34,7 @@ export interface Props extends BaseProps {
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Make sidebar scroll with the content */
   disableSticky?: boolean
+  /** Max height of the wrapper around the sidebar's content */
   wrapperMaxHeight?: string | number
   /** Callback invoked when the collapse button is clicked, with the collapsed state it requests */
   onCollapse?: (collapsed: boolean) => void
@@ -68,9 +69,17 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   } = props
 
   const [internalCollapsed, setInternalCollapsed] = useState(!!defaultCollapsed)
-  const [isHovered, setIsHovered] = useState(false)
 
-  const isCollapsed = collapsed ?? internalCollapsed
+  const isControlled = collapsed !== undefined
+  const isCollapsed =
+    !!collapsible && (isControlled ? collapsed : internalCollapsed)
+
+  // Keep the last controlled state, so that unsetting `collapsed` doesn't jump back to `defaultCollapsed`
+  useEffect(() => {
+    if (isControlled) {
+      setInternalCollapsed(collapsed)
+    }
+  }, [isControlled, collapsed])
 
   const { setHasSidebar } = useSidebar()
   const { hasPageHamburger } = useHamburgerContext()
@@ -87,12 +96,12 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const handleCollapse = useCallback(() => {
     const nextCollapsed = !isCollapsed
 
-    if (collapsed === undefined) {
+    if (!isControlled) {
       setInternalCollapsed(nextCollapsed)
     }
 
     onCollapse(nextCollapsed)
-  }, [collapsed, isCollapsed, onCollapse])
+  }, [isControlled, isCollapsed, onCollapse])
 
   return (
     <Container
@@ -103,6 +112,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         'shadow-[inset_-1px_0_0_0]',
         'text-lg/[inherit]',
         'relative',
+        'group/sidebar',
         'transition-[width] ease-in-out delay-[225ms]',
         'hidden min-[1280px]:block',
         '[&]:before:absolute',
@@ -115,18 +125,15 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         classesByVariant[variant],
         classesBySize[size],
         'xs:max-md:overflow-y-scroll',
-        collapsible &&
-          isCollapsed && [
-            'w-[5rem]',
-            '[&]:before:w-[5.75rem]',
-            '[&_.scrollable-content]:[-ms-overflow-style:none]',
-            '[&_.scrollable-content]:[scrollbar-width:none]',
-          ],
+        isCollapsed && [
+          'w-[5rem]',
+          '[&]:before:w-[5.75rem]',
+          '[&_.scrollable-content]:[-ms-overflow-style:none]',
+          '[&_.scrollable-content]:[scrollbar-width:none]',
+        ],
         !hasTopBar && 'block'
       )}
       data-testid={testIds?.container}
-      onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
-      onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
       {hasPageHamburger ? (
         <PageHamburgerPortal>{children}</PageHamburgerPortal>
@@ -137,9 +144,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
           wrapperMaxHeight={wrapperMaxHeight}
           disableSticky={disableSticky}
           collapsible={collapsible}
-          defaultCollapsed={defaultCollapsed}
           isCollapsed={isCollapsed}
-          isHovered={isHovered}
           onCollapse={handleCollapse}
         >
           {children}

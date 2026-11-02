@@ -21,7 +21,6 @@ const renderSidebarLogoWithContext = ({
       expandedItemKey={null}
       setExpandedItemKey={noop}
       isCollapsed={isCollapsed}
-      isHovered={false}
     >
       <SidebarLogo
         collapsedLogo={<Logo emblem data-testid='collapse-logo' />}

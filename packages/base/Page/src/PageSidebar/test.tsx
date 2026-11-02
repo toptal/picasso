@@ -19,7 +19,7 @@ const renderCollapsibleSidebar = (props: OmitInternalProps<Props> = {}) =>
   render(<CollapsibleSidebar {...props} />)
 
 const getCollapseButton = () =>
-  screen.getByRole('button', { name: 'Toggle sidebar' })
+  screen.getByRole('button', { name: 'collapse sidebar' })
 
 describe('PageSidebar', () => {
   it('renders', () => {
@@ -57,7 +57,7 @@ describe('PageSidebar', () => {
       expect(screen.getByText('Full logo')).toBeInTheDocument()
     })
 
-    it('toggles it with the collapse button and reports each requested state', () => {
+    it('flips it on each collapse button click and reports the requested state', () => {
       const onCollapse = jest.fn()
 
       renderCollapsibleSidebar({ onCollapse })
@@ -122,6 +122,36 @@ describe('PageSidebar', () => {
       expect(screen.getByText('Collapsed logo')).toBeInTheDocument()
       expect(onCollapse).toHaveBeenLastCalledWith(false)
       expect(onCollapse).toHaveBeenCalledTimes(2)
+    })
+  })
+
+  describe('when the collapsed prop is unset after being set', () => {
+    it('keeps the last collapsed state and flips it from there', () => {
+      const { rerender } = renderCollapsibleSidebar({ collapsed: true })
+
+      rerender(<CollapsibleSidebar />)
+
+      expect(getCollapseButton()).toHaveAttribute('aria-expanded', 'false')
+      expect(screen.getByText('Collapsed logo')).toBeInTheDocument()
+
+      fireEvent.click(getCollapseButton())
+
+      expect(getCollapseButton()).toHaveAttribute('aria-expanded', 'true')
+      expect(screen.getByText('Full logo')).toBeInTheDocument()
+    })
+  })
+
+  describe('when the sidebar is not collapsible', () => {
+    it('ignores defaultCollapsed', () => {
+      renderCollapsibleSidebar({ collapsible: false, defaultCollapsed: true })
+
+      expect(screen.getByText('Full logo')).toBeInTheDocument()
+    })
+
+    it('ignores the collapsed prop', () => {
+      renderCollapsibleSidebar({ collapsible: false, collapsed: true })
+
+      expect(screen.getByText('Full logo')).toBeInTheDocument()
     })
   })
 })

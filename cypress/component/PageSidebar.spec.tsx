@@ -133,6 +133,17 @@ const DefaultExample = (props: PageSidebarProps) => {
   )
 }
 
+const toLetPointerThrough = ($element: JQuery<HTMLElement>) => {
+  const element = $element[0]
+  const { left, top, width, height } = element.getBoundingClientRect()
+  const hitTarget = element.ownerDocument.elementFromPoint(
+    left + width / 2,
+    top + height / 2
+  )
+
+  expect(element.contains(hitTarget)).to.equal(false)
+}
+
 const CollapsibleExample = () => (
   <>
     <button>Before</button>
@@ -244,7 +255,22 @@ describe('Sidebar', () => {
 
       cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
         .should(toHaveStyle('opacity', '0'))
-        .and(toHaveStyle('pointerEvents', 'none'))
+        .and(toLetPointerThrough)
+    })
+  })
+
+  describe('when the pointer leaves the sidebar after clicking the collapse button', () => {
+    it('keeps the focused button shown', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
+      cy.contains('Before').realHover()
+
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should('have.focus')
+        .and(toHaveStyle('opacity', '1'))
+        .and(toHaveStyle('pointerEvents', 'auto'))
     })
   })
 
@@ -261,6 +287,23 @@ describe('Sidebar', () => {
         .and(toHaveStyle('opacity', '1'))
         .and(toHaveStyle('pointerEvents', 'auto'))
         .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+  })
+
+  describe('when pressing Enter on the keyboard-focused collapse button', () => {
+    it('collapses the sidebar and keeps the button focused and shown', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+      cy.realPress('Enter')
+
+      cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('not.exist')
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should('have.focus')
+        .and('have.attr', 'aria-expanded', 'false')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('opacity', '1'))
     })
   })
 })

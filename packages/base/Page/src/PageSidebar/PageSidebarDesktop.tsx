@@ -17,9 +17,7 @@ export interface Props extends BaseProps {
   children?: ReactNode
   /** Indicates Sidebar is collapsible */
   collapsible?: boolean
-  /** Indicates Sidebar is collapsed as default */
-  defaultCollapsed?: boolean
-  /** Callback to notify when sidebar is having collapsed or default state */
+  /** Test ids of the sidebar's inner elements */
   testIds?: {
     collapseButton?: string
     container?: string
@@ -27,8 +25,8 @@ export interface Props extends BaseProps {
   }
   /** Make sidebar scroll with the content */
   disableSticky?: boolean
+  /** Max height of the wrapper around the sidebar's content */
   wrapperMaxHeight?: string | number
-  isHovered: boolean
   isCollapsed: boolean
   /** Callback when sidebar is collapsed */
   onCollapse?: () => void
@@ -42,7 +40,6 @@ export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
       testIds,
       wrapperMaxHeight,
       disableSticky,
-      isHovered,
       isCollapsed,
       onCollapse = noop,
     } = props
@@ -77,15 +74,15 @@ export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
           {collapsible && (
             <ButtonCircular
               className={twMerge(
-                // TODO: [FX-XXXX] technical debt: button color/background shouldn't be overwritten
                 'absolute -right-3 top-3 text-graphite-700 bg-white shadow-3 z-[100] hover:text-white hover:bg-blue-500',
                 // Opacity, not `invisible`, which would take it out of the tab order
-                'opacity-0 pointer-events-none focus-visible:opacity-100 focus-visible:pointer-events-auto',
-                isHovered && 'opacity-100 pointer-events-auto'
+                'opacity-0 pointer-events-none group-hover/sidebar:opacity-100 group-hover/sidebar:pointer-events-auto',
+                // Any focus, not just keyboard focus, so that a clicked button doesn't keep focus while hidden
+                'focus:opacity-100 focus:pointer-events-auto'
               )}
               onClick={onCollapse}
               icon={isCollapsed ? <ChevronRight16 /> : <BackMinor16 />}
-              aria-label='Toggle sidebar'
+              aria-label='collapse sidebar'
               aria-expanded={!isCollapsed}
               variant='primary'
               data-testid={testIds?.collapseButton}
@@ -94,7 +91,6 @@ export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
           <div className='order-[50] flex-1 h-full' />
           <SidebarContextProvider
             isCollapsed={isCollapsed}
-            isHovered={isHovered}
             variant={variant}
             expandedItemKey={expandedItemKey}
             setExpandedItemKey={setExpandedItemKey}
