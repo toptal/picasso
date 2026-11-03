@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import arrayMutators from 'final-form-arrays'
+import { useForm } from 'react-final-form'
 
 import { FormCompound as Form } from '../FormCompound'
 import type { FieldArrayRenderProps } from './index'
@@ -87,6 +88,30 @@ const pushPopAndRemount = () => {
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 }
+
+const Later = ({ children }: { children: React.ReactNode }) => {
+  const [shown, setShown] = useState(false)
+
+  return (
+    <>
+      {shown && children}
+      <button type='button' onClick={() => setShown(true)}>
+        show
+      </button>
+    </>
+  )
+}
+
+// A hook that reads the array without an `initialValue`, which keeps the
+// array's field entry with nothing stored
+const Reader = () => {
+  const { fields } = useFieldArray<Skill>('languages')
+
+  return <span>{`read ${fields.length ?? 0}`}</span>
+}
+
+// Fails the test on a React warning, such as one for a render-time update
+const spyOnWarnings = () => jest.spyOn(console, 'error')
 
 describe('FieldArray', () => {
   it('renders the items through a function child', () => {
@@ -185,6 +210,103 @@ describe('FieldArray', () => {
     )
 
     expect(screen.getByRole('status')).toHaveTextContent('2')
+  })
+
+  it.each([
+    [
+      'a function child',
+      {
+        children: ({ fields }: FieldArrayRenderProps<Skill>) => (
+          <FirstValue value={fields.length} />
+        ),
+      },
+    ],
+    [
+      '`render`',
+      {
+        render: ({ fields }: FieldArrayRenderProps<Skill>) => (
+          <FirstValue value={fields.length} />
+        ),
+      },
+    ],
+    [
+      'the component prop',
+      {
+        component: ({ fields }: FieldArrayRenderProps<Skill>) => (
+          <FirstValue value={fields.length} />
+        ),
+      },
+    ],
+  ])(
+    'renders its initial items on its first render through %s',
+    (_, target) => {
+      renderForm(<FieldArray<Skill> name='skills' {...target} />)
+
+      expect(screen.getByRole('status')).toHaveTextContent('2')
+    }
+  )
+
+  it('renders its initial items on its first render when the form sets `destroyOnUnregister`', () => {
+    render(
+      <Form
+        onSubmit={jest.fn()}
+        mutators={{ ...arrayMutators }}
+        initialValues={initialValues}
+        destroyOnUnregister
+      >
+        <FieldArray<Skill> name='skills' initialValue={initialValues.skills}>
+          {({ fields }) => <FirstValue value={fields.length} />}
+        </FieldArray>
+      </Form>
+    )
+
+    expect(screen.getByRole('status')).toHaveTextContent('2')
+  })
+
+  it('renders the items of its own `initialValue` on its first render next to a hook that reads the array', () => {
+    const consoleError = spyOnWarnings()
+
+    renderForm(
+      <>
+        <Reader />
+        <Later>
+          <FieldArray<Skill> name='languages' initialValue={languages}>
+            {({ fields }) => <FirstValue value={fields.value?.length} />}
+          </FieldArray>
+        </Later>
+      </>
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'show' }))
+
+    expect(screen.getByRole('status')).toHaveTextContent('1')
+    expect(consoleError).not.toHaveBeenCalled()
+    consoleError.mockRestore()
+  })
+
+  it('leaves an array the form drops after its first render empty', () => {
+    const Languages = () => {
+      const form = useForm()
+
+      return (
+        <FieldArray<Skill> name='languages' initialValue={languages}>
+          {({ fields }) => (
+            <>
+              <span>{`languages ${fields.length}`}</span>
+              <button type='button' onClick={() => form.initialize({})}>
+                drop
+              </button>
+            </>
+          )}
+        </FieldArray>
+      )
+    }
+
+    renderForm(<Languages />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'drop' }))
+
+    expect(screen.getByText('languages 0')).toBeInTheDocument()
   })
 
   it.each(['initialValue', 'defaultValue'] as const)(
@@ -300,6 +422,87 @@ describe('FieldArray', () => {
       renderForm(<Languages />)
 
       expect(screen.getByRole('status')).toHaveTextContent('1')
+    })
+
+    describe('when another hook reads the array without an `initialValue`', () => {
+      const Languages = () => {
+        const { fields } = useFieldArray<Skill>('languages', {
+          initialValue: languages,
+        })
+
+        return <FirstValue value={fields.value?.length} />
+      }
+
+      // A wizard step reading the array gives way to the one seeding it, in
+      // the same commit
+      const Steps = () => {
+        const [step, setStep] = useState(1)
+
+        return (
+          <>
+            {step === 1 ? <Reader /> : <Languages />}
+            <button type='button' onClick={() => setStep(2)}>
+              next
+            </button>
+          </>
+        )
+      }
+
+      it('renders the items of its own `initialValue` on the first render after the reader unmounts', () => {
+        const consoleError = spyOnWarnings()
+
+        renderForm(<Steps />)
+
+        fireEvent.click(screen.getByRole('button', { name: 'next' }))
+
+        expect(screen.getByRole('status')).toHaveTextContent('1')
+        expect(consoleError).not.toHaveBeenCalled()
+        consoleError.mockRestore()
+      })
+
+      it('renders the items of its own `initialValue` on the first render next to the reader', () => {
+        const consoleError = spyOnWarnings()
+
+        renderForm(
+          <>
+            <Reader />
+            <Later>
+              <Languages />
+            </Later>
+          </>
+        )
+
+        fireEvent.click(screen.getByRole('button', { name: 'show' }))
+
+        expect(screen.getByRole('status')).toHaveTextContent('1')
+        expect(screen.getByText('read 1')).toBeInTheDocument()
+        expect(consoleError).not.toHaveBeenCalled()
+        consoleError.mockRestore()
+      })
+    })
+
+    it('leaves an array the form drops after the first render empty', () => {
+      const Languages = () => {
+        const form = useForm()
+        const { fields } = useFieldArray<Skill>('languages', {
+          initialValue: languages,
+        })
+
+        return (
+          <>
+            <span>{`languages ${fields.length}`}</span>
+            <button type='button' onClick={() => form.initialize({})}>
+              drop
+            </button>
+          </>
+        )
+      }
+
+      renderForm(<Languages />)
+
+      fireEvent.click(screen.getByRole('button', { name: 'drop' }))
+
+      expect(screen.getByText('languages 0')).toBeInTheDocument()
     })
 
     it('renders the stored items on the first render after a remount', () => {

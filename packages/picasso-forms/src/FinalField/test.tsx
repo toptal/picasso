@@ -8,9 +8,12 @@ import { Form as FinalForm, useForm } from 'react-final-form'
 import { FormCompound as Form } from '../FormCompound'
 import { FinalField, useField } from './index'
 
-const renderForm = (children: React.ReactNode) =>
+const renderForm = (
+  children: React.ReactNode,
+  props: { destroyOnUnregister?: boolean } = {}
+) =>
   render(
-    <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }}>
+    <Form onSubmit={jest.fn()} initialValues={{ a: 'x' }} {...props}>
       {children}
     </Form>
   )
@@ -51,6 +54,50 @@ const HookInput = () => {
       <FirstValue value={input.value} />
     </>
   )
+}
+
+const DirtyInput = () => {
+  const { input, meta } = useField<string, HTMLInputElement>('a')
+
+  return (
+    <>
+      <input {...input} />
+      <FirstValue value={meta.dirty} />
+    </>
+  )
+}
+
+const Later = ({ children }: { children: React.ReactNode }) => {
+  const [shown, setShown] = useState(false)
+
+  return (
+    <>
+      {shown && children}
+      <button type='button' onClick={() => setShown(true)}>
+        show
+      </button>
+    </>
+  )
+}
+
+// A field without an `initialValue`, which keeps the field entry with nothing
+// stored
+const Reader = () => {
+  const { input } = useField<string>('b')
+
+  return <span>{`read ${input.value}`}</span>
+}
+
+const Seeded = () => {
+  const { input } = useField<string>('b', { initialValue: 'seeded' })
+
+  return <FirstValue value={input.value} />
+}
+
+const ItemLabel = () => {
+  const { input } = useField<string>('list[0].label')
+
+  return <FirstValue value={input.value} />
 }
 
 describe('FinalField', () => {
@@ -213,29 +260,9 @@ describe('FinalField', () => {
       expect(formRef.current?.getRegisteredFields()).not.toContain('a')
     })
 
-    it('leaves no timer behind once the remounted field commits', () => {
-      jest.useFakeTimers()
-
-      try {
-        renderForm(
-          <Toggleable>
-            <HookInput />
-          </Toggleable>
-        )
-        editAndRemount()
-
-        expect(jest.getTimerCount()).toBe(0)
-      } finally {
-        jest.useRealTimers()
-      }
-    })
-
-    // The server path, where a render can't yield, is in server.test.tsx
-    it('leaves nothing registered once a render that never commits times out', async () => {
-      jest.useFakeTimers()
-
+    it('renders the stored value without registering when the render never commits', () => {
       // `renderToString` renders without committing. jsdom's `window` makes
-      // the claim pick a layout effect, which React warns about there
+      // the hooks pick layout effects, which React warns about there
       const consoleError = jest
         .spyOn(console, 'error')
         .mockImplementation(() => {})
@@ -256,19 +283,74 @@ describe('FinalField', () => {
           />
         )
 
-        await Promise.resolve()
-
         expect(html).toContain('<output>y</output>')
-        // A yielding render could still be rendering, so the hold outlasts it
-        expect(form.getRegisteredFields()).toContain('a')
-
-        jest.runOnlyPendingTimers()
-
         expect(form.getRegisteredFields()).not.toContain('a')
       } finally {
         consoleError.mockRestore()
-        jest.useRealTimers()
       }
+    })
+
+    it('reports an edited value as dirty on the first render after a remount', () => {
+      renderForm(
+        <Toggleable>
+          <DirtyInput />
+        </Toggleable>
+      )
+
+      editAndRemount()
+
+      expect(screen.getByRole('status')).toHaveTextContent('true')
+    })
+
+    it('renders an item the form added after it mounted on its first render', () => {
+      const form = createForm<{ list: { label: string }[] }>({
+        onSubmit: jest.fn(),
+        initialValues: { list: [] },
+      })
+
+      form.change('list', [{ label: 'added' }])
+      render(
+        <FinalForm
+          form={form}
+          onSubmit={jest.fn()}
+          render={() => <ItemLabel />}
+        />
+      )
+
+      expect(screen.getByRole('status')).toHaveTextContent('added')
+    })
+
+    it('renders its own `initialValue` on the first render when another field keeps the name empty', () => {
+      const consoleError = jest.spyOn(console, 'error')
+
+      renderForm(
+        <>
+          <Reader />
+          <Later>
+            <Seeded />
+          </Later>
+        </>
+      )
+      fireEvent.click(screen.getByRole('button', { name: 'show' }))
+
+      expect(screen.getByRole('status')).toHaveTextContent('seeded')
+      expect(screen.getByText('read seeded')).toBeInTheDocument()
+      expect(consoleError).not.toHaveBeenCalled()
+      consoleError.mockRestore()
+    })
+
+    it('renders `initialValues` on the first render after a remount under `destroyOnUnregister`, which refills the field', () => {
+      renderForm(
+        <Toggleable>
+          <HookInput />
+        </Toggleable>,
+        { destroyOnUnregister: true }
+      )
+
+      editAndRemount()
+
+      expect(screen.getByRole('status')).toHaveTextContent('x')
+      expect(screen.getByRole('textbox')).toHaveValue('x')
     })
   })
 })
