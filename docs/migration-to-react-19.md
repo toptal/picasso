@@ -478,12 +478,14 @@ The search can't see a field that passes `meta` to a helper, such as
 `fieldArrayError(meta)`, so check those helpers too. New code can bring new
 readers, so run the search again after every merge of master.
 
-**Checkboxes with a custom `format`.** A checkbox without its own `value` keeps
-version 6's `checked`: `Form.Checkbox`, `Form.ButtonCheckbox`, `Form.Switch`,
-and checkboxes built on `FinalField` or `useField`. react-final-form 7.0.1
-derives `checked` from `parse` instead, which renders a stored `'false'` as
-checked, a change it made on purpose for checkboxes with a `value`
-([#1074](https://github.com/final-form/react-final-form/pull/1074)). Group
+**Checkboxes with a custom `format`.** In 102, a checkbox without its own
+`value` keeps version 6's `checked`: `Form.Checkbox`, `Form.ButtonCheckbox`,
+`Form.Switch`, and checkboxes built on `FinalField` or `useField`.
+react-final-form 7.0.1 derives `checked` from `parse` instead, which renders a
+stored `'false'` as checked, a change it made on purpose for checkboxes with a
+`value` ([#1074](https://github.com/final-form/react-final-form/pull/1074)).
+`@toptal/picasso-forms` 103 follows react-final-form here too, and its
+changelog says how to migrate. Group
 checkboxes and radios follow upstream, which compares the stored value with
 their own `value`, so re-check their `format` and `parse` pairs, especially for
 fields that store `'true'` and `'false'`.

@@ -4,10 +4,6 @@ import type { FieldProps, FieldRenderProps } from 'react-final-form'
 import { Field as FinalFormField } from 'react-final-form'
 import { documentable, forwardRef } from '@toptal/picasso-utils'
 
-import {
-  derivesCheckedFromFormat,
-  withCheckedFromFormat,
-} from './checked-from-format'
 import { useFirstRender, withFirstRender } from './first-render'
 import { useKeptFieldState } from './keep-field-state'
 
@@ -15,24 +11,22 @@ type Correct = (renderProps: FieldRenderProps) => FieldRenderProps
 
 /**
  * The correction react-final-form's `Field` needs on the way to its render
- * target: the first render that the kept `useField` derives, and the
- * `checked` it derives for a checkbox that `derivesCheckedFromFormat`
+ * target: the first render that the kept `useField` derives
  */
 const getCorrection = (
   props: FieldProps,
   getFirstRender: ReturnType<typeof useFirstRender>
 ): Correct | undefined => {
-  if (!getFirstRender && !derivesCheckedFromFormat(props)) {
+  if (!getFirstRender) {
     return undefined
   }
 
   return renderProps => {
-    const firstRender = getFirstRender?.()
-    const shown = firstRender
+    const firstRender = getFirstRender()
+
+    return firstRender
       ? withFirstRender(renderProps, firstRender, props)
       : renderProps
-
-    return { ...shown, input: withCheckedFromFormat(shown.input, props) }
   }
 }
 
@@ -91,8 +85,7 @@ const getCorrectedTarget = <T extends HTMLElement>(
 }
 
 /**
- * react-final-form's `Field`, keeping its value when it remounts, and with
- * version 6's `checked` for a checkbox that passes a custom `format`
+ * react-final-form's `Field`, keeping its value when it remounts
  */
 export const FinalField = documentable(
   forwardRef(function FinalField<
