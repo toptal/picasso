@@ -457,9 +457,12 @@ commits:
 
 - react-final-form's own `Field` and `useField`, including the radios and
   checkboxes inside `Form.RadioGroup` and `Form.CheckboxGroup`, render
-  react-final-form 7's first render, built from `initialValues`, and the stored
-  value on the next render. After a click, that render comes before the browser
-  paints; after a transition or async data, the first one can show for a frame.
+  react-final-form 7's first render, built from `initialValues`, until the
+  update from their mount effect renders the stored value. That is usually the
+  next render, but a synchronous update from above, such as one from a layout
+  effect or `useSyncExternalStore`, renders the first one again before it.
+  After a click, the stored value renders before the browser paints; after a
+  transition or async data, the first render can show for a frame.
 - `form.getFieldState(name)` and `form.getRegisteredFields()` called while
   rendering return nothing for it. Read them in an effect or a handler, or
   subscribe with `useField`, `useFormState` or `FormSpy`, which render again
