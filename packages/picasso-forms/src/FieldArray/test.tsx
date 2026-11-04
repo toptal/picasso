@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react'
-import { fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import React, { Suspense, useState } from 'react'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import type { FormApi } from 'final-form'
 import arrayMutators from 'final-form-arrays'
 import { useForm } from 'react-final-form'
 
@@ -73,6 +74,29 @@ const FirstValue = ({ value }: { value: unknown }) => {
   const [first] = useState(value)
 
   return <output>{String(first)}</output>
+}
+
+// Reads the array without an `initialValue`, so the form keeps its entry with
+// nothing stored
+const Reader = () => {
+  const { fields } = useFieldArray<Skill>('languages')
+
+  return <span>{`read ${fields.length ?? 0}`}</span>
+}
+
+// A wizard step reading the array gives way to the one seeding it, in the same
+// commit
+const Steps = ({ children }: { children: React.ReactNode }) => {
+  const [step, setStep] = useState(1)
+
+  return (
+    <>
+      {step === 1 ? <Reader /> : children}
+      <button type='button' onClick={() => setStep(2)}>
+        next
+      </button>
+    </>
+  )
 }
 
 const pushAndRemount = () => {
@@ -201,6 +225,23 @@ describe('FieldArray', () => {
     }
   )
 
+  it.each(['initialValue', 'defaultValue'] as const)(
+    'renders the items of its own `%s` on its first render after a step that reads the array',
+    seed => {
+      renderForm(
+        <Steps>
+          <FieldArray<Skill> name='languages' {...{ [seed]: languages }}>
+            {({ fields }) => <FirstValue value={fields.value?.length} />}
+          </FieldArray>
+        </Steps>
+      )
+
+      fireEvent.click(screen.getByRole('button', { name: 'next' }))
+
+      expect(screen.getByRole('status')).toHaveTextContent('1')
+    }
+  )
+
   it('renders the stored items on its first render after a remount', () => {
     renderForm(
       <Toggleable>
@@ -304,33 +345,12 @@ describe('FieldArray', () => {
     })
 
     describe('when another hook reads the array without an `initialValue`', () => {
-      const Reader = () => {
-        const { fields } = useFieldArray<Skill>('languages')
-
-        return <span>{`read ${fields.length ?? 0}`}</span>
-      }
-
       const Languages = () => {
         const { fields } = useFieldArray<Skill>('languages', {
           initialValue: languages,
         })
 
         return <FirstValue value={fields.value?.length} />
-      }
-
-      // A wizard step reading the array gives way to the one seeding it, in
-      // the same commit
-      const Steps = () => {
-        const [step, setStep] = useState(1)
-
-        return (
-          <>
-            {step === 1 ? <Reader /> : <Languages />}
-            <button type='button' onClick={() => setStep(2)}>
-              next
-            </button>
-          </>
-        )
       }
 
       const Later = ({ children }: { children: React.ReactNode }) => {
@@ -347,7 +367,11 @@ describe('FieldArray', () => {
       }
 
       it('renders the items of its own `initialValue` on the first render after the reader unmounts', () => {
-        renderForm(<Steps />)
+        renderForm(
+          <Steps>
+            <Languages />
+          </Steps>
+        )
 
         fireEvent.click(screen.getByRole('button', { name: 'next' }))
 
@@ -368,6 +392,65 @@ describe('FieldArray', () => {
 
         expect(screen.getByRole('status')).toHaveTextContent('1')
         expect(screen.getByText('read 1')).toBeInTheDocument()
+      })
+
+      it('leaves nothing registered after a reset empties the array a suspended first render seeded', async () => {
+        jest.useFakeTimers()
+
+        const formRef: { current?: FormApi } = {}
+        const CaptureForm = () => {
+          formRef.current = useForm()
+
+          return null
+        }
+        let suspending = true
+        let resume = () => {}
+        const resumed = new Promise<void>(resolve => {
+          resume = resolve
+        })
+        const Suspending = () => {
+          if (suspending) {
+            throw resumed
+          }
+
+          return null
+        }
+
+        try {
+          const { unmount } = renderForm(
+            <>
+              <CaptureForm />
+              <Reader />
+              <Later>
+                <Suspense fallback={null}>
+                  <Languages />
+                  <Suspending />
+                </Suspense>
+              </Later>
+            </>
+          )
+
+          // The seeded render suspends, so its hold waits for the timeout
+          fireEvent.click(screen.getByRole('button', { name: 'show' }))
+          act(() => formRef.current?.initialize({}))
+          // The retry seeds the emptied array again
+          await act(async () => {
+            suspending = false
+            resume()
+            await resumed
+          })
+
+          expect(screen.getByRole('status')).toHaveTextContent('1')
+
+          unmount()
+          jest.runOnlyPendingTimers()
+
+          expect(formRef.current?.getRegisteredFields()).not.toContain(
+            'languages'
+          )
+        } finally {
+          jest.useRealTimers()
+        }
       })
     })
 

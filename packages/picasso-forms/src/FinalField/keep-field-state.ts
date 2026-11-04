@@ -72,6 +72,10 @@ const keepUntilCommit = (form: FormApi, name: string, unregister: Release) => {
     unregister()
   }
 
+  // A seed can follow a hold whose render never committed, once a reset has
+  // emptied the entry that hold keeps. The seed already keeps the entry, so
+  // end the old hold rather than lose it
+  releaseHold(form, name)
   pending.set(name, release)
   holds.set(form, pending)
 
