@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import arrayMutators from 'final-form-arrays'
 import { useForm } from 'react-final-form'
@@ -69,10 +70,45 @@ const Toggleable = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+// Toggleable, rendering its children again from a layout effect when it
+// toggles, as a layout effect or `useSyncExternalStore` above a field can.
+// React renders that update before the ones the field's mount effects queue.
+// The children are a function, so that the field renders again too
+const RerenderingToggleable = ({
+  children,
+}: {
+  children: () => React.ReactNode
+}) => {
+  const [mounted, setMounted] = useState(true)
+  const [, setRenders] = useState(0)
+
+  useIsomorphicLayoutEffect(() => {
+    setRenders(renders => renders + 1)
+  }, [mounted])
+
+  return (
+    <>
+      {mounted && children()}
+      <button type='button' onClick={() => setMounted(current => !current)}>
+        toggle
+      </button>
+    </>
+  )
+}
+
 const FirstValue = ({ value }: { value: unknown }) => {
   const [first] = useState(value)
 
   return <output>{String(first)}</output>
+}
+
+// Every value it rendered since it mounted
+const RenderedValues = ({ value }: { value: unknown }) => {
+  const values = useRef<unknown[]>([])
+
+  values.current.push(value)
+
+  return <output>{values.current.join(' ')}</output>
 }
 
 const pushAndRemount = () => {
@@ -339,6 +375,27 @@ describe('FieldArray', () => {
     pushAndRemount()
 
     expect(screen.getByRole('status')).toHaveTextContent('3')
+  })
+
+  it('renders the stored items on every render after a remount that a layout effect above renders again', () => {
+    renderForm(
+      <RerenderingToggleable>
+        {() => (
+          <FieldArray<Skill> name='skills'>
+            {({ fields }) => (
+              <>
+                <RenderedValues value={fields.length} />
+                <PushButton fields={fields} />
+              </>
+            )}
+          </FieldArray>
+        )}
+      </RerenderingToggleable>
+    )
+
+    pushAndRemount()
+
+    expect(screen.getByRole('status')).toHaveTextContent(/^3( 3)*$/)
   })
 
   it('reports equal items as pristine on its first render after a remount', () => {

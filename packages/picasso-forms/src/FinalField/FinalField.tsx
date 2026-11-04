@@ -21,13 +21,7 @@ const getCorrection = (
     return undefined
   }
 
-  return renderProps => {
-    const firstRender = getFirstRender()
-
-    return firstRender
-      ? withFirstRender(renderProps, firstRender, props)
-      : renderProps
-  }
+  return renderProps => withFirstRender(renderProps, getFirstRender(), props)
 }
 
 /**

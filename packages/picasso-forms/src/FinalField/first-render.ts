@@ -1,9 +1,8 @@
-import { useRef } from 'react'
+import { useEffect, useState } from 'react'
 import type { FormApi } from 'final-form'
 import { getIn } from 'final-form'
 import type { FieldRenderProps, UseFieldConfig } from 'react-final-form'
 import { useForm } from 'react-final-form'
-import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 
 type RegisterConfig = Pick<UseFieldConfig, 'defaultValue' | 'initialValue'>
 
@@ -153,12 +152,12 @@ const getMetaProperties = (
 }
 
 /**
- * Until the field first commits under `name`, a getter of what final-form
- * will publish for it once react-final-form's mount effect registers it.
- * Call the getter where the field renders: react-final-form's own `Field`
- * also re-renders without the component around it, and by then the getter
- * returns `undefined`. It only reads the form, so a render that never commits
- * leaves nothing behind.
+ * Until react-final-form's own state for the field catches up, a getter of
+ * what final-form will publish for it once react-final-form's mount effect
+ * registers it. Call the getter where the field renders: react-final-form's
+ * own `Field` also re-renders without the component around it, and the getter
+ * reads the form as it is then. It only reads the form, so a render that never
+ * commits leaves nothing behind.
  *
  * Works around react-final-form 7.0.1's first render, which no longer
  * registers the field but builds it from `initialValues` and ignores a stored
@@ -175,18 +174,21 @@ export const useFirstRender = (
   hookName = 'useField'
 ) => {
   const form = useForm(hookName)
-  const committed = useRef<string | undefined>(undefined)
+  // The name react-final-form's own state has caught up with. It is state set
+  // from an effect, like react-final-form's, so both updates land in the same
+  // render: a synchronous render from above in between, such as one a layout
+  // effect or `useSyncExternalStore` starts, skips both and keeps correcting
+  const [settledName, setSettledName] = useState<string>()
 
-  useIsomorphicLayoutEffect(() => {
-    committed.current = name
+  useEffect(() => {
+    setSettledName(name)
   }, [name])
 
-  if (!name || committed.current === name) {
+  if (!name || settledName === name) {
     return undefined
   }
 
-  return (): FirstRender | undefined =>
-    committed.current === name ? undefined : getRegistered(form, name, config)
+  return (): FirstRender => getRegistered(form, name, config)
 }
 
 /** A field's render props with `input` and `meta` built from `firstRender` */

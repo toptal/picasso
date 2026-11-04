@@ -28,12 +28,10 @@ export const useFieldArray = <
 
   useKeptFieldState(name, {}, 'useFieldArray')
 
-  const firstRender = getFirstRender?.()
-
-  return firstRender
+  return getFirstRender
     ? withFirstRenderItems(
         fieldArray,
-        firstRender,
+        getFirstRender(),
         config?.isEqual ?? defaultIsEqual
       )
     : fieldArray

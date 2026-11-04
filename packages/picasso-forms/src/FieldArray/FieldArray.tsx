@@ -39,13 +39,8 @@ const getFirstRenderTarget = <FieldValue,>(
     return {}
   }
 
-  const correct = (renderProps: FieldArrayRenderProps<FieldValue>) => {
-    const firstRender = getFirstRender()
-
-    return firstRender
-      ? withFirstRenderItems(renderProps, firstRender, isEqual)
-      : renderProps
-  }
+  const correct = (renderProps: FieldArrayRenderProps<FieldValue>) =>
+    withFirstRenderItems(renderProps, getFirstRender(), isEqual)
 
   if (component) {
     return {

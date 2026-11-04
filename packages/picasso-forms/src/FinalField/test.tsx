@@ -1,5 +1,7 @@
-import React, { StrictMode, createRef, useState } from 'react'
+/* eslint-disable max-lines-per-function */
+import React, { StrictMode, createRef, useRef, useState } from 'react'
 import { renderToString } from 'react-dom/server'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import type { FormApi } from 'final-form'
 import { createForm } from 'final-form'
@@ -39,6 +41,41 @@ const Toggleable = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+// Toggleable, rendering its children again from a layout effect when it
+// toggles, as a layout effect or `useSyncExternalStore` above a field can.
+// React renders that update before the ones the field's mount effects queue.
+// The children are a function, so that the field renders again too
+const RerenderingToggleable = ({
+  children,
+}: {
+  children: () => React.ReactNode
+}) => {
+  const [mounted, setMounted] = useState(true)
+  const [, setRenders] = useState(0)
+
+  useIsomorphicLayoutEffect(() => {
+    setRenders(renders => renders + 1)
+  }, [mounted])
+
+  return (
+    <>
+      {mounted && children()}
+      <button type='button' onClick={() => setMounted(current => !current)}>
+        toggle
+      </button>
+    </>
+  )
+}
+
+// Every value it rendered since it mounted
+const RenderedValues = ({ value }: { value: unknown }) => {
+  const values = useRef<unknown[]>([])
+
+  values.current.push(value)
+
+  return <output>{values.current.join(' ')}</output>
+}
+
 const editAndRemount = () => {
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'y' } })
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
@@ -52,6 +89,17 @@ const HookInput = () => {
     <>
       <input {...input} />
       <FirstValue value={input.value} />
+    </>
+  )
+}
+
+const HookInputValues = () => {
+  const { input } = useField<string, HTMLInputElement>('a')
+
+  return (
+    <>
+      <input {...input} />
+      <RenderedValues value={input.value} />
     </>
   )
 }
@@ -132,6 +180,27 @@ describe('FinalField', () => {
     expect(screen.getByRole('status')).toHaveTextContent('y')
   })
 
+  it('renders the stored value on every render after a remount that a layout effect above renders again', () => {
+    renderForm(
+      <RerenderingToggleable>
+        {() => (
+          <FinalField name='a'>
+            {({ input }) => (
+              <>
+                <input {...input} />
+                <RenderedValues value={input.value} />
+              </>
+            )}
+          </FinalField>
+        )}
+      </RerenderingToggleable>
+    )
+
+    editAndRemount()
+
+    expect(screen.getByRole('status')).toHaveTextContent(/^y( y)*$/)
+  })
+
   it('still renders a field-level `initialValue` on its first mount', () => {
     renderForm(
       <FinalField name='b' initialValue='initial'>
@@ -193,6 +262,18 @@ describe('FinalField', () => {
       editAndRemount()
 
       expect(screen.getByRole('status')).toHaveTextContent('y')
+    })
+
+    it('renders the stored value on every render after a remount that a layout effect above renders again', () => {
+      renderForm(
+        <RerenderingToggleable>
+          {() => <HookInputValues />}
+        </RerenderingToggleable>
+      )
+
+      editAndRemount()
+
+      expect(screen.getByRole('status')).toHaveTextContent(/^y( y)*$/)
     })
 
     it('renders its `data` on the first render', () => {

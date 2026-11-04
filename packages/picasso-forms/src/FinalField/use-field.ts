@@ -12,7 +12,7 @@ export const useField: typeof useFinalFormField = (name, config) => {
 
   useKeptFieldState(name, config)
 
-  const firstRender = getFirstRender?.()
-
-  return firstRender ? withFirstRender(field, firstRender, config) : field
+  return getFirstRender
+    ? withFirstRender(field, getFirstRender(), config)
+    : field
 }
