@@ -1,7 +1,8 @@
 /* eslint-disable max-lines-per-function */
-import React, { useRef, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
-import { fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import type { FormApi } from 'final-form'
 import arrayMutators from 'final-form-arrays'
 import { useForm } from 'react-final-form'
 
@@ -111,20 +112,40 @@ const RenderedValues = ({ value }: { value: unknown }) => {
   return <output>{values.current.join(' ')}</output>
 }
 
-const pushAndRemount = () => {
-  fireEvent.click(screen.getByRole('button', { name: 'push' }))
-  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
-  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+// Reads the array without an `initialValue`, so the form keeps its entry with
+// nothing stored
+const Reader = () => {
+  const { fields } = useFieldArray<Skill>('languages')
+
+  return <span>{`read ${fields.length ?? 0}`}</span>
 }
 
-// Stores an array equal to the initial one item by item, but a new array
-const pushPopAndRemount = () => {
-  fireEvent.click(screen.getByRole('button', { name: 'push' }))
-  fireEvent.click(screen.getByRole('button', { name: 'pop' }))
-  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
-  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+// A wizard step reading the array gives way to the one seeding it, in the same
+// commit
+const Steps = ({ children }: { children: React.ReactNode }) => {
+  const [step, setStep] = useState(1)
+
+  return (
+    <>
+      {step === 1 ? <Reader /> : children}
+      <button type='button' onClick={() => setStep(2)}>
+        next
+      </button>
+    </>
+  )
 }
 
+// Seeds the array with its own `initialValue` and shows how many items its
+// first render had
+const SeededLanguages = () => {
+  const { fields } = useFieldArray<Skill>('languages', {
+    initialValue: languages,
+  })
+
+  return <FirstValue value={fields.value?.length} />
+}
+
+// Mounts its children on a click, next to fields that stay mounted
 const Later = ({ children }: { children: React.ReactNode }) => {
   const [shown, setShown] = useState(false)
 
@@ -138,12 +159,18 @@ const Later = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-// A hook that reads the array without an `initialValue`, which keeps the
-// array's field entry with nothing stored
-const Reader = () => {
-  const { fields } = useFieldArray<Skill>('languages')
+const pushAndRemount = () => {
+  fireEvent.click(screen.getByRole('button', { name: 'push' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+}
 
-  return <span>{`read ${fields.length ?? 0}`}</span>
+// Stores an array equal to the initial one item by item, but a new array
+const pushPopAndRemount = () => {
+  fireEvent.click(screen.getByRole('button', { name: 'push' }))
+  fireEvent.click(screen.getByRole('button', { name: 'pop' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+  fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 }
 
 // Fails the test on a React warning, such as one for a render-time update
@@ -358,6 +385,23 @@ describe('FieldArray', () => {
     }
   )
 
+  it.each(['initialValue', 'defaultValue'] as const)(
+    'renders the items of its own `%s` on its first render after a step that reads the array',
+    seed => {
+      renderForm(
+        <Steps>
+          <FieldArray<Skill> name='languages' {...{ [seed]: languages }}>
+            {({ fields }) => <FirstValue value={fields.value?.length} />}
+          </FieldArray>
+        </Steps>
+      )
+
+      fireEvent.click(screen.getByRole('button', { name: 'next' }))
+
+      expect(screen.getByRole('status')).toHaveTextContent('1')
+    }
+  )
+
   it('renders the stored items on its first render after a remount', () => {
     renderForm(
       <Toggleable>
@@ -482,33 +526,14 @@ describe('FieldArray', () => {
     })
 
     describe('when another hook reads the array without an `initialValue`', () => {
-      const Languages = () => {
-        const { fields } = useFieldArray<Skill>('languages', {
-          initialValue: languages,
-        })
-
-        return <FirstValue value={fields.value?.length} />
-      }
-
-      // A wizard step reading the array gives way to the one seeding it, in
-      // the same commit
-      const Steps = () => {
-        const [step, setStep] = useState(1)
-
-        return (
-          <>
-            {step === 1 ? <Reader /> : <Languages />}
-            <button type='button' onClick={() => setStep(2)}>
-              next
-            </button>
-          </>
-        )
-      }
-
       it('renders the items of its own `initialValue` on the first render after the reader unmounts', () => {
         const consoleError = spyOnWarnings()
 
-        renderForm(<Steps />)
+        renderForm(
+          <Steps>
+            <SeededLanguages />
+          </Steps>
+        )
 
         fireEvent.click(screen.getByRole('button', { name: 'next' }))
 
@@ -524,7 +549,7 @@ describe('FieldArray', () => {
           <>
             <Reader />
             <Later>
-              <Languages />
+              <SeededLanguages />
             </Later>
           </>
         )
@@ -535,6 +560,56 @@ describe('FieldArray', () => {
         expect(screen.getByText('read 1')).toBeInTheDocument()
         expect(consoleError).not.toHaveBeenCalled()
         consoleError.mockRestore()
+      })
+
+      it('renders the items of its own `initialValue` when its suspended first render retries after a reset, and leaves nothing registered', async () => {
+        const formRef: { current?: FormApi } = {}
+        const CaptureForm = () => {
+          formRef.current = useForm()
+
+          return null
+        }
+        let suspending = true
+        let resume = () => {}
+        const resumed = new Promise<void>(resolve => {
+          resume = resolve
+        })
+        const Suspending = () => {
+          if (suspending) {
+            throw resumed
+          }
+
+          return null
+        }
+
+        const { unmount } = renderForm(
+          <>
+            <CaptureForm />
+            <Reader />
+            <Later>
+              <Suspense fallback={null}>
+                <SeededLanguages />
+                <Suspending />
+              </Suspense>
+            </Later>
+          </>
+        )
+
+        fireEvent.click(screen.getByRole('button', { name: 'show' }))
+        act(() => formRef.current?.initialize({}))
+        await act(async () => {
+          suspending = false
+          resume()
+          await resumed
+        })
+
+        expect(screen.getByRole('status')).toHaveTextContent('1')
+
+        unmount()
+
+        expect(formRef.current?.getRegisteredFields()).not.toContain(
+          'languages'
+        )
       })
     })
 
