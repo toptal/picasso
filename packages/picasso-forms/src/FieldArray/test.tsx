@@ -99,6 +99,30 @@ const Steps = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+// Seeds the array with its own `initialValue` and shows how many items its
+// first render had
+const SeededLanguages = () => {
+  const { fields } = useFieldArray<Skill>('languages', {
+    initialValue: languages,
+  })
+
+  return <FirstValue value={fields.value?.length} />
+}
+
+// Mounts its children on a click, next to fields that stay mounted
+const Later = ({ children }: { children: React.ReactNode }) => {
+  const [shown, setShown] = useState(false)
+
+  return (
+    <>
+      {shown && children}
+      <button type='button' onClick={() => setShown(true)}>
+        show
+      </button>
+    </>
+  )
+}
+
 const pushAndRemount = () => {
   fireEvent.click(screen.getByRole('button', { name: 'push' }))
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
@@ -344,114 +368,91 @@ describe('FieldArray', () => {
       expect(screen.getByRole('status')).toHaveTextContent('1')
     })
 
-    describe('when another hook reads the array without an `initialValue`', () => {
-      const Languages = () => {
-        const { fields } = useFieldArray<Skill>('languages', {
-          initialValue: languages,
-        })
+    it('renders the items of its own `initialValue` on the first render after a step that reads the array', () => {
+      renderForm(
+        <Steps>
+          <SeededLanguages />
+        </Steps>
+      )
 
-        return <FirstValue value={fields.value?.length} />
+      fireEvent.click(screen.getByRole('button', { name: 'next' }))
+
+      expect(screen.getByRole('status')).toHaveTextContent('1')
+    })
+
+    it('renders the items of its own `initialValue` on the first render next to a hook that reads the array', () => {
+      renderForm(
+        <>
+          <Reader />
+          <Later>
+            <SeededLanguages />
+          </Later>
+        </>
+      )
+
+      fireEvent.click(screen.getByRole('button', { name: 'show' }))
+
+      expect(screen.getByRole('status')).toHaveTextContent('1')
+      expect(screen.getByText('read 1')).toBeInTheDocument()
+    })
+
+    it('leaves nothing registered after a reset empties the array a suspended first render seeded next to a reader', async () => {
+      jest.useFakeTimers()
+
+      const formRef: { current?: FormApi } = {}
+      const CaptureForm = () => {
+        formRef.current = useForm()
+
+        return null
       }
-
-      const Later = ({ children }: { children: React.ReactNode }) => {
-        const [shown, setShown] = useState(false)
-
-        return (
-          <>
-            {shown && children}
-            <button type='button' onClick={() => setShown(true)}>
-              show
-            </button>
-          </>
-        )
-      }
-
-      it('renders the items of its own `initialValue` on the first render after the reader unmounts', () => {
-        renderForm(
-          <Steps>
-            <Languages />
-          </Steps>
-        )
-
-        fireEvent.click(screen.getByRole('button', { name: 'next' }))
-
-        expect(screen.getByRole('status')).toHaveTextContent('1')
+      let suspending = true
+      let resume = () => {}
+      const resumed = new Promise<void>(resolve => {
+        resume = resolve
       })
+      const Suspending = () => {
+        if (suspending) {
+          throw resumed
+        }
 
-      it('renders the items of its own `initialValue` on the first render next to the reader', () => {
-        renderForm(
+        return null
+      }
+
+      try {
+        const { unmount } = renderForm(
           <>
+            <CaptureForm />
             <Reader />
             <Later>
-              <Languages />
+              <Suspense fallback={null}>
+                <SeededLanguages />
+                <Suspending />
+              </Suspense>
             </Later>
           </>
         )
 
+        // The seeded render suspends, so its hold waits for the timeout
         fireEvent.click(screen.getByRole('button', { name: 'show' }))
+        act(() => formRef.current?.initialize({}))
+        // The retry seeds the emptied array again
+        await act(async () => {
+          suspending = false
+          resume()
+          await resumed
+        })
 
         expect(screen.getByRole('status')).toHaveTextContent('1')
-        expect(screen.getByText('read 1')).toBeInTheDocument()
-      })
 
-      it('leaves nothing registered after a reset empties the array a suspended first render seeded', async () => {
-        jest.useFakeTimers()
+        unmount()
+        jest.runOnlyPendingTimers()
 
-        const formRef: { current?: FormApi } = {}
-        const CaptureForm = () => {
-          formRef.current = useForm()
-
-          return null
-        }
-        let suspending = true
-        let resume = () => {}
-        const resumed = new Promise<void>(resolve => {
-          resume = resolve
-        })
-        const Suspending = () => {
-          if (suspending) {
-            throw resumed
-          }
-
-          return null
-        }
-
-        try {
-          const { unmount } = renderForm(
-            <>
-              <CaptureForm />
-              <Reader />
-              <Later>
-                <Suspense fallback={null}>
-                  <Languages />
-                  <Suspending />
-                </Suspense>
-              </Later>
-            </>
-          )
-
-          // The seeded render suspends, so its hold waits for the timeout
-          fireEvent.click(screen.getByRole('button', { name: 'show' }))
-          act(() => formRef.current?.initialize({}))
-          // The retry seeds the emptied array again
-          await act(async () => {
-            suspending = false
-            resume()
-            await resumed
-          })
-
-          expect(screen.getByRole('status')).toHaveTextContent('1')
-
-          unmount()
-          jest.runOnlyPendingTimers()
-
-          expect(formRef.current?.getRegisteredFields()).not.toContain(
-            'languages'
-          )
-        } finally {
-          jest.useRealTimers()
-        }
-      })
+        expect(formRef.current?.getRegisteredFields()).not.toContain(
+          'languages'
+        )
+      } finally {
+        jest.useRealTimers()
+      }
     })
 
     it('leaves an array the form drops after the first render empty', () => {
