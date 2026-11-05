@@ -1,5 +1,15 @@
 # Change Log
 
+## 102.0.2
+
+### Patch Changes
+
+- [#5152](https://github.com/toptal/picasso/pull/5152) [`f3adc42`](https://github.com/toptal/picasso/commit/f3adc425d6b1f2f8e8d1dd7ac31168a739ea299a) Thanks [@vedrani](https://github.com/vedrani)!
+
+### FieldArray
+
+- render the items of an array's own `initialValue` or `defaultValue` on its first render also when another field already reads that array with nothing stored, as a wizard step that reads the array before the step that seeds it does
+
 ## 102.0.1
 
 ### Patch Changes
