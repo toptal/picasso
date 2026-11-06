@@ -10,7 +10,7 @@ const composeValidators = (validators: any[]) => (value: any, allValues: any) =>
 const required = (value: unknown) =>
   value === undefined ||
   value === false ||
-  value === '' ||
+  (typeof value === 'string' && value.trim() === '') ||
   value === null ||
   (Array.isArray(value) && value.length === 0)
     ? 'Please complete this field.'
