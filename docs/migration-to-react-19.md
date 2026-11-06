@@ -84,7 +84,9 @@ that when the React 19 change fails, React is the cause.
 Every Picasso package ships as `102.0.0`, re-baselined to one version the way
 v100 was. Packages on the `100.x` line skip `101`, which
 `@toptal/picasso-calendar`, `-date-picker` and `-switch` already shipped. Later
-releases version each package on its own again.
+releases version each package on its own again. `@toptal/picasso-forms` 103
+drops two react-final-form 6 behaviors that 102 kept;
+[Step 5](#step-5-handle-the-form-runtime-changes) says what to check.
 
 The shared major doesn't mean every package breaks. The breaking changes come
 from date-fns 4 (Calendar, DatePicker and the `@toptal/picasso` aggregate),
@@ -446,6 +448,33 @@ The workaround doesn't cover a field whose `data`, `defaultValue` or
 `initialValue` prop changes identity while it's mounted. Forms with
 `destroyOnUnregister` behave as before.
 
+**picasso-forms 103 registers nothing while rendering.** 102 registered a field
+during its first render when the form already held a value for it, as
+react-final-form 6 did, so that the render showed the value. 103 works the
+value out without writing to the form, and Picasso's own fields still render it
+first. Other code rendered in the same pass doesn't see the field until it
+commits:
+
+- react-final-form's own `Field` and `useField`, including the radios and
+  checkboxes inside `Form.RadioGroup` and `Form.CheckboxGroup`, render
+  react-final-form 7's first render, built from `initialValues`, until the
+  update from their mount effect renders the stored value. That is usually the
+  next render, but a synchronous update from above, such as one from a layout
+  effect or `useSyncExternalStore`, renders the first one again before it.
+  After a click, the stored value renders before the browser paints; after a
+  transition or async data, the first render can show for a frame.
+- `form.getFieldState(name)` and `form.getRegisteredFields()` called while
+  rendering return nothing for it. Read them in an effect or a handler, or
+  subscribe with `useField`, `useFormState` or `FormSpy`, which render again
+  once the field registers. Find the reads:
+
+```bash
+git grep -n -E 'getFieldState\(|getRegisteredFields\(' -- '*.ts' '*.tsx'
+```
+
+Only reads made while rendering count. A component that reads the fields its
+own children render saw nothing on its first render in 102 either.
+
 **Array fields subscribe to less by default.** This is the change that's easiest
 to miss. react-final-form-arrays 5 changed its default subscription from every
 key to `length`, `value` and `error`, and Picasso's `FieldArray` and
@@ -478,15 +507,39 @@ The search can't see a field that passes `meta` to a helper, such as
 `fieldArrayError(meta)`, so check those helpers too. New code can bring new
 readers, so run the search again after every merge of master.
 
-**Checkboxes with a custom `format`.** A checkbox without its own `value` keeps
-version 6's `checked`: `Form.Checkbox`, `Form.ButtonCheckbox`, `Form.Switch`,
-and checkboxes built on `FinalField` or `useField`. react-final-form 7.0.1
-derives `checked` from `parse` instead, which renders a stored `'false'` as
-checked, a change it made on purpose for checkboxes with a `value`
-([#1074](https://github.com/final-form/react-final-form/pull/1074)). Group
-checkboxes and radios follow upstream, which compares the stored value with
-their own `value`, so re-check their `format` and `parse` pairs, especially for
-fields that store `'true'` and `'false'`.
+**Checkboxes with a custom `format`.** react-final-form 7.0.1 derives a
+checkbox's `checked` from `parse(value)` where version 6 used `format(value)`,
+a change it made on purpose
+([#1074](https://github.com/final-form/react-final-form/pull/1074)).
+picasso-forms 102 kept version 6's rule for a checkbox without its own `value`:
+`Form.Checkbox`, `Form.ButtonCheckbox`, `Form.Switch`, and checkboxes built on
+`FinalField` or `useField`. 103 drops it. A `parse` that maps only the box's
+`checked`, such as `checked => (checked ? 'true' : 'false')`, then renders a
+stored `'false'` as checked, and the user can't untick it. Give the checkbox a
+`parse` that maps the stored value too, or store booleans. The `parse` works on
+102 as well, so you can change it before you upgrade:
+
+```tsx
+<Form.Checkbox
+  name='newsletter'
+  label='Send me the newsletter'
+  parse={value =>
+    typeof value === 'boolean' ? String(value) : value === 'true'
+  }
+/>
+```
+
+react-final-form passes `parse` the box's `checked` when the user clicks it, and
+the stored value when it renders. Find the checkboxes that pass a `format`, and
+check each hit by hand:
+
+```bash
+git grep -l -E '(^|[^[:alnum:]_])format[=:]' -- '*.ts' '*.tsx' | xargs grep -l -E "Form\.(Checkbox|ButtonCheckbox|Switch)|Button\.Checkbox|type[=:] ?['\"]checkbox"
+```
+
+Group checkboxes and radios already follow upstream, which compares the stored
+value with their own `value`, so re-check their `format` and `parse` pairs too,
+especially for fields that store `'true'` and `'false'`.
 
 **Listeners keep their old behavior.** `ExternallyChanged` reports every change
 made while its field isn't focused, including the first one after mount, as
