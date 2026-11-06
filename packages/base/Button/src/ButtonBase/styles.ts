@@ -34,3 +34,9 @@ export const createCoreClassNames = ({
 
   return classNames
 }
+
+export const createRootClassNames = ({
+  disabled,
+}: {
+  disabled?: boolean
+}): string[] => ['base-Button-root', ...createCoreClassNames({ disabled })]

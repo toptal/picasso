@@ -2,10 +2,14 @@ import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { FOCUS_RING } from '@toptal/picasso-shared'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import { Container } from '@toptal/picasso-container'
 
-import { Button } from '../Button'
+import { createRootClassNames as createBaseRootClassNames } from '../ButtonBase/styles'
+import {
+  createRootClassNames as createButtonRootClassNames,
+  createContentClassNames,
+} from '../Button/styles'
 import { createSizeClassNames, createContentSizeClassNames } from './styles'
 
 export interface Props extends BaseProps {
@@ -38,6 +42,7 @@ export interface Props extends BaseProps {
   >
 }
 
+// A plain label styled as a Button, so the control inside is the only tab stop
 const ButtonControlLabel = ({
   children,
   size = 'medium',
@@ -48,34 +53,58 @@ const ButtonControlLabel = ({
   control,
   value,
   disabled,
-  ...props
+  active,
+  focused,
+  hovered,
+  ...rest
 }: Props): React.ReactElement => {
   const contentLeftSpacing = size === 'large' ? 1 : 0.5
 
   return (
-    <Button
-      {...props}
+    <label
+      {...rest}
+      htmlFor={id}
       className={twMerge(
+        createBaseRootClassNames({ disabled }),
+        createButtonRootClassNames({
+          variant: 'secondary',
+          size,
+          disabled,
+          active,
+          focused,
+          hovered,
+        }),
         'text-center',
         createSizeClassNames(size),
-        // The Radio or Checkbox inside takes the focus, not the label
         !disabled && FOCUS_RING.blue.hasFocusVisible,
         className
       )}
-      variant='secondary'
-      size={size}
-      as='label'
-      htmlFor={id}
-      disabled={disabled}
+      // Keeps the spacing and ButtonGroup styles that target Buttons
+      data-component-type='button'
     >
-      {React.cloneElement(control, { id, checked, value, onChange, disabled })}
       <Container
-        className={createContentSizeClassNames(size)}
-        left={contentLeftSpacing}
+        as='span'
+        inline
+        flex
+        direction='row'
+        alignItems='center'
+        className={twJoin(createContentClassNames(size))}
       >
-        {children}
+        {React.cloneElement(control, {
+          id,
+          checked,
+          value,
+          onChange,
+          disabled,
+        })}
+        <Container
+          className={createContentSizeClassNames(size)}
+          left={contentLeftSpacing}
+        >
+          {children}
+        </Container>
       </Container>
-    </Button>
+    </label>
   )
 }
 

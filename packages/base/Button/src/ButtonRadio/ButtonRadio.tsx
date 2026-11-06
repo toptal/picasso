@@ -14,7 +14,13 @@ const ButtonRadio = ({ testIds, ...rest }: Props): React.ReactElement => {
   return (
     <ButtonControlLabel
       {...rest}
-      control={<Radio data-testid={testIds?.radio} />}
+      control={
+        <Radio
+          data-testid={testIds?.radio}
+          // The label shows the focus ring
+          className='[&[data-focused]>span]:before:shadow-none'
+        />
+      }
     />
   )
 }

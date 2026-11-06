@@ -87,7 +87,6 @@ const getRootClassName = (hasFooter: boolean, className?: string) =>
   twMerge(
     'outline-hidden',
     FOCUS_RING.blue.focusVisible,
-    // The corners of CalendarContainer
     hasFooter ? 'rounded-t-sm' : 'rounded-sm',
     className
   )

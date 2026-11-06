@@ -18,7 +18,7 @@ import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
 
-import { createCoreClassNames } from './styles'
+import { createRootClassNames } from './styles'
 
 export type IconPositionType = 'left' | 'right'
 
@@ -108,11 +108,7 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     }
   }
 
-  const finalClassName = twMerge(
-    'base-Button-root',
-    createCoreClassNames({ disabled }),
-    className
-  )
+  const finalClassName = twMerge(createRootClassNames({ disabled }), className)
 
   return (
     <BaseUIButton

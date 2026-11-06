@@ -37,3 +37,10 @@ export const toHaveStyle =
 
     expect(matches, `${property} "${value}"`).to.equal(expected)
   }
+
+// A ring can transition in, so wait for it before reading the shadow
+export const toHaveSettled = ($el: JQuery<HTMLElement>) =>
+  expect(
+    $el[0].getAnimations({ subtree: true }),
+    'running animations'
+  ).to.have.length(0)

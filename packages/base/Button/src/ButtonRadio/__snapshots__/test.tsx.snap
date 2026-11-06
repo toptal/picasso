@@ -6,18 +6,14 @@ exports[`ButtonRadio renders 1`] = `
     class="flex-1 box-border [:where(&)_*]:font-sans [&_*]:[box-sizing:inherit] [&_*::before]:[box-sizing:inherit] [&_*::after]:[box-sizing:inherit]"
   >
     <label
-      aria-disabled="false"
       class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 px-4 text-center py-2 pr-6 pl-4 has-focus-visible:shadow-[0_0_0_0.1875rem_color"
       data-component-type="button"
-      role="button"
-      tabindex="0"
-      type="button"
     >
       <span
         class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         <span
-          class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer"
+          class="group relative inline-flex shrink-0 items-start justify-center box-border h-[1rem] w-[1rem] p-0 text-[1rem] mx-0 my-[0.25rem] select-none align-middle transition-all duration-350 ease-in cursor-pointer [&[data-focused]>span]:before:shadow-none"
         >
           <input
             class="peer absolute left-0 top-0 z-[1] m-0 h-full w-full cursor-[inherit] p-0 opacity-0"

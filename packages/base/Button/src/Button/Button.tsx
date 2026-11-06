@@ -1,8 +1,7 @@
 import type { ReactNode, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import { cloneElementUnlessFragment } from '@toptal/picasso-shared'
-import cx from 'classnames'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
   StandardProps,
   SizeType,
@@ -18,9 +17,8 @@ import { Link } from '@toptal/picasso-link'
 
 import { ButtonBase } from '../ButtonBase'
 import {
-  createVariantClassNames,
-  createCoreClassNames,
-  createSizeClassNames,
+  createRootClassNames,
+  createContentClassNames,
   createIconClassNames,
 } from './styles'
 
@@ -127,41 +125,22 @@ export const Button: OverridableComponent<Props> = forwardRef<
     iconPosition,
     size,
   })
-  const coreClassNames = createCoreClassNames({
-    disabled,
-    focused,
-    hovered,
-    active,
-  })
-  const variantClassNames = createVariantClassNames(variant, {
-    disabled,
-    focused,
-    hovered,
-    active,
-    loading,
-  })
-  const sizeClassNames = createSizeClassNames(size)
-
   const finalClassName = twMerge(
-    coreClassNames,
-    variantClassNames,
-    sizeClassNames,
+    createRootClassNames({
+      variant,
+      size,
+      disabled,
+      focused,
+      hovered,
+      active,
+      loading,
+    }),
     fullWidth ? 'w-full' : '',
     className
   )
 
-  const contentSizeClassNames: Record<
-    SizeType<'small' | 'medium' | 'large'>,
-    string[]
-  > = {
-    small: ['text-button-small'],
-    medium: ['text-button-medium'],
-    large: ['text-button-large'],
-  }
-
-  const contentClassName = cx(
-    'font-semibold whitespace-nowrap',
-    contentSizeClassNames[size],
+  const contentClassName = twJoin(
+    createContentClassNames(size),
     loading ? 'opacity-0' : ''
   )
 

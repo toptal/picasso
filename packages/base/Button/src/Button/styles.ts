@@ -18,6 +18,21 @@ export const createSizeClassNames = (
   return sizeClassNames[size]
 }
 
+export const createContentClassNames = (
+  size: 'small' | 'medium' | 'large'
+): string[] => {
+  const sizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string
+  > = {
+    small: 'text-button-small',
+    medium: 'text-button-medium',
+    large: 'text-button-large',
+  }
+
+  return ['font-semibold whitespace-nowrap', sizeClassNames[size]]
+}
+
 export const createVariantClassNames = (
   variant: VariantType,
   {
@@ -196,6 +211,24 @@ export const createCoreClassNames = ({
 
   return classNames
 }
+
+export const createRootClassNames = ({
+  variant,
+  size,
+  ...state
+}: {
+  variant: VariantType
+  size: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  focused?: boolean
+  hovered?: boolean
+  active?: boolean
+  loading?: boolean
+}): string[] => [
+  ...createCoreClassNames(state),
+  ...createVariantClassNames(variant, state),
+  ...createSizeClassNames(size),
+]
 
 export const createIconClassNames = ({
   iconPosition,
