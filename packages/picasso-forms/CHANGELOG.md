@@ -1,5 +1,15 @@
 # Change Log
 
+## 102.0.3
+
+### Patch Changes
+
+- [#5156](https://github.com/toptal/picasso/pull/5156) [`70fa638`](https://github.com/toptal/picasso/commit/70fa63839800b45a8a624b3298c896b94276ab9d) Thanks [@hweeTan](https://github.com/hweeTan)!
+
+### Form
+
+- treat whitespace-only string values as empty in the `required` validator, so required fields containing only spaces now show the "Please complete this field." error
+
 ## 102.0.2
 
 ### Patch Changes
