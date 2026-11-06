@@ -1,5 +1,15 @@
 # @toptal/picasso-tag
 
+## 102.1.0
+
+### Minor Changes
+
+- [#5151](https://github.com/toptal/picasso/pull/5151) [`43d0136`](https://github.com/toptal/picasso/commit/43d0136fe00987634936ec0b5620d48df202acf0) Thanks [@azebich](https://github.com/azebich)!
+
+### Tag
+
+- click a focused tag with `onClick` on Enter or Space, and delete one with `onDelete` on Delete or Backspace
+
 ## 102.0.1
 
 ### Patch Changes

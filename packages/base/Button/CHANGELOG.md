@@ -1,5 +1,17 @@
 # @toptal/picasso-button
 
+## 102.0.2
+
+### Patch Changes
+
+- [#5151](https://github.com/toptal/picasso/pull/5151) [`43d0136`](https://github.com/toptal/picasso/commit/43d0136fe00987634936ec0b5620d48df202acf0) Thanks [@azebich](https://github.com/azebich)!
+
+### ButtonCheckbox, ButtonRadio
+
+- make the checkbox or radio the only tab stop: the label is no longer a focusable `button` around it; query it by role `checkbox` or `radio` in tests
+- show one focus ring, around the label, instead of also ringing the checkbox or radio inside it
+- render the label as a plain `<label>`, so `Button` props it never declared (such as `loading` or `titleCase`) no longer apply
+
 ## 102.0.1
 
 ### Patch Changes
