@@ -5,11 +5,9 @@ import { FOCUS_RING } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import { Container } from '@toptal/picasso-container'
 
-import { createCoreClassNames as createBaseCoreClassNames } from '../ButtonBase/styles'
+import { createRootClassNames as createBaseRootClassNames } from '../ButtonBase/styles'
 import {
-  createCoreClassNames as createButtonCoreClassNames,
-  createVariantClassNames,
-  createSizeClassNames as createButtonSizeClassNames,
+  createRootClassNames as createButtonRootClassNames,
   createContentClassNames,
 } from '../Button/styles'
 import { createSizeClassNames, createContentSizeClassNames } from './styles'
@@ -61,18 +59,21 @@ const ButtonControlLabel = ({
   ...rest
 }: Props): React.ReactElement => {
   const contentLeftSpacing = size === 'large' ? 1 : 0.5
-  const state = { disabled, active, focused, hovered }
 
   return (
     <label
       {...rest}
       htmlFor={id}
       className={twMerge(
-        'base-Button-root',
-        createBaseCoreClassNames({ disabled }),
-        createButtonCoreClassNames(state),
-        createVariantClassNames('secondary', state),
-        createButtonSizeClassNames(size),
+        createBaseRootClassNames({ disabled }),
+        createButtonRootClassNames({
+          variant: 'secondary',
+          size,
+          disabled,
+          active,
+          focused,
+          hovered,
+        }),
         'text-center',
         createSizeClassNames(size),
         !disabled && FOCUS_RING.blue.hasFocusVisible,

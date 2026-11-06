@@ -212,6 +212,24 @@ export const createCoreClassNames = ({
   return classNames
 }
 
+export const createRootClassNames = ({
+  variant,
+  size,
+  ...state
+}: {
+  variant: VariantType
+  size: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  focused?: boolean
+  hovered?: boolean
+  active?: boolean
+  loading?: boolean
+}): string[] => [
+  ...createCoreClassNames(state),
+  ...createVariantClassNames(variant, state),
+  ...createSizeClassNames(size),
+]
+
 export const createIconClassNames = ({
   iconPosition,
   size,

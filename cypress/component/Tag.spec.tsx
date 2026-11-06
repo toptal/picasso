@@ -95,6 +95,22 @@ describe('Tag', () => {
       cy.get('@onClick').should('have.been.calledTwice')
     })
 
+    it('clicks a link tag once per key', () => {
+      const onClick = cy.stub().as('onClick')
+
+      cy.mount(
+        <Tag as='a' href='#tag' onClick={onClick} data-testid='tag'>
+          Tag
+        </Tag>
+      )
+
+      cy.getByTestId('tag').focus()
+      cy.realPress('Enter')
+      cy.realPress('Space')
+
+      cy.get('@onClick').should('have.been.calledTwice')
+    })
+
     it('skips a disabled tag on keyboard navigation', () => {
       cy.mount(
         <>

@@ -154,6 +154,21 @@ describe('Tag', () => {
       expect(onClick).toHaveBeenCalledTimes(2)
     })
 
+    it('clicks a link tag as a button on Enter and Space', () => {
+      const onClick = jest.fn()
+      const { getByTestId } = renderTag('Tag', {
+        onClick,
+        as: 'a',
+        href: '#tag',
+      })
+
+      fireEvent.keyDown(getByTestId('tag'), { key: 'Enter' })
+      fireEvent.keyDown(getByTestId('tag'), { key: ' ' })
+
+      expect(getByTestId('tag')).toHaveAttribute('role', 'button')
+      expect(onClick).toHaveBeenCalledTimes(2)
+    })
+
     it('leaves a key that its own onKeyDown handled', () => {
       const onClick = jest.fn()
       const onKeyDown = jest.fn((event: React.KeyboardEvent) =>

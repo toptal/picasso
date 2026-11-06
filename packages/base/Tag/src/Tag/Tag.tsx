@@ -67,11 +67,6 @@ const DeleteIcon = ({ onClick }: { onClick: (event: MouseEvent) => void }) => (
 const CLICK_KEYS = ['Enter', ' ']
 const DELETE_KEYS = ['Delete', 'Backspace']
 
-// A button or link already clicks on its own keys
-const isNativeControl = (element: HTMLElement) =>
-  element instanceof HTMLButtonElement ||
-  (element instanceof HTMLAnchorElement && element.hasAttribute('href'))
-
 const getKeyboardProps = ({
   isFocusable,
   onClick,
@@ -98,7 +93,8 @@ const getKeyboardProps = ({
     } else if (
       onClick &&
       CLICK_KEYS.includes(event.key) &&
-      !isNativeControl(event.currentTarget)
+      // A button already clicks on its own keys
+      !(event.currentTarget instanceof HTMLButtonElement)
     ) {
       event.preventDefault()
       event.currentTarget.click()
