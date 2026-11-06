@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-forms': minor
+'@toptal/picasso-forms': patch
 ---
 
 ### Form
