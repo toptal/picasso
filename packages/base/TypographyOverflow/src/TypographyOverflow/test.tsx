@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, Ref } from 'react'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { render, act, screen, TestingPicasso } from '@toptal/picasso-test-utils'
@@ -20,7 +20,8 @@ jest.mock('@toptal/picasso-tooltip', () => {
 jest.mock('@toptal/picasso-typography', () => {
   return {
     __esModule: true,
-    Typography: jest.fn(),
+    // Forwards its ref, as the real Typography does
+    Typography: jest.requireActual('react').forwardRef(jest.fn()),
   }
 })
 jest.mock('./is-safari', () => ({
@@ -36,9 +37,11 @@ jest.mock('@toptal/picasso-utils', () => ({
 const mockedTooltip = Tooltip as unknown as jest.Mock<
   ReturnType<typeof Tooltip>
 >
-const mockedTypography = Typography as unknown as jest.Mock<
-  ReturnType<typeof Typography>
->
+const mockedTypography = (
+  Typography as unknown as {
+    render: jest.Mock<ReturnType<typeof Typography>>
+  }
+).render
 const mockedIsOverflown = isOverflown as jest.Mock<
   ReturnType<typeof isOverflown>
 >
@@ -54,11 +57,21 @@ const mockSafari = () => {
 const getRootClasses = () =>
   mockedTypography.mock.calls.at(-1)?.[0].className.split(' ')
 
+const renderText = (
+  { children }: { children: ReactNode },
+  ref: Ref<HTMLSpanElement>
+) => <span ref={ref}>{children}</span>
+
+// The browser reports the pointer over another element. The text remounted
+// inside the tooltip, so it may get no mouseleave
+const pointElsewhere = () =>
+  act(() => {
+    document.body.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }))
+  })
+
 describe('TypographyOverflow', () => {
   beforeEach(() => {
-    mockedTypography.mockImplementation(
-      ({ children }: { children: ReactNode }) => <span>{children}</span>
-    )
+    mockedTypography.mockImplementation(renderText)
   })
 
   describe('initial render', () => {
@@ -154,6 +167,15 @@ describe('TypographyOverflow', () => {
         expect(isTooltipOpen()).toBe(true)
       })
 
+      it('closes the tooltip when the pointer is over another element', () => {
+        render(<TypographyOverflow>Just Typography</TypographyOverflow>)
+
+        hover()
+        wait(200)
+        pointElsewhere()
+        expect(isTooltipOpen()).toBe(false)
+      })
+
       it('does not open the tooltip when it is disabled', () => {
         render(
           <TypographyOverflow disableTooltip>
@@ -199,9 +221,7 @@ describe('TypographyOverflow', () => {
     )
 
     beforeEach(() => {
-      mockedTypography.mockImplementation(props =>
-        ActualTypography.render(props, null)
-      )
+      mockedTypography.mockImplementation(ActualTypography.render)
     })
 
     it('applies titleCase', () => {

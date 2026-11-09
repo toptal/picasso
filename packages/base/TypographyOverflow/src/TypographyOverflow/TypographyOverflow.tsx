@@ -91,9 +91,21 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
     setIsTooltipOpened(true)
   }, [])
 
-  const { handleEnter, handleMouseLeave, handleClose } = useRestingHoverOpen({
+  const closeTooltip = useCallback(() => {
+    setIsTooltipActive(false)
+    setIsTooltipOpened(false)
+  }, [])
+
+  const {
+    anchorRef,
+    tooltipRef,
+    handleEnter,
+    handleMouseLeave,
+    handleClose: handleTooltipClose,
+  } = useRestingHoverOpen({
     delay: tooltipDelay,
     onOpen: handleTooltipOpen,
+    onClose: closeTooltip,
     onMouseLeave,
   })
 
@@ -115,12 +127,6 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
     [handleEnter, disableTooltip, onMouseEnter]
   )
 
-  const handleTooltipClose = useCallback(() => {
-    handleClose()
-    setIsTooltipActive(false)
-    setIsTooltipOpened(false)
-  }, [handleClose])
-
   const handleTransitionExiting = useCallback(() => {
     setIsTooltipAnimating(true)
   }, [])
@@ -132,6 +138,7 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
   const typography = (
     <Typography
       {...rest}
+      ref={anchorRef}
       style={extendedStyle}
       noWrap={!isMultiline}
       className={twMerge(
@@ -160,6 +167,7 @@ export const TypographyOverflow = (props: Props): React.ReactElement => {
       placement={placement}
       delay={tooltipDelay}
       interactive
+      tooltipRef={tooltipRef}
       disableListeners={disableTooltip}
       onOpen={handleTooltipOpen}
       onClose={handleTooltipClose}
