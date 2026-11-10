@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import type { FormApi } from 'final-form'
 import arrayMutators from 'final-form-arrays'
@@ -70,10 +71,45 @@ const Toggleable = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+// Toggleable, rendering its children again from a layout effect when it
+// toggles, as a layout effect or `useSyncExternalStore` above a field can.
+// React renders that update before the ones the field's mount effects queue.
+// The children are a function, so that the field renders again too
+const RerenderingToggleable = ({
+  children,
+}: {
+  children: () => React.ReactNode
+}) => {
+  const [mounted, setMounted] = useState(true)
+  const [, setRenders] = useState(0)
+
+  useIsomorphicLayoutEffect(() => {
+    setRenders(renders => renders + 1)
+  }, [mounted])
+
+  return (
+    <>
+      {mounted && children()}
+      <button type='button' onClick={() => setMounted(current => !current)}>
+        toggle
+      </button>
+    </>
+  )
+}
+
 const FirstValue = ({ value }: { value: unknown }) => {
   const [first] = useState(value)
 
   return <output>{String(first)}</output>
+}
+
+// Every value it rendered since it mounted
+const RenderedValues = ({ value }: { value: unknown }) => {
+  const values = useRef<unknown[]>([])
+
+  values.current.push(value)
+
+  return <output>{values.current.join(' ')}</output>
 }
 
 // Reads the array without an `initialValue`, so the form keeps its entry with
@@ -136,6 +172,9 @@ const pushPopAndRemount = () => {
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
   fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 }
+
+// Fails the test on a React warning, such as one for a render-time update
+const spyOnWarnings = () => jest.spyOn(console, 'error')
 
 describe('FieldArray', () => {
   it('renders the items through a function child', () => {
@@ -236,6 +275,103 @@ describe('FieldArray', () => {
     expect(screen.getByRole('status')).toHaveTextContent('2')
   })
 
+  it.each([
+    [
+      'a function child',
+      {
+        children: ({ fields }: FieldArrayRenderProps<Skill>) => (
+          <FirstValue value={fields.length} />
+        ),
+      },
+    ],
+    [
+      '`render`',
+      {
+        render: ({ fields }: FieldArrayRenderProps<Skill>) => (
+          <FirstValue value={fields.length} />
+        ),
+      },
+    ],
+    [
+      'the component prop',
+      {
+        component: ({ fields }: FieldArrayRenderProps<Skill>) => (
+          <FirstValue value={fields.length} />
+        ),
+      },
+    ],
+  ])(
+    'renders its initial items on its first render through %s',
+    (_, target) => {
+      renderForm(<FieldArray<Skill> name='skills' {...target} />)
+
+      expect(screen.getByRole('status')).toHaveTextContent('2')
+    }
+  )
+
+  it('renders its initial items on its first render when the form sets `destroyOnUnregister`', () => {
+    render(
+      <Form
+        onSubmit={jest.fn()}
+        mutators={{ ...arrayMutators }}
+        initialValues={initialValues}
+        destroyOnUnregister
+      >
+        <FieldArray<Skill> name='skills' initialValue={initialValues.skills}>
+          {({ fields }) => <FirstValue value={fields.length} />}
+        </FieldArray>
+      </Form>
+    )
+
+    expect(screen.getByRole('status')).toHaveTextContent('2')
+  })
+
+  it('renders the items of its own `initialValue` on its first render next to a hook that reads the array', () => {
+    const consoleError = spyOnWarnings()
+
+    renderForm(
+      <>
+        <Reader />
+        <Later>
+          <FieldArray<Skill> name='languages' initialValue={languages}>
+            {({ fields }) => <FirstValue value={fields.value?.length} />}
+          </FieldArray>
+        </Later>
+      </>
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'show' }))
+
+    expect(screen.getByRole('status')).toHaveTextContent('1')
+    expect(consoleError).not.toHaveBeenCalled()
+    consoleError.mockRestore()
+  })
+
+  it('leaves an array the form drops after its first render empty', () => {
+    const Languages = () => {
+      const form = useForm()
+
+      return (
+        <FieldArray<Skill> name='languages' initialValue={languages}>
+          {({ fields }) => (
+            <>
+              <span>{`languages ${fields.length}`}</span>
+              <button type='button' onClick={() => form.initialize({})}>
+                drop
+              </button>
+            </>
+          )}
+        </FieldArray>
+      )
+    }
+
+    renderForm(<Languages />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'drop' }))
+
+    expect(screen.getByText('languages 0')).toBeInTheDocument()
+  })
+
   it.each(['initialValue', 'defaultValue'] as const)(
     'renders the items of its own `%s` on its first render',
     seed => {
@@ -283,6 +419,27 @@ describe('FieldArray', () => {
     pushAndRemount()
 
     expect(screen.getByRole('status')).toHaveTextContent('3')
+  })
+
+  it('renders the stored items on every render after a remount that a layout effect above renders again', () => {
+    renderForm(
+      <RerenderingToggleable>
+        {() => (
+          <FieldArray<Skill> name='skills'>
+            {({ fields }) => (
+              <>
+                <RenderedValues value={fields.length} />
+                <PushButton fields={fields} />
+              </>
+            )}
+          </FieldArray>
+        )}
+      </RerenderingToggleable>
+    )
+
+    pushAndRemount()
+
+    expect(screen.getByRole('status')).toHaveTextContent(/^3( 3)*$/)
   })
 
   it('reports equal items as pristine on its first render after a remount', () => {
@@ -368,57 +525,63 @@ describe('FieldArray', () => {
       expect(screen.getByRole('status')).toHaveTextContent('1')
     })
 
-    it('renders the items of its own `initialValue` on the first render after a step that reads the array', () => {
-      renderForm(
-        <Steps>
-          <SeededLanguages />
-        </Steps>
-      )
+    describe('when another hook reads the array without an `initialValue`', () => {
+      it('renders the items of its own `initialValue` on the first render after the reader unmounts', () => {
+        const consoleError = spyOnWarnings()
 
-      fireEvent.click(screen.getByRole('button', { name: 'next' }))
-
-      expect(screen.getByRole('status')).toHaveTextContent('1')
-    })
-
-    it('renders the items of its own `initialValue` on the first render next to a hook that reads the array', () => {
-      renderForm(
-        <>
-          <Reader />
-          <Later>
+        renderForm(
+          <Steps>
             <SeededLanguages />
-          </Later>
-        </>
-      )
+          </Steps>
+        )
 
-      fireEvent.click(screen.getByRole('button', { name: 'show' }))
+        fireEvent.click(screen.getByRole('button', { name: 'next' }))
 
-      expect(screen.getByRole('status')).toHaveTextContent('1')
-      expect(screen.getByText('read 1')).toBeInTheDocument()
-    })
-
-    it('leaves nothing registered after a reset empties the array a suspended first render seeded next to a reader', async () => {
-      jest.useFakeTimers()
-
-      const formRef: { current?: FormApi } = {}
-      const CaptureForm = () => {
-        formRef.current = useForm()
-
-        return null
-      }
-      let suspending = true
-      let resume = () => {}
-      const resumed = new Promise<void>(resolve => {
-        resume = resolve
+        expect(screen.getByRole('status')).toHaveTextContent('1')
+        expect(consoleError).not.toHaveBeenCalled()
+        consoleError.mockRestore()
       })
-      const Suspending = () => {
-        if (suspending) {
-          throw resumed
+
+      it('renders the items of its own `initialValue` on the first render next to the reader', () => {
+        const consoleError = spyOnWarnings()
+
+        renderForm(
+          <>
+            <Reader />
+            <Later>
+              <SeededLanguages />
+            </Later>
+          </>
+        )
+
+        fireEvent.click(screen.getByRole('button', { name: 'show' }))
+
+        expect(screen.getByRole('status')).toHaveTextContent('1')
+        expect(screen.getByText('read 1')).toBeInTheDocument()
+        expect(consoleError).not.toHaveBeenCalled()
+        consoleError.mockRestore()
+      })
+
+      it('renders the items of its own `initialValue` when its suspended first render retries after a reset, and leaves nothing registered', async () => {
+        const formRef: { current?: FormApi } = {}
+        const CaptureForm = () => {
+          formRef.current = useForm()
+
+          return null
+        }
+        let suspending = true
+        let resume = () => {}
+        const resumed = new Promise<void>(resolve => {
+          resume = resolve
+        })
+        const Suspending = () => {
+          if (suspending) {
+            throw resumed
+          }
+
+          return null
         }
 
-        return null
-      }
-
-      try {
         const { unmount } = renderForm(
           <>
             <CaptureForm />
@@ -432,10 +595,8 @@ describe('FieldArray', () => {
           </>
         )
 
-        // The seeded render suspends, so its hold waits for the timeout
         fireEvent.click(screen.getByRole('button', { name: 'show' }))
         act(() => formRef.current?.initialize({}))
-        // The retry seeds the emptied array again
         await act(async () => {
           suspending = false
           resume()
@@ -445,14 +606,11 @@ describe('FieldArray', () => {
         expect(screen.getByRole('status')).toHaveTextContent('1')
 
         unmount()
-        jest.runOnlyPendingTimers()
 
         expect(formRef.current?.getRegisteredFields()).not.toContain(
           'languages'
         )
-      } finally {
-        jest.useRealTimers()
-      }
+      })
     })
 
     it('leaves an array the form drops after the first render empty', () => {

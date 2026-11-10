@@ -1,16 +1,18 @@
 import { useField as useFinalFormField } from 'react-final-form'
 
-import { withCheckedFromFormat } from './checked-from-format'
-import { keepFieldState } from './keep-field-state'
-
-const useKeptField = keepFieldState(useFinalFormField, 'useField')
+import { useFirstRender, withFirstRender } from './first-render'
+import { useKeptFieldState } from './keep-field-state'
 
 /**
- * react-final-form's `useField`, keeping the field's value when it remounts,
- * and with version 6's `checked` for a checkbox that passes a custom `format`
+ * react-final-form's `useField`, keeping the field's value when it remounts
  */
 export const useField: typeof useFinalFormField = (name, config) => {
-  const field = useKeptField(name, config)
+  const getFirstRender = useFirstRender(name, config)
+  const field = useFinalFormField(name, config)
 
-  return { ...field, input: withCheckedFromFormat(field.input, config) }
+  useKeptFieldState(name, config)
+
+  return getFirstRender
+    ? withFirstRender(field, getFirstRender(), config)
+    : field
 }
