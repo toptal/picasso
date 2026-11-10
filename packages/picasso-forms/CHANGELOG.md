@@ -1,5 +1,14 @@
 # Change Log
 
+## 102.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@102.0.3
+  - @toptal/picasso-dropzone@102.0.3
+  - @toptal/picasso-rich-text-editor@102.0.3
+
 ## 102.0.4
 
 ### Patch Changes

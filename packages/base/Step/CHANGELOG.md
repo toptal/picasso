@@ -1,5 +1,12 @@
 # @toptal/picasso-step
 
+## 102.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`27b62d1`](https://github.com/toptal/picasso/commit/27b62d1acddead5d5744ab014f1e63efc3f628af)]:
+  - @toptal/picasso-typography-overflow@102.0.2
+
 ## 102.0.1
 
 ### Patch Changes

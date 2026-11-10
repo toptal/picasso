@@ -1,5 +1,16 @@
 # Change Log
 
+## 102.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`27b62d1`](https://github.com/toptal/picasso/commit/27b62d1acddead5d5744ab014f1e63efc3f628af)]:
+  - @toptal/picasso-typography-overflow@102.0.2
+  - @toptal/picasso-file-input@102.0.3
+  - @toptal/picasso-step@102.0.2
+  - @toptal/picasso-tabs@102.0.2
+  - @toptal/picasso-dropzone@102.0.3
+
 ## 102.0.3
 
 ### Patch Changes
