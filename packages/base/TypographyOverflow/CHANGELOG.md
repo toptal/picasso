@@ -1,5 +1,15 @@
 # @toptal/picasso-typography-overflow
 
+## 102.0.2
+
+### Patch Changes
+
+- [#5159](https://github.com/toptal/picasso/pull/5159) [`27b62d1`](https://github.com/toptal/picasso/commit/27b62d1acddead5d5744ab014f1e63efc3f628af) Thanks [@vedrani](https://github.com/vedrani)!
+
+### TypographyOverflow
+
+- close the tooltip when the pointer moves on from the text before the browser marks it hovered, so a quick pass over truncated text, such as down a column of table cells, no longer leaves tooltips open
+
 ## 102.0.1
 
 ### Patch Changes
