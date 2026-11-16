@@ -12,6 +12,8 @@ import {
   Typography,
 } from '@toptal/picasso'
 
+import { FOCUS_RING, toHaveStyle, toMatchFocusVisible } from '../support/focus'
+
 const component = 'PageSidebar'
 
 enum TestIds {
@@ -131,6 +133,24 @@ const DefaultExample = (props: PageSidebarProps) => {
   )
 }
 
+const toLetPointerThrough = ($element: JQuery<HTMLElement>) => {
+  const element = $element[0]
+  const { left, top, width, height } = element.getBoundingClientRect()
+  const hitTarget = element.ownerDocument.elementFromPoint(
+    left + width / 2,
+    top + height / 2
+  )
+
+  expect(element.contains(hitTarget)).to.equal(false)
+}
+
+const CollapsibleExample = () => (
+  <>
+    <button>Before</button>
+    <DefaultExample collapsible />
+  </>
+)
+
 const VariantsExample = () => {
   return (
     <Grid spacing={32}>
@@ -184,7 +204,8 @@ describe('Sidebar', () => {
         `[data-testid="${TestIds.COLLAPSIBLE_MENU_INNER_MENU}"]`
       )
 
-      cy.get('body').happoScreenshot({
+      // Happo doesn't capture `:hover`, which reveals the collapse button
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
         component,
         variant: 'expanded accordion menu',
       })
@@ -197,7 +218,7 @@ describe('Sidebar', () => {
 
       cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('not.exist')
 
-      cy.get('body').happoScreenshot({
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
         component,
         variant: 'collapsed sidebar default',
       })
@@ -212,7 +233,7 @@ describe('Sidebar', () => {
         .filter(':visible')
         .should('have.length', 1)
 
-      cy.get('body').happoScreenshot({
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
         component,
         variant: 'open dropdown menu',
       })
@@ -223,7 +244,70 @@ describe('Sidebar', () => {
 
       cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('exist')
 
-      cy.get('body').happoScreenshot({ component, variant: 'expand sidebar' })
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).hoverAndTakeHappoScreenshot({
+        component,
+        variant: 'expand sidebar',
+      })
+    })
+  })
+
+  describe('when the pointer is away from a collapsible sidebar', () => {
+    it('hides the collapse button and lets the pointer through it', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.contains('Before').realHover()
+
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should(toHaveStyle('opacity', '0'))
+        .and(toLetPointerThrough)
+    })
+  })
+
+  describe('when the pointer leaves the sidebar after clicking the collapse button', () => {
+    it('keeps the focused button shown', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
+      cy.contains('Before').realHover()
+
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should('have.focus')
+        .and(toHaveStyle('opacity', '1'))
+        .and(toHaveStyle('pointerEvents', 'auto'))
+    })
+  })
+
+  describe('when tabbing into a collapsible sidebar', () => {
+    it('focuses and shows the collapse button first', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should('have.focus')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('opacity', '1'))
+        .and(toHaveStyle('pointerEvents', 'auto'))
+        .and(toHaveStyle('boxShadow', FOCUS_RING))
+    })
+  })
+
+  describe('when pressing Enter on the keyboard-focused collapse button', () => {
+    it('collapses the sidebar and keeps the button focused and shown', () => {
+      cy.mount(<CollapsibleExample />)
+
+      cy.contains('Before').realClick()
+      cy.realPress('Tab')
+      cy.realPress('Enter')
+
+      cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('not.exist')
+      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON)
+        .should('have.focus')
+        .and('have.attr', 'aria-expanded', 'false')
+        .and(toMatchFocusVisible(true))
+        .and(toHaveStyle('opacity', '1'))
     })
   })
 })

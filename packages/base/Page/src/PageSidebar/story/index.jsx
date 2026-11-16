@@ -46,6 +46,16 @@ page
     'base/Page'
   )
   .addExample(
+    'PageSidebar/story/CollapsibleControlled.example.tsx',
+    {
+      title: 'Controlled collapsible',
+      description:
+        'The sidebar is uncontrolled until the `collapsed` prop is set. Then the collapse button only calls `onCollapse` with the state it requests, and the sidebar follows `collapsed`.',
+      takeScreenshot: false,
+    },
+    'base/Page'
+  )
+  .addExample(
     'PageSidebar/story/Size.example.tsx',
     {
       title: 'Sizes',
