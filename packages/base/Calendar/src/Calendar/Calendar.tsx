@@ -7,13 +7,9 @@ import React, {
 } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { FOCUS_RING } from '@toptal/picasso-shared'
-import type {
-  SelectRangeEventHandler,
-  SelectSingleEventHandler,
-  DateRange,
-} from 'react-day-picker'
+import type { DateRange, DayProps, Matcher } from 'react-day-picker'
 import { DayPicker } from 'react-day-picker'
-import { format, isEqual, isWeekend } from 'date-fns'
+import { format, isBefore, isEqual, isWeekend } from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -82,6 +78,18 @@ const getDefaultNavigationMonth = (
       ? (value as DateRangeType)[0]
       : (value as Date)
     : undefined
+
+// react-day-picker v10 hides, rather than disables, the outside days of the
+// months past minDate and maxDate; v8 rendered them disabled
+const CalendarDayCell = ({ day, modifiers, children, ...props }: DayProps) => (
+  <td {...props}>
+    {modifiers.hidden ? (
+      <CalendarDay day={day} modifiers={modifiers} />
+    ) : (
+      children
+    )}
+  </td>
+)
 
 const getRootClassName = (hasFooter: boolean, className?: string) =>
   twMerge(
@@ -172,36 +180,31 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     [indicatedIntervals]
   )
 
-  const handleSingleDateChange: SelectSingleEventHandler = date =>
-    date && onChange(date)
+  // A click starts a range unless one is half-picked, in which case it
+  // completes it and "onChange" is called
+  const handleRangeSelect = (date: Date) => {
+    const rangeStart = rangeValue?.to ? undefined : rangeValue?.from
 
-  // "handleRangeChange" is fired in two cases – either the range start or the range end is set
-  // The handler needs to distinguish both cases to enable specific modifiers and call "onChange"
-  // handler (if it is applicable when both range start and end are set)
-  const handleRangeChange: SelectRangeEventHandler = (
-    range,
-    selectedDay,
-    { range_middle: isRangeMiddle }
-  ) => {
-    const currentRangeExists = Boolean(rangeValue?.from && rangeValue?.to)
+    setRangeSelectionHoverDate(null)
 
-    if (isRangeMiddle || currentRangeExists) {
-      setRangeValue({
-        from: selectedDay,
-        to: undefined,
-      })
-    } else {
-      setRangeSelectionHoverDate(null)
-      setRangeValue({
-        from: range?.from,
-        to: range?.to,
-      })
+    if (!rangeStart) {
+      setRangeValue({ from: date, to: undefined })
 
-      if (range?.from && range?.to) {
-        onChange([range.from, range.to])
-      }
+      return
     }
+
+    const [from, to] = isBefore(date, rangeStart)
+      ? [date, rangeStart]
+      : [rangeStart, date]
+
+    setRangeValue({ from, to })
+    onChange([from, to])
   }
+
+  const handleDaySelect = (date: Date) =>
+    range ? handleRangeSelect(date) : onChange(date)
+
+  const handleSelect = (_: unknown, date: Date) => handleDaySelect(date)
 
   const handleDayEnter = (date: Date) =>
     range && rangeValue?.from && setRangeSelectionHoverDate(date)
@@ -212,9 +215,34 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       indicated: isIndicated,
       temporaryRangeMiddle: isTemporaryRangeMiddle,
       temporaryRangeEnd: isTemporaryRangeEnd,
+      // v10 flags no range start or end until both are picked; v8 flagged the
+      // picked start as both
+      rangeStart: rangeValue?.from ?? false,
+      rangeEnd: rangeValue?.to ?? rangeValue?.from ?? false,
     }),
-    [isWeekend, isIndicated, isTemporaryRangeMiddle, isTemporaryRangeEnd]
+    [
+      isWeekend,
+      isIndicated,
+      isTemporaryRangeMiddle,
+      isTemporaryRangeEnd,
+      rangeValue,
+    ]
   )
+
+  // v10's startMonth and endMonth only bound the navigation; v8's fromDate
+  // and toDate also disabled the days outside them
+  const disabledDays: Matcher[] = [
+    ...(disabledIntervalsFormatted ?? (disableDays ? [disableDays] : [])),
+    ...(minDate ? [{ before: minDate }] : []),
+    ...(maxDate ? [{ after: maxDate }] : []),
+  ]
+
+  const selection = range
+    ? { mode: 'range' as const, selected: rangeValue }
+    : {
+        mode: 'single' as const,
+        selected: Array.isArray(value) ? undefined : value,
+      }
 
   const mobileScreen = useBreakpoint(['xs', 'sm'])
   const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
@@ -231,6 +259,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       <CalendarContext.Provider
         value={{
           onDayMouseEnter: handleDayEnter,
+          onDaySelect: handleDaySelect,
           renderRoot,
           renderDay,
           renderMonthHeader,
@@ -241,21 +270,18 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           isFlexible={shouldRenderMultipleMonths}
         >
           <DayPicker
-            required
+            {...selection}
+            // CalendarDay selects through the context; the handler keeps
+            // "selected" controlled
+            onSelect={handleSelect}
             showOutsideDays
+            hideNavigation
             month={navigationMonth || activeMonth}
-            mode={range ? 'range' : 'single'}
-            selected={range ? rangeValue : value}
-            // Moving mode-dependent props to a separate object to satisfy TypeScript breaks
-            // the change detection, so error is ignored
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            onSelect={range ? handleRangeChange : handleSingleDateChange}
-            fromDate={minDate}
-            onMonthChange={month => setNavigationMonth(month)}
-            toDate={maxDate}
+            startMonth={minDate}
+            onMonthChange={setNavigationMonth}
+            endMonth={maxDate}
             numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
-            disabled={disabledIntervalsFormatted || disableDays}
+            disabled={disabledDays}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
             modifiers={modifiers}
@@ -263,23 +289,22 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               shouldDisplayDropdownNavigation ? 'dropdown' : undefined
             }
             components={{
-              Caption: shouldDisplayDropdownNavigation
-                ? undefined
-                : CalendarMonthHeader,
-              Day: CalendarDay,
+              ...(!shouldDisplayDropdownNavigation && {
+                MonthCaption: CalendarMonthHeader,
+              }),
+              Day: CalendarDayCell,
+              DayButton: CalendarDay,
               Dropdown: CalendarDateSelector,
             }}
             classNames={{
               months: shouldRenderMultipleMonths ? 'flex gap-6' : undefined,
-              caption_dropdowns: 'flex gap-4 pb-4',
-              head: 'block',
-              table: 'flex flex-col border-spacing-0',
-              head_row:
+              dropdowns: 'flex gap-4 pb-4',
+              month_grid: 'flex flex-col border-spacing-0',
+              weekdays:
                 'flex text-center uppercase text-xxs pt-[3px] pb-[11px] text-gray-600',
-              head_cell: 'p-0 basis-[15%] w-40 font-regular',
-              row: 'flex',
-              cell: 'p-0 basis-[15%]',
-              vhidden: 'hidden',
+              weekday: 'p-0 basis-[15%] w-40 font-regular',
+              week: 'flex',
+              day: 'p-0 basis-[15%]',
             }}
             // Keeping the legacy classname as it is heavily used as a locator in tests
             className='calendar-month'

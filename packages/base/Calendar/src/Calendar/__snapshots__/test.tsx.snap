@@ -13,11 +13,13 @@ exports[`Calendar renders 1`] = `
         class="p-6 text-graphite flex flex-col basis-[20.5rem] shadow-5 bg-white rounded-sm max-w"
       >
         <div
-          class="rdp calendar-month"
+          class="rdp-root calendar-month"
+          data-mode="single"
+          lang="en-US"
         >
           <div>
             <div
-              class="rdp-month rdp-caption_start rdp-caption_end"
+              class="rdp-month"
             >
               <div
                 class="mb-6 justify-between flex"
@@ -79,12 +81,13 @@ exports[`Calendar renders 1`] = `
                 </button>
               </div>
               <table
-                aria-labelledby="react-day-picker-1"
+                aria-label="December 2019"
+                aria-multiselectable="false"
                 class="flex flex-col border-spacing"
                 role="grid"
               >
                 <thead
-                  class="block"
+                  aria-hidden="true"
                 >
                   <tr
                     class="flex text-center uppercase text-xxs pt-[3px] pb-[11px] text-gray"
@@ -141,14 +144,17 @@ exports[`Calendar renders 1`] = `
                   </tr>
                 </thead>
                 <tbody
-                  class="rdp-tbody"
+                  class="rdp-weeks"
                 >
                   <tr
                     class="flex"
                   >
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-25"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -161,8 +167,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-26"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -175,8 +184,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-27"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -189,8 +201,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-28"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -203,8 +218,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-29"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -217,8 +235,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-30"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -232,7 +253,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-01"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -250,7 +272,8 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-02"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -264,7 +287,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-03"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -278,7 +302,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-04"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -292,7 +317,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-05"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -306,7 +332,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-06"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -320,7 +347,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-07"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -334,7 +362,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-08"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -352,7 +381,8 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-09"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -366,7 +396,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-10"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -380,7 +411,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-11"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -393,8 +425,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      aria-selected="true"
+                      class="p-0 basis-[15%] rdp-selected"
+                      data-day="2019-12-12"
+                      data-selected="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-white bg-blue border-none rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -409,7 +444,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-13"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -423,7 +459,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-14"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -437,7 +474,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-15"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -455,7 +493,8 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-16"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -469,7 +508,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-17"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -483,7 +523,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-18"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -497,7 +538,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-19"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -511,7 +553,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-20"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -525,7 +568,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-21"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -539,7 +583,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-22"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -557,7 +602,8 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-23"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -571,7 +617,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-24"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -585,7 +632,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-25"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -599,7 +647,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-26"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -613,7 +662,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-27"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -627,7 +677,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-28"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -641,7 +692,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-29"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -659,7 +711,8 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-30"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -673,7 +726,8 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-31"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -686,8 +740,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-01"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -700,8 +757,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-02"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -714,8 +774,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-03"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -728,8 +791,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-04"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
@@ -742,8 +808,11 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-05"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
