@@ -286,8 +286,15 @@ export const Tooltip = forwardRef<HTMLElement, Props>(
         align={align}
         sideOffset={sideOffset}
         alignOffset={alignOffset}
+        // The popup's margins make room for the arrow on its anchor's side
+        // only, so a tall popup is shorter beside its anchor than above it.
+        // When only the shorter one fits, a fallback to the other axis flips
+        // the popup back and forth on every reposition, so it flips only to
+        // the opposite side, which has the same size
         collisionAvoidance={
-          preventOverflow ? undefined : { side: 'flip', align: 'none' }
+          preventOverflow
+            ? { fallbackAxisSide: 'none' }
+            : { side: 'flip', align: 'none', fallbackAxisSide: 'none' }
         }
       >
         <BaseTooltip.Popup

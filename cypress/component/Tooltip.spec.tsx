@@ -283,6 +283,35 @@ const DropdownTooltipExample = () => {
   )
 }
 
+const TallTooltipExample = () => {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
+  // The room above the button fits the popup beside it (332px) but not above
+  // it (360px, with the margins that make room for the arrow)
+  return (
+    <div style={{ position: 'fixed', top: 350, left: 100 }}>
+      <Tooltip open={open} content={<div style={{ height: 300 }}>Content</div>}>
+        <Button>Button</Button>
+      </Tooltip>
+    </div>
+  )
+}
+
+const recordSides =
+  (sides: (string | null)[]) => ($tooltip: JQuery<HTMLElement>) => {
+    const observer = new MutationObserver(() =>
+      sides.push($tooltip[0].getAttribute('data-side'))
+    )
+
+    observer.observe($tooltip[0], { attributeFilter: ['data-side'] })
+
+    return observer
+  }
+
 const component = 'Tooltip'
 
 describe('Tooltip', () => {
@@ -521,6 +550,21 @@ describe('Tooltip', () => {
 
       // Tooltip should eventually disappear
       cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    })
+  })
+
+  describe('when the popup fits above its anchor only at its size beside it', () => {
+    it('stays on one side', () => {
+      const sides: (string | null)[] = []
+
+      cy.viewport(1000, 700)
+      cy.mount(<TallTooltipExample />)
+      cy.getByRole('tooltip').should('be.visible')
+      // eslint-disable-next-line promise/catch-or-return
+      cy.getByRole('tooltip').then(recordSides(sides))
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(1000)
+      cy.wrap(sides).should('have.length.lessThan', 2)
     })
   })
 })
