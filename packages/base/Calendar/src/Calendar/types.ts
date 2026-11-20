@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import type { DayPickerDefaultProps } from 'react-day-picker'
 
 export interface DayProps {
   isDisabled: boolean
@@ -39,4 +38,4 @@ export type DateOrDateRangeType = Date | DateRangeType
 
 export type DateRangeType = [start: Date, end: Date]
 
-export type WeekStart = DayPickerDefaultProps['weekStartsOn']
+export type WeekStart = 0 | 1 | 2 | 3 | 4 | 5 | 6 | undefined

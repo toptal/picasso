@@ -29,7 +29,7 @@
     "@toptal/picasso-typography": "workspace:*",
     "@toptal/picasso-utils": "workspace:*",
     "date-fns": "^4.1.0",
-    "react-day-picker": "^8.10.2"
+    "react-day-picker": "^10.0.1"
   },
   "sideEffects": [
     "**/styles.ts",
