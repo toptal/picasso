@@ -235,3 +235,53 @@ describe('Calendar', () => {
     })
   })
 })
+
+describe('Calendar month limits', () => {
+  describe('when the displayed month would pass minDate or maxDate', () => {
+    it('opens activeMonth on the nearest allowed month', () => {
+      const { getByText } = render(
+        <Calendar
+          onChange={() => {}}
+          activeMonth={new Date(2023, 1, 1)}
+          minDate={new Date(2024, 4, 5)}
+          maxDate={new Date(2024, 8, 5)}
+        />
+      )
+
+      expect(getByText('May 2024')).toBeInTheDocument()
+    })
+
+    it('keeps the second of two months within maxDate', () => {
+      const { getByText, queryByText } = render(
+        <Calendar
+          onChange={() => {}}
+          numberOfMonths={2}
+          value={new Date(2024, 5, 10)}
+          maxDate={new Date(2024, 5, 20)}
+        />
+      )
+
+      expect(getByText('May 2024')).toBeInTheDocument()
+      expect(getByText('June 2024')).toBeInTheDocument()
+      expect(queryByText('July 2024')).toBeNull()
+    })
+
+    it('moves a year picked in the dropdown into the allowed months', () => {
+      const { getAllByRole } = render(
+        <Calendar
+          onChange={() => {}}
+          dropdownNavigation
+          minDate={new Date(2019, 3, 1)}
+          maxDate={new Date(2022, 5, 30)}
+          value={new Date(2021, 11, 10)}
+        />
+      )
+
+      const [monthSelect, yearSelect] = getAllByRole('combobox')
+
+      fireEvent.change(yearSelect, { target: { value: '2022' } })
+
+      expect(monthSelect).toHaveValue('5')
+    })
+  })
+})
