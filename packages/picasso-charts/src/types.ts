@@ -1,16 +1,6 @@
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { ReactNode } from 'react'
 
-export type CoordinatePayload = {
-  activeCoordinate?: { x: number; y: number }
-  activeLabel?: string
-  activePayload?: object[]
-  activeTooltipIndex?: number
-  chartX?: number
-  chartY?: number
-  isTooltipActive?: boolean
-}
-
 export type PositionTranslate = {
   key: 'x' | 'y'
   cursorCoordinate: number
@@ -93,11 +83,4 @@ export type BarOptions = {
   dataKey: string
   dataItem?: any
   index?: number
-}
-
-// Private type for a prop not exported by recharts
-declare module 'recharts/types/chart/generateCategoricalChart' {
-  interface CategoricalChartProps {
-    overflow?: string
-  }
 }

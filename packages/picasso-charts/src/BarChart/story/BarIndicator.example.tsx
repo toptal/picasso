@@ -38,7 +38,7 @@ const Example = () => (
       getBarColor={() => palette.blue.main}
       renderBarIndicators={({ dataKey, dataItem }) => {
         const indicator = INDICATORS[dataKey]
-        const isEnterprise = dataItem?.value?.isEnterprise
+        const isEnterprise = dataItem?.isEnterprise
 
         if (indicator && isEnterprise) {
           return (

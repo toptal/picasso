@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
-import { flattenFragments } from '@toptal/picasso-shared'
+import type { MouseEvent } from 'react'
 import { palette } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import {
@@ -14,16 +14,20 @@ import {
   Line,
   ResponsiveContainer,
   Tooltip,
+  getRelativeCoordinate,
 } from 'recharts'
+import type { MouseHandlerDataParam } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
 import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
-import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
+import CHART_CONSTANTS, {
+  chartMargins,
+  SURFACE_OVERFLOW_VISIBLE,
+} from '../utils/constants'
 import type {
-  CoordinatePayload,
   BaseLineChartProps,
   ChartDataPoint,
   Domain,
@@ -44,8 +48,6 @@ const {
 } = CHART_CONSTANTS
 
 const HIDE_BOTTOM_Y_AXIS_LABEL_CLASS = 'picasso-charts-hide-bottom-y-axis-label'
-
-type RechartsOnMouseMove = CoordinatePayload | null
 
 export type ReferenceLineType = {
   y: number
@@ -198,18 +200,25 @@ export const LineChart = ({
     orderedData.find(item => item.order === tick)?.[xAxisKey] as string
 
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const tooltipRef = useRef<HTMLDivElement | null>(null)
 
-  const getTooltipElement = () => tooltipRef?.current || null
+  const onMouseMovement = (
+    { isTooltipActive, activeCoordinate }: MouseHandlerDataParam,
+    event: MouseEvent<SVGGraphicsElement>
+  ) => {
+    if (allowTooltipEscapeViewBox && isTooltipActive) {
+      const chartElem = containerRef.current
+      const tooltipElem =
+        chartElem?.querySelector<HTMLDivElement>('.recharts-tooltip-wrapper') ??
+        null
 
-  const getChartElement = () => containerRef?.current || null
-
-  const onMouseMovement = (next: RechartsOnMouseMove) => {
-    if (allowTooltipEscapeViewBox && next?.isTooltipActive) {
-      const tooltipElem = getTooltipElement()
-      const chartElem = getChartElement()
-
-      calculateTooltipPosition(next, tooltipElem, chartElem)
+      calculateTooltipPosition(
+        {
+          x: activeCoordinate?.x ?? 0,
+          y: getRelativeCoordinate(event).relativeY,
+        },
+        tooltipElem,
+        chartElem
+      )
     }
   }
 
@@ -227,10 +236,9 @@ export const LineChart = ({
           margin={chartMargins}
           data={orderedData}
           onMouseMove={onMouseMovement}
-          className={cx({
+          className={cx(SURFACE_OVERFLOW_VISIBLE, {
             [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
           })}
-          overflow='visible'
         >
           <CartesianGrid stroke={palette.grey.lighter2} />
 
@@ -282,10 +290,7 @@ export const LineChart = ({
           )}
 
           {lineGraphs}
-          {/* recharts finds its chart parts with the react-is 18 it ships, which
-              doesn't recognize a React 19 fragment, so it would drop the parts
-              inside one */}
-          {flattenFragments(children)}
+          {children}
 
           {tooltip && (
             <Tooltip
@@ -298,9 +303,6 @@ export const LineChart = ({
                 allowTooltipEscapeViewBox ? positionOverride : undefined
               }
               content={customTooltip}
-              ref={(node: any) =>
-                (tooltipRef.current = node?.wrapperNode || null)
-              }
             />
           )}
 

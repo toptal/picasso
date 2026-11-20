@@ -264,7 +264,7 @@ peer range its owners haven't tested against.
 | `notistack`                      | Move to exactly `3.0.2`                                                                                                                                                                                                                            | It's an exact peer of `@toptal/picasso` and `@toptal/picasso-shared`. `SnackbarProvider` and `useSnackbar` only find each other within one copy                               |
 | `react-final-form`, `final-form` | If you depend on them directly, move to `^7` and `^5`, with `final-form-arrays@^4`, `react-final-form-arrays@^5` and `react-final-form-listeners@^3`. Remove any override that pins react-final-form 6                                             | react-final-form's context belongs to its copy. With two versions, `useForm` and `useField` inside a Picasso `<Form>` throw `"... must be used inside of a <Form> component"` |
 | `react-helmet-async`             | Don't render helmets from your own copy. Import `Helmet` and `HelmetProps` from `@toptal/picasso-provider`. If the app renders its own `<HelmetProvider>` (`<Picasso disableHelmet>`, `PicassoLight`), pin `react-helmet-async` to exactly `3.0.0` | A helmet only finds the `<HelmetProvider>` of its own copy. The provider exports the copy it renders, and `FixViewport`, `Favicon` and `Page.Helmet` use it                   |
-| `recharts`                       | If the app imports recharts itself, move it to `^2.15.4`                                                                                                                                                                                           | One copy, and older releases don't run on React 19                                                                                                                            |
+| `recharts`                       | If the app imports recharts itself, use the major `@toptal/picasso-charts` uses: `^2.15.4` up to `102.x`, `^3.10.1` after                                                                                                                          | One copy, and older releases don't run on React 19                                                                                                                            |
 
 #### Test utilities
 
@@ -892,7 +892,7 @@ Expect these groups:
 | `react-resize-detector`        | 12.0.0                                        |
 | `@react-google-maps/api`       | 2.20.4                                        |
 | `@storybook/icons`             | 1.3.0                                         |
-| `recharts`                     | 2.15.0; Picasso uses ^2.15.4                  |
+| `recharts`                     | 2.15.0; Picasso uses ^3.10.1                  |
 | `react-leaflet`                | 5.0.0, which requires React 19                |
 | `react-pdf`                    | 8.0.0                                         |
 | `@material-ui/core` and family | Never; remove it                              |
@@ -964,10 +964,8 @@ These versions work together:
 | `logrocket-react`, if you use it | 7.0.1   |
 
 - **`react-is` 19.** Jest's pretty-format and other libraries need it to
-  recognize React 19 elements. So does recharts, in charts you render with it
-  yourself: it ships `react-is` 18, which doesn't recognize a React 19 fragment,
-  so it drops the chart parts inside one. Picasso's charts don't need it:
-  `LineChart` unwraps its fragment children itself.
+  recognize React 19 elements. recharts 3 takes `react-is` as a peer
+  dependency, so it uses the one you install.
 - **`@testing-library/react` 16, with `@testing-library/dom` 10.** RTL 16.1 is
   the first release whose peer range admits React 19. Override nested copies
   too, such as the RTL 14 that `@toptal/davinci-qa` 20 depends on, which doesn't

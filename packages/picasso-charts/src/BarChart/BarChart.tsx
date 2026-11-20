@@ -7,18 +7,20 @@ import {
   XAxis,
   Tooltip,
   Bar,
-  Customized,
   YAxis,
   ResponsiveContainer,
-  Cell,
+  Rectangle,
 } from 'recharts'
+import type { BarShapeProps } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
-import { BarChartIndicators } from '../BarChartIndicators'
 import type { BaseChartProps, BarChartDataItem, BarOptions } from '../types'
 import { defineStackId, findTopDomain } from './utils'
-import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
+import CHART_CONSTANTS, {
+  chartMargins,
+  SURFACE_OVERFLOW_VISIBLE,
+} from '../utils/constants'
 
 const {
   TICK_MARGIN,
@@ -32,6 +34,7 @@ const {
   TICK_HEIGHT,
 } = CHART_CONSTANTS
 const TOOLTIP_WRAPPER_STYLE = { outline: 'none' }
+const INDICATOR_SIZE = 16
 
 type ShowEveryNthTickValue = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
@@ -171,6 +174,34 @@ const BarChart = <T extends string>({
   const xAxisProps = horizontal ? categoryAxisProps : valueAxisProps
   const yAxisProps = !horizontal ? categoryAxisProps : valueAxisProps
 
+  const renderBar = (dataKey: T) => (bar: BarShapeProps) => {
+    // `bar.index` skips the data points recharts filters out
+    const { originalDataIndex: index } = bar
+    const fill = getBarColor({ dataKey, entry: data[index], index })
+    const indicator = renderBarIndicators?.({
+      dataKey: String(bar.name),
+      index,
+      dataItem: { ...bar, fill },
+    })
+
+    return (
+      <>
+        <Rectangle {...bar} fill={fill} />
+        {indicator && (
+          <svg
+            width={INDICATOR_SIZE}
+            height={INDICATOR_SIZE}
+            x={bar.x + bar.width / 2}
+            y={bar.y + bar.height}
+            overflow='visible'
+          >
+            {indicator}
+          </svg>
+        )}
+      </>
+    )
+  }
+
   // If ticks are not shown, the corresponding axis is not rendered to avoid empty space
   const renderXAxis = showEveryNthTickOnXAxis !== 0
   const renderYAxis = showEveryNthTickOnYAxis !== 0
@@ -178,7 +209,7 @@ const BarChart = <T extends string>({
   return (
     <div style={{ height, width }} className={className} {...rest}>
       <StyleOverrides />
-      <ResponsiveContainer width={width} height={height}>
+      <ResponsiveContainer>
         <RechartsBarChart
           layout={layout}
           margin={chartMargins}
@@ -187,7 +218,7 @@ const BarChart = <T extends string>({
           barGap={DEFAULT_BAR_GAP}
           barCategoryGap={!autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined}
           barSize={!autoSize ? DEFAULT_BAR_SIZE : undefined}
-          overflow='visible'
+          className={SURFACE_OVERFLOW_VISIBLE}
         >
           <CartesianGrid
             strokeDasharray='3 3'
@@ -234,26 +265,11 @@ const BarChart = <T extends string>({
               }
               isAnimationActive={isAnimationActive}
               stackId={stackedBars && defineStackId(dataKey, stackedBars)}
-            >
-              {data.map((entry, index) => {
-                const fill = getBarColor?.({ dataKey, entry, index })
-
-                return (
-                  <Cell
-                    key={`${entry.value}-${entry.name}-${String(index)}`}
-                    fill={fill}
-                  />
-                )
-              })}
-            </Bar>
-          ))}
-          {renderBarIndicators && (
-            <Customized
-              component={
-                <BarChartIndicators renderIndicator={renderBarIndicators} />
-              }
+              // a custom shape also keeps zero-value bars, so their labels
+              // and indicators render and label indexes match `data`
+              shape={renderBar(dataKey)}
             />
-          )}
+          ))}
         </RechartsBarChart>
       </ResponsiveContainer>
     </div>
