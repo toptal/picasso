@@ -111667,7 +111667,7 @@ var StyleOverrides = function () {
             font-size: 11px;
             fill: ${src.colors.grey.dark};
           }
-          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
+          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis-tick-labels .recharts-cartesian-axis-tick-label:first-child {
             display: none;
           }
       `
@@ -113050,7 +113050,7 @@ var StyleOverrides = function () {
             font-size: 11px;
             fill: ${src.colors.grey.dark};
           }
-          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
+          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis-tick-labels .recharts-cartesian-axis-tick-label:first-child {
             display: none;
           }
       `
@@ -163168,4 +163168,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.1e5e9cd1.iframe.bundle.js.map
+//# sourceMappingURL=main.1ed4ba8e.iframe.bundle.js.map
