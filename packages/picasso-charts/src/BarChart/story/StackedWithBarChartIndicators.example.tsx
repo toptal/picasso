@@ -38,7 +38,7 @@ const Example = () => (
       getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
       renderBarIndicators={({ dataKey, dataItem }) => {
         const indicator = INDICATORS[dataKey]
-        const valueKey = dataItem?.tooltipPayload?.[0]?.dataKey
+        const valueKey = dataItem?.dataKey
 
         if (indicator && valueKey === 'breakAmount') {
           return (

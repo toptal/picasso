@@ -19,6 +19,9 @@ const chartConstants = {
   NUMBER_OF_TICKS: 4,
 }
 
+// lets labels and indicators near the edges render outside the svg box
+export const SURFACE_OVERFLOW_VISIBLE = '[&>.recharts-surface]:overflow-visible'
+
 export const chartMargins = {
   top: chartConstants.DEFAULT_MARGIN,
   right: chartConstants.DEFAULT_MARGIN,

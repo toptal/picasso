@@ -159,7 +159,50 @@ describe('BarChart', () => {
     })
   })
 
+  it('passes each bar and its position to `renderBarIndicators`', () => {
+    const renderBarIndicators = cy.stub().returns(<rect data-testid='mark' />)
+
+    cy.mount(
+      <TestBarChart
+        tooltip={false}
+        data={chartDataCustomTooltipZeroValue}
+        renderBarIndicators={renderBarIndicators}
+      />
+    )
+
+    cy.getByTestId('mark').should('have.length', 2)
+    cy.wrap(renderBarIndicators)
+      .its('args')
+      .should((args: { dataKey: string; index: number; dataItem: any }[][]) => {
+        const calls = args.map(([{ dataKey, index, dataItem }]) => ({
+          dataKey,
+          index,
+          fill: dataItem.fill,
+          height: dataItem.height,
+        }))
+
+        expect(calls).to.deep.include({
+          dataKey: 'Milan',
+          index: 1,
+          fill: palette.blue.main,
+          height: 0,
+        })
+      })
+    cy.get('svg[overflow="visible"]:has([data-testid="mark"])')
+      .last()
+      .should('have.attr', 'y', '134')
+  })
+
   describe('when values are 0s', () => {
+    it('renders the label of each bar', () => {
+      cy.mount(
+        <TestBarChart tooltip={false} data={chartDataCustomTooltipZeroValue} />
+      )
+
+      cy.get('.recharts-label-list text').should('have.length', 2)
+      cy.get('.recharts-label-list').should('contain', '0')
+    })
+
     it('renders custom chart with customized indicators correctly', () => {
       cy.mount(
         <TestBarChart
