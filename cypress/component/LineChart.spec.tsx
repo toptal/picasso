@@ -44,4 +44,24 @@ describe('LineChart', () => {
       expect($tooltip[0].style.transform).to.match(/, 90px\)$/)
     })
   })
+
+  it('shows the bottom Y-axis label only when asked to', () => {
+    const chart = (showBottomYAxisLabel?: boolean) => (
+      <LineChart
+        data={[
+          { x: 'Jan', talents: 10 },
+          { x: 'Feb', talents: 30 },
+        ]}
+        lineConfig={{ talents: { color: palette.blue.main } }}
+        showBottomYAxisLabel={showBottomYAxisLabel}
+      />
+    )
+
+    cy.mount(chart())
+    cy.contains('text', /^0d$/).should('not.be.visible')
+    cy.contains('text', /^10d$/).should('be.visible')
+
+    cy.mount(chart(true))
+    cy.contains('text', /^0d$/).should('be.visible')
+  })
 })

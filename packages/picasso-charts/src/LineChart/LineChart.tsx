@@ -83,7 +83,7 @@ const StyleOverrides = () => (
             font-size: 11px;
             fill: ${palette.grey.dark};
           }
-          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
+          .${HIDE_BOTTOM_Y_AXIS_LABEL_CLASS} .recharts-yAxis-tick-labels .recharts-cartesian-axis-tick-label:first-child {
             display: none;
           }
       `,
