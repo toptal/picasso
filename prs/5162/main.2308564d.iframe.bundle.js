@@ -111801,7 +111801,8 @@ var LineChart = function (_a) {
     onMouseMove: onMouseMovement,
     className: classnames_default()(constants/* SURFACE_OVERFLOW_VISIBLE */.af, {
       [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel
-    })
+    }),
+    accessibilityLayer: Boolean(tooltip)
   }, /*#__PURE__*/react.createElement(lib/* CartesianGrid */.dC, {
     stroke: src.colors.grey.lighter2
   }), /*#__PURE__*/react.createElement(lib/* XAxis */.WX, {
@@ -112142,7 +112143,8 @@ var BarChart = function (_a) {
     barGap: DEFAULT_BAR_GAP,
     barCategoryGap: !autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined,
     barSize: !autoSize ? DEFAULT_BAR_SIZE : undefined,
-    className: constants/* SURFACE_OVERFLOW_VISIBLE */.af
+    className: constants/* SURFACE_OVERFLOW_VISIBLE */.af,
+    accessibilityLayer: Boolean(tooltip)
   }, /*#__PURE__*/react.createElement(lib/* CartesianGrid */.dC, {
     strokeDasharray: '3 3',
     stroke: src.colors.grey.lighter2,
@@ -112657,6 +112659,7 @@ var BarChart = function (_ref) {
         barCategoryGap: !autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined,
         barSize: !autoSize ? DEFAULT_BAR_SIZE : undefined,
         className: constants/* SURFACE_OVERFLOW_VISIBLE */.af,
+        accessibilityLayer: Boolean(tooltip),
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(lib/* CartesianGrid */.dC, {
           strokeDasharray: "3 3",
           stroke: src.colors.grey.lighter2,
@@ -113184,6 +113187,7 @@ var LineChart = function (_ref3) {
         className: classnames_default()(constants/* SURFACE_OVERFLOW_VISIBLE */.af, {
           [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel
         }),
+        accessibilityLayer: Boolean(tooltip),
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(lib/* CartesianGrid */.dC, {
           stroke: src.colors.grey.lighter2
         }), /*#__PURE__*/(0,jsx_runtime.jsx)(lib/* XAxis */.WX, {
@@ -163168,4 +163172,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.1ed4ba8e.iframe.bundle.js.map
+//# sourceMappingURL=main.2308564d.iframe.bundle.js.map
