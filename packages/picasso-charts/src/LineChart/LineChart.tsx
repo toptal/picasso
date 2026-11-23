@@ -25,6 +25,7 @@ import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, {
   chartMargins,
+  SURFACE_FOCUS_RING,
   SURFACE_OVERFLOW_VISIBLE,
 } from '../utils/constants'
 import type {
@@ -180,6 +181,7 @@ export const LineChart = ({
     showBottomYAxisLabel,
     children,
     formatYAxisTick,
+    title,
   } = props
 
   const yKey = Object.keys(lines)[0]
@@ -236,7 +238,8 @@ export const LineChart = ({
           margin={chartMargins}
           data={orderedData}
           onMouseMove={onMouseMovement}
-          className={cx(SURFACE_OVERFLOW_VISIBLE, {
+          title={title}
+          className={cx(SURFACE_OVERFLOW_VISIBLE, SURFACE_FOCUS_RING, {
             [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
           })}
           // The escape-mode tooltip is only placed on mouse moves

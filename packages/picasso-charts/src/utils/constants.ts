@@ -22,6 +22,10 @@ const chartConstants = {
 // lets labels and indicators near the edges render outside the svg box
 export const SURFACE_OVERFLOW_VISIBLE = '[&>.recharts-surface]:overflow-visible'
 
+// FOCUS_RING.blue.focusVisible on the svg, which the chart wrapper renders
+export const SURFACE_FOCUS_RING =
+  '[&>.recharts-surface]:outline-none [&>.recharts-surface:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
+
 export const chartMargins = {
   top: chartConstants.DEFAULT_MARGIN,
   right: chartConstants.DEFAULT_MARGIN,

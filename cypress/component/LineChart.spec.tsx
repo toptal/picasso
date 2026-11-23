@@ -88,4 +88,26 @@ describe('LineChart', () => {
     cy.mount(chart(true, true))
     cy.get('.recharts-surface').should('not.have.attr', 'tabindex')
   })
+
+  it('names the chart with its title and shows the focus ring on focus', () => {
+    cy.mount(
+      <>
+        <button>Before</button>
+        <LineChart
+          data={CHART_DATA}
+          lineConfig={{ talents: { color: palette.blue.main } }}
+          tooltip
+          title='Talents per month'
+        />
+      </>
+    )
+
+    cy.get('.recharts-surface > title').should('have.text', 'Talents per month')
+    cy.contains('Before').realClick()
+    cy.realPress('Tab')
+    cy.get('.recharts-surface')
+      .should('have.focus')
+      .and('have.css', 'outline-style', 'none')
+      .and('not.have.css', 'box-shadow', 'none')
+  })
 })

@@ -22,6 +22,8 @@ export interface BaseChartProps extends BaseProps {
   customTooltip?: React.ReactElement
   /** Allows the tooltip to extend beyond the viewBox of the chart itself */
   allowTooltipEscapeViewBox?: boolean
+  /** Accessible name of the chart, rendered as the svg's `<title>` */
+  title?: string
   /** Layout of the barChart */
   layout?: 'vertical' | 'horizontal'
 }

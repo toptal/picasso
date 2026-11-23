@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import type { ReactNode } from 'react'
+import cx from 'classnames'
 import { palette } from '@toptal/picasso-utils'
 import {
   BarChart as RechartsBarChart,
@@ -19,6 +20,7 @@ import type { BaseChartProps, BarChartDataItem, BarOptions } from '../types'
 import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, {
   chartMargins,
+  SURFACE_FOCUS_RING,
   SURFACE_OVERFLOW_VISIBLE,
 } from '../utils/constants'
 
@@ -132,6 +134,7 @@ const BarChart = <T extends string>({
   autoSize,
   maxBarSize,
   valueAxisTickFormatter,
+  title,
   ...rest
 }: Props<T>): React.ReactElement => {
   const horizontal = layout === 'horizontal'
@@ -218,8 +221,9 @@ const BarChart = <T extends string>({
           barGap={DEFAULT_BAR_GAP}
           barCategoryGap={!autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined}
           barSize={!autoSize ? DEFAULT_BAR_SIZE : undefined}
-          className={SURFACE_OVERFLOW_VISIBLE}
+          className={cx(SURFACE_OVERFLOW_VISIBLE, SURFACE_FOCUS_RING)}
           accessibilityLayer={Boolean(tooltip)}
+          title={title}
         >
           <CartesianGrid
             strokeDasharray='3 3'
