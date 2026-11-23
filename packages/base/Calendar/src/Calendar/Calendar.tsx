@@ -14,7 +14,6 @@ import {
   format,
   isBefore,
   isEqual,
-  isSameMonth,
   isWeekend,
   max,
   min,
@@ -256,19 +255,14 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const visibleMonths = shouldRenderMultipleMonths ? numberOfMonths : 1
   const month = navigationMonth || activeMonth
 
-  // react-day-picker pulls a month outside startMonth/endMonth inside them, and
-  // keeps showing the last one once "month" is undefined, so widen from it
-  const [shownMonth, setShownMonth] = useState(month)
-
-  if (month && !(shownMonth && isSameMonth(month, shownMonth))) {
-    setShownMonth(month)
-  }
-
+  // react-day-picker pulls a month outside startMonth/endMonth inside them;
+  // widen them for the month the consumer passes, not for navigation
+  const passedMonth = activeMonth ?? getDefaultNavigationMonth(value, range)
   const startMonth =
-    minDate && shownMonth ? min([minDate, shownMonth]) : minDate
+    minDate && passedMonth ? min([minDate, passedMonth]) : minDate
   const endMonth =
-    maxDate && shownMonth
-      ? max([maxDate, addMonths(shownMonth, visibleMonths - 1)])
+    maxDate && passedMonth
+      ? max([maxDate, addMonths(passedMonth, visibleMonths - 1)])
       : maxDate
   const shouldDisplayDropdownNavigation =
     dropdownNavigation && minDate && maxDate

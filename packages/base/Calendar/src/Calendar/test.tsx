@@ -280,5 +280,25 @@ describe('Calendar', () => {
 
       expect(monthSelect).toHaveValue('5')
     })
+
+    it('keeps a month picked in the dropdown within maxDate with two months shown', () => {
+      const { getAllByRole, getByRole, queryByRole } = render(
+        <Calendar
+          onChange={() => {}}
+          dropdownNavigation
+          numberOfMonths={2}
+          minDate={new Date(2019, 3, 1)}
+          maxDate={new Date(2022, 5, 30)}
+          value={new Date(2022, 5, 10)}
+        />
+      )
+
+      fireEvent.change(getAllByRole('combobox')[0], { target: { value: '6' } })
+
+      expect(getByRole('grid', { name: 'June 2022' })).toBeInTheDocument()
+      expect(
+        queryByRole('grid', { name: 'August 2022' })
+      ).not.toBeInTheDocument()
+    })
   })
 })
