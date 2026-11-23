@@ -219,6 +219,7 @@ const BarChart = <T extends string>({
           barCategoryGap={!autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined}
           barSize={!autoSize ? DEFAULT_BAR_SIZE : undefined}
           className={SURFACE_OVERFLOW_VISIBLE}
+          accessibilityLayer={Boolean(tooltip)}
         >
           <CartesianGrid
             strokeDasharray='3 3'

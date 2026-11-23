@@ -3959,6 +3959,9 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      react-is:
+        specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
+        version: 18.3.1
       typescript:
         specifier: ^5.5.0
         version: 5.5.4

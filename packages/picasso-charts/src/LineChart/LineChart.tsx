@@ -239,6 +239,7 @@ export const LineChart = ({
           className={cx(SURFACE_OVERFLOW_VISIBLE, {
             [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
           })}
+          accessibilityLayer={Boolean(tooltip)}
         >
           <CartesianGrid stroke={palette.grey.lighter2} />
 

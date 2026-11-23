@@ -57,11 +57,31 @@ describe('LineChart', () => {
       />
     )
 
+    const tickLabel = (text: RegExp) =>
+      cy.contains('.recharts-cartesian-axis-tick-label', text)
+
     cy.mount(chart())
-    cy.contains('text', /^0d$/).should('not.be.visible')
-    cy.contains('text', /^10d$/).should('be.visible')
+    // Cypress doesn't treat display: none on an SVG <g> ancestor as hidden
+    tickLabel(/^0d$/).should('have.css', 'display', 'none')
+    tickLabel(/^10d$/).should('be.visible')
 
     cy.mount(chart(true))
-    cy.contains('text', /^0d$/).should('be.visible')
+    tickLabel(/^0d$/).should('not.have.css', 'display', 'none')
+  })
+
+  it('is a tab stop only when it has a tooltip', () => {
+    const chart = (tooltip: boolean) => (
+      <LineChart
+        data={CHART_DATA}
+        lineConfig={{ talents: { color: palette.blue.main } }}
+        tooltip={tooltip}
+      />
+    )
+
+    cy.mount(chart(false))
+    cy.get('.recharts-surface').should('not.have.attr', 'tabindex')
+
+    cy.mount(chart(true))
+    cy.get('.recharts-surface').should('have.attr', 'tabindex', '0')
   })
 })
