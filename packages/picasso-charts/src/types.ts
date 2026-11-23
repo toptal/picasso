@@ -1,16 +1,6 @@
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { ReactNode } from 'react'
 
-export type CoordinatePayload = {
-  activeCoordinate?: { x: number; y: number }
-  activeLabel?: string
-  activePayload?: object[]
-  activeTooltipIndex?: number
-  chartX?: number
-  chartY?: number
-  isTooltipActive?: boolean
-}
-
 export type PositionTranslate = {
   key: 'x' | 'y'
   cursorCoordinate: number
@@ -32,6 +22,8 @@ export interface BaseChartProps extends BaseProps {
   customTooltip?: React.ReactElement
   /** Allows the tooltip to extend beyond the viewBox of the chart itself */
   allowTooltipEscapeViewBox?: boolean
+  /** Accessible name of the chart, rendered as the svg's `<title>` */
+  title?: string
   /** Layout of the barChart */
   layout?: 'vertical' | 'horizontal'
 }
@@ -93,11 +85,4 @@ export type BarOptions = {
   dataKey: string
   dataItem?: any
   index?: number
-}
-
-// Private type for a prop not exported by recharts
-declare module 'recharts/types/chart/generateCategoricalChart' {
-  interface CategoricalChartProps {
-    overflow?: string
-  }
 }
