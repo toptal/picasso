@@ -3,7 +3,6 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -15,6 +14,7 @@ import {
   format,
   isBefore,
   isEqual,
+  isSameMonth,
   isWeekend,
   max,
   min,
@@ -256,17 +256,14 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const visibleMonths = shouldRenderMultipleMonths ? numberOfMonths : 1
   const month = navigationMonth || activeMonth
 
-  // react-day-picker moves a month outside startMonth and endMonth inside them;
-  // widen them so the given month shows, minDate and maxDate disable its days.
-  // The last given month is kept, as react-day-picker keeps showing it once
-  // "month" is undefined
-  const shownMonthRef = useRef(month)
+  // react-day-picker pulls a month outside startMonth/endMonth inside them, and
+  // keeps showing the last one once "month" is undefined, so widen from it
+  const [shownMonth, setShownMonth] = useState(month)
 
-  if (month) {
-    shownMonthRef.current = month
+  if (month && !(shownMonth && isSameMonth(month, shownMonth))) {
+    setShownMonth(month)
   }
 
-  const shownMonth = shownMonthRef.current
   const startMonth =
     minDate && shownMonth ? min([minDate, shownMonth]) : minDate
   const endMonth =
