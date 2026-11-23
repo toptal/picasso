@@ -69,12 +69,13 @@ describe('LineChart', () => {
     tickLabel(/^0d$/).should('not.have.css', 'display', 'none')
   })
 
-  it('is a tab stop only when it has a tooltip', () => {
-    const chart = (tooltip: boolean) => (
+  it('is a tab stop only when it has a tooltip placed by recharts', () => {
+    const chart = (tooltip: boolean, allowTooltipEscapeViewBox = false) => (
       <LineChart
         data={CHART_DATA}
         lineConfig={{ talents: { color: palette.blue.main } }}
         tooltip={tooltip}
+        allowTooltipEscapeViewBox={allowTooltipEscapeViewBox}
       />
     )
 
@@ -83,5 +84,8 @@ describe('LineChart', () => {
 
     cy.mount(chart(true))
     cy.get('.recharts-surface').should('have.attr', 'tabindex', '0')
+
+    cy.mount(chart(true, true))
+    cy.get('.recharts-surface').should('not.have.attr', 'tabindex')
   })
 })
