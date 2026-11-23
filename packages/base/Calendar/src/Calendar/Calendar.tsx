@@ -3,13 +3,22 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { FOCUS_RING } from '@toptal/picasso-shared'
 import type { DateRange, DayProps, Matcher } from 'react-day-picker'
 import { DayPicker } from 'react-day-picker'
-import { format, isBefore, isEqual, isWeekend } from 'date-fns'
+import {
+  addMonths,
+  format,
+  isBefore,
+  isEqual,
+  isWeekend,
+  max,
+  min,
+} from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -79,8 +88,8 @@ const getDefaultNavigationMonth = (
       : (value as Date)
     : undefined
 
-// react-day-picker v10 hides, rather than disables, the outside days of the
-// months past minDate and maxDate; v8 rendered them disabled
+// react-day-picker hides the outside days of the months past minDate and
+// maxDate; render them as disabled days instead
 const CalendarDayCell = ({ day, modifiers, children, ...props }: DayProps) => (
   <td {...props}>
     {modifiers.hidden ? (
@@ -204,8 +213,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const handleDaySelect = (date: Date) =>
     range ? handleRangeSelect(date) : onChange(date)
 
-  const handleSelect = (_: unknown, date: Date) => handleDaySelect(date)
-
   const handleDayEnter = (date: Date) =>
     range && rangeValue?.from && setRangeSelectionHoverDate(date)
 
@@ -215,8 +222,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       indicated: isIndicated,
       temporaryRangeMiddle: isTemporaryRangeMiddle,
       temporaryRangeEnd: isTemporaryRangeEnd,
-      // v10 flags no range start or end until both are picked; v8 flagged the
-      // picked start as both
+      // react-day-picker flags no range start or end until both are picked;
+      // the picked start counts as both
       rangeStart: rangeValue?.from ?? false,
       rangeEnd: rangeValue?.to ?? rangeValue?.from ?? false,
     }),
@@ -229,8 +236,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     ]
   )
 
-  // v10's startMonth and endMonth only bound the navigation; v8's fromDate
-  // and toDate also disabled the days outside them
+  // startMonth and endMonth only bound the navigation, so minDate and maxDate
+  // also disable the days outside them
   const disabledDays: Matcher[] = [
     ...(disabledIntervalsFormatted ?? (disableDays ? [disableDays] : [])),
     ...(minDate ? [{ before: minDate }] : []),
@@ -246,6 +253,26 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 
   const mobileScreen = useBreakpoint(['xs', 'sm'])
   const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
+  const visibleMonths = shouldRenderMultipleMonths ? numberOfMonths : 1
+  const month = navigationMonth || activeMonth
+
+  // react-day-picker moves a month outside startMonth and endMonth inside them;
+  // widen them so the given month shows, minDate and maxDate disable its days.
+  // The last given month is kept, as react-day-picker keeps showing it once
+  // "month" is undefined
+  const shownMonthRef = useRef(month)
+
+  if (month) {
+    shownMonthRef.current = month
+  }
+
+  const shownMonth = shownMonthRef.current
+  const startMonth =
+    minDate && shownMonth ? min([minDate, shownMonth]) : minDate
+  const endMonth =
+    maxDate && shownMonth
+      ? max([maxDate, addMonths(shownMonth, visibleMonths - 1)])
+      : maxDate
   const shouldDisplayDropdownNavigation =
     dropdownNavigation && minDate && maxDate
 
@@ -271,16 +298,16 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
         >
           <DayPicker
             {...selection}
-            // CalendarDay selects through the context; the handler keeps
-            // "selected" controlled
-            onSelect={handleSelect}
+            // Selection goes through CalendarDay; react-day-picker needs
+            // onSelect to keep "selected" controlled
+            onSelect={() => {}}
             showOutsideDays
             hideNavigation
-            month={navigationMonth || activeMonth}
-            startMonth={minDate}
+            month={month}
+            startMonth={startMonth}
             onMonthChange={setNavigationMonth}
-            endMonth={maxDate}
-            numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
+            endMonth={endMonth}
+            numberOfMonths={visibleMonths}
             disabled={disabledDays}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}

@@ -27,8 +27,8 @@ const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
 
 /**
  * The content of a day cell. The button props react-day-picker passes (roving
- * tabIndex, aria-label, keyboard and focus handlers) are left out to keep the
- * keyboard and screen reader behaviour of react-day-picker v8
+ * tabIndex, aria-label, keyboard and focus handlers) are left out, so Tab moves
+ * day by day and the visible day number stays the accessible name
  */
 const CalendarDay = ({
   day,

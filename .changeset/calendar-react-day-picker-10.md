@@ -5,7 +5,6 @@
 ### Calendar
 
 - move to react-day-picker 10, which shares Picasso's date-fns 4 instead of declaring a date-fns 2/3 peer. Layout, selection and the typed `renderDay`, `renderMonthHeader` and `renderRoot` contracts are unchanged
-- the displayed month now stays within `minDate`/`maxDate`: a `value` or `activeMonth` outside them opens on the nearest allowed month, and with `numberOfMonths={2}` the second month no longer goes past `maxDate` (both months shift back one)
 - with `dropdownNavigation`, the month dropdown lists all 12 months and disables the ones outside `minDate`/`maxDate`, and picking a year moves to the nearest allowed month, so the dropdowns can no longer move past the limits
 - `handleOnClick` given to `renderDay` no longer selects a disabled day, and `handleOnEnter` now drives the range hover preview like the default day does
 - `renderMonthHeader` no longer receives the untyped `id` and `displayIndex` arguments

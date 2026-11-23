@@ -24,8 +24,8 @@ export type RenderMonthHeader = (
 
 /**
  * The month caption with the month navigation. Calendar hides
- * react-day-picker's own navigation, so `renderMonthHeader` keeps wrapping the
- * buttons as it did with v8
+ * react-day-picker's own navigation so that `renderMonthHeader` wraps the
+ * buttons, and `renderMonthHeader={() => null}` hides them
  */
 const CalendarMonthHeader = ({
   calendarMonth,
