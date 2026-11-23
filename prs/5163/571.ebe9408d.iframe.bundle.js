@@ -1,4 +1,4 @@
-(globalThis["webpackChunk_toptal_picasso_root"] = globalThis["webpackChunk_toptal_picasso_root"] || []).push([[861],{
+(globalThis["webpackChunk_toptal_picasso_root"] = globalThis["webpackChunk_toptal_picasso_root"] || []).push([[571],{
 
 /***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
 /***/ ((module) => {
@@ -257273,6 +257273,95 @@ function addMonths(date, amount, options) {
 
 /***/ }),
 
+/***/ "./node_modules/date-fns/addMonths.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   P: () => (/* binding */ addMonths)
+/* harmony export */ });
+/* harmony import */ var _constructFrom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/date-fns/constructFrom.js");
+/* harmony import */ var _toDate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/date-fns/toDate.js");
+
+
+
+/**
+ * The {@link addMonths} function options.
+ */
+
+/**
+ * @name addMonths
+ * @category Month Helpers
+ * @summary Add the specified number of months to the given date.
+ *
+ * @description
+ * Add the specified number of months to the given date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param date - The date to be changed
+ * @param amount - The amount of months to be added.
+ * @param options - The options object
+ *
+ * @returns The new date with the months added
+ *
+ * @example
+ * // Add 5 months to 1 September 2014:
+ * const result = addMonths(new Date(2014, 8, 1), 5)
+ * //=> Sun Feb 01 2015 00:00:00
+ *
+ * // Add one month to 30 January 2023:
+ * const result = addMonths(new Date(2023, 0, 30), 1)
+ * //=> Tue Feb 28 2023 00:00:00
+ */
+function addMonths(date, amount, options) {
+  const _date = (0,_toDate_js__WEBPACK_IMPORTED_MODULE_0__/* .toDate */ .a)(date, options?.in);
+  if (isNaN(amount)) return (0,_constructFrom_js__WEBPACK_IMPORTED_MODULE_1__/* .constructFrom */ .w)(options?.in || date, NaN);
+  if (!amount) {
+    // If 0 months, no-op to avoid changing times in the hour before end of DST
+    return _date;
+  }
+  const dayOfMonth = _date.getDate();
+
+  // The JS Date object supports date math by accepting out-of-bounds values for
+  // month, day, etc. For example, new Date(2020, 0, 0) returns 31 Dec 2019 and
+  // new Date(2020, 13, 1) returns 1 Feb 2021.  This is *almost* the behavior we
+  // want except that dates will wrap around the end of a month, meaning that
+  // new Date(2020, 13, 31) will return 3 Mar 2021 not 28 Feb 2021 as desired. So
+  // we'll default to the end of the desired month by adding 1 to the desired
+  // month and using a date of 0 to back up one day to the end of the desired
+  // month.
+  const endOfDesiredMonth = (0,_constructFrom_js__WEBPACK_IMPORTED_MODULE_1__/* .constructFrom */ .w)(options?.in || date, _date.getTime());
+  endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
+  const daysInMonth = endOfDesiredMonth.getDate();
+  if (dayOfMonth >= daysInMonth) {
+    // If we're already at the end of the month, then this is the correct date
+    // and we're done.
+    return endOfDesiredMonth;
+  } else {
+    // Otherwise, we now know that setting the original day-of-month value won't
+    // cause an overflow, so set the desired day-of-month. Note that we can't
+    // just set the date of `endOfDesiredMonth` because that object may have had
+    // its time changed in the unusual case where where a DST transition was on
+    // the last day of the month and its local time was in the hour skipped or
+    // repeated next to a DST transition.  So we use `date` instead which is
+    // guaranteed to still have the original time.
+    _date.setFullYear(
+      endOfDesiredMonth.getFullYear(),
+      endOfDesiredMonth.getMonth(),
+      dayOfMonth,
+    );
+    return _date;
+  }
+}
+
+// Fallback for modularized imports:
+/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (addMonths)));
+
+
+/***/ }),
+
 /***/ "./node_modules/date-fns/addQuarters.cjs":
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -273518,6 +273607,69 @@ function max(dates, options) {
 
 /***/ }),
 
+/***/ "./node_modules/date-fns/max.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   T: () => (/* binding */ max)
+/* harmony export */ });
+/* harmony import */ var _constructFrom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/date-fns/constructFrom.js");
+/* harmony import */ var _toDate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/date-fns/toDate.js");
+
+
+
+/**
+ * The {@link max} function options.
+ */
+
+/**
+ * @name max
+ * @category Common Helpers
+ * @summary Return the latest of the given dates.
+ *
+ * @description
+ * Return the latest of the given dates.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param dates - The dates to compare
+ *
+ * @returns The latest of the dates
+ *
+ * @example
+ * // Which of these dates is the latest?
+ * const result = max([
+ *   new Date(1989, 6, 10),
+ *   new Date(1987, 1, 11),
+ *   new Date(1995, 6, 2),
+ *   new Date(1990, 0, 1)
+ * ])
+ * //=> Sun Jul 02 1995 00:00:00
+ */
+function max(dates, options) {
+  let result;
+  let context = options?.in;
+
+  dates.forEach((date) => {
+    // Use the first date object as the context function
+    if (!context && typeof date === "object")
+      context = _constructFrom_js__WEBPACK_IMPORTED_MODULE_0__/* .constructFrom */ .w.bind(null, date);
+
+    const date_ = (0,_toDate_js__WEBPACK_IMPORTED_MODULE_1__/* .toDate */ .a)(date, context);
+    if (!result || result < date_ || isNaN(+date_)) result = date_;
+  });
+
+  return (0,_constructFrom_js__WEBPACK_IMPORTED_MODULE_0__/* .constructFrom */ .w)(context, result || NaN);
+}
+
+// Fallback for modularized imports:
+/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (max)));
+
+
+/***/ }),
+
 /***/ "./node_modules/date-fns/milliseconds.cjs":
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -273742,6 +273894,69 @@ function min(dates, options) {
 
   return (0, _index.constructFrom)(context, result || NaN);
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/min.js":
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   j: () => (/* binding */ min)
+/* harmony export */ });
+/* harmony import */ var _constructFrom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/date-fns/constructFrom.js");
+/* harmony import */ var _toDate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./node_modules/date-fns/toDate.js");
+
+
+
+/**
+ * The {@link min} function options.
+ */
+
+/**
+ * @name min
+ * @category Common Helpers
+ * @summary Returns the earliest of the given dates.
+ *
+ * @description
+ * Returns the earliest of the given dates.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param dates - The dates to compare
+ *
+ * @returns The earliest of the dates
+ *
+ * @example
+ * // Which of these dates is the earliest?
+ * const result = min([
+ *   new Date(1989, 6, 10),
+ *   new Date(1987, 1, 11),
+ *   new Date(1995, 6, 2),
+ *   new Date(1990, 0, 1)
+ * ])
+ * //=> Wed Feb 11 1987 00:00:00
+ */
+function min(dates, options) {
+  let result;
+  let context = options?.in;
+
+  dates.forEach((date) => {
+    // Use the first date object as the context function
+    if (!context && typeof date === "object")
+      context = _constructFrom_js__WEBPACK_IMPORTED_MODULE_0__/* .constructFrom */ .w.bind(null, date);
+
+    const date_ = (0,_toDate_js__WEBPACK_IMPORTED_MODULE_1__/* .toDate */ .a)(date, context);
+    if (!result || result > date_ || isNaN(+date_)) result = date_;
+  });
+
+  return (0,_constructFrom_js__WEBPACK_IMPORTED_MODULE_0__/* .constructFrom */ .w)(context, result || NaN);
+}
+
+// Fallback for modularized imports:
+/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (min)));
 
 
 /***/ }),
@@ -329009,88 +329224,8 @@ function tzScan(timeZone, interval) {
 
 // EXTERNAL MODULE: ./node_modules/date-fns/addDays.js
 var addDays = __webpack_require__("./node_modules/date-fns/addDays.js");
-// EXTERNAL MODULE: ./node_modules/date-fns/constructFrom.js
-var constructFrom = __webpack_require__("./node_modules/date-fns/constructFrom.js");
-// EXTERNAL MODULE: ./node_modules/date-fns/toDate.js
-var toDate = __webpack_require__("./node_modules/date-fns/toDate.js");
-;// ./node_modules/date-fns/addMonths.js
-
-
-
-/**
- * The {@link addMonths} function options.
- */
-
-/**
- * @name addMonths
- * @category Month Helpers
- * @summary Add the specified number of months to the given date.
- *
- * @description
- * Add the specified number of months to the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param date - The date to be changed
- * @param amount - The amount of months to be added.
- * @param options - The options object
- *
- * @returns The new date with the months added
- *
- * @example
- * // Add 5 months to 1 September 2014:
- * const result = addMonths(new Date(2014, 8, 1), 5)
- * //=> Sun Feb 01 2015 00:00:00
- *
- * // Add one month to 30 January 2023:
- * const result = addMonths(new Date(2023, 0, 30), 1)
- * //=> Tue Feb 28 2023 00:00:00
- */
-function addMonths(date, amount, options) {
-  const _date = (0,toDate/* toDate */.a)(date, options?.in);
-  if (isNaN(amount)) return (0,constructFrom/* constructFrom */.w)(options?.in || date, NaN);
-  if (!amount) {
-    // If 0 months, no-op to avoid changing times in the hour before end of DST
-    return _date;
-  }
-  const dayOfMonth = _date.getDate();
-
-  // The JS Date object supports date math by accepting out-of-bounds values for
-  // month, day, etc. For example, new Date(2020, 0, 0) returns 31 Dec 2019 and
-  // new Date(2020, 13, 1) returns 1 Feb 2021.  This is *almost* the behavior we
-  // want except that dates will wrap around the end of a month, meaning that
-  // new Date(2020, 13, 31) will return 3 Mar 2021 not 28 Feb 2021 as desired. So
-  // we'll default to the end of the desired month by adding 1 to the desired
-  // month and using a date of 0 to back up one day to the end of the desired
-  // month.
-  const endOfDesiredMonth = (0,constructFrom/* constructFrom */.w)(options?.in || date, _date.getTime());
-  endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
-  const daysInMonth = endOfDesiredMonth.getDate();
-  if (dayOfMonth >= daysInMonth) {
-    // If we're already at the end of the month, then this is the correct date
-    // and we're done.
-    return endOfDesiredMonth;
-  } else {
-    // Otherwise, we now know that setting the original day-of-month value won't
-    // cause an overflow, so set the desired day-of-month. Note that we can't
-    // just set the date of `endOfDesiredMonth` because that object may have had
-    // its time changed in the unusual case where where a DST transition was on
-    // the last day of the month and its local time was in the hour skipped or
-    // repeated next to a DST transition.  So we use `date` instead which is
-    // guaranteed to still have the original time.
-    _date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
-      dayOfMonth,
-    );
-    return _date;
-  }
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_addMonths = ((/* unused pure expression or super */ null && (addMonths)));
-
+// EXTERNAL MODULE: ./node_modules/date-fns/addMonths.js
+var addMonths = __webpack_require__("./node_modules/date-fns/addMonths.js");
 ;// ./node_modules/date-fns/addWeeks.js
 
 
@@ -329157,7 +329292,7 @@ function addWeeks(date, amount, options) {
  * //=> Sun Sep 01 2019 00:00:00
  */
 function addYears(date, amount, options) {
-  return addMonths(date, amount * 12, options);
+  return (0,addMonths/* addMonths */.P)(date, amount * 12, options);
 }
 
 // Fallback for modularized imports:
@@ -329220,6 +329355,8 @@ function normalizeInterval(context, interval) {
   return { start, end };
 }
 
+// EXTERNAL MODULE: ./node_modules/date-fns/constructFrom.js
+var constructFrom = __webpack_require__("./node_modules/date-fns/constructFrom.js");
 ;// ./node_modules/date-fns/eachMonthOfInterval.js
 
 
@@ -329368,6 +329505,8 @@ function eachYearOfInterval(interval, options) {
 
 // EXTERNAL MODULE: ./node_modules/date-fns/_lib/defaultOptions.js
 var _lib_defaultOptions = __webpack_require__("./node_modules/date-fns/_lib/defaultOptions.js");
+// EXTERNAL MODULE: ./node_modules/date-fns/toDate.js
+var toDate = __webpack_require__("./node_modules/date-fns/toDate.js");
 ;// ./node_modules/date-fns/endOfWeek.js
 
 
@@ -329713,110 +329852,10 @@ function isSameYear(laterDate, earlierDate, options) {
 // Fallback for modularized imports:
 /* harmony default export */ const date_fns_isSameYear = ((/* unused pure expression or super */ null && (isSameYear)));
 
-;// ./node_modules/date-fns/max.js
-
-
-
-/**
- * The {@link max} function options.
- */
-
-/**
- * @name max
- * @category Common Helpers
- * @summary Return the latest of the given dates.
- *
- * @description
- * Return the latest of the given dates.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param dates - The dates to compare
- *
- * @returns The latest of the dates
- *
- * @example
- * // Which of these dates is the latest?
- * const result = max([
- *   new Date(1989, 6, 10),
- *   new Date(1987, 1, 11),
- *   new Date(1995, 6, 2),
- *   new Date(1990, 0, 1)
- * ])
- * //=> Sun Jul 02 1995 00:00:00
- */
-function max(dates, options) {
-  let result;
-  let context = options?.in;
-
-  dates.forEach((date) => {
-    // Use the first date object as the context function
-    if (!context && typeof date === "object")
-      context = constructFrom/* constructFrom */.w.bind(null, date);
-
-    const date_ = (0,toDate/* toDate */.a)(date, context);
-    if (!result || result < date_ || isNaN(+date_)) result = date_;
-  });
-
-  return (0,constructFrom/* constructFrom */.w)(context, result || NaN);
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_max = ((/* unused pure expression or super */ null && (max)));
-
-;// ./node_modules/date-fns/min.js
-
-
-
-/**
- * The {@link min} function options.
- */
-
-/**
- * @name min
- * @category Common Helpers
- * @summary Returns the earliest of the given dates.
- *
- * @description
- * Returns the earliest of the given dates.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param dates - The dates to compare
- *
- * @returns The earliest of the dates
- *
- * @example
- * // Which of these dates is the earliest?
- * const result = min([
- *   new Date(1989, 6, 10),
- *   new Date(1987, 1, 11),
- *   new Date(1995, 6, 2),
- *   new Date(1990, 0, 1)
- * ])
- * //=> Wed Feb 11 1987 00:00:00
- */
-function min(dates, options) {
-  let result;
-  let context = options?.in;
-
-  dates.forEach((date) => {
-    // Use the first date object as the context function
-    if (!context && typeof date === "object")
-      context = constructFrom/* constructFrom */.w.bind(null, date);
-
-    const date_ = (0,toDate/* toDate */.a)(date, context);
-    if (!result || result > date_ || isNaN(+date_)) result = date_;
-  });
-
-  return (0,constructFrom/* constructFrom */.w)(context, result || NaN);
-}
-
-// Fallback for modularized imports:
-/* harmony default export */ const date_fns_min = ((/* unused pure expression or super */ null && (min)));
-
+// EXTERNAL MODULE: ./node_modules/date-fns/max.js
+var max = __webpack_require__("./node_modules/date-fns/max.js");
+// EXTERNAL MODULE: ./node_modules/date-fns/min.js
+var min = __webpack_require__("./node_modules/date-fns/min.js");
 ;// ./node_modules/date-fns/getDaysInMonth.js
 
 
@@ -330142,7 +330181,7 @@ class DateLib {
         this.addMonths = (date, amount) => {
             return this.overrides?.addMonths
                 ? this.overrides.addMonths(date, amount)
-                : addMonths(date, amount);
+                : (0,addMonths/* addMonths */.P)(date, amount);
         };
         /**
          * Adds the specified number of weeks to the given date.
@@ -330420,7 +330459,7 @@ class DateLib {
          * @returns The latest date.
          */
         this.max = (dates) => {
-            return this.overrides?.max ? this.overrides.max(dates) : max(dates);
+            return this.overrides?.max ? this.overrides.max(dates) : (0,max/* max */.T)(dates);
         };
         /**
          * Returns the earliest date in the given array of dates.
@@ -330429,7 +330468,7 @@ class DateLib {
          * @returns The earliest date.
          */
         this.min = (dates) => {
-            return this.overrides?.min ? this.overrides.min(dates) : min(dates);
+            return this.overrides?.min ? this.overrides.min(dates) : (0,min/* min */.j)(dates);
         };
         /**
          * Sets the month of the given date.
@@ -427653,4 +427692,4 @@ var Helmet = class extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 /***/ })
 
 }]);
-//# sourceMappingURL=861.8ce2413b.iframe.bundle.js.map
+//# sourceMappingURL=571.ebe9408d.iframe.bundle.js.map
