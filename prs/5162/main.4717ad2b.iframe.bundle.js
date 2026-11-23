@@ -111802,7 +111802,8 @@ var LineChart = function (_a) {
     className: classnames_default()(constants/* SURFACE_OVERFLOW_VISIBLE */.af, {
       [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel
     }),
-    accessibilityLayer: Boolean(tooltip)
+    // The escape-mode tooltip is only placed on mouse moves
+    accessibilityLayer: Boolean(tooltip) && !allowTooltipEscapeViewBox
   }, /*#__PURE__*/react.createElement(lib/* CartesianGrid */.dC, {
     stroke: src.colors.grey.lighter2
   }), /*#__PURE__*/react.createElement(lib/* XAxis */.WX, {
@@ -113186,8 +113187,10 @@ var LineChart = function (_ref3) {
         onMouseMove: onMouseMovement,
         className: classnames_default()(constants/* SURFACE_OVERFLOW_VISIBLE */.af, {
           [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel
-        }),
-        accessibilityLayer: Boolean(tooltip),
+        })
+        // The escape-mode tooltip is only placed on mouse moves
+        ,
+        accessibilityLayer: Boolean(tooltip) && !allowTooltipEscapeViewBox,
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(lib/* CartesianGrid */.dC, {
           stroke: src.colors.grey.lighter2
         }), /*#__PURE__*/(0,jsx_runtime.jsx)(lib/* XAxis */.WX, {
@@ -163172,4 +163175,4 @@ page.createChapter().addExample('CategoriesChart/story/Default.example.tsx', {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.2308564d.iframe.bundle.js.map
+//# sourceMappingURL=main.4717ad2b.iframe.bundle.js.map
