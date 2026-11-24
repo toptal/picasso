@@ -47,7 +47,7 @@ exports[`Tooltip when portals are disabled renders the content within the parent
         style="position: absolute; left: 0px; top: 0px; opacity: 0; pointer-events: none; transition: none; transform: translate(0px, 0px);"
       >
         <div
-          class="relative box-border rounded-sm font-sans max-w scale-100 opacity-100 [transform-origin:var(--transform transition-[opacity,scale] duration-200 ease-out data-[starting-style]:scale-75 data-[starting-style]:opacity-0 data-[ending-style]:scale-75 data-[ending-style]:opacity-0 shadow-4 bg-white text-graphite p-4 data-[side=top]:my-[0.875rem] data-[side=bottom]:my-[0.875rem] data-[side=left]:mx-[0.875rem] data-[side=right]:mx-[0.875rem]"
+          class="relative box-border rounded-sm font-sans max-w scale-100 opacity-100 [transform-origin:var(--transform transition-[opacity,scale] duration-200 ease-out data-[starting-style]:scale-75 data-[starting-style]:opacity-0 data-[ending-style]:scale-75 data-[ending-style]:opacity-0 shadow-4 bg-white text-graphite p-4 before:absolute before:content-[''] data-[side=top]:before:inset-x data-[side=top]:before:top-full data-[side=top]:before:h-[0.875rem] data-[side=bottom]:before:inset-x data-[side=bottom]:before:bottom-full data-[side=bottom]:before:h-[0.875rem] data-[side=left]:before:inset-y data-[side=left]:before:left-full data-[side=left]:before:w-[0.875rem] data-[side=right]:before:inset-y data-[side=right]:before:right-full data-[side=right]:before:w-[0.875rem]"
           data-align="center"
           data-base-ui-focusable=""
           data-open=""

@@ -82,7 +82,10 @@ const buildScaledFixture = (taintStyle: {
     .mockImplementation(
       (el: Element) =>
         (el === tainted
-          ? { scale: taintStyle.scale ?? 'none', transform: taintStyle.transform ?? 'none' }
+          ? {
+              scale: taintStyle.scale ?? 'none',
+              transform: taintStyle.transform ?? 'none',
+            }
           : { scale: 'none', transform: 'none' }) as CSSStyleDeclaration
     )
 
@@ -187,7 +190,10 @@ describe('Tooltip utils', () => {
           transform: 'matrix(0.5, 0, 0, 0.5, 0, 0)',
         })
 
-        expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 125, top: 260 })
+        expect(getSettledAnchorRect(anchor)).toMatchObject({
+          left: 125,
+          top: 260,
+        })
       })
     })
 
@@ -198,7 +204,10 @@ describe('Tooltip utils', () => {
         })
 
         // No scale component → not a taint → the live (translate-faithful) rect.
-        expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
+        expect(getSettledAnchorRect(anchor)).toMatchObject({
+          left: 999,
+          top: 999,
+        })
       })
     })
 
@@ -209,7 +218,10 @@ describe('Tooltip utils', () => {
         setAnimating(document, true) // something is animating, so the walk runs
         setAnimating(tainted, false) // …but the scaled ancestor itself is static
 
-        expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
+        expect(getSettledAnchorRect(anchor)).toMatchObject({
+          left: 999,
+          top: 999,
+        })
       })
     })
 
@@ -221,7 +233,10 @@ describe('Tooltip utils', () => {
         computedStyleSpy.mockClear()
         setAnimating(document, false)
 
-        expect(getSettledAnchorRect(anchor)).toMatchObject({ left: 999, top: 999 })
+        expect(getSettledAnchorRect(anchor)).toMatchObject({
+          left: 999,
+          top: 999,
+        })
         // The document-level gate returned before findScaleTaintedAncestor walked
         // (which would have read getComputedStyle on each ancestor).
         expect(computedStyleSpy).not.toHaveBeenCalled()
@@ -231,10 +246,10 @@ describe('Tooltip utils', () => {
 
   describe('getPositionerOffsets', () => {
     describe('when following the cursor', () => {
-      it('offsets by the cursor gap minus the popup margin', () => {
+      it('offsets by the cursor gap', () => {
         expect(
           getPositionerOffsets({ ...baseArgs, followCursor: true })
-        ).toEqual({ sideOffset: 10 - 14, alignOffset: 0 })
+        ).toEqual({ sideOffset: 10, alignOffset: 0 })
       })
 
       describe('and the tooltip is compact', () => {
@@ -259,22 +274,22 @@ describe('Tooltip utils', () => {
     })
 
     describe('when the anchor is a standard arrow anchor', () => {
-      it('sits flush against the anchor', () => {
+      it('offsets by the arrow gap', () => {
         const { sideOffset } = getPositionerOffsets(baseArgs)
 
         expect(typeof sideOffset).toBe('function')
-        expect((sideOffset as () => number)()).toBe(0)
+        expect((sideOffset as () => number)()).toBe(14)
       })
     })
 
     describe('when the anchor is a menu item', () => {
-      it('pulls the popup back by the gap difference', () => {
+      it('offsets by the shorter menu item gap', () => {
         const { sideOffset } = getPositionerOffsets({
           ...baseArgs,
           anchorRef: menuItemAnchorRef,
         })
 
-        expect((sideOffset as () => number)()).toBe(7 - 14)
+        expect((sideOffset as () => number)()).toBe(7)
       })
     })
   })

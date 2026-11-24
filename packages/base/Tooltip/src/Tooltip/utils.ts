@@ -3,7 +3,7 @@ import { fromPx, pxFromRem, spacingToRem } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
 import { SPACING_0 } from '@toptal/picasso-provider'
 
-import { COMPACT_POPUP_MARGIN, POPUP_MARGIN } from './styles'
+import { ARROW_GAP, COMPACT_POPUP_MARGIN } from './styles'
 import type { OffsetType, PlacementType } from './Tooltip'
 
 type Side = 'top' | 'bottom' | 'left' | 'right'
@@ -11,13 +11,13 @@ type Align = 'start' | 'center' | 'end'
 
 const remToPx = (remValue: string): number => fromPx(pxFromRem(remValue))
 
-const POPUP_MARGIN_PX = remToPx(POPUP_MARGIN) // 14px
+const ARROW_GAP_PX = remToPx(ARROW_GAP) // 14px
 const COMPACT_POPUP_MARGIN_PX = remToPx(COMPACT_POPUP_MARGIN) // 4px
 
 // Menu-item tooltips sit in a dense stack of options where a menu item's box
 // includes top padding, so the standard flush gap lands the arrow tip in that
 // padding — the dead strip above the option — and reads as pointing between
-// rows. Pull the popup ~7px closer (gap 7px vs the 14px margin band) so the tip
+// rows. Pull the popup ~7px closer (gap 7px vs the 14px arrow gap) so the tip
 // seats ~4px into the option's box, touching the option it describes without
 // sinking into it. Scoped to menu items only — every other anchor keeps the
 // standard gap. Calibrated against the option's SETTLED rect, which is also the
@@ -303,10 +303,10 @@ export const getPositionerOffsets = ({
 }): { sideOffset: number | (() => number); alignOffset: number } => {
   // followCursor positions against the cursor with its own fixed distance;
   // the public `offset` prop only applies to anchor-relative placement. The
-  // popup's own margin (styles.ts) already provides that much of the gap, so
-  // the sideOffset supplies only the remainder.
+  // compact popup's own margin (styles.ts) already provides that much of the
+  // gap, so the sideOffset supplies only the remainder.
   if (followCursor) {
-    const popupMargin = compact ? COMPACT_POPUP_MARGIN_PX : POPUP_MARGIN_PX
+    const popupMargin = compact ? COMPACT_POPUP_MARGIN_PX : 0
 
     return { sideOffset: FOLLOW_CURSOR_GAP - popupMargin, alignOffset: 0 }
   }
@@ -328,16 +328,15 @@ export const getPositionerOffsets = ({
     return { sideOffset: userSideOffset, alignOffset }
   }
 
-  // Only a menu-item anchor shifts the arrow gap, pulling the popup back by the
-  // difference. The gap depends on what the arrow points at (see
-  // MENU_ITEM_ARROW_GAP), so it resolves lazily via an offset function called at
-  // position time, when the anchor node is already committed — keeping the first
-  // paint correct without tracking the anchor in state.
+  // The gap depends on what the arrow points at (see MENU_ITEM_ARROW_GAP), so
+  // it resolves lazily via an offset function called at position time, when
+  // the anchor node is already committed — keeping the first paint correct
+  // without tracking the anchor in state.
   return {
     sideOffset: () =>
       (isMenuItemAnchor(anchorRef.current)
-        ? MENU_ITEM_ARROW_GAP - POPUP_MARGIN_PX
-        : 0) + userSideOffset,
+        ? MENU_ITEM_ARROW_GAP
+        : ARROW_GAP_PX) + userSideOffset,
     alignOffset,
   }
 }

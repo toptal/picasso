@@ -283,6 +283,44 @@ const DropdownTooltipExample = () => {
   )
 }
 
+// Anchored 350px from the top of a 700px viewport, so a 300px content
+// fits neither above nor below the button, and fits beside it
+const TallTooltipExample = ({ height }: { height: number }) => {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
+  return (
+    <div style={{ position: 'fixed', top: 350, left: 100 }}>
+      <Tooltip open={open} content={<div style={{ height }}>Content</div>}>
+        <Button>Button</Button>
+      </Tooltip>
+    </div>
+  )
+}
+
+const recordSides =
+  (sides: (string | null)[]) => ($tooltip: JQuery<HTMLElement>) => {
+    const observer = new MutationObserver(() =>
+      sides.push($tooltip[0].getAttribute('data-side'))
+    )
+
+    observer.observe($tooltip[0], { attributeFilter: ['data-side'] })
+
+    return observer
+  }
+
+const expectInViewportHeight =
+  (height: number) =>
+  ([popup]: JQuery<HTMLElement>) => {
+    const { top, bottom } = popup.getBoundingClientRect()
+
+    expect(top).to.be.at.least(0)
+    expect(bottom).to.be.at.most(height)
+  }
+
 const component = 'Tooltip'
 
 describe('Tooltip', () => {
@@ -521,6 +559,32 @@ describe('Tooltip', () => {
 
       // Tooltip should eventually disappear
       cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    })
+  })
+
+  describe('when the popup fits neither above nor below its anchor', () => {
+    beforeEach(() => {
+      cy.viewport(1000, 700)
+    })
+
+    it('stays on one side', () => {
+      const sides: (string | null)[] = []
+
+      cy.mount(<TallTooltipExample height={300} />)
+      cy.getByRole('tooltip').should('be.visible')
+      // eslint-disable-next-line promise/catch-or-return
+      cy.getByRole('tooltip').then(recordSides(sides))
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(1000)
+      cy.wrap(sides).should('have.length.lessThan', 2)
+    })
+
+    it('moves beside its anchor, inside the viewport', () => {
+      cy.mount(<TallTooltipExample height={420} />)
+      cy.getByRole('tooltip')
+        .should('be.visible')
+        .and('have.attr', 'data-side', 'right')
+        .and(expectInViewportHeight(700))
     })
   })
 })

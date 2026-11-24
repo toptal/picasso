@@ -1,6 +1,6 @@
 import type { MaxWidthType } from './Tooltip'
 
-export const POPUP_MARGIN = '0.875rem' // 14px
+export const ARROW_GAP = '0.875rem' // 14px
 export const COMPACT_POPUP_MARGIN = '0.25rem' // 4px
 
 export const createPopupClassNames = (
@@ -16,8 +16,8 @@ export const createPopupClassNames = (
   'transition-[opacity,scale] duration-200 ease-out',
   'data-[starting-style]:scale-75 data-[starting-style]:opacity-0',
   'data-[ending-style]:scale-75 data-[ending-style]:opacity-0',
-  // The margin literals below MUST match COMPACT_POPUP_MARGIN (`m-1` = 0.25rem)
-  // and POPUP_MARGIN (`0.875rem`) — Tailwind can't interpolate the constants, and
+  // The literals below MUST match COMPACT_POPUP_MARGIN (`m-1` = 0.25rem) and
+  // ARROW_GAP (`0.875rem`) — Tailwind can't interpolate the constants, and
   // utils.ts derives the positioner offsets from them, so drift breaks geometry.
   ...(compact
     ? [
@@ -26,8 +26,11 @@ export const createPopupClassNames = (
       ]
     : [
         'shadow-4 bg-white text-graphite-800 p-4',
-        'data-[side=top]:my-[0.875rem] data-[side=bottom]:my-[0.875rem]',
-        'data-[side=left]:mx-[0.875rem] data-[side=right]:mx-[0.875rem]',
+        "before:absolute before:content-['']",
+        'data-[side=top]:before:inset-x-0 data-[side=top]:before:top-full data-[side=top]:before:h-[0.875rem]',
+        'data-[side=bottom]:before:inset-x-0 data-[side=bottom]:before:bottom-full data-[side=bottom]:before:h-[0.875rem]',
+        'data-[side=left]:before:inset-y-0 data-[side=left]:before:left-full data-[side=left]:before:w-[0.875rem]',
+        'data-[side=right]:before:inset-y-0 data-[side=right]:before:right-full data-[side=right]:before:w-[0.875rem]',
       ]),
 ]
 

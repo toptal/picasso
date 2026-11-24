@@ -108,6 +108,13 @@ const expectOnlySentinelTooltip = () => {
   cy.getTooltip().should('have.length', 1).and('contain', SENTINEL)
 }
 
+// Halfway across the gap between the text and its tooltip, away from the
+// arrow, which is part of the tooltip
+const moveIntoGap = ([popup]: JQuery<HTMLElement>) =>
+  popup.getAttribute('data-side') === 'top'
+    ? cy.wrap(popup).realMouseMove(8, 7, { position: 'bottomLeft' })
+    : cy.wrap(popup).realMouseMove(8, -7, { position: 'topLeft' })
+
 const getRowUnder = ({ page }: Pointer) =>
   cy
     .document()
@@ -140,6 +147,16 @@ describe('TypographyOverflow when the pointer moves on', () => {
       cy.getTooltip().realMouseMove(8, 8, { position: 'topLeft' })
 
       // Open, not closing
+      cy.getByTestId('cell-0').should('have.attr', 'aria-describedby')
+    })
+
+    it('keeps the tooltip open while the pointer crosses the gap to it', () => {
+      cy.getByTestId('cell-0').realMouseMove(0, 0, CENTER)
+      cy.getTooltip().then(moveIntoGap)
+      // A close renders after the mouseover, so the check must not run first
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(300)
+
       cy.getByTestId('cell-0').should('have.attr', 'aria-describedby')
     })
   })
