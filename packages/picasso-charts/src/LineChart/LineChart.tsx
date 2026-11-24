@@ -114,7 +114,7 @@ const generateHighlightedAreas = (
       <ReferenceArea
         key={Object.values(props).join('-')}
         {...props}
-        // over the line and its dots, as before recharts 3
+        // draw highlight areas above the line and its dots
         zIndex={DefaultZIndexes.scatter + 1}
       />
     ))
