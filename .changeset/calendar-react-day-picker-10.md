@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-calendar': minor
+'@toptal/picasso-calendar': major
 ---
 
 ### Calendar
@@ -9,4 +9,4 @@
 - `handleOnClick` given to `renderDay` no longer selects a disabled day, and `handleOnEnter` now drives the range hover preview like the default day does
 - `renderMonthHeader` no longer receives the untyped `id` and `displayIndex` arguments
 - the exported `CalendarDay` and `CalendarMonthHeader` now take react-day-picker 10's `DayButton` and `MonthCaption` slot props; like before, they only work inside the calendar
-- the rendered markup follows react-day-picker 10 (`rdp-root` classes, `gridcell` cells with `data-day`, a labelled grid, weekday `aria-label`s), so snapshot tests that render Calendar or an open DatePicker need updating
+- the rendered markup follows react-day-picker 10 (`rdp-root` classes, `gridcell` cells with `data-day`, a labelled grid, weekday `aria-label`s, day buttons named by their full date), so snapshot tests that render Calendar or an open DatePicker need updating
