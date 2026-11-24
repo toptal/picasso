@@ -14,17 +14,26 @@ const chartConstants = {
   AXIS_LINE: false,
   IS_ANIMATION_ACTIVE: false,
   Y_AXIS_WIDTH: 60,
-  TOOLTIP_OFFSET: 10,
-  SCROLL_BAR_WIDTH: 16,
   NUMBER_OF_TICKS: 4,
 }
 
 // lets labels and indicators near the edges render outside the svg box
 export const SURFACE_OVERFLOW_VISIBLE = '[&>.recharts-surface]:overflow-visible'
 
-// FOCUS_RING.blue.focusVisible on the svg, which the chart wrapper renders
+// TODO: [PI-4318] FOCUS_RING.blue.focusVisible on the svg, written out; a test
+// syncs it. Forced colors keep the system outline, which shadows can't replace
 export const SURFACE_FOCUS_RING =
-  '[&>.recharts-surface]:outline-none [&>.recharts-surface:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
+  '[&>.recharts-surface]:not-forced-colors:outline-none [&>.recharts-surface:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
+
+// recharts' layer groups have tabindex="-1", so a click focuses them and the
+// next key press draws an outline. recharts 3.11.1 hides it the same way
+export const LAYER_NO_OUTLINE =
+  '[&_g[tabindex="-1"]]:not-forced-colors:outline-none'
+
+// the arrow keys still move the tooltip while a layer has focus, so the svg
+// rings it, like FOCUS_RING.blue.hasFocusVisible
+export const SURFACE_LAYER_FOCUS_RING =
+  '[&>.recharts-surface:has(:focus-visible)]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
 
 export const chartMargins = {
   top: chartConstants.DEFAULT_MARGIN,

@@ -193,6 +193,49 @@ describe('BarChart', () => {
       .should('have.attr', 'y', '134')
   })
 
+  it('keeps the escaping tooltip inside the chart horizontally', () => {
+    cy.mount(<TestBarChart allowTooltipEscapeViewBox />)
+
+    hoverOverBar('Toptal')
+    assertTooltipContent('Toptal')
+    // at the last bar the tooltip flips to its left, inside the chart
+    cy.get('.recharts-tooltip-wrapper').should($tooltip => {
+      const tooltip = $tooltip[0]
+      // the transform is where recharts puts it; its box animates there
+      const left = parseFloat(tooltip.style.transform.replace('translate(', ''))
+
+      expect(left).to.be.above(360)
+      expect(left + tooltip.offsetWidth).to.be.at.most(720)
+    })
+  })
+
+  it('rings the chart when the arrow keys move the tooltip from a clicked bar', () => {
+    cy.mount(<TestBarChart />)
+
+    getBar('Apple').realClick()
+    // a click alone shows no ring; the key press makes the focus visible
+    cy.focused().should('match', 'g[tabindex="-1"]')
+    cy.get('.recharts-surface').should('have.css', 'box-shadow', 'none')
+    cy.realPress('ArrowRight')
+    cy.get('.recharts-tooltip-wrapper').should('be.visible')
+    cy.get('.recharts-surface').should('not.have.css', 'box-shadow', 'none')
+  })
+
+  it('keeps its size when given a style', () => {
+    cy.mount(
+      <TestBarChart
+        tooltip={false}
+        data-testid='chart'
+        style={{ marginTop: 8 }}
+      />
+    )
+
+    cy.getByTestId('chart')
+      .should('have.css', 'margin-top', '8px')
+      .and('have.css', 'height', '200px')
+    cy.get('.recharts-surface').should('exist')
+  })
+
   describe('when values are 0s', () => {
     it('renders the label of each bar', () => {
       cy.mount(

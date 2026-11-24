@@ -1,16 +1,6 @@
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { ReactNode } from 'react'
 
-export type PositionTranslate = {
-  key: 'x' | 'y'
-  cursorCoordinate: number
-  chartScreenOffset: number
-  tooltipDimension: number
-  screenDimension: number
-  offset: number
-  viewbox: { x: number; y: number }
-}
-
 export interface BaseChartProps extends BaseProps {
   /** Height of chart */
   height?: number | string
@@ -22,8 +12,8 @@ export interface BaseChartProps extends BaseProps {
   customTooltip?: React.ReactElement
   /** Allows the tooltip to extend beyond the viewBox of the chart itself */
   allowTooltipEscapeViewBox?: boolean
-  /** Accessible name of the chart, rendered as the svg's `<title>` */
-  title?: string
+  /** Accessible name of the chart */
+  'aria-label'?: string
   /** Layout of the barChart */
   layout?: 'vertical' | 'horizontal'
 }

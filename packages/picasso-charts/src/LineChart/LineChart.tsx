@@ -1,6 +1,5 @@
 /* eslint-disable complexity */
-import React, { useRef } from 'react'
-import type { MouseEvent } from 'react'
+import React from 'react'
 import { palette } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import {
@@ -14,18 +13,18 @@ import {
   Line,
   ResponsiveContainer,
   Tooltip,
-  getRelativeCoordinate,
+  DefaultZIndexes,
 } from 'recharts'
-import type { MouseHandlerDataParam } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
 
 import { ChartDot } from './ChartDot'
-import calculateTooltipPosition from '../utils/calculate-tooltip-position'
 import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, {
   chartMargins,
+  LAYER_NO_OUTLINE,
   SURFACE_FOCUS_RING,
+  SURFACE_LAYER_FOCUS_RING,
   SURFACE_OVERFLOW_VISIBLE,
 } from '../utils/constants'
 import type {
@@ -113,7 +112,12 @@ const generateHighlightedAreas = (
 
   return highlightAreas.map(highlightArea =>
     highlightArea.map(props => (
-      <ReferenceArea key={Object.values(props).join('-')} {...props} />
+      <ReferenceArea
+        key={Object.values(props).join('-')}
+        {...props}
+        // draw highlight areas above the line and its dots
+        zIndex={DefaultZIndexes.scatter + 1}
+      />
     ))
   )
 }
@@ -155,8 +159,6 @@ const generateLineGraphs = (
     )
   })
 
-const positionOverride = { x: 0, y: 0 }
-
 const defaultGetYAxisTicks = (domain: Domain) =>
   getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS)
 
@@ -181,7 +183,7 @@ export const LineChart = ({
     showBottomYAxisLabel,
     children,
     formatYAxisTick,
-    title,
+    'aria-label': ariaLabel,
   } = props
 
   const yKey = Object.keys(lines)[0]
@@ -201,49 +203,27 @@ export const LineChart = ({
   const formatTicks = (tick: unknown) =>
     orderedData.find(item => item.order === tick)?.[xAxisKey] as string
 
-  const containerRef = useRef<HTMLDivElement | null>(null)
-
-  const onMouseMovement = (
-    { isTooltipActive, activeCoordinate }: MouseHandlerDataParam,
-    event: MouseEvent<SVGGraphicsElement>
-  ) => {
-    if (allowTooltipEscapeViewBox && isTooltipActive) {
-      const chartElem = containerRef.current
-      const tooltipElem =
-        chartElem?.querySelector<HTMLDivElement>('.recharts-tooltip-wrapper') ??
-        null
-
-      calculateTooltipPosition(
-        {
-          x: activeCoordinate?.x ?? 0,
-          y: getRelativeCoordinate(event).relativeY,
-        },
-        tooltipElem,
-        chartElem
-      )
-    }
-  }
-
   const yDomain: Domain = [BOTTOM_DOMAIN, topDomain]
 
   return (
-    <div
-      // ResponsiveContainer expects a wrapper with a fixed height
-      style={{ height }}
-      ref={containerRef}
-    >
+    // ResponsiveContainer expects a wrapper with a fixed height
+    <div style={{ height }}>
       <StyleOverrides />
       <ResponsiveContainer>
         <ComposedChart
           margin={chartMargins}
           data={orderedData}
-          onMouseMove={onMouseMovement}
-          title={title}
-          className={cx(SURFACE_OVERFLOW_VISIBLE, SURFACE_FOCUS_RING, {
-            [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
-          })}
-          // The escape-mode tooltip is only placed on mouse moves
-          accessibilityLayer={Boolean(tooltip) && !allowTooltipEscapeViewBox}
+          aria-label={ariaLabel}
+          className={cx(
+            SURFACE_OVERFLOW_VISIBLE,
+            SURFACE_FOCUS_RING,
+            LAYER_NO_OUTLINE,
+            {
+              [SURFACE_LAYER_FOCUS_RING]: tooltip,
+              [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
+            }
+          )}
+          accessibilityLayer={Boolean(tooltip)}
         >
           <CartesianGrid stroke={palette.grey.lighter2} />
 
@@ -301,11 +281,7 @@ export const LineChart = ({
             <Tooltip
               wrapperStyle={TOOLTIP_WRAPPER_STYLE}
               allowEscapeViewBox={
-                allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
-              }
-              // override calculations for tooltip positioning
-              position={
-                allowTooltipEscapeViewBox ? positionOverride : undefined
+                allowTooltipEscapeViewBox ? { x: false, y: true } : undefined
               }
               content={customTooltip}
             />
