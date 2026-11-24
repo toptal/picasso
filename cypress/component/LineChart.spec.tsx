@@ -232,6 +232,8 @@ describe('LineChart', () => {
       </>
     )
 
+    // Tab skips the chart until ResponsiveContainer has measured and drawn it
+    cy.get('.recharts-surface').should('exist')
     cy.contains('Before').realClick()
     cy.realPress('Tab')
     cy.get('.recharts-surface')

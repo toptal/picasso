@@ -193,6 +193,30 @@ describe('BarChart', () => {
       .should('have.attr', 'y', '134')
   })
 
+  it('keeps the escaping tooltip inside the chart horizontally', () => {
+    cy.mount(<TestBarChart allowTooltipEscapeViewBox />)
+
+    hoverOverBar('Toptal')
+    // at the last bar the tooltip flips to its left, inside the chart
+    cy.get('.recharts-tooltip-wrapper').should($tooltip => {
+      const tooltip = $tooltip[0]
+      // the transform is where recharts puts it; its box animates there
+      const left = parseFloat(tooltip.style.transform.replace('translate(', ''))
+
+      expect(left).to.be.above(360)
+      expect(left + tooltip.offsetWidth).to.be.at.most(720)
+    })
+  })
+
+  it('rings the chart when the arrow keys move the tooltip from a clicked bar', () => {
+    cy.mount(<TestBarChart />)
+
+    getBar('Apple').realClick()
+    cy.focused().should('not.match', '.recharts-surface')
+    cy.realPress('ArrowRight')
+    cy.get('.recharts-surface').should('not.have.css', 'box-shadow', 'none')
+  })
+
   it('keeps its size when given a style', () => {
     cy.mount(
       <TestBarChart

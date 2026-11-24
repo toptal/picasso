@@ -151,7 +151,7 @@ const BarChart = <T extends string>({
           wrapperStyle={TOOLTIP_WRAPPER_STYLE}
           data-testid={testIds?.tooltip}
           allowEscapeViewBox={
-            allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
+            allowTooltipEscapeViewBox ? { x: false, y: true } : undefined
           }
           content={customTooltip}
           cursor={false}
