@@ -9,7 +9,18 @@ const CHART_DATA = [
   { x: 'Oct 22', talents: 1.9 },
 ]
 
+const emulateForcedColors = (value: string) =>
+  cy.wrap(null, { log: false }).then(() =>
+    Cypress.automation('remote:debugger:protocol', {
+      command: 'Emulation.setEmulatedMedia',
+      params: { features: [{ name: 'forced-colors', value }] },
+    })
+  )
+
 describe('LineChart', () => {
+  // runs even when a test fails, so the emulation can't leak into the next
+  afterEach(() => emulateForcedColors(''))
+
   it('renders the chart parts its children wrap in a fragment', () => {
     cy.mount(
       <LineChart
@@ -142,14 +153,6 @@ describe('LineChart', () => {
   })
 
   it('keeps the system focus outline in forced colors mode', () => {
-    const emulateForcedColors = (value: string) =>
-      cy.wrap(null, { log: false }).then(() =>
-        Cypress.automation('remote:debugger:protocol', {
-          command: 'Emulation.setEmulatedMedia',
-          params: { features: [{ name: 'forced-colors', value }] },
-        })
-      )
-
     emulateForcedColors('active')
     cy.mount(
       <>
@@ -167,6 +170,5 @@ describe('LineChart', () => {
     cy.get('.recharts-surface')
       .should('have.focus')
       .and('not.have.css', 'outline-style', 'none')
-    emulateForcedColors('')
   })
 })

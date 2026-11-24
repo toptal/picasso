@@ -29,7 +29,7 @@ export const SURFACE_FOCUS_RING =
 
 // recharts' layer groups have tabindex="-1", so a click focuses them and the
 // next key press draws an outline. recharts 3.11.1 hides it the same way
-export const LAYER_NO_OUTLINE = '[&_g[tabindex]]:outline-none'
+export const LAYER_NO_OUTLINE = '[&_g[tabindex="-1"]]:outline-none'
 
 export const chartMargins = {
   top: chartConstants.DEFAULT_MARGIN,
