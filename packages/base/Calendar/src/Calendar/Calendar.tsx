@@ -11,6 +11,7 @@ import type { DateRange, DayProps, Matcher } from 'react-day-picker'
 import { DayPicker } from 'react-day-picker'
 import {
   addMonths,
+  differenceInCalendarMonths,
   format,
   isBefore,
   isEqual,
@@ -86,6 +87,24 @@ const getDefaultNavigationMonth = (
       ? (value as DateRangeType)[0]
       : (value as Date)
     : undefined
+
+// The month react-day-picker shows when none is passed: today, moved within
+// minDate and maxDate
+const getFallbackMonth = (
+  numberOfMonths: number,
+  minDate?: Date,
+  maxDate?: Date
+) => {
+  let month = new Date()
+
+  if (maxDate && differenceInCalendarMonths(maxDate, month) < 0) {
+    month = addMonths(maxDate, 1 - numberOfMonths)
+  }
+
+  return minDate && differenceInCalendarMonths(month, minDate) < 0
+    ? minDate
+    : month
+}
 
 // react-day-picker hides the outside days of the months past minDate and
 // maxDate; render them as disabled days instead
@@ -255,17 +274,25 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const visibleMonths = shouldRenderMultipleMonths ? numberOfMonths : 1
   const month = navigationMonth || activeMonth
 
-  // react-day-picker pulls a month outside startMonth/endMonth inside them;
-  // widen them for the month the consumer passes, not for navigation
-  const passedMonth = activeMonth ?? getDefaultNavigationMonth(value, range)
-  const startMonth =
-    minDate && passedMonth ? min([minDate, passedMonth]) : minDate
-  const endMonth =
-    maxDate && passedMonth
-      ? max([maxDate, addMonths(passedMonth, visibleMonths - 1)])
-      : maxDate
   const shouldDisplayDropdownNavigation =
     dropdownNavigation && minDate && maxDate
+
+  // react-day-picker pulls a month outside startMonth/endMonth inside them,
+  // and stops rendering months at endMonth; widen them for the month the
+  // consumer passes, not for navigation. The dropdowns list every month
+  // between them, so they keep minDate and maxDate
+  const shownMonth =
+    activeMonth ??
+    getDefaultNavigationMonth(value, range) ??
+    getFallbackMonth(visibleMonths, minDate, maxDate)
+  const startMonth =
+    minDate && !shouldDisplayDropdownNavigation
+      ? min([minDate, shownMonth])
+      : minDate
+  const endMonth =
+    maxDate && !shouldDisplayDropdownNavigation
+      ? max([maxDate, addMonths(shownMonth, visibleMonths - 1)])
+      : maxDate
 
   return (
     <div

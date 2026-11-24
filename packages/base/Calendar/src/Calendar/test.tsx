@@ -116,6 +116,16 @@ describe('Calendar', () => {
     })
   })
 
+  it('names each day with its full date', () => {
+    const { getByRole } = render(
+      <Calendar onChange={() => {}} activeMonth={new Date(2024, 4, 1)} />
+    )
+
+    expect(
+      getByRole('button', { name: /Wednesday, May 15th, 2024/ })
+    ).toBeInTheDocument()
+  })
+
   describe('when navigating between months', () => {
     it('moves one month per click', () => {
       const { getByRole, getByText } = render(
@@ -261,6 +271,40 @@ describe('Calendar', () => {
       expect(getByRole('grid', { name: 'July 2024' })).toBeInTheDocument()
       fireEvent.click(getAllByTestId('day-button-15')[1])
       expect(onChange).not.toHaveBeenCalled()
+    })
+
+    it('shows two months when minDate and maxDate share a month and nothing is picked', () => {
+      const { getAllByRole } = render(
+        <Calendar
+          onChange={() => {}}
+          numberOfMonths={2}
+          minDate={new Date(2024, 5, 3)}
+          maxDate={new Date(2024, 5, 20)}
+        />
+      )
+
+      expect(getAllByRole('grid')).toHaveLength(2)
+    })
+
+    it('lists only the years between minDate and maxDate in the dropdown', () => {
+      const { getAllByRole } = render(
+        <Calendar
+          onChange={() => {}}
+          dropdownNavigation
+          minDate={new Date(2019, 3, 1)}
+          maxDate={new Date(2022, 5, 30)}
+          activeMonth={new Date(2017, 0, 1)}
+        />
+      )
+
+      const yearSelect = getAllByRole('combobox')[1]
+      const years = Array.from(
+        yearSelect.querySelectorAll('option'),
+        option => option.value
+      )
+
+      expect(years).toEqual(['2019', '2020', '2021', '2022'])
+      expect(yearSelect).toHaveValue('2019')
     })
 
     it('moves a year picked in the dropdown into the allowed months', () => {
