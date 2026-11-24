@@ -26,11 +26,6 @@ export const createPopupClassNames = (
       ]
     : [
         'shadow-4 bg-white text-graphite-800 p-4',
-        // The arrow gap is a positioner `sideOffset`, not a margin, so the
-        // popup has one size on every side and a fallback to the other axis
-        // cannot make it fit again on its first side. This band covers the
-        // gap so a pointer that moves from the anchor into an interactive
-        // popup stays over the tooltip
         "before:absolute before:content-['']",
         'data-[side=top]:before:inset-x-0 data-[side=top]:before:top-full data-[side=top]:before:h-[0.875rem]',
         'data-[side=bottom]:before:inset-x-0 data-[side=bottom]:before:bottom-full data-[side=bottom]:before:h-[0.875rem]',
