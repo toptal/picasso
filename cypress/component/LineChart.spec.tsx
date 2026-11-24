@@ -17,6 +17,10 @@ const emulateForcedColors = (value: string) =>
     })
   )
 
+// the transform is where recharts puts the tooltip; its box animates there
+const tooltipLeft = (tooltip: HTMLElement) =>
+  parseFloat(tooltip.style.transform.replace('translate(', ''))
+
 describe('LineChart', () => {
   // runs even when a test fails, so the emulation can't leak into the next
   afterEach(() => emulateForcedColors(''))
@@ -55,13 +59,57 @@ describe('LineChart', () => {
       expect($tooltip[0].style.transform).to.match(/, 90px\)$/)
     })
 
+    cy.get('.recharts-wrapper').trigger('mouseout')
     cy.get('.recharts-surface').focus()
-    cy.realPress('ArrowLeft')
+    // focus shows the first point's tooltip, at the chart's left edge
     cy.get('.recharts-tooltip-wrapper')
       .should('be.visible')
       .and($tooltip => {
-        expect($tooltip[0].style.transform).not.to.equal('translate(0px, 0px)')
+        expect(tooltipLeft($tooltip[0])).to.be.below(200)
       })
+
+    cy.realPress('ArrowRight')
+    cy.get('.recharts-tooltip-wrapper').should($tooltip => {
+      expect(tooltipLeft($tooltip[0])).to.be.above(400)
+    })
+  })
+
+  it('keeps the escaping tooltip inside the chart horizontally', () => {
+    cy.mount(
+      <LineChart
+        data={CHART_DATA}
+        lineConfig={{ talents: { color: palette.blue.main } }}
+        tooltip
+        allowTooltipEscapeViewBox
+      />
+    )
+
+    cy.get('.recharts-surface').focus()
+    cy.realPress('ArrowRight')
+    cy.realPress('ArrowRight')
+    // at the last point the tooltip flips to its left, inside the chart
+    cy.get('.recharts-tooltip-wrapper').should($tooltip => {
+      const tooltip = $tooltip[0]
+      const chartWidth = $tooltip.parent().width() ?? 0
+      const tooltipRight = tooltipLeft(tooltip) + tooltip.offsetWidth
+
+      expect(tooltipRight).to.be.within(chartWidth - 60, chartWidth)
+    })
+  })
+
+  it('rings the chart when the arrow keys move the tooltip from a clicked layer', () => {
+    cy.mount(
+      <LineChart
+        data={CHART_DATA}
+        lineConfig={{ talents: { color: palette.blue.main } }}
+        tooltip
+      />
+    )
+
+    cy.get('.recharts-line-curve').realClick()
+    cy.focused().should('not.match', '.recharts-surface')
+    cy.realPress('ArrowRight')
+    cy.get('.recharts-surface').should('not.have.css', 'box-shadow', 'none')
   })
 
   it('shows the bottom Y-axis label only when asked to', () => {
@@ -150,6 +198,25 @@ describe('LineChart', () => {
       .should('have.focus')
       .and('have.css', 'outline-style', 'none')
       .and('not.have.css', 'box-shadow', 'none')
+  })
+
+  it('keeps the system outline on a focused layer in forced colors mode', () => {
+    emulateForcedColors('active')
+    cy.mount(
+      <LineChart
+        data={CHART_DATA}
+        lineConfig={{ talents: { color: palette.blue.main } }}
+      />
+    )
+
+    cy.get('.recharts-line-curve').realClick()
+    cy.realPress('PageDown')
+    cy.document().should(doc => {
+      const layer = doc.activeElement as Element
+
+      expect(layer.matches('g[tabindex="-1"]:focus-visible')).to.equal(true)
+      expect(getComputedStyle(layer).outlineStyle).not.to.equal('none')
+    })
   })
 
   it('keeps the system focus outline in forced colors mode', () => {

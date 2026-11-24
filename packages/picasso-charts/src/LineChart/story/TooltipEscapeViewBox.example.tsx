@@ -10,6 +10,7 @@ const Example = () => (
         aria-label='Talents per day'
         data={CHART_DATA}
         height={120}
+        getYAxisTicks={([bottom, top]) => [bottom, (bottom + top) / 2, top]}
         tooltip
         allowTooltipEscapeViewBox
         lineConfig={{

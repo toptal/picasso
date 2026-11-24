@@ -24,6 +24,7 @@ import CHART_CONSTANTS, {
   chartMargins,
   LAYER_NO_OUTLINE,
   SURFACE_FOCUS_RING,
+  SURFACE_LAYER_FOCUS_RING,
   SURFACE_OVERFLOW_VISIBLE,
 } from '../utils/constants'
 import type {
@@ -218,6 +219,7 @@ export const LineChart = ({
             SURFACE_FOCUS_RING,
             LAYER_NO_OUTLINE,
             {
+              [SURFACE_LAYER_FOCUS_RING]: tooltip,
               [HIDE_BOTTOM_Y_AXIS_LABEL_CLASS]: !showBottomYAxisLabel,
             }
           )}
@@ -279,7 +281,7 @@ export const LineChart = ({
             <Tooltip
               wrapperStyle={TOOLTIP_WRAPPER_STYLE}
               allowEscapeViewBox={
-                allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
+                allowTooltipEscapeViewBox ? { x: false, y: true } : undefined
               }
               content={customTooltip}
             />

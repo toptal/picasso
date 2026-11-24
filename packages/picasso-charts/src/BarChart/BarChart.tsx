@@ -22,6 +22,7 @@ import CHART_CONSTANTS, {
   chartMargins,
   LAYER_NO_OUTLINE,
   SURFACE_FOCUS_RING,
+  SURFACE_LAYER_FOCUS_RING,
   SURFACE_OVERFLOW_VISIBLE,
 } from '../utils/constants'
 
@@ -229,7 +230,8 @@ const BarChart = <T extends string>({
           className={cx(
             SURFACE_OVERFLOW_VISIBLE,
             SURFACE_FOCUS_RING,
-            LAYER_NO_OUTLINE
+            LAYER_NO_OUTLINE,
+            { [SURFACE_LAYER_FOCUS_RING]: tooltip }
           )}
           accessibilityLayer={Boolean(tooltip)}
           aria-label={ariaLabel}
