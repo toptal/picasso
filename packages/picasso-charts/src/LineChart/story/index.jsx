@@ -22,3 +22,8 @@ page
     'LineChart/story/BottomYAxisLabel.example.tsx',
     'Show bottom Y axis label'
   )
+  .addExample('LineChart/story/TooltipEscapeViewBox.example.tsx', {
+    title: 'Tooltip escaping the chart',
+    description:
+      'With `allowTooltipEscapeViewBox`, the tooltip can extend beyond the chart, which helps short charts. It follows the mouse, touch and keyboard (Tab to the chart, then use the arrow keys).',
+  })
