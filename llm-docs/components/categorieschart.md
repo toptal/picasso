@@ -11,6 +11,7 @@ Use BarChart with analytics data
 | isAnimationActive | `boolean` | - | If set false, animation of bar will be disabled |
 | height | `string \| number` | - | Height of chart |
 | width | `string \| number` | - | Width of chart |
+| aria-label | `string` | - | Accessible name of the chart |
 
 ### Default
 

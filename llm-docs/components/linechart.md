@@ -13,6 +13,7 @@ Responsive line charts
 | tooltip | `boolean` | `false` | Toggle tooltip on hover |
 | customTooltip | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Requires `tooltip` to be `true` |
 | allowTooltipEscapeViewBox | `boolean` | `false` | Allows the tooltip to extend beyond the viewBox of the chart itself |
+| aria-label | `string` | - | Accessible name of the chart |
 | layout | `"vertical" \| "horizontal"` | - | Layout of the barChart |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
@@ -332,6 +333,47 @@ const CHART_DATA = [
   { x: 'Oct 24', talents: 4.8 },
   { x: 'Oct 25', talents: 9.1 },
   { x: 'Oct 26', talents: 10 },
+]
+
+export default Example
+```
+
+### Tooltip escaping the chart
+
+With `allowTooltipEscapeViewBox`, the tooltip can extend beyond the chart, which helps short charts. It follows the mouse, touch and keyboard (Tab to the chart, then use the arrow keys).
+
+```tsx
+import React from 'react'
+import { palette } from '@toptal/picasso-utils'
+import { LineChart } from '@toptal/picasso-charts'
+import { Page } from '@toptal/picasso'
+
+const Example = () => (
+  <Page.Content>
+    <Page.Article>
+      <LineChart
+        aria-label='Talents per day'
+        data={CHART_DATA}
+        height={120}
+        getYAxisTicks={([bottom, top]) => [bottom, (bottom + top) / 2, top]}
+        tooltip
+        allowTooltipEscapeViewBox
+        lineConfig={{
+          talents: { color: palette.blue.main },
+        }}
+      />
+    </Page.Article>
+  </Page.Content>
+)
+
+const CHART_DATA = [
+  { x: 'Oct 20', talents: 1.7 },
+  { x: 'Oct 21', talents: 2 },
+  { x: 'Oct 22', talents: 1.7 },
+  { x: 'Oct 23', talents: 2 },
+  { x: 'Oct 24', talents: 1.5 },
+  { x: 'Oct 25', talents: 2.7 },
+  { x: 'Oct 26', talents: 3.7 },
 ]
 
 export default Example

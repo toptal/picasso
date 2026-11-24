@@ -13,6 +13,7 @@ Use LineChart with analytics data
 | tooltip | `boolean` | - | Toggle tooltip on hover |
 | customTooltip | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Requires `tooltip` to be `true` |
 | allowTooltipEscapeViewBox | `boolean` | - | Allows the tooltip to extend beyond the viewBox of the chart itself |
+| aria-label | `string` | - | Accessible name of the chart |
 | layout | `"vertical" \| "horizontal"` | - | Layout of the barChart |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |

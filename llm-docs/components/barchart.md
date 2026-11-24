@@ -152,7 +152,7 @@ const Example = () => (
       getBarColor={() => palette.blue.main}
       renderBarIndicators={({ dataKey, dataItem }) => {
         const indicator = INDICATORS[dataKey]
-        const isEnterprise = dataItem?.value?.isEnterprise
+        const isEnterprise = dataItem?.isEnterprise
 
         if (indicator && isEnterprise) {
           return (
@@ -459,7 +459,7 @@ const Example = () => (
       getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
       renderBarIndicators={({ dataKey, dataItem }) => {
         const indicator = INDICATORS[dataKey]
-        const valueKey = dataItem?.tooltipPayload?.[0]?.dataKey
+        const valueKey = dataItem?.dataKey
 
         if (indicator && valueKey === 'breakAmount') {
           return (
