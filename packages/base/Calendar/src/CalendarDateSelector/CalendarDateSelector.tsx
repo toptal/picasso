@@ -7,12 +7,13 @@ import { twJoin } from '@toptal/picasso-tailwind-merge'
 import { FOCUS_RING } from '@toptal/picasso-shared'
 
 const CalendarDateSelector = ({
-  children,
-  caption,
+  options,
   onChange,
   value,
   'aria-label': ariaLabel,
 }: DropdownProps): React.ReactElement => {
+  const caption = options?.find(option => option.value === Number(value))?.label
+
   return (
     <label
       aria-label={ariaLabel}
@@ -45,7 +46,15 @@ const CalendarDateSelector = ({
         value={value}
         onChange={onChange}
       >
-        {children}
+        {options?.map(option => (
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+          >
+            {option.label}
+          </option>
+        ))}
       </select>
     </label>
   )

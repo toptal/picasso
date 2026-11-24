@@ -79,7 +79,7 @@ importers:
         version: 7.23.1
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@changesets/changelog-github':
         specifier: ^0.5.0
         version: 0.5.0(encoding@0.1.13)
@@ -619,7 +619,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -984,7 +984,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-checkbox':
         specifier: workspace:*
         version: link:../Checkbox
@@ -1068,8 +1068,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       react-day-picker:
-        specifier: ^8.10.2
-        version: 8.10.2(date-fns@4.4.0)(react@18.3.1)
+        specifier: ^10.0.1
+        version: 10.0.2(@types/react@17.0.39)(react@18.3.1)
     devDependencies:
       '@toptal/picasso-provider':
         specifier: workspace:*
@@ -1113,7 +1113,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -1258,7 +1258,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -1910,7 +1910,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-button':
         specifier: workspace:*
         version: link:../Button
@@ -2606,7 +2606,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -2674,7 +2674,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-form-label':
         specifier: workspace:*
         version: link:../FormLabel
@@ -2745,7 +2745,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-container':
         specifier: workspace:*
         version: link:../Container
@@ -2943,7 +2943,7 @@ importers:
     dependencies:
       '@base-ui/react':
         specifier: ^1.6.0
-        version: 1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@toptal/picasso-shared':
         specifier: workspace:*
         version: link:../../shared
@@ -5173,6 +5173,9 @@ packages:
 
   '@cypress/xvfb@1.2.4':
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
+
+  '@date-fns/tz@1.5.0':
+    resolution: {integrity: sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==}
 
   '@dependents/detective-less@3.0.2':
     resolution: {integrity: sha512-1YUvQ+e0eeTWAHoN8Uz2x2U37jZs6IGutiIE5LXId7cxfUGhtZjzxE06FdUiuiRrW+UE0vNCdSNPH2lY4dQCOQ==}
@@ -15110,11 +15113,15 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
-  react-day-picker@8.10.2:
-    resolution: {integrity: sha512-LK68OTbHB3oJNhl9cA0qVizzp3o26w61YSjAFkYi67N86iro32wx86kSNeFU/hq+gI8m1yzWhnomMLfZ041RzQ==}
+  react-day-picker@10.0.2:
+    resolution: {integrity: sha512-QetiKtZWE9Uaw/pM/SYNv6WPYOTRnSJ2puL0GgwkmUFMIwiY0dtjH1W4B7DOVXVNQM0ZOClGpH/heOfBSzWeiA==}
+    engines: {node: '>=18'}
     peerDependencies:
-      date-fns: ^2.28.0 || ^3.0.0
+      '@types/react': '17'
       react: ^18.3.1
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   react-deprecate@0.1.0:
     resolution: {integrity: sha512-9ooyaovhANHgfuOxXRgrEiEfWjEhvygeSxrRTGxNlXErnXnyHBGjxCxrKYsT/Gsc62lS9rFOBeK0c2wwdyUnvQ==}
@@ -19176,7 +19183,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@base-ui/react@1.6.0(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@base-ui/react@1.6.0(@date-fns/tz@1.5.0)(@types/react@17.0.39)(date-fns@4.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@base-ui/utils': 0.3.1(@types/react@17.0.39)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -19186,6 +19193,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       use-sync-external-store: 1.6.0(react@18.3.1)
     optionalDependencies:
+      '@date-fns/tz': 1.5.0
       '@types/react': 17.0.39
       date-fns: 4.4.0
 
@@ -19593,6 +19601,8 @@ snapshots:
       lodash.once: 4.1.1
     transitivePeerDependencies:
       - supports-color
+
+  '@date-fns/tz@1.5.0': {}
 
   '@dependents/detective-less@3.0.2':
     dependencies:
@@ -32976,10 +32986,13 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-day-picker@8.10.2(date-fns@4.4.0)(react@18.3.1):
+  react-day-picker@10.0.2(@types/react@17.0.39)(react@18.3.1):
     dependencies:
+      '@date-fns/tz': 1.5.0
       date-fns: 4.4.0
       react: 18.3.1
+    optionalDependencies:
+      '@types/react': 17.0.39
 
   react-deprecate@0.1.0: {}
 

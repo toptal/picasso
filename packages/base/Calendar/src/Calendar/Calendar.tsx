@@ -7,13 +7,18 @@ import React, {
 } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { FOCUS_RING } from '@toptal/picasso-shared'
-import type {
-  SelectRangeEventHandler,
-  SelectSingleEventHandler,
-  DateRange,
-} from 'react-day-picker'
+import type { DateRange, DayProps, Matcher } from 'react-day-picker'
 import { DayPicker } from 'react-day-picker'
-import { format, isEqual, isWeekend } from 'date-fns'
+import {
+  addMonths,
+  differenceInCalendarMonths,
+  format,
+  isBefore,
+  isEqual,
+  isWeekend,
+  max,
+  min,
+} from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -82,6 +87,36 @@ const getDefaultNavigationMonth = (
       ? (value as DateRangeType)[0]
       : (value as Date)
     : undefined
+
+// The month react-day-picker shows when none is passed: today, moved within
+// minDate and maxDate
+const getFallbackMonth = (
+  numberOfMonths: number,
+  minDate?: Date,
+  maxDate?: Date
+) => {
+  let month = new Date()
+
+  if (maxDate && differenceInCalendarMonths(maxDate, month) < 0) {
+    month = addMonths(maxDate, 1 - numberOfMonths)
+  }
+
+  return minDate && differenceInCalendarMonths(month, minDate) < 0
+    ? minDate
+    : month
+}
+
+// react-day-picker hides the outside days of the months past minDate and
+// maxDate; render them as disabled days instead
+const CalendarDayCell = ({ day, modifiers, children, ...props }: DayProps) => (
+  <td {...props}>
+    {modifiers.hidden ? (
+      <CalendarDay day={day} modifiers={modifiers} />
+    ) : (
+      children
+    )}
+  </td>
+)
 
 const getRootClassName = (hasFooter: boolean, className?: string) =>
   twMerge(
@@ -172,36 +207,29 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     [indicatedIntervals]
   )
 
-  const handleSingleDateChange: SelectSingleEventHandler = date =>
-    date && onChange(date)
+  // A click starts a range unless one is half-picked, in which case it
+  // completes it and "onChange" is called
+  const handleRangeSelect = (date: Date) => {
+    const rangeStart = rangeValue?.to ? undefined : rangeValue?.from
 
-  // "handleRangeChange" is fired in two cases – either the range start or the range end is set
-  // The handler needs to distinguish both cases to enable specific modifiers and call "onChange"
-  // handler (if it is applicable when both range start and end are set)
-  const handleRangeChange: SelectRangeEventHandler = (
-    range,
-    selectedDay,
-    { range_middle: isRangeMiddle }
-  ) => {
-    const currentRangeExists = Boolean(rangeValue?.from && rangeValue?.to)
+    setRangeSelectionHoverDate(null)
 
-    if (isRangeMiddle || currentRangeExists) {
-      setRangeValue({
-        from: selectedDay,
-        to: undefined,
-      })
-    } else {
-      setRangeSelectionHoverDate(null)
-      setRangeValue({
-        from: range?.from,
-        to: range?.to,
-      })
+    if (!rangeStart) {
+      setRangeValue({ from: date, to: undefined })
 
-      if (range?.from && range?.to) {
-        onChange([range.from, range.to])
-      }
+      return
     }
+
+    const [from, to] = isBefore(date, rangeStart)
+      ? [date, rangeStart]
+      : [rangeStart, date]
+
+    setRangeValue({ from, to })
+    onChange([from, to])
   }
+
+  const handleDaySelect = (date: Date) =>
+    range ? handleRangeSelect(date) : onChange(date)
 
   const handleDayEnter = (date: Date) =>
     range && rangeValue?.from && setRangeSelectionHoverDate(date)
@@ -212,14 +240,59 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       indicated: isIndicated,
       temporaryRangeMiddle: isTemporaryRangeMiddle,
       temporaryRangeEnd: isTemporaryRangeEnd,
+      // react-day-picker flags no range start or end until both are picked;
+      // the picked start counts as both
+      rangeStart: rangeValue?.from ?? false,
+      rangeEnd: rangeValue?.to ?? rangeValue?.from ?? false,
     }),
-    [isWeekend, isIndicated, isTemporaryRangeMiddle, isTemporaryRangeEnd]
+    [
+      isWeekend,
+      isIndicated,
+      isTemporaryRangeMiddle,
+      isTemporaryRangeEnd,
+      rangeValue,
+    ]
   )
+
+  // startMonth and endMonth only bound the navigation, so minDate and maxDate
+  // also disable the days outside them
+  const disabledDays: Matcher[] = [
+    ...(disabledIntervalsFormatted ?? (disableDays ? [disableDays] : [])),
+    ...(minDate ? [{ before: minDate }] : []),
+    ...(maxDate ? [{ after: maxDate }] : []),
+  ]
+
+  const selection = range
+    ? { mode: 'range' as const, selected: rangeValue }
+    : {
+        mode: 'single' as const,
+        selected: Array.isArray(value) ? undefined : value,
+      }
 
   const mobileScreen = useBreakpoint(['xs', 'sm'])
   const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
+  const visibleMonths = shouldRenderMultipleMonths ? numberOfMonths : 1
+  const month = navigationMonth || activeMonth
+
   const shouldDisplayDropdownNavigation =
     dropdownNavigation && minDate && maxDate
+
+  // react-day-picker pulls a month outside startMonth/endMonth inside them,
+  // and stops rendering months at endMonth; widen them for the month the
+  // consumer passes, not for navigation. The dropdowns list every month
+  // between them, so they keep minDate and maxDate
+  const shownMonth =
+    activeMonth ??
+    getDefaultNavigationMonth(value, range) ??
+    getFallbackMonth(visibleMonths, minDate, maxDate)
+  const startMonth =
+    minDate && !shouldDisplayDropdownNavigation
+      ? min([minDate, shownMonth])
+      : minDate
+  const endMonth =
+    maxDate && !shouldDisplayDropdownNavigation
+      ? max([maxDate, addMonths(shownMonth, visibleMonths - 1)])
+      : maxDate
 
   return (
     <div
@@ -231,6 +304,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       <CalendarContext.Provider
         value={{
           onDayMouseEnter: handleDayEnter,
+          onDaySelect: handleDaySelect,
           renderRoot,
           renderDay,
           renderMonthHeader,
@@ -241,21 +315,18 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           isFlexible={shouldRenderMultipleMonths}
         >
           <DayPicker
-            required
+            {...selection}
+            // Selection goes through CalendarDay; react-day-picker needs
+            // onSelect to keep "selected" controlled
+            onSelect={() => {}}
             showOutsideDays
-            month={navigationMonth || activeMonth}
-            mode={range ? 'range' : 'single'}
-            selected={range ? rangeValue : value}
-            // Moving mode-dependent props to a separate object to satisfy TypeScript breaks
-            // the change detection, so error is ignored
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            onSelect={range ? handleRangeChange : handleSingleDateChange}
-            fromDate={minDate}
-            onMonthChange={month => setNavigationMonth(month)}
-            toDate={maxDate}
-            numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
-            disabled={disabledIntervalsFormatted || disableDays}
+            hideNavigation
+            month={month}
+            startMonth={startMonth}
+            onMonthChange={setNavigationMonth}
+            endMonth={endMonth}
+            numberOfMonths={visibleMonths}
+            disabled={disabledDays}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
             modifiers={modifiers}
@@ -263,23 +334,22 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               shouldDisplayDropdownNavigation ? 'dropdown' : undefined
             }
             components={{
-              Caption: shouldDisplayDropdownNavigation
-                ? undefined
-                : CalendarMonthHeader,
-              Day: CalendarDay,
+              ...(!shouldDisplayDropdownNavigation && {
+                MonthCaption: CalendarMonthHeader,
+              }),
+              Day: CalendarDayCell,
+              DayButton: CalendarDay,
               Dropdown: CalendarDateSelector,
             }}
             classNames={{
               months: shouldRenderMultipleMonths ? 'flex gap-6' : undefined,
-              caption_dropdowns: 'flex gap-4 pb-4',
-              head: 'block',
-              table: 'flex flex-col border-spacing-0',
-              head_row:
+              dropdowns: 'flex gap-4 pb-4',
+              month_grid: 'flex flex-col border-spacing-0',
+              weekdays:
                 'flex text-center uppercase text-xxs pt-[3px] pb-[11px] text-gray-600',
-              head_cell: 'p-0 basis-[15%] w-40 font-regular',
-              row: 'flex',
-              cell: 'p-0 basis-[15%]',
-              vhidden: 'hidden',
+              weekday: 'p-0 basis-[15%] w-40 font-regular',
+              week: 'flex',
+              day: 'p-0 basis-[15%]',
             }}
             // Keeping the legacy classname as it is heavily used as a locator in tests
             className='calendar-month'

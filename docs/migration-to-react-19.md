@@ -287,7 +287,8 @@ it if your app doesn't have it yet.
 - **npm, yarn and pnpm warn about a peer conflict.** react-day-picker 8 still
   declares a `date-fns ^2.28.0 || ^3.0.0` peer, and Picasso's date-fns 4 is
   outside it. By default the install doesn't fail, runtime is unaffected, and
-  the warning goes away when Picasso moves to react-day-picker 9.
+  the warning goes away with the `@toptal/picasso-calendar` release that moves
+  to react-day-picker 10, which depends on date-fns 4 itself.
 - **Your own code can stay on date-fns 2.** Picasso's date-fns 4 installs next
   to it, and date-fns holds no shared state.
 - **Declare what you import.** With `node-linker=hoisted`, a package can import
@@ -1221,7 +1222,7 @@ Repeat the [Part 1 checklist](#step-8-verify-and-ship) on React 19, and add:
   [#1095](https://github.com/final-form/react-final-form/issues/1095) upstream.
 - The date-fns peer conflict
   ([Step 2](#step-2-update-dependencies-overrides-and-patches)) lasts until
-  Picasso moves to react-day-picker 9.
+  you take the `@toptal/picasso-calendar` release on react-day-picker 10.
 - react-querybuilder 8 ([#5102](https://github.com/toptal/picasso/pull/5102))
   isn't part of this release.
 

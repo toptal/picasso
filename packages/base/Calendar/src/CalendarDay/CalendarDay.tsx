@@ -1,17 +1,9 @@
-import type { ReactNode, RefObject } from 'react'
-import React, { useMemo, useRef } from 'react'
-import type { DayProps } from 'react-day-picker'
-import { useDayRender } from 'react-day-picker'
+import type { ReactNode } from 'react'
+import React, { useMemo } from 'react'
+import type { DayButtonProps } from 'react-day-picker'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import { FOCUS_RING } from '@toptal/picasso-shared'
-import {
-  isToday as isTodayDateFns,
-  endOfMonth,
-  format,
-  isAfter,
-  isBefore,
-  startOfMonth,
-} from 'date-fns'
+import { endOfMonth, format, isAfter, isBefore, startOfMonth } from 'date-fns'
 
 import { CalendarIndicators } from '../CalendarIndicators'
 import { useCalendar } from '../CalendarContext'
@@ -34,19 +26,17 @@ const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
   isAfter(date, endOfMonth(currentMonth))
 
 /**
- * The content of a day cell
+ * The content of a day cell. The roving tabIndex, keyboard and focus handlers
+ * react-day-picker passes are left out, so Tab moves day by day. Its full-date
+ * aria-label is kept: the weekday headers are hidden from screen readers
  */
-const CalendarDay = (dayProps: DayProps): React.ReactElement => {
-  const { date, displayMonth } = dayProps
-  const buttonRef = useRef<HTMLButtonElement>(null)
-  const { onDayMouseEnter, renderDay } = useCalendar()
-
-  const { activeModifiers, buttonProps } = useDayRender(
-    date,
-    displayMonth,
-    // react-day-picker types the ref without `null`; the value is the same
-    buttonRef as RefObject<HTMLButtonElement>
-  )
+const CalendarDay = ({
+  day,
+  modifiers,
+  'aria-label': ariaLabel,
+}: DayButtonProps): React.ReactElement => {
+  const { date, displayMonth } = day
+  const { onDayMouseEnter, onDaySelect, renderDay } = useCalendar()
 
   const {
     selected: isSelected = false,
@@ -54,15 +44,23 @@ const CalendarDay = (dayProps: DayProps): React.ReactElement => {
     indicated: isIndicated = false,
     outside: isOutside = false,
     weekend: isWeekend = false,
+    today: isToday = false,
     temporaryRangeMiddle: isTemporaryRangeMiddle = false,
     temporaryRangeEnd: isTemporaryRangeEnd = false,
-    range_start: isRangeStart = false,
+    rangeStart: isRangeStart = false,
     range_middle: isRangeMiddle = false,
-    range_end: isRangeEnd = false,
-  } = activeModifiers
+    rangeEnd: isRangeEnd = false,
+  } = modifiers
 
-  const isToday = isTodayDateFns(date)
   const isoDate = getISODate(date)
+
+  const handleClick = () => {
+    if (!isDisabled) {
+      onDaySelect?.(date)
+    }
+  }
+
+  const handleMouseEnter = () => onDayMouseEnter?.(date)
 
   const stateDependentClasses = useMemo(() => {
     const currentComponentState = {
@@ -100,7 +98,6 @@ const CalendarDay = (dayProps: DayProps): React.ReactElement => {
 
   const defaultComponent = (
     <button
-      ref={buttonRef}
       type='button'
       // Stable and unique: selection state lives on `data-selected`, and an
       // outside-month cell is prefixed so it cannot collide with the in-month
@@ -110,6 +107,7 @@ const CalendarDay = (dayProps: DayProps): React.ReactElement => {
       )}`}
       data-calendar-day={isoDate}
       data-selected={isSelected || undefined}
+      aria-label={ariaLabel}
       tabIndex={isDisabled ? -1 : undefined}
       className={twJoin(
         'h-10 w-10 min-w-10',
@@ -120,12 +118,8 @@ const CalendarDay = (dayProps: DayProps): React.ReactElement => {
         'outline-hidden',
         stateDependentClasses
       )}
-      onClick={isDisabled ? undefined : event => buttonProps?.onClick?.(event)}
-      onMouseEnter={event => {
-        onDayMouseEnter?.(date)
-
-        buttonProps?.onMouseEnter?.(event)
-      }}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
       value={date.toString()}
     >
       {getDayFormatted(date)}
@@ -151,8 +145,8 @@ const CalendarDay = (dayProps: DayProps): React.ReactElement => {
         isMonthNext,
         isSelectionStart: isRangeStart,
         isSelectionEnd: isRangeEnd,
-        handleOnClick: buttonProps?.onClick as () => void,
-        handleOnEnter: buttonProps?.onMouseEnter as () => void,
+        handleOnClick: handleClick,
+        handleOnEnter: handleMouseEnter,
         date,
         key: isoDate,
         ISODate: isoDate,

@@ -13,11 +13,13 @@ exports[`Calendar renders 1`] = `
         class="p-6 text-graphite flex flex-col basis-[20.5rem] shadow-5 bg-white rounded-sm max-w"
       >
         <div
-          class="rdp calendar-month"
+          class="rdp-root calendar-month"
+          data-mode="single"
+          lang="en-US"
         >
           <div>
             <div
-              class="rdp-month rdp-caption_start rdp-caption_end"
+              class="rdp-month"
             >
               <div
                 class="mb-6 justify-between flex"
@@ -79,12 +81,13 @@ exports[`Calendar renders 1`] = `
                 </button>
               </div>
               <table
-                aria-labelledby="react-day-picker-1"
+                aria-label="December 2019"
+                aria-multiselectable="false"
                 class="flex flex-col border-spacing"
                 role="grid"
               >
                 <thead
-                  class="block"
+                  aria-hidden="true"
                 >
                   <tr
                     class="flex text-center uppercase text-xxs pt-[3px] pb-[11px] text-gray"
@@ -141,16 +144,20 @@ exports[`Calendar renders 1`] = `
                   </tr>
                 </thead>
                 <tbody
-                  class="rdp-tbody"
+                  class="rdp-weeks"
                 >
                   <tr
                     class="flex"
                   >
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-25"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Monday, November 25th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-11-25"
                         data-testid="day-button-outside-25"
@@ -161,10 +168,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-26"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Tuesday, November 26th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-11-26"
                         data-testid="day-button-outside-26"
@@ -175,10 +186,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-27"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Wednesday, November 27th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-11-27"
                         data-testid="day-button-outside-27"
@@ -189,10 +204,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-28"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Thursday, November 28th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-11-28"
                         data-testid="day-button-outside-28"
@@ -203,10 +222,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-29"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Friday, November 29th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-11-29"
                         data-testid="day-button-outside-29"
@@ -217,10 +240,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2019-11-30"
+                      data-month="2019-11"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Saturday, November 30th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-11-30"
                         data-testid="day-button-outside-30"
@@ -232,9 +259,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-01"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Sunday, December 1st, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-01"
                         data-testid="day-button-1"
@@ -250,9 +279,11 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-02"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Monday, December 2nd, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-02"
                         data-testid="day-button-2"
@@ -264,9 +295,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-03"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Tuesday, December 3rd, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-03"
                         data-testid="day-button-3"
@@ -278,9 +311,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-04"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Wednesday, December 4th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-04"
                         data-testid="day-button-4"
@@ -292,9 +327,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-05"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Thursday, December 5th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-05"
                         data-testid="day-button-5"
@@ -306,9 +343,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-06"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Friday, December 6th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-06"
                         data-testid="day-button-6"
@@ -320,9 +359,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-07"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Saturday, December 7th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-07"
                         data-testid="day-button-7"
@@ -334,9 +375,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-08"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Sunday, December 8th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-08"
                         data-testid="day-button-8"
@@ -352,9 +395,11 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-09"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Monday, December 9th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-09"
                         data-testid="day-button-9"
@@ -366,9 +411,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-10"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Tuesday, December 10th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-10"
                         data-testid="day-button-10"
@@ -380,9 +427,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-11"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Wednesday, December 11th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-11"
                         data-testid="day-button-11"
@@ -393,10 +442,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      aria-selected="true"
+                      class="p-0 basis-[15%] rdp-selected"
+                      data-day="2019-12-12"
+                      data-selected="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Thursday, December 12th, 2019, selected"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-white bg-blue border-none rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-12"
                         data-selected="true"
@@ -409,9 +462,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-13"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Friday, December 13th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-13"
                         data-testid="day-button-13"
@@ -423,9 +478,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-14"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Saturday, December 14th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-14"
                         data-testid="day-button-14"
@@ -437,9 +494,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-15"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Sunday, December 15th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-15"
                         data-testid="day-button-15"
@@ -455,9 +514,11 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-16"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Monday, December 16th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-16"
                         data-testid="day-button-16"
@@ -469,9 +530,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-17"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Tuesday, December 17th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-17"
                         data-testid="day-button-17"
@@ -483,9 +546,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-18"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Wednesday, December 18th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-18"
                         data-testid="day-button-18"
@@ -497,9 +562,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-19"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Thursday, December 19th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-19"
                         data-testid="day-button-19"
@@ -511,9 +578,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-20"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Friday, December 20th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-20"
                         data-testid="day-button-20"
@@ -525,9 +594,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-21"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Saturday, December 21st, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-21"
                         data-testid="day-button-21"
@@ -539,9 +610,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-22"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Sunday, December 22nd, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-22"
                         data-testid="day-button-22"
@@ -557,9 +630,11 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-23"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Monday, December 23rd, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-23"
                         data-testid="day-button-23"
@@ -571,9 +646,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-24"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Tuesday, December 24th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-24"
                         data-testid="day-button-24"
@@ -585,9 +662,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-25"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Wednesday, December 25th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-25"
                         data-testid="day-button-25"
@@ -599,9 +678,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-26"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Thursday, December 26th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-26"
                         data-testid="day-button-26"
@@ -613,9 +694,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-27"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Friday, December 27th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-27"
                         data-testid="day-button-27"
@@ -627,9 +710,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-28"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Saturday, December 28th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-28"
                         data-testid="day-button-28"
@@ -641,9 +726,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-29"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Sunday, December 29th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-29"
                         data-testid="day-button-29"
@@ -659,9 +746,11 @@ exports[`Calendar renders 1`] = `
                   >
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-30"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Monday, December 30th, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-30"
                         data-testid="day-button-30"
@@ -673,9 +762,11 @@ exports[`Calendar renders 1`] = `
                     </td>
                     <td
                       class="p-0 basis-[15%]"
-                      role="presentation"
+                      data-day="2019-12-31"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Tuesday, December 31st, 2019"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2019-12-31"
                         data-testid="day-button-31"
@@ -686,10 +777,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-01"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Wednesday, January 1st, 2020"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2020-01-01"
                         data-testid="day-button-outside-1"
@@ -700,10 +795,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-02"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Thursday, January 2nd, 2020"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2020-01-02"
                         data-testid="day-button-outside-2"
@@ -714,10 +813,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-03"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Friday, January 3rd, 2020"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2020-01-03"
                         data-testid="day-button-outside-3"
@@ -728,10 +831,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-04"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Saturday, January 4th, 2020"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2020-01-04"
                         data-testid="day-button-outside-4"
@@ -742,10 +849,14 @@ exports[`Calendar renders 1`] = `
                       </button>
                     </td>
                     <td
-                      class="p-0 basis-[15%]"
-                      role="presentation"
+                      class="p-0 basis-[15%] rdp-outside"
+                      data-day="2020-01-05"
+                      data-month="2020-01"
+                      data-outside="true"
+                      role="gridcell"
                     >
                       <button
+                        aria-label="Sunday, January 5th, 2020"
                         class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-hidden text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer focus-visible:z-1 focus-visible:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]"
                         data-calendar-day="2020-01-05"
                         data-testid="day-button-outside-5"

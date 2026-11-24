@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import { useDayPicker, useNavigation } from 'react-day-picker'
-import { isSameMonth } from 'date-fns'
+import type { MonthCaptionProps } from 'react-day-picker'
+import { useDayPicker } from 'react-day-picker'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Typography } from '@toptal/picasso-typography'
 import { ChevronMinor24, BackMinor24 } from '@toptal/picasso-icons'
@@ -22,65 +22,38 @@ export type RenderMonthHeader = (
   args: RenderMonthHeaderProps
 ) => React.ReactElement | null
 
-const CalendarMonthHeader = (
-  props: RenderMonthHeaderProps
-): React.ReactElement => {
+/**
+ * The month caption with the month navigation. Calendar hides
+ * react-day-picker's own navigation so that `renderMonthHeader` wraps the
+ * buttons, and `renderMonthHeader={() => null}` hides them
+ */
+const CalendarMonthHeader = ({
+  calendarMonth,
+  displayIndex,
+}: MonthCaptionProps): React.ReactElement => {
   const {
     formatters: { formatCaption },
-    locale,
-    classNames,
-    disableNavigation,
-    styles,
-    numberOfMonths,
-    onMonthChange,
-    dir,
+    months,
+    previousMonth,
+    nextMonth,
+    goToMonth,
   } = useDayPicker()
-  const { previousMonth, nextMonth, goToMonth, displayMonths } = useNavigation()
   const { renderMonthHeader } = useCalendar()
 
-  if (disableNavigation) {
-    return (
-      <div className={classNames.caption} style={styles.caption}>
-        <Typography
-          variant='heading'
-          size='medium'
-          aria-live='polite'
-          aria-atomic='true'
-        >
-          {formatCaption(props.displayMonth, { locale })}
-        </Typography>
-      </div>
-    )
-  }
-
-  const displayIndex = displayMonths.findIndex(month =>
-    isSameMonth(props.displayMonth, month)
-  )
-
-  let isFirst = displayIndex === 0
-  let isLast = displayIndex === displayMonths.length - 1
-
-  if (dir === 'rtl') {
-    ;[isLast, isFirst] = [isFirst, isLast]
-  }
-
-  const hideNext = numberOfMonths > 1 && !isLast
-  const hidePrevious = numberOfMonths > 1 && !isFirst
+  const displayMonth = calendarMonth.date
+  const hidePrevious = displayIndex !== 0
+  const hideNext = displayIndex !== months.length - 1
 
   const handlePreviousClick = () => {
-    if (!previousMonth) {
-      return
+    if (previousMonth) {
+      goToMonth(previousMonth)
     }
-    goToMonth(previousMonth)
-    onMonthChange?.(previousMonth)
   }
 
   const handleNextClick = () => {
-    if (!nextMonth) {
-      return
+    if (nextMonth) {
+      goToMonth(nextMonth)
     }
-    goToMonth(nextMonth)
-    onMonthChange?.(nextMonth)
   }
 
   const defaultComponent = (
@@ -102,7 +75,7 @@ const CalendarMonthHeader = (
         aria-live='polite'
         aria-atomic='true'
       >
-        {formatCaption(props.displayMonth, { locale })}
+        {formatCaption(displayMonth)}
       </Typography>
       {hideNext ? (
         <div />
@@ -121,7 +94,7 @@ const CalendarMonthHeader = (
   return renderMonthHeader ? (
     <>
       {renderMonthHeader({
-        ...props,
+        displayMonth,
         children: defaultComponent,
       })}
     </>
