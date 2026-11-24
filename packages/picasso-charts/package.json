@@ -25,18 +25,18 @@
     "@toptal/picasso-shared": "workspace:^",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-is": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "recharts": "^3.10.1"
   },
   "devDependencies": {
     "@types/d3": "^7.4.0",
-    "@types/d3-array": "3.0.4"
+    "@types/d3-array": "3.0.4",
+    "recharts": "^3.10.1"
   },
   "dependencies": {
     "@toptal/picasso-utils": "workspace:*",
     "classnames": "^2.5.1",
-    "d3-array": "^3.2.2",
-    "debounce": "^1.2.1",
-    "recharts": "^3.10.1"
+    "d3-array": "^3.2.2"
   },
   "exports": {
     ".": "./dist-package/src/index.js",

@@ -193,6 +193,21 @@ describe('BarChart', () => {
       .should('have.attr', 'y', '134')
   })
 
+  it('keeps its size when given a style', () => {
+    cy.mount(
+      <TestBarChart
+        tooltip={false}
+        data-testid='chart'
+        style={{ marginTop: 8 }}
+      />
+    )
+
+    cy.getByTestId('chart')
+      .should('have.css', 'margin-top', '8px')
+      .and('have.css', 'height', '200px')
+    cy.get('.recharts-surface').should('exist')
+  })
+
   describe('when values are 0s', () => {
     it('renders the label of each bar', () => {
       cy.mount(

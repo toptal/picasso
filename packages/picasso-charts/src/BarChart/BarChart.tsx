@@ -20,6 +20,7 @@ import type { BaseChartProps, BarChartDataItem, BarOptions } from '../types'
 import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, {
   chartMargins,
+  LAYER_NO_OUTLINE,
   SURFACE_FOCUS_RING,
   SURFACE_OVERFLOW_VISIBLE,
 } from '../utils/constants'
@@ -134,7 +135,7 @@ const BarChart = <T extends string>({
   autoSize,
   maxBarSize,
   valueAxisTickFormatter,
-  title,
+  'aria-label': ariaLabel,
   ...rest
 }: Props<T>): React.ReactElement => {
   const horizontal = layout === 'horizontal'
@@ -210,7 +211,11 @@ const BarChart = <T extends string>({
   const renderYAxis = showEveryNthTickOnYAxis !== 0
 
   return (
-    <div style={{ height, width }} className={className} {...rest}>
+    <div
+      {...rest}
+      style={{ ...rest.style, height, width }}
+      className={className}
+    >
       <StyleOverrides />
       <ResponsiveContainer>
         <RechartsBarChart
@@ -221,9 +226,13 @@ const BarChart = <T extends string>({
           barGap={DEFAULT_BAR_GAP}
           barCategoryGap={!autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined}
           barSize={!autoSize ? DEFAULT_BAR_SIZE : undefined}
-          className={cx(SURFACE_OVERFLOW_VISIBLE, SURFACE_FOCUS_RING)}
+          className={cx(
+            SURFACE_OVERFLOW_VISIBLE,
+            SURFACE_FOCUS_RING,
+            LAYER_NO_OUTLINE
+          )}
           accessibilityLayer={Boolean(tooltip)}
-          title={title}
+          aria-label={ariaLabel}
         >
           <CartesianGrid
             strokeDasharray='3 3'

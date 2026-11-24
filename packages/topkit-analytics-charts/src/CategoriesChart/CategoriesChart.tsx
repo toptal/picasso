@@ -8,7 +8,7 @@ import CategoriesChartTooltip from '../CategoriesChartTooltip'
 
 export type Props = Pick<
   BarChartProps<string>,
-  'width' | 'height' | 'isAnimationActive'
+  'width' | 'height' | 'isAnimationActive' | 'aria-label'
 > & {
   data: DataItem[]
   labels: LabelMap

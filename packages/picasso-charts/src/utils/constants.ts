@@ -22,9 +22,14 @@ const chartConstants = {
 // lets labels and indicators near the edges render outside the svg box
 export const SURFACE_OVERFLOW_VISIBLE = '[&>.recharts-surface]:overflow-visible'
 
-// FOCUS_RING.blue.focusVisible on the svg, which the chart wrapper renders
+// TODO: [PI-4318] FOCUS_RING.blue.focusVisible on the svg, written out; a test
+// syncs it. Forced colors keep the system outline, which shadows can't replace
 export const SURFACE_FOCUS_RING =
-  '[&>.recharts-surface]:outline-none [&>.recharts-surface:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
+  '[&>.recharts-surface]:not-forced-colors:outline-none [&>.recharts-surface:focus-visible]:shadow-[0_0_0_0.1875rem_color-mix(in_srgb,theme(colors.blue.500)_48%,transparent)]'
+
+// recharts' layer groups have tabindex="-1", so a click focuses them and the
+// next key press draws an outline. recharts 3.11.1 hides it the same way
+export const LAYER_NO_OUTLINE = '[&_g[tabindex]]:outline-none'
 
 export const chartMargins = {
   top: chartConstants.DEFAULT_MARGIN,
