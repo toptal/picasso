@@ -19,4 +19,4 @@
 - drop `tooltipPayload` from the `dataItem` that `BarChart` passes to `renderBarIndicators`. Read the bar's series from `dataItem.dataKey` instead
 - render `BarChart` when `width` keeps its default, `auto`. It rendered nothing before
 - fix the `LineChart` tooltip with `allowTooltipEscapeViewBox`: recharts places it, so it follows the mouse, touch and keyboard instead of staying in the chart's top-left corner
-- with `allowTooltipEscapeViewBox`, the `LineChart` and `BarChart` tooltips escape the chart only vertically. Near the chart's right edge they flip to the left of the point or bar instead of going off screen
+- with `allowTooltipEscapeViewBox`, the `LineChart` and `BarChart` tooltips escape the chart only vertically. Near the chart's right edge they flip to the left of the point or bar (of the cursor in a vertical `BarChart`) instead of escaping to the right. A tooltip wider than the chart's plot area still overflows on the right

@@ -197,6 +197,7 @@ describe('BarChart', () => {
     cy.mount(<TestBarChart allowTooltipEscapeViewBox />)
 
     hoverOverBar('Toptal')
+    assertTooltipContent('Toptal')
     // at the last bar the tooltip flips to its left, inside the chart
     cy.get('.recharts-tooltip-wrapper').should($tooltip => {
       const tooltip = $tooltip[0]
@@ -212,8 +213,11 @@ describe('BarChart', () => {
     cy.mount(<TestBarChart />)
 
     getBar('Apple').realClick()
-    cy.focused().should('not.match', '.recharts-surface')
+    // a click alone shows no ring; the key press makes the focus visible
+    cy.focused().should('match', 'g[tabindex="-1"]')
+    cy.get('.recharts-surface').should('have.css', 'box-shadow', 'none')
     cy.realPress('ArrowRight')
+    cy.get('.recharts-tooltip-wrapper').should('be.visible')
     cy.get('.recharts-surface').should('not.have.css', 'box-shadow', 'none')
   })
 

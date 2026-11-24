@@ -107,8 +107,11 @@ describe('LineChart', () => {
     )
 
     cy.get('.recharts-line-curve').realClick()
-    cy.focused().should('not.match', '.recharts-surface')
+    // a click alone shows no ring; the key press makes the focus visible
+    cy.focused().should('match', 'g[tabindex="-1"]')
+    cy.get('.recharts-surface').should('have.css', 'box-shadow', 'none')
     cy.realPress('ArrowRight')
+    cy.get('.recharts-tooltip-wrapper').should('be.visible')
     cy.get('.recharts-surface').should('not.have.css', 'box-shadow', 'none')
   })
 
@@ -233,7 +236,7 @@ describe('LineChart', () => {
     )
 
     // Tab skips the chart until ResponsiveContainer has measured and drawn it
-    cy.get('.recharts-surface').should('exist')
+    cy.get('.recharts-surface').should('have.attr', 'tabindex', '0')
     cy.contains('Before').realClick()
     cy.realPress('Tab')
     cy.get('.recharts-surface')
