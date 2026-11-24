@@ -26,13 +26,14 @@ const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
   isAfter(date, endOfMonth(currentMonth))
 
 /**
- * The content of a day cell. The button props react-day-picker passes (roving
- * tabIndex, aria-label, keyboard and focus handlers) are left out, so Tab moves
- * day by day and the visible day number stays the accessible name
+ * The content of a day cell. The roving tabIndex, keyboard and focus handlers
+ * react-day-picker passes are left out, so Tab moves day by day. Its full-date
+ * aria-label is kept: the weekday headers are hidden from screen readers
  */
 const CalendarDay = ({
   day,
   modifiers,
+  'aria-label': ariaLabel,
 }: DayButtonProps): React.ReactElement => {
   const { date, displayMonth } = day
   const { onDayMouseEnter, onDaySelect, renderDay } = useCalendar()
@@ -106,6 +107,7 @@ const CalendarDay = ({
       )}`}
       data-calendar-day={isoDate}
       data-selected={isSelected || undefined}
+      aria-label={ariaLabel}
       tabIndex={isDisabled ? -1 : undefined}
       className={twJoin(
         'h-10 w-10 min-w-10',
