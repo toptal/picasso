@@ -1,5 +1,15 @@
 # Change Log
 
+## 102.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-date-picker@102.0.3
+  - @toptal/picasso-file-input@102.0.4
+  - @toptal/picasso-dropzone@102.0.4
+  - @toptal/picasso-rich-text-editor@102.0.4
+
 ## 102.0.5
 
 ### Patch Changes

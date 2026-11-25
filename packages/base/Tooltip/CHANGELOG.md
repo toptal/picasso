@@ -1,5 +1,15 @@
 # @toptal/picasso-tooltip
 
+## 102.0.2
+
+### Patch Changes
+
+- [#5161](https://github.com/toptal/picasso/pull/5161) [`5b4716f`](https://github.com/toptal/picasso/commit/5b4716f4c67fe1ad9f6d160103ec3dfc6b9df693) Thanks [@AlfonsoUceda](https://github.com/AlfonsoUceda)!
+
+### Tooltip
+
+- give a tooltip the same size on every side of its anchor, so a tall tooltip no longer flickers between above and beside its anchor
+
 ## 102.0.1
 
 ### Patch Changes

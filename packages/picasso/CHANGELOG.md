@@ -1,5 +1,21 @@
 # Change Log
 
+## 102.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`48ea8f8`](https://github.com/toptal/picasso/commit/48ea8f836886bed1066fc365e06c8ab559ca2f8c), [`5b4716f`](https://github.com/toptal/picasso/commit/5b4716f4c67fe1ad9f6d160103ec3dfc6b9df693)]:
+  - @toptal/picasso-calendar@103.0.0
+  - @toptal/picasso-tooltip@102.0.2
+  - @toptal/picasso-date-picker@102.0.3
+  - @toptal/picasso-file-input@102.0.4
+  - @toptal/picasso-page@102.1.3
+  - @toptal/picasso-slider@102.0.2
+  - @toptal/picasso-typography-overflow@102.0.3
+  - @toptal/picasso-dropzone@102.0.4
+  - @toptal/picasso-step@102.0.3
+  - @toptal/picasso-tabs@102.0.3
+
 ## 102.0.4
 
 ### Patch Changes
