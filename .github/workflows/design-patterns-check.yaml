@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Claude design-patterns review
-        uses: anthropics/claude-code-action@eb56b6666facdbd501035f4a0269d8caee2e7a8b # v1, before the Claude Code 2.1.332 bump
+        uses: anthropics/claude-code-action@v1
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
