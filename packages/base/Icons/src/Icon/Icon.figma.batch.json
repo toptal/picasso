@@ -1235,6 +1235,14 @@
       "id": "Multi"
     },
     {
+      "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=2841-776",
+      "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/Network16.tsx",
+      "component": "Network",
+      "name": "Network",
+      "sizes": ["16", "24"],
+      "id": "Network"
+    },
+    {
       "url": "https://www.figma.com/design/TqaGgbpjGSUDf7qq153Isq/Iconography?node-id=1-1257",
       "source": "https://github.com/toptal/picasso/blob/master/packages/base/Icons/src/Icon/New16.tsx",
       "component": "New",
