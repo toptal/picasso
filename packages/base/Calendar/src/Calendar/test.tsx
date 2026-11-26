@@ -92,6 +92,27 @@ describe('Calendar', () => {
     })
   })
 
+  describe('when minDate and maxDate are empty form values', () => {
+    it('keeps every day selectable', () => {
+      const value = new Date(2019, 2, 14)
+      const onChange = jest.fn()
+      const emptyDate = '' as unknown as Date
+
+      const { getByTestId } = render(
+        <Calendar
+          minDate={emptyDate}
+          maxDate={emptyDate}
+          value={value}
+          onChange={onChange}
+        />
+      )
+
+      fireEvent.click(getByTestId('day-button-1'))
+      fireEvent.click(getByTestId('day-button-31'))
+      expect(onChange).toHaveBeenCalledTimes(2)
+    })
+  })
+
   describe('when disableDays is set', () => {
     it('disables specified days', () => {
       const minDate = new Date('2015-12-01')
