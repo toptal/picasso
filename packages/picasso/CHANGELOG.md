@@ -1,5 +1,60 @@
 # Change Log
 
+## 102.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`a1f6c3c`](https://github.com/toptal/picasso/commit/a1f6c3cd191ac7da90887b86d85966ef2da42351)]:
+  - @toptal/picasso-icons@102.1.0
+  - @toptal/picasso-accordion@102.0.3
+  - @toptal/picasso-account-select@102.0.2
+  - @toptal/picasso-alert@102.0.3
+  - @toptal/picasso-application-update-notification@102.0.3
+  - @toptal/picasso-avatar@102.0.2
+  - @toptal/picasso-avatar-upload@102.0.3
+  - @toptal/picasso-breadcrumbs@102.0.2
+  - @toptal/picasso-button@102.0.3
+  - @toptal/picasso-calendar@103.0.1
+  - @toptal/picasso-carousel@102.0.3
+  - @toptal/picasso-date-picker@102.0.4
+  - @toptal/picasso-drawer@102.0.3
+  - @toptal/picasso-dropzone@102.0.5
+  - @toptal/picasso-empty-state@102.0.2
+  - @toptal/picasso-file-input@102.0.5
+  - @toptal/picasso-form@102.0.3
+  - @toptal/picasso-grid@102.0.2
+  - @toptal/picasso-helpbox@102.0.3
+  - @toptal/picasso-input@102.0.3
+  - @toptal/picasso-input-adornment@102.0.2
+  - @toptal/picasso-list@102.0.2
+  - @toptal/picasso-logo@102.0.2
+  - @toptal/picasso-menu@102.0.2
+  - @toptal/picasso-modal@102.0.3
+  - @toptal/picasso-notification@102.0.3
+  - @toptal/picasso-number-input@102.1.2
+  - @toptal/picasso-outlined-input@102.0.3
+  - @toptal/picasso-page@102.1.4
+  - @toptal/picasso-password-input@102.0.3
+  - @toptal/picasso-rating@102.0.2
+  - @toptal/picasso-section@102.0.3
+  - @toptal/picasso-select@102.0.3
+  - @toptal/picasso-show-more@102.0.3
+  - @toptal/picasso-step@102.0.4
+  - @toptal/picasso-table@102.0.3
+  - @toptal/picasso-tabs@102.0.4
+  - @toptal/picasso-tag@102.1.1
+  - @toptal/picasso-timepicker@102.0.3
+  - @toptal/picasso-user-badge@102.0.2
+  - @toptal/picasso-pagination@102.0.3
+  - @toptal/picasso-prompt-modal@102.0.3
+  - @toptal/picasso-skeleton-loader@102.0.3
+  - @toptal/picasso-tree-view@102.0.3
+  - @toptal/picasso-autocomplete@102.0.3
+  - @toptal/picasso-tagselector@102.0.3
+  - @toptal/picasso-checkbox@102.0.2
+  - @toptal/picasso-radio@102.0.2
+  - @toptal/picasso-date-select@102.0.3
+
 ## 102.0.5
 
 ### Patch Changes
