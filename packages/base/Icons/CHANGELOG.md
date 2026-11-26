@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 102.1.0
+
+### Minor Changes
+
+- [#5166](https://github.com/toptal/picasso/pull/5166) [`a1f6c3c`](https://github.com/toptal/picasso/commit/a1f6c3cd191ac7da90887b86d85966ef2da42351) Thanks [@dulishkovych](https://github.com/dulishkovych)!
+- add Network icon in 16px and 24px sizes
+
 ## 102.0.1
 
 ### Patch Changes

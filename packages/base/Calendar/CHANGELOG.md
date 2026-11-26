@@ -1,5 +1,13 @@
 # @toptal/picasso-calendar
 
+## 103.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`a1f6c3c`](https://github.com/toptal/picasso/commit/a1f6c3cd191ac7da90887b86d85966ef2da42351)]:
+  - @toptal/picasso-icons@102.1.0
+  - @toptal/picasso-button@102.0.3
+
 ## 103.0.0
 
 ### Major Changes
