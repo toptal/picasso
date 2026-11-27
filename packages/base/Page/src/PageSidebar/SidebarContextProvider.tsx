@@ -7,14 +7,12 @@ import type { SidebarContextProps, VariantType } from './types'
 const SidebarContext = React.createContext<SidebarContextProps>({
   expandedItemKey: null,
   setExpandedItemKey: noop,
-  isHovered: false,
   isCollapsed: false,
 })
 
 export interface Props {
   variant?: VariantType
   isCollapsed: boolean
-  isHovered: boolean
   expandedItemKey: number | null
   setExpandedItemKey: (expanded: number | null) => void
   children?: ReactNode
@@ -26,7 +24,6 @@ export const SidebarContextProvider = ({
   variant,
   expandedItemKey,
   setExpandedItemKey,
-  isHovered,
 }: Props): React.ReactElement => {
   return (
     <SidebarContext.Provider
@@ -34,7 +31,6 @@ export const SidebarContextProvider = ({
         expandedItemKey,
         setExpandedItemKey,
         isCollapsed,
-        isHovered,
         variant,
       }}
     >
