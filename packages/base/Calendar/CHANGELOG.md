@@ -1,5 +1,12 @@
 # @toptal/picasso-calendar
 
+## 103.0.2
+
+### Patch Changes
+
+- [#5168](https://github.com/toptal/picasso/pull/5168) [`8147d12`](https://github.com/toptal/picasso/commit/8147d1237545f263645e3bdc9f145941e3a81594) Thanks [@Gtosta96-Toptal](https://github.com/Gtosta96-Toptal)!
+- ignore an empty `minDate` or `maxDate` again, as before react-day-picker 10; forms pass `''` for an empty date field, and the calendar crashed on it
+
 ## 103.0.1
 
 ### Patch Changes

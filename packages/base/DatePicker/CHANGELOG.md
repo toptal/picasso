@@ -1,5 +1,12 @@
 # @toptal/picasso-date-picker
 
+## 102.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`8147d12`](https://github.com/toptal/picasso/commit/8147d1237545f263645e3bdc9f145941e3a81594)]:
+  - @toptal/picasso-calendar@103.0.2
+
 ## 102.0.4
 
 ### Patch Changes
