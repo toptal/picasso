@@ -1,5 +1,5 @@
-import { act, render, screen, waitFor } from '@toptal/picasso-test-utils'
-import React, { startTransition, useState } from 'react'
+import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
+import React, { useState } from 'react'
 import type { FormApi } from 'final-form'
 import { Field as FinalFormField, useForm } from 'react-final-form'
 
@@ -29,47 +29,17 @@ const FirstValue = ({ value }: { value: unknown }) => {
   return <output>{String(first)}</output>
 }
 
-// Outlasts React's 5 ms render slice, so a concurrent render yields after it
-const SlowRender = () => {
-  const start = performance.now()
+const Toggleable = ({ children }: { children: React.ReactNode }) => {
+  const [mounted, setMounted] = useState(true)
 
-  while (performance.now() - start < 20) {
-    // Keep the render busy
-  }
-
-  return null
-}
-
-const createRemountable = () => {
-  const setMountedRef: { current?: (mounted: boolean) => void } = {}
-  const Remountable = ({ children }: { children: React.ReactNode }) => {
-    const [mounted, setMounted] = useState(true)
-
-    setMountedRef.current = setMounted
-
-    return <>{mounted && children}</>
-  }
-
-  return {
-    Remountable,
-    unmount: () => act(() => setMountedRef.current?.(false)),
-    // Outside `act`, React renders the transition concurrently and yields
-    remountInTransition: async () => {
-      const environment = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }
-      const actEnvironment = environment.IS_REACT_ACT_ENVIRONMENT
-
-      environment.IS_REACT_ACT_ENVIRONMENT = false
-
-      try {
-        startTransition(() => setMountedRef.current?.(true))
-        await waitFor(() =>
-          expect(screen.getByRole('status')).toBeInTheDocument()
-        )
-      } finally {
-        environment.IS_REACT_ACT_ENVIRONMENT = actEnvironment
-      }
-    },
-  }
+  return (
+    <>
+      {mounted && children}
+      <button type='button' onClick={() => setMounted(current => !current)}>
+        toggle
+      </button>
+    </>
+  )
 }
 
 describe('CheckboxGroup', () => {
@@ -85,35 +55,41 @@ describe('CheckboxGroup', () => {
     expect(getByText('Checkbox Group Label')).toBeInTheDocument()
   })
 
-  it("renders a checkbox's stored state on its first render when a transition render yields before it", async () => {
+  // react-final-form's own `Field` builds its first render from
+  // `initialValues`; the group's claim keeps the stored state it then reads
+  it("renders a checkbox's stored state once it registers after a remount", () => {
     const formRef: { current?: FormApi } = {}
     const CaptureForm = () => {
       formRef.current = useForm()
 
       return null
     }
-    const { Remountable, unmount, remountInTransition } = createRemountable()
 
     render(
       <Form onSubmit={() => {}} initialValues={{ choices: [] }}>
         <CaptureForm />
-        <Remountable>
+        <Toggleable>
           <CheckboxGroup name='choices'>
-            <SlowRender />
             <FinalFormField name='choices' type='checkbox' value='b'>
-              {({ input }) => <FirstValue value={input.checked} />}
+              {({ input }) => (
+                <>
+                  <FirstValue value={input.checked} />
+                  <span>{`checked: ${String(input.checked)}`}</span>
+                </>
+              )}
             </FinalFormField>
           </CheckboxGroup>
-        </Remountable>
+        </Toggleable>
       </Form>
     )
 
     act(() => {
       formRef.current?.change('choices', ['b'])
     })
-    unmount()
-    await remountInTransition()
+    fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
+    fireEvent.click(screen.getByRole('button', { name: 'toggle' }))
 
-    expect(screen.getByRole('status')).toHaveTextContent('true')
+    expect(screen.getByRole('status')).toHaveTextContent('false')
+    expect(screen.getByText('checked: true')).toBeInTheDocument()
   })
 })

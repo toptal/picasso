@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { act, fireEvent, render, screen } from '@toptal/picasso-test-utils'
 import type { FormApi } from 'final-form'
 import { useForm } from 'react-final-form'
@@ -22,6 +23,32 @@ const Toggleable = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {mounted && children}
+      <button type='button' onClick={() => setMounted(current => !current)}>
+        toggle
+      </button>
+    </>
+  )
+}
+
+// Toggleable, rendering its children again from a layout effect when it
+// toggles, as a layout effect or `useSyncExternalStore` above a field can.
+// React renders that update before the ones the field's mount effects queue.
+// The children are a function, so that the field renders again too
+const RerenderingToggleable = ({
+  children,
+}: {
+  children: () => React.ReactNode
+}) => {
+  const [mounted, setMounted] = useState(true)
+  const [, setRenders] = useState(0)
+
+  useIsomorphicLayoutEffect(() => {
+    setRenders(renders => renders + 1)
+  }, [mounted])
+
+  return (
+    <>
+      {mounted && children()}
       <button type='button' onClick={() => setMounted(current => !current)}>
         toggle
       </button>
@@ -166,6 +193,29 @@ describe('form listeners', () => {
             <OnChange<string> name='firstName'>{handleChange}</OnChange>
             <Form.Input name='firstName' placeholder='First name' />
           </Toggleable>
+        </Form>
+      )
+
+      fireEvent.change(getInput(), { target: { value: 'Clark' } })
+      handleChange.mockClear()
+      remount()
+
+      expect(handleChange).not.toHaveBeenCalled()
+    })
+
+    it('OnChange placed before its field does not fire when a layout effect above renders them again', () => {
+      const handleChange = jest.fn()
+
+      render(
+        <Form onSubmit={jest.fn()} initialValues={{ firstName: 'Bruce' }}>
+          <RerenderingToggleable>
+            {() => (
+              <>
+                <OnChange<string> name='firstName'>{handleChange}</OnChange>
+                <Form.Input name='firstName' placeholder='First name' />
+              </>
+            )}
+          </RerenderingToggleable>
         </Form>
       )
 

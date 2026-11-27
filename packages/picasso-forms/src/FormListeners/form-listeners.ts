@@ -1,7 +1,5 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import { createElement, Fragment, useRef, useState } from 'react'
-import type { FormApi } from 'final-form'
-import { useForm } from 'react-final-form'
 import {
   OnBlur as UntypedOnBlur,
   OnFocus as UntypedOnFocus,
@@ -57,27 +55,10 @@ const keepListenerFieldState = <Props extends { name: string }>(
   return KeptListener
 }
 
-// The value a listener compares the first change against. react-final-form
-// 7.0.1 renders an `allowNull` field whose initial value is `null` as `null`
-// on its first render, whatever the form stores, so a remount would look like
-// a change from `null`
-// TODO: [PF-2522] drop once react-final-form's first render reads the stored
-// value, and use react-final-form-listeners' `OnChange` again
-const getStartingValue = <Value>(
-  form: FormApi,
-  name: string,
-  renderedValue: Value
-): Value => {
-  const stored = form.getFieldState(name)
-  const isForcedToNull =
-    renderedValue === null && stored?.initial === null && stored.value !== null
-
-  // What react-final-form renders for a field without `format`
-  return isForcedToNull ? stored.value ?? '' : renderedValue
-}
-
 // react-final-form-listeners' `OnChange`, except that it starts from the value
-// the form stores
+// the form stores, which the kept `useField` renders on its first render
+// TODO: [PF-2522] use react-final-form-listeners' `OnChange` again once
+// react-final-form's first render reads the stored value (#1093)
 export const OnChange = <
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   FieldValue = any
@@ -85,7 +66,6 @@ export const OnChange = <
   name,
   children,
 }: OnChangeProps<FieldValue>): ReactElement | null => {
-  const form = useForm('OnChange')
   const { input } = useField<FieldValue>(name, {
     allowNull: true,
     subscription: { value: true },
@@ -94,7 +74,7 @@ export const OnChange = <
 
   useIsomorphicLayoutEffect(() => {
     if (!previous.current) {
-      previous.current = { value: getStartingValue(form, name, input.value) }
+      previous.current = { value: input.value }
 
       return
     }
@@ -129,7 +109,6 @@ export const ExternallyChanged = ({
   name,
   children,
 }: ExternallyChangedProps): ReactElement => {
-  const form = useForm('ExternallyChanged')
   const { input, meta } = useField(name, {
     allowNull: true,
     subscription: { active: true, value: true },
@@ -139,7 +118,7 @@ export const ExternallyChanged = ({
 
   useIsomorphicLayoutEffect(() => {
     if (!previous.current) {
-      previous.current = { value: getStartingValue(form, name, input.value) }
+      previous.current = { value: input.value }
 
       return
     }
