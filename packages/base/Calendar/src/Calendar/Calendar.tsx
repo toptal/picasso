@@ -135,8 +135,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     activeMonth,
     value,
     onChange,
-    minDate,
-    maxDate,
+    minDate: minDateProp,
+    maxDate: maxDateProp,
     disabledIntervals,
     indicatedIntervals,
     renderDay,
@@ -150,6 +150,11 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     className,
     ...rest
   } = props
+
+  // react-day-picker 8 ignored an empty minDate or maxDate (form libraries
+  // pass ''), while 10 crashes on it
+  const minDate = minDateProp || undefined
+  const maxDate = maxDateProp || undefined
 
   const [navigationMonth, setNavigationMonth] = useState(
     getDefaultNavigationMonth(value, range)
